@@ -16,8 +16,8 @@ public abstract class BaseBoss : MonoBehaviour
     [Header("공격 설정")]
     private float _patternCooldown = 0.6f;
 
-    [Header("공격 설정")]
-
+    [Header("상태 이상 클래스")]
+    private BossAbnormalConditions AbnormalConditions;
 
     // 컴포넌트 참조
     private GridSystem _gridSystem;
@@ -201,5 +201,12 @@ public abstract class BaseBoss : MonoBehaviour
         {
             _playerHealth.TakeDamage(damage);
         }
+    }
+    /// <summary>
+    /// 상태이상 함수 
+    /// </summary>
+    public void AddAbnormalCondition(AbnormalConditions abnormalConditions)
+    {
+        AbnormalConditions.bossAbnormalConditions.Add(abnormalConditions);
     }
 }
