@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private BaseBoss _enemy;
     private PlayerController _player;
     private PlayerHealth _playerHealth;
+    private PlayerMana _playerMana;
     private GameStateManager _gameStateManager;
     private TileBuilder _tileBuilder;
     
@@ -135,6 +136,7 @@ public class GameManager : MonoBehaviour
         GameObject playerObj = Instantiate(playerPrefab, position, Quaternion.identity);
         _player = playerObj.GetComponent<PlayerController>();
         _playerHealth = playerObj.GetComponent<PlayerHealth>();
+        _playerMana = playerObj.GetComponent<PlayerMana>();
         
         // 플레이어 사망 이벤트 연결
         if (_playerHealth != null)
