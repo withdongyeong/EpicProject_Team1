@@ -1,11 +1,12 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ȭ��, ����
+//화상, 기절
 public enum AbnormalConditions
 {
-    burn,
+    None,// 상태 이상 없음
+    Burning,
     Faint
 }
 

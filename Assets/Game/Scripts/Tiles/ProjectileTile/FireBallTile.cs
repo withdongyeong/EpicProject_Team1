@@ -2,11 +2,11 @@
 
 public class FireBoltTIle : ProjectileTile
 {
-    [SerializeField] private GameObject fireBoltProjectilePrefab;
+    [SerializeField] private GameObject fireBallProjectilePrefab;
 
     private void Awake()
     {
-        projectilePrefab = fireBoltProjectilePrefab;
+        projectilePrefab = fireBallProjectilePrefab;
         _damage = 5;
         _chargeTime = 3f;
     }
