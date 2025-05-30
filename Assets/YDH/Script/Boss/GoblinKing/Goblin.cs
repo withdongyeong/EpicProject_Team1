@@ -49,6 +49,14 @@ public class Goblin : MonoBehaviour
             return ;
         }
 
+        BaseTile baseTile = collision.GetComponent<BaseTile>();
+
+        if (baseTile != null)
+        {
+            baseTile.SetToChargeState();
+        }
+        
+
         //BaseTile에 접근해서 상태를 처음으로 돌림
     }
 }
