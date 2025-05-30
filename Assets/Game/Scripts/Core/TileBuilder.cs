@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
@@ -144,7 +144,7 @@ public class TileBuilder
         tile.ChargeTime = itemData.ChargeTime;
         
         // 타일 타입별 속성 설정
-        if (tile is AttackTile attackTile)
+        if (tile is ProjectileTile attackTile)
         {
             attackTile.Damage = itemData.Damage;
         }

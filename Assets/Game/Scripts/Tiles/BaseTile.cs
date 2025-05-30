@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 /// <summary>
@@ -13,7 +13,7 @@ public class BaseTile : MonoBehaviour
         Activated  // 발동 중
     }
     
-    private float _chargeTime = 3f;
+    protected float _chargeTime = 3f;
     
     private TileState _currentState = TileState.Charging;
     private float _stateTimer;
