@@ -90,7 +90,16 @@ public class BaseTile : MonoBehaviour
     {
         return _currentState;
     }
-    
+
+    /// <summary>
+    /// 충전상태로 설정
+    /// </summary>
+    public void SetToChargeState()
+    {
+        SetState(TileState.Charging);
+        _stateTimer = 0f;
+    }
+
     /// <summary>
     /// 현재 상태의 진행도(0-1) 반환
     /// </summary>
