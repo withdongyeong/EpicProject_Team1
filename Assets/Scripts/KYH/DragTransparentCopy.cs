@@ -12,11 +12,13 @@ public class DragTransparentCopy : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public float transparency = 0.5f; // 투명도 조정 가능
     public LayerMask ignoreCollisionLayer; // 드래그 중 충돌 무시할 레이어
+    private Item item;
 
 
     private void Awake()
     {
         cam = Camera.main;
+        item = GetComponent<Item>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -70,26 +72,40 @@ public class DragTransparentCopy : MonoBehaviour, IBeginDragHandler, IDragHandle
         // 드래그 종료 후 원하는 작업 수행 (예: 위치 확정 또는 제거)
         // 여기서는 단순 예시로 복제본을 제거합니다.
         if (dragCopy == null) return;
-
-
+        
+        
+        //배치 불가능할시
+        if (!CanPlaceBlock())
+        {
+            // 배치가 불가능한 경우 복제본 제거
+            Debug.Log("배치 불가능한 위치입니다.");
+            Destroy(dragCopy);
+            return;
+        }
+        
+        //배치 가능할시
         foreach (Transform child in dragCopy.transform)
         {
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-
-            if (GridManager.Instance.IsCellAvailable(gridPos))
-            {
-                GridManager.Instance.OccupyCell(gridPos);
-            }
-            else
-            {
-                // 셀이 이미 점유되어 있다면 복제본 제거
-                Destroy(dragCopy);
-                Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
-                return;
-            }
+            GridManager.Instance.OccupyCell(gridPos, item.itemData);
         }
         Destroy(dragCopy);
         
+    }
+    
+    //블럭 배치가 가능한지 확인하는 메서드
+    public bool CanPlaceBlock()
+    {
+        if (dragCopy == null) return false;
+        foreach (Transform child in dragCopy.transform)
+        {
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+            if (!GridManager.Instance.IsCellAvailable(gridPos))
+            {
+                return false; // 하나라도 불가능한 셀이 있으면 false 반환
+            }
+        }
+        return true; // 모든 셀이 가능하면 true 반환
     }
 
     private void RotatePreviewBlock()

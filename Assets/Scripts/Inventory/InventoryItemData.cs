@@ -7,4 +7,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class InventoryItemData : ScriptableObject
 {
+    public string itemName; // 아이템 이름
 }

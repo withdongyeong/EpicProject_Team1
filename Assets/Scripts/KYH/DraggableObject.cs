@@ -7,16 +7,18 @@ public class DraggableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     private Vector3 offset;
     private float zCoord;
-    private Camera camera;
+    private Camera cam;
+    
 
     private void Awake()
     {
-        camera = Camera.main;
+        cam = Camera.main;
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        zCoord = camera.WorldToScreenPoint(transform.position).z;
+        zCoord = cam.WorldToScreenPoint(transform.position).z;
         offset = transform.position - GetMouseWorldPos();
     }
     
@@ -27,6 +29,7 @@ public class DraggableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     public void OnEndDrag(PointerEventData eventData)
     {
+        
         // 드래그 종료 시 추가 작업이 필요하면 여기에 작성
     }
     
@@ -34,6 +37,6 @@ public class DraggableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = zCoord; // 카메라와의 거리 유지
-        return camera.ScreenToWorldPoint(mousePoint);
+        return cam.ScreenToWorldPoint(mousePoint);
     }
 }

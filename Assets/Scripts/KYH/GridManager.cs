@@ -18,6 +18,11 @@ public class GridCell
         IsOccupied = false; // 기본값은 false
     }
 
+    public void SetItemData(InventoryItemData itemData)
+    {
+        this.itemData = itemData;
+        // 아이템 데이터가 설정되면 추가 작업이 필요할 수 있습니다.
+    }
     public void ChangeColorTest()
     {
         if(IsOccupied) sr.color = Color.yellow; // occupied가 true일 때 노란색으로 변경
@@ -37,14 +42,29 @@ public class GridManager : Singleton<GridManager>
     public Vector3Int GridSize => gridSize; // 외부에서 접근할 수 있도록 프로퍼티로 제공
 
     private GridCell[,] grid;
+    private InventoryItemData[,] itemDataGrid; // 아이템 데이터를 저장할 2D 배열
 
     protected override void Awake()
     {
         base.Awake();
         InitializeGrid();
         InitGround();
+        InitItemDataGrid();        
     }
 
+    
+    private void InitItemDataGrid()
+    {
+        itemDataGrid = new InventoryItemData[gridSize.x, gridSize.y];
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                itemDataGrid[x, y] = null; // 초기화
+            }
+        }
+    }
+    
     private void InitializeGrid()
     {
         gridSize = new Vector3Int(maxSize, maxSize, 0); // 2D 그리드로 설정
@@ -87,13 +107,21 @@ public class GridManager : Singleton<GridManager>
         return Vector3Int.RoundToInt(worldPos);
     }
 
+    
+    
+    /// 그리드 셀을 점유하는 메서드
 
-    public void OccupyCell(Vector3Int gridPos)
+    public void OccupyCell(Vector3Int gridPos, InventoryItemData itemData = null)
     {
         if (IsWithinGrid(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].ChangeColorTest();
+            if (itemData != null)
+            {
+                grid[gridPos.x, gridPos.y].SetItemData(itemData);
+                itemDataGrid[gridPos.x, gridPos.y] = itemData; // 아이템 데이터 저장
+            }
         }
     }
 
@@ -112,6 +140,45 @@ public class GridManager : Singleton<GridManager>
     {
         return gridPos.x >= 0 && gridPos.x < gridSize.x &&
                gridPos.y >= 0 && gridPos.y < gridSize.y;
+    }
+    
+    
+    public InventoryItemData[,] GetItemDataGrid()
+    {
+        return itemDataGrid; // 아이템 데이터 그리드를 반환
+    }
+    
+    public void TestPrintInventoryItemDataGrid()
+    {
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                if (itemDataGrid[x, y] != null)
+                {
+                    Debug.Log($"Item at ({x}, {y}): {itemDataGrid[x, y].itemName}");
+                }
+                else
+                {
+                    Debug.Log($"No item at ({x}, {y})");
+                }
+            }
+            Debug.Log("----------");
+        }
+    }
+    
+    public void TestResetGrid()
+    {
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                grid[x, y].IsOccupied = false;
+                grid[x, y].ChangeColorTest();
+                grid[x, y].SetItemData(null);
+                itemDataGrid[x, y] = null; // 아이템 데이터 초기화
+            }
+        }
     }
     
 }
