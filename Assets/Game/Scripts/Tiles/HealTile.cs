@@ -56,4 +56,10 @@ public class HealTile : BaseTile
             Destroy(effectObj, 0.1f);
         }
     }
+
+    public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
+    {
+        base.ModifyTilePropertiesByItemData(itemData);
+        _healAmount = itemData.HealAmount;
+    }
 }

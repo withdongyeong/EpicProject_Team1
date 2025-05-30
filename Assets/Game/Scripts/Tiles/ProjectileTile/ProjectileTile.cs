@@ -37,4 +37,10 @@ public class ProjectileTile : BaseTile
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player);
         }
     }
+
+    public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
+    {
+        base.ModifyTilePropertiesByItemData(itemData);
+        _damage = itemData.Damage;
+    }
 }   

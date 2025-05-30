@@ -40,7 +40,6 @@ public class PlayerManaUI : MonoBehaviour
     //마나 슬라이더를 업데이트합니다
     private void UpdateManaUI(float currentMana,float maxMana)
     {
-        Debug.Log(Mathf.Clamp(currentMana / maxMana, 0f, 1f));
         _manaSlider.value = Mathf.Clamp(currentMana / maxMana, 0f, 1f);
 
         #region 숫자 방식

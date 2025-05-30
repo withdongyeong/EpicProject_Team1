@@ -6,23 +6,27 @@ using System.Collections.Generic;
 /// </summary>
 public class TileBuilder
 {
-    private GameObject _attackTilePrefab;
-    private GameObject _defenseTilePrefab;
-    private GameObject _healTilePrefab;
-    private GameObject _highlightTilePrefab;
     
+    private GameObject _highlightTilePrefab;
+    //이 리스트가 실질적으로 기획하는 사람들이 건들이는 리스트입니다
+    private List<GameObject> _tilePrefabList = new();
+    //private GameObject _attackTilePrefab;
+    //private GameObject _defenseTilePrefab;
+    //private GameObject _healTilePrefab;
+    //private GameObject _manaHealTilePrefab;
+
     /// <summary>
     /// TileBuilder 초기화
     /// </summary>
-    /// <param name="attackTilePrefab">공격 타일 프리팹</param>
-    /// <param name="defenseTilePrefab">방어 타일 프리팹</param>
-    /// <param name="healTilePrefab">힐 타일 프리팹</param>
-    /// <param name="highlightTilePrefab">하이라이트 타일 프리팹</param>
-    public void Initialize(GameObject attackTilePrefab, GameObject defenseTilePrefab, GameObject healTilePrefab, GameObject highlightTilePrefab)
+    /// <param name="highlightTilePrefab"> 이건 건들지 마세용</param>
+    /// <param name="tilePrefabList">타일 프리팹 리스트를 넘깁니다</param>
+    public void Initialize(GameObject highlightTilePrefab,List<GameObject>tilePrefabList)
     {
-        _attackTilePrefab = attackTilePrefab;
-        _defenseTilePrefab = defenseTilePrefab;
-        _healTilePrefab = healTilePrefab;
+        for(int i =0; i < tilePrefabList.Count; i++)
+        {
+            _tilePrefabList.Add(tilePrefabList[i]);
+            Debug.Log(tilePrefabList[i].name + "추가되었습니다!");
+        }
         _highlightTilePrefab = highlightTilePrefab;
     }
     
@@ -118,16 +122,27 @@ public class TileBuilder
     /// <returns>해당하는 프리팹</returns>
     private GameObject GetTilePrefabByType(TileType type)
     {
-        switch (type)
+        //switch (type)
+        //{
+        //    case TileType.Attack:
+        //        return _attackTilePrefab;
+        //    case TileType.Defense:
+        //        return _defenseTilePrefab;
+        //    case TileType.Heal:
+        //        return _healTilePrefab;
+        //    case TileType.ManaHeal:
+        //        return _manaHealTilePrefab;
+        //    default:
+        //        return null;
+        //}
+        if (_tilePrefabList[(int)type] != null)
         {
-            case TileType.Attack:
-                return _attackTilePrefab;
-            case TileType.Defense:
-                return _defenseTilePrefab;
-            case TileType.Heal:
-                return _healTilePrefab;
-            default:
-                return null;
+            return _tilePrefabList[(int)type];
+        }
+        else
+        {
+            Debug.Log(type + "에 문제가 있습니다 순서 배열에 문제가 있거나 게임메니저에 프리팹 등록했는지 확인해주세요");
+            return null;
         }
     }
     
@@ -139,27 +154,32 @@ public class TileBuilder
     private void ConfigureTileProperties(BaseTile tile, InventoryItemData itemData)
     {
         if (tile == null) return;
+
+        //이걸 통해서 타일들이 알아서 아이템 데이터를 반영합니다
+        tile.ModifyTilePropertiesByItemData(itemData);
+
+        //이 밑에 있는건 옛날 코드에요 이거 참고해서 만드시면 되요
+
+        //// 공통 타이밍 속성 설정
+        //tile.ChargeTime = itemData.ChargeTime;
         
-        // 공통 타이밍 속성 설정
-        tile.ChargeTime = itemData.ChargeTime;
-        
-        // 타일 타입별 속성 설정
-        if (tile is ProjectileTile attackTile)
-        {
-            attackTile.Damage = itemData.Damage;
-        }
-        else if (tile is DefenseTile defenseTile)
-        {
-            defenseTile.InvincibilityDuration = itemData.InvincibilityDuration;
-        }
-        else if (tile is HealTile healTile)
-        {
-            healTile.HealAmount = itemData.HealAmount;
-        }
-        else if (tile is ObstacleTile obstacleTile)
-        {
-            obstacleTile.Duration = itemData.ObstacleDuration;
-        }
+        //// 타일 타입별 속성 설정
+        //if (tile is ProjectileTile attackTile)
+        //{
+        //    attackTile.Damage = itemData.Damage;
+        //}
+        //else if (tile is DefenseTile defenseTile)
+        //{
+        //    defenseTile.InvincibilityDuration = itemData.InvincibilityDuration;
+        //}
+        //else if (tile is HealTile healTile)
+        //{
+        //    healTile.HealAmount = itemData.HealAmount;
+        //}
+        //else if (tile is ObstacleTile obstacleTile)
+        //{
+        //    obstacleTile.Duration = itemData.ObstacleDuration;
+        //}
     }
     
     /// <summary>
