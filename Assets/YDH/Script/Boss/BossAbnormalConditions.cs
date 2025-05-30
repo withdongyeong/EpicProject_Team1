@@ -1,14 +1,12 @@
-using NUnit.Framework;
-using System;
+ï»¿using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
-//È­»ó, ±âÀı
+//í™”ìƒ, ê¸°ì ˆ
 public enum AbnormalConditions
 {
-    burn,
+    None,// ìƒíƒœ ì´ìƒ ì—†ìŒ
+    Burning,
     Faint
 }
 
@@ -16,21 +14,8 @@ public class BossAbnormalConditions
 {
     public List<AbnormalConditions> bossAbnormalConditions = new List<AbnormalConditions>();
 
-    /// <summary>
-    /// »óÅÂÀÌ»ó Ãß°¡
-    /// </summary>
-    /// <param name="abnormalConditions"></param>
     public void AddAbnormalCondition(AbnormalConditions abnormalConditions)
     {
         bossAbnormalConditions.Add(abnormalConditions);
-    }
-
-    /// <summary>
-    /// »óÅÂÀÌ»ó ÀüºÎ ¼Ò¸ê
-    /// </summary>
-    /// <param name="abnormalConditions"></param>
-    public void AbnormalConditionDestruction(AbnormalConditions abnormalConditions)
-    {
-        bossAbnormalConditions.RemoveAll(cond => cond == abnormalConditions);
     }
 }
