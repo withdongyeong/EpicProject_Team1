@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FireBoltTIle : ProjectileTile
+public class FireBallTIle : ProjectileTile
 {
     [SerializeField] private GameObject fireBallProjectilePrefab;
 
@@ -10,6 +10,7 @@ public class FireBoltTIle : ProjectileTile
         _damage = 5;
         _chargeTime = 3f;
     }
+
     protected override void FireProjectile()
     {
         if (projectilePrefab != null)

@@ -148,9 +148,9 @@ public class TileBuilder
         {
             attackTile.Damage = itemData.Damage;
         }
-        else if (tile is DefenseTile defenseTile)
+        else if (tile is ProtectionTile defenseTile)
         {
-            defenseTile.InvincibilityDuration = itemData.InvincibilityDuration;
+            defenseTile.ProtectionDuration = itemData.ProtectionDuration;
         }
         else if (tile is HealTile healTile)
         {
