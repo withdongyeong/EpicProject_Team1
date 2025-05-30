@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class GoblinKing : BaseBoss
+public class Treant : BaseBoss
 {
-    [Header("고블린킹 전용 프리팹들")]
-    public GameObject GoblinJunk;
-    public GameObject Goblrin;
+    [Header("트랜트 전용 프리팹들")]
 
-    private Transform BattleFieldTransform;
+    public GameObject CropsPrefeb;
+
+    public GameObject WindAriaPrefeb;
+
+    public GameObject WarningTilePrefab;
+    public GameObject TreeTrapPrefab;
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
@@ -14,23 +17,26 @@ public class GoblinKing : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 3f;
-        BattleFieldTransform = FindAnyObjectByType<BattleField>().gameObject.transform;
+        PatternCooldown = 1f;
 
         // 부모 클래스 초기화 호출
         base.Start();
+
     }
 
     /// <summary>
-    /// 공격 패턴 초기화 - 2가지 패턴 모두 등록
+    /// 공격 패턴 초기화 - 3가지 패턴 모두 등록
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //마구 던지기
-        AddAttackPattern(new GoblinJunkPattern(GoblinJunk, 6, 0.1f, this.transform));
+        //바닥 나무 패턴
+        AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab));
 
-        //고블린 소환
-        AddAttackPattern(new SummonGoblinPattern(Goblrin, 1, BattleFieldTransform));
+        //작물 던지기 패턴
+        //AddAttackPattern(new RapidFirePattern(SlimeMucus, 3, 0.05f));
+
+        //강제 이동 패턴
+        //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle, this.transform));
 
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
