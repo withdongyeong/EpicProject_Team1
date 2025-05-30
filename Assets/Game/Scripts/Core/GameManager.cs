@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject attackTilePrefab;
     public GameObject defenseTilePrefab;
     public GameObject healTilePrefab;
+    public GameObject manaHealTilePrefab;
     public GameObject enemyPrefab;
     public GameObject highlightTilePrefab;
     
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         
         // TileBuilder 초기화
         _tileBuilder = new TileBuilder();
-        _tileBuilder.Initialize(attackTilePrefab, defenseTilePrefab, healTilePrefab, highlightTilePrefab);
+        _tileBuilder.Initialize(attackTilePrefab, defenseTilePrefab, healTilePrefab,manaHealTilePrefab, highlightTilePrefab);
     }
     
     /// <summary>

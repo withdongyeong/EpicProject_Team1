@@ -9,20 +9,23 @@ public class TileBuilder
     private GameObject _attackTilePrefab;
     private GameObject _defenseTilePrefab;
     private GameObject _healTilePrefab;
+    private GameObject _manaHealTilePrefab;
     private GameObject _highlightTilePrefab;
-    
+
     /// <summary>
     /// TileBuilder 초기화
     /// </summary>
     /// <param name="attackTilePrefab">공격 타일 프리팹</param>
     /// <param name="defenseTilePrefab">방어 타일 프리팹</param>
     /// <param name="healTilePrefab">힐 타일 프리팹</param>
+    /// <param name="manaHealTilePrefab">마나 힐 타일 프리팹</param>
     /// <param name="highlightTilePrefab">하이라이트 타일 프리팹</param>
-    public void Initialize(GameObject attackTilePrefab, GameObject defenseTilePrefab, GameObject healTilePrefab, GameObject highlightTilePrefab)
+    public void Initialize(GameObject attackTilePrefab, GameObject defenseTilePrefab, GameObject healTilePrefab, GameObject manaHealTilePrefab, GameObject highlightTilePrefab)
     {
         _attackTilePrefab = attackTilePrefab;
         _defenseTilePrefab = defenseTilePrefab;
         _healTilePrefab = healTilePrefab;
+        _manaHealTilePrefab = manaHealTilePrefab;
         _highlightTilePrefab = highlightTilePrefab;
     }
     
@@ -126,6 +129,8 @@ public class TileBuilder
                 return _defenseTilePrefab;
             case TileType.Heal:
                 return _healTilePrefab;
+            case TileType.ManaHeal:
+                return _manaHealTilePrefab;
             default:
                 return null;
         }

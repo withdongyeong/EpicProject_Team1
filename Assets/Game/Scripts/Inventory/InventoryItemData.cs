@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 인벤토리 아이템 데이터 클래스
@@ -8,7 +8,8 @@ public enum TileType
 {
     Attack,
     Defense,
-    Heal
+    Heal,
+    ManaHeal
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]

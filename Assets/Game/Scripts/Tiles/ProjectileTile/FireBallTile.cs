@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FireBoltTIle : ProjectileTile
+public class FireBallTIle : ProjectileTile
 {
     [SerializeField] private GameObject fireBallProjectilePrefab;
 

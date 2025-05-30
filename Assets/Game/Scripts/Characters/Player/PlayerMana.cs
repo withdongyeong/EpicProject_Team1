@@ -46,14 +46,20 @@ public class PlayerMana : MonoBehaviour
     #endregion
 
     #region 최대마나, 현재마나, 마나재생량을 변경하는 함수들
-    //최대 마나를 준 값만큼 변경하는 함수입니다 최소값은 1입니다
+    /// <summary>
+    /// 최대 마나를 준 값만큼 변경하는 함수입니다 변경된 최대 마나의 최소값은 1입니다.
+    /// </summary>
     public void ModifyMaxMana(float mana)
     {
         _maxMana = Mathf.Max(_maxMana - mana, 1f);
         SendEventToUI();
     }
 
-    //현재 마나를 사용하는 함수입니다
+    /// <summary>
+    /// 마나를 사용하는 함수입니다 인자에 음수는 넣어도 작동 안합니다
+    /// </summary>
+    /// <param name="mana"> 1을 넣으면 현재 마나에서 1을 사용합니다.</param>
+    /// <returns>마나를 사용했으면 true 못사용했으면 false입니다</returns>
     public bool UseCurrentMana(float mana)
     {
         //마나를 사용하는 함수라서 0보다 커야합니다
@@ -73,14 +79,20 @@ public class PlayerMana : MonoBehaviour
             return false;
     }
 
-    //현재 마나를 회복시키는 함수입니다
+    /// <summary>
+    /// 현재 마나를 변경시키는 함수입니다
+    /// </summary>
+    /// <param name="mana">넣은 값 만큼 변경시킵니다 1이면 +1입니다</param>
     public void ModifyCurrentMana(float mana)
     {
         _currentMana = Mathf.Clamp(_currentMana + mana, 0f, _maxMana);
         SendEventToUI();
     }
 
-    //현재 마나를 원하는 값으로 변경하는 함수입니다
+    /// <summary>
+    /// 현재 마나를 원하는 값으로 변경시킵니다
+    /// </summary>
+    /// <param name="mana">이 값으로 현재 마나를 변경합니다</param>
     public void SetCurrentMana(float mana)
     {
         _currentMana = Mathf.Clamp(mana, 0f, _maxMana);
@@ -96,6 +108,10 @@ public class PlayerMana : MonoBehaviour
     #endregion
 
     #region UI에 이벤트를 보내는 함수
+
+    /// <summary>
+    /// 이거 호출하면 UI가 업데이트된 현재/최대 마나를 반영합니다
+    /// </summary>
     private void SendEventToUI()
     {
         OnManaChanged?.Invoke(_currentMana, _maxMana);
