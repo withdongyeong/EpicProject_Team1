@@ -4,109 +4,112 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ëª¨ë“  ë³´ìŠ¤ì˜ ê¸°ë³¸ í´ë˜ìŠ¤
+/// ¸ğµç º¸½ºÀÇ ±âº» Å¬·¡½º
 /// </summary>
 public abstract class BaseBoss : MonoBehaviour
 {
-    [Header("ê¸°ë³¸ ìŠ¤íƒ¯")]
+    [Header("±âº» ½ºÅÈ")]
     private int _maxHealth = 100;
     private int _currentHealth;
     private bool _isDead = false;
     
-    [Header("ê³µê²© ì„¤ì •")]
+    [Header("°ø°İ ¼³Á¤")]
     private float _patternCooldown = 0.6f;
-    
-    // ì»´í¬ë„ŒíŠ¸ ì°¸ì¡°
+
+    [Header("»óÅÂ ÀÌ»ó Å¬·¡½º")]
+    private BossAbnormalConditions AbnormalConditions;
+
+    // ÄÄÆ÷³ÍÆ® ÂüÁ¶
     private GridSystem _gridSystem;
     private PlayerController _player;
     private PlayerHealth _playerHealth;
     
-    // ê³µê²© íŒ¨í„´ ì‹œìŠ¤í…œ
+    // °ø°İ ÆĞÅÏ ½Ã½ºÅÛ
     private List<IBossAttackPattern> _attackPatterns = new List<IBossAttackPattern>();
     
     // Properties
     /// <summary>
-    /// ìµœëŒ€ ì²´ë ¥ í”„ë¡œí¼í‹°
+    /// ÃÖ´ë Ã¼·Â ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public int MaxHealth { get => _maxHealth; protected set => _maxHealth = value; }
     
     /// <summary>
-    /// í˜„ì¬ ì²´ë ¥ í”„ë¡œí¼í‹°
+    /// ÇöÀç Ã¼·Â ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public int CurrentHealth { get => _currentHealth; private set => _currentHealth = value; }
     
     /// <summary>
-    /// ì‚¬ë§ ì—¬ë¶€ í”„ë¡œí¼í‹°
+    /// »ç¸Á ¿©ºÎ ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public bool IsDead { get => _isDead; private set => _isDead = value; }
     
     /// <summary>
-    /// íŒ¨í„´ ì¿¨ë‹¤ìš´ í”„ë¡œí¼í‹°
+    /// ÆĞÅÏ Äğ´Ù¿î ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public float PatternCooldown { get => _patternCooldown; protected set => _patternCooldown = value; }
     
     /// <summary>
-    /// ê·¸ë¦¬ë“œ ì‹œìŠ¤í…œ í”„ë¡œí¼í‹°
+    /// ±×¸®µå ½Ã½ºÅÛ ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public GridSystem GridSystem { get => _gridSystem; }
     
     /// <summary>
-    /// í”Œë ˆì´ì–´ ì»¨íŠ¸ë¡¤ëŸ¬ í”„ë¡œí¼í‹°
+    /// ÇÃ·¹ÀÌ¾î ÄÁÆ®·Ñ·¯ ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public PlayerController Player { get => _player; }
     
     /// <summary>
-    /// í”Œë ˆì´ì–´ ì²´ë ¥ í”„ë¡œí¼í‹°
+    /// ÇÃ·¹ÀÌ¾î Ã¼·Â ÇÁ·ÎÆÛÆ¼
     /// </summary>
     public PlayerHealth PlayerHealth { get => _playerHealth; }
     
     // Events
     /// <summary>
-    /// ë³´ìŠ¤ ì‚¬ë§ ì´ë²¤íŠ¸
+    /// º¸½º »ç¸Á ÀÌº¥Æ®
     /// </summary>
     public event Action OnBossDeath;
 
     /// <summary>
-    /// ë³´ìŠ¤ ì´ˆê¸°í™”
+    /// º¸½º ÃÊ±âÈ­
     /// </summary>
     protected virtual void Start()
     {
         _currentHealth = _maxHealth;
         
-        // ì»´í¬ë„ŒíŠ¸ ì°¸ì¡° ì„¤ì •
+        // ÄÄÆ÷³ÍÆ® ÂüÁ¶ ¼³Á¤
         _gridSystem = FindAnyObjectByType<GridSystem>();
         _player = FindAnyObjectByType<PlayerController>();
         _playerHealth = _player != null ? _player.GetComponent<PlayerHealth>() : null;
         
-        // ê³µê²© íŒ¨í„´ ì´ˆê¸°í™”
+        // °ø°İ ÆĞÅÏ ÃÊ±âÈ­
         InitializeAttackPatterns();
         
-        // ê³µê²© ë£¨í‹´ ì‹œì‘
+        // °ø°İ ·çÆ¾ ½ÃÀÛ
         StartCoroutine(AttackRoutine());
         
         Debug.Log($"{GetType().Name} spawned with {_maxHealth} HP!");
     }
 
     /// <summary>
-    /// ê³µê²© íŒ¨í„´ ì´ˆê¸°í™” - ìƒì†ë°›ëŠ” í´ë˜ìŠ¤ì—ì„œ ë°˜ë“œì‹œ êµ¬í˜„
+    /// °ø°İ ÆĞÅÏ ÃÊ±âÈ­ - »ó¼Ó¹Ş´Â Å¬·¡½º¿¡¼­ ¹İµå½Ã ±¸Çö
     /// </summary>
     protected abstract void InitializeAttackPatterns();
 
     /// <summary>
-    /// ê³µê²© íŒ¨í„´ ì¶”ê°€
+    /// °ø°İ ÆĞÅÏ Ãß°¡
     /// </summary>
-    /// <param name="pattern">ì¶”ê°€í•  ê³µê²© íŒ¨í„´</param>
+    /// <param name="pattern">Ãß°¡ÇÒ °ø°İ ÆĞÅÏ</param>
     protected void AddAttackPattern(IBossAttackPattern pattern)
     {
         _attackPatterns.Add(pattern);
     }
 
     /// <summary>
-    /// ê³µê²© íŒ¨í„´ ì‹¤í–‰ ë£¨í‹´
+    /// °ø°İ ÆĞÅÏ ½ÇÇà ·çÆ¾
     /// </summary>
     private IEnumerator AttackRoutine()
     {
-        yield return new WaitForSeconds(1f); // ì´ˆë°˜ ë”œë ˆì´
+        yield return new WaitForSeconds(1f); // ÃÊ¹İ µô·¹ÀÌ
         
         while (!_isDead)
         {
@@ -116,7 +119,7 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ëœë¤ íŒ¨í„´ ì‹¤í–‰
+    /// ·£´ı ÆĞÅÏ ½ÇÇà
     /// </summary>
     private void ExecuteRandomPattern()
     {
@@ -136,9 +139,9 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ë°ë¯¸ì§€ ì²˜ë¦¬
+    /// µ¥¹ÌÁö Ã³¸®
     /// </summary>
-    /// <param name="damage">ë°›ì„ ë°ë¯¸ì§€</param>
+    /// <param name="damage">¹ŞÀ» µ¥¹ÌÁö</param>
     public virtual void TakeDamage(int damage)
     {
         if (_isDead) return;
@@ -155,7 +158,7 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ì‚¬ë§ ì²˜ë¦¬
+    /// »ç¸Á Ã³¸®
     /// </summary>
     protected virtual void Die()
     {
@@ -164,7 +167,7 @@ public abstract class BaseBoss : MonoBehaviour
         
         OnBossDeath?.Invoke();
         
-        // GameManagerì— ë³´ìŠ¤ ì‚¬ë§ ì•Œë¦¼
+        // GameManager¿¡ º¸½º »ç¸Á ¾Ë¸²
         GameManager gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager != null)
         {
@@ -175,10 +178,10 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ë°ë¯¸ì§€ íš¨ê³¼ ìƒì„±
+    /// µ¥¹ÌÁö È¿°ú »ı¼º
     /// </summary>
-    /// <param name="position">íš¨ê³¼ ìƒì„± ìœ„ì¹˜</param>
-    /// <param name="effectPrefab">íš¨ê³¼ í”„ë¦¬íŒ¹</param>
+    /// <param name="position">È¿°ú »ı¼º À§Ä¡</param>
+    /// <param name="effectPrefab">È¿°ú ÇÁ¸®ÆÕ</param>
     public void CreateDamageEffect(Vector3 position, GameObject effectPrefab)
     {
         if (effectPrefab != null)
@@ -189,14 +192,21 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// í”Œë ˆì´ì–´ì—ê²Œ ë°ë¯¸ì§€ ì ìš©
+    /// ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö Àû¿ë
     /// </summary>
-    /// <param name="damage">ë°ë¯¸ì§€ ì–‘</param>
+    /// <param name="damage">µ¥¹ÌÁö ¾ç</param>
     public void ApplyDamageToPlayer(int damage)
     {
         if (_playerHealth != null)
         {
             _playerHealth.TakeDamage(damage);
         }
+    }
+    /// <summary>
+    /// »óÅÂÀÌ»ó ÇÔ¼ö 
+    /// </summary>
+    public void AddAbnormalCondition(AbnormalConditions abnormalConditions)
+    {
+        AbnormalConditions.bossAbnormalConditions.Add(abnormalConditions);
     }
 }
