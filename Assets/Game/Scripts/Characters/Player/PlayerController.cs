@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// í”Œë ˆì´ì–´ ì´ë™ ë° íƒ€ì¼ ìƒí˜¸ì‘ìš© ê´€ë¦¬
+/// ÇÃ·¹ÀÌ¾î ÀÌµ¿ ¹× Å¸ÀÏ »óÈ£ÀÛ¿ë °ü¸®
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     // Getters & Setters
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public bool IsMoving { get => _isMoving; }
-    
+    public int CurrentX { get => _currentX; set => _currentX = value; }
+    public int CurrentY { get => _currentY; set => _currentY = value; }
+
     private void Start()
     {
         _gridSystem = FindAnyObjectByType<GridSystem>();
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// ì´ë™ ì‹œë„ - ìœ íš¨í•œ ìœ„ì¹˜ì¸ì§€ í™•ì¸ í›„ ì• ë‹ˆë©”ì´ì…˜
+    /// ÀÌµ¿ ½Ãµµ - À¯È¿ÇÑ À§Ä¡ÀÎÁö È®ÀÎ ÈÄ ¾Ö´Ï¸ŞÀÌ¼Ç
     /// </summary>
     private bool TryMove(int dx, int dy)
     {
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// ì í”„ íš¨ê³¼ê°€ ìˆëŠ” ì´ë™ ì• ë‹ˆë©”ì´ì…˜
+    /// Á¡ÇÁ È¿°ú°¡ ÀÖ´Â ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç
     /// </summary>
     private IEnumerator MoveAnimation(int targetX, int targetY)
     {
@@ -77,11 +79,11 @@ public class PlayerController : MonoBehaviour
         {
             float t = elapsedTime / _moveTime;
         
-            // XY í‰ë©´ì—ì„œ ì´ë™ (ZëŠ” í•­ìƒ 0)
+            // XY Æò¸é¿¡¼­ ÀÌµ¿ (Z´Â Ç×»ó 0)
             float x = Mathf.Lerp(startPos.x, targetPos.x, t);
             float y = Mathf.Lerp(startPos.y, targetPos.y, t);
         
-            // ì¶”ê°€ ì í”„ ë†’ì´
+            // Ãß°¡ Á¡ÇÁ ³ôÀÌ
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
         
             transform.position = new Vector3(x, y + extraHeight, 0);
@@ -96,7 +98,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// í˜„ì¬ ê²©ì ìœ„ì¹˜ ì—…ë°ì´íŠ¸
+    /// ÇöÀç °İÀÚ À§Ä¡ ¾÷µ¥ÀÌÆ®
     /// </summary>
     private void UpdateCurrentPosition()
     {
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// í˜„ì¬ ìœ„ì¹˜ íƒ€ì¼ê³¼ ìƒí˜¸ì‘ìš© í™•ì¸
+    /// ÇöÀç À§Ä¡ Å¸ÀÏ°ú »óÈ£ÀÛ¿ë È®ÀÎ
     /// </summary>
     private void CheckTileInteraction()
     {

@@ -14,7 +14,6 @@ public class TreeTrapPattern : IBossAttackPattern
         _treeTrapPrefab = treeTrapPrefab;
     }
 
-
     public void Execute(BaseBoss boss)
     {
         boss.StartCoroutine(TreeTrap(boss));
@@ -35,7 +34,7 @@ public class TreeTrapPattern : IBossAttackPattern
         List<GameObject> warningTiles = new List<GameObject>();
         List<Vector3> attackPositions = new List<Vector3>();
 
-        // 가로 라인
+        ////가로 라인
         for (int x = 0; x < boss.GridSystem.Width; x++)
         {
             Vector3 pos = boss.GridSystem.GetWorldPosition(x, playerY);
@@ -48,16 +47,24 @@ public class TreeTrapPattern : IBossAttackPattern
         {
             if (y != playerY)
             {
-                Vector3 pos = boss.GridSystem.GetWorldPosition(playerX, y);
+                Vector3 pos = boss.GridSystem.GetWorldPosition(0, y);
                 attackPositions.Add(pos);
                 warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.8f);
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
-        if (currentX == playerX || currentY == playerY)
+
+        //세로 라인 데미지
+        if (currentX == 0)
+        {
+            boss.ApplyDamageToPlayer(20);
+        }
+
+        //가로 라인 데미지
+        if (currentY == playerY)
         {
             boss.ApplyDamageToPlayer(20);
         }

@@ -18,7 +18,7 @@ public class Slime : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 1f;
+        PatternCooldown = 0.5f;
 
         // 부모 클래스 초기화 호출
         base.Start();

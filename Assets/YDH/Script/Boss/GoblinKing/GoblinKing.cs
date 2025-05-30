@@ -14,7 +14,7 @@ public class GoblinKing : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 3f;
+        PatternCooldown = 1f;
         BattleFieldTransform = FindAnyObjectByType<BattleField>().gameObject.transform;
 
         // 부모 클래스 초기화 호출

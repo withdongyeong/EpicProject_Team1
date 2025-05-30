@@ -3,13 +3,14 @@ using UnityEngine;
 public class Treant : BaseBoss
 {
     [Header("트랜트 전용 프리팹들")]
-
-    public GameObject CropsPrefeb;
-
-    public GameObject WindAriaPrefeb;
-
     public GameObject WarningTilePrefab;
     public GameObject TreeTrapPrefab;
+    
+    public GameObject CropsPrefeb;
+
+    public GameObject WarningAriaPrefeb;
+    public GameObject TreantWindMagic;
+
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
@@ -17,7 +18,7 @@ public class Treant : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 1f;
+        PatternCooldown = 0.3f;
 
         // 부모 클래스 초기화 호출
         base.Start();
@@ -33,10 +34,10 @@ public class Treant : BaseBoss
         AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab));
 
         //작물 던지기 패턴
-        //AddAttackPattern(new RapidFirePattern(SlimeMucus, 3, 0.05f));
+        AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
 
         //강제 이동 패턴
-        //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle, this.transform));
+        AddAttackPattern(new EnemyStraightAttack(WarningAriaPrefeb, TreantWindMagic, this.transform));
 
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");

@@ -599,8 +599,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9090586771284079223}
-  - component: {fileID: 76756195690432947}
   - component: {fileID: 3330245352850608912}
+  - component: {fileID: 3280822652518238941}
   m_Layer: 0
   m_Name: AttackTileTest
   m_TagString: Untagged
@@ -625,19 +625,6 @@ Transform:
   - {fileID: 4441078195056248923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &76756195690432947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8060270764348269698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6e542b25d1450f92ec24b912cb3b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3867617096255318561, guid: e1aebfea63ce58a4790d2d05f0907aa3, type: 3}
 --- !u!114 &3330245352850608912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,6 +635,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5236bec84c6c4b1a8eaa47086a21fff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3280822652518238941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060270764348269698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b0159b6c890b74293058877d019c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8352544288308515650
