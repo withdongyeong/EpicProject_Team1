@@ -148,4 +148,9 @@ public class BaseTile : MonoBehaviour
         else
             return false;
     }
+
+    public virtual void ModifyTilePropertiesByItemData(InventoryItemData itemData)
+    {
+        _chargeTime = itemData.ChargeTime;
+    }
 }   
