@@ -13,6 +13,8 @@ public class TreantWindMagic : MonoBehaviour
         }
     }
 
+
+    //플레이어 끝으로 날려보내기
     private IEnumerator MoveToCenterX(Transform target)
     {
         float duration = 0.05f; // 이동 시간 (1초)
