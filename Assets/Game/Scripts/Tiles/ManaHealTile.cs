@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-public class HealTile : BaseTile
+public class ManaHealTile : BaseTile
 {
     [SerializeField] protected int _healAmount = 25;
     [SerializeField] protected GameObject _healEffectPrefab;
-    
+
     private PlayerHealth _playerHealth;
-    
+
     public int HealAmount { get => _healAmount; set => _healAmount = value; }
-    
+
     private void Start()
     {
         _playerHealth = FindAnyObjectByType<PlayerHealth>();
     }
-    
+
     /// <summary>
     /// 타일 발동 - 플레이어 체력 회복
     /// </summary>
@@ -25,7 +25,7 @@ public class HealTile : BaseTile
             HealPlayer();
         }
     }
-    
+
     /// <summary>
     /// 플레이어 체력 회복 처리
     /// </summary>
@@ -33,11 +33,11 @@ public class HealTile : BaseTile
     {
         // 플레이어 체력 회복
         _playerHealth.Heal(_healAmount);
-        
+
         // 회복 이펙트 생성
         CreateHealEffect();
     }
-    
+
     /// <summary>
     /// 회복 이펙트 생성
     /// </summary>
@@ -51,7 +51,7 @@ public class HealTile : BaseTile
                 _playerHealth.transform.position,
                 Quaternion.identity
             );
-            
+
             // 일정 시간 후 이펙트 제거
             Destroy(effectObj, 0.1f);
         }

@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AttackTile : BaseTile
+public class ProjectileTile : BaseTile
 {
-    private int _damage = 10;
-    public GameObject projectilePrefab;
-    private BaseBoss targetEnemy;
+    protected int _damage = 10;
+    protected GameObject projectilePrefab;
+    protected BaseBoss targetEnemy;
     
     public int Damage { get => _damage; set => _damage = value; }
     
@@ -27,7 +27,7 @@ public class AttackTile : BaseTile
     /// <summary>
     /// 투사체 생성 및 발사
     /// </summary>
-    private void FireProjectile()
+    protected virtual void FireProjectile()
     {
         if (projectilePrefab != null)
         {
