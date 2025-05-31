@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4132476361661225250}
   - component: {fileID: -5488271703375383701}
   - component: {fileID: -1720032732099392247}
+  - component: {fileID: -1816380701334932785}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1069e2ea7eabf74418e2a545a5404f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
 --- !u!61 &-1720032732099392247
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +149,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.48, y: 1.48}
   m_EdgeRadius: 0
+--- !u!50 &-1816380701334932785
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7940718574539853970}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

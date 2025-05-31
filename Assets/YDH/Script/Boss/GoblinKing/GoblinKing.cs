@@ -6,6 +6,7 @@ public class GoblinKing : BaseBoss
     public GameObject GoblinJunk;
     public GameObject Goblrin;
 
+    private Transform BattleFieldTransform;
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
@@ -13,11 +14,11 @@ public class GoblinKing : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 3f;
+        PatternCooldown = 1f;
+        BattleFieldTransform = FindAnyObjectByType<BattleField>().gameObject.transform;
 
         // 부모 클래스 초기화 호출
         base.Start();
-
     }
 
     /// <summary>
@@ -29,7 +30,7 @@ public class GoblinKing : BaseBoss
         AddAttackPattern(new GoblinJunkPattern(GoblinJunk, 6, 0.1f, this.transform));
 
         //고블린 소환
-        AddAttackPattern(new SummonGoblinPattern(Goblrin, 1, this.transform));
+        AddAttackPattern(new SummonGoblinPattern(Goblrin, 1, BattleFieldTransform));
 
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");

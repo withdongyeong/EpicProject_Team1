@@ -209,4 +209,22 @@ public abstract class BaseBoss : MonoBehaviour
     {
         AbnormalConditions.bossAbnormalConditions.Add(abnormalConditions);
     }
+
+    /// <summary>
+    /// 상태이상 갯수 읽어오기
+    /// </summary>
+    /// <returns></returns>
+    public List<AbnormalConditions> GetAbnormalCondition()
+    {
+        return AbnormalConditions.bossAbnormalConditions;
+    }
+
+    /// <summary>
+    /// 상태이상 한번에 소멸
+    /// </summary>
+    /// <param name="abnormalConditions"></param>
+    public void RemoveAbnormalCondition(AbnormalConditions abnormalConditions)
+    {
+        AbnormalConditions.AbnormalConditionDestruction(abnormalConditions);
+    }
 }

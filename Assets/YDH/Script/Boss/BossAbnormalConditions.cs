@@ -1,11 +1,11 @@
-ï»¿using NUnit.Framework;
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-//í™”ìƒ, ê¸°ì ˆ
+//È­»ó, ±âÀý
 public enum AbnormalConditions
 {
-    None,// ìƒíƒœ ì´ìƒ ì—†ìŒ
+    None,// »óÅÂ ÀÌ»ó ¾øÀ½
     Burning,
     Faint
 }
@@ -17,5 +17,10 @@ public class BossAbnormalConditions
     public void AddAbnormalCondition(AbnormalConditions abnormalConditions)
     {
         bossAbnormalConditions.Add(abnormalConditions);
+    }
+
+    public void AbnormalConditionDestruction(AbnormalConditions abnormalConditions)
+    {
+        bossAbnormalConditions.RemoveAll(condition => condition == abnormalConditions);
     }
 }

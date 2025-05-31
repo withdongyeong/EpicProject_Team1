@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class FireBallTIle : ProjectileTile
 {
@@ -19,7 +19,7 @@ public class FireBallTIle : ProjectileTile
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player);
-            projectile.AbnormalConditions = AbnormalConditions.Burning; // í™”ì—¼ ìƒíƒœ ì´ìƒ ì ìš©   
+            projectile.AbnormalConditions = AbnormalConditions.Burning; // È­¿° »óÅÂ ÀÌ»ó Àû¿ë   
         }
     }
 }

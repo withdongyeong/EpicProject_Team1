@@ -1,16 +1,16 @@
 using UnityEngine;
 
 /// <summary>
-/// ê²Œì„ì˜ ê²©ì ì‹œìŠ¤í…œì„ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+/// °ÔÀÓÀÇ °İÀÚ ½Ã½ºÅÛÀ» °ü¸®ÇÏ´Â Å¬·¡½º
 /// </summary>
 public class GridSystem : MonoBehaviour
 {
     private int _width = 8;
     private int _height = 8;
     private float _cellSize = 1f;
-    
+
     private BaseTile[,] _grid;
-    private bool[,] _blockedCells; // ì´ë™ ë¶ˆê°€ ì…€ ìƒíƒœ
+    private bool[,] _blockedCells; // ÀÌµ¿ ºÒ°¡ ¼¿ »óÅÂ
 
     // Getters & Setters
     public int Width { get => _width; set => _width = value; }
@@ -18,7 +18,7 @@ public class GridSystem : MonoBehaviour
     public float CellSize { get => _cellSize; set => _cellSize = value; }
     
     /// <summary>
-    /// ì´ˆê¸°í™”
+    /// ÃÊ±âÈ­
     /// </summary>
     void Awake()
     {
@@ -27,7 +27,7 @@ public class GridSystem : MonoBehaviour
     }
     
     /// <summary>
-    /// ê²©ì ì¢Œí‘œë¥¼ ì›”ë“œ ìœ„ì¹˜ë¡œ ë³€í™˜
+    /// °İÀÚ ÁÂÇ¥¸¦ ¿ùµå À§Ä¡·Î º¯È¯
     /// </summary>
     public Vector3 GetWorldPosition(int x, int y)
     {
@@ -35,7 +35,7 @@ public class GridSystem : MonoBehaviour
     }
     
     /// <summary>
-    /// ì›”ë“œ ìœ„ì¹˜ë¥¼ ê²©ì ì¢Œí‘œë¡œ ë³€í™˜
+    /// ¿ùµå À§Ä¡¸¦ °İÀÚ ÁÂÇ¥·Î º¯È¯
     /// </summary>
     public void GetXY(Vector3 worldPosition, out int x, out int y)
     {
@@ -44,7 +44,7 @@ public class GridSystem : MonoBehaviour
     }
     
     /// <summary>
-    /// íŠ¹ì • ìœ„ì¹˜ì— íƒ€ì¼ ë“±ë¡
+    /// Æ¯Á¤ À§Ä¡¿¡ Å¸ÀÏ µî·Ï
     /// </summary>
     public void RegisterTile(BaseTile tile, int x, int y)
     {
@@ -55,7 +55,7 @@ public class GridSystem : MonoBehaviour
     }
     
     /// <summary>
-    /// íŠ¹ì • ìœ„ì¹˜ì˜ íƒ€ì¼ ë°˜í™˜
+    /// Æ¯Á¤ À§Ä¡ÀÇ Å¸ÀÏ ¹İÈ¯
     /// </summary>
     public BaseTile GetTileAt(int x, int y)
     {
@@ -67,19 +67,19 @@ public class GridSystem : MonoBehaviour
     }
     
     /// <summary>
-    /// ì¢Œí‘œê°€ ê²©ì ë²”ìœ„ ë‚´ì´ê³  ì´ë™ ê°€ëŠ¥í•œì§€ í™•ì¸
+    /// ÁÂÇ¥°¡ °İÀÚ ¹üÀ§ ³»ÀÌ°í ÀÌµ¿ °¡´ÉÇÑÁö È®ÀÎ
     /// </summary>
     public bool IsValidPosition(int x, int y)
     {
-        // ê·¸ë¦¬ë“œ ë²”ìœ„ ì²´í¬
+        // ±×¸®µå ¹üÀ§ Ã¼Å©
         bool isInBounds = x >= 0 && y >= 0 && x < _width && y < _height;
         
-        // ë²”ìœ„ ë‚´ì— ìˆê³  ì°¨ë‹¨ë˜ì§€ ì•Šì€ ì…€ì¸ì§€ í™•ì¸
+        // ¹üÀ§ ³»¿¡ ÀÖ°í Â÷´ÜµÇÁö ¾ÊÀº ¼¿ÀÎÁö È®ÀÎ
         return isInBounds && !IsBlocked(x, y);
     }
     
     /// <summary>
-    /// íŠ¹ì • ìœ„ì¹˜ê°€ ì°¨ë‹¨ë˜ì—ˆëŠ”ì§€ í™•ì¸
+    /// Æ¯Á¤ À§Ä¡°¡ Â÷´ÜµÇ¾ú´ÂÁö È®ÀÎ
     /// </summary>
     public bool IsBlocked(int x, int y)
     {
@@ -87,19 +87,19 @@ public class GridSystem : MonoBehaviour
         {
             return _blockedCells[x, y];
         }
-        // ê·¸ë¦¬ë“œ ë°”ê¹¥ì€ ì°¨ë‹¨ëœ ê²ƒìœ¼ë¡œ ê°„ì£¼
+        // ±×¸®µå ¹Ù±ùÀº Â÷´ÜµÈ °ÍÀ¸·Î °£ÁÖ
         return true;
     }
     
     /// <summary>
-    /// íŠ¹ì • ì…€ì˜ ì´ë™ ê°€ëŠ¥ ìƒíƒœ ì„¤ì •
+    /// Æ¯Á¤ ¼¿ÀÇ ÀÌµ¿ °¡´É »óÅÂ ¼³Á¤
     /// </summary>
     public void SetCellBlocked(int x, int y, bool blocked)
     {
         if (x >= 0 && y >= 0 && x < _width && y < _height)
         {
             _blockedCells[x, y] = blocked;
-            Debug.Log($"ì…€ ì°¨ë‹¨ ìƒíƒœ ë³€ê²½: ({x}, {y}) -> {blocked}");
+            Debug.Log($"¼¿ Â÷´Ü »óÅÂ º¯°æ: ({x}, {y}) -> {blocked}");
         }
     }
 }
