@@ -25,10 +25,11 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// 투사체 초기화
     /// </summary>
-    public void Initialize(Vector3 dir, ProjectileTeam projectileTeam)
+    public void Initialize(Vector3 dir, ProjectileTeam projectileTeam, int givenDamage = 10)
     {
         direction = dir.normalized;
         _team = projectileTeam;
+        damage = givenDamage;
     }
     void Update()
     {

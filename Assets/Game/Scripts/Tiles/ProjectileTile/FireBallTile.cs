@@ -16,7 +16,7 @@ public class FireBallTile : ProjectileTile
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.AbnormalConditions = AbnormalConditions.Burning; // 화염 상태 이상 적용   
-            projectile.Initialize(direction, Projectile.ProjectileTeam.Player);
+            projectile.Initialize(direction, Projectile.ProjectileTeam.Player,_damage);
         }
     }
 }
