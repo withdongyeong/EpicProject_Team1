@@ -51,11 +51,11 @@ public class BuildingSceneUI : MonoBehaviour
         if (InventoryManager.Instance != null)
             InventoryManager.Instance.CollectTilesFromGrid();
         //TODO: 이거 게임플레이 테스트씬으로 들어가요 조심하세요
-        //SceneManager.LoadScene("GameplayTestScene");
+        SceneManager.LoadScene("GameplayTestScene");
 
         //테스트용 전투씬 입니다. 추후에 수정할 예정입니다. 
         //SceneManager.LoadScene("YDH_GameplayScene_Slime");
-        SceneManager.LoadScene("YDH_GameplayScene_GoblinKing");
+        //SceneManager.LoadScene("YDH_GameplayScene_GoblinKing");
         //SceneManager.LoadScene("YDH_GameplayScene_Treant");
     }
     
