@@ -10,12 +10,14 @@ public class GoblinKing : BaseBoss
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
+
     protected override void Start()
     {
         // 기본 스탯 설정
         MaxHealth = 200;
         PatternCooldown = 1f;
-        BattleFieldTransform = FindAnyObjectByType<BattleField>().gameObject.transform;
+
+        BattleFieldTransform = FindAnyObjectByType<BattleField>().transform;
 
         // 부모 클래스 초기화 호출
         base.Start();

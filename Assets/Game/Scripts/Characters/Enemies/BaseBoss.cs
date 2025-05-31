@@ -74,6 +74,8 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
+        AbnormalConditions = new BossAbnormalConditions();
+
         _currentHealth = _maxHealth;
         
         // 컴포넌트 참조 설정
