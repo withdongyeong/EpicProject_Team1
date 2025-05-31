@@ -559,8 +559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6475c298a41de9c11ae3c20a6fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invincibilityDuration: 0.5
-  _shieldEffectPrefab: {fileID: 6624461110895506490, guid: b00624a9e8e86494ea59dd15f6153f76, type: 3}
+  _protectionDuration: 5
+  _protectionEffectPrefab: {fileID: 6624461110895506490, guid: b00624a9e8e86494ea59dd15f6153f76, type: 3}
 --- !u!1 &8204431869310204025
 GameObject:
   m_ObjectHideFlags: 0

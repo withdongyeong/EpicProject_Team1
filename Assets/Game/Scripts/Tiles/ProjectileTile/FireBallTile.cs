@@ -10,6 +10,7 @@ public class FireBallTIle : ProjectileTile
         _damage = 5;
         _chargeTime = 3f;
     }
+
     protected override void FireProjectile()
     {
         if (projectilePrefab != null)

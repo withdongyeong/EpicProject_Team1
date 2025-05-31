@@ -30,7 +30,7 @@ public class InventoryItemData : ScriptableObject
     
     [Header("아이템 속성")]
     [SerializeField] private int _damage = 10;        // 공격 타일용
-    [SerializeField] private float _invincibilityDuration = 3f; // 방어 타일 무적 지속시간
+    [SerializeField] private int _protectionDuration = 3; // 방어 타일 무적 지속시간
     [SerializeField] private int _healAmount = 25;    // 회복 타일용
     [SerializeField] private float _obstacleDuration = 5f; // 장애물 타일용
     [SerializeField] private int _cost = 1;
@@ -85,7 +85,7 @@ public class InventoryItemData : ScriptableObject
     /// <summary>
     /// 무적 지속시간
     /// </summary>
-    public float InvincibilityDuration { get => _invincibilityDuration; set => _invincibilityDuration = value; }
+    public int ProtectionDuration { get => _protectionDuration; set => _protectionDuration = value; }
     
     /// <summary>
     /// 아이템 회복량
@@ -189,7 +189,7 @@ public class InventoryItemData : ScriptableObject
         clone.TileType = this.TileType;
         clone.ChargeTime = this.ChargeTime;
         clone.Damage = this.Damage;
-        clone.InvincibilityDuration = this.InvincibilityDuration;
+        clone.ProtectionDuration = this.ProtectionDuration;
         clone.HealAmount = this.HealAmount;
         clone.ObstacleDuration = this.ObstacleDuration;
         clone.Cost = this.Cost;
