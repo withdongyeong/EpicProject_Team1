@@ -7,27 +7,27 @@ using System.Collections;
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
+    private PlayerShield _playerShield;
+
     private int _maxHealth = 100;
     private int _currentHealth;
     // 보호 상태 변수
     private bool _isProtected = false;
     private int _protectionAmount = 0;
     private Coroutine _protectionCoroutine;
-    // 방어 상태 변수
-    private bool _isShielded = false;
-    private int _shieldAmount = 0;
 
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
-    
+
     public event Action<int> OnHealthChanged;
     public event Action OnPlayerDeath;
     public event Action<bool> OnProtectionChanged;
-    public event Action<bool> OnShieldChanged;
 
-    /// <summary>
-    /// 초기화
-    /// </summary>
+    private void Awake()
+    {
+        _playerShield = GetComponent<PlayerShield>();
+    }
+
     private void Start()
     {
         _currentHealth = _maxHealth;
@@ -61,16 +61,8 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // 방어 상태면 방어막량 감소
-        if (_isShielded)
-        {
-            _shieldAmount -= 1;
-            if (_shieldAmount <= 0)
-            {
-                SetShield(false);
-                _shieldAmount = 0;
-            }
+        if (_playerShield.TryShieldBlock(damage)) 
             return;
-        }
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
@@ -94,7 +86,6 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(_currentHealth);
     }
 
-    #region 보호 상태 관련
     /// <summary>
     /// 보호 상태 설정
     /// </summary>
@@ -158,35 +149,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-    #endregion
-
-    #region 방어 상태 관련
-    /// <summary>
-    /// 방어 상태 설정
-    /// </summary>
-    /// <param name="isShielded">방어 상태 여부</param>
-    public void SetShield(bool isShielded)
-    {
-        _isShielded = isShielded;
-
-        // 방어 상태 변경 이벤트 발생
-        OnShieldChanged?.Invoke(_isShielded);
-
-        Debug.Log($"플레이어보호 상태 변경: {_isShielded}");
-    }
-
-    /// <summary>
-    /// 방어도가 있는 방어 상태 설정
-    /// </summary>
-    /// <param name="isShielded">방어 상태 여부</param>
-    /// <param name="amount">방어막량</param>
-    public void SetShield(bool isShielded, int amount)
-    {
-        // 방어 상태 설정
-        SetShield(isShielded);
-        _shieldAmount = amount > 0 ? amount : 0; // 방어막량 설정
-    }
-    #endregion
 
     /// <summary>
     /// 사망 처리

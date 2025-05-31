@@ -32,7 +32,7 @@ public class ProtectionTile : BaseTile
     /// </summary>
     private void GrantProtection()
     {
-        _playerHealth.SetShield(true, _protectionAmount);
+        _playerHealth.SetProtection(true, _protectionAmount);
         
         // 보호 이펙트 생성
         CreateProtectionEffect();

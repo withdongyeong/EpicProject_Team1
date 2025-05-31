@@ -16,10 +16,11 @@ MonoBehaviour:
   _itemSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   _spritePivot: {x: 0.5, y: 0.5}
   _shapeType: 0
-  _tileType: 4
+  _tileType: 5
   _chargeTime: 5
   _damage: 5
-  _protectionDuration: 3
+  _protectionAmount: 3
+  _shieldAmount: 3
   _healAmount: 25
   _obstacleDuration: 5
-  _cost: 1
+  _cost: 3

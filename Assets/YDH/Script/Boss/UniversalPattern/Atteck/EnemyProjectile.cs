@@ -1,11 +1,11 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
     private int damage = 10;
     private float speed = 12f;
     private Vector3 direction;
-    private ProjectileTeam _team; // Åõ»çÃ¼ ¼Ò¼Ó Áø¿µ
+    private ProjectileTeam _team; // íˆ¬ì‚¬ì²´ ì†Œì† ì§„ì˜
 
     public enum ProjectileTeam
     {
@@ -18,7 +18,7 @@ public class EnemyProjectile : MonoBehaviour
     public ProjectileTeam Team { get => _team; set => _team = value; }
 
     /// <summary>
-    /// Åõ»çÃ¼ ÃÊ±âÈ­
+    /// íˆ¬ì‚¬ì²´ ì´ˆê¸°í™”
     /// </summary>
     public void Initialize(Vector3 dir, ProjectileTeam projectileTeam)
     {
@@ -29,7 +29,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         transform.position += Time.deltaTime * direction * speed;
 
-        // È­¸é ¹ÛÀ¸·Î ³ª°¡¸é Á¦°Å
+        // í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ ì œê±°
         if (Mathf.Abs(transform.position.x) > 20 || Mathf.Abs(transform.position.y) > 20)
         {
             Destroy(gameObject);
@@ -37,11 +37,11 @@ public class EnemyProjectile : MonoBehaviour
     }
 
     /// <summary>
-    /// Ãæµ¹ Ã³¸®
+    /// ì¶©ëŒ ì²˜ë¦¬
     /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Àû Áø¿µ Åõ»çÃ¼°¡ Àû¿¡°Ô Ãæµ¹
+        // ì  ì§„ì˜ íˆ¬ì‚¬ì²´ê°€ ì ì—ê²Œ ì¶©ëŒ
         if (_team == ProjectileTeam.Enemy)
         {
             PlayerHealth player = other.GetComponent<PlayerHealth>();
@@ -51,7 +51,7 @@ public class EnemyProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        // ¾Æ±º Áø¿µ Åõ»çÃ¼°¡ Àû¿¡°Ô Ãæµ¹
+        // ì•„êµ° ì§„ì˜ íˆ¬ì‚¬ì²´ê°€ ì ì—ê²Œ ì¶©ëŒ
         else if (_team == ProjectileTeam.Player)
         {
             BaseBoss enemy = other.GetComponent<BaseBoss>();

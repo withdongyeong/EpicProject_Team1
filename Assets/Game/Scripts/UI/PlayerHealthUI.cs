@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾î Ã¼·Â UI Ç¥½Ã
+/// í”Œë ˆì´ì–´ ì²´ë ¥ UI í‘œì‹œ
 /// </summary>
 public class PlayerHealthUI : MonoBehaviour
 {
@@ -16,21 +16,21 @@ public class PlayerHealthUI : MonoBehaviour
     
         if (_playerHealth != null)
         {
-            // ÀÌº¥Æ® ¿¬°á
+            // ì´ë²¤íŠ¸ ì—°ê²°
             _playerHealth.OnHealthChanged += UpdateHealthUI;
             
-            // ½½¶óÀÌ´õ ÃÊ±â ¼³Á¤
+            // ìŠ¬ë¼ì´ë” ì´ˆê¸° ì„¤ì •
             _healthSlider.maxValue = _playerHealth.MaxHealth;
             _healthSlider.value = _playerHealth.CurrentHealth;
         }
         else
         {
-            Debug.LogError("PlayerHealth ÄÄÆ÷³ÍÆ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError("PlayerHealth ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
         }
     }
 
     /// <summary>
-    /// Ã¼·Â UI ¾÷µ¥ÀÌÆ®
+    /// ì²´ë ¥ UI ì—…ë°ì´íŠ¸
     /// </summary>
     private void UpdateHealthUI(int health)
     {
