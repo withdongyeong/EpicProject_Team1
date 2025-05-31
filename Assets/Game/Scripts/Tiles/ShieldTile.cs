@@ -91,6 +91,6 @@ public class ShieldTile : BaseTile
     public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
     {
         base.ModifyTilePropertiesByItemData(itemData);
-        _invincibilityDuration = itemData.InvincibilityDuration;
+        //_invincibilityDuration = itemData.InvincibilityDuration;
     }
 }
