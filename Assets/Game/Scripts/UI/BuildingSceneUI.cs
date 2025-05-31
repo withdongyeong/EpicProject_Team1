@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -32,7 +32,7 @@ public class BuildingSceneUI : MonoBehaviour
         if (startButton != null)
             startButton.onClick.AddListener(StartGame);
         else
-            Debug.LogError("StartButtonì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
+            Debug.LogError("StartButtonÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù");
     }
     
     private void Start()
@@ -50,9 +50,13 @@ public class BuildingSceneUI : MonoBehaviour
     {
         if (InventoryManager.Instance != null)
             InventoryManager.Instance.CollectTilesFromGrid();
-        //TODO: ì´ê±° ê²Œì„í”Œë ˆì´ í…ŒìŠ¤íŠ¸ì”¬ìœ¼ë¡œ ë“¤ì–´ê°€ìš” ì¡°ì‹¬í•˜ì„¸ìš”
+        //TODO: ÀÌ°Å °ÔÀÓÇÃ·¹ÀÌ Å×½ºÆ®¾ÀÀ¸·Î µé¾î°¡¿ä Á¶½ÉÇÏ¼¼¿ä
         SceneManager.LoadScene("GameplayTestScene");
-        
+
+        //Å×½ºÆ®¿ë ÀüÅõ¾À ÀÔ´Ï´Ù. ÃßÈÄ¿¡ ¼öÁ¤ÇÒ ¿¹Á¤ÀÔ´Ï´Ù. 
+        //SceneManager.LoadScene("YDH_GameplayScene_Slime");
+        //SceneManager.LoadScene("YDH_GameplayScene_GoblinKing");
+        //SceneManager.LoadScene("YDH_GameplayScene_Treant");
     }
     
     private void OnDestroy()

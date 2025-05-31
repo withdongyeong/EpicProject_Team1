@@ -37,7 +37,6 @@ public class EnemyStraightAttack : IBossAttackPattern
     {
         // 1. 랜덤 열 번호 선택 (-4~3)
         int column = Random.Range(-4, 3);
-        Debug.Log(column);
 
         // 2. 붉은색 경고 생성
         Vector3 warningPos = gridOrigin.position + new Vector3(-7, column * cellSize, 0);

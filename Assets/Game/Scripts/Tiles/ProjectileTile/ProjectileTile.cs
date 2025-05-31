@@ -3,7 +3,7 @@
 public class ProjectileTile : BaseTile
 {
     protected int _damage = 10;
-    protected GameObject projectilePrefab;
+    [SerializeField] protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
     
     public int Damage { get => _damage; set => _damage = value; }

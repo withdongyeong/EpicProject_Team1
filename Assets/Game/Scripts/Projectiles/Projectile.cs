@@ -64,7 +64,9 @@ public class Projectile : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
                 if(abnormalConditions != AbnormalConditions.None)
+                {
                     enemy.AddAbnormalCondition(abnormalConditions); // 상태 이상 추가
+                }
                 Destroy(gameObject);
             }
         }

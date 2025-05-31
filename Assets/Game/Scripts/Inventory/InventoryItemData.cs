@@ -9,7 +9,8 @@ public enum TileType
     Attack,
     Defense,
     Heal,
-    ManaHeal
+    ManaHeal,
+    FireBall,
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
