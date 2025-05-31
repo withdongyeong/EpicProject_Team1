@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 장애물 타일 클래스 - 플레이어가 이동할 수 없는 칸 생성
@@ -111,5 +111,11 @@ public class ObstacleTile : BaseTile
         {
             _gridSystem.SetCellBlocked(_gridX, _gridY, false);
         }
+    }
+
+    public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
+    {
+        base.ModifyTilePropertiesByItemData(itemData);
+        _duration = itemData.ObstacleDuration;
     }
 }

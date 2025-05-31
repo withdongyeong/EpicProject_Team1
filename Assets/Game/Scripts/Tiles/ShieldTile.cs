@@ -87,4 +87,10 @@ public class ShieldTile : BaseTile
             Destroy(_activeShieldEffect);
         }
     }
+
+    public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
+    {
+        base.ModifyTilePropertiesByItemData(itemData);
+        _invincibilityDuration = itemData.InvincibilityDuration;
+    }
 }
