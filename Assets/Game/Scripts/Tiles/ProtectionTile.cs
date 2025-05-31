@@ -2,13 +2,13 @@
 
 public class ProtectionTile : BaseTile
 {
-    [SerializeField] private int _protectionDuration = 5;
+    [SerializeField] private int _protectionAmount = 5;
     [SerializeField] private GameObject _protectionEffectPrefab;
     
     private PlayerHealth _playerHealth;
     private GameObject _activeProtectionEffect;
     
-    public int ProtectionDuration { get => _protectionDuration; set => _protectionDuration = value; }
+    public int ProtectionAmount { get => _protectionAmount; set => _protectionAmount = value; }
     
     private void Start()
     {
@@ -32,13 +32,13 @@ public class ProtectionTile : BaseTile
     /// </summary>
     private void GrantProtection()
     {
-        _playerHealth.SetShield(true, _protectionDuration);
+        _playerHealth.SetProtection(true, _protectionAmount);
         
         // 보호 이펙트 생성
         CreateProtectionEffect();
         
         // 일정 시간 후 이펙트 제거
-        Invoke(nameof(RemoveProtectionEffect), _protectionDuration);
+        Invoke(nameof(RemoveProtectionEffect), _protectionAmount);
     }
     
     /// <summary>
@@ -86,5 +86,11 @@ public class ProtectionTile : BaseTile
         {
             Destroy(_activeProtectionEffect);
         }
+    }
+
+    public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
+    {
+        base.ModifyTilePropertiesByItemData(itemData);
+        _protectionAmount = itemData.ProtectionAmount;
     }
 }

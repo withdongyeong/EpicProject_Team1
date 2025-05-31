@@ -7,27 +7,27 @@ using System.Collections;
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
+    private PlayerShield _playerShield;
+
     private int _maxHealth = 100;
     private int _currentHealth;
     // 보호 상태 변수
     private bool _isProtected = false;
     private int _protectionAmount = 0;
     private Coroutine _protectionCoroutine;
-    // 방어 상태 변수
-    private bool _isShielded = false;
-    private int _shieldAmount = 0;
 
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
-    
+
     public event Action<int> OnHealthChanged;
     public event Action OnPlayerDeath;
     public event Action<bool> OnProtectionChanged;
-    public event Action<bool> OnShieldChanged;
 
-    /// <summary>
-    /// 초기화
-    /// </summary>
+    private void Awake()
+    {
+        _playerShield = GetComponent<PlayerShield>();
+    }
+
     private void Start()
     {
         _currentHealth = _maxHealth;
@@ -59,7 +59,11 @@ public class PlayerHealth : MonoBehaviour
             }
             return;
         }
-        
+
+        // 방어 상태면 방어막량 감소
+        if (_playerShield.TryShieldBlock(damage)) 
+            return;
+
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         
@@ -82,7 +86,6 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(_currentHealth);
     }
 
-    #region 보호 상태 관련
     /// <summary>
     /// 보호 상태 설정
     /// </summary>
@@ -101,8 +104,8 @@ public class PlayerHealth : MonoBehaviour
     /// 지속시간이 있는 보호  상태 설정
     /// </summary>
     /// <param name="protected">보호 상태 여부</param>
-    /// <param name="duration">지속 시간(초)</param>
-    public void SetProtection(bool @protected, int duration)
+    /// <param name="amount">보호막량</param>
+    public void SetProtection(bool @protected, int amount)
     {
         // 이미 실행 중인 코루틴이 있다면 중지
         if (_protectionCoroutine != null)
@@ -113,24 +116,24 @@ public class PlayerHealth : MonoBehaviour
         
         // 보호 상태 설정
         SetProtection(@protected);
-        _protectionAmount = duration > 0 ? duration : 0; // 보호막량 설정
+        _protectionAmount = amount > 0 ? amount : 0; // 보호막량 설정
 
         // 지속 시간 설정
-        if (@protected && duration > 0)
+        if (@protected && amount > 0)
         {
-            _protectionCoroutine = StartCoroutine(protectionTimer(duration));
+            _protectionCoroutine = StartCoroutine(protectionTimer(amount));
         }
     }
     
     /// <summary>
     /// 보호 상태 타이머
     /// </summary>
-    private IEnumerator protectionTimer(int duration)
+    private IEnumerator protectionTimer(int amount)
     {
-        Debug.Log($"보호 상태 시작: {duration}초 동안 지속");
+        Debug.Log($"보호 상태 시작: {amount}초 동안 지속");
 
         // 매 초마다 보호막량 감소
-        for (int i = 0; i < duration; i++)
+        for (int i = 0; i < amount; i++)
         {
             yield return new WaitForSeconds(1f);
 
@@ -146,35 +149,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-    #endregion
-
-    #region 방어 상태 관련
-    /// <summary>
-    /// 방어 상태 설정
-    /// </summary>
-    /// <param name="isShielded">방어 상태 여부</param>
-    public void SetShield(bool isShielded)
-    {
-        _isShielded = isShielded;
-
-        // 방어 상태 변경 이벤트 발생
-        OnShieldChanged?.Invoke(_isShielded);
-
-        Debug.Log($"플레이어보호 상태 변경: {_isShielded}");
-    }
-
-    /// <summary>
-    /// 방어도가 있는 방어 상태 설정
-    /// </summary>
-    /// <param name="isShielded">방어 상태 여부</param>
-    /// <param name="Amount">지속 시간(초)</param>
-    public void SetShield(bool isShielded, int Amount)
-    {
-        // 방어 상태 설정
-        SetShield(isShielded);
-        _shieldAmount = Amount > 0 ? Amount : 0; // 방어막량 설정
-    }
-    #endregion
 
     /// <summary>
     /// 사망 처리

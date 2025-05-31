@@ -7,7 +7,8 @@
 public enum TileType
 {
     Attack,
-    Defense,
+    Protection,
+    Shield,
     Heal,
     ManaHeal,
     FireBall,
@@ -31,7 +32,8 @@ public class InventoryItemData : ScriptableObject
     
     [Header("아이템 속성")]
     [SerializeField] private int _damage = 10;        // 공격 타일용
-    [SerializeField] private int _protectionDuration = 3; // 방어 타일 무적 지속시간
+    [SerializeField] private int _protectionAmount = 3; // 보호막 타일 데미지 무시 횟수
+    [SerializeField] private int _shieldAmount = 3; // 방어막 타일 데미지 무시 횟수
     [SerializeField] private int _healAmount = 25;    // 회복 타일용
     [SerializeField] private float _obstacleDuration = 5f; // 장애물 타일용
     [SerializeField] private int _cost = 1;
@@ -84,10 +86,15 @@ public class InventoryItemData : ScriptableObject
     public int Damage { get => _damage; set => _damage = value; }
     
     /// <summary>
-    /// 무적 지속시간
+    /// 보호막량
     /// </summary>
-    public int ProtectionDuration { get => _protectionDuration; set => _protectionDuration = value; }
-    
+    public int ProtectionAmount { get => _protectionAmount; set => _protectionAmount = value; }
+
+    /// <summary>
+    /// 방어막량
+    /// </summary>
+    public int ShieldAmount { get => _shieldAmount; set => _shieldAmount = value; }
+
     /// <summary>
     /// 아이템 회복량
     /// </summary>
@@ -190,7 +197,8 @@ public class InventoryItemData : ScriptableObject
         clone.TileType = this.TileType;
         clone.ChargeTime = this.ChargeTime;
         clone.Damage = this.Damage;
-        clone.ProtectionDuration = this.ProtectionDuration;
+        clone.ProtectionAmount = this.ProtectionAmount;
+        clone.ShieldAmount = this.ShieldAmount;
         clone.HealAmount = this.HealAmount;
         clone.ObstacleDuration = this.ObstacleDuration;
         clone.Cost = this.Cost;
