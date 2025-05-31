@@ -1,31 +1,27 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using TMPro;
 using NUnit.Framework;
 using System.Collections.Generic;
 
 /// <summary>
-/// °ÔÀÓ ÀüÃ¼ °ü¸® Å¬·¡½º - TileBuilder·Î Å¸ÀÏ »ı¼º ·ÎÁ÷ ºĞ¸®
+/// ê²Œì„ ì „ì²´ ê´€ë¦¬ í´ë˜ìŠ¤ - TileBuilderë¡œ íƒ€ì¼ ìƒì„± ë¡œì§ ë¶„ë¦¬
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    [Header("ÇÁ¸®ÆÕµé")]
+    [Header("í”„ë¦¬íŒ¹ë“¤")]
     public GameObject playerPrefab;
-    public GameObject attackTilePrefab;
-    public GameObject defenseTilePrefab;
-    public GameObject healTilePrefab;
-    public GameObject manaHealTilePrefab;
     public GameObject enemyPrefab;
     public GameObject highlightTilePrefab;
 
-    [Header("Å¸ÀÏÇÁ¸®ÆÕÀ» ³Ö´Â ¸®½ºÆ®")]
+    [Header("íƒ€ì¼í”„ë¦¬íŒ¹ì„ ë„£ëŠ” ë¦¬ìŠ¤íŠ¸")]
     public List<GameObject> tilePrefabList = new();
     
     [Header("UI")]
     public TextMeshProUGUI countdownText;
     public float countdownDuration = 3f;
     
-    // ½Ã½ºÅÛ ÂüÁ¶
+    // ì‹œìŠ¤í…œ ì°¸ì¡°
     private GridSystem _gridSystem;
     private BaseBoss _enemy;
     private PlayerController _player;
@@ -35,7 +31,7 @@ public class GameManager : MonoBehaviour
     private TileBuilder _tileBuilder;
     
     /// <summary>
-    /// °ÔÀÓ ÃÊ±âÈ­
+    /// ê²Œì„ ì´ˆê¸°í™”
     /// </summary>
     private void Start()
     {
@@ -44,31 +40,31 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartCountdown());
     }
     /// <summary>
-    /// ½Ã½ºÅÛµé ÃÊ±âÈ­
+    /// ì‹œìŠ¤í…œë“¤ ì´ˆê¸°í™”
     /// </summary>
     private void InitializeSystems()
     {
         _gridSystem = GetComponent<GridSystem>();
         _gameStateManager = GameStateManager.Instance;
         
-        // TileBuilder ÃÊ±âÈ­
+        // TileBuilder ì´ˆê¸°í™”
         _tileBuilder = new TileBuilder();
         _tileBuilder.Initialize(highlightTilePrefab, tilePrefabList);
     }
     
     /// <summary>
-    /// °ÔÀÓ ÄÜÅÙÃ÷ »ı¼º (Å¸ÀÏ, ÇÃ·¹ÀÌ¾î, Àû)
+    /// ê²Œì„ ì½˜í…ì¸  ìƒì„± (íƒ€ì¼, í”Œë ˆì´ì–´, ì )
     /// </summary>
     private void CreateGameContent()
     {
-        // ºôµù ¾À¿¡¼­ ¹èÄ¡ÇÑ Å¸ÀÏ »ı¼º
+        // ë¹Œë”© ì”¬ì—ì„œ ë°°ì¹˜í•œ íƒ€ì¼ ìƒì„±
         if (InventoryManager.Instance.PlacedTiles.Count > 0)
         {
             _tileBuilder.CreateTilesFromBuildingData(_gridSystem, InventoryManager.Instance.PlacedTiles);
         }
         else
         {
-            Debug.LogWarning("ºó ÀÎº¥Åä¸®·Î °ÔÀÓ¿¡ ¿Ô¾î¿ä!! Á×À¸¼Å¾ßÇØ¿ä!");
+            Debug.LogWarning("ë¹ˆ ì¸ë²¤í† ë¦¬ë¡œ ê²Œì„ì— ì™”ì–´ìš”!! ì£½ìœ¼ì…”ì•¼í•´ìš”!");
         }
         
         SpawnPlayer();
@@ -76,34 +72,34 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// °ÔÀÓ ½ÃÀÛ Ä«¿îÆ®´Ù¿î
+    /// ê²Œì„ ì‹œì‘ ì¹´ìš´íŠ¸ë‹¤ìš´
     /// </summary>
     private IEnumerator StartCountdown()
     {
-        // °ÔÀÓ ½Ã°£Àº ¸ØÃßµÇ UI´Â ¾÷µ¥ÀÌÆ®µÇµµ·Ï ¼³Á¤
+        // ê²Œì„ ì‹œê°„ì€ ë©ˆì¶”ë˜ UIëŠ” ì—…ë°ì´íŠ¸ë˜ë„ë¡ ì„¤ì •
         TimeScaleManager.Instance.StopTimeScale();
 
-        // Ä«¿îÆ®´Ù¿î ÅØ½ºÆ® ¼³Á¤
+        // ì¹´ìš´íŠ¸ë‹¤ìš´ í…ìŠ¤íŠ¸ ì„¤ì •
         SetupCountdownText();
 
-        // Ä«¿îÆ®´Ù¿î ½ÃÀÛ
+        // ì¹´ìš´íŠ¸ë‹¤ìš´ ì‹œì‘
         float timeLeft = countdownDuration;
 
         while (timeLeft > 0)
         {
-            // Ä«¿îÆ®´Ù¿î ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+            // ì¹´ìš´íŠ¸ë‹¤ìš´ í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸
             if (countdownText != null)
             {
                 countdownText.text = Mathf.CeilToInt(timeLeft).ToString();
                 countdownText.gameObject.SetActive(true);
             }
 
-            // Time.timeScale¿¡ ¿µÇâ¹ŞÁö ¾Ê´Â WaitForSecondsRealtime »ç¿ë
+            // Time.timeScaleì— ì˜í–¥ë°›ì§€ ì•ŠëŠ” WaitForSecondsRealtime ì‚¬ìš©
             yield return new WaitForSecondsRealtime(0.1f);
             timeLeft -= 0.1f;
         }
 
-        // Ä«¿îÆ®´Ù¿î ¿Ï·á
+        // ì¹´ìš´íŠ¸ë‹¤ìš´ ì™„ë£Œ
         if (countdownText != null)
         {
             countdownText.text = "Start!";
@@ -113,12 +109,12 @@ public class GameManager : MonoBehaviour
 
         TimeScaleManager.Instance.ResetTimeScale();
 
-        // °ÔÀÓ ½ÃÀÛ »óÅÂ·Î ¼³Á¤
+        // ê²Œì„ ì‹œì‘ ìƒíƒœë¡œ ì„¤ì •
         _gameStateManager.StartGame();
     }
     
     /// <summary>
-    /// Ä«¿îÆ®´Ù¿î ÅØ½ºÆ® ¼³Á¤
+    /// ì¹´ìš´íŠ¸ë‹¤ìš´ í…ìŠ¤íŠ¸ ì„¤ì •
     /// </summary>
     private void SetupCountdownText()
     {
@@ -133,7 +129,7 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ »ı¼º
+    /// í”Œë ˆì´ì–´ ìºë¦­í„° ìƒì„±
     /// </summary>
     private void SpawnPlayer()
     {
@@ -143,7 +139,7 @@ public class GameManager : MonoBehaviour
         _playerHealth = playerObj.GetComponent<PlayerHealth>();
         _playerMana = playerObj.GetComponent<PlayerMana>();
         
-        // ÇÃ·¹ÀÌ¾î »ç¸Á ÀÌº¥Æ® ¿¬°á
+        // í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸ ì—°ê²°
         if (_playerHealth != null)
         {
             _playerHealth.OnPlayerDeath += HandlePlayerDeath;
@@ -151,15 +147,15 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// Àû Ä³¸¯ÅÍ »ı¼º
+    /// ì  ìºë¦­í„° ìƒì„±
     /// </summary>
     private void SpawnEnemy()
     {
-        Vector3 enemyPosition = new Vector3(15f, 4f, 0f); // ¿À¸¥ÂÊ À§Ä¡
+        Vector3 enemyPosition = new Vector3(15f, 4f, 0f); // ì˜¤ë¥¸ìª½ ìœ„ì¹˜
         GameObject enemyObj = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
         _enemy = enemyObj.GetComponent<BaseBoss>();
         
-        // Àû »ç¸Á ÀÌº¥Æ® ¿¬°á
+        // ì  ì‚¬ë§ ì´ë²¤íŠ¸ ì—°ê²°
         if (_enemy != null)
         {
             _enemy.OnBossDeath += HandleBossDeath;
@@ -167,7 +163,7 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î »ç¸Á Ã³¸®
+    /// í”Œë ˆì´ì–´ ì‚¬ë§ ì²˜ë¦¬
     /// </summary>
     private void HandlePlayerDeath()
     {
@@ -175,7 +171,7 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// º¸½º »ç¸Á Ã³¸®
+    /// ë³´ìŠ¤ ì‚¬ë§ ì²˜ë¦¬
     /// </summary>
     public void HandleBossDeath()
     {
@@ -183,7 +179,7 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// ÀÌº¥Æ® ¿¬°á ÇØÁ¦
+    /// ì´ë²¤íŠ¸ ì—°ê²° í•´ì œ
     /// </summary>
     private void OnDestroy()
     {

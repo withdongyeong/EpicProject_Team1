@@ -59,7 +59,19 @@ public class PlayerHealth : MonoBehaviour
             }
             return;
         }
-        
+
+        // 방어 상태면 방어막량 감소
+        if (_isShielded)
+        {
+            _shieldAmount -= 1;
+            if (_shieldAmount <= 0)
+            {
+                SetShield(false);
+                _shieldAmount = 0;
+            }
+            return;
+        }
+
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         
@@ -101,8 +113,8 @@ public class PlayerHealth : MonoBehaviour
     /// 지속시간이 있는 보호  상태 설정
     /// </summary>
     /// <param name="protected">보호 상태 여부</param>
-    /// <param name="duration">지속 시간(초)</param>
-    public void SetProtection(bool @protected, int duration)
+    /// <param name="amount">보호막량</param>
+    public void SetProtection(bool @protected, int amount)
     {
         // 이미 실행 중인 코루틴이 있다면 중지
         if (_protectionCoroutine != null)
@@ -113,24 +125,24 @@ public class PlayerHealth : MonoBehaviour
         
         // 보호 상태 설정
         SetProtection(@protected);
-        _protectionAmount = duration > 0 ? duration : 0; // 보호막량 설정
+        _protectionAmount = amount > 0 ? amount : 0; // 보호막량 설정
 
         // 지속 시간 설정
-        if (@protected && duration > 0)
+        if (@protected && amount > 0)
         {
-            _protectionCoroutine = StartCoroutine(protectionTimer(duration));
+            _protectionCoroutine = StartCoroutine(protectionTimer(amount));
         }
     }
     
     /// <summary>
     /// 보호 상태 타이머
     /// </summary>
-    private IEnumerator protectionTimer(int duration)
+    private IEnumerator protectionTimer(int amount)
     {
-        Debug.Log($"보호 상태 시작: {duration}초 동안 지속");
+        Debug.Log($"보호 상태 시작: {amount}초 동안 지속");
 
         // 매 초마다 보호막량 감소
-        for (int i = 0; i < duration; i++)
+        for (int i = 0; i < amount; i++)
         {
             yield return new WaitForSeconds(1f);
 
@@ -167,12 +179,12 @@ public class PlayerHealth : MonoBehaviour
     /// 방어도가 있는 방어 상태 설정
     /// </summary>
     /// <param name="isShielded">방어 상태 여부</param>
-    /// <param name="Amount">지속 시간(초)</param>
-    public void SetShield(bool isShielded, int Amount)
+    /// <param name="amount">방어막량</param>
+    public void SetShield(bool isShielded, int amount)
     {
         // 방어 상태 설정
         SetShield(isShielded);
-        _shieldAmount = Amount > 0 ? Amount : 0; // 방어막량 설정
+        _shieldAmount = amount > 0 ? amount : 0; // 방어막량 설정
     }
     #endregion
 

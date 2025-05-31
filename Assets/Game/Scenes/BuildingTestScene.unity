@@ -994,7 +994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8886767746660947558, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: m_Name
-      value: DefenseTest1
+      value: Robe
       objectReference: {fileID: 0}
     - target: {fileID: 8976203066378111927, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: m_Sprite
@@ -3917,7 +3917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8886767746660947558, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: m_Name
-      value: DefenseTest2
+      value: Helmet
       objectReference: {fileID: 0}
     - target: {fileID: 8976203066378111927, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: m_Sprite
@@ -5648,7 +5648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\uACA9 2\n\uC9C0\uC18D 2 / \uCFE8 13s"
+  m_text: "\uD5EC\uBA67 / \uAC00\uACA9 5\n\uBC29\uC5B4\uB9C9 1 / \uCFE8 10s"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9128b553ed8f0104c859cb5404b56ba3, type: 2}
   m_sharedMaterial: {fileID: 5446056761023578119, guid: 9128b553ed8f0104c859cb5404b56ba3, type: 2}
@@ -7501,7 +7501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8886767746660947558, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: m_Name
-      value: DefenseTest3
+      value: Armor
       objectReference: {fileID: 0}
     - target: {fileID: 8976203066378111927, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: m_Sprite
@@ -7538,7 +7538,7 @@ PrefabInstance:
     - target: {fileID: 9045266046990208662, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: _itemDataTemplate
       value: 
-      objectReference: {fileID: 11400000, guid: 2aecadf825024a743a53795dae459340, type: 2}
+      objectReference: {fileID: 11400000, guid: a86c6e678c3006d4a9b8dffc571e96c1, type: 2}
     - target: {fileID: 9045266046990208662, guid: 37900e859d41d2d40b850d90a92693aa, type: 3}
       propertyPath: _rotationHintObject
       value: 
@@ -8768,7 +8768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\uACA9 3\n\uC9C0\uC18D 2 / \uCFE8 12s"
+  m_text: "\uAC11\uC637 / \uAC00\uACA9 8\n\uBC29\uC5B4\uB9C9 2 / \uCFE8 13s"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9128b553ed8f0104c859cb5404b56ba3, type: 2}
   m_sharedMaterial: {fileID: 5446056761023578119, guid: 9128b553ed8f0104c859cb5404b56ba3, type: 2}
@@ -8904,7 +8904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\uACA9 1\n\uC9C0\uC18D 2 / \uCFE8 14s"
+  m_text: "\uB85C\uBE0C / \uAC00\uACA9 5\n\uBCF4\uD638\uB9C9 5 / \uCFE8 8s"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9128b553ed8f0104c859cb5404b56ba3, type: 2}
   m_sharedMaterial: {fileID: 5446056761023578119, guid: 9128b553ed8f0104c859cb5404b56ba3, type: 2}
