@@ -62,4 +62,6 @@ public class HealTile : BaseTile
         base.ModifyTilePropertiesByItemData(itemData);
         _healAmount = itemData.HealAmount;
     }
+
+
 }

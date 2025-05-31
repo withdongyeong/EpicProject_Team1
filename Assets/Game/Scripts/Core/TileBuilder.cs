@@ -163,9 +163,6 @@ public class TileBuilder
         //// 공통 타이밍 속성 설정
         //tile.ChargeTime = itemData.ChargeTime;
         
-        // 공통 타이밍 속성 설정
-        tile.ChargeTime = itemData.ChargeTime;
-
         //// 타일 타입별 속성 설정
         //if (tile is ProjectileTile attackTile)
         //{
