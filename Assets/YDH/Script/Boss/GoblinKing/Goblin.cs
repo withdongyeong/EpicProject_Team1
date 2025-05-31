@@ -55,6 +55,7 @@ public class Goblin : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log(3);
         BattleField battleField = collision.GetComponent<BattleField>();
 
         if (battleField != null)
