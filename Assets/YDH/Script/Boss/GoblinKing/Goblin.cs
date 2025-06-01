@@ -63,7 +63,7 @@ public class Goblin : MonoBehaviour
             Vector3 directionToCenter = (battleField.transform.position - transform.position).normalized;
 
             // 되돌려보낼 위치 계산 (살짝 BattleField 쪽으로 이동)
-            float returnDistance = 0.3f; // 되돌릴 거리 (원하는 만큼 조절)
+            float returnDistance = 0.5f; // 되돌릴 거리 (원하는 만큼 조절)
             Vector3 pushBackPosition = transform.position + directionToCenter * returnDistance;
             PickRandomDirection();
 

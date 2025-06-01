@@ -26,6 +26,12 @@ public class SummonGoblinPattern : IBossAttackPattern
         return boss.GridSystem != null && boss.Player != null && _goblin != null;
     }
 
+
+   /// <summary>
+   /// 고블린 소환 패턴
+   /// </summary>
+   /// <param name="boss"></param>
+   /// <returns></returns>
     private IEnumerator SummonGoblin(BaseBoss boss)
     {
         for (int i = 0; i < _goblinCount; i++)
