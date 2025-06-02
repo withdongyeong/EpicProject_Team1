@@ -16,8 +16,9 @@ public class DamageTotem : BaseTotem
 
     public override void InitializeTotem(InventoryItemData itemData)
     {
-        base.InitializeTotem(itemData);
+        _targetEnemy = FindAnyObjectByType<BaseBoss>();
         _damage = itemData.Damage;
+        base.InitializeTotem(itemData);
     }
 
     public override void ActivateTotem()
@@ -35,7 +36,6 @@ public class DamageTotem : BaseTotem
     {
         if (projectilePrefab != null)
         {
-            _targetEnemy = FindAnyObjectByType<BaseBoss>();
             Vector3 direction = (_targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();

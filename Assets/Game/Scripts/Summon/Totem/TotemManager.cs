@@ -46,6 +46,7 @@ public class TotemManager : SummonBase
     public void AddToTotemList(BaseTotem totem)
     {
         _currentTotemList.Add(totem);
+        totem.transform.localPosition = GlobalSetting.Totem_Offset * (_currentTotemList.Count - 1);
         if(_currentTotemList.Count >= 3)
         {
             ActivateTotemList();

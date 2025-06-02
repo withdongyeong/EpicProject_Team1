@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 /// <summary>
 /// 인벤토리 아이템 데이터 클래스
@@ -178,6 +179,36 @@ public class InventoryItemData : ScriptableObject
                 _shapeData = new bool[1, 4] { { true, true, true, true } };
                 break;
 
+            case ItemShapeType.Square:
+                //2*2 사각형
+                _shapeData = new bool[2, 2] { { true, true }, {true, true } };
+                break;
+
+            case ItemShapeType.Triple:
+                //1*3 직사각형
+                _shapeData = new bool[1, 3] { { true, true, true } };
+                break;
+
+            case ItemShapeType.Mountain:
+                //ㅗ
+                _shapeData = new bool[2, 3] { { false, true, false }, { true, true, true } };
+                break;
+
+            case ItemShapeType.BigHeart:
+                //3*3에서 대각선 끝에 한칸만 뺀 형상. 하트모양.
+                _shapeData = new bool[3, 3] { { true, true, false }, { true, true, true }, { true, true, true } };
+                break;
+
+            case ItemShapeType.SlingShot:
+                //새총, Y모양이라고 생각하면 편함
+                _shapeData = new bool[3, 3] { { true, false, true }, { true, true, true }, { false, true, false } };
+                break;
+
+            case ItemShapeType.Cross:
+                //십자가
+                _shapeData = new bool[3, 3] { { false, true, false }, { true, true, true }, { false, true, false } };
+                break;
+
             default:
                 _shapeData = new bool[1, 1] { { true } };
                 break;
@@ -333,6 +364,38 @@ public class InventoryItemData : ScriptableObject
                     _shapeData = new bool[4, 1] { { true }, { true }, { true }, { true } };
                 }
                 break;
+
+            case ItemShapeType.Triple:
+                if(_currentRotation == 0 || _currentRotation == 180)
+                {
+                    _shapeData = new bool[1, 3] { { true, true, true } };
+                }
+                else
+                {
+                    _shapeData = RotateShape(new bool[1, 3] { { true, true, true } });
+                }
+                break;
+            case ItemShapeType.Mountain:
+                _shapeData = new bool[2, 3] { { false, true, false }, { true, true, true } };
+                for (int i=0; i*90 < _currentRotation; i++)
+                {
+                    _shapeData = RotateShape(_shapeData);
+                }
+                break;
+            case ItemShapeType.BigHeart:
+                _shapeData = new bool[3, 3] { { true, true, false }, { true, true, true }, { true, true, true } };
+                for (int i = 0; i * 90 < _currentRotation; i++)
+                {
+                    _shapeData = RotateShape(_shapeData);
+                }
+                break;
+            case ItemShapeType.SlingShot:
+                _shapeData = new bool[3, 3] { { true, false, true }, { true, true, true }, { false, true, false } };
+                for (int i = 0; i * 90 < _currentRotation; i++)
+                {
+                    _shapeData = RotateShape(_shapeData);
+                }
+                break;
         }
     }
     
@@ -343,5 +406,30 @@ public class InventoryItemData : ScriptableObject
     {
         _currentRotation = 0;
         UpdateShapeFromType();
+    }
+
+    /// <summary>
+    /// 모양을 회전시키는 함수입니다
+    /// </summary>
+    /// <param name="input">회전시킬 모양입니다</param>
+    /// <returns>회전된 모양입니다</returns>
+    private bool[,] RotateShape(bool[,] input)
+    {
+        
+        int rows = input.GetLength(0);
+        int cols = input.GetLength(1);
+
+        // 회전 결과는 cols x rows 배열이 됨
+        bool[,] result = new bool[cols, rows];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                result[j, rows - 1 - i] = input[i, j];
+            }
+        }
+
+        return result;
     }
 }
