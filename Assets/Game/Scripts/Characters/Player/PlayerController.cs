@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾î ÀÌµ¿ ¹× Å¸ÀÏ »óÈ£ÀÛ¿ë °ü¸®
+/// í”Œë ˆì´ì–´ ì´ë™ ë° íƒ€ì¼ ìƒí˜¸ì‘ìš© ê´€ë¦¬
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool _isMoving;
     private float _moveTime = 0.2f;
 
-    //¹ÙÀÎµå º¯¼ö Ãß°¡
+    // ë°”ì¸ë”© ìƒíƒœ ì¶”ê°€
     private bool _isBind;
     
     // Getters & Setters
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// ÀÌµ¿ ½Ãµµ - À¯È¿ÇÑ À§Ä¡ÀÎÁö È®ÀÎ ÈÄ ¾Ö´Ï¸ŞÀÌ¼Ç
+    /// ì´ë™ ì‹œë„ - ìœ íš¨í•œ ìœ„ì¹˜ì¸ì§€ í™•ì¸ í›„ ì• ë‹ˆë©”ì´ì…˜
     /// </summary>
     private bool TryMove(int dx, int dy)
     {
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// Á¡ÇÁ È¿°ú°¡ ÀÖ´Â ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç
+    /// ì í”„ íš¨ê³¼ê°€ ìˆëŠ” ì´ë™ ì• ë‹ˆë©”ì´ì…˜
     /// </summary>
     private IEnumerator MoveAnimation(int targetX, int targetY)
     {
@@ -84,11 +84,11 @@ public class PlayerController : MonoBehaviour
         {
             float t = elapsedTime / _moveTime;
         
-            // XY Æò¸é¿¡¼­ ÀÌµ¿ (Z´Â Ç×»ó 0)
+            // XY í‰ë©´ì—ì„œ ì´ë™ (ZëŠ” í•­ìƒ 0)
             float x = Mathf.Lerp(startPos.x, targetPos.x, t);
             float y = Mathf.Lerp(startPos.y, targetPos.y, t);
         
-            // Ãß°¡ Á¡ÇÁ ³ôÀÌ
+            // ì í”„ ë†’ì´ ê³„ì‚°
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
         
             transform.position = new Vector3(x, y + extraHeight, 0);
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// ÇöÀç °İÀÚ À§Ä¡ ¾÷µ¥ÀÌÆ®
+    /// í˜„ì¬ ê·¸ë¦¬ë“œ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
     /// </summary>
     private void UpdateCurrentPosition()
     {
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// ÇöÀç À§Ä¡ Å¸ÀÏ°ú »óÈ£ÀÛ¿ë È®ÀÎ
+    /// í˜„ì¬ ìœ„ì¹˜ íƒ€ì¼ê³¼ ìƒí˜¸ì‘ìš© í™•ì¸
     /// </summary>
     private void CheckTileInteraction()
     {
@@ -122,4 +122,4 @@ public class PlayerController : MonoBehaviour
             currentTile.Activate();
         }
     }
-}   
+}
