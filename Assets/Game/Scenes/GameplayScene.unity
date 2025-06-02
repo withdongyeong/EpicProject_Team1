@@ -229,8 +229,10 @@ MonoBehaviour:
   attackTilePrefab: {fileID: 8060270764348269698, guid: dff2e65ef4a7e2148a6b2a59d3171e12, type: 3}
   defenseTilePrefab: {fileID: 8060270764348269698, guid: 2ea20452ac934ed43875ff1d517ee3fb, type: 3}
   healTilePrefab: {fileID: 8060270764348269698, guid: e67d7262610efd646bddedfb87209267, type: 3}
+  manaHealTilePrefab: {fileID: 0}
   enemyPrefab: {fileID: 8021514852974272917, guid: b9f5cd677099299498447ba18caeccae, type: 3}
   highlightTilePrefab: {fileID: 2088068471157347722, guid: b158c356a8eb54e469824f348eaa9b94, type: 3}
+  tilePrefabList: []
   countdownText: {fileID: 0}
   countdownDuration: 3
 --- !u!4 &283686389

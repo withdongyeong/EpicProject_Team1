@@ -37,7 +37,7 @@ public class Treant : BaseBoss
         AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
 
         //강제 이동 패턴
-        AddAttackPattern(new EnemyStraightAttack(WarningAriaPrefeb, TreantWindMagic, this.transform));
+        AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic, this.transform));
 
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
