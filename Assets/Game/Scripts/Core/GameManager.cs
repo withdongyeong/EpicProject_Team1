@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
     public GameObject highlightTilePrefab;
-
+    
     [Header("타일프리팹을 넣는 리스트")]
     private List<GameObject> tilePrefabList = new();
     
@@ -22,9 +22,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI countdownText;
     public float countdownDuration = 3f;
 
+    [Header("몬스터 소환 위치")]
+    public GameObject enemySpawnPosition;
+    
     // 시스템 참조
-    private static GameManager _instance;
-    public static GameManager Instance => _instance;
     private GridSystem _gridSystem;
     private BaseBoss _enemy;
     private PlayerController _player;
@@ -40,7 +41,6 @@ public class GameManager : MonoBehaviour
     {
         InitializeSystems();
         CreateGameContent();
-        InitializeAfterContent();
         StartCoroutine(StartCountdown());
     }
     /// <summary>
@@ -48,16 +48,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void InitializeSystems()
     {
-        //싱글톤 패턴
-        if(_instance == null)
-        {
-            _instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-            _gridSystem = GetComponent<GridSystem>();
+        _gridSystem = GetComponent<GridSystem>();
         _gameStateManager = GameStateManager.Instance;
 
         // TileBuilder 초기화
@@ -83,11 +74,6 @@ public class GameManager : MonoBehaviour
         
         SpawnPlayer();
         SpawnEnemy();
-    }
-
-    private void InitializeAfterContent()
-    {
-
     }
     
     /// <summary>
@@ -170,7 +156,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SpawnEnemy()
     {
-        Vector3 enemyPosition = new Vector3(15f, 4f, 0f); // 오른쪽 위치
+        Vector3 enemyPosition = enemySpawnPosition.transform.position;
         GameObject enemyObj = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
         _enemy = enemyObj.GetComponent<BaseBoss>();
         
