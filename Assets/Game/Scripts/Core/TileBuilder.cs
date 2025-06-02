@@ -10,10 +10,6 @@ public class TileBuilder
     private GameObject _highlightTilePrefab;
     //이 리스트가 실질적으로 기획하는 사람들이 건들이는 리스트입니다
     private List<GameObject> _tilePrefabList = new();
-    //private GameObject _attackTilePrefab;
-    //private GameObject _defenseTilePrefab;
-    //private GameObject _healTilePrefab;
-    //private GameObject _manaHealTilePrefab;
 
     /// <summary>
     /// TileBuilder 초기화

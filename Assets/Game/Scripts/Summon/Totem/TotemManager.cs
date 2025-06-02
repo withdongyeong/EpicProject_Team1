@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TotemManager : MonoBehaviour
+public class TotemManager : SummonBase
 {
     //현재 활성화된 토템 리스트입니다
     private List<BaseTotem> _currentTotemList = new();
-
-    private Transform _playerTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,11 +16,6 @@ public class TotemManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void Init(Transform player)
-    {
-        _playerTransform = player;
     }
 
     /// <summary>
@@ -57,4 +50,5 @@ public class TotemManager : MonoBehaviour
             Debug.Log("토템발사!");
         }
     }
+
 }

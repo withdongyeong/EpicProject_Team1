@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 283686388}
   - component: {fileID: 283686390}
   - component: {fileID: 283686391}
+  - component: {fileID: 283686392}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -235,6 +236,7 @@ MonoBehaviour:
   - {fileID: 8060270764348269698, guid: e67d7262610efd646bddedfb87209267, type: 3}
   - {fileID: 8060270764348269698, guid: ca05e55622aa1dc4eaa10562d6ab7054, type: 3}
   - {fileID: 6698141502191601302, guid: b44f2d9787e910941ae949b767e3268e, type: 3}
+  - {fileID: 55680744621745615, guid: 1f2847777e91e2844a155541c89f7fbf, type: 3}
   countdownText: {fileID: 0}
   countdownDuration: 3
 --- !u!4 &283686389
@@ -281,6 +283,18 @@ MonoBehaviour:
   victoryReturnButton: {fileID: 1976178915}
   defeatReturnButton: {fileID: 2009854024}
   retryButton: {fileID: 0}
+--- !u!114 &283686392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283686387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740c41dada43dfe4ba94e006a0266760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &308916937
 GameObject:
   m_ObjectHideFlags: 0

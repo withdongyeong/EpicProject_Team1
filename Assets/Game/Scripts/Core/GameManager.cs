@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeAfterContent()
     {
-        GetComponent<TotemManager>().Init(_player.transform);
+
     }
     
     /// <summary>
