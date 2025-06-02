@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public int CurrentX { get => _currentX; set => _currentX = value; }
     public int CurrentY { get => _currentY; set => _currentY = value; }
     public bool IsBind { get => _isBind; set => _isBind = value; }
+    public Animator Animator { get => _animator; set => _animator = value; }
 
     private void Start()
     {
@@ -35,15 +36,33 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateCurrentPosition();
+        
+        // 초기 애니메이션 상태 설정
+        if (_animator != null)
+        {
+            _animator.SetBool("IsMoving", false);
+        }
     }
     
     private void Update()
     {
-        if (!_isMoving && !_isBind)
+        // 게임이 Playing 상태일 때만 입력 처리
+        if (GameStateManager.Instance.CurrentState == GameStateManager.GameState.Playing)
         {
-            HandleMovement();
+            if (!_isMoving && !_isBind)
+            {
+                HandleMovement();
+            }
+            CheckTileInteraction();
         }
-        CheckTileInteraction();
+        else
+        {
+            // 게임이 Playing 상태가 아닐 때는 IsMoving을 false로 고정
+            if (_animator != null)
+            {
+                _animator.SetBool("IsMoving", false);
+            }
+        }
     }
     
     private void HandleMovement()

@@ -6,10 +6,45 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
+/// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리 (싱글톤)
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+                
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("GameManager");
+                    _instance = go.AddComponent<GameManager>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     [Header("프리팹들")]
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
@@ -33,6 +68,13 @@ public class GameManager : MonoBehaviour
     private PlayerMana _playerMana;
     private GameStateManager _gameStateManager;
     private TileBuilder _tileBuilder;
+
+    // Public 프로퍼티로 접근 가능하게
+    public PlayerController Player => _player;
+    public BaseBoss Enemy => _enemy;
+    public PlayerHealth PlayerHealth => _playerHealth;
+    public PlayerMana PlayerMana => _playerMana;
+    public GridSystem GridSystem => _gridSystem;
     
     /// <summary>
     /// 게임 초기화
@@ -43,6 +85,7 @@ public class GameManager : MonoBehaviour
         CreateGameContent();
         StartCoroutine(StartCountdown());
     }
+    
     /// <summary>
     /// 시스템들 초기화
     /// </summary>
@@ -81,9 +124,21 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private IEnumerator StartCountdown()
     {
+        // 플레이어 생성 대기 (한 프레임 대기)
+        yield return null;
+        
         // 게임 시간은 멈추되 UI는 업데이트되도록 설정
         TimeScaleManager.Instance.StopTimeScale();
-
+        
+        // 플레이어의 스타트 애니메이션 재생 (속도 조정 포함)
+        if (_player != null && _player.Animator != null)
+        {
+            // UnscaledTime 모드에서 적절한 속도로 조정
+            float originalSpeed = _player.Animator.speed;
+            _player.Animator.speed = 1.0f; // 정상 속도로 설정
+            _player.Animator.SetTrigger("Start");
+        }
+        
         // 카운트다운 텍스트 설정
         SetupCountdownText();
 
@@ -144,6 +199,13 @@ public class GameManager : MonoBehaviour
         _playerHealth = playerObj.GetComponent<PlayerHealth>();
         _playerMana = playerObj.GetComponent<PlayerMana>();
         
+        // Animator를 UnscaledTime 모드로 설정 (timeScale 영향 안받음)
+        Animator playerAnimator = _player.GetComponent<Animator>();
+        if (playerAnimator != null)
+        {
+            playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+        
         // 플레이어 사망 이벤트 연결
         if (_playerHealth != null)
         {
@@ -184,6 +246,20 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
+    /// 게임 재시작
+    /// </summary>
+    public void RestartGame()
+    {
+        // 현재 게임 오브젝트들 정리
+        if (_player != null) Destroy(_player.gameObject);
+        if (_enemy != null) Destroy(_enemy.gameObject);
+        
+        // 게임 콘텐츠 재생성
+        CreateGameContent();
+        StartCoroutine(StartCountdown());
+    }
+    
+    /// <summary>
     /// 이벤트 연결 해제
     /// </summary>
     private void OnDestroy()
@@ -196,6 +272,12 @@ public class GameManager : MonoBehaviour
         if (_enemy != null)
         {
             _enemy.OnBossDeath -= HandleBossDeath;
+        }
+        
+        // 싱글톤 인스턴스 정리
+        if (_instance == this)
+        {
+            _instance = null;
         }
     }
 }
