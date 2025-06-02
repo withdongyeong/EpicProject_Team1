@@ -281,7 +281,7 @@ public class SwordController : MonoBehaviour
     private void HandleDashSkill()
     {
         skillDashTimer -= Time.deltaTime;
-    
+      
         Vector2 moveDirection = new Vector2(
             Mathf.Cos(currentDirection * Mathf.Deg2Rad),
             Mathf.Sin(currentDirection * Mathf.Deg2Rad)
@@ -463,17 +463,14 @@ public class SwordController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 비행 상태에서만 몬스터 공격
-        if (currentState == SwordState.Flying || currentState == SwordState.Skill)
+        if (currentState == SwordState.Skill)
         {
-            if (other.CompareTag("Enemy"))
+            BaseBoss monster = other.GetComponent<BaseBoss>();
+            if (monster != null)
             {
-                BaseBoss monster = other.GetComponent<BaseBoss>();
-                if (monster != null)
-                {
-                    monster.TakeDamage(_damage);
-                    
-                    Debug.Log($"Sword hit monster for {_damage} damage!");
-                }
+                monster.TakeDamage(_damage);
+
+                Debug.Log($"Sword hit monster for {_damage} damage!");
             }
         }
     }

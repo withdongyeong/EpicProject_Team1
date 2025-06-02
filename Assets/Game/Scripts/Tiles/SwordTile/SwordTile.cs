@@ -54,15 +54,19 @@ public class SwordTile : BaseTile
             // 검 소환
             GameObject newSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             SwordController swordController = newSword.GetComponent<SwordController>();
+            SwordManager swordManager = FindAnyObjectByType<SwordManager>();
             if (swordController != null)
             {
                 swordController.Damage = _damage; // 공격력 설정
-                swordController.ActivateSkill(targetEnemy.transform.position); // 적 1회 공격
             }
             else
             {
                 Debug.LogWarning("SwordController component not found on the summoned sword prefab.");
             }
+
+            Debug.Log("Sword summoned successfully!");
+            // 타겟 적에게 검 발사
+            swordManager.ActivateSkill(targetEnemy.transform.position);
         }
     }
 
