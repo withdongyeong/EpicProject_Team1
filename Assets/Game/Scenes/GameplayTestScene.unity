@@ -226,20 +226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae4ba3009e2467b876fc976184af90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3249486552240177032, guid: f7be8767ca559f648a8799b0d3fcc7f3, type: 3}
-  attackTilePrefab: {fileID: 8060270764348269698, guid: dff2e65ef4a7e2148a6b2a59d3171e12, type: 3}
-  defenseTilePrefab: {fileID: 8060270764348269698, guid: 2ea20452ac934ed43875ff1d517ee3fb, type: 3}
-  healTilePrefab: {fileID: 8060270764348269698, guid: e67d7262610efd646bddedfb87209267, type: 3}
-  manaHealTilePrefab: {fileID: 8060270764348269698, guid: ca05e55622aa1dc4eaa10562d6ab7054, type: 3}
+  playerPrefab: {fileID: 3249486552240177032, guid: af1a116ed832d2f47a88523321211555, type: 3}
   enemyPrefab: {fileID: 8541886977982132708, guid: b75581327c0275f46a78436871ac527b, type: 3}
   highlightTilePrefab: {fileID: 2088068471157347722, guid: b158c356a8eb54e469824f348eaa9b94, type: 3}
-  tilePrefabList:
-  - {fileID: 8060270764348269698, guid: dff2e65ef4a7e2148a6b2a59d3171e12, type: 3}
-  - {fileID: 8060270764348269698, guid: 2ea20452ac934ed43875ff1d517ee3fb, type: 3}
-  - {fileID: 8060270764348269698, guid: e67d7262610efd646bddedfb87209267, type: 3}
-  - {fileID: 8060270764348269698, guid: ca05e55622aa1dc4eaa10562d6ab7054, type: 3}
-  - {fileID: 6698141502191601302, guid: b44f2d9787e910941ae949b767e3268e, type: 3}
-  - {fileID: 55680744621745615, guid: 1f2847777e91e2844a155541c89f7fbf, type: 3}
   countdownText: {fileID: 0}
   countdownDuration: 3
 --- !u!4 &283686389
@@ -298,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740c41dada43dfe4ba94e006a0266760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadThis: {fileID: 11400000, guid: 6eeac900c2171674fb8601db3046d219, type: 2}
 --- !u!1 &308916937
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public enum TileType
     ManaHeal,
     FireBall,
     Sword,
+    Totem
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
@@ -38,6 +39,7 @@ public class InventoryItemData : ScriptableObject
     [SerializeField] private int _healAmount = 25;    // 회복 타일용
     [SerializeField] private float _obstacleDuration = 5f; // 장애물 타일용
     [SerializeField] private int _cost = 1;
+    [SerializeField] private GameObject _summon; //소환할 프리팹입니다. 해석하기에 따라 다르게 사용할 수도 있습니다.
     
     
     // 현재 회전 상태 (0, 90, 180, 270)
@@ -110,6 +112,11 @@ public class InventoryItemData : ScriptableObject
     /// 아이템 비용
     /// </summary>
     public int Cost { get => _cost; set => _cost = value; }
+
+    /// <summary>
+    /// 소환할 프리팹.
+    /// </summary>
+    public GameObject Summon => _summon;
     
     /// <summary>
     /// 아이템 형태 너비
@@ -203,6 +210,7 @@ public class InventoryItemData : ScriptableObject
         clone.HealAmount = this.HealAmount;
         clone.ObstacleDuration = this.ObstacleDuration;
         clone.Cost = this.Cost;
+        clone._summon = this._summon;
         
         // 형태 데이터 복사
         bool[,] shapeClone = new bool[Height, Width];

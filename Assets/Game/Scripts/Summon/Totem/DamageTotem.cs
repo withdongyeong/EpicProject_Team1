@@ -11,17 +11,18 @@ public class DamageTotem : BaseTotem
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _targetEnemy = FindAnyObjectByType<BaseBoss>();
+
     }
 
     public override void InitializeTotem(InventoryItemData itemData)
     {
+        base.InitializeTotem(itemData);
         _damage = itemData.Damage;
     }
 
     public override void ActivateTotem()
     {
-        FireProjectile(_lesserProjectile,_damage);
+        FireProjectile(_lesserProjectile, _damage);
 
     }
 
@@ -34,6 +35,7 @@ public class DamageTotem : BaseTotem
     {
         if (projectilePrefab != null)
         {
+            _targetEnemy = FindAnyObjectByType<BaseBoss>();
             Vector3 direction = (_targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();

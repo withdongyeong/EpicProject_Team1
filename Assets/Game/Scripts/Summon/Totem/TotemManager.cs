@@ -31,8 +31,10 @@ public class TotemManager : SummonBase
             }
             else
             {
+                Debug.Log("else 들어옴");
                 _currentTotemList[i].ActivateTotemBetter();
             }
+            _currentTotemList[i].DestroyTotem();
         }
         _currentTotemList.Clear();
     }

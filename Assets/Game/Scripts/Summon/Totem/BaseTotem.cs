@@ -39,4 +39,9 @@ public abstract class BaseTotem : MonoBehaviour
         ActivateTotem();
         ActivateTotem();
     }
+
+    public virtual void DestroyTotem()
+    {
+        Destroy(gameObject);
+    }
 }

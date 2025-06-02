@@ -5,7 +5,14 @@
 /// </summary>
 public class GlobalSetting : MonoBehaviour
 {
-    [SerializeField] private static GlobalSettingSO _instance;
+    [SerializeField] private GlobalSettingSO loadThis;
+
+    private static GlobalSettingSO _instance;
+
+    private void Awake()
+    {
+        Load(loadThis);
+    }
 
     public static void Load(GlobalSettingSO setting)
     {

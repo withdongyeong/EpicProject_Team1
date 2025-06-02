@@ -9,18 +9,26 @@ public class PlayerSummons : MonoBehaviour
     //플레이어를 따라다니는 소환물들의 리스트입니다.
     private List<ISummon> _summonList = new();
 
-    [SerializeField] private GameObject totemManager;
+    [SerializeField] private GameObject _totemManager;
+
+    private bool isGameStarted;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GameStateManager.Instance.OnGameStateChanged += GameStart;
+        //TODO: 나중에 기믹 매니저 생기면 토템 매니저 자동 생성 하지 말것
+        var totemManager = Instantiate(_totemManager, transform);
+        AddToList(totemManager.GetComponent<ISummon>());
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateSummonPosition();
+        if (isGameStarted)
+        {
+            UpdateSummonPosition();
+        }        
     }
 
     public void AddToList(ISummon summon)
@@ -40,8 +48,16 @@ public class PlayerSummons : MonoBehaviour
         int i = 1;
         foreach(ISummon summon in _summonList)
         {
-            summon.SetPosition(transform,i);
+            summon.SetPosition(transform.parent,i);
             i++;
+        }
+    }
+
+    private void GameStart(GameStateManager.GameState state)
+    {
+        if(state == GameStateManager.GameState.Playing)
+        {
+            isGameStarted = true;
         }
     }
 
