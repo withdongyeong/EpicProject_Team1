@@ -1,41 +1,41 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class TreantWindMagic : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController playerHealth = collision.GetComponent<PlayerController>();
+        PlayerController playerController = collision.GetComponent<PlayerController>();
 
-        if (playerHealth != null)
+        if (playerController != null)
         {
-            playerHealth.CurrentX = 0;
+            playerController.CurrentX = 0;
             StartCoroutine(MoveToCenterX(collision.transform));
         }
     }
 
 
-    //ÇÃ·¹ÀÌ¾î ³¡À¸·Î ³¯·Áº¸³»±â
+    //í”Œë ˆì´ì–´ ëìœ¼ë¡œ ë‚ ë ¤ë³´ë‚´ê¸°
     private IEnumerator MoveToCenterX(Transform target)
     {
-        float duration = 0.05f; // ÀÌµ¿ ½Ã°£ (1ÃÊ)
+        float duration = 0.05f; // ì´ë™ ì‹œê°„ (1ì´ˆ)
         float elapsed = 0f;
 
         Vector3 startPos = target.position;
-        Vector3 endPos = new Vector3(0f, startPos.y, startPos.z); // X=0À¸·Î ÀÌµ¿, ³ª¸ÓÁö´Â ±×´ë·Î
+        Vector3 endPos = new Vector3(0f, startPos.y, startPos.z); // X=0ìœ¼ë¡œ ì´ë™, ë‚˜ë¨¸ì§€ëŠ” ê·¸ëŒ€ë¡œ
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
-            // ºÎµå·´°Ô ÀÌµ¿
+            // ë¶€ë“œëŸ½ê²Œ ì´ë™
             target.position = Vector3.Lerp(startPos, endPos, t);
 
             yield return null;
         }
 
-        // Á¤È®È÷ 0À¸·Î º¸Á¤
+        // ì •í™•íˆ 0ìœ¼ë¡œ ë³´ì •
         target.position = endPos;
     }
 }

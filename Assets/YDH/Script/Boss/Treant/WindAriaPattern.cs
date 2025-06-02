@@ -1,5 +1,6 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WindAriaPattern : IBossAttackPattern
 {
@@ -7,22 +8,22 @@ public class WindAriaPattern : IBossAttackPattern
     public float cellSize = 1f;
 
     private GameObject _warningPrefab;
-    private GameObject _tentaclePrefab;
+    private GameObject _teantWindMagicPrefab;
 
-    public Transform gridOrigin; // °İÀÚ ½ÃÀÛ À§Ä¡ (ÁÂ»ó´Ü or ÁÂÇÏ´Ü)
+    public Transform gridOrigin; // ê²©ì ì‹œì‘ ìœ„ì¹˜ (ì¢Œìƒë‹¨ or ì¢Œí•˜ë‹¨)
 
     public string PatternName => "StraightAttack";
 
-    public WindAriaPattern(GameObject warningPrefab, GameObject tentaclePrefab, Transform transform)
+    public WindAriaPattern(GameObject warningPrefab, GameObject teantWindMagicPrefab, Transform transform)
     {
         _warningPrefab = warningPrefab;
-        _tentaclePrefab = tentaclePrefab;
+        _teantWindMagicPrefab = teantWindMagicPrefab;
         gridOrigin = transform;
     }
 
     public void Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteAttackPattern());
+        boss.StartCoroutine(WindMagicPattern());
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -31,54 +32,90 @@ public class WindAriaPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ÃË¼ö Âî¸£±â °ø°İ
+    /// ë°”ëŒ ë§ˆë²• íŒ¨í„´
     /// </summary>
-    IEnumerator ExecuteAttackPattern()
+    IEnumerator WindMagicPattern()
     {
-        // 1. ·£´ı ¿­ ¹øÈ£ ¼±ÅÃ (-4~3)
+        // 1. ëœë¤ ì—´ ë²ˆí˜¸ ì„ íƒ (-4~3)
         int column = Random.Range(-4, 3);
 
-        // 2. ºÓÀº»ö °æ°í »ı¼º
+        // 2. ë¶‰ì€ìƒ‰ ê²½ê³  ìƒì„±
         Vector3 warningPos = gridOrigin.position + new Vector3(-7, column * cellSize, 0);
         GameObject warning = Object.Instantiate(_warningPrefab, warningPos, Quaternion.identity);
-        warning.transform.localScale = new Vector3(gridSize, 1, 1); // ¼¼·Î·Î ±æ°Ô
+        warning.transform.localScale = new Vector3(gridSize, 1, 1); // ì„¸ë¡œë¡œ ê¸¸ê²Œ
 
-        // 3. 1ÃÊ ´ë±â
+        // 3. 1ì´ˆ ëŒ€ê¸°
         yield return new WaitForSeconds(1f);
 
-        // 4. °æ°í Á¦°Å
+        // 4. ê²½ê³  ì œê±°
         Object.Destroy(warning);
 
-        // 5. ÃË¼ö »ı¼º
-        Vector3 tentaclePos = warningPos; // °æ°í¿Í °°Àº À§Ä¡·Î ¼³Á¤
-        GameObject tentacle = Object.Instantiate(_tentaclePrefab, tentaclePos, Quaternion.identity);
-        tentacle.transform.localScale = new Vector3(0.1f, 0.9f, 1); // xÃà ÀÛ°Ô ½ÃÀÛ
+        // 5. ë‚˜ë¬´ ìƒì„±
+        Vector3 WindMagicPos = warningPos; // ê²½ê³ ì™€ ê°™ì€ ìœ„ì¹˜ë¡œ ì„¤ì •
+        GameObject teantWindMagic = Object.Instantiate(_teantWindMagicPrefab, WindMagicPos, Quaternion.identity);
+        teantWindMagic.transform.localScale = new Vector3(0.1f, 0.9f, 1); // xì¶• ì‘ê²Œ ì‹œì‘
 
         float growTime = 0.3f;
         float elapsed = 0f;
 
-        Vector3 basePos = tentaclePos; // ±âÁØ À§Ä¡´Â warningPos
-        Vector3 startScale = tentacle.transform.localScale;
-        Vector3 endScale = new Vector3(gridSize, 0.9f, 1); // ¿ŞÂÊÀ¸·Î XÃàÀ¸·Î ±æ°Ô
+        Vector3 basePos = WindMagicPos; // ê¸°ì¤€ ìœ„ì¹˜ëŠ” warningPos
+        Vector3 startScale = teantWindMagic.transform.localScale;
+        Vector3 endScale = new Vector3(gridSize, 0.9f, 1); // ì™¼ìª½ìœ¼ë¡œ Xì¶•ìœ¼ë¡œ ê¸¸ê²Œ
 
         while (elapsed < growTime)
         {
-            if (tentacle == null) break;
+            if (teantWindMagic == null) break;
 
             elapsed += Time.deltaTime;
             float t = elapsed / growTime;
 
             float currentWidth = Mathf.Lerp(startScale.x, endScale.x, t);
-            tentacle.transform.localScale = new Vector3(currentWidth, 0.9f, 1);
+            teantWindMagic.transform.localScale = new Vector3(currentWidth, 0.9f, 1);
 
-            // ¿©ÀÇºÀÃ³·³ ¿ŞÂÊÀ¸·Î Ä¿Áö°Ô À§Ä¡ º¸Á¤
-            tentacle.transform.position = basePos - new Vector3((currentWidth - startScale.x) / 2f, 0, 0);
+            teantWindMagic.transform.position = basePos - new Vector3((currentWidth - startScale.x) / 2f, 0, 0);
 
             yield return null;
         }
 
-        // 6. ÃË¼ö Á¦°Å
-        Object.Destroy(tentacle);
+        // 6. ë‚˜ë¬´
+        Object.Destroy(teantWindMagic);
         yield return 0;
+    }
+
+    public IEnumerator SAR(BaseBoss boss)
+    {
+        boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
+
+        List<GameObject> warningTiles = new List<GameObject>();
+        List<Vector3> attackPositions = new List<Vector3>();
+
+        // í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì— ë§ì¶°ì„œ ì§ì„  
+        int y = playerY;
+
+        for (int x = 0; x < boss.GridSystem.Width; x++)
+        {
+            if (boss.GridSystem.IsValidPosition(x, y))
+            {
+                Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
+                attackPositions.Add(pos);
+                warningTiles.Add(Object.Instantiate(_warningPrefab, pos, Quaternion.identity));
+            }
+        }
+        yield return new WaitForSeconds(0.8f);
+
+        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+
+        // í”Œë ˆì´ì–´ê°€ í•´ë‹¹ ì§ì„ ì— ìˆìœ¼ë©´ ë§¨ ë’¤ë¡œ - ì—¬ê¸° êµ¬í˜„í•´ì•¼í•¨
+        bool isOnDiagonal1 = currentY == y;
+
+        if (isOnDiagonal1)
+        {
+            currentX = 0;
+        }
+
+        foreach (GameObject tile in warningTiles)
+        {
+            Object.Destroy(tile);
+        }
     }
 }
