@@ -1,16 +1,22 @@
-using UnityEngine;
+ using UnityEngine;
 
 
 
 public class GridCell
 {
-    public InventoryItemData itemData { get; private set; } // 아이템 데이터 (인벤토리 아이템)
+    
+    public Cell cell; // 셀의 Cell 컴포넌트
     public Vector3Int GridPosition { get; private set; } //칸의 논리적 좌표
     public Vector3 WorldPosition { get; private set; } //칸의 월드 좌표 (유니티 씬)
     public bool IsOccupied { get; set; } //칸이 점유되었는지 여부
+    public SpriteRenderer sr { get;  set; } // 셀의 스프라이트 렌더러 테스트용 ... 오브젝트가 아닌 그리드 셸의 스프라이트 렌더러 입니다.
 
-    public SpriteRenderer sr { get;  set; } // 셀의 스프라이트 렌더러 테스트용 ...
-
+    
+    /// <summary>
+    /// 그리드 셀을 초기화하는 생성자 입니다.
+    /// </summary>
+    /// <param name="gridPos"></param>
+    /// <param name="worldPos"></param>
     public GridCell(Vector3Int gridPos, Vector3 worldPos)
     {
         GridPosition = gridPos;
@@ -18,11 +24,23 @@ public class GridCell
         IsOccupied = false; // 기본값은 false
     }
 
-    public void SetItemData(InventoryItemData itemData)
+    
+    /// <summary>
+    /// 오브젝트를 배치할 때 해당 좌표에 Cell을 할당시킵니다.
+    /// </summary>
+    /// <param name="cellData"></param>
+    public void SetCellData(Cell cellData)
     {
-        this.itemData = itemData;
-        // 아이템 데이터가 설정되면 추가 작업이 필요할 수 있습니다.
+        if (cellData == null)
+        {
+            Debug.Log("음 null입니다. 셀 데이터가 할당되지 않았습니다.");
+            return;
+        }
+        cell = cellData; // 셀의 Cell 컴포넌트를 설정
+        ChangeColorTest();
     }
+    
+    // 아마 나중에 할당된 그리드 인벤 구분용으로 쓰이지 않을까 싶네요
     public void ChangeColorTest()
     {
         if(IsOccupied) sr.color = Color.yellow; // occupied가 true일 때 노란색으로 변경
@@ -42,29 +60,18 @@ public class GridManager : Singleton<GridManager>
     public Vector3Int GridSize => gridSize; // 외부에서 접근할 수 있도록 프로퍼티로 제공
 
     private GridCell[,] grid;
-    private InventoryItemData[,] itemDataGrid; // 아이템 데이터를 저장할 2D 배열
+    
 
     protected override void Awake()
     {
         base.Awake();
         InitializeGrid();
         InitGround();
-        InitItemDataGrid();        
+            
     }
 
     
-    private void InitItemDataGrid()
-    {
-        itemDataGrid = new InventoryItemData[gridSize.x, gridSize.y];
-        for (int x = 0; x < gridSize.x; x++)
-        {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                itemDataGrid[x, y] = null; // 초기화
-            }
-        }
-    }
-    
+  
     private void InitializeGrid()
     {
         gridSize = new Vector3Int(maxSize, maxSize, 0); // 2D 그리드로 설정
@@ -111,20 +118,21 @@ public class GridManager : Singleton<GridManager>
     
     /// 그리드 셀을 점유하는 메서드
 
-    public void OccupyCell(Vector3Int gridPos, InventoryItemData itemData = null)
+    public void OccupyCell(Vector3Int gridPos)
     {
-        if (IsWithinGrid(gridPos))
+        if (IsCellAvailable(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].ChangeColorTest();
-            if (itemData != null)
-            {
-                grid[gridPos.x, gridPos.y].SetItemData(itemData);
-                itemDataGrid[gridPos.x, gridPos.y] = itemData; // 아이템 데이터 저장
-            }
         }
     }
 
+    
+    
+    
+    /// <summary>
+    /// gridPos가 그리드 내에 있는지 확인하고, 해당 셀이 점유되지 않은 경우 true를 반환합니다.
+    /// </summary>
     public bool IsCellAvailable(Vector3Int gridPos)
     {
         if (IsWithinGrid(gridPos))
@@ -136,6 +144,10 @@ public class GridManager : Singleton<GridManager>
         return false; // 그리드 범위를 벗어난 경우 false 반환
     }
     
+    
+    /// <summary>
+    /// gridpos가 그리드 내에 있는지 확인하는 메서드입니다.
+    /// </summary>
     private bool IsWithinGrid(Vector3Int gridPos)
     {
         return gridPos.x >= 0 && gridPos.x < gridSize.x &&
@@ -143,10 +155,11 @@ public class GridManager : Singleton<GridManager>
     }
     
     
-    public InventoryItemData[,] GetItemDataGrid()
-    {
-        return itemDataGrid; // 아이템 데이터 그리드를 반환
-    }
+
+    
+    
+    //-------------------------------------------------------------------------------//
+    // 이 밑으로는 테스트용 메서드들입니다.
     
     public void TestPrintInventoryItemDataGrid()
     {
@@ -154,14 +167,7 @@ public class GridManager : Singleton<GridManager>
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                if (itemDataGrid[x, y] != null)
-                {
-                    Debug.Log($"Item at ({x}, {y}): {itemDataGrid[x, y].itemName}");
-                }
-                else
-                {
-                    Debug.Log($"No item at ({x}, {y})");
-                }
+                
             }
             Debug.Log("----------");
         }
@@ -175,8 +181,6 @@ public class GridManager : Singleton<GridManager>
             {
                 grid[x, y].IsOccupied = false;
                 grid[x, y].ChangeColorTest();
-                grid[x, y].SetItemData(null);
-                itemDataGrid[x, y] = null; // 아이템 데이터 초기화
             }
         }
     }

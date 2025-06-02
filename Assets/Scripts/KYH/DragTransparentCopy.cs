@@ -6,19 +6,18 @@ using UnityEngine.EventSystems;
 public class DragTransparentCopy : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Camera cam;
+    private CombineCell combinedCell;
     private GameObject dragCopy;
     private Vector3 offset;
     private int rotationZ = 0;
 
     public float transparency = 0.5f; // 투명도 조정 가능
     public LayerMask ignoreCollisionLayer; // 드래그 중 충돌 무시할 레이어
-    private Item item;
-
 
     private void Awake()
     {
         cam = Camera.main;
-        item = GetComponent<Item>();
+        combinedCell = GetComponentInChildren<CombineCell>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -84,11 +83,17 @@ public class DragTransparentCopy : MonoBehaviour, IBeginDragHandler, IDragHandle
         }
         
         //배치 가능할시
-        foreach (Transform child in dragCopy.transform)
+        foreach (Cell cell in dragCopy.GetComponentsInChildren<Cell>())
         {
+            Transform child = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-            GridManager.Instance.OccupyCell(gridPos, item.itemData);
+            GridManager.Instance.OccupyCell(gridPos);
         }
+        //배치 위치로 오브젝트 복사 
+        
+        Vector3Int corePos = GridManager.Instance.WorldToGridPosition(dragCopy.GetComponentInChildren<CombineCell>().coreCell.transform.position);
+        GameObject placedObject = Instantiate(gameObject, corePos, dragCopy.transform.rotation);
+        
         Destroy(dragCopy);
         
     }
@@ -97,8 +102,10 @@ public class DragTransparentCopy : MonoBehaviour, IBeginDragHandler, IDragHandle
     public bool CanPlaceBlock()
     {
         if (dragCopy == null) return false;
-        foreach (Transform child in dragCopy.transform)
+        foreach (Cell cell in dragCopy.GetComponentsInChildren<Cell>())
         {
+            Transform child = cell.transform;
+            Debug.Log("Checking position: " + child.position);
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
             if (!GridManager.Instance.IsCellAvailable(gridPos))
             {
