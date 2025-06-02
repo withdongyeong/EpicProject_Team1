@@ -21,4 +21,6 @@ public class GlobalSetting : MonoBehaviour
 
     public static Vector2 Summon_Offset => _instance.summon_Offset;
 
+    public static Vector2 Totem_Offset => _instance.totem_Offset;
+
 }
