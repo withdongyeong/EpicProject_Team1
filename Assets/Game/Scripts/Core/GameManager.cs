@@ -14,13 +14,16 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
     public GameObject highlightTilePrefab;
-
+    
     [Header("타일프리팹을 넣는 리스트")]
     private List<GameObject> tilePrefabList = new();
     
     [Header("UI")]
     public TextMeshProUGUI countdownText;
     public float countdownDuration = 3f;
+
+    [Header("몬스터 소환 위치")]
+    public GameObject enemySpawnPosition;
     
     // 시스템 참조
     private GridSystem _gridSystem;
@@ -153,7 +156,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SpawnEnemy()
     {
-        Vector3 enemyPosition = new Vector3(15f, 4f, 0f); // 오른쪽 위치
+        Vector3 enemyPosition = enemySpawnPosition.transform.position;
         GameObject enemyObj = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
         _enemy = enemyObj.GetComponent<BaseBoss>();
         

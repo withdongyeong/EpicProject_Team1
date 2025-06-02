@@ -15,17 +15,25 @@ public class PlayerController : MonoBehaviour
     // 바인딩 상태 추가
     private bool _isBind;
     
+    // 애니메이션 관련
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    
+    // 방향 기억용
+    private bool _facingRight = false; // 기본은 왼쪽
+    
     // Getters & Setters
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public bool IsMoving { get => _isMoving; }
     public int CurrentX { get => _currentX; set => _currentX = value; }
     public int CurrentY { get => _currentY; set => _currentY = value; }
-
     public bool IsBind { get => _isBind; set => _isBind = value; }
 
     private void Start()
     {
         _gridSystem = FindAnyObjectByType<GridSystem>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateCurrentPosition();
     }
     
@@ -47,8 +55,30 @@ public class PlayerController : MonoBehaviour
         {
             int dx = Mathf.RoundToInt(horizontal);
             int dy = Mathf.RoundToInt(vertical);
+            
+            // 방향 전환 처리
+            HandleFlip(dx);
+            
             TryMove(dx, dy);
         }
+    }
+    
+    /// <summary>
+    /// 캐릭터 방향 전환 처리
+    /// </summary>
+    private void HandleFlip(int horizontalInput)
+    {
+        if (horizontalInput > 0 && !_facingRight) // 오른쪽 이동 + 현재 왼쪽 보고 있을 때
+        {
+            _facingRight = true;
+            _spriteRenderer.flipX = true;
+        }
+        else if (horizontalInput < 0 && _facingRight) // 왼쪽 이동 + 현재 오른쪽 보고 있을 때
+        {
+            _facingRight = false;
+            _spriteRenderer.flipX = false;
+        }
+        // 수직 이동이나 같은 방향 이동시에는 방향 유지
     }
     
     /// <summary>
@@ -73,6 +103,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator MoveAnimation(int targetX, int targetY)
     {
         _isMoving = true;
+        _animator.SetBool("IsMoving", true);
     
         Vector3 startPos = transform.position;
         Vector3 targetPos = _gridSystem.GetWorldPosition(targetX, targetY);
@@ -100,6 +131,7 @@ public class PlayerController : MonoBehaviour
         _currentX = targetX;
         _currentY = targetY;
         _isMoving = false;
+        _animator.SetBool("IsMoving", false);
     }
     
     /// <summary>
