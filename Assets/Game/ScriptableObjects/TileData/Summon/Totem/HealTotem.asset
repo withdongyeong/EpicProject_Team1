@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5259a72f251a42dc9a98ef4e92ff7792, type: 3}
+  m_Name: HealTotem
+  m_EditorClassIdentifier: 
+  _itemName: "\uD68C\uBCF5\uC6A9 \uD1A0\uD15C"
+  _itemSprite: {fileID: 21300000, guid: d40611f24ccd7f848995956d272b25e9, type: 3}
+  _spritePivot: {x: 0.5, y: 0.5}
+  _shapeType: 1
+  _tileType: 7
+  _chargeTime: 1
+  _damage: 10
+  _protectionAmount: 3
+  _shieldAmount: 3
+  _healAmount: 7
+  _obstacleDuration: 5
+  _cost: 2
+  _summon: {fileID: 6485138151210822274, guid: 83fe982a8da4949438c47405cc30f8b2, type: 3}

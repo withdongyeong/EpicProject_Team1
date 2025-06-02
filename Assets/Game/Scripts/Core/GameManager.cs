@@ -21,8 +21,10 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI countdownText;
     public float countdownDuration = 3f;
-    
+
     // 시스템 참조
+    private static GameManager _instance;
+    public static GameManager Instance => _instance;
     private GridSystem _gridSystem;
     private BaseBoss _enemy;
     private PlayerController _player;
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         InitializeSystems();
         CreateGameContent();
+        InitializeAfterContent();
         StartCoroutine(StartCountdown());
     }
     /// <summary>
@@ -45,7 +48,16 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void InitializeSystems()
     {
-        _gridSystem = GetComponent<GridSystem>();
+        //싱글톤 패턴
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+            _gridSystem = GetComponent<GridSystem>();
         _gameStateManager = GameStateManager.Instance;
 
         // TileBuilder 초기화
@@ -71,6 +83,11 @@ public class GameManager : MonoBehaviour
         
         SpawnPlayer();
         SpawnEnemy();
+    }
+
+    private void InitializeAfterContent()
+    {
+
     }
     
     /// <summary>

@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HealTotem : MonoBehaviour
+public interface IGimmick 
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

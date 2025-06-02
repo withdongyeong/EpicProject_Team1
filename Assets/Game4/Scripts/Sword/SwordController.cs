@@ -463,28 +463,6 @@ public class SwordController : MonoBehaviour
     }
 
     /// <summary>
-    /// 충돌 처리
-    /// </summary>
-    /// <param name="other">충돌한 오브젝트</param>
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // 비행 상태에서만 몬스터 공격
-        if (currentState == SwordState.Flying || currentState == SwordState.Skill)
-        {
-            if (other.CompareTag("Enemy"))
-            {
-                IMonster monster = other.GetComponent<IMonster>();
-                if (monster != null)
-                {
-                    monster.TakeDamage(_damage);
-                    
-                    Debug.Log($"Sword hit monster for {_damage} damage!");
-                }
-            }
-        }
-    }
-
-    /// <summary>
     /// 기즈모 그리기 (Scene 뷰에서 디버깅용)
     /// </summary>
     private void OnDrawGizmosSelected()

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TotemManager : MonoBehaviour
+public class TotemManager : SummonBase
 {
     //현재 활성화된 토템 리스트입니다
     private List<BaseTotem> _currentTotemList = new();
@@ -31,8 +31,10 @@ public class TotemManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("else 들어옴");
                 _currentTotemList[i].ActivateTotemBetter();
             }
+            _currentTotemList[i].DestroyTotem();
         }
         _currentTotemList.Clear();
     }
@@ -44,10 +46,12 @@ public class TotemManager : MonoBehaviour
     public void AddToTotemList(BaseTotem totem)
     {
         _currentTotemList.Add(totem);
+        totem.transform.localPosition = GlobalSetting.Totem_Offset * (_currentTotemList.Count - 1);
         if(_currentTotemList.Count >= 3)
         {
             ActivateTotemList();
             Debug.Log("토템발사!");
         }
     }
+
 }

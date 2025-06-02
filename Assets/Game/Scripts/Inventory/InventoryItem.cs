@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 /// <summary>
@@ -10,7 +10,14 @@ public enum ItemShapeType
     Double,     // 2칸짜리 (가로)
     LShape,     // 3칸짜리 ㄱ 형태
     TetrisL,    // 4칸짜리 (기존 L 형태)
-    Horizontal4 // 4칸짜리 (가로 4칸)
+    Horizontal4, // 4칸짜리 (가로 4칸)
+    Square, // 2*2 사각형
+    Triple, // 3*1 가로로 긴 직사각형
+    Mountain, //ㅗ
+    BigHeart, //3*3에서 대각선 끝에 한칸만 뺀 형상. 하트모양.
+    SlingShot, //새총, Y모양이라고 생각하면 편함
+    Cross, //십자가
+
 }
 
 /// <summary>

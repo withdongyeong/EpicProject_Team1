@@ -11,17 +11,19 @@ public class DamageTotem : BaseTotem
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _targetEnemy = FindAnyObjectByType<BaseBoss>();
+
     }
 
     public override void InitializeTotem(InventoryItemData itemData)
     {
+        _targetEnemy = FindAnyObjectByType<BaseBoss>();
         _damage = itemData.Damage;
+        base.InitializeTotem(itemData);
     }
 
     public override void ActivateTotem()
     {
-        FireProjectile(_lesserProjectile,_damage);
+        FireProjectile(_lesserProjectile, _damage);
 
     }
 
