@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 49a85fbe46cdcad4c8b93c274edd011c
+guid: 867df7344d1942548b232e6ceb4362ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6223865915888078151
-    second: Character2_idle_0
+      213: -7299735697458260872
+    second: MagicianMove2-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,10 +48,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1024
+  spritePixelsToUnits: 512
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character2_idle_0
+      name: MagicianMove2-Sheet_0
       rect:
         serializedVersion: 2
-        x: 79
-        y: 7
-        width: 746
-        height: 946
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b274d9cce260a9a0800000000000000
-      internalID: -6223865915888078151
+      spriteID: 87413ce0f0122ba90800000000000000
+      internalID: -7299735697458260872
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bd46672140bc23340954387f6dd080dd
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Character2_idle_0: -6223865915888078151
+      MagicianMove2-Sheet_0: -7299735697458260872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
