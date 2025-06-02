@@ -11,12 +11,17 @@ public class PlayerController : MonoBehaviour
     private int _currentX, _currentY;
     private bool _isMoving;
     private float _moveTime = 0.2f;
+
+    //바인드 변수 추가
+    private bool _isBind;
     
     // Getters & Setters
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public bool IsMoving { get => _isMoving; }
     public int CurrentX { get => _currentX; set => _currentX = value; }
     public int CurrentY { get => _currentY; set => _currentY = value; }
+
+    public bool IsBind { get => _isBind; set => _isBind = value; }
 
     private void Start()
     {
@@ -26,7 +31,7 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if (!_isMoving)
+        if (!_isMoving && !_isBind)
         {
             HandleMovement();
         }

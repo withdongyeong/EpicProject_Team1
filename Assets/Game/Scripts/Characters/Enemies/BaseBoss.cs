@@ -62,7 +62,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// 플레이어 체력 프로퍼티
     /// </summary>
     public PlayerHealth PlayerHealth { get => _playerHealth; }
-    
+
     // Events
     /// <summary>
     /// 보스 사망 이벤트

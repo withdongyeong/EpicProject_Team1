@@ -1,4 +1,4 @@
-namespace Game4.Scripts.Sword
+﻿namespace Game4.Scripts.Sword
 {
 #pragma warning disable CS0618, CS0612, CS0672
 using UnityEngine;
@@ -109,12 +109,6 @@ public class GroundSword : MonoBehaviour
         // 검 소환
         GameObject newSword = Instantiate(selectedSwordPrefab, transform.position, Quaternion.identity);
         SwordController swordController = newSword.GetComponent<SwordController>();
-    
-        if (swordController != null)
-        {
-            // 검을 바로 들어올리기 상태로 전환
-            swordController.StartLift();
-        }
     
         Debug.Log($"Sword type {randomIndex} collected and summoned!");
     

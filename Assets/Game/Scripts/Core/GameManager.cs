@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject highlightTilePrefab;
 
     [Header("타일프리팹을 넣는 리스트")]
-    public List<GameObject> tilePrefabList = new();
+    private List<GameObject> tilePrefabList = new();
     
     [Header("UI")]
     public TextMeshProUGUI countdownText;
@@ -58,8 +59,9 @@ public class GameManager : MonoBehaviour
         }
             _gridSystem = GetComponent<GridSystem>();
         _gameStateManager = GameStateManager.Instance;
-        
+
         // TileBuilder 초기화
+        tilePrefabList.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles"));
         _tileBuilder = new TileBuilder();
         _tileBuilder.Initialize(highlightTilePrefab, tilePrefabList);
     }

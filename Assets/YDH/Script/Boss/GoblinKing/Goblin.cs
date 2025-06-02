@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class Goblin : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class Goblin : MonoBehaviour
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-        // ê°€ë”ì”© ë°©í–¥ì„ ëœë¤í•˜ê²Œ ë°”ê¿”ì¤Œ (ì›í•˜ë©´ ë” ì •êµí•œ ë¡œì§ ê°€ëŠ¥)
+        // °¡²û¾¿ ¹æÇâÀ» ·£´ıÇÏ°Ô ¹Ù²ãÁÜ (¿øÇÏ¸é ´õ Á¤±³ÇÑ ·ÎÁ÷ °¡´É)
         if (Random.value < 0.005f)
         {
             PickRandomDirection();
@@ -59,15 +59,15 @@ public class Goblin : MonoBehaviour
 
         if (battleField != null)
         {
-            // ë²—ì–´ë‚œ ë°©í–¥ ê³„ì‚°
+            // ¹ş¾î³­ ¹æÇâ °è»ê
             Vector3 directionToCenter = (battleField.transform.position - transform.position).normalized;
 
-            // ë˜ëŒë ¤ë³´ë‚¼ ìœ„ì¹˜ ê³„ì‚° (ì‚´ì§ BattleField ìª½ìœ¼ë¡œ ì´ë™)
-            float returnDistance = 0.3f; // ë˜ëŒë¦´ ê±°ë¦¬ (ì›í•˜ëŠ” ë§Œí¼ ì¡°ì ˆ)
+            // µÇµ¹·Áº¸³¾ À§Ä¡ °è»ê (»ìÂ¦ BattleField ÂÊÀ¸·Î ÀÌµ¿)
+            float returnDistance = 0.5f; // µÇµ¹¸± °Å¸® (¿øÇÏ´Â ¸¸Å­ Á¶Àı)
             Vector3 pushBackPosition = transform.position + directionToCenter * returnDistance;
             PickRandomDirection();
 
-            // ìœ„ì¹˜ ì´ë™
+            // À§Ä¡ ÀÌµ¿
             transform.position = pushBackPosition;
 
             return;

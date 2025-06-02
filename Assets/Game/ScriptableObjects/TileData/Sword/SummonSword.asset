@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5259a72f251a42dc9a98ef4e92ff7792, type: 3}
-  m_Name: AttackTest1
+  m_Name: SummonSword
   m_EditorClassIdentifier: 
-  _itemName: "\uACF5\uACA91"
+  _itemName: "\uAC80 \uC18C\uD658"
   _itemSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   _spritePivot: {x: 0.5, y: 0.5}
   _shapeType: 0
-  _tileType: 0
-  _chargeTime: 5
-  _damage: 10
-  _invincibilityDuration: 5
+  _tileType: 6
+  _chargeTime: 3
+  _damage: 6
+  _protectionAmount: 3
+  _shieldAmount: 3
   _healAmount: 10
   _obstacleDuration: 5
-  _cost: 1
+  _cost: 4

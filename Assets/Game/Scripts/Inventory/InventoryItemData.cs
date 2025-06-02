@@ -12,7 +12,7 @@ public enum TileType
     Heal,
     ManaHeal,
     FireBall,
-    Totem
+    Sword,
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
@@ -38,7 +38,6 @@ public class InventoryItemData : ScriptableObject
     [SerializeField] private int _healAmount = 25;    // 회복 타일용
     [SerializeField] private float _obstacleDuration = 5f; // 장애물 타일용
     [SerializeField] private int _cost = 1;
-    [SerializeField] private GameObject _summon; //여러 목적으로 사용될 수 있는 프리팹입니다 보통 소환수 넣으면 될거같습니다
     
     
     // 현재 회전 상태 (0, 90, 180, 270)
@@ -111,11 +110,6 @@ public class InventoryItemData : ScriptableObject
     /// 아이템 비용
     /// </summary>
     public int Cost { get => _cost; set => _cost = value; }
-
-    /// <summary>
-    /// 소환할 프리팹입니다 사실 다른용도로 사용도 됩니다
-    /// </summary>
-    public GameObject Summon { get => _summon; }
     
     /// <summary>
     /// 아이템 형태 너비

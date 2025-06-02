@@ -1,4 +1,4 @@
-using Game4.Scripts.Character.Enemy;
+﻿using Game4.Scripts.Character.Enemy;
 
 namespace Game4.Scripts.Sword
 {
@@ -23,12 +23,12 @@ public class SwordController : MonoBehaviour
     /// <summary>
     /// 검의 현재 상태
     /// </summary>
-    private SwordState currentState = SwordState.Grounded;
+    private SwordState currentState = SwordState.Flying;
     
     /// <summary>
     /// 검의 데미지
     /// </summary>
-    private int damage = 5;
+    private int _damage = 5;
     
     /// <summary>
     /// 비행 속도
@@ -41,11 +41,6 @@ public class SwordController : MonoBehaviour
     private float turnSpeed = 270f;
     
     /// <summary>
-    /// 들어올려지는 속도
-    /// </summary>
-    private float liftSpeed = 30f;
-    
-    /// <summary>
     /// 현재 비행 방향 (각도, degree)
     /// </summary>
     private float currentDirection = 0f;
@@ -56,11 +51,6 @@ public class SwordController : MonoBehaviour
     private float skillDashSpeed = 30f;
     
     /// <summary>
-    /// 스킬 목표 위치
-    /// </summary>
-    private Vector3 skillTargetPosition;
-    
-    /// <summary>
     /// 스킬 돌진 지속 시간
     /// </summary>
     private float skillDashDuration = 1f;
@@ -69,11 +59,6 @@ public class SwordController : MonoBehaviour
     /// 스킬 돌진 타이머
     /// </summary>
     private float skillDashTimer = 0f;
-    
-    /// <summary>
-    /// 들어올려지는 목표 높이
-    /// </summary>
-    private float targetLiftHeight = 2f;
     
     /// <summary>
     /// 플레이어 참조
@@ -95,11 +80,6 @@ public class SwordController : MonoBehaviour
     /// </summary>
     private Collider2D swordCollider;
     
-    /// <summary>
-    /// 초기 위치 (바닥에 떨어진 위치)
-    /// </summary>
-    private Vector3 groundPosition;
-
     // Events
     /// <summary>
     /// 상태 변경 이벤트
@@ -116,7 +96,7 @@ public class SwordController : MonoBehaviour
     /// <summary>
     /// 검의 데미지 프로퍼티
     /// </summary>
-    public int Damage { get => damage; set => damage = value; }
+    public int Damage { get => _damage; set => _damage = value; }
     
     /// <summary>
     /// 비행 속도 프로퍼티
@@ -168,8 +148,6 @@ public class SwordController : MonoBehaviour
     /// </summary>
     public enum SwordState
     {
-        Grounded,   // 바닥에 떨어져 있음
-        Lifting,    // 들어올려지는 중
         Flying,     // 비행 상태
         Skill       // 스킬 상태
     }
@@ -182,9 +160,6 @@ public class SwordController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         swordCollider = GetComponent<Collider2D>();
-        
-        // 초기 위치 저장
-        groundPosition = transform.position;
         
         // 랜덤한 초기 방향 설정
         currentDirection = UnityEngine.Random.Range(0f, 360f);
@@ -253,12 +228,6 @@ public class SwordController : MonoBehaviour
     {
         switch (currentState)
         {
-            case SwordState.Grounded:
-                HandleGroundedState();
-                break;
-            case SwordState.Lifting:
-                HandleLiftingState();
-                break;
             case SwordState.Flying:
                 HandleFlyingState();
                 break;
@@ -269,63 +238,17 @@ public class SwordController : MonoBehaviour
     }
 
     /// <summary>
-    /// 바닥 상태 처리
-    /// </summary>
-    private void HandleGroundedState()
-    {
-        rb.linearVelocity = Vector2.zero;
-        rb.gravityScale = 1f; // 중력 적용
-    }
-
-    /// <summary>
-    /// 들어올려지는 상태 처리
-    /// </summary>
-    private void HandleLiftingState()
-    {
-        if (player == null) return;
-        
-        rb.gravityScale = 0f; // 중력 제거
-        
-        // 플레이어 위로 들어올리기
-        Vector3 targetPosition = player.position + Vector3.up * targetLiftHeight;
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        
-        rb.linearVelocity = direction * liftSpeed;
-        
-        // 목표 높이에 도달하면 비행 상태로 전환
-        if (Vector3.Distance(transform.position, targetPosition) < 0.5f)
-        {
-            // 초기 방향을 마우스 방향으로 설정
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-            Vector3 toMouse = (mousePosition - transform.position);
-            if (toMouse.magnitude > 0.1f)
-            {
-                currentDirection = Mathf.Atan2(toMouse.y, toMouse.x) * Mathf.Rad2Deg;
-            }
-            
-            ChangeState(SwordState.Flying);
-        }
-        
-        // 들어올려지는 동안 회전
-        transform.Rotate(0, 0, 180f * Time.deltaTime);
-    }
-
-    /// <summary>
     /// 비행 상태 처리
     /// </summary>
     private void HandleFlyingState()
     {
-        rb.gravityScale = 0f; // 중력 제거
-        
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
-        
-        // 마우스를 향해 방향 조정
-        Vector3 toMouse = (mousePosition - transform.position);
-        if (toMouse.magnitude > 0.1f)
+        Vector3 playerPosition = player != null ? player.position : Vector3.zero;
+
+        // 플레이어를 향해 방향 조정
+        Vector3 toPlayer = (playerPosition - transform.position);
+        if (toPlayer.magnitude > 0.1f)
         {
-            float targetDirection = Mathf.Atan2(toMouse.y, toMouse.x) * Mathf.Rad2Deg;
+            float targetDirection = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
             
             // 부드럽게 방향 전환
             currentDirection = Mathf.LerpAngle(currentDirection, targetDirection, turnSpeed * Time.deltaTime / 360f);
@@ -491,14 +414,6 @@ public class SwordController : MonoBehaviour
     {
         switch (newState)
         {
-            case SwordState.Grounded:
-                rb.gravityScale = 1f;
-                swordCollider.isTrigger = false;
-                break;
-            case SwordState.Lifting:
-                rb.gravityScale = 0f;
-                swordCollider.isTrigger = true;
-                break;
             case SwordState.Flying:
                 rb.gravityScale = 0f;
                 swordCollider.isTrigger = true;
@@ -507,25 +422,6 @@ public class SwordController : MonoBehaviour
                 // 스킬 상태 진입 처리
                 break;
         }
-    }
-
-    /// <summary>
-    /// 검을 들어올리기 시작
-    /// </summary>
-    public void StartLift()
-    {
-        if (currentState == SwordState.Grounded)
-        {
-            ChangeState(SwordState.Lifting);
-        }
-    }
-
-    /// <summary>
-    /// 검을 바닥으로 떨어뜨리기
-    /// </summary>
-    public void DropToGround()
-    {
-        ChangeState(SwordState.Grounded);
     }
 
     /// <summary>
@@ -580,9 +476,9 @@ public class SwordController : MonoBehaviour
                 IMonster monster = other.GetComponent<IMonster>();
                 if (monster != null)
                 {
-                    monster.TakeDamage(damage);
+                    monster.TakeDamage(_damage);
                     
-                    Debug.Log($"Sword hit monster for {damage} damage!");
+                    Debug.Log($"Sword hit monster for {_damage} damage!");
                 }
             }
         }

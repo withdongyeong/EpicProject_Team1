@@ -6,6 +6,7 @@ public class TreantWindMagic : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController playerHealth = collision.GetComponent<PlayerController>();
+
         if (playerHealth != null)
         {
             playerHealth.CurrentX = 0;
