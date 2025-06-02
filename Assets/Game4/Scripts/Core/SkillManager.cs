@@ -1,4 +1,4 @@
-using Game4.Scripts.Character.Player;
+﻿using Game4.Scripts.Character.Player;
 using Game4.Scripts.Sword;
 
 namespace Game4.Scripts.Core
@@ -227,7 +227,7 @@ public class SkillManager : MonoBehaviour
     public void RefreshSwordList()
     {
         swords.Clear();
-        SwordController[] foundSwords = FindObjectsOfType<SwordController>();
+        SwordController[] foundSwords = GameObject.FindObjectsByType<SwordController>(0);
         swords.AddRange(foundSwords);
         
         Debug.Log($"Found {swords.Count} swords");
