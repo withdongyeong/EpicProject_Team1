@@ -6,7 +6,7 @@
 public class GridCell
 {
     
-    public Cell cell; // 셀의 Cell 컴포넌트
+    public Cell cell { get; private set; } // 셀의 Cell 컴포넌트
     public Vector3Int GridPosition { get; private set; } //칸의 논리적 좌표
     public Vector3 WorldPosition { get; private set; } //칸의 월드 좌표 (유니티 씬)
     public bool IsOccupied { get; set; } //칸이 점유되었는지 여부
@@ -37,9 +37,13 @@ public class GridCell
             Debug.Log("음 null입니다. 셀 데이터가 할당되지 않았습니다.");
             return;
         }
+        
         cell = cellData; // 셀의 Cell 컴포넌트를 설정
+        Debug.Log("좌표 "+GridPosition +"셀 데이터가 할당되었습니다: " +cell);
         ChangeColorTest();
     }
+    
+  
     
     // 아마 나중에 할당된 그리드 인벤 구분용으로 쓰이지 않을까 싶네요
     public void ChangeColorTest()
@@ -129,12 +133,14 @@ public class GridManager : Singleton<GridManager>
     
     /// 그리드 셀을 점유하는 메서드
 
-    public void OccupyCell(Vector3Int gridPos)
+    public void OccupyCell(Vector3Int gridPos, Cell cellData = null)
     {
         if (IsCellAvailable(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = true;
-            grid[gridPos.x, gridPos.y].ChangeColorTest();
+            grid[gridPos.x, gridPos.y].SetCellData(cellData);
+            Debug.Log(grid[gridPos.x, gridPos.y].cell);
+            Debug.Log(GetCellData(gridPos));
         }
     }
     
@@ -175,7 +181,18 @@ public class GridManager : Singleton<GridManager>
     }
     
     
-
+    /// <summary>
+    /// cell을 가져옵니다
+    /// </summary>
+    public Cell GetCellData(Vector3Int gridPos)
+    {
+        if (grid[gridPos.x,gridPos.y].cell == null)
+        {
+            Debug.Log("셀 데이터가 할당되지 않았습니다." + gridPos);
+            return null;
+        }
+        return grid[gridPos.x,gridPos.y].cell; // 셀의 Cell 컴포넌트를 반환
+    }
     
     
     //-------------------------------------------------------------------------------//
@@ -187,7 +204,15 @@ public class GridManager : Singleton<GridManager>
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                
+                Vector3Int gridPos = new Vector3Int(x, y, 0);
+                if (GetCellData(gridPos) == null)
+                {
+                    Debug.Log("셀 데이터가 할당되지 않았습니다." + gridPos);
+                }
+                else
+                {
+                    Debug.Log(grid[x,y].cell.name);
+                }
             }
             Debug.Log("----------");
         }
@@ -204,5 +229,7 @@ public class GridManager : Singleton<GridManager>
             }
         }
     }
+    
+    
     
 }

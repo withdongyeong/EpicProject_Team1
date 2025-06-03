@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float _moveSpeed = 5f;
-    private GridSystem _gridSystem;
+    private GridManager _gridManager;
     private int _currentX, _currentY;
     private bool _isMoving;
     private float _moveTime = 0.2f;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _gridSystem = FindAnyObjectByType<GridSystem>();
+        _gridManager = GridManager.Instance;
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateCurrentPosition();
@@ -107,10 +107,11 @@ public class PlayerController : MonoBehaviour
     {
         int newX = _currentX + dx;
         int newY = _currentY + dy;
+        Vector3Int pos = new Vector3Int(newX, newY, 0);
         
-        if (_gridSystem.IsValidPosition(newX, newY))
+        if (_gridManager.IsWithinGrid(pos))
         {
-            StartCoroutine(MoveAnimation(newX, newY));
+            StartCoroutine(MoveAnimation(pos));
             return true;
         }
         return false;
@@ -119,13 +120,13 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 점프 효과가 있는 이동 애니메이션
     /// </summary>
-    private IEnumerator MoveAnimation(int targetX, int targetY)
+    private IEnumerator MoveAnimation(Vector3Int newPos)
     {
         _isMoving = true;
         _animator.SetBool("IsMoving", true);
     
         Vector3 startPos = transform.position;
-        Vector3 targetPos = _gridSystem.GetWorldPosition(targetX, targetY);
+        Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
         float jumpHeight = 0.3f;
     
         float elapsedTime = 0;
@@ -147,8 +148,8 @@ public class PlayerController : MonoBehaviour
         }
     
         transform.position = targetPos;
-        _currentX = targetX;
-        _currentY = targetY;
+        _currentX = newPos.x;
+        _currentY = newPos.y;
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
     }
@@ -158,7 +159,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateCurrentPosition()
     {
-        _gridSystem.GetXY(transform.position, out _currentX, out _currentY);
+        Vector3Int pos = _gridManager.WorldToGridPosition(transform.position);
+
+        _currentX = pos.x;
+        _currentY = pos.y;
     }
     
     /// <summary>
@@ -166,11 +170,13 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckTileInteraction()
     {
-        BaseTile currentTile = _gridSystem.GetTileAt(_currentX, _currentY);
-    
-        if (currentTile != null && currentTile.GetState() == BaseTile.TileState.Ready)
+        Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0);
+        Cell currentCell = _gridManager.GetCellData(currentPos);
+        CombineCell comCell = currentCell?.GetObjectData();
+        comCell?.ExecuteSkill();
+        /*if (currentTile != null && currentTile.GetState() == BaseTile.TileState.Ready)
         {
-            currentTile.Activate();
-        }
+            
+        }*/
     }
 }

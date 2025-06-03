@@ -158,6 +158,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2435456299848107562, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4491389693862637126, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -267,6 +271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2358364160692396264, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4549323974595725444, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -332,6 +340,10 @@ PrefabInstance:
     - target: {fileID: 568023074742637454, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
       propertyPath: m_Name
       value: Cell (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358364160692396264, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4549323974595725444, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
       propertyPath: m_Enabled
@@ -399,6 +411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2358364160692396264, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4549323974595725444, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -464,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 568023074742637454, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
       propertyPath: m_Name
       value: Cell (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358364160692396264, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4549323974595725444, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
       propertyPath: m_Enabled

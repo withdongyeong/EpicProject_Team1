@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowDebugText: 0
-  ShowCameraFrustum: 1
+  ShowCameraFrustum: 0
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
@@ -2403,6 +2403,10 @@ PrefabInstance:
     - target: {fileID: 5452413951180012944, guid: 9f0454541b227af41aab1452ada23dbe, type: 3}
       propertyPath: m_Name
       value: TestObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452413951180012944, guid: 9f0454541b227af41aab1452ada23dbe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

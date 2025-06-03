@@ -80,17 +80,22 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
         
         //배치 가능할시
-        foreach (Cell cell in dragCopy.GetComponentsInChildren<Cell>())
-        {
-            Transform child = cell.transform;
-            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-            GridManager.Instance.OccupyCell(gridPos);
-        }
+        
         
         //배치 위치로 오브젝트 복사 
         Vector3 corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(dragCopy.GetComponentInChildren<CombineCell>().coreCell.transform.position));
         GameObject placedObject = Instantiate(originalObject, corePos, dragCopy.transform.rotation, GridManager.Instance.transform);
         Destroy(placedObject.GetComponent<DragTransparentCopy>());
+        
+        foreach (Cell cell in placedObject.GetComponentsInChildren<Cell>())
+        {
+            Transform child = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+            GridManager.Instance.OccupyCell(gridPos, cell);
+        }
+        
+        
+        
         Destroy(dragCopy);
     }
     
@@ -101,7 +106,6 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         foreach (Cell cell in dragCopy.GetComponentsInChildren<Cell>())
         {
             Transform child = cell.transform;
-            Debug.Log("Checking position: " + child.position);
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
             if (!GridManager.Instance.IsCellAvailable(gridPos))
             {
