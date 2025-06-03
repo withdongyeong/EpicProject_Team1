@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SwordTile : BaseTile
 {
     private int _damage = 10; // 기본 공격력
     protected BaseBoss targetEnemy;
     private GameObject[] _swordPrefabs;
+    private GameObject _summonedSword;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class SwordTile : BaseTile
         {
             Debug.Log("SwordTile activated, summoning sword...");
             SummonSword();
+            DestroyAfterDelay(5f); // 5초 후에 검 제거
         }
     }
 
@@ -52,8 +55,8 @@ public class SwordTile : BaseTile
             }
 
             // 검 소환
-            GameObject newSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-            SwordController swordController = newSword.GetComponent<SwordController>();
+            _summonedSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            SwordController swordController = _summonedSword.GetComponent<SwordController>();
             SwordManager swordManager = FindAnyObjectByType<SwordManager>();
             if (swordController != null)
             {
@@ -67,6 +70,23 @@ public class SwordTile : BaseTile
             Debug.Log("Sword summoned successfully!");
             // 타겟 적에게 검 발사
             swordManager.ActivateSkill(targetEnemy.transform.position);
+        }
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Deactivating SwordTile after delay.");
+        DestroySword();
+    }
+
+    private void DestroySword()
+    {
+        if (_summonedSword != null)
+        {
+            Destroy(_summonedSword);
+            _summonedSword = null;
+            Debug.Log("Summoned sword destroyed.");
         }
     }
 
