@@ -235,17 +235,19 @@ public class SwordController : MonoBehaviour
     /// 비행 상태 처리
     /// </summary>
     private void HandleFlyingState()
+
     {
-        Vector3 playerPosition = player != null ? player.position : Vector3.zero;
+        SwordCenter swordCenter = FindAnyObjectByType<SwordCenter>();
+        Vector3 centerPosition = swordCenter != null ? swordCenter.transform.position : Vector3.zero;
 
         // 플레이어를 향해 방향 조정
-        Vector3 toPlayer = (playerPosition - transform.position);
+        Vector3 toPlayer = (centerPosition - transform.position);
         if (toPlayer.magnitude > 0.1f)
         {
             float targetDirection = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
             
             // 부드럽게 방향 전환
-            currentDirection = Mathf.LerpAngle(currentDirection, targetDirection, turnSpeed * Time.deltaTime / 360f);
+            currentDirection = Mathf.LerpAngle(currentDirection, targetDirection, turnSpeed * Time.deltaTime / 250f);
         }
         
         // 현재 방향으로 이동
@@ -255,7 +257,7 @@ public class SwordController : MonoBehaviour
         );
         
         rb.linearVelocity = moveDirection * flySpeed;
-        
+         
         // 검의 회전을 이동 방향에 맞춤
         transform.rotation = Quaternion.Euler(0, 0, currentDirection);
     }
@@ -469,6 +471,7 @@ public class SwordController : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeDamage(_damage);
+                skillDashTimer = 0.02f;
 
                 Debug.Log($"Sword hit monster for {_damage} damage!");
             }
