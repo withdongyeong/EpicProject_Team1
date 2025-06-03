@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Treant : BaseBoss
 {
-    [Header("Æ®·£Æ® Àü¿ë ÇÁ¸®ÆÕµé")]
+    [Header("íŠ¸ëœíŠ¸ ì „ìš© í”„ë¦¬íŒ¹ë“¤")]
     public GameObject WarningTilePrefab;
     public GameObject TreeTrapPrefab;
     
@@ -12,39 +12,44 @@ public class Treant : BaseBoss
     public GameObject TreantWindMagic;
 
     /// <summary>
-    /// º¸½º ÃÊ±âÈ­ - °íÀ¯ÇÑ ½ºÅÈ ¼³Á¤
+    /// ë³´ìŠ¤ ì´ˆê¸°í™” - ê³ ìœ í•œ ìŠ¤íƒ¯ ì„¤ì •
     /// </summary>
     protected override void Start()
     {
-        // ±âº» ½ºÅÈ ¼³Á¤
+        // ê¸°ë³¸ ìŠ¤íƒ¯ ì„¤ì •
         MaxHealth = 200;
-        PatternCooldown = 0.3f;
+        PatternCooldown = 0.6f;
 
-        // ºÎ¸ğ Å¬·¡½º ÃÊ±âÈ­ È£Ãâ
+        // ë¶€ëª¨ í´ë˜ìŠ¤ ì´ˆê¸°í™” í˜¸ì¶œ
         base.Start();
 
     }
 
     /// <summary>
-    /// °ø°İ ÆĞÅÏ ÃÊ±âÈ­ - 3°¡Áö ÆĞÅÏ ¸ğµÎ µî·Ï
+    /// ê³µê²© íŒ¨í„´ ì´ˆê¸°í™” - 3ê°€ì§€ íŒ¨í„´ ëª¨ë‘ ë“±ë¡
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //¹Ù´Ú ³ª¹« ÆĞÅÏ
+        //ë°”ë‹¥ ë‚˜ë¬´ íŒ¨í„´
         AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab));
 
-        //ÀÛ¹° ´øÁö±â ÆĞÅÏ
+        //ì‘ë¬¼ ë˜ì§€ê¸° íŒ¨í„´
         AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
 
-        //°­Á¦ ÀÌµ¿ ÆĞÅÏ
+        //ê°•ì œ ì´ë™ íŒ¨í„´
         AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic, this.transform));
 
+        //ë©êµ´ì±„ì°
+        AddAttackPattern(new TreantVineWhipPattern(WarningTilePrefab, TreeTrapPrefab, 2));
 
-        Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
+       //ì¢…ì ë¿Œë¦¬ê¸° - HP 50ì´í•˜ ë§ˆë‹¤
+
+
+       Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
 
     /// <summary>
-    /// µî·ÏµÈ °ø°İ ÆĞÅÏ ¸ñ·Ï ¹İÈ¯ (µğ¹ö±×¿ë)
+    /// ë“±ë¡ëœ ê³µê²© íŒ¨í„´ ëª©ë¡ ë°˜í™˜ (ë””ë²„ê·¸ìš©)
     /// </summary>
     private System.Collections.Generic.List<IBossAttackPattern> GetAttackPatterns()
     {
