@@ -9,7 +9,7 @@ using UnityEngine;
 public abstract class BaseBoss : MonoBehaviour
 {
     [Header("기본 스탯")]
-    private int _maxHealth = 100;
+    private int _maxHealth;
     private int _currentHealth;
     private bool _isDead = false;
     
