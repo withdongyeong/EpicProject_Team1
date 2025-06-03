@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             // 살아있으면 피격 애니메이션 재생
-            GameManager.Instance.Player.Animator.SetTrigger("Damaged");
+            FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Damaged");
         }
     }
     
@@ -162,7 +162,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망");
-        GameManager.Instance.Player.Animator.SetTrigger("Death");
+        FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Death");
         OnPlayerDeath?.Invoke();
     }
     

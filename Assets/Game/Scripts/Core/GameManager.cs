@@ -1,64 +1,28 @@
 ﻿using System.Collections;
 using UnityEngine;
 using TMPro;
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
-/// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리 (싱글톤)
+/// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
+/// 싱글톤 제거, 일반 MonoBehaviour로 동작
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    #region Singleton
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<GameManager>();
-                
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("GameManager");
-                    _instance = go.AddComponent<GameManager>();
-                    DontDestroyOnLoad(go);
-                }
-            }
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
-
     [Header("프리팹들")]
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
-    public GameObject highlightTilePrefab;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject highlightTilePrefab;
     
     [Header("타일프리팹을 넣는 리스트")]
     private List<GameObject> tilePrefabList = new();
     
     [Header("UI")]
-    public TextMeshProUGUI countdownText;
-    public float countdownDuration = 3f;
+    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private float countdownDuration = 3f;
 
     [Header("몬스터 소환 위치")]
-    public GameObject enemySpawnPosition;
+    [SerializeField] private GameObject enemySpawnPosition;
     
     // 시스템 참조
     private GridSystem _gridSystem;
@@ -70,6 +34,12 @@ public class GameManager : MonoBehaviour
     private TileBuilder _tileBuilder;
 
     // Public 프로퍼티로 접근 가능하게
+    public GameObject PlayerPrefab => playerPrefab;
+    public GameObject EnemyPrefab => enemyPrefab;
+    public GameObject HighlightTilePrefab => highlightTilePrefab;
+    public TextMeshProUGUI CountdownText => countdownText;
+    public float CountdownDuration => countdownDuration;
+    public GameObject EnemySpawnPosition => enemySpawnPosition;
     public PlayerController Player => _player;
     public BaseBoss Enemy => _enemy;
     public PlayerHealth PlayerHealth => _playerHealth;
@@ -81,9 +51,78 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        // 필수 컴포넌트 검증
+        if (!ValidateComponents())
+        {
+            Debug.LogError("[GameManager] 필수 컴포넌트가 누락되어 게임을 시작할 수 없습니다!");
+            return;
+        }
+
         InitializeSystems();
         CreateGameContent();
         StartCoroutine(StartCountdown());
+    }
+
+    /// <summary>
+    /// 필수 컴포넌트 검증 및 자동 찾기
+    /// </summary>
+    /// <returns>모든 필수 컴포넌트가 준비되면 true</returns>
+    private bool ValidateComponents()
+    {
+        bool isValid = true;
+
+        // 프리팹 검증
+        if (playerPrefab == null)
+        {
+            Debug.LogError("[GameManager] PlayerPrefab이 할당되지 않았습니다!");
+            isValid = false;
+        }
+
+        if (enemyPrefab == null)
+        {
+            Debug.LogError("[GameManager] EnemyPrefab이 할당되지 않았습니다!");
+            isValid = false;
+        }
+
+        if (highlightTilePrefab == null)
+        {
+            Debug.LogError("[GameManager] HighlightTilePrefab이 할당되지 않았습니다!");
+            isValid = false;
+        }
+
+        // UI 컴포넌트 자동 찾기
+        TryFindUIComponents();
+
+        return isValid;
+    }
+
+    /// <summary>
+    /// UI 컴포넌트 자동 찾기
+    /// </summary>
+    private void TryFindUIComponents()
+    {
+        if (countdownText == null)
+        {
+            GameObject textObj = GameObject.Find("CountdownText");
+            if (textObj != null)
+            {
+                countdownText = textObj.GetComponent<TextMeshProUGUI>();
+                if (countdownText != null)
+                {
+                    Debug.Log("[GameManager] CountdownText를 자동으로 찾았습니다.");
+                }
+            }
+        }
+
+        if (enemySpawnPosition == null)
+        {
+            GameObject spawnObj = GameObject.Find("EnemySpawnPosition");
+            if (spawnObj != null)
+            {
+                enemySpawnPosition = spawnObj;
+                Debug.Log("[GameManager] EnemySpawnPosition을 자동으로 찾았습니다.");
+            }
+        }
     }
     
     /// <summary>
@@ -92,10 +131,24 @@ public class GameManager : MonoBehaviour
     private void InitializeSystems()
     {
         _gridSystem = GetComponent<GridSystem>();
+        if (_gridSystem == null)
+        {
+            _gridSystem = FindObjectOfType<GridSystem>();
+            if (_gridSystem == null)
+            {
+                Debug.LogError("[GameManager] GridSystem을 찾을 수 없습니다!");
+                return;
+            }
+        }
+        
         _gameStateManager = GameStateManager.Instance;
 
         // TileBuilder 초기화
-        tilePrefabList.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles"));
+        if (tilePrefabList.Count == 0)
+        {
+            tilePrefabList.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles"));
+        }
+        
         _tileBuilder = new TileBuilder();
         _tileBuilder.Initialize(highlightTilePrefab, tilePrefabList);
     }
@@ -106,13 +159,13 @@ public class GameManager : MonoBehaviour
     private void CreateGameContent()
     {
         // 빌딩 씬에서 배치한 타일 생성
-        if (InventoryManager.Instance.PlacedTiles.Count > 0)
+        if (InventoryManager.Instance != null && InventoryManager.Instance.PlacedTiles.Count > 0)
         {
             _tileBuilder.CreateTilesFromBuildingData(_gridSystem, InventoryManager.Instance.PlacedTiles);
         }
         else
         {
-            Debug.LogWarning("빈 인벤토리로 게임에 왔어요!! 죽으셔야해요!");
+            Debug.LogWarning("[GameManager] 빈 인벤토리로 게임에 왔어요!! 죽으셔야해요!");
         }
         
         SpawnPlayer();
@@ -128,19 +181,18 @@ public class GameManager : MonoBehaviour
         yield return null;
         
         // 게임 시간은 멈추되 UI는 업데이트되도록 설정
-        TimeScaleManager.Instance.StopTimeScale();
+        if (TimeScaleManager.Instance != null)
+        {
+            TimeScaleManager.Instance.StopTimeScale();
+        }
         
         // 플레이어의 스타트 애니메이션 재생 (속도 조정 포함)
         if (_player != null && _player.Animator != null)
         {
             // UnscaledTime 모드에서 적절한 속도로 조정
-            float originalSpeed = _player.Animator.speed;
             _player.Animator.speed = 1.0f; // 정상 속도로 설정
             _player.Animator.SetTrigger("Start");
         }
-        
-        // 카운트다운 텍스트 설정
-        SetupCountdownText();
 
         // 카운트다운 시작
         float timeLeft = countdownDuration;
@@ -167,24 +219,15 @@ public class GameManager : MonoBehaviour
             countdownText.gameObject.SetActive(false);
         }
 
-        TimeScaleManager.Instance.ResetTimeScale();
+        if (TimeScaleManager.Instance != null)
+        {
+            TimeScaleManager.Instance.ResetTimeScale();
+        }
 
         // 게임 시작 상태로 설정
-        _gameStateManager.StartGame();
-    }
-    
-    /// <summary>
-    /// 카운트다운 텍스트 설정
-    /// </summary>
-    private void SetupCountdownText()
-    {
-        if (countdownText == null)
+        if (_gameStateManager != null)
         {
-            GameObject textObj = GameObject.Find("CountdownText");
-            if (textObj != null)
-            {
-                countdownText = textObj.GetComponent<TextMeshProUGUI>();
-            }
+            _gameStateManager.StartGame();
         }
     }
     
@@ -218,7 +261,18 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SpawnEnemy()
     {
-        Vector3 enemyPosition = enemySpawnPosition.transform.position;
+        Vector3 enemyPosition = Vector3.zero;
+        
+        if (enemySpawnPosition != null)
+        {
+            enemyPosition = enemySpawnPosition.transform.position;
+        }
+        else
+        {
+            enemyPosition = new Vector3(13f, 3.5f, 0f);
+            Debug.LogWarning("[GameManager] EnemySpawnPosition이 설정되지 않아 기본 위치를 사용합니다.");
+        }
+        
         GameObject enemyObj = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
         _enemy = enemyObj.GetComponent<BaseBoss>();
         
@@ -234,7 +288,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void HandlePlayerDeath()
     {
-        _gameStateManager.LoseGame();
+        if (_gameStateManager != null)
+        {
+            _gameStateManager.LoseGame();
+        }
     }
     
     /// <summary>
@@ -242,7 +299,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HandleBossDeath()
     {
-        _gameStateManager.WinGame();
+        if (_gameStateManager != null)
+        {
+            _gameStateManager.WinGame();
+        }
     }
     
     /// <summary>
@@ -254,15 +314,18 @@ public class GameManager : MonoBehaviour
         if (_player != null) Destroy(_player.gameObject);
         if (_enemy != null) Destroy(_enemy.gameObject);
         
+        // 이벤트 연결 해제
+        UnsubscribeEvents();
+        
         // 게임 콘텐츠 재생성
         CreateGameContent();
         StartCoroutine(StartCountdown());
     }
-    
+
     /// <summary>
     /// 이벤트 연결 해제
     /// </summary>
-    private void OnDestroy()
+    private void UnsubscribeEvents()
     {
         if (_playerHealth != null)
         {
@@ -273,11 +336,13 @@ public class GameManager : MonoBehaviour
         {
             _enemy.OnBossDeath -= HandleBossDeath;
         }
-        
-        // 싱글톤 인스턴스 정리
-        if (_instance == this)
-        {
-            _instance = null;
-        }
+    }
+    
+    /// <summary>
+    /// 컴포넌트 정리
+    /// </summary>
+    private void OnDestroy()
+    {
+        UnsubscribeEvents();
     }
 }

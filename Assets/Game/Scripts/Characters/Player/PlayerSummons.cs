@@ -45,11 +45,14 @@ public class PlayerSummons : MonoBehaviour
 
     private void UpdateSummonPosition()
     {
-        int i = 1;
-        foreach(ISummon summon in _summonList)
+        if (_summonList != null && _summonList.Count > 0)
         {
-            summon.SetPosition(transform.parent,i);
-            i++;
+            int i = 1;
+            foreach(ISummon summon in _summonList)
+            {
+                summon.SetPosition(transform.parent,i);
+                i++;
+            }    
         }
     }
 
