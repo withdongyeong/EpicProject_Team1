@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/BuildingTestScene.unity
     guid: ba4a44ec4d5b2d343ab9f85405dc9eea
+  - enabled: 1
+    path: Assets/PGW/Scenes/GW_BuildingTestScene.unity
+    guid: fa28ea6f395a4974b8f83f8aff824b1d
+  - enabled: 1
+    path: Assets/PGW/Scenes/GW_GameplayTestScene.unity
+    guid: 65d7d35253b52c547914593ce83a5cc3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

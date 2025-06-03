@@ -18,8 +18,8 @@ public class SpiderWeb : MonoBehaviour
 
         if(playerController != null)
         {
-            playerController.IsBind = true; // 플레이어를 묶음
             IsHitPlayer = true;
+            playerController.PlayerDebuff.Bind(0.5f); // 플레이어를 묶음
             StartCoroutine(ReleasePlayerAfterDelay(playerController));
         }
 
@@ -38,7 +38,6 @@ public class SpiderWeb : MonoBehaviour
     private IEnumerator ReleasePlayerAfterDelay(PlayerController player)
     {
         yield return new WaitForSeconds(0.5f); // 0.5초 대기
-        player.IsBind = false;              // 다시 이동 가능하게
         Destroy(gameObject);   // 웹 오브젝트는 제거
     }
 }

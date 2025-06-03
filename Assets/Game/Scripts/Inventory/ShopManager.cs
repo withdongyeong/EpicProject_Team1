@@ -157,20 +157,6 @@ public class ShopManager : MonoBehaviour
                     }
                 }
             }
-
-            // 찾지 못했을 경우 태그로 시도
-            if (_startButton == null)
-            {
-                GameObject buttonObj = GameObject.FindWithTag("StartButton");
-                if (buttonObj != null)
-                {
-                    _startButton = buttonObj.GetComponent<Button>();
-                    if (_startButton != null)
-                    {
-                        Debug.Log("[ShopManager] Start 버튼을 태그로 찾았습니다.");
-                    }
-                }
-            }
         }
 
         // 버튼 이벤트 연결
