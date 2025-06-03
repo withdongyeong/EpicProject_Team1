@@ -151,7 +151,7 @@ public class DragTransparentCopy : MonoBehaviour, IBeginDragHandler, IDragHandle
         
         //배치 위치로 오브젝트 복사 
         Vector3 corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(dragCopy.GetComponentInChildren<CombineCell>().coreCell.transform.position));
-        GameObject placedObject = Instantiate(gameObject, corePos, dragCopy.transform.rotation);
+        GameObject placedObject = Instantiate(gameObject, corePos, dragCopy.transform.rotation, GridManager.Instance.transform);
         Destroy(placedObject.GetComponent<DragTransparentCopy>());
         Destroy(dragCopy);
     }
