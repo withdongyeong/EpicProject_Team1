@@ -55,10 +55,11 @@ public class GridManager : Singleton<GridManager>
 {
     public GameObject cellPrefab; // 그리드 셀에 사용할 프리팹
     [SerializeField] private int maxSize = 5;
-
     private Vector3Int gridSize; // 그리드의 크기
     public Vector3Int GridSize => gridSize; // 외부에서 접근할 수 있도록 프로퍼티로 제공
 
+    [SerializeField]
+    private GameObject startPoint; // 시작점 오브젝트
     private GridCell[,] grid;
     
 
@@ -102,16 +103,19 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
-    private Vector3 GridToWorldPosition(Vector3Int gridPos)
+    public Vector3 GridToWorldPosition(Vector3Int gridPos)
     {
         // 그리드 좌표를 월드 좌표로 변환하는 로직
         // 현재는 1:1
-        return new Vector3(gridPos.x, gridPos.y, 0); // z는 0으로 설정
+        return new Vector3(startPoint.transform.position.x +gridPos.x, startPoint.transform.position.y + gridPos.y, 0); // z는 0으로 설정
     }
 
     public Vector3Int WorldToGridPosition(Vector3 worldPos)
     {
-        return Vector3Int.RoundToInt(worldPos);
+        // 월드 좌표를 그리드 좌표로 변환하는 로직
+        int x = Mathf.RoundToInt(worldPos.x - startPoint.transform.position.x);
+        int y = Mathf.RoundToInt(worldPos.y - startPoint.transform.position.y);
+        return new Vector3Int(x, y, 0); // z는 0으로 설정
     }
 
     
@@ -123,6 +127,15 @@ public class GridManager : Singleton<GridManager>
         if (IsCellAvailable(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = true;
+            grid[gridPos.x, gridPos.y].ChangeColorTest();
+        }
+    }
+    
+    public void ReleaseCell(Vector3Int gridPos)
+    {
+        if (IsCellAvailable(gridPos))
+        {
+            grid[gridPos.x, gridPos.y].IsOccupied = false;
             grid[gridPos.x, gridPos.y].ChangeColorTest();
         }
     }
@@ -148,7 +161,7 @@ public class GridManager : Singleton<GridManager>
     /// <summary>
     /// gridpos가 그리드 내에 있는지 확인하는 메서드입니다.
     /// </summary>
-    private bool IsWithinGrid(Vector3Int gridPos)
+    public bool IsWithinGrid(Vector3Int gridPos)
     {
         return gridPos.x >= 0 && gridPos.x < gridSize.x &&
                gridPos.y >= 0 && gridPos.y < gridSize.y;

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a67e7521a7952b4598ba477102cadde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaced: 0
   transparency: 0.5
   ignoreCollisionLayer:
     serializedVersion: 2
@@ -61,6 +62,10 @@ PrefabInstance:
       propertyPath: coreCell
       value: 
       objectReference: {fileID: 1469496297506099711}
+    - target: {fileID: -240561661972293889, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+      propertyPath: skills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_Name
       value: CombinedCell
@@ -108,13 +113,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3672812085204258922}
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
 --- !u!1 &1469496297506099711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474259868635149644, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
   m_PrefabInstance: {fileID: 1364691630411670707}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6781383666695238077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+  m_PrefabInstance: {fileID: 1364691630411670707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3672812085204258922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781383666695238077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2742857bdbf13f84dac9b3469f9077ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  cooldown: 5
 --- !u!4 &8687408947308703364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
