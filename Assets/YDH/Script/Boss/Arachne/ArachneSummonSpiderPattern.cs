@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,7 +13,7 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
 
 
     /// <summary>
-    /// °Å¹Ì ¼ÒÈ¯ °ø°İ »ı¼ºÀÚ
+    /// ê±°ë¯¸ ì†Œí™˜ ê³µê²© ìƒì„±ì
     /// </summary>
     public ArachneSummonSpiderPattern(List<GameObject> summonSpiders, int spiderCount, Transform arachneTransform)
     {
@@ -33,8 +33,8 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// Á÷¼±À¸·Î ¿òÁ÷ÀÌ´Â °Å¹Ì¸¦ °Å¹Ì¸®½ºÆ®¿¡¼­ ·£´ıÀ¸·Î ²¨³»¼­ ¼ÒÈ¯ 
-    /// ¼ÒÈ¯µÈ °Å¹Ì´Â Á÷¼±À¸·Î ºü¸£°Ô ¿òÁ÷ÀÓ
+    /// ì§ì„ ìœ¼ë¡œ ì›€ì§ì´ëŠ” ê±°ë¯¸ë¥¼ ê±°ë¯¸ë¦¬ìŠ¤íŠ¸ì—ì„œ ëœë¤ìœ¼ë¡œ êº¼ë‚´ì„œ ì†Œí™˜ 
+    /// ì†Œí™˜ëœ ê±°ë¯¸ëŠ” ì§ì„ ìœ¼ë¡œ ë¹ ë¥´ê²Œ ì›€ì§ì„
     /// </summary>
     /// <param name="boss"></param>
     /// <returns></returns>
@@ -42,11 +42,11 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
     {   
         for(int i = 0; i < _spiderCount; i++)
         {
-            int column = Random.Range(-4, 3);
-            Vector3 tentaclePos = _arachneTransform.position + new Vector3(-4, column * cellSize, 0);
+            int Y = Random.Range(0, 8);
+            Vector3 pos = boss.GridSystem.GetWorldPosition(8, Y);
 
             GameObject randomSpider = _summonSpiders[Random.Range(0, _summonSpiders.Count)];
-            GameObject tentacle = Object.Instantiate(randomSpider, tentaclePos, Quaternion.identity);
+            GameObject tentacle = Object.Instantiate(randomSpider, pos + new Vector3(cellSize, 0,0), Quaternion.identity);
 
             yield return new WaitForSeconds(0.3f);
         }

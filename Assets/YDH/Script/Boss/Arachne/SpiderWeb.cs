@@ -1,24 +1,44 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class SpiderWeb : MonoBehaviour
 {
+    bool IsHitPlayer;
+
+    private void Start()
+    {
+        IsHitPlayer = false;
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController playerController = collision.GetComponent<PlayerController>();
 
         if(playerController != null)
         {
-            playerController.IsBind = true; // ÇÃ·¹ÀÌ¾î¸¦ ¹­À½
+            playerController.IsBind = true; // í”Œë ˆì´ì–´ë¥¼ ë¬¶ìŒ
+            IsHitPlayer = true;
             StartCoroutine(ReleasePlayerAfterDelay(playerController));
         }
 
     }
 
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+
+        if (!IsHitPlayer)
+        {
+            Destroy(gameObject);  // í”Œë ˆì´ì–´ê°€ ì—†ìœ¼ë©´ ì œê±°
+        }
+    }
+
     private IEnumerator ReleasePlayerAfterDelay(PlayerController player)
     {
-        yield return new WaitForSeconds(1f); // 1ÃÊ ´ë±â
-        player.IsBind = false;              // ´Ù½Ã ÀÌµ¿ °¡´ÉÇÏ°Ô
-        Destroy(gameObject);   // À¥ ¿ÀºêÁ§Æ®´Â Á¦°Å
+        yield return new WaitForSeconds(0.5f); // 0.5ì´ˆ ëŒ€ê¸°
+        player.IsBind = false;              // ë‹¤ì‹œ ì´ë™ ê°€ëŠ¥í•˜ê²Œ
+        Destroy(gameObject);   // ì›¹ ì˜¤ë¸Œì íŠ¸ëŠ” ì œê±°
     }
 }

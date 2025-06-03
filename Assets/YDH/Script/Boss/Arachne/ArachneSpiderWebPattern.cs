@@ -1,5 +1,7 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class ArachneSpiderWebPattern : IBossAttackPattern
 {
@@ -12,7 +14,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
-    /// °Å¹ÌÁÙ ¼³Ä¡ ÆĞÅÏ »ı¼ºÀÚ
+    /// ê±°ë¯¸ì¤„ ì„¤ì¹˜ íŒ¨í„´ ìƒì„±ì
     /// </summary>
     public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount, Transform arachneTransform)
     {
@@ -32,19 +34,24 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// °Å¹ÌÁÙ ¼³Ä¡
+    /// ê±°ë¯¸ì¤„ ì„¤ì¹˜
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
+        List<GameObject> warningTiles = new List<GameObject>();
+
         for (int i = 0; i < _spiderWebCount; i++)
         {
-            int row = Random.Range(-15,-7);
-            int column = Random.Range(-4, 3);
-            Vector3 tentaclePos = _arachneTransform.position + new Vector3(row * cellSize, column * cellSize, 0);
+            int X = Random.Range(0, 8);
+            int Y = Random.Range(0, 8);
 
-            GameObject tentacle = Object.Instantiate(_spiderWebPrefeb, tentaclePos, Quaternion.identity);
+            if (boss.GridSystem.IsValidPosition(X, Y))
+            {
+                Vector3 pos = boss.GridSystem.GetWorldPosition(X, Y);
+                warningTiles.Add(Object.Instantiate(_spiderWebPrefeb, pos, Quaternion.identity));
+            }
+
+            yield return new WaitForSeconds(0.2f);
         }
-
-            yield return 0; 
     }
 }
