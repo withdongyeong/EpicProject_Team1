@@ -1,3 +1,4 @@
+ using System;
  using UnityEngine;
 
 
@@ -66,13 +67,18 @@ public class GridManager : Singleton<GridManager>
     protected override void Awake()
     {
         base.Awake();
+        
         InitializeGrid();
         InitGround();
             
     }
 
-    
-  
+    private void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+
     private void InitializeGrid()
     {
         gridSize = new Vector3Int(maxSize, maxSize, 0); // 2D 그리드로 설정
@@ -92,6 +98,7 @@ public class GridManager : Singleton<GridManager>
     private void InitGround()
     {
         GameObject gridCells = new GameObject("GridBlocks");
+        gridCells.transform.SetParent(this.transform); // GridManager의 자식으로 설정
         for (int x = 0; x < gridSize.x; x++)
         {
             for (int y = 0; y < gridSize.y; y++)

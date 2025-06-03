@@ -89,7 +89,7 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         
         //배치 위치로 오브젝트 복사 
         Vector3 corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(dragCopy.GetComponentInChildren<CombineCell>().coreCell.transform.position));
-        GameObject placedObject = Instantiate(originalObject, corePos, dragCopy.transform.rotation);
+        GameObject placedObject = Instantiate(originalObject, corePos, dragCopy.transform.rotation, GridManager.Instance.transform);
         Destroy(placedObject.GetComponent<DragTransparentCopy>());
         Destroy(dragCopy);
     }
