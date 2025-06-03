@@ -54,7 +54,7 @@ public class SpiderSilk : MonoBehaviour
         {
             _isGrowing = false;
             _playerTransform = collision.transform;
-            playerController.PlayerDebuff.Bind(0.3f);
+            StartCoroutine(playerController.PlayerDebuff.Bind(0.3f));
 
             StartCoroutine(ShrinkAndPullPlayer(playerController));
         }
@@ -86,9 +86,10 @@ public class SpiderSilk : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
-
         playerController.CurrentX = 7;
         playerController.CurrentY = (int)this.transform.position.y;
+
+        yield return new WaitForSeconds(0.03f);
+        Destroy(gameObject);
     }
 }

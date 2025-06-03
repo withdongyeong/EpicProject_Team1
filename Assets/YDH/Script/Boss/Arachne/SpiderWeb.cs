@@ -18,11 +18,11 @@ public class SpiderWeb : MonoBehaviour
 
         if(playerController != null)
         {
+
             IsHitPlayer = true;
-            playerController.PlayerDebuff.Bind(0.5f); // 플레이어를 묶음
+            StartCoroutine(playerController.PlayerDebuff.Bind(0.5f));// 플레이어를 묶음
             StartCoroutine(ReleasePlayerAfterDelay(playerController));
         }
-
     }
 
     private IEnumerator DestroyAfterDelay()

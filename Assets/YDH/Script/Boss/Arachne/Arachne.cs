@@ -22,7 +22,7 @@ public class Arachne : BaseBoss
     protected override void Start()
     {
         // 기본 스탯 설정
-        MaxHealth = 200;
+        MaxHealth = 400;
         PatternCooldown = 0.5f;
 
         // 부모 클래스 초기화 호출

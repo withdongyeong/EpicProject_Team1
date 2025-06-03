@@ -146,6 +146,8 @@ public abstract class BaseBoss : MonoBehaviour
     /// <param name="damage">받을 데미지</param>
     public virtual void TakeDamage(int damage)
     {
+        Debug.Log("데미지 받음");
+
         if (_isDead) return;
         
         _currentHealth -= damage;
