@@ -70,7 +70,7 @@ public class SpiderSilk : MonoBehaviour
         Vector3 endScale = new Vector3(0.1f, 0.3f, 1);
 
         Vector3 playerStartPos = _playerTransform.position;
-        Vector3 playerEndPos = new Vector3(7f, _playerTransform.position.y, 0f);
+        Vector3 playerEndPos = new Vector3(0, _playerTransform.position.y, 0f);
 
         while (elapsed < shrinkTime)
         {
@@ -89,7 +89,7 @@ public class SpiderSilk : MonoBehaviour
         playerController.CurrentX = 7;
         playerController.CurrentY = (int)this.transform.position.y;
 
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 }
