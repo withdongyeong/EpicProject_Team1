@@ -9,7 +9,7 @@ using UnityEngine;
 public abstract class BaseBoss : MonoBehaviour
 {
     [Header("기본 스탯")]
-    private int _maxHealth = 100;
+    private int _maxHealth;
     private int _currentHealth;
     private bool _isDead = false;
     
@@ -17,7 +17,7 @@ public abstract class BaseBoss : MonoBehaviour
     private float _patternCooldown = 0.6f;
 
     [Header("상태 이상 클래스")]
-    private BossAbnormalConditions AbnormalConditions;
+    private BossDebuffConditions AbnormalConditions;
 
     // 컴포넌트 참조
     private GridSystem _gridSystem;
@@ -74,7 +74,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
-        AbnormalConditions = new BossAbnormalConditions();
+        AbnormalConditions = new BossDebuffConditions();
 
         _currentHealth = _maxHealth;
         
@@ -146,6 +146,8 @@ public abstract class BaseBoss : MonoBehaviour
     /// <param name="damage">받을 데미지</param>
     public virtual void TakeDamage(int damage)
     {
+        Debug.Log("데미지 받음");
+
         if (_isDead) return;
         
         _currentHealth -= damage;
@@ -207,7 +209,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// <summary>
     /// 상태이상 함수 
     /// </summary>
-    public void AddAbnormalCondition(AbnormalConditions abnormalConditions)
+    public void AddAbnormalCondition(Debuffs abnormalConditions)
     {
         AbnormalConditions.bossAbnormalConditions.Add(abnormalConditions);
     }
@@ -216,7 +218,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// 상태이상 갯수 읽어오기
     /// </summary>
     /// <returns></returns>
-    public List<AbnormalConditions> GetAbnormalCondition()
+    public List<Debuffs> GetAbnormalCondition()
     {
         return AbnormalConditions.bossAbnormalConditions;
     }
@@ -225,7 +227,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// 상태이상 한번에 소멸
     /// </summary>
     /// <param name="abnormalConditions"></param>
-    public void RemoveAbnormalCondition(AbnormalConditions abnormalConditions)
+    public void RemoveAbnormalCondition(Debuffs abnormalConditions)
     {
         AbnormalConditions.AbnormalConditionDestruction(abnormalConditions);
     }

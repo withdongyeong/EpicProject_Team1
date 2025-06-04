@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class Arachne : BaseBoss
 {
-    [Header("º¸½º Àü¿ë ÇÁ¸®ÆÕµé")]
+    [Header("ë³´ìŠ¤ ì „ìš© í”„ë¦¬íŒ¹ë“¤")]
     public GameObject SpiderWebPrefeb;
 
     public List<GameObject> SummonSpiders;
@@ -17,40 +17,43 @@ public class Arachne : BaseBoss
     public GameObject SpiderLeg;
 
     /// <summary>
-    /// º¸½º ÃÊ±âÈ­ - °íÀ¯ÇÑ ½ºÅÈ ¼³Á¤
+    /// ë³´ìŠ¤ ì´ˆê¸°í™” - ê³ ìœ í•œ ìŠ¤íƒ¯ ì„¤ì •
     /// </summary>
-    protected override void Start()
+    protected void Awake()
     {
-        // ±âº» ½ºÅÈ ¼³Á¤
+        // ê¸°ë³¸ ìŠ¤íƒ¯ ì„¤ì •
         MaxHealth = 200;
         PatternCooldown = 0.5f;
+    }
 
-        // ºÎ¸ğ Å¬·¡½º ÃÊ±âÈ­ È£Ãâ
+    protected override void Start()
+    {
+        // ë¶€ëª¨ í´ë˜ìŠ¤ ì´ˆê¸°í™” í˜¸ì¶œ
         base.Start();
     }
 
     /// <summary>
-    /// °ø°İ ÆĞÅÏ ÃÊ±âÈ­ - 5°¡Áö ÆĞÅÏ ¸ğµÎ µî·Ï
+    /// ê³µê²© íŒ¨í„´ ì´ˆê¸°í™” - 5ê°€ì§€ íŒ¨í„´ ëª¨ë‘ ë“±ë¡
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        // ÆĞÅÏ 1: °Å¹ÌÁÙ
-        AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 2, this.transform));
+        // íŒ¨í„´ 1: ê±°ë¯¸ì¤„
+        AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3, this.transform));
 
-        // ÆĞÅÏ 2: Á¾ÀÚ °Å¹Ì °ø°İ
+        // íŒ¨í„´ 2: ì¢…ì ê±°ë¯¸ ê³µê²©
         AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 2, this.transform));
 
-        // ÆĞÅÏ 3: °Å¹ÌÁÙ Àâ±â
+        // íŒ¨í„´ 3: ê±°ë¯¸ì¤„ ì¡ê¸°
         AddAttackPattern(new ArachneSpiderSilkPattern(spiderSilkPrefeb, 1, this.transform));
 
-        // ÆĞÅÏ 4: µ¶ ºĞÃâ
+        // íŒ¨í„´ 4: ë… ë¶„ì¶œ
         AddAttackPattern(new ArachnePoisionAriaPattern(warningAria, poisionAriaPrefeb));
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
 
     /// <summary>
-    /// µî·ÏµÈ °ø°İ ÆĞÅÏ ¸ñ·Ï ¹İÈ¯ (µğ¹ö±×¿ë)
+    /// ë“±ë¡ëœ ê³µê²© íŒ¨í„´ ëª©ë¡ ë°˜í™˜ (ë””ë²„ê·¸ìš©)
     /// </summary>
     private System.Collections.Generic.List<IBossAttackPattern> GetAttackPatterns()
     {

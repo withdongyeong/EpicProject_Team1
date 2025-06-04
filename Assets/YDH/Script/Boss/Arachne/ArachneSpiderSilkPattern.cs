@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 public class ArachneSpiderSilkPattern : IBossAttackPattern
 {
@@ -13,7 +13,7 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
     public string PatternName => "SpiderSilk";
 
     /// <summary>
-    /// ½Ç ºÙÀâ±â »ı¼ºÀÚ
+    /// ì‹¤ ë¶™ì¡ê¸° ìƒì„±ì
     /// </summary>
     public ArachneSpiderSilkPattern(GameObject spiderSilkPrefeb, int spiderSilkCount , Transform ArachneTransform)
     {
@@ -33,7 +33,7 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ½Ç¿¡ ÀâÈ÷¸é ÇÃ·¹ÀÌ¾î °­Á¦·Î ¾ÕÀ¸·Î ÀÌµ¿
+    /// ì‹¤ì— ì¡íˆë©´ í”Œë ˆì´ì–´ ê°•ì œë¡œ ì•ìœ¼ë¡œ ì´ë™
     /// </summary>
     /// <param name="boss"></param>
     /// <returns></returns>
@@ -41,20 +41,22 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
     {
         for (int i = 0; i< _spiderSilkCount; i++)
         {
-            int column = Random.Range(-4, 3);
-            Vector3 spiderSilkPos = _arachneTransform.position + new Vector3(-7, column * cellSize, 0);
-            GameObject spiderSilk = Object.Instantiate(_spiderSilkPrefeb, spiderSilkPos, Quaternion.identity);
+            int Y = Random.Range(0, 8);
 
-            // ÃÊ±â ½ºÄÉÀÏ
+            Vector3 pos = boss.GridSystem.GetWorldPosition(8, Y);
+            GameObject spiderSilk = GameObject.Instantiate(_spiderSilkPrefeb, pos + new Vector3(cellSize, 0,0), Quaternion.identity);
+
+            // ì´ˆê¸° ìŠ¤ì¼€ì¼
             spiderSilk.transform.localScale = new Vector3(0.1f, 1, 1);
 
-            // »ı¼ºµÈ ¿ÀºêÁ§Æ®¿¡ ÃÊ±â°ª Àü´Ş
+            // ìƒì„±ëœ ì˜¤ë¸Œì íŠ¸ì— ì´ˆê¸°ê°’ ì „ë‹¬
             SpiderSilk silkScript = spiderSilk.GetComponent<SpiderSilk>();
+
             if (silkScript != null)
             {
-                silkScript.Init(spiderSilkPos, gridSize); // ÇÊ¿ä ÆÄ¶ó¹ÌÅÍ Àü´Ş
+                silkScript.Init(spiderSilk.transform.position, gridSize); // í•„ìš” íŒŒë¼ë¯¸í„° ì „ë‹¬
             }
-            yield return 0;
+            yield return new WaitForSeconds(0.3f);
         }
     }
 }

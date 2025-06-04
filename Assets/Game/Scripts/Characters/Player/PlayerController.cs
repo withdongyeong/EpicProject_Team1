@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     private bool _isMoving;
     private float _moveTime = 0.2f;
 
-    // 바인딩 상태 추가
-    private bool _isBind;
-    
+    // 상태이상 처리용
+    private PlayerDebuff _playerDebuff;
+
     // 애니메이션 관련
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -27,14 +27,15 @@ public class PlayerController : MonoBehaviour
     public bool IsMoving { get => _isMoving; }
     public int CurrentX { get => _currentX; set => _currentX = value; }
     public int CurrentY { get => _currentY; set => _currentY = value; }
-    public bool IsBind { get => _isBind; set => _isBind = value; }
     public Animator Animator { get => _animator; set => _animator = value; }
+    public PlayerDebuff PlayerDebuff => _playerDebuff;
 
     private void Start()
     {
         _gridManager = GridManager.Instance;
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _playerDebuff = GetComponent<PlayerDebuff>();
         UpdateCurrentPosition();
         
         // 초기 애니메이션 상태 설정
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
         // 게임이 Playing 상태일 때만 입력 처리
         if (GameStateManager.Instance.CurrentState == GameStateManager.GameState.Playing)
         {
-            if (!_isMoving && !_isBind)
+            if (!_isMoving && !_playerDebuff.IsBind)
             {
                 HandleMovement();
             }
