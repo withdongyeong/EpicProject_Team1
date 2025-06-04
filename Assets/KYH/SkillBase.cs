@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class SkillBase : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public abstract class SkillBase : MonoBehaviour
     {
         if (IsOnCooldown)
         {
-            Debug.Log($"{skillName} is on cooldown. Remaining time: {GetCooldownRemaining()} seconds.");
+            //Debug.Log($"{skillName} is on cooldown. Remaining time: {GetCooldownRemaining()} seconds.");
             return false;
         }
 

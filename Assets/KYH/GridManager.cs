@@ -192,7 +192,7 @@ public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandl
     {
         if (grid[gridPos.x,gridPos.y].cell == null)
         {
-            Debug.Log("셀 데이터가 할당되지 않았습니다." + gridPos);
+            //Debug.Log("셀 데이터가 할당되지 않았습니다." + gridPos);
             return null;
         }
         return grid[gridPos.x,gridPos.y].cell; // 셀의 Cell 컴포넌트를 반환
