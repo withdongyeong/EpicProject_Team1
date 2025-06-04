@@ -22,9 +22,9 @@ public class FireBallSkill : FireBoltSkill
 
     private IEnumerator FireProjectileWithDelay()
     {
-        yield return new WaitForSeconds(0.3f); // 0.3초 딜레이 후 발사
+        yield return new WaitForSeconds(0.15f); // 0.15초 딜레이 후 발사
         FireProjectile();
-        yield return new WaitForSeconds(0.3f); // 0.3초 딜레이 후 발사
+        yield return new WaitForSeconds(0.15f); // 0.15초 딜레이 후 발사
         FireProjectile();
     }
 }
