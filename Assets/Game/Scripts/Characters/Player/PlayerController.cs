@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckTileInteraction()
     {
-        Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0);
+        Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0); // 1. 현재 위치 가져오기 (_currentX, _currentY) 는 이미 grid 좌표로 설정되어 있음
         Cell currentCell = _gridManager.GetCellData(currentPos);
         CombineCell comCell = currentCell?.GetObjectData();
         comCell?.ExecuteSkill();

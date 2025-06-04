@@ -28,7 +28,7 @@ public class CombineCell : MonoBehaviour
 
         foreach (var skill in skills)
         {
-            if (skill != null && !skill.IsOnCooldown)
+            if (skill != null)
             {
                 skill.TryActivate(coreCell);
             }

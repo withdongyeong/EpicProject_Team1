@@ -2,10 +2,11 @@ using UnityEngine;
 
 public abstract class SkillBase : MonoBehaviour
 {
-    [Header("Skill Info")]
+    
+    [Header("Skill Info")] 
+    private SkillState _currentState = SkillState.Charging;
     public string skillName;
     public float cooldown = 5f;
-
     private float lastUsedTime = -Mathf.Infinity;
 
     /// <summary>
@@ -18,7 +19,11 @@ public abstract class SkillBase : MonoBehaviour
     /// </summary>
     public bool TryActivate(GameObject user)
     {
-        if (IsOnCooldown) return false;
+        if (IsOnCooldown)
+        {
+            Debug.Log($"{skillName} is on cooldown. Remaining time: {GetCooldownRemaining()} seconds.");
+            return false;
+        }
 
         Activate(user);
         lastUsedTime = Time.time;
