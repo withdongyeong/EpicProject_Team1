@@ -166,6 +166,14 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
+    /// 애니메이션 이벤트에서 호출 - 지팡이가 땅을 찍는 순간
+    /// </summary>
+    public void OnStaffHitGround()
+    {
+        FindAnyObjectByType<GameManager>().SpawnGroundEffect();
+    }
+    
+    /// <summary>
     /// 현재 위치 타일과 상호작용 확인
     /// </summary>
     private void CheckTileInteraction()
