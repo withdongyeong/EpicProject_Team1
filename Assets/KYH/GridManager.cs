@@ -249,7 +249,8 @@ public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandl
             // 배치가 불가능한 경우 복제본 제거
             Debug.Log("배치 불가능한 위치입니다.");
             //TODO: 이거 파괴하지말고 인벤토리로 되돌려야합니다!
-            Destroy(draggedTransform);
+            Destroy(draggedTransform.gameObject);
+            draggedTransform = null;
             return;
         }
 
