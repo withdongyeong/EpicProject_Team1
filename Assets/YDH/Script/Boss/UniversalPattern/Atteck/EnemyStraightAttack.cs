@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class EnemyStraightAttack : IBossAttackPattern
@@ -9,15 +9,12 @@ public class EnemyStraightAttack : IBossAttackPattern
     private GameObject _warningPrefab;
     private GameObject _tentaclePrefab;
 
-    public Transform gridOrigin; // °İÀÚ ½ÃÀÛ À§Ä¡ (ÁÂ»ó´Ü or ÁÂÇÏ´Ü)
-
     public string PatternName => "StraightAttack";
 
-    public EnemyStraightAttack(GameObject warningPrefab, GameObject tentaclePrefab, Transform transform)
+    public EnemyStraightAttack(GameObject warningPrefab, GameObject tentaclePrefab)
     {
         _warningPrefab = warningPrefab;
         _tentaclePrefab = tentaclePrefab;
-        gridOrigin = transform;
     }
 
     public void Execute(BaseBoss boss)
@@ -31,35 +28,35 @@ public class EnemyStraightAttack : IBossAttackPattern
     }
 
     /// <summary>
-    /// ÃË¼ö Âî¸£±â °ø°İ
+    /// ì´‰ìˆ˜ ì°Œë¥´ê¸° ê³µê²©
     /// </summary>
     IEnumerator ExecuteAttackPattern()
     {
-        // 1. ·£´ı ¿­ ¹øÈ£ ¼±ÅÃ (-4~3)
-        int column = Random.Range(-4, 3);
+        // 1. ëœë¤ ì—´ ë²ˆí˜¸ ì„ íƒ (0 - 7)
+        int Y = Random.Range(0, 8);
 
-        // 2. ºÓÀº»ö °æ°í »ı¼º
-        Vector3 warningPos = gridOrigin.position + new Vector3(-7, column * cellSize, 0);
-        GameObject warning = Object.Instantiate(_warningPrefab, warningPos, Quaternion.identity);
-        warning.transform.localScale = new Vector3(gridSize, 1, 1); // ¼¼·Î·Î ±æ°Ô
+        // 2. ë¶‰ì€ìƒ‰ ê²½ê³  ìƒì„±
+        Vector3 warningPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(4, Y, 0));
+        GameObject warning = Object.Instantiate(_warningPrefab, warningPos + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+        warning.transform.localScale = new Vector3(gridSize, 1, 1); // ì„¸ë¡œë¡œ ê¸¸ê²Œ
 
-        // 3. 1ÃÊ ´ë±â
+        // 3. 1ì´ˆ ëŒ€ê¸°
         yield return new WaitForSeconds(1f);
 
-        // 4. °æ°í Á¦°Å
+        // 4. ê²½ê³  ì œê±°
         Object.Destroy(warning);
 
-        // 5. ÃË¼ö »ı¼º
-        Vector3 tentaclePos = warningPos; // °æ°í¿Í °°Àº À§Ä¡·Î ¼³Á¤
+        // 5. ì´‰ìˆ˜ ìƒì„±
+        Vector3 tentaclePos = warningPos + new Vector3 (4,0,0); // ê²½ê³ ì™€ ê°™ì€ ìœ„ì¹˜ë¡œ ì„¤ì •
         GameObject tentacle = Object.Instantiate(_tentaclePrefab, tentaclePos, Quaternion.identity);
-        tentacle.transform.localScale = new Vector3(0.1f, 1, 1); // xÃà ÀÛ°Ô ½ÃÀÛ
+        tentacle.transform.localScale = new Vector3(0.1f, 1, 1); // xì¶• ì‘ê²Œ ì‹œì‘
 
         float growTime = 0.3f;
         float elapsed = 0f;
 
-        Vector3 basePos = tentaclePos; // ±âÁØ À§Ä¡´Â warningPos
+        Vector3 basePos = tentaclePos; // ê¸°ì¤€ ìœ„ì¹˜ëŠ” warningPos
         Vector3 startScale = tentacle.transform.localScale;
-        Vector3 endScale = new Vector3(gridSize, 1, 1); // ¿ŞÂÊÀ¸·Î XÃàÀ¸·Î ±æ°Ô
+        Vector3 endScale = new Vector3(gridSize, 1, 1); // ì™¼ìª½ìœ¼ë¡œ Xì¶•ìœ¼ë¡œ ê¸¸ê²Œ
 
         while (elapsed < growTime)
         {
@@ -71,13 +68,13 @@ public class EnemyStraightAttack : IBossAttackPattern
             float currentWidth = Mathf.Lerp(startScale.x, endScale.x, t);
             tentacle.transform.localScale = new Vector3(currentWidth, 1, 1);
 
-            // ¿©ÀÇºÀÃ³·³ ¿ŞÂÊÀ¸·Î Ä¿Áö°Ô À§Ä¡ º¸Á¤
+            // ì—¬ì˜ë´‰ì²˜ëŸ¼ ì™¼ìª½ìœ¼ë¡œ ì»¤ì§€ê²Œ ìœ„ì¹˜ ë³´ì •
             tentacle.transform.position = basePos - new Vector3((currentWidth - startScale.x) / 2f, 0, 0);
 
             yield return null;
         }
 
-        // 6. ÃË¼ö Á¦°Å
+        // 6. ì´‰ìˆ˜ ì œê±°
         Object.Destroy(tentacle);
         yield return 0;
     }

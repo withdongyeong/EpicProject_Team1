@@ -22,7 +22,7 @@ public class TreantWindMagic : MonoBehaviour
         float elapsed = 0f;
 
         Vector3 startPos = target.position;
-        Vector3 endPos = new Vector3(0f, startPos.y, startPos.z); // X=0으로 이동, 나머지는 그대로
+        Vector3 endPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(0, (int)startPos.y +4, (int)startPos.z)); // X=0으로 이동, 나머지는 그대로
 
         while (elapsed < duration)
         {

@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Slime : BaseBoss
 {
-    [Header("½½¶óÀÓ Àü¿ë ÇÁ¸®ÆÕµé")]
+    [Header("ìŠ¬ë¼ì„ ì „ìš© í”„ë¦¬íŒ¹ë“¤")]
     public GameObject warningTilePrefab;
 
     public GameObject SlimeMucus;
@@ -11,39 +11,47 @@ public class Slime : BaseBoss
     public GameObject SlimeActtckTentacle;
 
     public GameObject SlimeTrapTentacle;
+
+    PlayerController PlayerController;
+
+    private void Awake()
+    {
+        // ê¸°ë³¸ ìŠ¤íƒ¯ ì„¤ì •
+        MaxHealth = 200;
+        PatternCooldown = 0.5f;
+    }
+
     /// <summary>
-    /// º¸½º ÃÊ±âÈ­ - °íÀ¯ÇÑ ½ºÅÈ ¼³Á¤
+    /// ë³´ìŠ¤ ì´ˆê¸°í™” - ê³ ìœ í•œ ìŠ¤íƒ¯ ì„¤ì •
     /// </summary>
     protected override void Start()
     {
-        // ±âº» ½ºÅÈ ¼³Á¤
-        MaxHealth = 200;
-        PatternCooldown = 0.5f;
+        PlayerController = FindAnyObjectByType<PlayerController>();
 
-        // ºÎ¸ğ Å¬·¡½º ÃÊ±âÈ­ È£Ãâ
+        // ë¶€ëª¨ í´ë˜ìŠ¤ ì´ˆê¸°í™” í˜¸ì¶œ
         base.Start();
     
     }
 
     /// <summary>
-    /// °ø°İ ÆĞÅÏ ÃÊ±âÈ­ - 2°¡Áö ÆĞÅÏ ¸ğµÎ µî·Ï
+    /// ê³µê²© íŒ¨í„´ ì´ˆê¸°í™” - 2ê°€ì§€ íŒ¨í„´ ëª¨ë‘ ë“±ë¡
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //Á¡¾× ÆĞÅÏ
-        AddAttackPattern(new RapidFirePattern(SlimeMucus, 3, 0.05f));
+        //ì ì•¡ íŒ¨í„´
+        //AddAttackPattern(new RapidFirePattern(SlimeMucus, 3, 0.05f));
 
-        //Âî¸£±â ÃË¼ö ÆĞÅÏ
-        AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle, this.transform));
+        //ì°Œë¥´ê¸° ì´‰ìˆ˜ íŒ¨í„´
+        //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle));
 
-        //¹Ù´Ú ºĞÃâ ÃË¼ö ÆĞÅÏ
-        AddAttackPattern(new DiagonalCrossPattern(warningTilePrefab, SlimeTrapTentacle));
+        //ë°”ë‹¥ ë¶„ì¶œ ì´‰ìˆ˜ íŒ¨í„´
+        AddAttackPattern(new DiagonalCrossPattern(warningTilePrefab, SlimeTrapTentacle, PlayerController));
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
 
     /// <summary>
-    /// µî·ÏµÈ °ø°İ ÆĞÅÏ ¸ñ·Ï ¹İÈ¯ (µğ¹ö±×¿ë)
+    /// ë“±ë¡ëœ ê³µê²© íŒ¨í„´ ëª©ë¡ ë°˜í™˜ (ë””ë²„ê·¸ìš©)
     /// </summary>
     private System.Collections.Generic.List<IBossAttackPattern> GetAttackPatterns()
     {

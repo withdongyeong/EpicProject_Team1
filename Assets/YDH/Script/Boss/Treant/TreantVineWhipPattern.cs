@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game4.Scripts.Character.Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,15 @@ public class TreantVineWhipPattern : IBossAttackPattern
     private GameObject _explosionEffectPrefab;
     private int _whipCount;
 
+    private PlayerController _playerController;
     public string PatternName => "Diagonal Attack";
 
-    public TreantVineWhipPattern(GameObject warningTilePrefab, GameObject explosionEffectPrefab, int whipCount)
+    public TreantVineWhipPattern(GameObject warningTilePrefab, GameObject explosionEffectPrefab, int whipCount, PlayerController playerController)
     {
         _warningTilePrefab = warningTilePrefab;
         _explosionEffectPrefab = explosionEffectPrefab;
         _whipCount = whipCount;
+        _playerController = playerController;
     }
 
     public void Execute(BaseBoss boss)
@@ -49,19 +52,21 @@ public class TreantVineWhipPattern : IBossAttackPattern
 
     private IEnumerator TopLeftDiagonalAttack(BaseBoss boss)
     {
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
 
         List<GameObject> warningTiles = new List<GameObject>();
         List<Vector3> attackPositions = new List<Vector3>();
 
         // 좌상단-우하단 대각선
         int offset = playerY + playerX;
-        for (int x = 0; x < boss.GridSystem.Width; x++)
+        for (int x = 0; x < 8; x++)
         {
             int y = offset - x;
-            if (boss.GridSystem.IsValidPosition(x, y))
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int (x, y, 0)))
             {
-                Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
+                Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int (x, y, 0));
                 attackPositions.Add(pos);
                 warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
@@ -69,7 +74,9 @@ public class TreantVineWhipPattern : IBossAttackPattern
 
         yield return new WaitForSeconds(0.3f);
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int currentX = GridPosition.x;
+        int currentY = GridPosition.y;
 
         // 좌상단-우하단 대각선 검사
         bool isOnDiagonal2 = (currentY + currentX) == (playerY + playerX);
@@ -92,19 +99,21 @@ public class TreantVineWhipPattern : IBossAttackPattern
 
     private IEnumerator TopRightDiagonalAttack(BaseBoss boss)
     {
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
 
         List<GameObject> warningTiles = new List<GameObject>();
         List<Vector3> attackPositions = new List<Vector3>();
 
         // 우상단-좌하단 대각선
         int offset = playerY - playerX;
-        for (int x = 0; x < boss.GridSystem.Width; x++)
+        for (int x = 0; x < 8; x++)
         {
             int y = x + offset;
-            if (boss.GridSystem.IsValidPosition(x, y))
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int(x, y, 0)))
             {
-                Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
+                Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(x, y, 0));
                 attackPositions.Add(pos);
                 warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
@@ -112,7 +121,9 @@ public class TreantVineWhipPattern : IBossAttackPattern
 
         yield return new WaitForSeconds(0.5f);
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int currentX = GridPosition.x;
+        int currentY = GridPosition.y;
 
         // 우상단-좌하단 대각선 검사
         bool isOnDiagonal1 = (currentY - currentX) == (playerY - playerX);

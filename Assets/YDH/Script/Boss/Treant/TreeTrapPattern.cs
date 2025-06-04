@@ -1,17 +1,21 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Game4.Scripts.Character.Player;
 
 public class TreeTrapPattern : IBossAttackPattern
 {
     public GameObject _warningTilePrefab;
     public GameObject _treeTrapPrefab;
+
+    public PlayerController _playerController;
     public string PatternName => "Tree Trap";
 
-    public TreeTrapPattern(GameObject warningTilePrefab, GameObject treeTrapPrefab)
+    public TreeTrapPattern(GameObject warningTilePrefab, GameObject treeTrapPrefab, PlayerController playerController)
     {
         _warningTilePrefab = warningTilePrefab;
         _treeTrapPrefab = treeTrapPrefab;
+        _playerController = playerController;
     }
 
     public void Execute(BaseBoss boss)
@@ -25,24 +29,26 @@ public class TreeTrapPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ≥™π´ «‘¡§ ª˝º∫
+    /// ÎÇòÎ¨¥ Ìï®Ï†ï ÏÉùÏÑ±
     /// </summary>
     private IEnumerator TreeTrap(BaseBoss boss)
     {
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
 
         List<GameObject> warningTiles = new List<GameObject>();
         List<Vector3> attackPositions = new List<Vector3>();
 
-        ////∞°∑Œ ∂Û¿Œ
-        for (int x = 0; x < boss.GridSystem.Width; x++)
+        ////Í∞ÄÎ°ú ÎùºÏù∏
+        for (int x = 0; x < 8; x++)
         {
-            Vector3 pos = boss.GridSystem.GetWorldPosition(x, playerY);
+            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int (x, playerY, 0));
             attackPositions.Add(pos);
             warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
         }
 
-        // ºº∑Œ ∂Û¿Œ
+        // ÏÑ∏Î°ú ÎùºÏù∏
         for (int y = 0; y < boss.GridSystem.Height; y++)
         {
             if (y != playerY)
@@ -55,15 +61,17 @@ public class TreeTrapPattern : IBossAttackPattern
 
         yield return new WaitForSeconds(0.8f);
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+       GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int currentX = GridPosition.x;
+        int currentY = GridPosition.y;
 
-        //ºº∑Œ ∂Û¿Œ µ•πÃ¡ˆ
+        //ÏÑ∏Î°ú ÎùºÏù∏ Îç∞ÎØ∏ÏßÄ
         if (currentX == 0)
         {
             boss.ApplyDamageToPlayer(20);
         }
 
-        //∞°∑Œ ∂Û¿Œ µ•πÃ¡ˆ
+        //Í∞ÄÎ°ú ÎùºÏù∏ Îç∞ÎØ∏ÏßÄ
         if (currentY == playerY)
         {
             boss.ApplyDamageToPlayer(20);

@@ -1,37 +1,40 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class GoblinKing : BaseBoss
 {
-    [Header("°íºí¸°Å· Àü¿ë ÇÁ¸®ÆÕµé")]
+    [Header("ê³ ë¸”ë¦°í‚¹ ì „ìš© í”„ë¦¬íŒ¹ë“¤")]
     public GameObject GoblinJunk;
     public GameObject Goblrin;
 
     private Transform BattleFieldTransform;
     /// <summary>
-    /// º¸½º ÃÊ±âÈ­ - °íÀ¯ÇÑ ½ºÅÈ ¼³Á¤
+    /// ë³´ìŠ¤ ì´ˆê¸°í™” - ê³ ìœ í•œ ìŠ¤íƒ¯ ì„¤ì •
     /// </summary>
+
+    private void Awake()
+    {
+        // ê¸°ë³¸ ìŠ¤íƒ¯ ì„¤ì •
+        MaxHealth = 200;
+        PatternCooldown = 1f;
+    }
 
     protected override void Start()
     {
-        // ±âº» ½ºÅÈ ¼³Á¤
-        MaxHealth = 200;
-        PatternCooldown = 1f;
-
         BattleFieldTransform = FindAnyObjectByType<BattleField>().transform;
 
-        // ºÎ¸ğ Å¬·¡½º ÃÊ±âÈ­ È£Ãâ
+        // ë¶€ëª¨ í´ë˜ìŠ¤ ì´ˆê¸°í™” í˜¸ì¶œ
         base.Start();
     }
 
     /// <summary>
-    /// °ø°İ ÆĞÅÏ ÃÊ±âÈ­ - 2°¡Áö ÆĞÅÏ ¸ğµÎ µî·Ï
+    /// ê³µê²© íŒ¨í„´ ì´ˆê¸°í™” - 2ê°€ì§€ íŒ¨í„´ ëª¨ë‘ ë“±ë¡
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //¸¶±¸ ´øÁö±â
+        //ë§ˆêµ¬ ë˜ì§€ê¸°
         AddAttackPattern(new GoblinJunkPattern(GoblinJunk, 6, 0.1f, this.transform));
 
-        //°íºí¸° ¼ÒÈ¯
+        //ê³ ë¸”ë¦° ì†Œí™˜
         AddAttackPattern(new SummonGoblinPattern(Goblrin, 1, BattleFieldTransform));
 
 
@@ -39,7 +42,7 @@ public class GoblinKing : BaseBoss
     }
 
     /// <summary>
-    /// µî·ÏµÈ °ø°İ ÆĞÅÏ ¸ñ·Ï ¹İÈ¯ (µğ¹ö±×¿ë)
+    /// ë“±ë¡ëœ ê³µê²© íŒ¨í„´ ëª©ë¡ ë°˜í™˜ (ë””ë²„ê·¸ìš©)
     /// </summary>
     private System.Collections.Generic.List<IBossAttackPattern> GetAttackPatterns()
     {

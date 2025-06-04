@@ -28,7 +28,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _warningTilePrefab != null;
+        return boss.Player != null && _warningTilePrefab != null;
     }
 
     /// <summary>
@@ -37,7 +37,6 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
         // 플레이어 위치 가져오기
-        //boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
         int playerY = GridPosition.y;

@@ -1,14 +1,13 @@
+ï»¿using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Goblin : MonoBehaviour
 {
     public float moveSpeed = 2f;
     private Vector2 moveDirection;
-    private GridSystem _gridSystem;
 
     void Start()
     {
-        _gridSystem = FindAnyObjectByType<GridSystem>();
         PickRandomDirection();
     }
 
@@ -16,13 +15,13 @@ public class Goblin : MonoBehaviour
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-        // °¡²û¾¿ ¹æÇâÀ» ·£´ıÇÏ°Ô ¹Ù²ãÁÜ (¿øÇÏ¸é ´õ Á¤±³ÇÑ ·ÎÁ÷ °¡´É)
+        // ê°€ë”ì”© ë°©í–¥ì„ ëœë¤í•˜ê²Œ ë°”ê¿”ì¤Œ (ì›í•˜ë©´ ë” ì •êµí•œ ë¡œì§ ê°€ëŠ¥)
         if (Random.value < 0.005f)
         {
             PickRandomDirection();
         }
 
-        TileReset();
+        CellReset();
     }
 
     void PickRandomDirection()
@@ -32,14 +31,15 @@ public class Goblin : MonoBehaviour
         moveDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
     }
 
-    void TileReset()
+    void CellReset()
     {
-        BaseTile currentTile = _gridSystem.GetTileAt((int)this.transform.position.x, (int)this.transform.position.y);
+        Cell currentCell = GridManager.Instance.GetCellData(new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y,0));
 
-        if (currentTile != null && currentTile.GetState() == BaseTile.TileState.Ready)
-        {
-            currentTile.SetToChargeState();
-        }
+        //ì…€ ì´ˆê¸°í™” - í•¨ìˆ˜(ì§€ê¸ˆì€ êµ¬í˜„ ì•ˆë¨)
+        //if (currentCell != null && currentCell.GetState() == BaseTile.TileState.Ready)
+        //{
+        //    currentTile.SetToChargeState();
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,15 +59,15 @@ public class Goblin : MonoBehaviour
 
         if (battleField != null)
         {
-            // ¹ş¾î³­ ¹æÇâ °è»ê
+            // ë²—ì–´ë‚œ ë°©í–¥ ê³„ì‚°
             Vector3 directionToCenter = (battleField.transform.position - transform.position).normalized;
 
-            // µÇµ¹·Áº¸³¾ À§Ä¡ °è»ê (»ìÂ¦ BattleField ÂÊÀ¸·Î ÀÌµ¿)
-            float returnDistance = 0.5f; // µÇµ¹¸± °Å¸® (¿øÇÏ´Â ¸¸Å­ Á¶Àı)
+            // ë˜ëŒë ¤ë³´ë‚¼ ìœ„ì¹˜ ê³„ì‚° (ì‚´ì§ BattleField ìª½ìœ¼ë¡œ ì´ë™)
+            float returnDistance = 0.5f; // ë˜ëŒë¦´ ê±°ë¦¬ (ì›í•˜ëŠ” ë§Œí¼ ì¡°ì ˆ)
             Vector3 pushBackPosition = transform.position + directionToCenter * returnDistance;
             PickRandomDirection();
 
-            // À§Ä¡ ÀÌµ¿
+            // ìœ„ì¹˜ ì´ë™
             transform.position = pushBackPosition;
 
             return;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game4.Scripts.Character.Player;
+using UnityEngine;
 
 public class Treant : BaseBoss
 {
@@ -11,14 +12,20 @@ public class Treant : BaseBoss
     public GameObject WarningAriaPrefeb;
     public GameObject TreantWindMagic;
 
+    public PlayerController PlayerController;
+    private void Awake()
+    {       
+        // 기본 스탯 설정
+        MaxHealth = 200;
+        PatternCooldown = 0.6f;
+    }
+
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
     protected override void Start()
     {
-        // 기본 스탯 설정
-        MaxHealth = 200;
-        PatternCooldown = 0.6f;
+        PlayerController = FindFirstObjectByType <PlayerController>();
 
         // 부모 클래스 초기화 호출
         base.Start();
@@ -31,21 +38,20 @@ public class Treant : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         //바닥 나무 패턴
-        AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab));
+        AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab, PlayerController));
 
         //작물 던지기 패턴
         AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
 
         //강제 이동 패턴
-        AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic, this.transform));
+        AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic));
 
         //덩굴채찍
-        AddAttackPattern(new TreantVineWhipPattern(WarningTilePrefab, TreeTrapPrefab, 2));
+        AddAttackPattern(new TreantVineWhipPattern(WarningTilePrefab, TreeTrapPrefab, 2, PlayerController));
 
        //종자 뿌리기 - HP 50이하 마다
 
-
-       Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
+        Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
 
     /// <summary>
