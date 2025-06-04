@@ -62,7 +62,7 @@ public class SpiderSilk : MonoBehaviour
 
     private IEnumerator ShrinkAndPullPlayer(PlayerController playerController)
     {
-        float shrinkTime = 0.3f;
+        float shrinkTime = 0.25f;
         float elapsed = 0f;
 
         Vector3 currentScale = transform.localScale;
@@ -86,9 +86,11 @@ public class SpiderSilk : MonoBehaviour
             yield return null;
         }
 
+        //그리드를 월드 좌표로
         playerController.CurrentX = 7;
-        playerController.CurrentY = (int)this.transform.position.y;
+        playerController.CurrentY = (int)this.transform.position.y + 4;
 
+        _playerTransform.position = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerController.CurrentX, playerController.CurrentY, 0));
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }

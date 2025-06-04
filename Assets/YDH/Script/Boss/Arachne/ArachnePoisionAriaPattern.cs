@@ -1,19 +1,24 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using Game4.Scripts.Core;
 public class ArachnePoisionAriaPattern : IBossAttackPattern
 {
     private GameObject _warningTilePrefab;
     private GameObject _explosionEffectPrefab;
 
+    private PlayerController _playerController;
+
     public string PatternName => "ArachnePoisionAria";
 
     /// <summary>
-    /// ¿µ¿ª °ø°İ ÆĞÅÏ »ı¼ºÀÚ
+    /// ì˜ì—­ ê³µê²© íŒ¨í„´ ìƒì„±ì
     /// </summary>
-    public ArachnePoisionAriaPattern(GameObject warningTilePrefab, GameObject explosionEffectPrefab)
+    public ArachnePoisionAriaPattern(GameObject warningTilePrefab, GameObject explosionEffectPrefab, PlayerController playerController)
     {
         _warningTilePrefab = warningTilePrefab;
         _explosionEffectPrefab = explosionEffectPrefab;
+        _playerController = playerController;
     }
 
     public void Execute(BaseBoss boss)
@@ -27,14 +32,17 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// µ¶ ºĞÃâ
+    /// ë… ë¶„ì¶œ
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
-        // ÇÃ·¹ÀÌ¾î À§Ä¡ °¡Á®¿À±â
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
+        // í”Œë ˆì´ì–´ ìœ„ì¹˜ ê°€ì ¸ì˜¤ê¸°
+        //boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
 
-        // °æ°í Å¸ÀÏ Ç¥½Ã (3x3 ¿µ¿ª)
+        // ê²½ê³  íƒ€ì¼ í‘œì‹œ (3x3 ì˜ì—­)
         GameObject[] warningTiles = new GameObject[9];
         int index = 0;
 
@@ -45,29 +53,29 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
                 int tileX = playerX + x;
                 int tileY = playerY + y;
 
-                if (boss.GridSystem.IsValidPosition(tileX, tileY))
+                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
                 {
-                    Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
                     warningTiles[index] = Object.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
                     index++;
                 }
             }
         }
 
-        // Å¸°Ù ¿µ¿ª Áß¾Ó À§Ä¡ °è»ê
-        Vector3 targetCenter = boss.GridSystem.GetWorldPosition(playerX, playerY);
-
-        // °æ°í ´ë±â
+        // ê²½ê³  ëŒ€ê¸°
         yield return new WaitForSeconds(0.5f);
 
-        // ÇÃ·¹ÀÌ¾î°¡ ¿µ¿ª ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        // í”Œë ˆì´ì–´ê°€ ì˜ì—­ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
+        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int currentX = GridPosition.x;
+        int currentY = GridPosition.y;
+
         if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
         {
             boss.ApplyDamageToPlayer(15);
         }
 
-        // °ø°İ ¿µ¿ª¿¡ Æø¹ß ÀÌÆåÆ® »ı¼º
+        // ê³µê²© ì˜ì—­ì— í­ë°œ ì´í™íŠ¸ ìƒì„±
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -75,15 +83,15 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
                 int tileX = playerX + x;
                 int tileY = playerY + y;
 
-                if (boss.GridSystem.IsValidPosition(tileX, tileY))
+                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
                 {
-                    Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
                     boss.CreateDamageEffect(tilePos, _explosionEffectPrefab);
                 }
             }
         }
 
-        // °æ°í Å¸ÀÏ Á¦°Å
+        // ê²½ê³  íƒ€ì¼ ì œê±°
         foreach (GameObject tile in warningTiles)
         {
             if (tile != null)

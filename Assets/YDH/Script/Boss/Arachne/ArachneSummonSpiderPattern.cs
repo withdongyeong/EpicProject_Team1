@@ -43,7 +43,7 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
         for(int i = 0; i < _spiderCount; i++)
         {
             int Y = Random.Range(0, 8);
-            Vector3 pos = boss.GridSystem.GetWorldPosition(8, Y);
+            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, Y, 0));
 
             GameObject randomSpider = _summonSpiders[Random.Range(0, _summonSpiders.Count)];
             GameObject tentacle = Object.Instantiate(randomSpider, pos + new Vector3(cellSize, 0,0), Quaternion.identity);

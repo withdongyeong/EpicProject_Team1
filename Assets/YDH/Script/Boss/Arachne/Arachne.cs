@@ -16,6 +16,8 @@ public class Arachne : BaseBoss
     public GameObject bigSpiderImage;
     public GameObject SpiderLeg;
 
+    public PlayerController PlayerController;
+
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
@@ -28,6 +30,7 @@ public class Arachne : BaseBoss
 
     protected override void Start()
     {
+        PlayerController = FindAnyObjectByType<PlayerController>();
         // 부모 클래스 초기화 호출
         base.Start();
     }
@@ -38,16 +41,16 @@ public class Arachne : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         // 패턴 1: 거미줄
-        //AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3, this.transform));
+        AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3, this.transform));
 
         // 패턴 2: 종자 거미 공격
-        //AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 2, this.transform));
+        AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 2, this.transform));
 
         // 패턴 3: 거미줄 잡기
         AddAttackPattern(new ArachneSpiderSilkPattern(spiderSilkPrefeb, 1, this.transform));
 
         // 패턴 4: 독 분출
-        //AddAttackPattern(new ArachnePoisionAriaPattern(warningAria, poisionAriaPrefeb));
+        AddAttackPattern(new ArachnePoisionAriaPattern(warningAria, poisionAriaPrefeb, PlayerController));
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }

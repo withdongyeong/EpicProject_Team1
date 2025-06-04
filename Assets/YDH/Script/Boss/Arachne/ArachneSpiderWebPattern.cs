@@ -45,9 +45,9 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
             int X = Random.Range(0, 8);
             int Y = Random.Range(0, 8);
 
-            if (boss.GridSystem.IsValidPosition(X, Y))
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int(X,Y,0)))
             {
-                Vector3 pos = boss.GridSystem.GetWorldPosition(X, Y);
+                Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(X, Y, 0));
                 warningTiles.Add(Object.Instantiate(_spiderWebPrefeb, pos, Quaternion.identity));
             }
 

@@ -175,9 +175,6 @@ public class PlayerController : MonoBehaviour
         Cell currentCell = _gridManager.GetCellData(currentPos);
         CombineCell comCell = currentCell?.GetObjectData();
         comCell?.ExecuteSkill();
-        /*if (currentTile != null && currentTile.GetState() == BaseTile.TileState.Ready)
-        {
-            
-        }*/
+        
     }
 }

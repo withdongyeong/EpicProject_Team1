@@ -43,7 +43,7 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
         {
             int Y = Random.Range(0, 8);
 
-            Vector3 pos = boss.GridSystem.GetWorldPosition(8, Y);
+            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, Y, 0));
             GameObject spiderSilk = GameObject.Instantiate(_spiderSilkPrefeb, pos + new Vector3(cellSize, 0,0), Quaternion.identity);
 
             // 초기 스케일
