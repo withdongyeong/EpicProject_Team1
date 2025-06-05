@@ -103,7 +103,7 @@ namespace Borodar.RainbowHierarchy
 
                 switch (SearchTab)
                 {
-                    case 0: // Object
+                    case 0: // ItemObject
                     {
                         DrawSearchByFolderPanel(ForceUpdate);
                         break;

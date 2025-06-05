@@ -47,7 +47,7 @@ public class Boss1DiagonalAttackPattern : IBossAttackPattern
             {
                 Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
                 attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
 
@@ -60,7 +60,7 @@ public class Boss1DiagonalAttackPattern : IBossAttackPattern
             {
                 Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
                 attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
 
@@ -86,7 +86,7 @@ public class Boss1DiagonalAttackPattern : IBossAttackPattern
 
         foreach (GameObject tile in warningTiles)
         {
-            Object.Destroy(tile);
+            ItemObject.Destroy(tile);
         }
     }
 }

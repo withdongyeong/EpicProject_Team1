@@ -270,7 +270,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 617702907852678727}
-  - component: {fileID: 149645879833219213}
   m_Layer: 0
   m_Name: ArchmageStaffTile 2
   m_TagString: Untagged
@@ -298,23 +297,6 @@ Transform:
   - {fileID: 5473117370745862865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &149645879833219213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5452413951180012944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a67e7521a7952b4598ba477102cadde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlaced: 0
-  transparency: 0.5
-  ignoreCollisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &6804249560879116821
 GameObject:
   m_ObjectHideFlags: 0

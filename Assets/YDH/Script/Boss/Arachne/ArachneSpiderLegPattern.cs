@@ -117,7 +117,7 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
             }
         }
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))

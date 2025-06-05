@@ -56,7 +56,7 @@ public class Boss1HalfGridAttackPattern : IBossAttackPattern
                 {
                     Vector3 tilePos = boss.GridSystem.GetWorldPosition(x, y);
                     attackPositions.Add(tilePos);
-                    warningTiles[index] = Object.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
+                    warningTiles[index] = ItemObject.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
                     index++;
                     
                     targetCenter += tilePos;
@@ -91,7 +91,7 @@ public class Boss1HalfGridAttackPattern : IBossAttackPattern
         {
             if (tile != null)
             {
-                Object.Destroy(tile);
+                ItemObject.Destroy(tile);
             }
         }
     }
@@ -102,7 +102,7 @@ public class Boss1HalfGridAttackPattern : IBossAttackPattern
     private IEnumerator MeteorAnimation(BaseBoss boss, Vector3 targetPosition, float duration)
     {
         Vector3 startPosition = boss.transform.position + Vector3.up * 2f;
-        GameObject meteor = Object.Instantiate(_meteorPrefab, startPosition, Quaternion.identity);
+        GameObject meteor = ItemObject.Instantiate(_meteorPrefab, startPosition, Quaternion.identity);
 
         float riseHeight = 5f;
         Vector3 risePosition = startPosition + Vector3.up * riseHeight;
@@ -134,6 +134,6 @@ public class Boss1HalfGridAttackPattern : IBossAttackPattern
             yield return null;
         }
 
-        Object.Destroy(meteor);
+        ItemObject.Destroy(meteor);
     }
 }
