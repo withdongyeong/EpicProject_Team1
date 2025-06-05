@@ -7,11 +7,11 @@ public class GoblinJunkPattern : IBossAttackPattern
     private int _objectCount;
     private float _shotInterval;
     private Transform _transform;
-    // ¼¼±â¿Í °¢µµ ¹üÀ§ ¼³Á¤
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private float minForce = 10f;
     private float maxForce = 16f;
 
-    private float minAngle = 100f; // ¿ÞÂÊ À§ ¹æÇâ (°¢µµ ´ÜÀ§: µµ)
+    private float minAngle = 100f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½)
     private float maxAngle = 160f;
 
 
@@ -36,26 +36,26 @@ public class GoblinJunkPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// Àâµ¿»ç´Ï ´øÁö±â °ø°Ý
+    /// ï¿½âµ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator GoblrinJunkAttack(BaseBoss boss)
     {
         for(int i  =0; i < _objectCount; i++)
         {
-            // 1. »ý¼º
-            GameObject junk = Object.Instantiate(_junkPrefab, _transform.position, Quaternion.identity);
+            // 1. ï¿½ï¿½ï¿½ï¿½
+            GameObject junk = ItemObject.Instantiate(_junkPrefab, _transform.position, Quaternion.identity);
 
-            // 2. Rigidbody2D ¾ò±â
+            // 2. Rigidbody2D ï¿½ï¿½ï¿½
             Rigidbody2D rb = junk.GetComponent<Rigidbody2D>();
 
-            // 3. ·£´ý °¢µµ¿Í Èû °è»ê
+            // 3. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
             float angle = Random.Range(minAngle, maxAngle);
             float force = Random.Range(minForce, maxForce);
 
-            // 4. ¹æÇâ º¤ÅÍ °è»ê
+            // 4. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.right;
 
-            // 5. ÈûÀ» °¡ÇÔ
+            // 5. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             rb.AddForce(direction * force, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(_shotInterval);

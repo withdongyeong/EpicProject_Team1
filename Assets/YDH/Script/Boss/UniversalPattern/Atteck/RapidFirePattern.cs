@@ -27,14 +27,14 @@ public class RapidFirePattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ¿¬¼Ó ¹ß»ç ½ÇÇà
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator ExecuteRapidFire(BaseBoss boss)
     {
         for (int i = 0; i < _shotCount; i++)
         {
             Vector3 direction = (boss.Player.transform.position - boss.transform.position).normalized;
-            GameObject projectileObj = Object.Instantiate(_projectilePrefab, boss.transform.position, Quaternion.identity);
+            GameObject projectileObj = ItemObject.Instantiate(_projectilePrefab, boss.transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
 
             if (projectile != null)

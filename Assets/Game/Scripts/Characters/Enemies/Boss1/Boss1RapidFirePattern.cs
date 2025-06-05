@@ -38,7 +38,7 @@ public class Boss1RapidFirePattern : IBossAttackPattern
         for (int i = 0; i < _shotCount; i++)
         {
             Vector3 direction = (boss.Player.transform.position - boss.transform.position).normalized;
-            GameObject projectileObj = Object.Instantiate(_projectilePrefab, boss.transform.position, Quaternion.identity);
+            GameObject projectileObj = ItemObject.Instantiate(_projectilePrefab, boss.transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             
             if (projectile != null)

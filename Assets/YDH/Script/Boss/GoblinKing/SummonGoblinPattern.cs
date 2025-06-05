@@ -28,7 +28,7 @@ public class SummonGoblinPattern : IBossAttackPattern
 
 
    /// <summary>
-   /// °íºí¸° ¼ÒÈ¯ ÆÐÅÏ
+   /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½
    /// </summary>
    /// <param name="boss"></param>
    /// <returns></returns>
@@ -36,7 +36,7 @@ public class SummonGoblinPattern : IBossAttackPattern
     {
         for (int i = 0; i < _goblinCount; i++)
         {
-            // 1. »ý¼º
+            // 1. ï¿½ï¿½ï¿½ï¿½
             int randomNumber = Random.Range(0, 3);
             Vector3 SummonPoint =new Vector3();
             if (randomNumber == 0)
@@ -52,7 +52,7 @@ public class SummonGoblinPattern : IBossAttackPattern
                 SummonPoint = new Vector3(0, 3, 0);
             }
 
-            GameObject Goblin = Object.Instantiate(_goblin, _transform.position + SummonPoint, Quaternion.identity);
+            GameObject Goblin = ItemObject.Instantiate(_goblin, _transform.position + SummonPoint, Quaternion.identity);
 
             yield return new WaitForSeconds(0.3f);
         }

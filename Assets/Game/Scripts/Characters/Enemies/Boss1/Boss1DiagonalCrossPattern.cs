@@ -49,7 +49,7 @@ public class Boss1DiagonalCrossPattern : IBossAttackPattern
             {
                 Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
                 attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
         
@@ -71,7 +71,7 @@ public class Boss1DiagonalCrossPattern : IBossAttackPattern
         
         foreach (GameObject tile in warningTiles)
         {
-            Object.Destroy(tile);
+            ItemObject.Destroy(tile);
         }
         
         // 새로운 플레이어 위치 가져오기
@@ -88,7 +88,7 @@ public class Boss1DiagonalCrossPattern : IBossAttackPattern
         {
             Vector3 pos = boss.GridSystem.GetWorldPosition(x, playerY);
             attackPositions.Add(pos);
-            warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+            warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
         }
         
         yield return new WaitForSeconds(0.8f);
@@ -107,7 +107,7 @@ public class Boss1DiagonalCrossPattern : IBossAttackPattern
         
         foreach (GameObject tile in warningTiles)
         {
-            Object.Destroy(tile);
+            ItemObject.Destroy(tile);
         }
     }
 }

@@ -285,7 +285,7 @@ namespace Borodar.RainbowHierarchy
         private void ButtonFilter(Rect rect)
         {
             var icon = HierarchyEditorUtility.GetFilterButtonIcon();
-            if (!GUI.Button(rect, new GUIContent(icon, "Object Rules"), GUIStyle.none)) return;
+            if (!GUI.Button(rect, new GUIContent(icon, "ItemObject Rules"), GUIStyle.none)) return;
 
             HierarchyRulesetEditorV2.ShowInspector(_ruleset, _currentObject);
             Close();
