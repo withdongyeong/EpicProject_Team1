@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/@Cosmos/Scenes/GameScene.unity
     guid: f166845db9e124f409260762f031650e
   - enabled: 1
     path: Assets/Game/Scenes/GameplayScene.unity
@@ -21,10 +21,10 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/BuildingTestScene.unity
     guid: ba4a44ec4d5b2d343ab9f85405dc9eea
   - enabled: 1
-    path: Assets/Scenes/TestSceneKYH.unity
+    path: Assets/@Cosmos/Scenes/KYH/TestSceneKYH.unity
     guid: b3d321c635b8c42409246259574e83d1
   - enabled: 1
-    path: Assets/Kwak/Scene/GameSceneKwak.unity
+    path: Assets/@Cosmos/Scenes/KMJ/GameSceneKwak.unity
     guid: 155d772dc9f63f5428e43168f6b20668
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
