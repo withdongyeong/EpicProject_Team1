@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 617702907852678727}
   - component: {fileID: 149645879833219213}
   m_Layer: 0
-  m_Name: TestObject
+  m_Name: SummonHealTotem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4046878892072189709}
+      addedObject: {fileID: 7148607066057588208}
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
 --- !u!1 &2819033670838076842 stripped
 GameObject:
@@ -245,7 +245,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
   m_PrefabInstance: {fileID: 2417255313038373094}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4046878892072189709
+--- !u!114 &7148607066057588208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,11 +254,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7883511200769664488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2742857bdbf13f84dac9b3469f9077ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 34a4d65ed86327c429ac659ddeee8eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  cooldown: 5
+  cooldown: 2
+  _totem: {fileID: 6485138151210822274, guid: 83fe982a8da4949438c47405cc30f8b2, type: 3}
+  _itemData: {fileID: 11400000, guid: acdd5726d7b9a8341a5650cb4326d7d8, type: 2}
 --- !u!1001 &4546730263573223143
 PrefabInstance:
   m_ObjectHideFlags: 0
