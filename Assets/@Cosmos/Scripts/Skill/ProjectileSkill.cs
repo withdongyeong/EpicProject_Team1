@@ -2,7 +2,7 @@
 
 public class ProjectileSkill : SkillBase
 {
-    protected int damage = 10;
+    [SerializeField] protected int damage = 10;
     [SerializeField] protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
 

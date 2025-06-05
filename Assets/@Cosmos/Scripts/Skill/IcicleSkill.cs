@@ -2,6 +2,8 @@
 
 public class IcicleSkill : ProjectileSkill
 {
+    private bool isBossStopped = false; // 보스가 멈춰있는지 여부
+
     private void Awake()
     {
         damage = 5;
@@ -14,7 +16,15 @@ public class IcicleSkill : ProjectileSkill
             Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
+            // 보스가 멈춰있는지 확인
+            if (targetEnemy != null && targetEnemy.IsStopped)
+            {
+                projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage * 4); // 보스가 멈춰있으면 데미지 4배 증가
+            }
+            else
+            { 
+                projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
+            }
             projectile.BossDebuff = BossDebuff.Frostbite; // 동상 상태 이상 적용
         }
     }
