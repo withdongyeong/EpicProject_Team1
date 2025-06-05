@@ -61,7 +61,7 @@ public class SpiderSilk : MonoBehaviour
 
     private IEnumerator ShrinkAndPullPlayer(PlayerController playerController)
     {
-        float shrinkTime = 0.3f;
+        float shrinkTime = 0.25f;
         float elapsed = 0f;
 
         Vector3 currentScale = transform.localScale;
@@ -69,7 +69,7 @@ public class SpiderSilk : MonoBehaviour
         Vector3 endScale = new Vector3(0.1f, 0.3f, 1);
 
         Vector3 playerStartPos = _playerTransform.position;
-        Vector3 playerEndPos = new Vector3(7f, _playerTransform.position.y, 0f);
+        Vector3 playerEndPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(7, playerController.CurrentY, 0));
 
         while (elapsed < shrinkTime)
         {
@@ -84,10 +84,11 @@ public class SpiderSilk : MonoBehaviour
 
             yield return null;
         }
+        playerController.CurrentX = 7;
+        playerController.CurrentY = (int)this.transform.position.y + 4;
+
+        _playerTransform.position = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerController.CurrentX, playerController.CurrentY, 0));
 
         Destroy(gameObject);
-
-        playerController.CurrentX = 7;
-        playerController.CurrentY = (int)this.transform.position.y;
     }
 }
