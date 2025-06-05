@@ -1,6 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 토템을 발동시켰을때 넘겨줄 정보입니다
+/// </summary>
+public class TotemContext
+{
+    /// <summary>
+    /// 몇번째로 발동하는지 입니다 시작은 0입니다.
+    /// </summary>
+    public int order = 0;
+
+    public TotemContext Clone()
+    {
+        return new TotemContext
+        {
+            order = this.order
+        };
+    }
+}
+
 public class TotemManager : SummonBase
 {
     //현재 활성화된 토템 리스트입니다
@@ -23,17 +43,20 @@ public class TotemManager : SummonBase
     /// </summary>
     private void ActivateTotemList()
     {
+        TotemContext totemContext = new();
+
         for(int i=0; i<_currentTotemList.Count; i++)
         {
             if(i<_currentTotemList.Count - 1)
             {
-                _currentTotemList[i].ActivateTotem();
+                _currentTotemList[i].ActivateTotem(totemContext);
             }
             else
             {
                 Debug.Log("else 들어옴");
-                _currentTotemList[i].ActivateTotemBetter();
+                _currentTotemList[i].ActivateTotemBetter(totemContext);
             }
+            UpdateTotemContext(totemContext);
             _currentTotemList[i].DestroyTotem();
         }
         _currentTotemList.Clear();
@@ -52,6 +75,11 @@ public class TotemManager : SummonBase
             ActivateTotemList();
             Debug.Log("토템발사!");
         }
+    }
+
+    private void UpdateTotemContext(TotemContext context)
+    {
+        context.order++;
     }
 
 }

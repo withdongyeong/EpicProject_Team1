@@ -26,7 +26,7 @@ public abstract class BaseTotem : MonoBehaviour
     /// <summary>
     /// 토템의 능력을 발동시키는 메서드입니다
     /// </summary>
-    public virtual void ActivateTotem()
+    public virtual void ActivateTotem(TotemContext context)
     {
 
     }
@@ -34,10 +34,10 @@ public abstract class BaseTotem : MonoBehaviour
     /// <summary>
     /// 더 좋은 능력을 발동시키는 메서드입니다. 안건드리면 두번 발동합니다
     /// </summary>
-    public virtual void ActivateTotemBetter()
+    public virtual void ActivateTotemBetter(TotemContext context)
     {
-        ActivateTotem();
-        ActivateTotem();
+        ActivateTotem(context);
+        ActivateTotem(context);
     }
 
     public virtual void DestroyTotem()
