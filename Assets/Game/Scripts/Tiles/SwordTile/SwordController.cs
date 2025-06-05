@@ -161,8 +161,6 @@ public class SwordController : MonoBehaviour
         // 각 검마다 다른 속도 설정
         flySpeed = UnityEngine.Random.Range(6f, 12f);
         turnSpeed = UnityEngine.Random.Range(120f, 540f);
-        
-        Debug.Log($"Sword initialized with speed: {flySpeed}, turn speed: {turnSpeed}");
     }
 
     /// <summary>
@@ -179,8 +177,9 @@ public class SwordController : MonoBehaviour
     
         // 랜덤 색상 적용
         ApplyRandomColor();
-    
-        Debug.Log($"Sword initialized at {transform.position}");
+
+        // 5초 후에 오브젝트 파괴
+        Destroy(gameObject, 5f);
     }
 
     /// <summary>
@@ -203,8 +202,6 @@ public class SwordController : MonoBehaviour
         {
             renderer.color = randomColor;
         }
-    
-        Debug.Log($"Applied random color: {randomColor}");
     }
 
     /// <summary>
@@ -235,17 +232,19 @@ public class SwordController : MonoBehaviour
     /// 비행 상태 처리
     /// </summary>
     private void HandleFlyingState()
+
     {
-        Vector3 playerPosition = player != null ? player.position : Vector3.zero;
+        SwordCenter swordCenter = FindAnyObjectByType<SwordCenter>();
+        Vector3 centerPosition = swordCenter != null ? swordCenter.transform.position : Vector3.zero;
 
         // 플레이어를 향해 방향 조정
-        Vector3 toPlayer = (playerPosition - transform.position);
+        Vector3 toPlayer = (centerPosition - transform.position);
         if (toPlayer.magnitude > 0.1f)
         {
             float targetDirection = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
             
             // 부드럽게 방향 전환
-            currentDirection = Mathf.LerpAngle(currentDirection, targetDirection, turnSpeed * Time.deltaTime / 360f);
+            currentDirection = Mathf.LerpAngle(currentDirection, targetDirection, turnSpeed * Time.deltaTime / 250f);
         }
         
         // 현재 방향으로 이동
@@ -255,7 +254,7 @@ public class SwordController : MonoBehaviour
         );
         
         rb.linearVelocity = moveDirection * flySpeed;
-        
+         
         // 검의 회전을 이동 방향에 맞춤
         transform.rotation = Quaternion.Euler(0, 0, currentDirection);
     }
@@ -395,8 +394,6 @@ public class SwordController : MonoBehaviour
         // 상태 변경 시 처리
         OnStateEnter(newState, oldState);
         OnStateChanged?.Invoke(newState);
-        
-        Debug.Log($"Sword state changed: {oldState} -> {newState}");
     }
 
     /// <summary>
@@ -451,8 +448,6 @@ public class SwordController : MonoBehaviour
             skillType = SkillType.Dash; // 기본값으로 리셋
         
             ChangeState(SwordState.Flying);
-        
-            Debug.Log("Sword returned to flying state");
         }
     }
 
@@ -469,8 +464,7 @@ public class SwordController : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeDamage(_damage);
-
-                Debug.Log($"Sword hit monster for {_damage} damage!");
+                skillDashTimer = 0.02f;
             }
         }
     }

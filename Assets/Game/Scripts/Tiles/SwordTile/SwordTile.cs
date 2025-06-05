@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SwordTile : BaseTile
 {
     private int _damage = 10; // 기본 공격력
     protected BaseBoss targetEnemy;
     private GameObject[] _swordPrefabs;
+    private GameObject _summonedSword;
 
     private void Awake()
     {
@@ -24,10 +26,8 @@ public class SwordTile : BaseTile
     public override void Activate()
     {
         base.Activate();
-        Debug.Log("SwordTile activated, checking for target enemy...");
         if (GetState() == TileState.Activated && targetEnemy != null)
         {
-            Debug.Log("SwordTile activated, summoning sword...");
             SummonSword();
         }
     }
@@ -35,7 +35,7 @@ public class SwordTile : BaseTile
     /// <summary>
     /// 검 소환
     /// </summary>
-    private void SummonSword()
+    public void SummonSword()
     {
         if (targetEnemy != null)
         {
@@ -52,8 +52,8 @@ public class SwordTile : BaseTile
             }
 
             // 검 소환
-            GameObject newSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-            SwordController swordController = newSword.GetComponent<SwordController>();
+            _summonedSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            SwordController swordController = _summonedSword.GetComponent<SwordController>();
             SwordManager swordManager = FindAnyObjectByType<SwordManager>();
             if (swordController != null)
             {
@@ -64,7 +64,6 @@ public class SwordTile : BaseTile
                 Debug.LogWarning("SwordController component not found on the summoned sword prefab.");
             }
 
-            Debug.Log("Sword summoned successfully!");
             // 타겟 적에게 검 발사
             swordManager.ActivateSkill(targetEnemy.transform.position);
         }

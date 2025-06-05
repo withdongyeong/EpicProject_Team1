@@ -456,6 +456,8 @@ GameObject:
   - component: {fileID: 1725828651089743520}
   - component: {fileID: 8832922001530299585}
   - component: {fileID: 8204458606227087175}
+  - component: {fileID: -332185138013614057}
+  - component: {fileID: -2474958080145503045}
   m_Layer: 0
   m_Name: Player(Summon)
   m_TagString: Untagged
@@ -669,6 +671,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-332185138013614057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249486552240177032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768224857529cd1458ba9f1f66aca7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2474958080145503045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249486552240177032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186cfd257bf2e7147868347aa13f207c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _protectionEffectPrefab: {fileID: 6624461110895506490, guid: b00624a9e8e86494ea59dd15f6153f76, type: 3}
 --- !u!1 &4924547627108980569
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class SpiderWeb : MonoBehaviour
@@ -9,7 +9,7 @@ public class SpiderWeb : MonoBehaviour
 
         if(playerController != null)
         {
-            playerController.IsBind = true; // ÇÃ·¹ÀÌ¾î¸¦ ¹­À½
+            playerController.PlayerDebuff.Bind(1f); // í”Œë ˆì´ì–´ë¥¼ ë¬¶ìŒ
             StartCoroutine(ReleasePlayerAfterDelay(playerController));
         }
 
@@ -17,8 +17,7 @@ public class SpiderWeb : MonoBehaviour
 
     private IEnumerator ReleasePlayerAfterDelay(PlayerController player)
     {
-        yield return new WaitForSeconds(1f); // 1ÃÊ ´ë±â
-        player.IsBind = false;              // ´Ù½Ã ÀÌµ¿ °¡´ÉÇÏ°Ô
-        Destroy(gameObject);   // À¥ ¿ÀºêÁ§Æ®´Â Á¦°Å
+        yield return new WaitForSeconds(1f); // 1ì´ˆ ëŒ€ê¸°
+        Destroy(gameObject);   // ì›¹ ì˜¤ë¸Œì íŠ¸ëŠ” ì œê±°
     }
 }

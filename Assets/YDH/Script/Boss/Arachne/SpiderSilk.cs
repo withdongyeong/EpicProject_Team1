@@ -1,5 +1,4 @@
-using Game4.Scripts.Character.Player;
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class SpiderSilk : MonoBehaviour
@@ -41,7 +40,7 @@ public class SpiderSilk : MonoBehaviour
             yield return null;
         }
 
-        // ÀÚ¶ó´Ù ¸ØÃè´Ù¸é Á¾·á. ¾Æ´Ï¸é »ç¶óÁü
+        // ìë¼ë‹¤ ë©ˆì·„ë‹¤ë©´ ì¢…ë£Œ. ì•„ë‹ˆë©´ ì‚¬ë¼ì§
         if (_isGrowing)
             Destroy(gameObject);
     }
@@ -54,7 +53,7 @@ public class SpiderSilk : MonoBehaviour
         {
             _isGrowing = false;
             _playerTransform = collision.transform;
-            playerController.IsBind = true;
+            playerController.PlayerDebuff.Bind(0.3f);
 
             StartCoroutine(ShrinkAndPullPlayer(playerController));
         }
@@ -90,6 +89,5 @@ public class SpiderSilk : MonoBehaviour
 
         playerController.CurrentX = 7;
         playerController.CurrentY = (int)this.transform.position.y;
-        playerController.IsBind = false;
     }
 }
