@@ -3,16 +3,14 @@
 public class ProtectionTile : BaseTile
 {
     [SerializeField] private int _protectionAmount = 5;
-    [SerializeField] private GameObject _protectionEffectPrefab;
-    
-    private PlayerHealth _playerHealth;
-    private GameObject _activeProtectionEffect;
+   
+    private PlayerProtection _playerProtection;
     
     public int ProtectionAmount { get => _protectionAmount; set => _protectionAmount = value; }
     
     private void Start()
     {
-        _playerHealth = FindAnyObjectByType<PlayerHealth>();
+        _playerProtection = FindAnyObjectByType<PlayerProtection>();
     }
     
     /// <summary>
@@ -21,7 +19,7 @@ public class ProtectionTile : BaseTile
     public override void Activate()
     {
         base.Activate();
-        if (GetState() == TileState.Activated && _playerHealth != null)
+        if (GetState() == TileState.Activated && _playerProtection != null)
         {
             GrantProtection();
         }
@@ -32,60 +30,7 @@ public class ProtectionTile : BaseTile
     /// </summary>
     private void GrantProtection()
     {
-        _playerHealth.SetProtection(true, _protectionAmount);
-        
-        // 보호 이펙트 생성
-        CreateProtectionEffect();
-        
-        // 일정 시간 후 이펙트 제거
-        Invoke(nameof(RemoveProtectionEffect), _protectionAmount);
-    }
-    
-    /// <summary>
-    /// 보호막 이펙트 생성
-    /// </summary>
-    private void CreateProtectionEffect()
-    {
-        if (_protectionEffectPrefab != null && _playerHealth != null)
-        {
-            // 기존 이펙트가 있다면 제거
-            if (_activeProtectionEffect != null)
-            {
-                Destroy(_activeProtectionEffect);
-            }
-            
-            // 플레이어 위치에 실드 이펙트 생성
-            _activeProtectionEffect = Instantiate(
-                _protectionEffectPrefab, 
-                _playerHealth.transform.position, 
-                Quaternion.identity, 
-                _playerHealth.transform
-            );
-        }
-    }
-    
-    /// <summary>
-    /// 보호막 이펙트 제거
-    /// </summary>
-    private void RemoveProtectionEffect()
-    {
-        if (_activeProtectionEffect != null)
-        {
-            Destroy(_activeProtectionEffect);
-            _activeProtectionEffect = null;
-        }
-    }
-    
-    private void OnDestroy()
-    {
-        // 실행 중인 Invoke 취소
-        CancelInvoke(nameof(RemoveProtectionEffect));
-        
-        // 이펙트 제거
-        if (_activeProtectionEffect != null)
-        {
-            Destroy(_activeProtectionEffect);
-        }
+        _playerProtection.SetProtection(true, _protectionAmount);
     }
 
     public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)

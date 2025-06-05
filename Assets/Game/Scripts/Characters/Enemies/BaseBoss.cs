@@ -153,8 +153,6 @@ public abstract class BaseBoss : MonoBehaviour
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         
-        Debug.Log($"{GetType().Name} took {damage} damage. Current Health: {_currentHealth}/{_maxHealth}");
-        
         if (_currentHealth <= 0)
         {
             Die();

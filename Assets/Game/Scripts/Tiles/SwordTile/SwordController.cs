@@ -161,8 +161,6 @@ public class SwordController : MonoBehaviour
         // 각 검마다 다른 속도 설정
         flySpeed = UnityEngine.Random.Range(6f, 12f);
         turnSpeed = UnityEngine.Random.Range(120f, 540f);
-        
-        Debug.Log($"Sword initialized with speed: {flySpeed}, turn speed: {turnSpeed}");
     }
 
     /// <summary>
@@ -179,8 +177,9 @@ public class SwordController : MonoBehaviour
     
         // 랜덤 색상 적용
         ApplyRandomColor();
-    
-        Debug.Log($"Sword initialized at {transform.position}");
+
+        // 5초 후에 오브젝트 파괴
+        Destroy(gameObject, 5f);
     }
 
     /// <summary>
@@ -203,8 +202,6 @@ public class SwordController : MonoBehaviour
         {
             renderer.color = randomColor;
         }
-    
-        Debug.Log($"Applied random color: {randomColor}");
     }
 
     /// <summary>
@@ -397,8 +394,6 @@ public class SwordController : MonoBehaviour
         // 상태 변경 시 처리
         OnStateEnter(newState, oldState);
         OnStateChanged?.Invoke(newState);
-        
-        Debug.Log($"Sword state changed: {oldState} -> {newState}");
     }
 
     /// <summary>
@@ -453,8 +448,6 @@ public class SwordController : MonoBehaviour
             skillType = SkillType.Dash; // 기본값으로 리셋
         
             ChangeState(SwordState.Flying);
-        
-            Debug.Log("Sword returned to flying state");
         }
     }
 
@@ -472,8 +465,6 @@ public class SwordController : MonoBehaviour
             {
                 monster.TakeDamage(_damage);
                 skillDashTimer = 0.02f;
-
-                Debug.Log($"Sword hit monster for {_damage} damage!");
             }
         }
     }

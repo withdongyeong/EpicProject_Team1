@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class FireBallTile : ProjectileTile
+/// <summary>
+/// FireBallTile은 FireBoltTile을 상속받아 세 번의 발사체를 순차적으로 발사하는 타일입니다.
+/// </summary>
+public class FireBallTile : FireBoltTIle
 {
     private void Awake()
     {
@@ -8,15 +12,23 @@ public class FireBallTile : ProjectileTile
         _chargeTime = 3f;
     }
 
-    protected override void FireProjectile()
+    /// <summary>
+    /// 세 번의 발사체를 0.5초 간격으로 발사합니다.
+    /// </summary>
+    public override void Activate()
     {
-        if (projectilePrefab != null)
+        base.Activate();
+        if (GetState() == TileState.Activated && targetEnemy != null)
         {
-            Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
-            GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.AbnormalConditions = Debuffs.Burning; // 화염 상태 이상 적용   
-            projectile.Initialize(direction, Projectile.ProjectileTeam.Player,_damage);
+            StartCoroutine(FireProjectileWithDelay());
         }
+    }
+
+    private IEnumerator FireProjectileWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // 0.5초 딜레이 후 발사
+        FireProjectile();
+        yield return new WaitForSeconds(0.5f); // 0.5초 딜레이 후 발사
+        FireProjectile();
     }
 }

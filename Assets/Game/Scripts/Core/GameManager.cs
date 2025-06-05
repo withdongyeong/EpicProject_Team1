@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     
     [Header("타일프리팹을 넣는 리스트")]
     private List<GameObject> tilePrefabList = new();
+
+    [Header("보드 프리팹")] public GameObject nightBoard;
     
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI countdownText;
@@ -189,10 +191,10 @@ public class GameManager : MonoBehaviour
         // 플레이어의 스타트 애니메이션 재생 (속도 조정 포함)
         if (_player != null && _player.Animator != null)
         {
-            // UnscaledTime 모드에서 적절한 속도로 조정
-            _player.Animator.speed = 1.0f; // 정상 속도로 설정
             _player.Animator.SetTrigger("Start");
         }
+        
+        
 
         // 카운트다운 시작
         float timeLeft = countdownDuration;
@@ -232,11 +234,31 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
+    /// 땅 이펙트 프리팹 생성
+    /// </summary>
+    public void SpawnGroundEffect()
+    {
+        if (nightBoard != null && _player != null)
+        {
+            //Vector3 spawnPosition = _player.transform.position;
+            Vector3 spawnPosition = new Vector3(-3.5f, -0.5f, 0f);
+            
+            GameObject effect = Instantiate(nightBoard, spawnPosition, Quaternion.identity);
+            
+            Debug.Log("[GameManager] 지팡이 땅 찍기 이펙트 생성!");
+        }
+        else
+        {
+            Debug.LogWarning("[GameManager] GroundEffectPrefab이 할당되지 않았습니다!");
+        }
+    }
+    
+    /// <summary>
     /// 플레이어 캐릭터 생성
     /// </summary>
     private void SpawnPlayer()
     {
-        Vector3 position = _gridSystem.GetWorldPosition(0, 0);
+        Vector3 position = _gridSystem.GetWorldPosition(4, 4);
         GameObject playerObj = Instantiate(playerPrefab, position, Quaternion.identity);
         _player = playerObj.GetComponent<PlayerController>();
         _playerHealth = playerObj.GetComponent<PlayerHealth>();
