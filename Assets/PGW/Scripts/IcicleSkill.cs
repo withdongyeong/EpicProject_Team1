@@ -15,7 +15,7 @@ public class IcicleSkill : ProjectileSkill
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
-            projectile.AbnormalConditions = Debuffs.Frostbite; // 동상 상태 이상 적용
+            projectile.BossDebuff = BossDebuff.Frostbite; // 동상 상태 이상 적용
         }
     }
 }

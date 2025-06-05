@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63108d32c43d714c94ee4afd873b843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalObject: {fileID: 5452413951180012944, guid: 4e04d13afbd76294abff0d80893e3ee3, type: 3}
+  originalObject: {fileID: 5452413951180012944, guid: 8b8c5056fd2e10a42b87d2c6f24bd649, type: 3}
 --- !u!1 &61962381
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,6 +2304,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 568023074742637454, guid: 3b76cf904a96b334bbb51f4ec2f3e4ad, type: 3}
   maxSize: 8
   startPoint: {fileID: 1911385607}
+  draggablePlane: {fileID: 9195849366027700149, guid: dcab27d1e96c22a4f8e2c3d7293e2adf, type: 3}
 --- !u!4 &2052188540
 Transform:
   m_ObjectHideFlags: 0
