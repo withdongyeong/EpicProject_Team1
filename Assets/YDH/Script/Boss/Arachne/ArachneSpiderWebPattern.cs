@@ -7,20 +7,16 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
 {
     private GameObject _spiderWebPrefeb;
     private int _spiderWebCount;
-    private Transform _arachneTransform;
-
-    private float cellSize = 1f;
 
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
     /// 거미줄 설치 패턴 생성자
     /// </summary>
-    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount, Transform arachneTransform)
+    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount)
     {
         _spiderWebPrefeb = spiderWebPrefeb;
         _spiderWebCount = spiderWebCount;
-        _arachneTransform = arachneTransform;
     }
 
     public void Execute(BaseBoss boss)

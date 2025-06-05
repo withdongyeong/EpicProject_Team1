@@ -418,8 +418,8 @@ MonoBehaviour:
   spiderSilkPrefeb: {fileID: 296322699537774834, guid: 5f63f474a8bc3cd41bf81beed0c9d0d1, type: 3}
   warningAria: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
   poisionAriaPrefeb: {fileID: 2655093744207988788, guid: 63d695d173b2ac44dbc842f625309c9d, type: 3}
-  bigSpiderImage: {fileID: 0}
-  SpiderLeg: {fileID: 0}
+  SpiderLeg: {fileID: 2655093744207988788, guid: 63d695d173b2ac44dbc842f625309c9d, type: 3}
+  PlayerController: {fileID: 0}
 --- !u!1 &7869579781745359309
 GameObject:
   m_ObjectHideFlags: 0

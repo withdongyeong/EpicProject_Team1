@@ -4,7 +4,6 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
 {
     private GameObject _spiderSilkPrefeb;
     private int _spiderSilkCount;
-    private Transform _arachneTransform;
 
     public int gridSize = 8;
     public float cellSize = 1f;
@@ -15,11 +14,10 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
     /// <summary>
     /// 실 붙잡기 생성자
     /// </summary>
-    public ArachneSpiderSilkPattern(GameObject spiderSilkPrefeb, int spiderSilkCount , Transform ArachneTransform)
+    public ArachneSpiderSilkPattern(GameObject spiderSilkPrefeb, int spiderSilkCount)
     {
         _spiderSilkPrefeb = spiderSilkPrefeb;
         _spiderSilkCount = spiderSilkCount;
-        _arachneTransform = ArachneTransform;
     }
 
     public void Execute(BaseBoss boss)

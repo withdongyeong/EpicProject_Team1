@@ -6,7 +6,6 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
 {
     private List<GameObject> _summonSpiders;
     private int _spiderCount;
-    private Transform _arachneTransform;
 
     private float cellSize = 1f;
     public string PatternName => "ArachneSummonSpider";
@@ -15,11 +14,10 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
     /// <summary>
     /// 거미 소환 공격 생성자
     /// </summary>
-    public ArachneSummonSpiderPattern(List<GameObject> summonSpiders, int spiderCount, Transform arachneTransform)
+    public ArachneSummonSpiderPattern(List<GameObject> summonSpiders, int spiderCount)
     {
         _summonSpiders = summonSpiders;
         _spiderCount = spiderCount;
-        _arachneTransform = arachneTransform;
     }
 
     public void Execute(BaseBoss boss)
