@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 7814933823277459607}
   - component: {fileID: 2219378295472462248}
   - component: {fileID: 4247251401535051797}
+  - component: {fileID: -6323340495086877731}
   m_Layer: 0
   m_Name: SlimeEnemy
   m_TagString: Untagged
@@ -324,6 +325,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6323340495086877731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495918271223003766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff99289d900b6147a370fb57199ab42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6782726571736680263
 GameObject:
   m_ObjectHideFlags: 0

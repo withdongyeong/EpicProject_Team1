@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 6241308547908966337}
   - component: {fileID: 6931405586310835657}
   - component: {fileID: 3222606888487416493}
+  - component: {fileID: 1417393484511572909}
   m_Layer: 0
   m_Name: GoblinKing
   m_TagString: Untagged
@@ -336,6 +337,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GoblinJunk: {fileID: 7511229365781717503, guid: c5b688f11f5ed024ea929b1f674d90fd, type: 3}
   Goblrin: {fileID: 7940718574539853970, guid: 37e9be34dae77b34c9fd4b4dce71d483, type: 3}
+--- !u!114 &1417393484511572909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021514852974272917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff99289d900b6147a370fb57199ab42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8423576569950836404
 GameObject:
   m_ObjectHideFlags: 0

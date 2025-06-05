@@ -9,7 +9,7 @@ public class SpiderWeb : MonoBehaviour
 
         if(playerController != null)
         {
-            playerController.PlayerDebuff.Bind(1f); // 플레이어를 묶음
+            playerController.Bind(1f); // 플레이어를 묶음
             StartCoroutine(ReleasePlayerAfterDelay(playerController));
         }
 

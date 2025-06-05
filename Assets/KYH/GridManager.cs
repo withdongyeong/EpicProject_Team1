@@ -58,7 +58,7 @@ public class GridCell
     }
 }
 
-public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class GridManager : Singleton<GridManager>//, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject cellPrefab; // 그리드 셀에 사용할 프리팹
     [SerializeField] private int maxSize = 5;
@@ -69,7 +69,8 @@ public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandl
     private GameObject startPoint; // 시작점 오브젝트
     private GridCell[,] grid;
 
-    private Transform draggedTransform; // 드래그 되고 있는 오브젝트의 트랜스폼입니다.
+    //private Transform draggedTransform; // 드래그 되고 있는 오브젝트의 트랜스폼입니다.
+    [SerializeField] GameObject draggablePlane; // 드래그를 담당할 오브젝트입니다.
     
 
     protected override void Awake()
@@ -116,6 +117,8 @@ public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandl
                 grid[x, y].sr = go.GetComponent<SpriteRenderer>(); // 셀의 스프라이트 렌더러를 저장
             }
         }
+        //드래그를 담당하는 평면을 생성합니다
+        SpawnDragPlane();
     }
 
     public Vector3 GridToWorldPosition(Vector3Int gridPos)
@@ -200,85 +203,84 @@ public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandl
 
     #region 곽민준이 구현하는 배치된 오브젝트 드래그
 
-    public void OnBeginDrag(PointerEventData eventData)
+    //public void OnBeginDrag(PointerEventData eventData)
+    //{
+    //    //마우스 포인터로 누른 지점의 월드 포지션을 가져옵니다
+    //    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+    //    worldPos.z = 0f;
+
+    //    //이게 누른 지점의 그리드 포지션입니다
+    //    Vector3Int clickedGridPosition = WorldToGridPosition(worldPos);
+
+    //    //비어있는지 확인합니다 비어있으면 취소합니다
+    //    if(IsCellAvailable(clickedGridPosition))
+    //    {
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        //통합된 셀 스크립트를 가져옵니다
+    //        CombineCell combineCell =  GetCellData(clickedGridPosition).GetObjectData();
+
+    //        //통합된 셀 밑에 있는 각 셀들
+    //        foreach (Cell cell in combineCell.GetComponentsInChildren<Cell>())
+    //        {
+    //            Transform child = cell.transform;
+    //            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+    //            GridManager.Instance.ReleaseCell(gridPos);
+    //        }
+
+    //        draggedTransform = combineCell.transform.parent;
+    //        UpdateDragPosition();
+    //    }
+    //}
+
+    //public void OnDrag(PointerEventData eventData)
+    //{
+    //    if (draggedTransform == null)
+    //        return;
+    //    UpdateDragPosition();
+    //}
+
+    //public void OnEndDrag(PointerEventData eventData)
+    //{
+    //    if (draggedTransform == null) return;
+
+    //    //배치 불가능할시
+    //    if (!CanPlaceBlock())
+    //    {
+    //        // 배치가 불가능한 경우 복제본 제거
+    //        Debug.Log("배치 불가능한 위치입니다.");
+    //        //TODO: 이거 파괴하지말고 인벤토리로 되돌려야합니다!
+    //        Destroy(draggedTransform.gameObject);
+    //        draggedTransform = null;
+    //        return;
+    //    }
+
+    //    //배치 가능할시
+
+    //    //배치 위치로 오브젝트 이동
+    //    Vector3 corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(draggedTransform.GetComponentInChildren<CombineCell>().coreCell.transform.position));
+    //    draggedTransform.position = corePos;
+
+    //    foreach (Cell cell in draggedTransform.GetComponentsInChildren<Cell>())
+    //    {
+    //        Transform child = cell.transform;
+    //        Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+    //        GridManager.Instance.OccupyCell(gridPos, cell);
+    //    }
+
+    //}
+
+    //private void UpdateDragPosition()
+    //{
+    //    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+    //    worldPos.z = 0f;
+    //    draggedTransform.position = worldPos;
+    //}
+
+    public bool CanPlaceBlock(Transform draggedTransform)
     {
-        //마우스 포인터로 누른 지점의 월드 포지션을 가져옵니다
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-        worldPos.z = 0f;
-
-        //이게 누른 지점의 그리드 포지션입니다
-        Vector3Int clickedGridPosition = WorldToGridPosition(worldPos);
-
-        //비어있는지 확인합니다 비어있으면 취소합니다
-        if(IsCellAvailable(clickedGridPosition))
-        {
-            return;
-        }
-        else
-        {
-            //통합된 셀 스크립트를 가져옵니다
-            CombineCell combineCell =  GetCellData(clickedGridPosition).GetObjectData();
-
-            //통합된 셀 밑에 있는 각 셀들
-            foreach (Cell cell in combineCell.GetComponentsInChildren<Cell>())
-            {
-                Transform child = cell.transform;
-                Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-                GridManager.Instance.ReleaseCell(gridPos);
-            }
-
-            draggedTransform = combineCell.transform.parent;
-            UpdateDragPosition();
-        }
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (draggedTransform == null)
-            return;
-        UpdateDragPosition();
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (draggedTransform == null) return;
-
-        //배치 불가능할시
-        if (!CanPlaceBlock())
-        {
-            // 배치가 불가능한 경우 복제본 제거
-            Debug.Log("배치 불가능한 위치입니다.");
-            //TODO: 이거 파괴하지말고 인벤토리로 되돌려야합니다!
-            Destroy(draggedTransform.gameObject);
-            draggedTransform = null;
-            return;
-        }
-
-        //배치 가능할시
-
-        //배치 위치로 오브젝트 이동
-        Vector3 corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(draggedTransform.GetComponentInChildren<CombineCell>().coreCell.transform.position));
-        draggedTransform.position = corePos;
-
-        foreach (Cell cell in draggedTransform.GetComponentsInChildren<Cell>())
-        {
-            Transform child = cell.transform;
-            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-            GridManager.Instance.OccupyCell(gridPos, cell);
-        }
-
-    }
-
-    private void UpdateDragPosition()
-    {
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-        worldPos.z = 0f;
-        draggedTransform.position = worldPos;
-    }
-
-    private bool CanPlaceBlock()
-    {
-        if (draggedTransform == null) return false;
         foreach (Cell cell in draggedTransform.GetComponentsInChildren<Cell>())
         {
             Transform child = cell.transform;
@@ -289,6 +291,14 @@ public class GridManager : Singleton<GridManager>, IBeginDragHandler, IDragHandl
             }
         }
         return true; // 모든 셀이 가능하면 true 반환
+    }
+
+    private void SpawnDragPlane()
+    {
+        Vector3 planePosition = (GridToWorldPosition(Vector3Int.zero) + GridToWorldPosition(new Vector3Int(maxSize, maxSize, 0))) / 2 - new Vector3(0.5f,0.5f,0);
+        var plane = Instantiate(draggablePlane, planePosition,Quaternion.identity,transform);
+        plane.transform.localScale = new Vector3(maxSize, maxSize, 1);
+
     }
 
     #endregion

@@ -1,24 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class ArachneSpiderWebPattern : IBossAttackPattern
 {
     private GameObject _spiderWebPrefeb;
     private int _spiderWebCount;
-    private Transform _arachneTransform;
-
-    private float cellSize = 1f;
 
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
-    /// �Ź��� ��ġ ���� ������
+    /// 거미줄 설치 패턴 생성자
     /// </summary>
-    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount, Transform arachneTransform)
+    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount)
     {
         _spiderWebPrefeb = spiderWebPrefeb;
         _spiderWebCount = spiderWebCount;
-        _arachneTransform = arachneTransform;
     }
 
     public void Execute(BaseBoss boss)
@@ -32,19 +30,24 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// �Ź��� ��ġ
+    /// 거미줄 설치
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
+        List<GameObject> warningTiles = new List<GameObject>();
+
         for (int i = 0; i < _spiderWebCount; i++)
         {
-            int row = Random.Range(-15,-7);
-            int column = Random.Range(-4, 3);
-            Vector3 tentaclePos = _arachneTransform.position + new Vector3(row * cellSize, column * cellSize, 0);
+            int X = Random.Range(0, 8);
+            int Y = Random.Range(0, 8);
 
-            GameObject tentacle = ItemObject.Instantiate(_spiderWebPrefeb, tentaclePos, Quaternion.identity);
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int(X,Y,0)))
+            {
+                Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(X, Y, 0));
+                warningTiles.Add(Object.Instantiate(_spiderWebPrefeb, pos, Quaternion.identity));
+            }
+
+            yield return new WaitForSeconds(0.2f);
         }
-
-            yield return 0; 
     }
 }

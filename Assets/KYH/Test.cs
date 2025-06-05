@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Test : MonoBehaviour
@@ -8,6 +8,4 @@ public class Test : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
-
-
 }

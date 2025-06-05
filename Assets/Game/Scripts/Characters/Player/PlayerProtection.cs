@@ -9,6 +9,7 @@ public class PlayerProtection : MonoBehaviour
     // 보호 상태 변수
     private bool _isProtected = false;
     private int _protectionAmount = 0;
+    public int ProtectionAmount => _protectionAmount;
     private Coroutine _protectionCoroutine;
     private GameObject _activeProtectionEffect;
 

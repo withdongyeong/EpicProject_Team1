@@ -53,7 +53,7 @@ public class SpiderSilk : MonoBehaviour
         {
             _isGrowing = false;
             _playerTransform = collision.transform;
-            playerController.PlayerDebuff.Bind(0.3f);
+            playerController.Bind(0.3f);
 
             StartCoroutine(ShrinkAndPullPlayer(playerController));
         }

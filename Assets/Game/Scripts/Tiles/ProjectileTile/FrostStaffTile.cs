@@ -15,7 +15,7 @@ public class FrostStaffTile : ProjectileTile
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, _damage);
-            projectile.AbnormalConditions = AbnormalConditions.Frostbite; // 동상 상태 이상 적용
+            projectile.BossDebuff = BossDebuff.Frostbite; // 동상 상태 이상 적용
         }
     }
 }
