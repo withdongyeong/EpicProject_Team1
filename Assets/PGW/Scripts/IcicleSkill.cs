@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class FireBoltTIle : ProjectileTile
+public class IcicleSkill : ProjectileSkill
 {
     private void Awake()
     {
-        _damage = 5;
-        _chargeTime = 3f;
+        damage = 5;
     }
+
     protected override void FireProjectile()
     {
         if (projectilePrefab != null)
@@ -14,8 +14,8 @@ public class FireBoltTIle : ProjectileTile
             Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(direction, Projectile.ProjectileTeam.Player,_damage);
-            projectile.AbnormalConditions = AbnormalConditions.Burning; // 화염 상태 이상 적용   
+            projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
+            projectile.AbnormalConditions = AbnormalConditions.Frostbite; // 동상 상태 이상 적용
         }
     }
 }

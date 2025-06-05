@@ -26,19 +26,16 @@ public class SwordTile : BaseTile
     public override void Activate()
     {
         base.Activate();
-        Debug.Log("SwordTile activated, checking for target enemy...");
         if (GetState() == TileState.Activated && targetEnemy != null)
         {
-            Debug.Log("SwordTile activated, summoning sword...");
             SummonSword();
-            DestroyAfterDelay(5f); // 5초 후에 검 제거
         }
     }
 
     /// <summary>
     /// 검 소환
     /// </summary>
-    private void SummonSword()
+    public void SummonSword()
     {
         if (targetEnemy != null)
         {
@@ -67,26 +64,8 @@ public class SwordTile : BaseTile
                 Debug.LogWarning("SwordController component not found on the summoned sword prefab.");
             }
 
-            Debug.Log("Sword summoned successfully!");
             // 타겟 적에게 검 발사
             swordManager.ActivateSkill(targetEnemy.transform.position);
-        }
-    }
-
-    IEnumerator DestroyAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Debug.Log("Deactivating SwordTile after delay.");
-        DestroySword();
-    }
-
-    private void DestroySword()
-    {
-        if (_summonedSword != null)
-        {
-            Destroy(_summonedSword);
-            _summonedSword = null;
-            Debug.Log("Summoned sword destroyed.");
         }
     }
 

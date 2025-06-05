@@ -21,7 +21,6 @@ public abstract class SkillBase : MonoBehaviour
     {
         if (IsOnCooldown)
         {
-            //Debug.Log($"{skillName} is on cooldown. Remaining time: {GetCooldownRemaining()} seconds.");
             return false;
         }
 

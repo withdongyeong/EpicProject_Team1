@@ -1,13 +1,13 @@
-using NUnit.Framework;
+ï»¿using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-//È­»ó, ±âÀı
+//í™”ìƒ, ê¸°ì ˆ
 public enum AbnormalConditions
 {
-    None,// »óÅÂ ÀÌ»ó ¾øÀ½
+    None,// ìƒíƒœ ì´ìƒ ì—†ìŒ
     Burning,
-    Faint
+    Frostbite
 }
 
 public class BossAbnormalConditions

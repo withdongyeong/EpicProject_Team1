@@ -33,8 +33,6 @@ public class ShieldTile : BaseTile
         _playerShield.SetShield(true, _shieldAmount);
     }
 
-    
-
     public override void ModifyTilePropertiesByItemData(InventoryItemData itemData)
     {
         base.ModifyTilePropertiesByItemData(itemData);
