@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Game4.Scripts.Character.Player;
 
 public class TreeTrapPattern : IBossAttackPattern
 {

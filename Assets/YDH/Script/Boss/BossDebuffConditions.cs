@@ -7,7 +7,7 @@ public enum Debuffs
 {
     None,// 상태 이상 없음
     Burning,
-    Faint
+    Frostbite
 }
 
 public class BossDebuffConditions

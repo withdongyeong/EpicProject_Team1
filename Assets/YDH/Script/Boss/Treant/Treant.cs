@@ -1,5 +1,4 @@
-﻿using Game4.Scripts.Character.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Treant : BaseBoss
 {

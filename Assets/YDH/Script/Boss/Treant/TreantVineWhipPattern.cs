@@ -1,5 +1,4 @@
-﻿using Game4.Scripts.Character.Player;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

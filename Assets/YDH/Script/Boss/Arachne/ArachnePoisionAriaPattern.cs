@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using static UnityEditor.Experimental.GraphView.GraphView;
-using Game4.Scripts.Core;
 public class ArachnePoisionAriaPattern : IBossAttackPattern
 {
     private GameObject _warningTilePrefab;
