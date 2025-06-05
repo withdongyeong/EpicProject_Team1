@@ -17,7 +17,8 @@ public abstract class BaseBoss : MonoBehaviour
     private float _patternCooldown = 0.6f;
 
     [Header("상태 이상 클래스")]
-    private BossAbnormalConditions AbnormalConditions;
+    private BossDebuffs _bossDebuff;
+    private bool _isStopped = false; // 공격 중지 여부
 
     // 컴포넌트 참조
     private GridSystem _gridSystem;
@@ -47,7 +48,12 @@ public abstract class BaseBoss : MonoBehaviour
     /// 패턴 쿨다운 프로퍼티
     /// </summary>
     public float PatternCooldown { get => _patternCooldown; protected set => _patternCooldown = value; }
-    
+
+    /// <summary>
+    /// 공격 중지 여부 프로퍼티
+    /// </summary>
+    public bool IsStopped { get => _isStopped; set => _isStopped = value; }
+
     /// <summary>
     /// 그리드 시스템 프로퍼티
     /// </summary>
@@ -74,21 +80,23 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
-        AbnormalConditions = new BossAbnormalConditions();
-
         _currentHealth = _maxHealth;
         
         // 컴포넌트 참조 설정
         _gridSystem = FindAnyObjectByType<GridSystem>();
         _player = FindAnyObjectByType<PlayerController>();
         _playerHealth = _player != null ? _player.GetComponent<PlayerHealth>() : null;
-        
+        _bossDebuff = GetComponent<BossDebuffs>();
+
         // 공격 패턴 초기화
         InitializeAttackPatterns();
         
         // 공격 루틴 시작
         StartCoroutine(AttackRoutine());
-        
+
+        // 상태이상 적용 루틴 시작
+        StartCoroutine(ApplyDebuffsRoutine());
+
         Debug.Log($"{GetType().Name} spawned with {_maxHealth} HP!");
     }
 
@@ -113,7 +121,7 @@ public abstract class BaseBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(1f); // 초반 딜레이
         
-        while (!_isDead)
+        while (!_isDead && !_isStopped)
         {
             ExecuteRandomPattern();
             yield return new WaitForSeconds(_patternCooldown);
@@ -202,29 +210,70 @@ public abstract class BaseBoss : MonoBehaviour
             _playerHealth.TakeDamage(damage);
         }
     }
-    /// <summary>
-    /// 상태이상 함수 
-    /// </summary>
-    public void AddAbnormalCondition(AbnormalConditions abnormalConditions)
-    {
-        AbnormalConditions.bossAbnormalConditions.Add(abnormalConditions);
-    }
 
     /// <summary>
-    /// 상태이상 갯수 읽어오기
+    /// 상태이상 적용 루틴
     /// </summary>
     /// <returns></returns>
-    public List<AbnormalConditions> GetAbnormalCondition()
+    private IEnumerator ApplyDebuffsRoutine()
     {
-        return AbnormalConditions.bossAbnormalConditions;
+        yield return new WaitForSeconds(1f); // 초반 딜레이
+
+        while (!_isDead && !_isStopped)
+        {
+            _bossDebuff.ApplyAllDebuffs();
+            yield return new WaitForSeconds(1f);
+        }
+
     }
 
     /// <summary>
-    /// 상태이상 한번에 소멸
+    /// 공격 중지 메소드
     /// </summary>
-    /// <param name="abnormalConditions"></param>
-    public void RemoveAbnormalCondition(AbnormalConditions abnormalConditions)
+    /// <param name="time"></param>
+    public void StopAttack(float time)
     {
-        AbnormalConditions.AbnormalConditionDestruction(abnormalConditions);
+        StartCoroutine(StopAttackRoutine(time));
+    }
+
+    /// <summary>
+    /// 공격 중지 루틴
+    /// </summary>
+    /// <param name="time">중지 시간</param>
+    public IEnumerator StopAttackRoutine(float time)
+    {
+        _isStopped = true;
+        StopCoroutine(AttackRoutine());
+        yield return new WaitForSeconds(time);
+        _isStopped = false;
+        StartCoroutine(AttackRoutine());
+    }
+
+    /// <summary>
+    /// 상태이상 추가
+    /// </summary>
+    /// <param name="debuff">추가할 상태이상</param>
+    public void AddDebuff(BossDebuff debuff)
+    {
+        _bossDebuff.AddDebuff(debuff);
+    }
+
+    /// <summary>
+    /// 상태이상 개수 조회
+    /// </summary>
+    /// <param name="debuff"></param>
+    /// <returns></returns>
+    public int GetDebuffCount(BossDebuff debuff)
+    {
+        return _bossDebuff.Debuffs[(int)debuff];
+    }
+
+    /// <summary>
+    /// 상태이상 제거
+    /// </summary>
+    /// <param name="debuff">제거할 디버프</param>
+    public void RemoveDebuff(BossDebuff debuff)
+    {
+        _bossDebuff.RemoveDebuff(debuff);
     }
 }

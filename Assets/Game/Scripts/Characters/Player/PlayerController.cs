@@ -188,4 +188,13 @@ public class PlayerController : MonoBehaviour
             
         }*/
     }
+
+    /// <summary>
+    /// 플레이어 속박
+    /// </summary>
+    /// <param name="time"></param>
+    public void Bind(float time)
+    {
+        StartCoroutine(_playerDebuff.Bind(time));
+    }
 }

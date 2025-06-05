@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: 202756471961301888}
   - component: {fileID: 6584428701293362191}
   - component: {fileID: -2165134191987080490}
+  - component: {fileID: 7533791057236116923}
   m_Layer: 0
   m_Name: Treant
   m_TagString: Untagged
@@ -601,7 +602,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WarningTilePrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
-  TreeTrapPrefab: {fileID: 3224400336975471812, guid: a1435aee32c5e6c4e90947852d09d69f, type: 3}
+  TreeTrapPrefab: {fileID: 2655093744207988788, guid: 1f85733174b02924cb68fea37977ea9f, type: 3}
   CropsPrefeb: {fileID: 2846354041878384809, guid: 5f2cb985f49e7304fae99980d258738c, type: 3}
   WarningAriaPrefeb: {fileID: 5757200843076905379, guid: 4510058de744fe54bb0e4e494e26f633, type: 3}
   TreantWindMagic: {fileID: 6538816968042166374, guid: a6a6cf60422475140b114e28fb6e0e92, type: 3}
+--- !u!114 &7533791057236116923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541886977982132708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64aae93f9a913d843936795633761d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

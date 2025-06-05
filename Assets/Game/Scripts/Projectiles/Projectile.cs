@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private int damage = 10;
     private float speed = 12f;
     private Vector3 direction;
-    private AbnormalConditions abnormalConditions = AbnormalConditions.None; // 상태 이상
+    private BossDebuff bossDebuff = BossDebuff.None; // 상태 이상
     private ProjectileTeam _team; // 투사체 소속 진영
 
     public enum ProjectileTeam
@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
     public int Damage { get => damage; set => damage = value; }
     public float Speed { get => speed; set => speed = value; }
     public ProjectileTeam Team { get => _team; set => _team = value; }
-    public AbnormalConditions AbnormalConditions { get => abnormalConditions; set => abnormalConditions = value; }
+    public BossDebuff BossDebuff { get => bossDebuff; set => bossDebuff = value; }
 
     /// <summary>
     /// 투사체 초기화
@@ -64,9 +64,9 @@ public class Projectile : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                if(abnormalConditions != AbnormalConditions.None)
+                if(bossDebuff != BossDebuff.None)
                 {
-                    enemy.AddAbnormalCondition(abnormalConditions); // 상태 이상 추가
+                    enemy.AddDebuff(bossDebuff); // 상태 이상 추가
                 }
                 Destroy(gameObject);
             }
