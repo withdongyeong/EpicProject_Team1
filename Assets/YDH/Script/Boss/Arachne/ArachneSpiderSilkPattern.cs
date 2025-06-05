@@ -13,7 +13,7 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
     public string PatternName => "SpiderSilk";
 
     /// <summary>
-    /// ½Ç ºÙÀâ±â »ý¼ºÀÚ
+    /// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public ArachneSpiderSilkPattern(GameObject spiderSilkPrefeb, int spiderSilkCount , Transform ArachneTransform)
     {
@@ -33,7 +33,7 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ½Ç¿¡ ÀâÈ÷¸é ÇÃ·¹ÀÌ¾î °­Á¦·Î ¾ÕÀ¸·Î ÀÌµ¿
+    /// ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     /// </summary>
     /// <param name="boss"></param>
     /// <returns></returns>
@@ -43,16 +43,16 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
         {
             int column = Random.Range(-4, 3);
             Vector3 spiderSilkPos = _arachneTransform.position + new Vector3(-7, column * cellSize, 0);
-            GameObject spiderSilk = Object.Instantiate(_spiderSilkPrefeb, spiderSilkPos, Quaternion.identity);
+            GameObject spiderSilk = ItemObject.Instantiate(_spiderSilkPrefeb, spiderSilkPos, Quaternion.identity);
 
-            // ÃÊ±â ½ºÄÉÀÏ
+            // ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             spiderSilk.transform.localScale = new Vector3(0.1f, 1, 1);
 
-            // »ý¼ºµÈ ¿ÀºêÁ§Æ®¿¡ ÃÊ±â°ª Àü´Þ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê±â°ª ï¿½ï¿½ï¿½ï¿½
             SpiderSilk silkScript = spiderSilk.GetComponent<SpiderSilk>();
             if (silkScript != null)
             {
-                silkScript.Init(spiderSilkPos, gridSize); // ÇÊ¿ä ÆÄ¶ó¹ÌÅÍ Àü´Þ
+                silkScript.Init(spiderSilkPos, gridSize); // ï¿½Ê¿ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
             yield return 0;
         }

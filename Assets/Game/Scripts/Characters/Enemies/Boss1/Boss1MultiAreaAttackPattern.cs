@@ -60,7 +60,7 @@ public class Boss1MultiAreaAttackPattern : IBossAttackPattern
                     {
                         Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
                         attackPositions.Add(tilePos);
-                        warningTiles.Add(Object.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity));
+                        warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity));
                     }
                 }
             }
@@ -96,7 +96,7 @@ public class Boss1MultiAreaAttackPattern : IBossAttackPattern
             // 경고 타일 제거
             foreach (GameObject tile in warningTiles)
             {
-                Object.Destroy(tile);
+                ItemObject.Destroy(tile);
             }
 
             yield return new WaitForSeconds(_attackInterval);
@@ -109,7 +109,7 @@ public class Boss1MultiAreaAttackPattern : IBossAttackPattern
     private IEnumerator MagicSwordAnimation(BaseBoss boss, Vector3 targetPosition, float waitTime)
     {
         Vector3 startPosition = boss.transform.position + Vector3.up * 2f;
-        GameObject sword = Object.Instantiate(_magicSwordPrefab, startPosition, Quaternion.identity);
+        GameObject sword = ItemObject.Instantiate(_magicSwordPrefab, startPosition, Quaternion.identity);
 
         Vector3 direction = (targetPosition - startPosition).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -144,6 +144,6 @@ public class Boss1MultiAreaAttackPattern : IBossAttackPattern
         }
 
         sword.transform.position = targetPosition;
-        Object.Destroy(sword);
+        ItemObject.Destroy(sword);
     }
 }

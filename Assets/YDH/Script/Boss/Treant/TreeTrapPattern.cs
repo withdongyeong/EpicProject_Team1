@@ -25,7 +25,7 @@ public class TreeTrapPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ³ª¹« ÇÔÁ¤ »ý¼º
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator TreeTrap(BaseBoss boss)
     {
@@ -34,22 +34,22 @@ public class TreeTrapPattern : IBossAttackPattern
         List<GameObject> warningTiles = new List<GameObject>();
         List<Vector3> attackPositions = new List<Vector3>();
 
-        ////°¡·Î ¶óÀÎ
+        ////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int x = 0; x < boss.GridSystem.Width; x++)
         {
             Vector3 pos = boss.GridSystem.GetWorldPosition(x, playerY);
             attackPositions.Add(pos);
-            warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+            warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
         }
 
-        // ¼¼·Î ¶óÀÎ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int y = 0; y < boss.GridSystem.Height; y++)
         {
             if (y != playerY)
             {
                 Vector3 pos = boss.GridSystem.GetWorldPosition(0, y);
                 attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
 
@@ -57,13 +57,13 @@ public class TreeTrapPattern : IBossAttackPattern
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
 
-        //¼¼·Î ¶óÀÎ µ¥¹ÌÁö
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (currentX == 0)
         {
             boss.ApplyDamageToPlayer(20);
         }
 
-        //°¡·Î ¶óÀÎ µ¥¹ÌÁö
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (currentY == playerY)
         {
             boss.ApplyDamageToPlayer(20);
@@ -76,7 +76,7 @@ public class TreeTrapPattern : IBossAttackPattern
 
         foreach (GameObject tile in warningTiles)
         {
-            Object.Destroy(tile);
+            ItemObject.Destroy(tile);
         }
     }
 }

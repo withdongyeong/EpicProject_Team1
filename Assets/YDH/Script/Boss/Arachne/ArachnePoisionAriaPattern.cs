@@ -8,7 +8,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     public string PatternName => "ArachnePoisionAria";
 
     /// <summary>
-    /// ¿µ¿ª °ø°Ý ÆÐÅÏ »ý¼ºÀÚ
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public ArachnePoisionAriaPattern(GameObject warningTilePrefab, GameObject explosionEffectPrefab)
     {
@@ -27,14 +27,14 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// µ¶ ºÐÃâ
+    /// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
-        // ÇÃ·¹ÀÌ¾î À§Ä¡ °¡Á®¿À±â
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
 
-        // °æ°í Å¸ÀÏ Ç¥½Ã (3x3 ¿µ¿ª)
+        // ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ Ç¥ï¿½ï¿½ (3x3 ï¿½ï¿½ï¿½ï¿½)
         GameObject[] warningTiles = new GameObject[9];
         int index = 0;
 
@@ -48,26 +48,26 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
                 if (boss.GridSystem.IsValidPosition(tileX, tileY))
                 {
                     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                    warningTiles[index] = Object.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
+                    warningTiles[index] = ItemObject.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
                     index++;
                 }
             }
         }
 
-        // Å¸°Ù ¿µ¿ª Áß¾Ó À§Ä¡ °è»ê
+        // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¾ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
         Vector3 targetCenter = boss.GridSystem.GetWorldPosition(playerX, playerY);
 
-        // °æ°í ´ë±â
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(0.5f);
 
-        // ÇÃ·¹ÀÌ¾î°¡ ¿µ¿ª ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+        // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
         {
             boss.ApplyDamageToPlayer(15);
         }
 
-        // °ø°Ý ¿µ¿ª¿¡ Æø¹ß ÀÌÆåÆ® »ý¼º
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -83,12 +83,12 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
             }
         }
 
-        // °æ°í Å¸ÀÏ Á¦°Å
+        // ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (GameObject tile in warningTiles)
         {
             if (tile != null)
             {
-                Object.Destroy(tile);
+                ItemObject.Destroy(tile);
             }
         }
     }

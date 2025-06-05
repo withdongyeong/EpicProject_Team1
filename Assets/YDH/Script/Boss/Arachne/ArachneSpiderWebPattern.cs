@@ -12,7 +12,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
-    /// °Å¹ÌÁÙ ¼³Ä¡ ÆÐÅÏ »ý¼ºÀÚ
+    /// ï¿½Å¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount, Transform arachneTransform)
     {
@@ -32,7 +32,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// °Å¹ÌÁÙ ¼³Ä¡
+    /// ï¿½Å¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
@@ -42,7 +42,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
             int column = Random.Range(-4, 3);
             Vector3 tentaclePos = _arachneTransform.position + new Vector3(row * cellSize, column * cellSize, 0);
 
-            GameObject tentacle = Object.Instantiate(_spiderWebPrefeb, tentaclePos, Quaternion.identity);
+            GameObject tentacle = ItemObject.Instantiate(_spiderWebPrefeb, tentaclePos, Quaternion.identity);
         }
 
             yield return 0; 

@@ -2,23 +2,46 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Camera cam;
     private Vector3 offset;
     private int rotationZ = 0;
-    public GameObject originalObject; // 원본 오브젝트
+    private GameObject originalObject; // 원본 오브젝트
     private GameObject dragCopy;
+    private bool isDragging = false;
+    
+    private StoreSlot storeSlot;
 
 
     private void Awake()
     {
         cam = Camera.main;
+        storeSlot = GetComponent<StoreSlot>();
     }
+
+    private void Update()
+    {
+        if (isDragging)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RotatePreviewBlock();
+            }
+        }
+    }
+
+    #region Event Handlers
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         
+        originalObject = storeSlot.GetObject(); // StoreSlot에서 원본 오브젝트를 가져옵니다
+        if (originalObject == null)
+        {
+            Debug.Log("오브젝트가 할당되지 않았습니다.");
+            return; // 오브젝트가 없으면 드래그 시작하지 않음
+        }
         // 드래그 위치 맞추기
         Vector3 worldPoint = cam.ScreenToWorldPoint(eventData.position);
         worldPoint.z = 0;
@@ -29,7 +52,6 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         
         offset = dragCopy.transform.position - worldPoint;
         dragCopy.transform.position = offset;
-        Destroy(dragCopy.GetComponent<DragTransparentCopy>());
 
         // 복제본을 투명하게 설정
         foreach (var sr in dragCopy.GetComponentsInChildren<SpriteRenderer>())
@@ -85,7 +107,7 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //배치 위치로 오브젝트 복사 
         Vector3 corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(dragCopy.GetComponentInChildren<CombineCell>().coreCell.transform.position));
         GameObject placedObject = Instantiate(originalObject, corePos, dragCopy.transform.rotation, GridManager.Instance.transform);
-        Destroy(placedObject.GetComponent<DragTransparentCopy>());
+        
         
         foreach (Cell cell in placedObject.GetComponentsInChildren<Cell>())
         {
@@ -94,10 +116,16 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
         
+        storeSlot.BuyObject();
+        
         
         
         Destroy(dragCopy);
     }
+
+    #endregion
+    
+    
     
     //블럭 배치가 가능한지 확인하는 메서드
     private bool CanPlaceBlock()
@@ -115,8 +143,6 @@ public class StoreObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         return true; // 모든 셀이 가능하면 true 반환
     }
     
-
-
     private void RotatePreviewBlock()
     {
         rotationZ = (rotationZ +90) % 360; // 90도씩 회전

@@ -61,7 +61,7 @@ public class TileBuilder
                     Vector3 centerPos = gridSystem.GetWorldPosition(startX, startY);
                     
                     // 타일 생성 (회전값은 0으로 설정 - ShapeData에 이미 회전이 반영됨)
-                    GameObject tileObj = Object.Instantiate(tilePrefab, centerPos, Quaternion.identity);
+                    GameObject tileObj = ItemObject.Instantiate(tilePrefab, centerPos, Quaternion.identity);
                     BaseTile tile = tileObj.GetComponent<BaseTile>();
                     
                     // 타일 속성 설정
@@ -229,7 +229,7 @@ public class TileBuilder
         if (_highlightTilePrefab != null)
         {
             Vector3 worldPos = gridSystem.GetWorldPosition(gridX, gridY);
-            GameObject highlight = Object.Instantiate(_highlightTilePrefab, worldPos, Quaternion.identity);
+            GameObject highlight = ItemObject.Instantiate(_highlightTilePrefab, worldPos, Quaternion.identity);
             
             // 하이라이트에 색상 적용
             SpriteRenderer renderer = highlight.GetComponentInChildren<SpriteRenderer>();

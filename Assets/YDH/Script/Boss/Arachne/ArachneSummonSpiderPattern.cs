@@ -13,7 +13,7 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
 
 
     /// <summary>
-    /// °Å¹Ì ¼ÒÈ¯ °ø°Ý »ý¼ºÀÚ
+    /// ï¿½Å¹ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public ArachneSummonSpiderPattern(List<GameObject> summonSpiders, int spiderCount, Transform arachneTransform)
     {
@@ -33,8 +33,8 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// Á÷¼±À¸·Î ¿òÁ÷ÀÌ´Â °Å¹Ì¸¦ °Å¹Ì¸®½ºÆ®¿¡¼­ ·£´ýÀ¸·Î ²¨³»¼­ ¼ÒÈ¯ 
-    /// ¼ÒÈ¯µÈ °Å¹Ì´Â Á÷¼±À¸·Î ºü¸£°Ô ¿òÁ÷ÀÓ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Å¹Ì¸ï¿½ ï¿½Å¹Ì¸ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ 
+    /// ï¿½ï¿½È¯ï¿½ï¿½ ï¿½Å¹Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="boss"></param>
     /// <returns></returns>
@@ -46,7 +46,7 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
             Vector3 tentaclePos = _arachneTransform.position + new Vector3(-4, column * cellSize, 0);
 
             GameObject randomSpider = _summonSpiders[Random.Range(0, _summonSpiders.Count)];
-            GameObject tentacle = Object.Instantiate(randomSpider, tentaclePos, Quaternion.identity);
+            GameObject tentacle = ItemObject.Instantiate(randomSpider, tentaclePos, Quaternion.identity);
 
             yield return new WaitForSeconds(0.3f);
         }

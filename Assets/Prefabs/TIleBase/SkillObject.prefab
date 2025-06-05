@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952072043331698490}
-  - component: {fileID: 7878787560512912469}
+  - component: {fileID: 144520220868488941}
   m_Layer: 0
-  m_Name: Object
+  m_Name: SkillObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8687408947308703364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7878787560512912469
+--- !u!114 &144520220868488941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,14 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7951068133944047977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a67e7521a7952b4598ba477102cadde, type: 3}
+  m_Script: {fileID: 11500000, guid: b9dcdd78ef0f0c0458fc063d0e3216d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlaced: 0
-  transparency: 0.5
-  ignoreCollisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  sprite: {fileID: 0}
 --- !u!1001 &1364691630411670707
 PrefabInstance:
   m_ObjectHideFlags: 0

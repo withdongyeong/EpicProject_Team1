@@ -26,17 +26,17 @@ public class DiagonalCrossPattern : IBossAttackPattern
     }
 
     /// <summary>
-    /// ´ë°¢¼± + ½ÊÀÚ °ø°Ý ½ÇÇà
+    /// ï¿½ë°¢ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator ExecuteDiagonalCrossAttack(BaseBoss boss)
     {
         boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
 
-        // 1´Ü°è: ´ë°¢¼± °æ°í »ý¼º
+        // 1ï¿½Ü°ï¿½: ï¿½ë°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         List<GameObject> warningTiles = new List<GameObject>();
         List<Vector3> attackPositions = new List<Vector3>();
 
-        // ¿ì»ó´Ü-ÁÂÇÏ´Ü ´ë°¢¼±
+        // ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ë°¢ï¿½ï¿½
         int offset = playerY - playerX;
         for (int x = 0; x < boss.GridSystem.Width; x++)
         {
@@ -45,13 +45,13 @@ public class DiagonalCrossPattern : IBossAttackPattern
             {
                 Vector3 pos = boss.GridSystem.GetWorldPosition(x, y);
                 attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
 
         yield return new WaitForSeconds(0.8f);
 
-        // ´ë°¢¼± °ø°Ý ½ÇÇà
+        // ï¿½ë°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         bool isOnDiagonal = (currentY - currentX) == (playerY - playerX);
 
@@ -67,29 +67,29 @@ public class DiagonalCrossPattern : IBossAttackPattern
 
         foreach (GameObject tile in warningTiles)
         {
-            Object.Destroy(tile);
+            ItemObject.Destroy(tile);
         }
 
-        // »õ·Î¿î ÇÃ·¹ÀÌ¾î À§Ä¡ °¡Á®¿À±â
+        // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         boss.GridSystem.GetXY(boss.Player.transform.position, out playerX, out playerY);
 
-        // 2´Ü°è: ½ÊÀÚ °æ°í »ý¼º
+        // 2ï¿½Ü°ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         warningTiles = new List<GameObject>();
         attackPositions = new List<Vector3>();
 
         yield return new WaitForSeconds(0.3f);
 
-        // °¡·Î ¹æÇâ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int x = 0; x < boss.GridSystem.Width; x++)
         {
             Vector3 pos = boss.GridSystem.GetWorldPosition(x, playerY);
             attackPositions.Add(pos);
-            warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+            warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
         }
 
         yield return new WaitForSeconds(0.8f);
 
-        // ½ÊÀÚ °ø°Ý ½ÇÇà
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         boss.GridSystem.GetXY(boss.Player.transform.position, out currentX, out currentY);
         if (currentY == playerY)
         {
@@ -103,7 +103,7 @@ public class DiagonalCrossPattern : IBossAttackPattern
 
         foreach (GameObject tile in warningTiles)
         {
-            Object.Destroy(tile);
+            ItemObject.Destroy(tile);
         }
     }
 }
