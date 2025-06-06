@@ -52,7 +52,7 @@ public class SummonGoblinPattern : IBossAttackPattern
                 SummonPoint = new Vector3(0, 3, 0);
             }
 
-            GameObject Goblin = ItemObject.Instantiate(_goblin, _transform.position + SummonPoint, Quaternion.identity);
+            GameObject Goblin = TileObject.Instantiate(_goblin, _transform.position + SummonPoint, Quaternion.identity);
 
             yield return new WaitForSeconds(0.3f);
         }

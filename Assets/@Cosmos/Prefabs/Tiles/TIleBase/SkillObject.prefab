@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952072043331698490}
-  - component: {fileID: 144520220868488941}
+  - component: {fileID: 82030637887893111}
   m_Layer: 0
   m_Name: SkillObject
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8687408947308703364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &144520220868488941
+--- !u!114 &82030637887893111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dcdd78ef0f0c0458fc063d0e3216d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  data: {fileID: 0}
+  tileInfo:
+    tileName: 
+    description: 
+    tileSprite: {fileID: 0}
+    tileGrade: 0
+    tileCost: 0
 --- !u!1001 &1364691630411670707
 PrefabInstance:
   m_ObjectHideFlags: 0

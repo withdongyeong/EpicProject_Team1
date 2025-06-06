@@ -4,6 +4,7 @@ using UnityEngine;
 public class CombineCell : MonoBehaviour
 {
     public GameObject coreCell;
+    private SpriteRenderer sr;
     public SkillBase[] skills;
 
     private void Awake()
@@ -13,11 +14,15 @@ public class CombineCell : MonoBehaviour
         {
             coreCell = transform.GetChild(0).gameObject;
         }
-        
         skills = GetComponents<SkillBase>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
 
+    public SpriteRenderer GetSprite()
+    {
+        return sr;
+    }
     public void ExecuteSkill()
     {
         if (skills == null || skills.Length == 0)
