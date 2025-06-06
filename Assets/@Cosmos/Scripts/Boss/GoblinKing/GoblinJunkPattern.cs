@@ -43,7 +43,7 @@ public class GoblinJunkPattern : IBossAttackPattern
         for(int i  =0; i < _objectCount; i++)
         {
             // 1. ����
-            GameObject junk = ItemObject.Instantiate(_junkPrefab, _transform.position, Quaternion.identity);
+            GameObject junk = TileObject.Instantiate(_junkPrefab, _transform.position, Quaternion.identity);
 
             // 2. Rigidbody2D ���
             Rigidbody2D rb = junk.GetComponent<Rigidbody2D>();

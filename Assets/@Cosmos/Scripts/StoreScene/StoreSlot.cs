@@ -46,6 +46,6 @@ public class StoreSlot : MonoBehaviour
         this.objectPrefab = prefab;
         isPurchased = false; // 초기화
         image.color = Color.white; // 초기 색상 설정
-        image.sprite = prefab.GetComponent<ItemObject>().GetSprite(); // 아이템 오브젝트의 스프라이트 설정
+        image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
     }
 }

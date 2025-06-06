@@ -133,6 +133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dcdd78ef0f0c0458fc063d0e3216d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 2abc9d380e40d4649a4ba6f27ca7b0d7, type: 2}
+  tileInfo:
+    tileName: 
+    description: 
+    tileSprite: {fileID: 0}
+    tileGrade: 0
+    tileCost: 0
 --- !u!1001 &2417255313038373094
 PrefabInstance:
   m_ObjectHideFlags: 0

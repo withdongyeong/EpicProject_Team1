@@ -58,7 +58,7 @@ public class InventoryItemPlacer
     {
         if (_inventoryGrid == null)
         {
-            _inventoryGrid = ItemObject.FindAnyObjectByType<InventoryGrid>();
+            _inventoryGrid = TileObject.FindAnyObjectByType<InventoryGrid>();
             if (_inventoryGrid == null)
             {
                 Debug.LogError("인벤토리 그리드 참조를 찾을 수 없습니다");

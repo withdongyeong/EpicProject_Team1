@@ -55,7 +55,7 @@ public class Boss1AreaAttackPattern : IBossAttackPattern
                 if (boss.GridSystem.IsValidPosition(tileX, tileY))
                 {
                     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                    warningTiles[index] = ItemObject.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
+                    warningTiles[index] = TileObject.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
                     index++;
                 }
             }
@@ -101,7 +101,7 @@ public class Boss1AreaAttackPattern : IBossAttackPattern
         {
             if (tile != null)
             {
-                ItemObject.Destroy(tile);
+                TileObject.Destroy(tile);
             }
         }
     }
@@ -112,7 +112,7 @@ public class Boss1AreaAttackPattern : IBossAttackPattern
     private IEnumerator MagicSwordAnimation(BaseBoss boss, Vector3 targetPosition, float waitTime)
     {
         Vector3 startPosition = boss.transform.position + Vector3.up * 2f;
-        GameObject sword = ItemObject.Instantiate(_magicSwordPrefab, startPosition, Quaternion.identity);
+        GameObject sword = TileObject.Instantiate(_magicSwordPrefab, startPosition, Quaternion.identity);
 
         Vector3 direction = (targetPosition - startPosition).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -147,6 +147,6 @@ public class Boss1AreaAttackPattern : IBossAttackPattern
         }
 
         sword.transform.position = targetPosition;
-        ItemObject.Destroy(sword);
+        TileObject.Destroy(sword);
     }
 }
