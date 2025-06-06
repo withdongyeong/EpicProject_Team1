@@ -11,6 +11,7 @@ public class ProtectionSkill : SkillBase
     /// </summary>
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         _playerProtection = FindAnyObjectByType<PlayerProtection>();
         if (_playerProtection != null)
         {

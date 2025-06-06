@@ -10,6 +10,7 @@ public class TotemSummonSkill : SkillBase
 
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         _totemManager = FindAnyObjectByType<TotemManager>();
         if (_totemManager != null)
         {

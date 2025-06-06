@@ -234,8 +234,8 @@ public class SwordController : MonoBehaviour
     private void HandleFlyingState()
 
     {
-        SwordCenter swordCenter = FindAnyObjectByType<SwordCenter>();
-        Vector3 centerPosition = swordCenter != null ? swordCenter.transform.position : Vector3.zero;
+        GridSystem gridSystem = FindAnyObjectByType<GridSystem>();
+        Vector3 centerPosition = gridSystem.GetWorldPosition(4, 4);
 
         // 플레이어를 향해 방향 조정
         Vector3 toPlayer = (centerPosition - transform.position);

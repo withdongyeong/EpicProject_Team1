@@ -32,7 +32,10 @@ public abstract class SkillBase : MonoBehaviour
     /// <summary>
     /// 자식 클래스에서 반드시 구현해야 하는 스킬 효과
     /// </summary>
-    protected abstract void Activate(GameObject user);
+    protected virtual void Activate(GameObject user)
+    {
+        SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
+    }
 
     /// <summary>
     /// 남은 쿨타임 반환
