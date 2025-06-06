@@ -783,7 +783,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 5.6354165
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 657b3b46000000009b5ee119
+  m_ApplyToSortingLayers: 9b5ee119657b3b460000000001325f31
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2021,8 +2021,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 434200219
-  m_SortingLayer: -2
+  m_SortingLayerID: 1178303333
+  m_SortingLayer: -1
   m_SortingOrder: -5
   m_Sprite: {fileID: 2801986895543016705, guid: 698f28f4c57f0ff4285879d89b4b1bda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
