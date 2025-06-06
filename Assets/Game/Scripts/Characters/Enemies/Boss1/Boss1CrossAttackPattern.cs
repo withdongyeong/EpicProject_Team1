@@ -43,7 +43,7 @@ public class Boss1CrossAttackPattern : IBossAttackPattern
         {
             Vector3 pos = boss.GridSystem.GetWorldPosition(x, playerY);
             attackPositions.Add(pos);
-            warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+            warningTiles.Add(TileObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
         }
         
         // 세로 라인
@@ -53,7 +53,7 @@ public class Boss1CrossAttackPattern : IBossAttackPattern
             {
                 Vector3 pos = boss.GridSystem.GetWorldPosition(playerX, y);
                 attackPositions.Add(pos);
-                warningTiles.Add(ItemObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                warningTiles.Add(TileObject.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
             }
         }
         
@@ -72,7 +72,7 @@ public class Boss1CrossAttackPattern : IBossAttackPattern
         
         foreach (GameObject tile in warningTiles)
         {
-            ItemObject.Destroy(tile);
+            TileObject.Destroy(tile);
         }
     }
 }
