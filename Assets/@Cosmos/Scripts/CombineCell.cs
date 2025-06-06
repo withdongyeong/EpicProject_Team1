@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class CombineCell : MonoBehaviour
@@ -12,7 +12,7 @@ public class CombineCell : MonoBehaviour
     {
         if (coreCell == null)
         {
-            coreCell = transform.GetChild(0).gameObject;
+            coreCell = GetComponentInChildren<Cell>().gameObject;
         }
         skills = GetComponents<SkillBase>();
         sr = GetComponentInChildren<SpriteRenderer>();

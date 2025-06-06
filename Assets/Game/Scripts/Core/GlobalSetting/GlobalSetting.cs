@@ -23,4 +23,23 @@ public class GlobalSetting : MonoBehaviour
 
     public static Vector2 Totem_Offset => _instance.totem_Offset;
 
+    /// <summary>
+    /// 노말 등급이 뜰 확률입니다
+    /// </summary>
+    public static float Shop_NormalChance => _instance.shop_NormalChance;
+
+    /// <summary>
+    /// 레어 등급이 뜰 확률입니다
+    /// </summary>
+    public static float Shop_RareChance => _instance.shop_RareChance;
+
+    /// <summary>
+    /// 에픽 등급이 뜰 확률입니다
+    /// </summary>
+    public static float Shop_EpicChance => _instance.shop_EpicChance;
+
+    /// <summary>
+    /// 레전더리 등급이 뜰 확률입니다
+    /// </summary>
+    public static float Shop_LegendaryChance => _instance.shop_LegendaryChance;
 }
