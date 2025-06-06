@@ -1,0 +1,151 @@
+﻿using UnityEngine;
+using System.Collections;
+using System;
+using System.Collections.Generic;
+
+public class ArachneSpiderLegPattern : IBossAttackPattern
+{
+    private GameObject _warningAriaPrefab;
+    private GameObject _spiderLegPrefab;
+    private PlayerController _playerController;
+
+    public string PatternName => "ArachneSpiderLeg";
+
+    /// <summary>
+    /// 영역 공격 패턴 생성자 - 거대화 이미지, 다리
+    /// </summary>
+    public ArachneSpiderLegPattern(GameObject warningAriaPrefab, GameObject spiderLegPrefab, PlayerController playerController)
+    {
+        _warningAriaPrefab = warningAriaPrefab;
+        _spiderLegPrefab = spiderLegPrefab;
+        _playerController = playerController;
+    }
+
+    public void Execute(BaseBoss boss)
+    {
+        boss.StartCoroutine(SpiderLeg(boss));
+    }
+
+    public bool CanExecute(BaseBoss boss)
+    {
+        return boss.GridSystem != null && boss.Player != null && _spiderLegPrefab != null;
+    }
+
+    /// <summary>
+    /// 다리 패턴
+    /// </summary>
+    /// <param name="boss"></param>
+    /// <returns></returns>
+    private IEnumerator SpiderLeg(BaseBoss boss)
+    {
+
+        boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
+        yield return new WaitForSeconds(0.3f);
+        boss.StartCoroutine(SpiderLeg_DiagonalSlash2(boss));
+    }
+
+    private IEnumerator SpiderLeg_DiagonalSlash1(BaseBoss boss)
+    {
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
+
+        GameObject[] warningTiles = new GameObject[5];
+        int index = 0;
+
+        for (int i = -2; i <= 2; i++)
+        {
+            int tileX = playerX + i;
+            int tileY = playerY + i; // ↘ 방향: x == y
+
+            if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            {
+                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
+                index++;
+            }
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
+        {
+            boss.ApplyDamageToPlayer(15);
+        }
+
+        for (int i = -2; i <= 2; i++)
+        {
+            int tileX = playerX + i;
+            int tileY = playerY + i;
+
+            if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            {
+                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                boss.CreateDamageEffect(tilePos, _spiderLegPrefab);
+            }
+        }
+
+        foreach (GameObject tile in warningTiles)
+        {
+            if (tile != null)
+            {
+                GameObject.Destroy(tile);
+            }
+        }
+    }
+
+    private IEnumerator SpiderLeg_DiagonalSlash2(BaseBoss boss)
+    {
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
+
+        GameObject[] warningTiles = new GameObject[5];
+        int index = 0;
+
+        for (int i = -2; i <= 2; i++)
+        {
+            int tileX = playerX + i;
+            int tileY = playerY - i; // ↙ 방향: x == -y
+
+            if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            {
+                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
+                index++;
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
+        {
+            boss.ApplyDamageToPlayer(15);
+        }
+
+        for (int i = -2; i <= 2; i++)
+        {
+            int tileX = playerX + i;
+            int tileY = playerY - i;
+
+            if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            {
+                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                boss.CreateDamageEffect(tilePos, _spiderLegPrefab);
+            }
+        }
+
+        foreach (GameObject tile in warningTiles)
+        {
+            if (tile != null)
+            {
+                GameObject.Destroy(tile);
+            }
+        }
+
+    }
+}
+
+

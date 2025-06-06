@@ -21,13 +21,13 @@ public class DamageTotem : BaseTotem
         base.InitializeTotem(itemData);
     }
 
-    public override void ActivateTotem()
+    public override void ActivateTotem(TotemContext context)
     {
         FireProjectile(_lesserProjectile, _damage);
 
     }
 
-    public override void ActivateTotemBetter()
+    public override void ActivateTotemBetter(TotemContext context)
     {
         FireProjectile(_betterProjectile, _damage * 2);
     }
