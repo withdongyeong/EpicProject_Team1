@@ -9,6 +9,21 @@ public abstract class SkillBase : MonoBehaviour
     public float cooldown = 5f;
     private float lastUsedTime = -Mathf.Infinity;
 
+    private Material _coolTimeMaterial;
+
+    private void Start()
+    {
+        if(TryGetComponent<CombineCell>(out CombineCell combineCell))
+        {
+            _coolTimeMaterial = combineCell.GetSprite().material;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        _coolTimeMaterial.SetFloat("_FillAmount", GetCooldownRemaining() / cooldown);
+    }
+
     /// <summary>
     /// 쿨타임 중인지 여부 확인
     /// </summary>
