@@ -15,6 +15,7 @@ public class SwordSkill : SkillBase
 
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         // 타겟 적 찾기
         targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)

@@ -15,6 +15,7 @@ public class TestSkill : SkillBase
 
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         FindAnyObjectByType<BaseBoss>().TakeDamage(10);
         Debug.Log("TestSkill activated by " + user.name);
     }

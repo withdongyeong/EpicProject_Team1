@@ -15,6 +15,7 @@ public class HealSkill : SkillBase
     /// </summary>
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         _playerHealth = FindAnyObjectByType<PlayerHealth>();
         if (_playerHealth != null)
         {

@@ -13,6 +13,7 @@ public class ProjectileSkill : SkillBase
     /// </summary>
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)
         {

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         _playerDebuff = GetComponent<PlayerDebuff>();
         UpdateCurrentPosition();
 
-        SoundManager.Instance.StickRollSound();
+        SoundManager.Instance.PlayPlayerSound("StickRoll");
 
         // 초기 애니메이션 상태 설정
         if (_animator != null)
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 
-        SoundManager.Instance.PlayerMoveActiveSound();
+        SoundManager.Instance.PlayPlayerSound("PlayerMove");
     }
     
     /// <summary>
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnStaffHitGround()
     {
-        SoundManager.Instance.AriaActiveSound();
+        SoundManager.Instance.PlayPlayerSound("AriaActive");
 
         FindAnyObjectByType<GameManager>().SpawnGroundEffect();
     }

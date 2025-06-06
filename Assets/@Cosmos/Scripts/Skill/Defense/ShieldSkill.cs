@@ -11,6 +11,7 @@ public class ShieldSkill : SkillBase
     /// </summary>
     protected override void Activate(GameObject user)
     {
+        base.Activate(user);
         _playerShield = FindAnyObjectByType<PlayerShield>();
         if (_playerShield != null)
         {
