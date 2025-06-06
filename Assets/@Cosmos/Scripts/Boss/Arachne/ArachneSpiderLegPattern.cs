@@ -38,7 +38,6 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     /// <returns></returns>
     private IEnumerator SpiderLeg(BaseBoss boss)
     {
-
         boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
         yield return new WaitForSeconds(0.3f);
         boss.StartCoroutine(SpiderLeg_DiagonalSlash2(boss));
@@ -46,6 +45,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
 
     private IEnumerator SpiderLeg_DiagonalSlash1(BaseBoss boss)
     {
+        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
+
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
         int playerY = GridPosition.y;
@@ -97,6 +98,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
 
     private IEnumerator SpiderLeg_DiagonalSlash2(BaseBoss boss)
     {
+        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
+
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
         int playerY = GridPosition.y;

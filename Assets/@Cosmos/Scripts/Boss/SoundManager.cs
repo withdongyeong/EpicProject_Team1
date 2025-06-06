@@ -35,6 +35,15 @@ public class SoundManager : Singleton<SoundManager>
         { "HealSkillActivate", 0.3f},
     };
 
+    //아라크네 사운드 딕셔너리
+    private Dictionary<string, AudioClip> ArachneSoundDictionary = new Dictionary<string, AudioClip>();
+    //아라크네 볼륨 딕셔너리
+    private Dictionary<string, float> ArachneSoundVolumeDictionary = new Dictionary<string, float>();
+
+    Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
+    //아라크네 볼륨 딕셔너리
+    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>();
+
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +67,28 @@ public class SoundManager : Singleton<SoundManager>
                 tileSoundDictionary.Add(clip.name, clip);
             }
         }
+
+        AudioClip[] ArachneaudioClips = Resources.LoadAll<AudioClip>("Sound/Boss/Arachne");
+
+
+        foreach (AudioClip clip in ArachneaudioClips)
+        {
+            if (!ArachneSoundDictionary.ContainsKey(clip.name))
+            {
+                ArachneSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[]UIaudioClips = Resources.LoadAll<AudioClip>("Sound/UI");
+
+        foreach (AudioClip clip in UIaudioClips)
+        {
+            if (!UISoundDictionary.ContainsKey(clip.name))
+            {
+               UISoundDictionary.Add(clip.name, clip);
+            }
+        }
+
     }
 
     private void Start()
@@ -107,6 +138,41 @@ public class SoundManager : Singleton<SoundManager>
             if (tileClip != null)
             {
                 float volume = tileSoundVolumeDictionary.ContainsKey(clip) ? tileSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// 아라크네 사운드 재생
+    /// </summary>
+    public void ArachneSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+        if (clip != null && interactionAudioSource != null)
+        {
+            AudioClip tileClip = ArachneSoundDictionary.ContainsKey(clip) ? ArachneSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = ArachneSoundVolumeDictionary.ContainsKey(clip) ? ArachneSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// UI 사운드 재생 - UI가 나오면 수정 필요
+    /// </summary>
+    public void UISoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+        if (clip != null && interactionAudioSource != null)
+        {
+            AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = UISoundVolumeDictionary.ContainsKey(clip) ? UISoundVolumeDictionary[clip] : 1f;
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
