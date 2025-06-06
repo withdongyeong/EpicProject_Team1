@@ -54,11 +54,15 @@ public class PlayerHealth : MonoBehaviour
         {
             // 죽었으면 죽음 애니메이션 재생
             Die();
+
+            SoundManager.Instance.PlayerDamageSound();
         }
         else
         {
             // 살아있으면 피격 애니메이션 재생
             FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Damaged");
+
+            SoundManager.Instance.PlayerDeadSound();
         }
     }
     

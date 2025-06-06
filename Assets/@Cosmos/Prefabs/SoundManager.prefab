@@ -55,11 +55,11 @@ MonoBehaviour:
   ariaActiveSound: {fileID: 8300000, guid: 7ea9da3eda555d841ab925ca52e08fad, type: 3}
   ariaActiveSoundVolume: 1
   playerMoveSound: {fileID: 8300000, guid: 7589c8085ea15934a811ef048ced095b, type: 3}
-  playerMoveSoundVolume: 1
+  playerMoveSoundVolume: 0.1
   playerDamageSound: {fileID: 8300000, guid: af26b35cd7e613b469383a8d9cc7a4c3, type: 3}
-  playerDamageSoundVolume: 1
+  playerDamageSoundVolume: 0.3
   playerDeadSound: {fileID: 8300000, guid: bd348ed8936fed141affad12c9ea86fe, type: 3}
-  playerDeadSoundVolume: 1
+  playerDeadSoundVolume: 0.3
 --- !u!1 &6314046654881224318
 GameObject:
   m_ObjectHideFlags: 0

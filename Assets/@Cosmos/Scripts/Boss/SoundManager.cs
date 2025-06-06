@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    public static SoundManager Instance { get; private set; }
-
     [Tooltip("오디오 스코어")]
     [SerializeField] private AudioSource interactionAudioSource;
 
@@ -37,12 +35,9 @@ public class SoundManager : MonoBehaviour
     [Tooltip("사망 사운드 볼륨")]
     [SerializeField] private float playerDeadSoundVolume;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        base.Awake();
     }
 
     private void Start()
