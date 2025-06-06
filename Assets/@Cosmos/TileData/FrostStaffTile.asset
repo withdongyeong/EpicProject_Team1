@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
+  m_Name: FrostStaffTile
+  m_EditorClassIdentifier: 
+  tileName: "\uB0C9\uAE30 \uC9C0\uD321\uC774"
+  description: "\uAC1C\uBCC4\uCE78(3): \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n\uC801\uC911\uC2DC:
+    \uB3D9\uC0C1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  tileSprite: {fileID: 85340628320461386, guid: 845815ca29e0e36458b2e29a05876f98, type: 3}
+  tileGrade: 1
+  tileCost: 3
