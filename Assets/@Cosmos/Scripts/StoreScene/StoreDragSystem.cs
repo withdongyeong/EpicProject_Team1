@@ -93,11 +93,11 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (dragCopy == null) return;
         
-        //배치 불가능할시
-        if (!CanPlaceBlock())
+        //배치 불가능하거나 혹은 물건을 사는데 실패한다면
+        if (!CanPlaceBlock() || !storeSlot.BuyObject())
         {
             // 배치가 불가능한 경우 복제본 제거
-            Debug.Log("배치 불가능한 위치입니다.");
+            Debug.Log("배치 불가능한 위치이거나 돈이 부족하네요.");
             Destroy(dragCopy);
             return;
         }
@@ -117,8 +117,6 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
         
-        storeSlot.BuyObject();
-
 
         isDragging = false;
         Destroy(dragCopy);
