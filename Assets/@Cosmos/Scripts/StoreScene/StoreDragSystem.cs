@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -66,6 +66,7 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             coll.enabled = false;
         }
 
+        isDragging = true;
         dragCopy.layer = LayerMask.NameToLayer("Ignore Raycast");
         
         
@@ -117,9 +118,9 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         
         storeSlot.BuyObject();
-        
-        
-        
+
+
+        isDragging = false;
         Destroy(dragCopy);
     }
 
