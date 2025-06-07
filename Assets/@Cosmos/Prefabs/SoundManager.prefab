@@ -50,16 +50,6 @@ MonoBehaviour:
   bgmAudioSource: {fileID: 2636135400546176612}
   bgm: {fileID: 8300000, guid: a35d33194d8065b439f63e1d6ff9acc6, type: 3}
   bgmVolume: 0.2
-  stickRollSound: {fileID: 8300000, guid: 811acfa842f79d948bf826ba5ed956b5, type: 3}
-  stickRollSoundVolume: 1
-  ariaActiveSound: {fileID: 8300000, guid: 7ea9da3eda555d841ab925ca52e08fad, type: 3}
-  ariaActiveSoundVolume: 1
-  playerMoveSound: {fileID: 8300000, guid: 7589c8085ea15934a811ef048ced095b, type: 3}
-  playerMoveSoundVolume: 0.1
-  playerDamageSound: {fileID: 8300000, guid: af26b35cd7e613b469383a8d9cc7a4c3, type: 3}
-  playerDamageSoundVolume: 0.3
-  playerDeadSound: {fileID: 8300000, guid: bd348ed8936fed141affad12c9ea86fe, type: 3}
-  playerDeadSoundVolume: 0.3
 --- !u!1 &6314046654881224318
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +97,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

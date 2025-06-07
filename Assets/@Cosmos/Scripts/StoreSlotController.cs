@@ -77,6 +77,8 @@ public class StoreSlotController : MonoBehaviour
 
     public void ResetSlotBtn()
     {
+        SoundManager.Instance.UISoundClip("RerollActivate");
+
         SetupStoreSlots();
     }
 

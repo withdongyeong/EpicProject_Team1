@@ -45,8 +45,6 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
 
     private IEnumerator SpiderLeg_DiagonalSlash1(BaseBoss boss)
     {
-        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
         int playerY = GridPosition.y;
@@ -68,6 +66,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         }
 
         yield return new WaitForSeconds(0.2f);
+
+        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
@@ -98,8 +98,6 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
 
     private IEnumerator SpiderLeg_DiagonalSlash2(BaseBoss boss)
     {
-        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
         int playerY = GridPosition.y;
@@ -121,6 +119,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))

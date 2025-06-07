@@ -25,7 +25,7 @@ public class TileObject : MonoBehaviour
             return;
         }
         tileInfo = new TileInfo(data);
-        
+
         if (tileInfo.TileSprite == null)
         {
             Debug.LogError("Tile sprite is not assigned in TileObject.");

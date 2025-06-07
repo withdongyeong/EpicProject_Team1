@@ -144,6 +144,8 @@ public class GridManager : Singleton<GridManager>//, IBeginDragHandler, IDragHan
     {
         if (IsCellAvailable(gridPos))
         {
+            SoundManager.Instance.UISoundClip("DeploymentActivate");
+
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
             Debug.Log(grid[gridPos.x, gridPos.y].cell);
@@ -329,6 +331,8 @@ public class GridManager : Singleton<GridManager>//, IBeginDragHandler, IDragHan
     
     public void TestResetGrid()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+
         for (int x = 0; x < gridSize.x; x++)
         {
             for (int y = 0; y < gridSize.y; y++)

@@ -38,11 +38,24 @@ public class SoundManager : Singleton<SoundManager>
     //아라크네 사운드 딕셔너리
     private Dictionary<string, AudioClip> ArachneSoundDictionary = new Dictionary<string, AudioClip>();
     //아라크네 볼륨 딕셔너리
-    private Dictionary<string, float> ArachneSoundVolumeDictionary = new Dictionary<string, float>();
+    private Dictionary<string, float> ArachneSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"PoisionExplotionActivate", 1f},
+        {"PoisonBallActivate", 1f },
+        {"SpiderLegActivate", 0.5f },
+        {"SpiderSilkActivate", 0.8f }
+    };
 
+
+    //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
-    //아라크네 볼륨 딕셔너리
-    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>();
+    //UI 사운드볼륨
+    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>    
+    {
+        {"DeploymentActivate", 0.05f},
+        {"RerollActivate", 0.5f },
+        {"ButtonActivate", 0.3f }
+    };
 
     protected override void Awake()
     {
@@ -68,7 +81,7 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-        AudioClip[] ArachneaudioClips = Resources.LoadAll<AudioClip>("Sound/Boss/Arachne");
+        AudioClip[] ArachneaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Arachne");
 
 
         foreach (AudioClip clip in ArachneaudioClips)
@@ -79,7 +92,7 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-        AudioClip[]UIaudioClips = Resources.LoadAll<AudioClip>("Sound/UI");
+        AudioClip[]UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
 
         foreach (AudioClip clip in UIaudioClips)
         {
@@ -150,8 +163,10 @@ public class SoundManager : Singleton<SoundManager>
     public void ArachneSoundClip(string clip)
     {
         Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
         if (clip != null && interactionAudioSource != null)
         {
+
             AudioClip tileClip = ArachneSoundDictionary.ContainsKey(clip) ? ArachneSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -166,7 +181,7 @@ public class SoundManager : Singleton<SoundManager>
     /// </summary>
     public void UISoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+        Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
