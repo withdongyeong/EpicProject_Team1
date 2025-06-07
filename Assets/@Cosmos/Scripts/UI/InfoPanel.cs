@@ -9,7 +9,7 @@ public class InfoPanel : MonoBehaviour
     private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI nameText; // 이름 텍스트
 
-    private void Awake()
+    private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
@@ -68,7 +68,7 @@ public class InfoPanel : MonoBehaviour
         }
 
         // 정보 UI 위치 설정 (오프셋 적용)
-        Vector2 offset = new Vector2(10f, -10f);
+        Vector2 offset = new Vector2(20f, 50f);
         Vector2 newPos = mousePos + offset;
 
         // 캔버스 경계 내로 제한
