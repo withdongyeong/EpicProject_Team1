@@ -347,6 +347,26 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: d9f2991d1ace58a489b20399f5e047c5, type: 2}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileName
+      value: "\uB85C\uBE0C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileGrade
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileSprite
+      value: 
+      objectReference: {fileID: 3733607229926853673, guid: 992ee3f5a74e3aa48ba57bc6719230f2, type: 3}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.description
+      value: "\uB354 \uB9CE\uC740 \uBCF4\uD638\uB9C9\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -9,7 +9,7 @@ public class InfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void Awake()
     {
-        infoPanel = FindAnyObjectByType<InfoPanel>();
+        infoPanel = FindObjectOfType<InfoPanel>(true);
         if(infoPanel == null)
         {
             Debug.LogError("InfoPanel not found in the scene. Please ensure it is present.");

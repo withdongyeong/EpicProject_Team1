@@ -819,23 +819,23 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 585ab42f51ef2964b864278e22d6c086, type: 2}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileCost
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileName
-      value: 
+      value: "\uD070 \uD558\uD2B8"
       objectReference: {fileID: 0}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileGrade
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileSprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 815724821, guid: 40034fea3869e8145b590650ab6676b3, type: 3}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.description
-      value: 
+      value: "\uAC1C\uBCC4\uCE78(3): \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x
@@ -922,10 +922,32 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7414430314381891077}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7951068133944047977, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5980655835206266402}
     - targetCorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2231052194117361110}
   m_SourcePrefab: {fileID: 100100000, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+--- !u!1 &1614657859898488186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7951068133944047977, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+  m_PrefabInstance: {fileID: 8664842753980697619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5980655835206266402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614657859898488186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe1baf8a5ef0ae4a8526ce57282b014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileObject: {fileID: 0}
+  isUIElement: 0
 --- !u!1 &2748290956785778094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}

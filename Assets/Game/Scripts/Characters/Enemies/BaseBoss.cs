@@ -247,6 +247,7 @@ public abstract class BaseBoss : MonoBehaviour
         yield return new WaitForSeconds(time);
         _isStopped = false;
         StartCoroutine(AttackRoutine());
+        StartCoroutine(ApplyDebuffsRoutine());
     }
 
     /// <summary>

@@ -8,6 +8,7 @@ public class InfoPanel : MonoBehaviour
     private Canvas canvas;
     private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI nameText; // 이름 텍스트
+    [SerializeField] private TextMeshProUGUI descriptionText; // 설명 텍스트
 
     private void Start()
     {
@@ -27,6 +28,25 @@ public class InfoPanel : MonoBehaviour
 
         // TileObject 정보 설정
         nameText.text = currentTileObject.GetTileData().TileName;
+        switch (currentTileObject.GetTileData().TileGrade)
+        {
+            case TileGrade.Normal:
+                nameText.color = Color.white;
+                break;
+            case TileGrade.Rare:
+                nameText.color = Color.blue;
+                break;
+            case TileGrade.Epic:
+                nameText.color = new Color(0.5f, 0f, 1f); // 보라색
+                break;
+            case TileGrade.Legendary:
+                nameText.color = Color.yellow;
+                break;
+            default:
+                nameText.color = Color.white;
+                break;
+        }
+        descriptionText.text = currentTileObject.GetTileData().Description;
 
         // 위치 업데이트
         UpdatePosition(position, isUIElement);

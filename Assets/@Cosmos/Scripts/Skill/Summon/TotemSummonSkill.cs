@@ -19,16 +19,4 @@ public class TotemSummonSkill : SkillBase
             summonedTotem.GetComponent<BaseTotem>().InitializeTotem(_itemData);
         }
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Debug.Log("시작함");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
