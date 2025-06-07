@@ -9,6 +9,9 @@ public class TileObject : MonoBehaviour
 
     public string Description { get => tileInfo.Description; }
 
+    private bool isInitialized = false;
+
+
     private void Awake()
     {
         InitializeTile();
@@ -27,10 +30,15 @@ public class TileObject : MonoBehaviour
         {
             Debug.LogError("Tile sprite is not assigned in TileObject.");
         }
+        isInitialized = true;
     }
     
     public TileInfo GetTileData()
     {
+        if(!isInitialized)
+        {
+            InitializeTile();
+        }
         return tileInfo;
     }
 

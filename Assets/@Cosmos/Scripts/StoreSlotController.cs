@@ -49,6 +49,7 @@ public class StoreSlotController : MonoBehaviour
             {
                 chosenGrade = TileGrade.Legendary;
             }
+            Debug.Log(chosenGrade);
 
             List<GameObject> chosenList = _normalStoreTiles;
             switch(chosenGrade)
