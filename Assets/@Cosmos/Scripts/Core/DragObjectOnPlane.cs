@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragObjectOnPlane : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler
@@ -6,16 +8,25 @@ public class DragObjectOnPlane : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
 
     Transform draggedTransform;
 
+    private int rotationZ = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        SpriteMask[] list = Object.FindObjectsByType<SpriteMask>(FindObjectsSortMode.InstanceID);
+        foreach(SpriteMask mask in list)
+        {
+            Debug.Log(mask.gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R) && draggedTransform != null)
+        {
+            RotatePreviewBlock();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -36,17 +47,24 @@ public class DragObjectOnPlane : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         else
         {
             //통합된 셀 스크립트를 가져옵니다
-            CombineCell combineCell = GridManager.Instance.GetCellData(clickedGridPosition).GetObjectData();
+            CombineCell cC = GridManager.Instance.GetCellData(clickedGridPosition).GetObjectData();
 
-            //통합된 셀 밑에 있는 각 셀들
-            foreach (Cell cell in combineCell.GetComponentsInChildren<Cell>())
+            //셀 스크립트를 통해 타일을 가져옵니다.
+            Transform tile = cC.transform.parent;
+
+            foreach(CombineCell combineCell in tile.GetComponentsInChildren<CombineCell>())
             {
-                Transform child = cell.transform;
-                Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-                GridManager.Instance.ReleaseCell(gridPos);
+                //통합된 셀 밑에 있는 각 셀들
+                foreach (Cell cell in combineCell.GetComponentsInChildren<Cell>())
+                {
+                    Transform child = cell.transform;
+                    Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+                    GridManager.Instance.ReleaseCell(gridPos);
+                }
+
             }
 
-            draggedTransform = combineCell.transform.parent;
+            draggedTransform = tile;
             UpdateDragPosition();
         }
     }
@@ -56,6 +74,7 @@ public class DragObjectOnPlane : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         if (draggedTransform == null)
             return;
         UpdateDragPosition();
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -92,5 +111,14 @@ public class DragObjectOnPlane : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         worldPos.z = 0f;
         draggedTransform.position = worldPos;
+    }
+
+    private void RotatePreviewBlock()
+    {
+        rotationZ = (rotationZ + 90) % 360; // 90도씩 회전
+        if(draggedTransform != null)
+        {
+            draggedTransform.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        }
     }
 }
