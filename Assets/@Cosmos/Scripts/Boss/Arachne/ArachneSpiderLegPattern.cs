@@ -38,7 +38,6 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     /// <returns></returns>
     private IEnumerator SpiderLeg(BaseBoss boss)
     {
-
         boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
         yield return new WaitForSeconds(0.3f);
         boss.StartCoroutine(SpiderLeg_DiagonalSlash2(boss));
@@ -67,6 +66,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         }
 
         yield return new WaitForSeconds(0.2f);
+
+        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
@@ -118,6 +119,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))

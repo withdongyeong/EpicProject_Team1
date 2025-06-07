@@ -26,6 +26,8 @@ public class SpiderSilk : MonoBehaviour
 
     private IEnumerator Grow()
     {
+        SoundManager.Instance.ArachneSoundClip("SpiderSilkActivate");
+
         float elapsed = 0f;
 
         while (elapsed < _growTime && _isGrowing)

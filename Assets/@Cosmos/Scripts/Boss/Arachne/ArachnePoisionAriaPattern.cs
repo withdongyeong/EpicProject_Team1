@@ -35,6 +35,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
+        SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
+
         // 플레이어 위치 가져오기
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
@@ -62,6 +64,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
 
         // 경고 대기
         yield return new WaitForSeconds(0.5f);
+
+        SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
 
         // 플레이어가 영역 내에 있는지 확인
         GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
