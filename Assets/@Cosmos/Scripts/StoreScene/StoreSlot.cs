@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +9,14 @@ public class StoreSlot : MonoBehaviour
     private bool isPurchased = false;
     private Image image;
     private StoreDragSystem _storeDragSystem;
+    private InfoUI infoUI;
 
 
     private void Awake()
     {
         image = GetComponent<Image>();
         _storeDragSystem = GetComponent<StoreDragSystem>();
+        infoUI = GetComponent<InfoUI>();
     }
 
     public GameObject GetObject()
@@ -47,5 +49,6 @@ public class StoreSlot : MonoBehaviour
         isPurchased = false; // 초기화
         image.color = Color.white; // 초기 색상 설정
         image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
+        infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
     }
 }
