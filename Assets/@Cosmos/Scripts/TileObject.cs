@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class TileObject : MonoBehaviour
@@ -7,6 +7,7 @@ public class TileObject : MonoBehaviour
     [SerializeField]
     private TileInfo tileInfo;
     
+    private bool isInitialized = false;
 
     private void Awake()
     {
@@ -26,10 +27,15 @@ public class TileObject : MonoBehaviour
         {
             Debug.LogError("Tile sprite is not assigned in TileObject.");
         }
+        isInitialized = true;
     }
     
     public TileInfo GetTileData()
     {
+        if(!isInitialized)
+        {
+            InitializeTile();
+        }
         return tileInfo;
     }
 
