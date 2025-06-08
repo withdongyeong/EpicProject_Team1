@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786583447526120869}
   - component: {fileID: 2991018485420875733}
-  - component: {fileID: 7343146920643771930}
+  - component: {fileID: -5309626886649617413}
   m_Layer: 0
   m_Name: KoreaTotem
   m_TagString: Untagged
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7343146920643771930
+--- !u!114 &-5309626886649617413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 55680744621745615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e0649586b913d42bc0c2420131b2b3, type: 3}
+  m_Script: {fileID: 11500000, guid: bcbd99caf429d154fb41e3fbaa16b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _lesserProjectile: {fileID: 3867617096255318561, guid: f87613c50f26f5443974c94ea37f3639, type: 3}
