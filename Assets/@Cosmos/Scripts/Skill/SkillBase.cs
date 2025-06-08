@@ -21,7 +21,7 @@ public abstract class SkillBase : MonoBehaviour
 
     private void LateUpdate()
     {
-        _coolTimeMaterial.SetFloat("_FillAmount", GetCooldownRemaining() / cooldown);
+        _coolTimeMaterial.SetFloat("_FillAmount", 1 - (GetCooldownRemaining() / cooldown));
     }
 
     /// <summary>
