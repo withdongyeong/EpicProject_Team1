@@ -106,6 +106,8 @@ public class SoundManager : Singleton<SoundManager>
 
     private void Start()
     {
+        Debug.Log("playerSoundDictionary: " + playerSoundDictionary.Count);
+
         PlayBGMSound(bgm, bgmVolume);
     }
 
