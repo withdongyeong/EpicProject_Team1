@@ -14,12 +14,12 @@ public class HealTotem : BaseTotem
         base.InitializeTotem(totemPower);
     }
 
-    public override void ActivateTotem(TotemContext context)
+    protected override void ActivateTotem(TotemContext context)
     {
         HealPlayer();
     }
 
-    public override void ActivateTotemBetter(TotemContext context)
+    protected override void ActivateTotemBetter(TotemContext context)
     {
         base.ActivateTotemBetter(context);
     }

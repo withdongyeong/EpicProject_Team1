@@ -47,17 +47,8 @@ public class TotemManager : SummonBase
 
         for(int i=0; i<_currentTotemList.Count; i++)
         {
-            if(i<_currentTotemList.Count - 1)
-            {
-                _currentTotemList[i].ActivateTotem(totemContext);
-            }
-            else
-            {
-                Debug.Log("else 들어옴");
-                _currentTotemList[i].ActivateTotemBetter(totemContext);
-            }
+            _currentTotemList[i].ReadyToActive(totemContext);
             UpdateTotemContext(totemContext);
-            _currentTotemList[i].DestroyTotem();
         }
         _currentTotemList.Clear();
     }

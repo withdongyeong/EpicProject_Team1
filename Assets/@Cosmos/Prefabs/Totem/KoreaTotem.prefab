@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1786583447526120869}
   - component: {fileID: 2991018485420875733}
   - component: {fileID: -5309626886649617413}
+  - component: {fileID: 4582626270385991655}
   m_Layer: 0
   m_Name: KoreaTotem
   m_TagString: Untagged
@@ -102,3 +103,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lesserProjectile: {fileID: 3867617096255318561, guid: f87613c50f26f5443974c94ea37f3639, type: 3}
   _betterProjectile: {fileID: 3867617096255318561, guid: 3d14ea3f15978a1419ebc98de9d71b3f, type: 3}
+--- !u!95 &4582626270385991655
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55680744621745615}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 478ef815b295518468228de0858ea5f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
