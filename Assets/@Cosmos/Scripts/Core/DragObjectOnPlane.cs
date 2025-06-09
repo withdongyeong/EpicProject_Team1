@@ -20,6 +20,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
             Debug.Log(mask.gameObject);
         }
         rotator = gameObject.AddComponent<SmoothRotator>();
+        Debug.Log("Start 잘 실행됨");
     }
 
     // Update is called once per frame
@@ -33,9 +34,12 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            Debug.Log("UI 위에 뭔가 있음");
+        Debug.Log("드래그를 시작합니다");
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
-        
+
         //마우스 포인터로 누른 지점의 월드 포지션을 가져옵니다
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         worldPos.z = 0f;
