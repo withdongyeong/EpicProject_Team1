@@ -7,6 +7,8 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
     Transform draggedTransform;
     Vector3 beforeMovePosition; //물체가 드래그되기 전 있던 포지션입니다
 
+    
+    [SerializeField]
     private float rotateZ;
     private SmoothRotator rotator;
     
@@ -33,8 +35,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
-        //현재 tile의 rotation을 가져옵니다
-        rotateZ = draggedTransform != null ? draggedTransform.rotation.eulerAngles.z : 0f;
+        
         //마우스 포인터로 누른 지점의 월드 포지션을 가져옵니다
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         worldPos.z = 0f;
@@ -72,7 +73,10 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
             }
 
             draggedTransform = tile;
+            //현재 tile의 rotation을 가져옵니다
+            rotateZ = draggedTransform != null ? draggedTransform.rotation.eulerAngles.z : 0f;
             UpdateDragPosition();
+            
         }
     }
 
@@ -83,6 +87,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (draggedTransform == null)
             return;
         UpdateDragPosition();
+        UpdatePreviewCell();
 
     }
 
@@ -96,6 +101,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         //배치 불가능할시
         if (!(GridManager.Instance.CanPlaceBlock(draggedTransform)))
         {
+            GridManager.Instance.ChangeCellSpriteAll();
             Debug.Log("배치 불가능한 위치입니다.");
             //배치가 불가능한 경우 원래 위치로 되돌립니다
             corePos = beforeMovePosition;
@@ -125,6 +131,18 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         worldPos.z = 0f;
         draggedTransform.position = worldPos;
+    }
+
+    private void UpdatePreviewCell()
+    {
+        GridManager.Instance.ChangeCellSpriteAll();
+        foreach (Cell cell in draggedTransform.GetComponentsInChildren<Cell>())
+        {
+            Transform child = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+            GridManager.Instance.ChangeCellSprite(gridPos, true);
+        }
+        
     }
 
     private void RotatePreviewBlock()
