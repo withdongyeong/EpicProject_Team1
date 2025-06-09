@@ -176,7 +176,7 @@ public class SwordController : MonoBehaviour
         }
 
         // 5초 후에 오브젝트 파괴
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 7f);
     }
 
     ///// <summary>

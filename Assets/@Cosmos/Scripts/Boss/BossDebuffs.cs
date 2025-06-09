@@ -42,7 +42,7 @@ public class BossDebuffs : MonoBehaviour
         switch (debuff)
         {
             case BossDebuff.Burning:
-                if (debuffs[(int)BossDebuff.Burning] >= 5) return; // 화상 상태 이상은 최대 5개까지만 허용
+                if (debuffs[(int)BossDebuff.Burning] >= 10) return; // 화상 상태 이상은 최대 5개까지만 허용
                 debuffs[(int)BossDebuff.Burning]++; // 화상 상태 이상 카운트 증가
                 break;
             case BossDebuff.Frostbite:
@@ -119,6 +119,6 @@ public class BossDebuffs : MonoBehaviour
     {
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
-        boss.StopAttack(2f);
+        boss.StopAttack(1.5f);
     }
 }
