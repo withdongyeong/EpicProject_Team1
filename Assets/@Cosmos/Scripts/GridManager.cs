@@ -30,6 +30,19 @@ public class GridCell
         Debug.Log("좌표 " + GridPosition + "셀 데이터가 할당되었습니다: " + cell);
         ChangeSpriteTest();
     }
+
+    public void ReleaseCellData()
+    {
+        if(cell == null)
+        {
+            Debug.Log("이미 데이터가 없는 셀의 데이터를 없애려고 했어요");
+            return;
+        }
+
+        cell = null;
+        Debug.Log(cell);
+        ChangeSpriteTest();
+    }
     
     /// <summary>
     /// 스프라이트를 점유 상태에 따라 변경합니다.
@@ -160,6 +173,8 @@ public class GridManager : Singleton<GridManager>
         if (!IsCellAvailable(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = false;
+            grid[gridPos.x, gridPos.y].ReleaseCellData();
+            Debug.Log("해제했습니다");
             grid[gridPos.x, gridPos.y].ChangeSpriteTest(); // 기본 스프라이트로 복원
         }
     }
