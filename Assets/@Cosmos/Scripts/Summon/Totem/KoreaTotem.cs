@@ -29,13 +29,13 @@ public class KoreaTotem : BaseTotem
     protected override void ActivateTotem(TotemContext context)
     {
         base.ActivateTotem(context);
-        FireProjectile(_lesserProjectile, _totemPower * (context.order + 1));
+        FireProjectile(_lesserProjectile, _totemPower);
 
     }
 
     protected override void ActivateTotemBetter(TotemContext context)
     {
-        FireProjectile(_betterProjectile, _totemPower * 3 * (context.order + 1));
+        FireProjectile(_betterProjectile, _totemPower * 5);
     }
 
     private void FireProjectile(GameObject projectilePrefab, int damage)
