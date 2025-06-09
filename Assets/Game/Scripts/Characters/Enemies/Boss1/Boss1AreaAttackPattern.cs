@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -91,7 +91,7 @@ public class Boss1AreaAttackPattern : IBossAttackPattern
                 if (boss.GridSystem.IsValidPosition(tileX, tileY))
                 {
                     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab);
+                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab, 0.7f);
                 }
             }
         }

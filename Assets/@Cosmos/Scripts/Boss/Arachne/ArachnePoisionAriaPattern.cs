@@ -88,7 +88,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
                 if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
                 {
                     Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab);
+                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab, 0.7f);
                 }
             }
         }

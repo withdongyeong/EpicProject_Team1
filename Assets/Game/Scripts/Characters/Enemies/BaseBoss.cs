@@ -196,12 +196,22 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     /// <param name="position">효과 생성 위치</param>
     /// <param name="effectPrefab">효과 프리팹</param>
-    public void CreateDamageEffect(Vector3 position, GameObject effectPrefab)
+    public void CreateDamageEffect(Vector3 position, GameObject effectPrefab, float second)
     {
         if (effectPrefab != null)
         {
             GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
-            Destroy(effect, 0.1f);
+            Destroy(effect, second);
+        }
+    }
+
+    public void CreateDamageEffect_Inversion(Vector3 position, GameObject effectPrefab, float second)
+    {
+        if (effectPrefab != null)
+        {
+            GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
+            effect.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = true;
+            Destroy(effect, second);
         }
     }
 
