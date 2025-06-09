@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7382160250413018410}
   - component: {fileID: 7742841739484589191}
   m_Layer: 0
-  m_Name: Totem2
+  m_Name: Totem1 Better
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,8 +127,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1380072677262642016, guid: 5f2d6ec63ce90bb48b6dbe09dc0d452e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -4050252014447799586, guid: f94fbb14af99cf54b817dd3eea46f9f0, type: 3}
+  m_Color: {r: 0.6226415, g: 0.085172676, b: 0.085172676, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -148,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 603461643113537889}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f2af3080e6069df4eafb6811b46d8e08, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7ca8d221c9378b04c94e233c8b396caa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7382160250413018410}
   - component: {fileID: 7742841739484589191}
   m_Layer: 0
-  m_Name: Totem2
+  m_Name: Totem2 Better
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,7 +128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1380072677262642016, guid: 5f2d6ec63ce90bb48b6dbe09dc0d452e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4716981, g: 0.12682448, b: 0.12682448, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

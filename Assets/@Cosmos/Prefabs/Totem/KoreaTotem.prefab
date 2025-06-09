@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 55680744621745615}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7958589, y: 3.1864417, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce09faea4bfe9cd429aa1fd4dce310f0, type: 3}
+  m_Sprite: {fileID: -2509463844142305203, guid: 11f285c2e0ea52046b105b89d9fc1e3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbd99caf429d154fb41e3fbaa16b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lesserProjectile: {fileID: 3867617096255318561, guid: f87613c50f26f5443974c94ea37f3639, type: 3}
-  _betterProjectile: {fileID: 3867617096255318561, guid: 3d14ea3f15978a1419ebc98de9d71b3f, type: 3}
+  _lesserProjectile: {fileID: 603461643113537889, guid: bbfb7843f6eaa104099e5f5d2aa65359, type: 3}
+  _betterProjectile: {fileID: 603461643113537889, guid: ce7ac198ccd080f45aad85b4dbc77f7f, type: 3}
 --- !u!95 &4582626270385991655
 Animator:
   serializedVersion: 7
