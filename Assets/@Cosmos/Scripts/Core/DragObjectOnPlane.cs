@@ -5,9 +5,6 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 {
 
     Transform draggedTransform;
-
-    private int rotationZ = 0;
-
     Vector3 beforeMovePosition; //물체가 드래그되기 전 있던 포지션입니다
     
     private SmoothRotator rotator;

@@ -7,7 +7,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     private GameObject _explosionEffectPrefab;
 
     private PlayerController _playerController;
-
+    
     public string PatternName => "ArachnePoisionAria";
 
     /// <summary>
@@ -35,6 +35,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
+        boss.AttackAnimation();
+
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
 
         // 플레이어 위치 가져오기
