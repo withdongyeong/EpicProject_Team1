@@ -37,7 +37,8 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
         originalObject = storeSlot.GetObject(); // StoreSlot에서 원본 오브젝트를 가져옵니다
         if (originalObject == null)
         {
@@ -77,22 +78,19 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
         if (dragCopy == null) return;
         
         Vector3 worldPoint = cam.ScreenToWorldPoint(eventData.position);
         worldPoint.z = 0;
         dragCopy.transform.position = worldPoint;
-        
-        
-        //이 부분은 나중에 InputSystem으로 변경하여 Gamepad에서도 작동하도록 해야합니다
-        if(Input.GetMouseButtonDown(1))
-        {
-            RotatePreviewBlock();
-        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
         if (dragCopy == null) return;
         
         //배치 불가능하거나 혹은 물건을 사는데 실패한다면
@@ -149,8 +147,6 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (dragCopy == null) return;
         
         rotator.RotateZ(dragCopy.transform);
-        /*rotationZ = (rotationZ +90) % 360; // 90도씩 회전
-        dragCopy.transform.rotation = Quaternion.Euler(0, 0, rotationZ);*/
     }
     
 }
