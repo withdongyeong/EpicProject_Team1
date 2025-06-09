@@ -7,7 +7,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     private GameObject _explosionEffectPrefab;
 
     private PlayerController _playerController;
-
+    
     public string PatternName => "ArachnePoisionAria";
 
     /// <summary>
@@ -35,6 +35,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
+        boss.AttackAnimation();
+
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
 
         // 플레이어 위치 가져오기
@@ -88,7 +90,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
                 if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
                 {
                     Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab);
+                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab, 0.7f);
                 }
             }
         }

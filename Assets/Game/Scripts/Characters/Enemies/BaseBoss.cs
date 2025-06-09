@@ -27,7 +27,9 @@ public abstract class BaseBoss : MonoBehaviour
     
     // 공격 패턴 시스템
     private List<IBossAttackPattern> _attackPatterns = new List<IBossAttackPattern>();
-    
+
+    private Animator _animator;
+
     // Properties
     /// <summary>
     /// 최대 체력 프로퍼티
@@ -75,6 +77,8 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     public event Action OnBossDeath;
 
+    public Animator Animator { get => _animator; }
+
     /// <summary>
     /// 보스 초기화
     /// </summary>
@@ -87,7 +91,7 @@ public abstract class BaseBoss : MonoBehaviour
         _player = FindAnyObjectByType<PlayerController>();
         _playerHealth = _player != null ? _player.GetComponent<PlayerHealth>() : null;
         _bossDebuff = GetComponent<BossDebuffs>();
-
+        _animator = GetComponent<Animator>();
         // 공격 패턴 초기화
         InitializeAttackPatterns();
         
@@ -155,7 +159,7 @@ public abstract class BaseBoss : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         if (_isDead) return;
-        
+
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         Debug.Log(damage);
@@ -163,6 +167,10 @@ public abstract class BaseBoss : MonoBehaviour
         if (_currentHealth <= 0)
         {
             Die();
+        }
+        else
+        {
+            _animator.SetTrigger("DamageTrigger");
         }
     }
 
@@ -175,15 +183,20 @@ public abstract class BaseBoss : MonoBehaviour
         Debug.Log($"{GetType().Name} DEFEATED!");
         
         OnBossDeath?.Invoke();
-        
+        _animator.SetTrigger("DeadTrigger");
+
         // GameManager에 보스 사망 알림
         GameManager gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager != null)
         {
-            gameManager.HandleBossDeath();
+            StartCoroutine(BossDeath(gameManager));
         }
-        
-        Destroy(gameObject);
+    }
+
+    private IEnumerator BossDeath(GameManager gameManager)
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameManager.HandleBossDeath();
     }
 
     /// <summary>
@@ -191,12 +204,22 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     /// <param name="position">효과 생성 위치</param>
     /// <param name="effectPrefab">효과 프리팹</param>
-    public void CreateDamageEffect(Vector3 position, GameObject effectPrefab)
+    public void CreateDamageEffect(Vector3 position, GameObject effectPrefab, float second)
     {
         if (effectPrefab != null)
         {
             GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
-            Destroy(effect, 0.7f);
+            Destroy(effect, second);
+        }
+    }
+
+    public void CreateDamageEffect_Inversion(Vector3 position, GameObject effectPrefab, float second)
+    {
+        if (effectPrefab != null)
+        {
+            GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
+            effect.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = true;
+            Destroy(effect, second);
         }
     }
 
@@ -277,5 +300,10 @@ public abstract class BaseBoss : MonoBehaviour
     public void RemoveDebuff(BossDebuff debuff)
     {
         _bossDebuff.RemoveDebuff(debuff);
+    }
+
+    public void AttackAnimation()
+    {
+        _animator.SetTrigger("AttackTrigger");
     }
 }

@@ -43,7 +43,7 @@ public class Arachne : BaseBoss
         AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3));
 
         // 패턴 2: 종자 거미 공격
-        AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 2));
+        AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 4));
 
         // 패턴 3: 거미줄 잡기
         AddAttackPattern(new ArachneSpiderSilkPattern(spiderSilkPrefeb, 1));
