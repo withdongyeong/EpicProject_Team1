@@ -213,7 +213,11 @@ PrefabInstance:
     - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 14761301, guid: b4bd99865f227014189c777790e6d6c4, type: 3}
+      objectReference: {fileID: -1492664669, guid: 8b49f3511393d4c45933ba51273e912e, type: 3}
+    - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -276,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8129861531885375044, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -347,7 +351,11 @@ PrefabInstance:
     - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 14761301, guid: b4bd99865f227014189c777790e6d6c4, type: 3}
+      objectReference: {fileID: -222395291, guid: 8b49f3511393d4c45933ba51273e912e, type: 3}
+    - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -410,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8129861531885375044, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -539,14 +547,22 @@ PrefabInstance:
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 14761301, guid: b4bd99865f227014189c777790e6d6c4, type: 3}
+      objectReference: {fileID: 6790815620823405029, guid: 8b49f3511393d4c45933ba51273e912e, type: 3}
+    - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7071577427025521399, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7951068133944047977, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Name
