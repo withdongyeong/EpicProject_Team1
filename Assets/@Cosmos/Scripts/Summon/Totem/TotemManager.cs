@@ -43,22 +43,16 @@ public class TotemManager : SummonBase
     /// </summary>
     private void ActivateTotemList()
     {
+        //새로운 토템 상황을 생성합니다.
         TotemContext totemContext = new();
 
+        //토템 리스트를 전부 돌면서 토템 상황을 넣어주고 발동준비를 시킵니다.
         for(int i=0; i<_currentTotemList.Count; i++)
         {
-            if(i<_currentTotemList.Count - 1)
-            {
-                _currentTotemList[i].ActivateTotem(totemContext);
-            }
-            else
-            {
-                Debug.Log("else 들어옴");
-                _currentTotemList[i].ActivateTotemBetter(totemContext);
-            }
+            _currentTotemList[i].ReadyToActive(totemContext);
             UpdateTotemContext(totemContext);
-            _currentTotemList[i].DestroyTotem();
         }
+        //이제 이 리스트는 안쓰는 리스트입니다.
         _currentTotemList.Clear();
     }
 
