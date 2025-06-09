@@ -4,11 +4,13 @@
     {
         _MainTex ("Sprite Texture", 2D) = "white" {}
         _FillAmount ("Fill Amount", Range(0,1)) = 0.5
+        _WorldSpaceBottomY ("World Bottom Y", Float) = 0
+        _WorldSpaceHeight ("World Height", Float) = 1
     }
 
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
         LOD 100
 
         Pass
@@ -26,6 +28,8 @@
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _FillAmount;
+            float _WorldSpaceBottomY;
+            float _WorldSpaceHeight;
 
             struct appdata
             {
@@ -37,26 +41,29 @@
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                float3 worldPos : TEXCOORD1;
             };
 
-            v2f vert (appdata v)
+            v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag(v2f i) : SV_Target
             {
-                float2 uv = i.uv;
-                fixed4 col = tex2D(_MainTex, uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
 
-                // 아래에서부터 fillAmount까지 밝게 보이게
-                if (uv.y > _FillAmount)
+                // 월드 y 기준으로 채워지는 비율 계산
+                float ratio = saturate((i.worldPos.y - _WorldSpaceBottomY) / _WorldSpaceHeight);
+
+                if (ratio > _FillAmount)
                 {
-                    // 위쪽은 어둡게 처리
-                    col.rgb *= 0.3; // 어둡게
+                    // 위쪽은 어둡게
+                    col.rgb *= 0.3;
                 }
 
                 return col;
