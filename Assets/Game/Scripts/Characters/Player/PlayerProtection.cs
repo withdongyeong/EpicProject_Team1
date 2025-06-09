@@ -80,7 +80,7 @@ public class PlayerProtection : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
 
-            _protectionAmount--;
+            _protectionAmount-= 3;
 
             if (_protectionAmount <= 0)
             {

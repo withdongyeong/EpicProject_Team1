@@ -864,7 +864,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.6354165
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1273,7 +1273,7 @@ GameObject:
   - component: {fileID: 869559913}
   - component: {fileID: 869559916}
   - component: {fileID: 869559915}
-  - component: {fileID: 869559914}
+  - component: {fileID: 869559917}
   m_Layer: 5
   m_Name: BarrierText
   m_TagString: Untagged
@@ -1300,18 +1300,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1, y: 3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &869559914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869559912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc21baa1642e4d4998a147908ea62b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &869559915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,6 +1399,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869559912}
   m_CullTransparentMesh: 1
+--- !u!114 &869559917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869559912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a868162dfc092604abb0300d19864650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &874590994
 GameObject:
   m_ObjectHideFlags: 0
