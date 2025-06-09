@@ -7,7 +7,7 @@ using UnityEngine;
 public class GoldManager : Singleton<GoldManager>
 {
     //현재 소유하고 있는 골드입니다
-    private int _currentGold = 1000;
+    private int _currentGold;
 
     /// <summary>
     /// 현재 소유하고 있는 골드입니다.
@@ -23,6 +23,7 @@ public class GoldManager : Singleton<GoldManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+        SetCurrentGold(30);
     }
 
     // Update is called once per frame
