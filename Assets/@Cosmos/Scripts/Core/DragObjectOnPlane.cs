@@ -147,6 +147,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void RotatePreviewBlock()
     {
-        rotator.RotateZ(draggedTransform);
+        rotator.RotateZ(draggedTransform,UpdatePreviewCell);
+        
     }
 }
