@@ -6,7 +6,6 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     private Camera cam;
     private Vector3 offset;
-    private int rotationZ = 0;
     private GameObject originalObject; // 원본 오브젝트
     private GameObject dragCopy;
     private bool isDragging = false;

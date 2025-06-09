@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d10e365dbe2311042a3f1e4dbef7aa20
+guid: b46b3f0d34ef26d4f9fdc94eee979d95
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3166101254359739092
-    second: Boss_HP_0
+      213: -4908184131564490280
+    second: ShopGrid_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss_HP_0
+      name: ShopGrid_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1095
-        height: 103
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4dae70de05040fb20800000000000000
-      internalID: 3166101254359739092
+      spriteID: 8d1b3e97980a2ebb0800000000000000
+      internalID: -4908184131564490280
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Boss_HP_0: 3166101254359739092
+      ShopGrid_0: -4908184131564490280
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
