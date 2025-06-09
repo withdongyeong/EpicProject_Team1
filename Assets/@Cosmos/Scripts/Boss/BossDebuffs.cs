@@ -119,6 +119,6 @@ public class BossDebuffs : MonoBehaviour
     {
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
-        boss.StopAttack(1.5f);
+        boss.StopAttack(1f);
     }
 }

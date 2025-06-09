@@ -160,7 +160,7 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (dragCopy == null) return;
         
-        rotator.RotateZ(dragCopy.transform);
+        rotator.RotateZ(dragCopy.transform,UpdatePreviewCell);
     }
     
 }

@@ -1,19 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class SmoothRotator : MonoBehaviour
 {
     private bool isRotating = false;
 
-    public void RotateZ(Transform target, float angle = 90f, float duration = 0.1f)
+    public void RotateZ(Transform target,Action action, float angle = 90f, float duration = 0.1f)
     {
         if(!isRotating && target != null)
         {
-            StartCoroutine(RotateZCoroutine(target, angle, duration));
+            StartCoroutine(RotateZCoroutine(target,action, angle, duration));
         }
     }
 
-    private IEnumerator RotateZCoroutine(Transform target, float angle, float duration)
+    private IEnumerator RotateZCoroutine(Transform target,Action action, float angle, float duration)
     {
         isRotating = true;
         Quaternion startRot = target.rotation;
@@ -29,5 +30,7 @@ public class SmoothRotator : MonoBehaviour
         
         target.rotation = endRot;
         isRotating = false;
+        action?.Invoke(); // 회전 완료 후 액션 실행
+        
     }
 }

@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 60798664f4198a3448a4171e18f1f1cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,6 +333,9 @@ PrefabInstance:
     - {fileID: 8281361281478952301, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8687408947308703364, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2477432376712634342}
+    - targetCorrespondingSourceObject: {fileID: 8687408947308703364, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2087125677847144969}
     - targetCorrespondingSourceObject: {fileID: 8687408947308703364, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
@@ -341,9 +344,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8687408947308703364, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4053629018652190745}
-    - targetCorrespondingSourceObject: {fileID: 8687408947308703364, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2477432376712634342}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
