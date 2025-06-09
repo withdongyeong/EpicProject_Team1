@@ -2,8 +2,6 @@
 
 public class IcicleSkill : ProjectileSkill
 {
-    private bool isBossStopped = false; // 보스가 멈춰있는지 여부
-
     private void Awake()
     {
         damage = 5;

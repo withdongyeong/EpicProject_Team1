@@ -7,8 +7,10 @@ public class InfoPanel : MonoBehaviour
     private RectTransform rectTransform;
     private Canvas canvas;
     private Camera mainCamera;
-    [SerializeField] private TextMeshProUGUI nameText; // 이름 텍스트
-    [SerializeField] private TextMeshProUGUI descriptionText; // 설명 텍스트
+    private TextMeshProUGUI nameText; // 이름 텍스트
+    private TextMeshProUGUI descriptionText; // 설명 텍스트
+    private TextMeshProUGUI costText; // 비용 텍스트
+    private TextMeshProUGUI categoryText; // 종류 텍스트
 
     private void Start()
     {
@@ -16,6 +18,10 @@ public class InfoPanel : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         mainCamera = Camera.main;
         gameObject.SetActive(false); // 초기 비활성화
+        nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        descriptionText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        costText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        categoryText = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
     }
 
     /// <summary>
@@ -47,6 +53,8 @@ public class InfoPanel : MonoBehaviour
                 break;
         }
         descriptionText.text = currentTileObject.GetTileData().Description;
+        costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
+        categoryText.text = $"{currentTileObject.GetTileData().TileCategory}";
 
         // 위치 업데이트
         UpdatePosition(position, isUIElement);

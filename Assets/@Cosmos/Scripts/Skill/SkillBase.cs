@@ -4,7 +4,6 @@ public abstract class SkillBase : MonoBehaviour
 {
     
     [Header("Skill Info")] 
-    private SkillState _currentState = SkillState.Charging;
     public string skillName;
     public float cooldown = 5f;
     private float lastUsedTime = -Mathf.Infinity;
