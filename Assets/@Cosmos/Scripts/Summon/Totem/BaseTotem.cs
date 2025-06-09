@@ -34,7 +34,7 @@ public abstract class BaseTotem : MonoBehaviour
     /// <param name="context">토템이 발동할때의 상황을 담은 클래스입니다.</param>
     public virtual void ReadyToActive(TotemContext context)
     {
-        _context = context;
+        _context = context.Clone();
         GotoActivePos(_context.order);
         _anim.SetTrigger("Active");
     }
