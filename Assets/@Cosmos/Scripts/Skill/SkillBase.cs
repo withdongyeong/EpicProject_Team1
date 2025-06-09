@@ -16,6 +16,8 @@ public abstract class SkillBase : MonoBehaviour
         if(TryGetComponent<CombineCell>(out CombineCell combineCell))
         {
             _coolTimeMaterial = combineCell.GetSprite().material;
+            _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
+            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().bounds.min.y);
         }
     }
 
