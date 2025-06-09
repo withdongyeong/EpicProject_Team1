@@ -3,8 +3,8 @@ using UnityEngine;
 public class Warning : MonoBehaviour
 {
     [Header("애니메이션 설정")]
-    [SerializeField] private float animationDuration = 0.2f; // 총 애니메이션 시간
-    [SerializeField] private float startScale = 1.2f; // 시작 크기 (원래 크기의 1.5배)
+    [SerializeField] private float animationDuration = 0.1f; // 총 애니메이션 시간
+    [SerializeField] private float startScale = 1.1f; // 시작 크기 (원래 크기의 1.5배)
     [SerializeField] private AnimationCurve scaleCurve; // 크기 변화 곡선 (1.5배→1배)
     [SerializeField] private AnimationCurve colorCurve; // 색상 변화 곡선 (흰색→원래색)
     
@@ -85,7 +85,7 @@ public class Warning : MonoBehaviour
         
         // 크기 애니메이션 (크게 시작해서 원래 크기로)
         float scaleProgress = scaleCurve.Evaluate(progress);
-        float currentScaleMultiplier = Mathf.Lerp(startScale, 1f, scaleProgress);
+        float currentScaleMultiplier = Mathf.Lerp(startScale, 1f, scaleProgress); // 1.5f → 1f
         transform.localScale = originalScale * currentScaleMultiplier;
         
         // 색상 애니메이션 (흰색에서 원래 색으로)
