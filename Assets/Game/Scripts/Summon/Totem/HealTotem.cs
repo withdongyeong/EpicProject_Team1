@@ -4,16 +4,14 @@ public class HealTotem : BaseTotem
 {
     private PlayerHealth _playerHealth;
 
-    private int _healAmount;
 
     [SerializeField] protected GameObject _healEffectPrefab;
 
 
-    public override void InitializeTotem(InventoryItemData itemData)
+    public override void InitializeTotem(int totemPower)
     {
         _playerHealth = FindAnyObjectByType<PlayerHealth>();
-        _healAmount = itemData.HealAmount;
-        base.InitializeTotem(itemData);
+        base.InitializeTotem(totemPower);
     }
 
     public override void ActivateTotem(TotemContext context)
@@ -32,7 +30,7 @@ public class HealTotem : BaseTotem
     private void HealPlayer()
     {
         // 플레이어 체력 회복
-        _playerHealth.Heal(_healAmount);
+        _playerHealth.Heal(_totemPower);
 
         // 회복 이펙트 생성
         CreateHealEffect();
