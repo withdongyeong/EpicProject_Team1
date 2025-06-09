@@ -68,6 +68,7 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
 
         yield return new WaitForSeconds(1f);
 
+        boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
@@ -112,6 +113,7 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
 
         yield return new WaitForSeconds(0.5f);
 
+        boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);

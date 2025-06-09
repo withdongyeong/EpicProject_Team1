@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class StoreSlotController : MonoBehaviour
@@ -71,6 +72,9 @@ public class StoreSlotController : MonoBehaviour
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            
+            //이미지 비율을 맞추기 위한 코드입니다.
+            storeSlots[i].GetComponent<Image>().SetNativeSize();
         
         }
     }

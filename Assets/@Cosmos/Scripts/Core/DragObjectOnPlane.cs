@@ -6,7 +6,8 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     Transform draggedTransform;
     Vector3 beforeMovePosition; //물체가 드래그되기 전 있던 포지션입니다
-    
+
+    private float rotateZ;
     private SmoothRotator rotator;
     
     void Start()
@@ -30,6 +31,10 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+        //현재 tile의 rotation을 가져옵니다
+        rotateZ = draggedTransform != null ? draggedTransform.rotation.eulerAngles.z : 0f;
         //마우스 포인터로 누른 지점의 월드 포지션을 가져옵니다
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         worldPos.z = 0f;
@@ -73,6 +78,8 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
         if (draggedTransform == null)
             return;
         UpdateDragPosition();
@@ -81,6 +88,8 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
         if (draggedTransform == null) return;
 
         Vector3 corePos;
@@ -88,7 +97,10 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (!(GridManager.Instance.CanPlaceBlock(draggedTransform)))
         {
             Debug.Log("배치 불가능한 위치입니다.");
+            //배치가 불가능한 경우 원래 위치로 되돌립니다
             corePos = beforeMovePosition;
+            //원래 rotation으로 되돌립니다
+            draggedTransform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
         }
         else // 배치가 가능할시
         {
@@ -118,11 +130,5 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void RotatePreviewBlock()
     {
         rotator.RotateZ(draggedTransform);
-        /*
-        rotationZ = (rotationZ + 90) % 360; // 90도씩 회전
-        if (draggedTransform != null)
-        {
-            draggedTransform.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-        }*/
     }
 }
