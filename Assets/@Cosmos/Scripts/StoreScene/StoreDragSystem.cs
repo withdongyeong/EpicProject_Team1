@@ -85,6 +85,7 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Vector3 worldPoint = cam.ScreenToWorldPoint(eventData.position);
         worldPoint.z = 0;
         dragCopy.transform.position = worldPoint;
+        UpdatePreviewCell();
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -96,6 +97,7 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         //배치 불가능하거나 혹은 물건을 사는데 실패한다면
         if (!CanPlaceBlock() || !storeSlot.BuyObject())
         {
+            GridManager.Instance.ChangeCellSpriteAll();
             // 배치가 불가능한 경우 복제본 제거
             Debug.Log("배치 불가능한 위치이거나 돈이 부족하네요.");
             Destroy(dragCopy);
@@ -140,6 +142,18 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
         }
         return true; // 모든 셀이 가능하면 true 반환
+    }
+    
+    private void UpdatePreviewCell()
+    {
+        GridManager.Instance.ChangeCellSpriteAll();
+        foreach (Cell cell in dragCopy.GetComponentsInChildren<Cell>())
+        {
+            Transform child = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+            GridManager.Instance.ChangeCellSprite(gridPos, true);
+        }
+        
     }
     
     private void RotatePreviewBlock()

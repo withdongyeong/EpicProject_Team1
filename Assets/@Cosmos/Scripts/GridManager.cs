@@ -38,12 +38,37 @@ public class GridCell
     {
         if(IsOccupied) 
         {
+            sr.color = Color.white;
             // 점유되었을 때 점유 스프라이트로 변경
             sr.sprite = GridManager.Instance.GetOccupiedSprite();
         }
         else 
         {
+            sr.color = Color.white;
             // 점유 해제되었을 때 기본 스프라이트로 복원
+            sr.sprite = GridManager.Instance.GetDefaultSprite();
+        }
+    }
+
+    /// <summary>
+    /// 미리 보기용 스프라이트로 변경합니다
+    /// </summary>
+
+    public void ChangeSpritePreview(bool isPreview)
+    {
+        if (isPreview)
+        {
+            if (IsOccupied)
+            {
+                sr.color = Color.red;
+                return;
+            }
+            sr.color = Color.white;
+            sr.sprite = GridManager.Instance.GetOccupiedSprite();
+        }
+        else
+        {
+            sr.color = Color.white; // 미리 보기 해제 시 색상 복원
             sr.sprite = GridManager.Instance.GetDefaultSprite();
         }
     }
@@ -211,6 +236,29 @@ public class GridManager : Singleton<GridManager>
         plane.transform.localScale = new Vector3(maxSize, maxSize, 1);
     }
 
+    public void ChangeCellSprite(Vector3Int gridPos, bool isPreview)
+    {
+        if (IsWithinGrid(gridPos))
+        {
+            grid[gridPos.x, gridPos.y].ChangeSpritePreview(isPreview);
+        }
+        else
+        {
+            Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
+        }
+    }
+
+    public void ChangeCellSpriteAll()
+    {
+        for( int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector3Int gridPos = new Vector3Int(x, y, 0);
+                grid[x, y].ChangeSpriteTest(); // 미리 보기 해제
+            }
+        }
+    }
     // 테스트 메서드들
     public void TestPrintInventoryItemDataGrid()
     {
