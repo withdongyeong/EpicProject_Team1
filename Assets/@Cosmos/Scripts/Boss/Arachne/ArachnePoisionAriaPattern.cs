@@ -75,7 +75,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
 
         if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
         {
-            boss.ApplyDamageToPlayer(20);
+            boss.ApplyDamageToPlayer(10);
         }
 
         // 공격 영역에 폭발 이펙트 생성
