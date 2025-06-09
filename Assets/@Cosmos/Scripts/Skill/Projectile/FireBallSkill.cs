@@ -23,8 +23,13 @@ public class FireBallSkill : FireBoltSkill
     private IEnumerator FireProjectileWithDelay()
     {
         yield return new WaitForSeconds(0.15f); // 0.15초 딜레이 후 발사
+
+        SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
         FireProjectile();
+
         yield return new WaitForSeconds(0.15f); // 0.15초 딜레이 후 발사
+
+        SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
         FireProjectile();
     }
 }

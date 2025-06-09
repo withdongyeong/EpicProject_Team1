@@ -7,7 +7,7 @@ using UnityEngine;
 public class GoldManager : Singleton<GoldManager>
 {
     //현재 소유하고 있는 골드입니다
-    private int _currentGold = 0;
+    private int _currentGold = 1000;
 
     /// <summary>
     /// 현재 소유하고 있는 골드입니다.
