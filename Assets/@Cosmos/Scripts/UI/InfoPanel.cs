@@ -32,7 +32,7 @@ public class InfoPanel : MonoBehaviour
         currentTileObject = tileObject;
         gameObject.SetActive(true);
 
-        // TileObject 정보 설정
+        // 이름 텍스트 설정
         nameText.text = currentTileObject.GetTileData().TileName;
         switch (currentTileObject.GetTileData().TileGrade)
         {
@@ -52,9 +52,37 @@ public class InfoPanel : MonoBehaviour
                 nameText.color = Color.white;
                 break;
         }
+        // 설명 텍스트 설정
         descriptionText.text = currentTileObject.GetTileData().Description;
+        // 비용 텍스트 설정
         costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
-        categoryText.text = $"{currentTileObject.GetTileData().TileCategory}";
+        // 종류 텍스트 설정
+        string category = "무기";
+        switch(currentTileObject.GetTileData().TileCategory)
+        {
+            case TileCategory.Weapon:
+                category = "무기";
+                break;
+            case TileCategory.MagicCircle:
+                category = "마법진";
+                break;
+            case TileCategory.Armor:
+                category = "방어구";
+                break;
+            case TileCategory.Consumable:
+                category = "소모품";
+                break;
+            case TileCategory.Accessory:
+                category = "장신구";
+                break;
+            case TileCategory.Summon:
+                category = "소환수";
+                break;
+            default:
+                category = "기타";
+                break;
+        }
+        categoryText.text = category;
 
         // 위치 업데이트
         UpdatePosition(position, isUIElement);
