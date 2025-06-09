@@ -175,14 +175,19 @@ public abstract class BaseBoss : MonoBehaviour
         Debug.Log($"{GetType().Name} DEFEATED!");
         
         OnBossDeath?.Invoke();
-        
+
         // GameManager에 보스 사망 알림
         GameManager gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager != null)
         {
-            gameManager.HandleBossDeath();
+            StartCoroutine(BossDeath(gameManager));
         }
-        
+    }
+
+    private IEnumerator BossDeath(GameManager gameManager)
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameManager.HandleBossDeath();
         Destroy(gameObject);
     }
 
@@ -196,7 +201,7 @@ public abstract class BaseBoss : MonoBehaviour
         if (effectPrefab != null)
         {
             GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
-            Destroy(effect, 0.7f);
+            Destroy(effect, 0.1f);
         }
     }
 
