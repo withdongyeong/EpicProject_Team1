@@ -9,8 +9,9 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private int rotationZ = 0;
 
     Vector3 beforeMovePosition; //물체가 드래그되기 전 있던 포지션입니다
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    private SmoothRotator rotator;
+    
     void Start()
     {
         SpriteMask[] list = Object.FindObjectsByType<SpriteMask>(FindObjectsSortMode.InstanceID);
@@ -18,6 +19,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             Debug.Log(mask.gameObject);
         }
+        rotator = gameObject.AddComponent<SmoothRotator>();
     }
 
     // Update is called once per frame
@@ -118,10 +120,12 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void RotatePreviewBlock()
     {
+        rotator.RotateZ(draggedTransform);
+        /*
         rotationZ = (rotationZ + 90) % 360; // 90도씩 회전
         if (draggedTransform != null)
         {
             draggedTransform.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-        }
+        }*/
     }
 }
