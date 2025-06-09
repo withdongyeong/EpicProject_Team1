@@ -119,7 +119,7 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
         {
-            boss.ApplyDamageToPlayer(15);
+            boss.ApplyDamageToPlayer(20);
         }
 
         Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
