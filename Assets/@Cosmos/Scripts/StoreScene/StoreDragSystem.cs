@@ -13,11 +13,14 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     private StoreSlot storeSlot;
 
+    private SmoothRotator rotator;
+
 
     private void Awake()
     {
         cam = Camera.main;
         storeSlot = GetComponent<StoreSlot>();
+        rotator = gameObject.AddComponent<SmoothRotator>();
     }
 
     private void Update()
@@ -144,8 +147,11 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     private void RotatePreviewBlock()
     {
-        rotationZ = (rotationZ +90) % 360; // 90도씩 회전
-        dragCopy.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        if (dragCopy == null) return;
+        
+        rotator.RotateZ(dragCopy.transform);
+        /*rotationZ = (rotationZ +90) % 360; // 90도씩 회전
+        dragCopy.transform.rotation = Quaternion.Euler(0, 0, rotationZ);*/
     }
     
 }
