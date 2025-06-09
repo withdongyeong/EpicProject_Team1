@@ -87,37 +87,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2233978237658013353}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
 --- !u!1 &724528024428882302 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474259868635149644, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
   m_PrefabInstance: {fileID: 908287521431919666}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4645157340486371644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-  m_PrefabInstance: {fileID: 908287521431919666}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2233978237658013353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4645157340486371644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  _healAmount: 25
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!4 &7414430314381891077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -456,32 +432,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6620838415399496142}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
---- !u!1 &509279054769114644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-  m_PrefabInstance: {fileID: 5475631503359400730}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6620838415399496142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509279054769114644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  _healAmount: 25
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!4 &2414741325299355949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -579,37 +531,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6982997652510073620}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
 --- !u!4 &647332464958185712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
   m_PrefabInstance: {fileID: 7098925168191957703}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3344056422979272649 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-  m_PrefabInstance: {fileID: 7098925168191957703}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6982997652510073620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3344056422979272649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  _healAmount: 25
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!1 &7210432338144124811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474259868635149644, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -825,37 +753,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4337360149316900290}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
 --- !u!4 &1031857935739991506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
   m_PrefabInstance: {fileID: 7218811659185520613}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2937004157096225515 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-  m_PrefabInstance: {fileID: 7218811659185520613}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4337360149316900290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937004157096225515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  _healAmount: 25
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!1 &7114198824956709545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474259868635149644, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -1083,32 +987,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1798164322438381188}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2231052194117361110}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
---- !u!1 &2748290956785778094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
-  m_PrefabInstance: {fileID: 8664842753980697619}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2231052194117361110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2748290956785778094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  _healAmount: 25
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!4 &8433488283157050153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
