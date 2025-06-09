@@ -28,6 +28,10 @@ public abstract class BaseTotem : MonoBehaviour
         FindAnyObjectByType<TotemManager>().AddToTotemList(this);
     }
 
+    /// <summary>
+    /// 시작할 준비를 하는 메서드입니다. 이걸 호출하면 준비 -> 애니메이션 출력 -> 발동의 순서를 따릅니다.
+    /// </summary>
+    /// <param name="context">토템이 발동할때의 상황을 담은 클래스입니다.</param>
     public virtual void ReadyToActive(TotemContext context)
     {
         _context = context;
@@ -35,12 +39,19 @@ public abstract class BaseTotem : MonoBehaviour
         _anim.SetTrigger("Active");
     }
 
+    /// <summary>
+    /// 토템을 발동할 위치로 순간이동 시킵니다.
+    /// </summary>
+    /// <param name="order">이 토템이 발동한 순서입니다.</param>
     protected virtual void GotoActivePos(int order)
     {
         transform.parent = null;
         transform.position = GlobalSetting.Totem_ActivatePos + GlobalSetting.Totem_Offset * order;
     }
 
+    /// <summary>
+    /// 애니메이션이 끝났을때 이벤트로 인해 호출될 메서드입니다. 발동애니메이션이 끝날때 이벤트로 이 함수를 호출하면 됩니다.
+    /// </summary>
     protected virtual void AnimationEnd()
     {
         //3번째부터가 머리다! 면 순서는 0부터 시작이라 1 빼줍니다.
