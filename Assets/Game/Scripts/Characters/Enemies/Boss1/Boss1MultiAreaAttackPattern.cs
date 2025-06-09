@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -90,7 +90,7 @@ public class Boss1MultiAreaAttackPattern : IBossAttackPattern
             // 공격 영역에 폭발 이펙트 생성
             foreach (Vector3 pos in attackPositions)
             {
-                boss.CreateDamageEffect(pos, _explosionEffectPrefab);
+                boss.CreateDamageEffect(pos, _explosionEffectPrefab, 0.7f);
             }
 
             // 경고 타일 제거
