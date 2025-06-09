@@ -10,6 +10,11 @@ public class PlayerShield : MonoBehaviour
     private int _shieldAmount = 0;
     private GameObject _activeShieldEffect;
 
+    /// <summary>
+    /// 현재 방어막 수치입니다.
+    /// </summary>
+    public int ShieldAmount => _shieldAmount;
+
     public event Action<bool> OnShieldChanged;
 
     /// <summary>

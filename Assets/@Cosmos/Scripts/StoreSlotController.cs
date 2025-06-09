@@ -74,7 +74,7 @@ public class StoreSlotController : MonoBehaviour
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
             
             //이미지 비율을 맞추기 위한 코드입니다.
-            storeSlots[i].GetComponent<Image>().SetNativeSize();
+            storeSlots[i].GetComponent<Image>().preserveAspect = true;
         
         }
     }
@@ -82,8 +82,10 @@ public class StoreSlotController : MonoBehaviour
     public void ResetSlotBtn()
     {
         SoundManager.Instance.UISoundClip("RerollActivate");
-
-        SetupStoreSlots();
+        if(GoldManager.Instance.UseCurrentGold(1))
+        {
+            SetupStoreSlots();
+        }
     }
 
     /// <summary>

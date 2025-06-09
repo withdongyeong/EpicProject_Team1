@@ -35,8 +35,6 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
-        boss.AttackAnimation();
-
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
 
         // 플레이어 위치 가져오기
@@ -67,6 +65,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
         // 경고 대기
         yield return new WaitForSeconds(0.5f);
 
+        boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
 
         // 플레이어가 영역 내에 있는지 확인
@@ -76,7 +75,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
 
         if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
         {
-            boss.ApplyDamageToPlayer(15);
+            boss.ApplyDamageToPlayer(20);
         }
 
         // 공격 영역에 폭발 이펙트 생성
