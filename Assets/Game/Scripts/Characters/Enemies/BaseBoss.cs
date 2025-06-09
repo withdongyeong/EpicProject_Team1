@@ -175,14 +175,19 @@ public abstract class BaseBoss : MonoBehaviour
         Debug.Log($"{GetType().Name} DEFEATED!");
         
         OnBossDeath?.Invoke();
-        
+
         // GameManager에 보스 사망 알림
         GameManager gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager != null)
         {
-            gameManager.HandleBossDeath();
+            StartCoroutine(BossDeath(gameManager));
         }
-        
+    }
+
+    private IEnumerator BossDeath(GameManager gameManager)
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameManager.HandleBossDeath();
         Destroy(gameObject);
     }
 
@@ -191,12 +196,22 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     /// <param name="position">효과 생성 위치</param>
     /// <param name="effectPrefab">효과 프리팹</param>
-    public void CreateDamageEffect(Vector3 position, GameObject effectPrefab)
+    public void CreateDamageEffect(Vector3 position, GameObject effectPrefab, float second)
     {
         if (effectPrefab != null)
         {
             GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
-            Destroy(effect, 0.7f);
+            Destroy(effect, second);
+        }
+    }
+
+    public void CreateDamageEffect_Inversion(Vector3 position, GameObject effectPrefab, float second)
+    {
+        if (effectPrefab != null)
+        {
+            GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
+            effect.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = true;
+            Destroy(effect, second);
         }
     }
 
