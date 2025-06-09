@@ -2,24 +2,18 @@
 
 public abstract class BaseTotem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// <summary>
+    /// 토템의 성능을 정하는 기준입니다. 힐 토템이든 딜 토템이든 이걸 올리면 기본적으로 더 많은 딜, 더 많은 힐을 제공합니다.
+    /// </summary>
+    protected int _totemPower;
 
     /// <summary>
     /// Start() 역할이자 토템의 능력치를 정해주는 메서드입니다. base에 적혀있는 내용은 토템 메니저에 등록하는 겁니다. 보통 능력치 다 전달 하고 마지막에 base를 실행시켜주세요
     /// </summary>
     /// <param name="itemData">아이템 데이터를 바탕으로 자기가 해석해서 적용하게 합니다 부모의 아이템 데이터를 전해주세요</param>
-    public virtual void InitializeTotem(InventoryItemData itemData)
+    public virtual void InitializeTotem(int totemPower)
     {
+        _totemPower = totemPower;
         FindAnyObjectByType<TotemManager>().AddToTotemList(this);
     }
 

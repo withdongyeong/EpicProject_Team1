@@ -39,9 +39,9 @@ public class InfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    // 오브젝트용: 마우스가 오브젝트 위에 올라갔을 때
     private void OnMouseEnter()
     {
+        Debug.Log("Mouse entered InfoUI: " + gameObject.name);
         if (!isUIElement)
         {
             ShowInfoPanel();
