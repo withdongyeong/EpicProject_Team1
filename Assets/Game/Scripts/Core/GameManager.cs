@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         _gridSystem = GetComponent<GridSystem>();
         if (_gridSystem == null)
         {
-            _gridSystem = FindObjectOfType<GridSystem>();
+            _gridSystem = FindAnyObjectByType<GridSystem>();
             if (_gridSystem == null)
             {
                 Debug.LogError("[GameManager] GridSystem을 찾을 수 없습니다!");

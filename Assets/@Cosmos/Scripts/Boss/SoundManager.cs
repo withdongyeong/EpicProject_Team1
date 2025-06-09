@@ -32,7 +32,13 @@ public class SoundManager : Singleton<SoundManager>
     // 타일 볼륨 딕셔너리
     private Dictionary<string, float> tileSoundVolumeDictionary = new Dictionary<string, float>
     {
-        { "HealSkillActivate", 0.3f},
+        { "HealSkillActivate", 0.1f},
+        { "FireBallSkillActivate", 0.5f},
+        { "FireBoltSkillActivate", 0.3f},
+        {"ShieldSkillActivate", 0.3f },
+        {"IcicleSkillActivate", 0.2f },
+        {"FrostStaffSkillActivate", 0.2f },
+        {"TotemSummonSkillActivate", 0.1f }
     };
 
     //아라크네 사운드 딕셔너리
@@ -106,6 +112,8 @@ public class SoundManager : Singleton<SoundManager>
 
     private void Start()
     {
+        Debug.Log("playerSoundDictionary: " + playerSoundDictionary.Count);
+
         PlayBGMSound(bgm, bgmVolume);
     }
 

@@ -9,7 +9,7 @@ public class TileInfoUI : MonoBehaviour
     private void Start()
     {
         // InfoPanel 컴포넌트 찾기
-        infoPanel = FindObjectOfType<InfoPanel>(true);
+        infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
         if (infoPanel == null)
         {
             Debug.LogError("InfoPanel not found in the scene.");
