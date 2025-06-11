@@ -47,16 +47,16 @@ public class TreeTrapPattern : IBossAttackPattern
             warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
         }
 
-        // 세로 라인
-        for (int y = 0; y < boss.GridSystem.Height; y++)
-        {
-            if (y != playerY)
-            {
-                Vector3 pos = boss.GridSystem.GetWorldPosition(0, y);
-                attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
-            }
-        }
+        // // 세로 라인
+        // for (int y = 0; y < boss.GridSystem.Height; y++)
+        // {
+        //     if (y != playerY)
+        //     {
+        //         Vector3 pos = boss.GridSystem.GetWorldPosition(0, y);
+        //         attackPositions.Add(pos);
+        //         warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+        //     }
+        // }
 
         yield return new WaitForSeconds(0.8f);
 
