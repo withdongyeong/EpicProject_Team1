@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicDamage: 0
   summon_Offset: {x: -0.7, y: 0.55}
-  totem_Offset: {x: 0, y: 0.8}
-  shop_NormalChance: 60
-  shop_RareChance: 30
-  shop_EpicChance: 10
+  totem_Offset: {x: 0, y: 0.5}
+  totem_ActivatePos: {x: 1.7, y: 2.4}
+  totem_HeadInt: 3
+  shop_NormalChance: 0
+  shop_RareChance: 70
+  shop_EpicChance: 30
   shop_LegendaryChance: 0

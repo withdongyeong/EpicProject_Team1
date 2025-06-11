@@ -23,6 +23,10 @@ public class GlobalSetting : MonoBehaviour
 
     public static Vector2 Totem_Offset => _instance.totem_Offset;
 
+    public static Vector2 Totem_ActivatePos => _instance.totem_ActivatePos;
+
+    public static int Totem_HeadInt => _instance.totem_HeadInt;
+
     /// <summary>
     /// 노말 등급이 뜰 확률입니다
     /// </summary>

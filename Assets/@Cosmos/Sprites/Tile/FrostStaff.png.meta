@@ -105,10 +105,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 4
-        height: 3
+        width: 3
+        height: 1
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -121,12 +121,34 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: FrostStaff_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71d415362e52233419ef58ab728ca4b9
+      internalID: -1649222029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
-    internalID: 0
+    spriteID: b2929725341e2f14aae46fc2d2c27f92
+    internalID: 1227426419
     vertices: []
     indices: 
     edges: []
@@ -136,6 +158,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       FrostStaff_0: 85340628320461386
+      FrostStaff_1: -1649222029
+      FrostStaff_2: 1046947432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

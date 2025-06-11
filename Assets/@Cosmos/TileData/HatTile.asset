@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: HatTile
   m_EditorClassIdentifier: 
   tileName: "\uBAA8\uC790"
-  description: "\uBCF4\uD638\uB9C9\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
-  tileSprite: {fileID: -1836120431684336037, guid: 0ff243fc7a17a934384a5de75bc1787d, type: 3}
+  description: "\uBCF4\uD638\uB9C9\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4.\n\uBCF4\uD638\uB9C9:
+    \uC77C\uC815\uB7C9\uC758 \uB370\uBBF8\uC9C0\uB97C \uB9C9\uC544\uC90D\uB2C8\uB2E4.
+    \uB9E4\uCD08 \uAC10\uC18C\uD569\uB2C8\uB2E4."
+  tileCategory: 2
+  tileSprite: {fileID: 21300000, guid: 44a88f5b19d912b4aaeec8ec5327d8d3, type: 3}
   tileGrade: 1
   tileCost: 5

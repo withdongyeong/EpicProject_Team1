@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
+
 public enum SkillState
 {
     Charging, // 충전 중
@@ -16,7 +16,15 @@ public enum TileGrade
     Legendary // 전설 타일
 }
 
-
+public enum TileCategory
+{
+    Weapon,      // 무기
+    MagicCircle, // 마법진
+    Armor,       // 방어구
+    Consumable,  // 소모품
+    Accessory,   // 장신구
+    Summon,     // 소환수
+}
 
 [Serializable]
 public class TileInfo
@@ -26,12 +34,15 @@ public class TileInfo
     [SerializeField] private Sprite tileSprite;
     [SerializeField] private TileGrade tileGrade;
     [SerializeField] private int tileCost;
+    [SerializeField] private string tileData;
+    [SerializeField] private TileCategory tileCategory;
 
     public string TileName => tileName;
     public string Description => description;
     public Sprite TileSprite => tileSprite;
     public TileGrade TileGrade => tileGrade;
     public int TileCost => tileCost;
+    public TileCategory TileCategory => tileCategory;
 
     public TileInfo(TileData data)
     {
@@ -40,5 +51,6 @@ public class TileInfo
         tileSprite = data.tileSprite;
         tileGrade = data.tileGrade;
         tileCost = data.tileCost;
+        tileCategory = data.tileCategory;
     }
 }

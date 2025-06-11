@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Tile Data", menuName = "Game/TileData")]
 public class TileData : ScriptableObject
@@ -7,6 +7,7 @@ public class TileData : ScriptableObject
     public string tileName;
     [TextArea]
     public string description;
+    public TileCategory tileCategory;
 
     [Header("Tile Visuals")]
     public Sprite tileSprite;

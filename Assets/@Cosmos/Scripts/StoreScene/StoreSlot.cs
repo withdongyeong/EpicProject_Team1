@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +9,14 @@ public class StoreSlot : MonoBehaviour
     private bool isPurchased = false;
     private Image image;
     private StoreDragSystem _storeDragSystem;
+    private InfoUI infoUI;
 
 
     private void Awake()
     {
         image = GetComponent<Image>();
         _storeDragSystem = GetComponent<StoreDragSystem>();
+        infoUI = GetComponent<InfoUI>();
     }
 
     public GameObject GetObject()
@@ -27,17 +29,34 @@ public class StoreSlot : MonoBehaviour
         return objectPrefab; // 오브젝트 반환
     }
     
-    public void BuyObject()
+    /// <summary>
+    /// 물건을 사는 메서드입니다
+    /// </summary>
+    /// <returns></returns>
+    public bool BuyObject()
     {
+        //만약 이미 산거라면
         if (isPurchased)
         {
             Debug.Log("이미 구매한 오브젝트입니다.");
-            return;
+            return false;
         }
 
-        isPurchased = true; // 구매 상태로 변경
-        image.color = Color.gray; // 색상 변경
-        Debug.Log($"오브젝트 구매 완료: {objectPrefab.name} (가격: {objectCost})");
+        //돈이 지불 된다면
+        if(GoldManager.Instance.UseCurrentGold(objectCost))
+        {
+            isPurchased = true; // 구매 상태로 변경
+            image.color = Color.gray; // 색상 변경
+            Debug.Log($"오브젝트 구매 완료: {objectPrefab.name} (가격: {objectCost})");
+            return true;
+        }
+        else // 돈이 없어요
+        {
+            return false;
+
+        }
+
+        
     }
     public void SetSlot(int cost, GameObject prefab)
     {
@@ -47,5 +66,6 @@ public class StoreSlot : MonoBehaviour
         isPurchased = false; // 초기화
         image.color = Color.white; // 초기 색상 설정
         image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
+        infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
     }
 }

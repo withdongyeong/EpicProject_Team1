@@ -87,7 +87,7 @@ public class TreantVineWhipPattern : IBossAttackPattern
 
         foreach (Vector3 pos in attackPositions)
         {
-            boss.CreateDamageEffect(pos, _explosionEffectPrefab);
+            boss.CreateDamageEffect(pos, _explosionEffectPrefab, 0.7f);
         }
 
         foreach (GameObject tile in warningTiles)
@@ -134,7 +134,7 @@ public class TreantVineWhipPattern : IBossAttackPattern
 
         foreach (Vector3 pos in attackPositions)
         {
-            boss.CreateDamageEffect(pos, _explosionEffectPrefab);
+            boss.CreateDamageEffect(pos, _explosionEffectPrefab, 0.7f);
         }
 
         foreach (GameObject tile in warningTiles)

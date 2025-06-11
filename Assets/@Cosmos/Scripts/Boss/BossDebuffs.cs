@@ -18,6 +18,9 @@ public class BossDebuffs : MonoBehaviour
     // 보스 인스턴스 참조
     private BaseBoss boss;
 
+    // 상태 이상 UI
+    private BossHPUI bossHPUI;
+
     // 상태 이상 배열
     private int[] debuffs = new int[Enum.GetValues(typeof(BossDebuff)).Length];
 
@@ -27,6 +30,7 @@ public class BossDebuffs : MonoBehaviour
     private void Start()
     {
         boss = GetComponent<BaseBoss>();
+        bossHPUI = FindAnyObjectByType<BossHPUI>();
     }
 
     /// <summary>
@@ -38,9 +42,8 @@ public class BossDebuffs : MonoBehaviour
         switch (debuff)
         {
             case BossDebuff.Burning:
-                if (debuffs[(int)BossDebuff.Burning] >= 5) return; // 화상 상태 이상은 최대 5개까지만 허용
+                if (debuffs[(int)BossDebuff.Burning] >= 10) return; // 화상 상태 이상은 최대 5개까지만 허용
                 debuffs[(int)BossDebuff.Burning]++; // 화상 상태 이상 카운트 증가
-                Debug.Log($"Burning debuff added. Current count: {debuffs[(int)BossDebuff.Burning]}");
                 break;
             case BossDebuff.Frostbite:
                 if (debuffs[(int)BossDebuff.Frostbite] >= 5)
@@ -51,6 +54,7 @@ public class BossDebuffs : MonoBehaviour
             default:
                 break; // 다른 상태 이상은 처리하지 않음
         }
+        bossHPUI.UpdateDebuffUI(debuff, debuffs[(int)debuff]);
     }
 
     /// <summary>
@@ -62,6 +66,7 @@ public class BossDebuffs : MonoBehaviour
         if (debuffs[(int)debuff] > 0)
         {
             debuffs[(int)debuff]--; // 상태 이상 카운트 감소
+            bossHPUI.UpdateDebuffUI(debuff, debuffs[(int)debuff]);
         }
     }
 
@@ -92,7 +97,7 @@ public class BossDebuffs : MonoBehaviour
     {
         // 화상 효과 적용 로직
         boss.TakeDamage(debuffs[(int)BossDebuff.Burning]); // 화상 상태 이상에 따라 데미지 적용
-        debuffs[(int)BossDebuff.Burning]--; // 화상 상태 이상 카운트 감소
+        RemoveDebuff(BossDebuff.Burning);
         Debug.Log($"Burning effect applied. Remaining: {debuffs[(int)BossDebuff.Burning]}");
     }
 
@@ -113,6 +118,7 @@ public class BossDebuffs : MonoBehaviour
     private void ApplyFreezingEffect()
     {
         debuffs[(int)BossDebuff.Frostbite] = 0;
-        boss.StopAttack(2f);
+        bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
+        boss.StopAttack(1f);
     }
 }

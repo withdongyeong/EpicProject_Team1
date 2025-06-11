@@ -4,8 +4,10 @@ using UnityEngine;
 public class CombineCell : MonoBehaviour
 {
     public GameObject coreCell;
+    public GameObject tile;
     private SpriteRenderer sr;
     public SkillBase[] skills;
+    public TileObject tileObject;
 
     private void Awake()
     
@@ -16,6 +18,8 @@ public class CombineCell : MonoBehaviour
         }
         skills = GetComponents<SkillBase>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        tileObject = GetComponentInParent<TileObject>();
+        tile = tileObject.gameObject;
     }
 
 

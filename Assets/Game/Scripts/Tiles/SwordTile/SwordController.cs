@@ -174,35 +174,32 @@ public class SwordController : MonoBehaviour
         {
             player = playerObj.transform;
         }
-    
-        // 랜덤 색상 적용
-        ApplyRandomColor();
 
         // 5초 후에 오브젝트 파괴
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 7f);
     }
 
-    /// <summary>
-    /// 자식 스프라이트 렌더러들에 랜덤 색상 적용
-    /// </summary>
-    private void ApplyRandomColor()
-    {
-        // 랜덤 색상 생성
-        Color randomColor = new Color(
-            UnityEngine.Random.Range(0.3f, 1f), // R
-            UnityEngine.Random.Range(0.3f, 1f), // G
-            UnityEngine.Random.Range(0.3f, 1f), // B
-            1f // A (완전 불투명)
-        );
+    ///// <summary>
+    ///// 자식 스프라이트 렌더러들에 랜덤 색상 적용
+    ///// </summary>
+    //private void ApplyRandomColor()
+    //{
+    //    // 랜덤 색상 생성
+    //    Color randomColor = new Color(
+    //        UnityEngine.Random.Range(0.3f, 1f), // R
+    //        UnityEngine.Random.Range(0.3f, 1f), // G
+    //        UnityEngine.Random.Range(0.3f, 1f), // B
+    //        1f // A (완전 불투명)
+    //    );
     
-        // 모든 자식의 SpriteRenderer 찾아서 같은 색 적용
-        SpriteRenderer[] childRenderers = GetComponentsInChildren<SpriteRenderer>();
+    //    // 모든 자식의 SpriteRenderer 찾아서 같은 색 적용
+    //    SpriteRenderer[] childRenderers = GetComponentsInChildren<SpriteRenderer>();
     
-        foreach (SpriteRenderer renderer in childRenderers)
-        {
-            renderer.color = randomColor;
-        }
-    }
+    //    foreach (SpriteRenderer renderer in childRenderers)
+    //    {
+    //        renderer.color = randomColor;
+    //    }
+    //}
 
     /// <summary>
     /// 매 프레임 업데이트

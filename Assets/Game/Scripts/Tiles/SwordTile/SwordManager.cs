@@ -8,11 +8,6 @@ public class SwordManager : MonoBehaviour
     /// 모든 검 컨트롤러 리스트
     /// </summary>
     private List<SwordController> swords = new List<SwordController>();
-    
-    /// <summary>
-    /// 스킬 사용 이벤트
-    /// </summary>
-    public event Action OnSkillUsed;
 
     /// <summary>
     /// 초기화

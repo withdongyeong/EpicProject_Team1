@@ -18,7 +18,7 @@ public class GameUIManager : MonoBehaviour
     
     private GameStateManager _gameStateManager;
 
-    [Header("전환 씬 이름")] private string _buildingSceneName = "TestSceneKYH";
+    [Header("전환 씬 이름")] private string _buildingSceneName = "TestSceneKDY";
 
     /// <summary>
     /// 초기화 및 이벤트 연결

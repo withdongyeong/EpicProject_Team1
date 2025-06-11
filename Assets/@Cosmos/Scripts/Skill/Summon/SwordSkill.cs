@@ -2,13 +2,13 @@
 
 public class SwordSkill : SkillBase
 {
-    private int damage = 10; // 기본 공격력
+    public int damage = 10; // 기본 공격력
 
     protected BaseBoss targetEnemy;
     private GameObject[] swordPrefabs;
     private GameObject summonedSword;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         swordPrefabs = Resources.LoadAll<GameObject>("Prefabs/Swords");
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class StoreSlotController : MonoBehaviour
@@ -49,6 +50,7 @@ public class StoreSlotController : MonoBehaviour
             {
                 chosenGrade = TileGrade.Legendary;
             }
+            Debug.Log(chosenGrade);
 
             List<GameObject> chosenList = _normalStoreTiles;
             switch(chosenGrade)
@@ -70,13 +72,20 @@ public class StoreSlotController : MonoBehaviour
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            
+            //이미지 비율을 맞추기 위한 코드입니다.
+            storeSlots[i].GetComponent<Image>().preserveAspect = true;
         
         }
     }
 
     public void ResetSlotBtn()
     {
-        SetupStoreSlots();
+        SoundManager.Instance.UISoundClip("RerollActivate");
+        if(GoldManager.Instance.UseCurrentGold(1))
+        {
+            SetupStoreSlots();
+        }
     }
 
     /// <summary>

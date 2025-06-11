@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using static UnityEditor.Experimental.GraphView.GraphView;
 public class ArachnePoisionAriaPattern : IBossAttackPattern
 {
     private GameObject _warningTilePrefab;
     private GameObject _explosionEffectPrefab;
 
     private PlayerController _playerController;
-
+    
     public string PatternName => "ArachnePoisionAria";
 
     /// <summary>
@@ -35,6 +34,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
+        SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
+
         // 플레이어 위치 가져오기
         Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int playerX = GridPosition.x;
@@ -63,6 +64,9 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
         // 경고 대기
         yield return new WaitForSeconds(0.5f);
 
+        boss.AttackAnimation();
+        SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
+
         // 플레이어가 영역 내에 있는지 확인
         GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         int currentX = GridPosition.x;
@@ -70,7 +74,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
 
         if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
         {
-            boss.ApplyDamageToPlayer(15);
+            boss.ApplyDamageToPlayer(10);
         }
 
         // 공격 영역에 폭발 이펙트 생성
@@ -84,7 +88,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
                 if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
                 {
                     Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab);
+                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab, 0.7f);
                 }
             }
         }
