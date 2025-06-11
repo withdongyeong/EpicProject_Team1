@@ -259,7 +259,7 @@ public class GridManager : Singleton<GridManager>
         }
         else
         {
-            Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
+            //Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
         }
     }
 

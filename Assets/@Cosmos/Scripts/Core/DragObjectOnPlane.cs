@@ -14,13 +14,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
     
     void Start()
     {
-        SpriteMask[] list = Object.FindObjectsByType<SpriteMask>(FindObjectsSortMode.InstanceID);
-        foreach (SpriteMask mask in list)
-        {
-            Debug.Log(mask.gameObject);
-        }
         rotator = gameObject.AddComponent<SmoothRotator>();
-        Debug.Log("Start 잘 실행됨");
     }
 
     // Update is called once per frame

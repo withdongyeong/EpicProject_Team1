@@ -8,53 +8,123 @@ using UnityEngine.EventSystems;
 /// 드래그는 Tile을 제외하고 그 무엇도 드래그 되지 않습니다.
 /// 현재 1.상점->grid   2.grid-> grid  
 /// </summary>
-public class DragManager : Singleton<DragManager> ,IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragManager : Singleton<DragManager>
 {
+    [SerializeField]
     private GameObject currentDragObject;
     private Camera mainCamera;
+    private SmoothRotator smoothRotator;
     
-    private void Awake()
+    private bool isDragging = false; // 드래그 중인지 여부
+    public bool IsDragging => isDragging; // 외부에서 드래그 상태를 확인할 수 있도록 공개
+    
+    protected override void Awake()
     {
+        base.Awake();
         mainCamera = Camera.main;
-    } 
-    
-    
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        BeginDrag(eventData);
-    }
-    
-    public void OnDrag(PointerEventData eventData)
-    {
-        Drag(eventData);
-    }
-    
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        EndDrag(eventData);
+        smoothRotator = gameObject.AddComponent<SmoothRotator>();
     }
     
     
-    private void BeginDrag(PointerEventData eventData)
+    private void Update()
     {
-        if (eventData.button != PointerEventData.InputButton.Left) return; // 왼쪽 버튼이 아닐 경우 드래그 시작하지 않음
-        //마우스 포인터로 누른 지점의 월드 포지션을 가져옵니다
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-        worldPos.z = 0f;
+        if (isDragging)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RotateObject();
+            }
+        }
+    }
+    
+    public void BeginDrag(GameObject draggableObject)
+    {
+        isDragging = true;
+        currentDragObject = draggableObject;
+        
+    }
+    
+    public void Drag()
+    {
+        if (currentDragObject == null || !isDragging)
+            return;
 
-        //이게 누른 지점의 그리드 포지션입니다
-        Vector3Int clickedGridPosition = GridManager.Instance.WorldToGridPosition(worldPos);
-        Debug.Log(worldPos);
-        Debug.Log(clickedGridPosition);
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
+        
+        // 드래그 오브젝트 위치 업데이트
+        currentDragObject.transform.position = worldPosition;
+        // 그리드 미리보기 업데이트
+        UpdatePreviewCell();
     }
     
-    private void Drag(PointerEventData eventData)
+    public void EndDrag()
     {
-        if (eventData.button != PointerEventData.InputButton.Left) return; // 왼쪽 버튼이 아닐 경우 드래그 시작하지 않음
+        
+        isDragging = false;
+        currentDragObject = null;
+        UpdatePreviewCell();
+    }
+
+
+
+
+
+    public void PlaceObject()
+    {
+        Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().coreCell.transform.position;
+        corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
+        currentDragObject.transform.position = corePos;
+        foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
+        {
+            Transform t = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
+            GridManager.Instance.OccupyCell(gridPos, cell);
+        }
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(currentDragObject);
     }
     
-    private void EndDrag(PointerEventData eventData)
+    /// <summary>
+    /// 드래그 중인 오브젝트가 그리드에 배치 가능한지 확인합니다.
+    /// 배치 가능한 경우 true를 반환하고, 그렇지 않은 경우 false를 반환합니다.
+    /// </summary>
+    public bool CanPlaceTile()
     {
-        if (eventData.button != PointerEventData.InputButton.Left) return; // 왼쪽 버튼이 아닐 경우 드래그 시작하지 않음
+        if (currentDragObject == null) return false;
+        foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
+        {
+            Transform child = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
+            if (!GridManager.Instance.IsCellAvailable(gridPos))
+            {
+                return false; // 하나라도 불가능한 셀이 있으면 false 반환
+            }
+        }
+        return true; // 모든 셀이 가능하면 true 반환
+    }
+    
+    // 회전시 그리드 미리보기 업데이트, 추후 미리보기 관련 스크립트 따로 분리 예정
+    private void UpdatePreviewCell()
+    {
+        GridManager.Instance.ChangeCellSpriteAll();
+        if (currentDragObject == null) return;
+        foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
+        {
+            Transform t = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
+            GridManager.Instance.ChangeCellSprite(gridPos, true);
+        }
+    }
+
+    private void RotateObject()
+    {
+        if (currentDragObject == null) return;
+        
+        smoothRotator.RotateZ(currentDragObject.transform,UpdatePreviewCell);
     }
 }
