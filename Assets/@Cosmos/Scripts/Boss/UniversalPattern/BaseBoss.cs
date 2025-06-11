@@ -209,6 +209,7 @@ public abstract class BaseBoss : MonoBehaviour
         if (effectPrefab != null)
         {
             GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
+            effect.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = false;
             Destroy(effect, second);
         }
     }
