@@ -11,6 +11,7 @@ public class InfoPanel : MonoBehaviour
     private GameObject descriptionTextPrefab; // 설명 텍스트
     private GameObject costTextPrefab; // 비용 텍스트
     private GameObject categoryTextPrefab; // 종류 텍스트
+    
 
     private void Start()
     {
