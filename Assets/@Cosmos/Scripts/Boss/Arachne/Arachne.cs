@@ -23,8 +23,8 @@ public class Arachne : BaseBoss
     protected void Awake()
     {
         // 기본 스탯 설정
-        MaxHealth = 400;
-        PatternCooldown = 1.3f;
+        MaxHealth = 300;
+        PatternCooldown = 0.8f;
     }
 
     protected override void Start()
@@ -40,19 +40,19 @@ public class Arachne : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         // 패턴 1: 거미줄
-        //AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3, PlayerController));
+        // AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3));
 
         // 패턴 2: 종자 거미 공격
-        //AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 4));
-
-        // 패턴 3: 거미줄 잡기
-        //AddAttackPattern(new ArachneSpiderSilkPattern(spiderSilkPrefeb, 1));
-
-        // 패턴 4: 독 분출
-        AddAttackPattern(new ArachnePoisionAriaPattern(warningAria, poisionAriaPrefeb, PlayerController));
-
-        //패턴 5: 다리 공격
-        AddAttackPattern(new ArachneSpiderLegPattern(warningAria, SpiderLeg, PlayerController));
+        AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 4));
+        //
+        // // 패턴 3: 거미줄 잡기
+        // AddAttackPattern(new ArachneSpiderSilkPattern(spiderSilkPrefeb, 1));
+        //
+        // // 패턴 4: 독 분출
+        // AddAttackPattern(new ArachnePoisionAriaPattern(warningAria, poisionAriaPrefeb, PlayerController));
+        //
+        // //패턴 5: 다리 공격
+        // AddAttackPattern(new ArachneSpiderLegPattern(warningAria, SpiderLeg, PlayerController));
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
