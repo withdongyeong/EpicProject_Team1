@@ -58,11 +58,13 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
             int tileX = playerX + i;
             int tileY = playerY + i; // ↘ 방향: x == y
 
-            if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
             {
                 Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
                 warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
                 index++;
+
+                yield return new WaitForSeconds(0.05f);
             }
         }
 
@@ -71,14 +73,18 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int currentX = GridPosition.x;
+        int currentY = GridPosition.y;
+
+
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
         {
             boss.ApplyDamageToPlayer(10);
         }
 
         Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
-        boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
+        boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
 
         foreach (GameObject tile in warningTiles)
         {
@@ -103,11 +109,13 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
             int tileX = playerX + i;
             int tileY = playerY - i; // ↙ 방향: x == -y
 
-            if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
             {
                 Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
                 warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
                 index++;
+
+                yield return new WaitForSeconds(0.05f);
             }
         }
 
@@ -117,13 +125,14 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
         boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
         {
             boss.ApplyDamageToPlayer(10);
         }
 
         Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
-        boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
+        boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
 
         foreach (GameObject tile in warningTiles)
         {
