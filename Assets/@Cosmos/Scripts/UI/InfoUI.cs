@@ -39,30 +39,12 @@ public class InfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    private void OnMouseEnter()
-    {
-        Debug.Log("Mouse entered InfoUI: " + gameObject.name);
-        if (!isUIElement)
-        {
-            ShowInfoPanel();
-        }
-    }
-
-    // 오브젝트용: 마우스가 오브젝트에서 벗어났을 때
-    private void OnMouseExit()
-    {
-        if (!isUIElement)
-        {
-            HideInfoPanel();
-        }
-    }
-
     private void ShowInfoPanel()
     {
         if (tileObject != null)
         {
-            Vector3 position = isUIElement ? Input.mousePosition : transform.position;
-            infoPanel.Show(tileObject, position + new Vector3(-20f, 0, 0), isUIElement);
+            Vector3 position = isUIElement ? transform.position : transform.position;
+            infoPanel.Show(tileObject, position + new Vector3(-300f, 0, 0), isUIElement);
         }
     }
 
