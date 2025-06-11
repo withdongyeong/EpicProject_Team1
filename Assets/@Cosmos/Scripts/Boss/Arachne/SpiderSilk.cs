@@ -5,7 +5,7 @@ public class SpiderSilk : MonoBehaviour
 {
     private Vector3 _basePos;
     private float _targetWidth = 1f;
-    private float _growTime = 0.3f;
+    private float _growTime = 0.7f;
     private bool _isGrowing = true;
 
     private Vector3 _startScale;
@@ -36,7 +36,7 @@ public class SpiderSilk : MonoBehaviour
             float t = elapsed / _growTime;
 
             float currentWidth = Mathf.Lerp(_startScale.x, _endScale.x, t);
-            transform.localScale = new Vector3(currentWidth * 2, 0.3f, 1);
+            transform.localScale = new Vector3(currentWidth * 2f, 0.3f, 1);
             transform.position = _basePos - new Vector3((currentWidth - _startScale.x), 0, 0);
 
             yield return null;
