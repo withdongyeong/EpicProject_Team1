@@ -89,13 +89,13 @@ public class DiagonalCrossPattern : IBossAttackPattern
 
         yield return new WaitForSeconds(0.3f);
 
-        // 가로 방향
-        for (int x = 0; x < boss.GridSystem.Width; x++)
-        {
-            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(x, playerY, 0));
-            attackPositions.Add(pos);
-            warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
-        }
+        // // 가로 방향
+        // for (int x = 0; x < boss.GridSystem.Width; x++)
+        // {
+        //     Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(x, playerY, 0));
+        //     attackPositions.Add(pos);
+        //     warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+        // }
 
         yield return new WaitForSeconds(0.8f);
 
