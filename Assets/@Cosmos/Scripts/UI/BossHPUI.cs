@@ -20,7 +20,7 @@ public class BossHPUI : MonoBehaviour
     {
         hpUI = transform.GetChild(1).GetComponent<Image>();
         debuffPanel = transform.GetChild(2).gameObject;
-        debuffUI = Resources.LoadAll<GameObject>("Prefabs/UI");
+        debuffUI = Resources.LoadAll<GameObject>("Prefabs/UI/BossDebuffUI");
         activeDebuffUIs = new Dictionary<BossDebuff, (GameObject icon, GameObject text)>();
     }
 
