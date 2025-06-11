@@ -54,8 +54,8 @@ public class InfoPanel : MonoBehaviour
                 break;
         }
         // 설명 텍스트 설정
-        TextMeshProUGUI descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextMeshProUGUI>();
-        descriptionText.text = currentTileObject.GetTileData().Description;
+        TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
+        descriptionText.SetText(currentTileObject.GetTileData().Description);
         //// 비용 텍스트 설정
         //costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
         //// 종류 텍스트 설정
