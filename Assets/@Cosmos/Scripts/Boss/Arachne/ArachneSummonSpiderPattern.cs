@@ -2,18 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 거미 소환 패턴 - 격자 가장자리에서 거미들을 소환
+/// </summary>
 public class ArachneSummonSpiderPattern : IBossAttackPattern
 {
     private List<GameObject> _summonSpiders;
     private int _spiderCount;
 
-    private float cellSize = 1f;
     public string PatternName => "ArachneSummonSpider";
 
-
-    /// <summary>
-    /// 거미 소환 공격 생성자
-    /// </summary>
     public ArachneSummonSpiderPattern(List<GameObject> summonSpiders, int spiderCount)
     {
         _summonSpiders = summonSpiders;
@@ -22,29 +20,29 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
 
     public void Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(SummonSpider(boss));
+        // 거미 소환은 직접적인 공격이 아니라 소환이므로 AttackPreviewManager 없이 처리
+        boss.StartCoroutine(SummonSpiders(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _summonSpiders != null;
+        return _summonSpiders != null && _summonSpiders.Count > 0;
     }
 
     /// <summary>
-    /// 직선으로 움직이는 거미를 거미리스트에서 랜덤으로 꺼내서 소환 
-    /// 소환된 거미는 직선으로 빠르게 움직임
+    /// 격자 오른쪽 가장자리에서 거미들을 소환
     /// </summary>
-    /// <param name="boss"></param>
-    /// <returns></returns>
-    private IEnumerator SummonSpider(BaseBoss boss)
-    {   
-        for(int i = 0; i < _spiderCount; i++)
+    private IEnumerator SummonSpiders(BaseBoss boss)
+    {
+        for (int i = 0; i < _spiderCount; i++)
         {
-            int Y = Random.Range(0, 8);
-            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, Y, 0));
+            // 오른쪽 가장자리 랜덤 Y 위치
+            int randomY = Random.Range(0, 8);
+            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, randomY, 0));
 
+            // 랜덤 거미 선택
             GameObject randomSpider = _summonSpiders[Random.Range(0, _summonSpiders.Count)];
-            GameObject tentacle = Object.Instantiate(randomSpider, pos + new Vector3(cellSize, 0,0), Quaternion.identity);
+            GameObject spawnedSpider = Object.Instantiate(randomSpider, pos + new Vector3(1f, 0, 0), Quaternion.identity);
 
             yield return new WaitForSeconds(0.3f);
         }

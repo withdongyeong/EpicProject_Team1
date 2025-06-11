@@ -3,41 +3,27 @@
 public class Treant : BaseBoss
 {
     [Header("트랜트 전용 프리팹들")]
-    public GameObject WarningTilePrefab;
     public GameObject TreeTrapPrefab;
     
     public GameObject CropsPrefeb;
 
     public GameObject WarningAriaPrefeb;
     public GameObject TreantWindMagic;
-
-    public PlayerController PlayerController;
+    
     private void Awake()
     {       
         // 기본 스탯 설정
         MaxHealth = 200;
         PatternCooldown = 0.6f;
     }
-
-    /// <summary>
-    /// 보스 초기화 - 고유한 스탯 설정
-    /// </summary>
-    protected override void Start()
-    {
-        PlayerController = FindFirstObjectByType <PlayerController>();
-
-        // 부모 클래스 초기화 호출
-        base.Start();
-
-    }
-
+    
     /// <summary>
     /// 공격 패턴 초기화 - 3가지 패턴 모두 등록
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
         //바닥 나무 패턴
-        AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab, PlayerController));
+        AddAttackPattern(new TreeTrapPattern(TreeTrapPrefab));
 
         //작물 던지기 패턴
         AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
@@ -46,7 +32,7 @@ public class Treant : BaseBoss
         AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic));
 
         //덩굴채찍
-        AddAttackPattern(new TreantVineWhipPattern(WarningTilePrefab, TreeTrapPrefab, 2, PlayerController));
+        AddAttackPattern(new TreantVineWhipPattern(TreeTrapPrefab, 2));
 
        //종자 뿌리기 - HP 50이하 마다
 

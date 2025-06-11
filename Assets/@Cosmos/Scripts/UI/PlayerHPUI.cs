@@ -19,6 +19,7 @@ public class PlayerHPUI : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Here");
         //초기화하는 과정입니다. UI들과 playerHealth,PlayerProtection을 씬에서 찾아 가져옵니다
         protectUI = transform.GetChild(0).GetComponent<Image>();
         hPUI = transform.GetChild(1).GetComponent<Image>();

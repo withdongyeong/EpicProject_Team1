@@ -1,61 +1,78 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+/// <summary>
+/// 거미줄 실 패턴 - 특정 위치에서 가로로 확장되는 공격
+/// </summary>
 public class ArachneSpiderSilkPattern : IBossAttackPattern
 {
-    private GameObject _spiderSilkPrefeb;
+    private GameObject _spiderSilkPrefab;
     private int _spiderSilkCount;
-
-    public int gridSize = 8;
-    public float cellSize = 1f;
-
 
     public string PatternName => "SpiderSilk";
 
-    /// <summary>
-    /// 실 붙잡기 생성자
-    /// </summary>
-    public ArachneSpiderSilkPattern(GameObject spiderSilkPrefeb, int spiderSilkCount)
+    public ArachneSpiderSilkPattern(GameObject spiderSilkPrefab, int spiderSilkCount)
     {
-        _spiderSilkPrefeb = spiderSilkPrefeb;
+        _spiderSilkPrefab = spiderSilkPrefab;
         _spiderSilkCount = spiderSilkCount;
     }
 
     public void Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(SpiderSilk(boss));
+        boss.StartCoroutine(SpiderSilkAttack(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _spiderSilkPrefeb != null;
+        return AttackPreviewManager.Instance != null && _spiderSilkPrefab != null;
     }
 
     /// <summary>
-    /// 실에 잡히면 플레이어 강제로 앞으로 이동
+    /// 실 공격 - 오른쪽 끝에서 가로줄로 확장
     /// </summary>
-    /// <param name="boss"></param>
-    /// <returns></returns>
-    private IEnumerator SpiderSilk(BaseBoss boss)
+    private IEnumerator SpiderSilkAttack(BaseBoss boss)
     {
-        for (int i = 0; i< _spiderSilkCount; i++)
+        for (int i = 0; i < _spiderSilkCount; i++)
         {
-            int Y = Random.Range(0, 8);
+            // 랜덤 Y 위치, X는 격자 끝(오른쪽)에서 시작
+            int randomY = Random.Range(0, 8);
+            
+            // 가로줄 전체를 공격 패턴으로 생성
+            List<Vector3Int> horizontalLine = CreateHorizontalLinePattern(randomY);
+            
+            AttackPreviewManager.Instance.CreateSpecificPositionAttack(
+                gridPositions: horizontalLine,
+                attackPrefab: _spiderSilkPrefab,
+                previewDuration: 0.5f,
+                damage: 10,
+                onAttackComplete: () => {
+                    SoundManager.Instance?.ArachneSoundClip("SpiderSilkActivate");
+                }
+            );
 
-            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, Y, 0));
-            GameObject spiderSilk = GameObject.Instantiate(_spiderSilkPrefeb, pos + new Vector3(cellSize, 0,0), Quaternion.identity);
-
-            // 초기 스케일
-            spiderSilk.transform.localScale = new Vector3(0.1f, 1, 1);
-
-            // 생성된 오브젝트에 초기값 전달
-            SpiderSilk silkScript = spiderSilk.GetComponent<SpiderSilk>();
-
-            if (silkScript != null)
-            {
-                silkScript.Init(spiderSilk.transform.position, gridSize); // 필요 파라미터 전달
-            }
             yield return new WaitForSeconds(0.3f);
         }
     }
-}
 
+    /// <summary>
+    /// 특정 Y 좌표의 가로줄 패턴 생성
+    /// </summary>
+    private List<Vector3Int> CreateHorizontalLinePattern(int y)
+    {
+        List<Vector3Int> pattern = new List<Vector3Int>();
+        
+        // X축 전체를 가로지르는 선
+        for (int x = 0; x < 8; x++)
+        {
+            Vector3Int pos = new Vector3Int(x, y, 0);
+            if (GridManager.Instance.IsWithinGrid(pos))
+            {
+                pattern.Add(pos);
+            }
+        }
+        
+        return pattern;
+    }
+}

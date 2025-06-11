@@ -1,55 +1,37 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
+/// <summary>
+/// 거미줄 설치 패턴 - 랜덤 위치에 거미줄 설치
+/// </summary>
 public class ArachneSpiderWebPattern : IBossAttackPattern
 {
-    private GameObject _spiderWebPrefeb;
+    private GameObject _spiderWebPrefab;
     private int _spiderWebCount;
-    private PlayerController _playerController;
 
     public string PatternName => "ArachneSpiderWeb";
 
-    /// <summary>
-    /// 거미줄 설치 패턴 생성자
-    /// </summary>
-    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount, PlayerController playerController)
+    public ArachneSpiderWebPattern(GameObject spiderWebPrefab, int spiderWebCount)
     {
-        _spiderWebPrefeb = spiderWebPrefeb;
+        _spiderWebPrefab = spiderWebPrefab;
         _spiderWebCount = spiderWebCount;
-        _playerController = playerController;
     }
 
     public void Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteAreaAttack(boss));
+        // 간단하게 랜덤 위치 공격으로 처리
+        AttackPreviewManager.Instance.CreateRandomPositionAttack(
+            attackCount: _spiderWebCount,
+            attackPrefab: _spiderWebPrefab,
+            previewDuration: 0.5f,
+            damage: 5,
+            onAttackComplete: () => {
+                SoundManager.Instance?.ArachneSoundClip("SpiderWebPlace");
+            }
+        );
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _spiderWebPrefeb != null;
-    }
-
-    /// <summary>
-    /// 거미줄 설치
-    /// </summary>
-    private IEnumerator ExecuteAreaAttack(BaseBoss boss)
-    {
-        List<GameObject> warningTiles = new List<GameObject>();
-
-        for (int i = 0; i < _spiderWebCount; i++)
-        {
-            int X = Random.Range(0, 8);
-            int Y = Random.Range(0, 8);
-
-            if (GridManager.Instance.IsWithinGrid(new Vector3Int(X,Y,0)) || (X == _playerController.CurrentX && Y == _playerController.CurrentY))
-            {
-                Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(X, Y, 0));
-                warningTiles.Add(Object.Instantiate(_spiderWebPrefeb, pos, Quaternion.identity));
-            }
-
-            yield return new WaitForSeconds(0.2f);
-        }
+        return AttackPreviewManager.Instance != null && _spiderWebPrefab != null;
     }
 }

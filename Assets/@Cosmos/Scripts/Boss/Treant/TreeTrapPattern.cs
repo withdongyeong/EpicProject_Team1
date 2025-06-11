@@ -4,17 +4,13 @@ using System.Collections.Generic;
 
 public class TreeTrapPattern : IBossAttackPattern
 {
-    public GameObject _warningTilePrefab;
-    public GameObject _treeTrapPrefab;
+    private GameObject _treeTrapPrefab;
 
-    public PlayerController _playerController;
     public string PatternName => "Tree Trap";
 
-    public TreeTrapPattern(GameObject warningTilePrefab, GameObject treeTrapPrefab, PlayerController playerController)
+    public TreeTrapPattern(GameObject treeTrapPrefab)
     {
-        _warningTilePrefab = warningTilePrefab;
         _treeTrapPrefab = treeTrapPrefab;
-        _playerController = playerController;
     }
 
     public void Execute(BaseBoss boss)
@@ -24,66 +20,53 @@ public class TreeTrapPattern : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _warningTilePrefab != null && _treeTrapPrefab != null;
+        return AttackPreviewManager.Instance != null && _treeTrapPrefab != null;
     }
 
     /// <summary>
-    /// 나무 함정 생성
+    /// 나무 함정 생성 - 플레이어 위치 기준 특수 패턴
     /// </summary>
     private IEnumerator TreeTrap(BaseBoss boss)
     {
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
+        // 플레이어 위치 스냅샷 (공격 시점의 위치 고정)
+        List<Vector3Int> trapPattern = CreateTreeTrapPattern();
+        
+        AttackPreviewManager.Instance.CreateSpecificPositionAttack(
+            gridPositions: trapPattern,
+            attackPrefab: _treeTrapPrefab,
+            previewDuration: 0.8f,
+            damage: 20,
+            onAttackComplete: () => {
+                boss.AttackAnimation();
+            }
+        );
 
-        List<GameObject> warningTiles = new List<GameObject>();
-        List<Vector3> attackPositions = new List<Vector3>();
+        yield return null;
+    }
 
-        ////가로 라인
+    /// <summary>
+    /// 현재 플레이어 위치 기준 나무 함정 패턴 생성
+    /// </summary>
+    private List<Vector3Int> CreateTreeTrapPattern()
+    {
+        List<Vector3Int> pattern = new List<Vector3Int>();
+        Vector3Int playerPos = AttackPreviewManager.Instance.GetCurrentPlayerPosition();
+
+        // 가로 라인 (플레이어 Y 좌표 전체)
         for (int x = 0; x < 8; x++)
         {
-            Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int (x, playerY, 0));
-            attackPositions.Add(pos);
-            warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+            pattern.Add(new Vector3Int(x, playerPos.y, 0));
         }
 
-        // 세로 라인
-        for (int y = 0; y < boss.GridSystem.Height; y++)
+        // 세로 라인 (X=0 위치만, 플레이어 Y 제외)
+        for (int y = 0; y < 8; y++)
         {
-            if (y != playerY)
+            if (y != playerPos.y)
             {
-                Vector3 pos = boss.GridSystem.GetWorldPosition(0, y);
-                attackPositions.Add(pos);
-                warningTiles.Add(Object.Instantiate(_warningTilePrefab, pos, Quaternion.identity));
+                pattern.Add(new Vector3Int(0, y, 0));
             }
         }
 
-        yield return new WaitForSeconds(0.8f);
-
-       GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int currentX = GridPosition.x;
-        int currentY = GridPosition.y;
-
-        //세로 라인 데미지
-        if (currentX == 0)
-        {
-            boss.ApplyDamageToPlayer(20);
-        }
-
-        //가로 라인 데미지
-        if (currentY == playerY)
-        {
-            boss.ApplyDamageToPlayer(20);
-        }
-
-        foreach (Vector3 pos in attackPositions)
-        {
-            boss.CreateDamageEffect(pos, _treeTrapPrefab, 0.7f);
-        }
-
-        foreach (GameObject tile in warningTiles)
-        {
-            Object.Destroy(tile);
-        }
+        return pattern;
     }
 }

@@ -1,35 +1,70 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
+/// <summary>
+/// 지속적인 거미줄 실 패턴 - 일정 간격으로 반복 공격
+/// </summary>
 public class ArachneSpiderSilkPattern2 : MonoBehaviour
 {
-    public GameObject _spiderSilkPrefeb;
+    private GameObject _spiderSilkPrefab;
+    private bool _isActive = false;
 
-    public int gridSize = 8;
-    public float cellSize = 1f;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Initialize(GameObject spiderSilkPrefab)
     {
-        // 2초마다 MyFunction을 호출, 시작 지연 시간은 1.2초
-        InvokeRepeating("MyFunction", 1.2f, 5f);
+        _spiderSilkPrefab = spiderSilkPrefab;
     }
 
-    void MyFunction()
+    public void StartPattern()
     {
-        int Y = Random.Range(0, 8);
-
-        Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, Y, 0));
-        GameObject spiderSilk = GameObject.Instantiate(_spiderSilkPrefeb, pos + new Vector3(cellSize, 0, 0), Quaternion.identity);
-
-        // 초기 스케일
-        spiderSilk.transform.localScale = new Vector3(0.1f, 1, 1);
-
-        // 생성된 오브젝트에 초기값 전달
-        SpiderSilk silkScript = spiderSilk.GetComponent<SpiderSilk>();
-
-        if (silkScript != null)
+        if (!_isActive)
         {
-            silkScript.Init(spiderSilk.transform.position, gridSize); // 필요 파라미터 전달
+            _isActive = true;
+            InvokeRepeating(nameof(ExecuteSilkAttack), 1.2f, 5f);
         }
+    }
+
+    public void StopPattern()
+    {
+        _isActive = false;
+        CancelInvoke(nameof(ExecuteSilkAttack));
+    }
+
+    private void ExecuteSilkAttack()
+    {
+        if (!_isActive || AttackPreviewManager.Instance == null) return;
+
+        int randomY = Random.Range(0, 8);
+        List<Vector3Int> horizontalLine = CreateHorizontalLinePattern(randomY);
+        
+        AttackPreviewManager.Instance.CreateSpecificPositionAttack(
+            gridPositions: horizontalLine,
+            attackPrefab: _spiderSilkPrefab,
+            previewDuration: 0.8f,
+            damage: 15,
+            onAttackComplete: () => {
+                SoundManager.Instance?.ArachneSoundClip("SpiderSilkActivate");
+            }
+        );
+    }
+
+    private List<Vector3Int> CreateHorizontalLinePattern(int y)
+    {
+        List<Vector3Int> pattern = new List<Vector3Int>();
+        
+        for (int x = 0; x < 8; x++)
+        {
+            Vector3Int pos = new Vector3Int(x, y, 0);
+            if (GridManager.Instance.IsWithinGrid(pos))
+            {
+                pattern.Add(pos);
+            }
+        }
+        
+        return pattern;
+    }
+
+    private void OnDestroy()
+    {
+        StopPattern();
     }
 }

@@ -288,10 +288,10 @@ GameObject:
   m_Component:
   - component: {fileID: 283686389}
   - component: {fileID: 283686388}
-  - component: {fileID: 283686390}
   - component: {fileID: 283686391}
   - component: {fileID: 283686392}
   - component: {fileID: 283686393}
+  - component: {fileID: 283686394}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -313,9 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3249486552240177032, guid: af1a116ed832d2f47a88523321211555, type: 3}
   enemyPrefab: {fileID: 6316585728366198449, guid: 642853f7c29f7884d9d60772837c0bdd, type: 3}
-  highlightTilePrefab: {fileID: 2088068471157347722, guid: b158c356a8eb54e469824f348eaa9b94, type: 3}
   nightBoard: {fileID: 4338915156489441334, guid: d357b73b856d9a947958371fe50c10e3, type: 3}
-  countdownText: {fileID: 0}
+  countdownText: {fileID: 1204994206}
   countdownDuration: 3
   enemySpawnPosition: {fileID: 325555200}
 --- !u!4 &283686389
@@ -333,22 +332,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &283686390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283686387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e08b17bf984d3085d1c52f45ad274a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _width: 8
-  _height: 8
-  _cellSize: 1
-  _gridOffset: {x: -7, y: -4, z: 0}
 --- !u!114 &283686391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +374,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadThis: {fileID: 11400000, guid: 6eeac900c2171674fb8601db3046d219, type: 2}
+--- !u!114 &283686394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283686387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0f077ff4d64cfea4add77b5e7b9355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPreviewPrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
 --- !u!1 &308916937
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,15 +852,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.125
+    y: 0.125
+    width: 0.75000006
+    height: 0.75
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 4.21875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -908,11 +904,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 32
-  m_RefResolutionX: 1920
-  m_RefResolutionY: 1080
-  m_CropFrame: 0
-  m_GridSnapping: 0
+  m_AssetsPPU: 96
+  m_RefResolutionX: 1440
+  m_RefResolutionY: 810
+  m_CropFrame: 3
+  m_GridSnapping: 1
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -3266,7 +3262,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 6
+    OrthographicSize: 8.1
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

@@ -14,60 +14,88 @@ public class GameStateManager : MonoBehaviour
         Defeat
     }
 
-    private static GameStateManager _instance;
-    private GameState _currentState;
-    private TimeScaleManager _timeScaleManager;
+    private static GameStateManager instance;
+    private GameState currentState;
+    private TimeScaleManager timeScaleManager;
+    private GameManager gameManager;
 
-    // 이벤트 정의
     public event Action<GameState> OnGameStateChanged;
 
-    // 싱글톤 인스턴스
     public static GameStateManager Instance
     {
         get
         {
-            if (_instance == null)
+            if (instance == null)
             {
-                _instance = FindAnyObjectByType<GameStateManager>();
-                if (_instance == null)
+                instance = FindAnyObjectByType<GameStateManager>();
+                if (instance == null)
                 {
                     GameObject obj = new GameObject("GameStateManager");
-                    _instance = obj.AddComponent<GameStateManager>();
+                    instance = obj.AddComponent<GameStateManager>();
                     DontDestroyOnLoad(obj);
                 }
             }
-            return _instance;
+            return instance;
         }
     }
 
-    public GameState CurrentState { get => _currentState; }
+    public GameState CurrentState { get => currentState; }
+    public GameManager GameManager { get => gameManager; set => gameManager = value; }
 
+    /// <summary>
+    /// 싱글톤 초기화 및 기본 설정
+    /// </summary>
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
         
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(gameObject);
         
-        // 타임스케일 매니저 참조 확보
-        _timeScaleManager = TimeScaleManager.Instance;
-        
-        // 기본 상태 설정
+        timeScaleManager = TimeScaleManager.Instance;
         SetGameState(GameState.Playing);
+    }
+
+    /// <summary>
+    /// GameManager 참조 설정 및 검증
+    /// </summary>
+    private void Start()
+    {
+        FindGameManager();
+    }
+
+    /// <summary>
+    /// GameManager 참조 찾기
+    /// </summary>
+    private void FindGameManager()
+    {
+        if (gameManager == null)
+        {
+            gameManager = FindAnyObjectByType<GameManager>();
+            
+            if (gameManager == null)
+            {
+                Debug.LogWarning("[GameStateManager] GameManager를 찾을 수 없습니다!");
+            }
+            else
+            {
+                Debug.Log("[GameStateManager] GameManager 참조를 성공적으로 설정했습니다.");
+            }
+        }
     }
 
     /// <summary>
     /// 게임 상태 변경
     /// </summary>
+    /// <param name="newState">새로운 게임 상태</param>
     public void SetGameState(GameState newState)
     {
-        _currentState = newState;
+        currentState = newState;
         
-        // 상태에 따른 타임스케일 조절
         switch (newState)
         {
             case GameState.Playing:
@@ -80,6 +108,7 @@ public class GameStateManager : MonoBehaviour
         }
         
         OnGameStateChanged?.Invoke(newState);
+        Debug.Log($"[GameStateManager] 게임 상태가 {newState}로 변경되었습니다.");
     }
 
     /// <summary>
@@ -96,6 +125,7 @@ public class GameStateManager : MonoBehaviour
     public void WinGame()
     {
         SetGameState(GameState.Victory);
+        Debug.Log("[GameStateManager] 게임 승리!");
     }
 
     /// <summary>
@@ -104,14 +134,52 @@ public class GameStateManager : MonoBehaviour
     public void LoseGame()
     {
         SetGameState(GameState.Defeat);
+        Debug.Log("[GameStateManager] 게임 패배!");
     }
 
     /// <summary>
-    /// 게임 재시작
+    /// 게임 재시작 - GameManager의 실제 재시작 로직 호출
     /// </summary>
     public void RestartGame()
     {
-        _timeScaleManager.ResetTimeScale();
+        Debug.Log("[GameStateManager] 게임 재시작 시도...");
+        
+        // GameManager 참조 재확인
+        if (gameManager == null)
+        {
+            FindGameManager();
+        }
+        
+        if (gameManager != null)
+        {
+            Debug.Log("[GameStateManager] GameManager.RestartGame() 호출");
+            gameManager.RestartGame();
+        }
+        else
+        {
+            Debug.LogError("[GameStateManager] GameManager를 찾을 수 없어 재시작할 수 없습니다!");
+            
+            // GameManager가 없으면 씬 재로드로 대체
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+        
+        // 타임스케일 리셋
+        if (timeScaleManager != null)
+        {
+            timeScaleManager.ResetTimeScale();
+        }
+        
         SetGameState(GameState.Playing);
+    }
+
+    /// <summary>
+    /// 외부에서 GameManager 참조 설정 (GameManager Start에서 호출)
+    /// </summary>
+    /// <param name="manager">GameManager 인스턴스</param>
+    public void RegisterGameManager(GameManager manager)
+    {
+        gameManager = manager;
+        Debug.Log("[GameStateManager] GameManager가 등록되었습니다.");
     }
 }

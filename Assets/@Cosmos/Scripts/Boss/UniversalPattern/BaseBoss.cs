@@ -21,7 +21,6 @@ public abstract class BaseBoss : MonoBehaviour
     private bool _isStopped = false; // 공격 중지 여부
 
     // 컴포넌트 참조
-    private GridManager _gridSystem;
     private PlayerController _player;
     private PlayerHealth _playerHealth;
     
@@ -55,11 +54,6 @@ public abstract class BaseBoss : MonoBehaviour
     /// 공격 중지 여부 프로퍼티
     /// </summary>
     public bool IsStopped { get => _isStopped; set => _isStopped = value; }
-
-    /// <summary>
-    /// 그리드 시스템 프로퍼티
-    /// </summary>
-    public GridManager GridSystem { get => _gridSystem; }
     
     /// <summary>
     /// 플레이어 컨트롤러 프로퍼티
@@ -87,7 +81,6 @@ public abstract class BaseBoss : MonoBehaviour
         _currentHealth = _maxHealth;
         
         // 컴포넌트 참조 설정
-        _gridSystem = GridManager.Instance;
         _player = FindAnyObjectByType<PlayerController>();
         _playerHealth = _player != null ? _player.GetComponent<PlayerHealth>() : null;
         _bossDebuff = GetComponent<BossDebuffs>();
@@ -305,6 +298,9 @@ public abstract class BaseBoss : MonoBehaviour
 
     public void AttackAnimation()
     {
-        _animator.SetTrigger("AttackTrigger");
+        if (_animator != null)
+        {
+            _animator.SetTrigger("AttackTrigger");    
+        }
     }
 }
