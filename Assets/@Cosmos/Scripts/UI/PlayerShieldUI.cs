@@ -20,6 +20,9 @@ public class PlayerShieldUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _text.text = _playerShield.ShieldAmount.ToString();
+        if (_text != null && _playerShield != null)
+        {
+            _text.text = _playerShield.ShieldAmount.ToString();    
+        }
     }
 }

@@ -30,6 +30,13 @@ public class AttackEffectHandler
     {
         List<GameObject> previewObjects = new List<GameObject>();
         
+        // 게임이 Playing 상태일 때만 생성
+        if (GameStateManager.Instance == null || 
+            GameStateManager.Instance.CurrentState != GameStateManager.GameState.Playing)
+        {
+            return previewObjects;
+        }
+        
         foreach (Vector3Int gridPos in gridPositions)
         {
             if (GridManager.Instance.IsWithinGrid(gridPos))
@@ -67,6 +74,13 @@ public class AttackEffectHandler
     /// <param name="attackPrefab">사용할 공격 이펙트 프리팹</param>
     public void CreateAttackEffects(List<Vector3Int> gridPositions, GameObject attackPrefab)
     {
+        // 게임이 Playing 상태일 때만 생성
+        if (GameStateManager.Instance == null || 
+            GameStateManager.Instance.CurrentState != GameStateManager.GameState.Playing)
+        {
+            return;
+        }
+        
         foreach (Vector3Int gridPos in gridPositions)
         {
             if (GridManager.Instance.IsWithinGrid(gridPos))
