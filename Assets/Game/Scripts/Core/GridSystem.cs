@@ -73,6 +73,7 @@ public class GridSystem : MonoBehaviour
     public void CenterGrid()
     {
         // 격자의 중심을 (0,0)으로 맞춤
+        
         float centerX = -(_width - 1) * _cellSize * 0.5f;
         float centerY = -(_height - 1) * _cellSize * 0.5f;
         _gridOffset = new Vector3(centerX, centerY, 0);
