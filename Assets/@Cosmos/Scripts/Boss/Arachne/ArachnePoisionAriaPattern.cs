@@ -62,7 +62,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
         }
 
         // 경고 대기
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
 
         boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");

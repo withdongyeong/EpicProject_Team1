@@ -7,16 +7,18 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
 {
     private GameObject _spiderWebPrefeb;
     private int _spiderWebCount;
+    private PlayerController _playerController;
 
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
     /// 거미줄 설치 패턴 생성자
     /// </summary>
-    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount)
+    public ArachneSpiderWebPattern(GameObject spiderWebPrefeb, int spiderWebCount, PlayerController playerController)
     {
         _spiderWebPrefeb = spiderWebPrefeb;
         _spiderWebCount = spiderWebCount;
+        _playerController = playerController;
     }
 
     public void Execute(BaseBoss boss)
@@ -41,7 +43,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
             int X = Random.Range(0, 8);
             int Y = Random.Range(0, 8);
 
-            if (GridManager.Instance.IsWithinGrid(new Vector3Int(X,Y,0)))
+            if (GridManager.Instance.IsWithinGrid(new Vector3Int(X,Y,0)) || (X == _playerController.CurrentX && Y == _playerController.CurrentY))
             {
                 Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(X, Y, 0));
                 warningTiles.Add(Object.Instantiate(_spiderWebPrefeb, pos, Quaternion.identity));
