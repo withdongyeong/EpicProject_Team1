@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 140, y: 2}
+  m_SizeDelta: {x: 140, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &420080703761686801
 CanvasRenderer:
@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 2
+  m_Spacing: 6
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -164,7 +164,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2233834574582475348, guid: 77ed0e3c5ab66984f840690d65891fef, type: 3}
       propertyPath: m_text
-      value: "<sprite name=\"Fire\">\uC9C0\uC18D\uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4"
+      value: "\uC5F4\uAE30<sprite name=\"Fire\">: \uC9C0\uC18D\uB370\uBBF8\uC9C0\uB97C
+        \uC90D\uB2C8\uB2E4"
       objectReference: {fileID: 0}
     - target: {fileID: 8036042808897692530, guid: 77ed0e3c5ab66984f840690d65891fef, type: 3}
       propertyPath: m_Pivot.x
@@ -232,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8036042808897692530, guid: 77ed0e3c5ab66984f840690d65891fef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4
+      value: -6.7
       objectReference: {fileID: 0}
     - target: {fileID: 8036042808897692530, guid: 77ed0e3c5ab66984f840690d65891fef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -46,4 +46,9 @@ public class GlobalSetting : MonoBehaviour
     /// 레전더리 등급이 뜰 확률입니다
     /// </summary>
     public static float Shop_LegendaryChance => _instance.shop_LegendaryChance;
+
+    /// <summary>
+    /// 시너지(#화염)의 언어를 결정하는 SO입니다
+    /// </summary>
+    public static SynergyTranslationSO Language_SynergyTranslationSO => _instance.language_SynergyTranslationSO;
 }
