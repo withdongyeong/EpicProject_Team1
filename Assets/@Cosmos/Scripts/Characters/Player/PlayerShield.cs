@@ -9,7 +9,7 @@ public class PlayerShield : MonoBehaviour
     private bool _isShielded = false;
     private int _shieldAmount = 0;
     private GameObject _activeShieldEffect;
-    [SerializeField] private Vector3 _shieldOffset = new Vector3(0, 0.5f, 0); 
+    private Vector3 _shieldOffset = new Vector3(0, 0.5f, 0); 
 
     /// <summary>
     /// 현재 방어막 수치입니다.
