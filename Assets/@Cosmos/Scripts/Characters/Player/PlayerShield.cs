@@ -9,6 +9,7 @@ public class PlayerShield : MonoBehaviour
     private bool _isShielded = false;
     private int _shieldAmount = 0;
     private GameObject _activeShieldEffect;
+    [SerializeField] private Vector3 _shieldOffset = new Vector3(0, 0.5f, 0); 
 
     /// <summary>
     /// 현재 방어막 수치입니다.
@@ -64,11 +65,11 @@ public class PlayerShield : MonoBehaviour
             {
                 Destroy(_activeShieldEffect);
             }
-
+        
             // 플레이어 위치에 실드 이펙트 생성
             _activeShieldEffect = Instantiate(
                 _shieldEffectPrefab,
-                transform.position,
+                transform.position + _shieldOffset, // 위치 오프셋 적용
                 Quaternion.identity,
                 transform
             );

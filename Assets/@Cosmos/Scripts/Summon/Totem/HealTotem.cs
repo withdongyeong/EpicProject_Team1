@@ -47,11 +47,12 @@ public class HealTotem : BaseTotem
             GameObject effectObj = Instantiate(
                 _healEffectPrefab,
                 _playerHealth.transform.position,
-                Quaternion.identity
+                Quaternion.identity,
+                _playerHealth.transform
             );
 
             // 일정 시간 후 이펙트 제거
-            Destroy(effectObj, 0.1f);
+            Destroy(effectObj, 0.6f);
         }
     }
 }
