@@ -1,0 +1,106 @@
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using UnityEngine;
+
+public class InfoTextRenderer : MonoBehaviour
+{
+
+    /// <summary>
+    /// 안에 들어있는 게임 오브젝트들은 구분선과 설명 텍스트를 가지고 있습니다. FireGimmickText면 앞의 Fire가 키가 됩니다.
+    /// </summary>
+    Dictionary<string, GameObject> _textDict = new();
+
+    Dictionary<string, string> _synergyDict = new();
+
+    private GameObject descriptionTextPrefab; // 설명 텍스트
+    private GameObject synergyTextPrefab; // 시너지 텍스트
+
+    private void Awake()
+    {
+        LoadToDict();
+        descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
+        synergyTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/SynergyText");
+    }
+
+    /// <summary>
+    /// 여기에 타일 데이터.디스크립션 넣어주면 여기서 정보 가공해서 후처리 합니다
+    /// </summary>
+    /// <param name="tileInfo">tiledata.description 넣어주시면 됩니다</param>
+    public void InstantiateDescriptionText(string tileInfo)
+    {
+        List<string> tags = Parse(tileInfo);
+        if(tags.Count > 0)
+        {
+            TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
+            string synergy = "";
+            foreach(string tag in tags)
+            {
+                synergy = synergy + "#" + tag + " ";
+            }
+            synergyText.SetText(synergy);
+        }
+        TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
+        descriptionText.SetText(tileInfo);
+        foreach(string tag in tags)
+        {
+            if(_textDict.TryGetValue(tag,out GameObject prefab))
+            {
+                TextUIResizer textUIResizer = Instantiate(prefab, transform).GetComponentInChildren<TextUIResizer>();
+                textUIResizer.SetText();
+            }
+
+        }
+
+    }
+
+    /// <summary>
+    /// 안에 string을 넣으면 아이콘을 불러오기 위한 구문을(sprite name ="") 싹 다 긁어와서 안의 내용물을 가져옵니다.
+    /// </summary>
+    /// <param name="input">무슨 아이콘을 썼는지 파싱당할 string 입니다</param>
+    /// <returns></returns>
+    private List<string> Parse(string input)
+    {
+        List<string> result = new();
+        var regex = new Regex(@"<sprite name=""(.*?)"">");
+
+        var mathces = regex.Matches(input);
+
+        foreach (Match match in mathces)
+        {
+            string name = match.Groups[1].Value;
+            if(!result.Contains(name))
+            {
+                result.Add(name);
+            }
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// GimmickText들을 load해서 dictonary에 넣는 메서드입니다
+    /// </summary>
+    private void LoadToDict()
+    {
+        GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/UI/InfoUI/GimmickText");
+        foreach(GameObject prefab in prefabs)
+        {
+            if(prefab.name.EndsWith("GimmickText"))
+            {
+                string tag = prefab.name.Substring(0, prefab.name.Length - "GimmickText".Length);
+                if(!_textDict.ContainsKey(tag))
+                {
+                    _textDict.Add(tag, prefab);
+                }
+            }
+            else
+            {
+                Debug.LogError(prefab.name + "이자식 끝이 GimmickText가 아닌데예");
+            }
+        }
+        Debug.Log(_textDict.Count + "개의 기믹텍스트 로드 완료");
+    }
+
+    //TODO: 나중에 다중 언어를 지원할때 여기서 시너지(#토템 이런것들)번역을 담은 스크립터블 오브젝트를 불러오면 됩니다
+
+
+}

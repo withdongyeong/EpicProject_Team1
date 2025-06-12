@@ -58,12 +58,12 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
             int tileX = playerX + i;
             int tileY = playerY + i; // ↘ 방향: x == y
 
-            if (boss.GridSystem.IsValidPosition(tileX, tileY))
-            {
-                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                index++;
-            }
+            // if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            // {
+            //     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+            //     warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
+            //     index++;
+            // }
         }
 
         yield return new WaitForSeconds(1f);
@@ -71,14 +71,14 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
-        if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
-        {
-            boss.ApplyDamageToPlayer(10);
-        }
-
-        Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
-        boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
+        // boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        // if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
+        // {
+        //     boss.ApplyDamageToPlayer(10);
+        // }
+        //
+        // Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
+        // boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
 
         foreach (GameObject tile in warningTiles)
         {
@@ -102,28 +102,28 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
         {
             int tileX = playerX + i;
             int tileY = playerY - i; // ↙ 방향: x == -y
-
-            if (boss.GridSystem.IsValidPosition(tileX, tileY))
-            {
-                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                index++;
-            }
+            //
+            // if (boss.GridSystem.IsValidPosition(tileX, tileY))
+            // {
+            //     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+            //     warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
+            //     index++;
+            // }
         }
 
         yield return new WaitForSeconds(0.5f);
 
         boss.AttackAnimation();
-        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
-        if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
-        {
-            boss.ApplyDamageToPlayer(10);
-        }
-
-        Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
-        boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
+        // SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
+        //
+        // boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        // if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
+        // {
+        //     boss.ApplyDamageToPlayer(10);
+        // }
+        //
+        // Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
+        // boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
 
         foreach (GameObject tile in warningTiles)
         {

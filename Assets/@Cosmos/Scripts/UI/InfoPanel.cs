@@ -7,10 +7,12 @@ public class InfoPanel : MonoBehaviour
     private RectTransform rectTransform;
     private Canvas canvas;
     private Camera mainCamera;
-    private TextMeshProUGUI nameText; // 이름 텍스트
-    private TextMeshProUGUI descriptionText; // 설명 텍스트
-    private TextMeshProUGUI costText; // 비용 텍스트
-    private TextMeshProUGUI categoryText; // 종류 텍스트
+    private GameObject nameTextPrefab; // 이름 텍스트
+    //private GameObject descriptionTextPrefab; // 설명 텍스트
+    private GameObject costTextPrefab; // 비용 텍스트
+    private GameObject categoryTextPrefab; // 종류 텍스트
+    private InfoTextRenderer textRenderer; //곽민준이 짠 설명 텍스트 및 밑의 구분선 보여주는 스크립트입니다
+    
 
     private void Start()
     {
@@ -18,10 +20,11 @@ public class InfoPanel : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         mainCamera = Camera.main;
         gameObject.SetActive(false); // 초기 비활성화
-        nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        descriptionText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        costText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        categoryText = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/NameText");
+        //descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
+        costTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CostText");
+        categoryTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CategoryText");
+        textRenderer = GetComponent<InfoTextRenderer>();
     }
 
     /// <summary>
@@ -33,6 +36,7 @@ public class InfoPanel : MonoBehaviour
         gameObject.SetActive(true);
 
         // 이름 텍스트 설정
+        TextMeshProUGUI nameText = Instantiate(nameTextPrefab, transform).GetComponent<TextMeshProUGUI>();
         nameText.text = currentTileObject.GetTileData().TileName;
         switch (currentTileObject.GetTileData().TileGrade)
         {
@@ -53,36 +57,41 @@ public class InfoPanel : MonoBehaviour
                 break;
         }
         // 설명 텍스트 설정
-        descriptionText.text = currentTileObject.GetTileData().Description;
-        // 비용 텍스트 설정
-        costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
-        // 종류 텍스트 설정
-        string category = "무기";
-        switch(currentTileObject.GetTileData().TileCategory)
-        {
-            case TileCategory.Weapon:
-                category = "무기";
-                break;
-            case TileCategory.MagicCircle:
-                category = "마법진";
-                break;
-            case TileCategory.Armor:
-                category = "방어구";
-                break;
-            case TileCategory.Consumable:
-                category = "소모품";
-                break;
-            case TileCategory.Accessory:
-                category = "장신구";
-                break;
-            case TileCategory.Summon:
-                category = "소환수";
-                break;
-            default:
-                category = "기타";
-                break;
-        }
-        categoryText.text = category;
+        //TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
+        //descriptionText.SetText(currentTileObject.GetTileData().Description);
+
+        //이제 이거 대신 이거 쓰면 됩니다
+        textRenderer.InstantiateDescriptionText(currentTileObject.GetTileData().Description);
+
+        //// 비용 텍스트 설정
+        //costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
+        //// 종류 텍스트 설정
+        //string category = "무기";
+        //switch(currentTileObject.GetTileData().TileCategory)
+        //{
+        //    case TileCategory.Weapon:
+        //        category = "무기";
+        //        break;
+        //    case TileCategory.MagicCircle:
+        //        category = "마법진";
+        //        break;
+        //    case TileCategory.Armor:
+        //        category = "방어구";
+        //        break;
+        //    case TileCategory.Consumable:
+        //        category = "소모품";
+        //        break;
+        //    case TileCategory.Accessory:
+        //        category = "장신구";
+        //        break;
+        //    case TileCategory.Summon:
+        //        category = "소환수";
+        //        break;
+        //    default:
+        //        category = "기타";
+        //        break;
+        //}
+        //categoryText.text = category;
 
         // 위치 업데이트
         UpdatePosition(position, isUIElement);
@@ -94,6 +103,11 @@ public class InfoPanel : MonoBehaviour
     public void Hide()
     {
         currentTileObject = null;
+        // 자식 오브젝트 제거
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
         gameObject.SetActive(false);
     }
 
