@@ -167,8 +167,8 @@ public class ArachnePattern3 : IBossAttackPattern
             int tileY = playerY + i; // ↘ 방향: x == y
 
             if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-            {
-                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+            { 
+                Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
                 warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
                 index++;
 
@@ -191,7 +191,7 @@ public class ArachnePattern3 : IBossAttackPattern
             boss.ApplyDamageToPlayer(10);
         }
 
-        Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
+        Vector3 tilePosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerX, playerY, 0));
         boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
 
         foreach (GameObject tile in warningTiles)
@@ -219,7 +219,7 @@ public class ArachnePattern3 : IBossAttackPattern
 
             if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
             {
-                Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
+                Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
                 warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
                 index++;
 
@@ -232,14 +232,16 @@ public class ArachnePattern3 : IBossAttackPattern
         boss.AttackAnimation();
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
+        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int currentX = GridPosition.x;
+        int currentY = GridPosition.y;
 
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
         {
             boss.ApplyDamageToPlayer(10);
         }
 
-        Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
+        Vector3 tilePosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerX, playerY, 0));
         boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
 
         foreach (GameObject tile in warningTiles)
