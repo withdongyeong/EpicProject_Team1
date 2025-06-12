@@ -8,9 +8,11 @@ public class InfoPanel : MonoBehaviour
     private Canvas canvas;
     private Camera mainCamera;
     private GameObject nameTextPrefab; // 이름 텍스트
-    private GameObject descriptionTextPrefab; // 설명 텍스트
+    //private GameObject descriptionTextPrefab; // 설명 텍스트
     private GameObject costTextPrefab; // 비용 텍스트
     private GameObject categoryTextPrefab; // 종류 텍스트
+    private InfoTextRenderer textRenderer; //곽민준이 짠 설명 텍스트 및 밑의 구분선 보여주는 스크립트입니다
+    
 
     private void Start()
     {
@@ -19,9 +21,10 @@ public class InfoPanel : MonoBehaviour
         mainCamera = Camera.main;
         gameObject.SetActive(false); // 초기 비활성화
         nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/NameText");
-        descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
+        //descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
         costTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CostText");
         categoryTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CategoryText");
+        textRenderer = GetComponent<InfoTextRenderer>();
     }
 
     /// <summary>
@@ -54,8 +57,12 @@ public class InfoPanel : MonoBehaviour
                 break;
         }
         // 설명 텍스트 설정
-        TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        descriptionText.SetText(currentTileObject.GetTileData().Description);
+        //TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
+        //descriptionText.SetText(currentTileObject.GetTileData().Description);
+
+        //이제 이거 대신 이거 쓰면 됩니다
+        textRenderer.InstantiateDescriptionText(currentTileObject.GetTileData().Description);
+
         //// 비용 텍스트 설정
         //costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
         //// 종류 텍스트 설정
