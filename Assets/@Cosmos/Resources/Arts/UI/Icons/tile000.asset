@@ -35,31 +35,21 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  m_Material: {fileID: 5716961591755471566}
-  spriteSheet: {fileID: 2800000, guid: ee965e4e7856c244ca30e7ce30231b44, type: 3}
+  m_Material: {fileID: 4870151378778348846}
+  spriteSheet: {fileID: 2800000, guid: 4bd9866237d86364898c3f203c1613be, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: tile000_0
-  - m_ElementType: 2
-    m_Unicode: 65534
-    m_GlyphIndex: 0
-    m_Scale: 1
-    m_Name: tile000_0
-  - m_ElementType: 2
-    m_Unicode: 65534
-    m_GlyphIndex: 0
-    m_Scale: 1
-    m_Name: tile000_0
+    m_Name: Fire
   m_GlyphTable:
   - m_Index: 0
     m_Metrics:
       m_Width: 38
       m_Height: 50
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 50
+      m_HorizontalBearingX: -6.5
+      m_HorizontalBearingY: 46
       m_HorizontalAdvance: 38
     m_GlyphRect:
       m_X: 11
@@ -71,9 +61,8 @@ MonoBehaviour:
     m_ClassDefinitionType: 0
     sprite: {fileID: 5826479529469629657, guid: 4bd9866237d86364898c3f203c1613be, type: 3}
   spriteInfoList: []
-  fallbackSpriteAssets:
-  - {fileID: 11400000, guid: 1364ce91f16d4ce4e907ff8d6e3e3e83, type: 2}
---- !u!21 &5716961591755471566
+  fallbackSpriteAssets: []
+--- !u!21 &4870151378778348846
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -82,7 +71,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: tile000 Material
   m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
-  m_Parent: {fileID: 4485358255602190053, guid: 1364ce91f16d4ce4e907ff8d6e3e3e83, type: 2}
+  m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -97,11 +86,21 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ee965e4e7856c244ca30e7ce30231b44, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4bd9866237d86364898c3f203c1613be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _ColorMask: 15
+    - _CullMode: 0
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

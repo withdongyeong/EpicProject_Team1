@@ -12,9 +12,22 @@ public class TextUIResizer : MonoBehaviour
         textMeshPro = GetComponent<TextMeshProUGUI>();
     }
 
+    //public void SetText(string text)
+    //{
+    //    textMeshPro.text = text;
+    //    textMeshPro.ForceMeshUpdate();
+    //    LayoutRebuilder.ForceRebuildLayoutImmediate(textMeshPro.rectTransform);
+    //}
+
     public void SetText(string text)
     {
         textMeshPro.text = text;
+        textMeshPro.ForceMeshUpdate();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(textMeshPro.rectTransform);
+    }
+
+    public void SetText()
+    {
         textMeshPro.ForceMeshUpdate();
         LayoutRebuilder.ForceRebuildLayoutImmediate(textMeshPro.rectTransform);
     }
