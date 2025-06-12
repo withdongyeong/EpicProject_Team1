@@ -74,7 +74,7 @@ public class ArachnePattern1 : IBossAttackPattern
             {
                 if (attackTile == playerPos)
                 {
-                    boss.ApplyDamageToPlayer(1);
+                    boss.ApplyDamageToPlayer(20);
                     break;
                 }
             }
@@ -130,7 +130,7 @@ public class ArachnePattern1 : IBossAttackPattern
             {
                 if (attackTile == playerPos)
                 {
-                    boss.ApplyDamageToPlayer(1);
+                    boss.ApplyDamageToPlayer(20);
                     break;
                 }
             }
