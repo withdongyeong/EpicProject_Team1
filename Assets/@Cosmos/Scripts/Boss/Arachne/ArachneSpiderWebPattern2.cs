@@ -1,52 +1,84 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class ArachneSpiderWebPattern2 : MonoBehaviour
 {
-    public int _spiderWebCount = 8;
-    public GameObject _spiderWebPrefeb;
+    public int _spiderWebCount = 10;
+    public GameObject _spiderWebPrefab;
+    public GameObject _warningPrefab;
 
     private PlayerController _playerController;
-    private bool Iscircumference;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         _playerController = FindAnyObjectByType<PlayerController>();
-
-        // 2초마다 MyFunction을 호출, 시작 지연 시간은 0초
-        InvokeRepeating("MyFunction", 1f, 6f);
+        StartCoroutine(SpawnSpiderWebRoutine());
     }
 
-    void MyFunction()
+    /// <summary>
+    /// 거미집 생성
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SpawnSpiderWebRoutine()
     {
-        List<GameObject> warningTiles = new List<GameObject>();
-        Iscircumference = false;
+        //처음 쿨타임
+        yield return new WaitForSeconds(1f);
 
-        for (int i = 0; i < _spiderWebCount; i++)
+        while (true)
         {
-            int X = Random.Range(0, 8);
-            int Y = Random.Range(0, 8);
+            List<Vector3Int> spawnPositions = new List<Vector3Int>();
+            List<GameObject> warnings = new List<GameObject>();
 
-            for (int x = -1; x <= 1; x++)
+            for (int i = 0; i < _spiderWebCount; i++)
             {
-                for (int y = -1; y <= -1; y++)
-                {
-                    int circumferenceX = _playerController.CurrentX + x;
-                    int circumferenceY = _playerController.CurrentY + y;
+                int X = Random.Range(0, 9);
+                int Y = Random.Range(0, 9);
 
-                    if (circumferenceX == X && circumferenceY == Y)
+                bool isNearPlayer = false;
+
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int y = -1; y <= 1; y++)
                     {
-                        Iscircumference = true;
+                        int cx = _playerController.CurrentX + x;
+                        int cy = _playerController.CurrentY + y;
+
+                        if (cx == X && cy == Y)
+                        {
+                            isNearPlayer = true;
+                        }
                     }
+                }
+
+                Vector3Int gridPos = new Vector3Int(X, Y, 0);
+
+                if (!isNearPlayer && GridManager.Instance.IsWithinGrid(gridPos))
+                {
+                    spawnPositions.Add(gridPos);
+
+                    Vector3 worldPos = GridManager.Instance.GridToWorldPosition(gridPos);
+                    GameObject warning = Instantiate(_warningPrefab, worldPos, Quaternion.identity);
+                    warnings.Add(warning);
                 }
             }
 
-            if (GridManager.Instance.IsWithinGrid(new Vector3Int(X, Y, 0)) && !Iscircumference)
+            // 1초 대기: 경고 표시 시간
+            yield return new WaitForSeconds(1f);
+
+            // 경고 제거 후 거미줄 생성
+            foreach (GameObject warning in warnings)
             {
-                Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(X, Y, 0));
-                warningTiles.Add(Object.Instantiate(_spiderWebPrefeb, pos, Quaternion.identity));
+                Destroy(warning);
             }
+
+            foreach (Vector3Int pos in spawnPositions)
+            {
+                Vector3 worldPos = GridManager.Instance.GridToWorldPosition(pos);
+                Instantiate(_spiderWebPrefab, worldPos, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(5f);
         }
     }
 }

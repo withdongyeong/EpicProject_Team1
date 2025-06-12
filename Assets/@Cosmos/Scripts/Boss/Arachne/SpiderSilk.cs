@@ -5,7 +5,7 @@ public class SpiderSilk : MonoBehaviour
 {
     private Vector3 _basePos;
     private float _targetWidth = 1f;
-    private float _growTime = 0.7f;
+    private float _growTime = 1.4f;
     private bool _isGrowing = true;
 
     private Vector3 _startScale;
@@ -86,7 +86,7 @@ public class SpiderSilk : MonoBehaviour
 
             yield return null;
         }
-        playerController.CurrentX = 7;
+        playerController.CurrentX = 8;
         playerController.CurrentY = (int)this.transform.position.y + 4;
 
         _playerTransform.position = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerController.CurrentX, playerController.CurrentY, 0));

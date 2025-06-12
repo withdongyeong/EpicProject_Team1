@@ -34,7 +34,7 @@ public class ArachnePattern2 : IBossAttackPattern
     }
 
     /// <summary>
-    /// 다리 패턴
+    /// 단발공격 + 범위공격
     /// </summary>
     /// <param name="boss"></param>
     /// <returns></returns>
@@ -44,7 +44,7 @@ public class ArachnePattern2 : IBossAttackPattern
         {
             boss.StartCoroutine(PoisonAttack(boss));
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
         }
 
         boss.StartCoroutine(PoisonBigAttack(boss, true));
@@ -81,7 +81,7 @@ public class ArachnePattern2 : IBossAttackPattern
 
         if ((currentX == playerX) && (currentY == playerY))
         {
-            boss.ApplyDamageToPlayer(10);
+            boss.ApplyDamageToPlayer(1);
         }
 
         // 공격 영역에 폭발 이펙트 생성
@@ -94,18 +94,18 @@ public class ArachnePattern2 : IBossAttackPattern
 
     private IEnumerator PoisonBigAttack(BaseBoss boss, bool isHorizontal)
     {
-        int splitValue = boss.GridSystem.Height / 2;
+        int splitValue = 5;
 
         List<Vector3> attackPositions = new List<Vector3>();
-        GameObject[] warningTiles = new GameObject[boss.GridSystem.Width * boss.GridSystem.Height / 2];
+        GameObject[] warningTiles = new GameObject[9 * 9 / 2];
         int index = 0;
 
         Vector3 targetCenter = Vector3.zero;
         int positionCount = 0;
 
-        for (int x = 0; x < boss.GridSystem.Width; x++)
+        for (int x = 0; x < 9; x++)
         {
-            for (int y = 0; y < boss.GridSystem.Height; y++)
+            for (int y = 0; y < 9; y++)
             {
                 bool shouldAttack = isHorizontal ? y < splitValue : x < splitValue;
 
@@ -113,7 +113,8 @@ public class ArachnePattern2 : IBossAttackPattern
                 {
                     if (x % 2 == 0 && y % 2 == 0) continue;
 
-                    Vector3 tilePos = boss.GridSystem.GetWorldPosition(x, y);
+                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(x, y, 0));
+
                     attackPositions.Add(tilePos);
                     warningTiles[index] = TileObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
                     index++;
@@ -128,12 +129,28 @@ public class ArachnePattern2 : IBossAttackPattern
 
         yield return new WaitForSeconds(0.8f);
 
-        boss.GridSystem.GetXY(boss.Player.transform.position, out int playerX, out int playerY);
-        bool isPlayerInArea = isHorizontal ? playerY < splitValue : playerX < splitValue;
+        // 플레이어 위치 가져오기
+        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        int playerX = GridPosition.x;
+        int playerY = GridPosition.y;
 
-        if (isPlayerInArea)
+        Vector3Int playerGridPos = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        bool isPlayerHit = false;
+
+        foreach (Vector3 pos in attackPositions)
         {
-            boss.ApplyDamageToPlayer(10);
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(pos);
+
+            if (gridPos == playerGridPos)
+            {
+                isPlayerHit = true;
+                break;
+            }
+        }
+
+        if (isPlayerHit)
+        {
+            boss.ApplyDamageToPlayer(1);
         }
 
         foreach (Vector3 pos in attackPositions)

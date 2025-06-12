@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using System.Collections.Generic;
 
 public class ArachnePattern1 : IBossAttackPattern
 {
@@ -40,45 +41,47 @@ public class ArachnePattern1 : IBossAttackPattern
     /// <returns></returns>
     private IEnumerator SpiderSlash1(BaseBoss boss)
     {
-        for(int i = 0; i< 8; i++)
+        for (int i = 0; i < 9; i++)
         {
             int x = i;
             int y = 8 - i;
 
-            GameObject[] warningTiles = new GameObject[5];
-            int index = 0;
+            List<Vector3Int> attackTiles = new List<Vector3Int>();
+            List<GameObject> warningTiles = new List<GameObject>();
 
             for (int j = -2; j <= 2; j++)
             {
                 int tileX = x + j;
                 int tileY = y + j; // ↘ 방향: x == y
 
-                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
+                Vector3Int tilePos = new Vector3Int(tileX, tileY, 0);
+
+                if (GridManager.Instance.IsWithinGrid(tilePos))
                 {
-                    Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                    warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                    index++;
+                    Vector3 worldPos = GridManager.Instance.GridToWorldPosition(tilePos);
+                    warningTiles.Add(GameObject.Instantiate(_warningAriaPrefab, worldPos, Quaternion.identity));
+                    attackTiles.Add(tilePos);
                 }
             }
 
-            //시간
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             boss.AttackAnimation();
             SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
-            //데미지
-            Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-            int currentX = GridPosition.x;
-            int currentY = GridPosition.y;
+            Vector3Int playerPos = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
 
-
-            if (Mathf.Abs(currentX - x) == Mathf.Abs(currentY - y) && (currentX - x) == (currentY - y))
+            foreach (Vector3Int attackTile in attackTiles)
             {
-                boss.ApplyDamageToPlayer(10);
+                if (attackTile == playerPos)
+                {
+                    boss.ApplyDamageToPlayer(1);
+                    break;
+                }
             }
 
-            Vector3 tilePosition = boss.GridSystem.GetWorldPosition(x, y);
-            boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
+            // 중심 타일 기준 이펙트 생성
+            Vector3 effectPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(x, y, 0));
+            boss.CreateDamageEffect_Inversion(effectPos, _spiderLegPrefab, 0.3f);
 
             foreach (GameObject tile in warningTiles)
             {
@@ -88,50 +91,52 @@ public class ArachnePattern1 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
     private IEnumerator SpiderSlash2(BaseBoss boss)
     {
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 9; i++)
         {
             int x = 8 - i;
             int y = 8 - i;
 
-            GameObject[] warningTiles = new GameObject[5];
-            int index = 0;
+            List<Vector3Int> attackTiles = new List<Vector3Int>();
+            List<GameObject> warningTiles = new List<GameObject>();
 
             for (int j = -2; j <= 2; j++)
             {
                 int tileX = x + j;
                 int tileY = y - j; // ↙ 방향: x == -y
 
-                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
+                Vector3Int attackPos = new Vector3Int(tileX, tileY, 0);
+
+                if (GridManager.Instance.IsWithinGrid(attackPos))
                 {
-                    Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-                    warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                    index++;
+                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(attackPos);
+                    warningTiles.Add(GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity));
+                    attackTiles.Add(attackPos);
                 }
             }
 
-            //시간
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
+
             boss.AttackAnimation();
             SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
 
-            //데미지
-            Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-            int currentX = GridPosition.x;
-            int currentY = GridPosition.y;
+            Vector3Int playerPos = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
 
-
-            if (Mathf.Abs(currentX - x) == Mathf.Abs(currentY - y) && (currentX - x) == -(currentY - y))
+            foreach (Vector3Int attackTile in attackTiles)
             {
-                boss.ApplyDamageToPlayer(10);
+                if (attackTile == playerPos)
+                {
+                    boss.ApplyDamageToPlayer(1);
+                    break;
+                }
             }
 
-            Vector3 tilePosition = boss.GridSystem.GetWorldPosition(x, y);
-            boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
+            Vector3 effectPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(x, y, 0));
+            boss.CreateDamageEffect(effectPos, _spiderLegPrefab, 0.3f);
 
             foreach (GameObject tile in warningTiles)
             {
@@ -141,7 +146,7 @@ public class ArachnePattern1 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
