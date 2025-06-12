@@ -46,9 +46,9 @@ public class InfoTextRenderer : MonoBehaviour
         List<string> result = new();
         var regex = new Regex(@"<sprite name=""(.*?)"">");
 
-        var mathces = regex.Matches(input);
+        var matches = regex.Matches(input);
 
-        foreach (Match match in mathces)
+        foreach (Match match in matches)
         {
             string name = match.Groups[1].Value;
             if(!result.Contains(name))
