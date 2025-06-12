@@ -68,14 +68,18 @@ public class DragManager : Singleton<DragManager>
     }
 
 
-
-
-
+    public void SetObjectPosition(Vector3 position)
+    {
+        if (currentDragObject == null) return;
+        currentDragObject.transform.position = position;
+    }
+    
     public void PlaceObject()
     {
         Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().coreCell.transform.position;
         corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
         currentDragObject.transform.position = corePos;
+        currentDragObject.transform.SetParent(GridManager.Instance.transform);
         foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
         {
             Transform t = cell.transform;
@@ -84,6 +88,16 @@ public class DragManager : Singleton<DragManager>
         }
     }
 
+
+    public GameObject GetCurrentDragObject()
+    {
+        if (currentDragObject == null)
+        {
+            Debug.LogWarning("현재 드래그 중인 오브젝트가 없습니다.");
+            return null;
+        }
+        return currentDragObject;
+    }
     public void DestroyObject()
     {
         Destroy(currentDragObject);

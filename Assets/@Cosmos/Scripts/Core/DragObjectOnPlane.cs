@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -149,3 +150,4 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         
     }
 }
+*/

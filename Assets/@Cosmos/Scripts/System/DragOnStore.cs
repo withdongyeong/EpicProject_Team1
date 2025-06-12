@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -33,6 +34,14 @@ public class DragOnStore : DraggableObject
         {
             DragManager.Instance.PlaceObject();
             storeSlot.BuyObject();
+            DragManager.Instance.GetCurrentDragObject().AddComponent<DragOnGrid>();
+            GameObject g = DragManager.Instance.GetCurrentDragObject();
+            foreach (Cell cell in g.GetComponentsInChildren<Cell>())
+            {
+                cell.AddComponent<BoxCollider2D>();
+            }
+            
+            
             return;
         }
         //2. 그리드 밖에 배치한다면
