@@ -4,7 +4,7 @@ public class ArachneSpiderSilkPattern2 : MonoBehaviour
 {
     public GameObject _spiderSilkPrefeb;
 
-    public int gridSize = 8;
+    public int gridSize = 9;
     public float cellSize = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,7 +16,7 @@ public class ArachneSpiderSilkPattern2 : MonoBehaviour
 
     void MyFunction()
     {
-        int Y = Random.Range(0, 8);
+        int Y = Random.Range(0, 9);
 
         Vector3 pos = GridManager.Instance.GridToWorldPosition(new Vector3Int(8, Y, 0));
         GameObject spiderSilk = GameObject.Instantiate(_spiderSilkPrefeb, pos + new Vector3(cellSize, 0, 0), Quaternion.identity);

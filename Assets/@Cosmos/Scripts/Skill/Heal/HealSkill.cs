@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static BaseTile;
 
 public class HealSkill : SkillBase
 {

@@ -26,6 +26,21 @@ public enum TileCategory
     Summon,     // 소환수
 }
 
+/// <summary>
+/// 인벤토리 아이템 데이터 클래스
+/// </summary>
+///
+public enum TileType
+{
+    Attack,
+    Protection,
+    Shield,
+    Heal,
+    ManaHeal,
+    FireBall,
+    Sword,
+    Totem
+}
 [Serializable]
 public class TileInfo
 {
