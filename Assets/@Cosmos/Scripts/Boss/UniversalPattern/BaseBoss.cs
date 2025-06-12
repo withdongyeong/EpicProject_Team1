@@ -27,6 +27,7 @@ public abstract class BaseBoss : MonoBehaviour
     
     // 공격 패턴 시스템
     private List<IBossAttackPattern> _attackPatterns = new List<IBossAttackPattern>();
+    private Coroutine _attackCoroutine;
 
     private Animator _animator;
 
@@ -96,7 +97,7 @@ public abstract class BaseBoss : MonoBehaviour
         InitializeAttackPatterns();
         
         // 공격 루틴 시작
-        StartCoroutine(AttackRoutine());
+        _attackCoroutine =  StartCoroutine(AttackRoutine());
 
         // 상태이상 적용 루틴 시작
         StartCoroutine(ApplyDebuffsRoutine());
@@ -268,10 +269,14 @@ public abstract class BaseBoss : MonoBehaviour
     public IEnumerator StopAttackRoutine(float time)
     {
         _isStopped = true;
-        StopCoroutine(AttackRoutine());
+        if (_attackCoroutine != null)
+        {
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null; // 참조 정리
+        }
         yield return new WaitForSeconds(time);
         _isStopped = false;
-        StartCoroutine(AttackRoutine());
+        _attackCoroutine = StartCoroutine(AttackRoutine());
         StartCoroutine(ApplyDebuffsRoutine());
     }
 
