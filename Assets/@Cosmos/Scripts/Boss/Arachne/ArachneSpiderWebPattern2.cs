@@ -15,7 +15,7 @@ public class ArachneSpiderWebPattern2 : MonoBehaviour
         _playerController = FindAnyObjectByType<PlayerController>();
 
         // 2초마다 MyFunction을 호출, 시작 지연 시간은 0초
-        InvokeRepeating("MyFunction", 1f, 3f);
+        InvokeRepeating("MyFunction", 1f, 6f);
     }
 
     void MyFunction()

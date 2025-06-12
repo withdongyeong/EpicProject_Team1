@@ -26,7 +26,7 @@ public class SpiderWeb : MonoBehaviour
 
     private IEnumerator DestroyAfterDelay()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
 
         if (!IsHitPlayer)
         {
