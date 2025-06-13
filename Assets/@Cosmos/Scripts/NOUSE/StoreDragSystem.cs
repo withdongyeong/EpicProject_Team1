@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -55,24 +56,9 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         
         offset = dragCopy.transform.position - worldPoint;
         dragCopy.transform.position = offset;
-
-        // 복제본을 투명하게 설정
-        foreach (var sr in dragCopy.GetComponentsInChildren<SpriteRenderer>())
-        {
-            Color c = sr.color;
-            c.a = 0.5f;
-            sr.color = c;
-        }
-        // 복제본의 충돌체를 비활성화하여 드래그 중 충돌 무시
-        foreach (var coll in dragCopy.GetComponentsInChildren<Collider2D>())
-        {
-            coll.enabled = false;
-        }
-
+        
         isDragging = true;
         dragCopy.layer = LayerMask.NameToLayer("Ignore Raycast");
-        
-        
         
     }
     
@@ -164,3 +150,4 @@ public class StoreDragSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
     
 }
+*/
