@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3249486552240177032, guid: af1a116ed832d2f47a88523321211555, type: 3}
-  enemyPrefab: {fileID: 6316585728366198449, guid: 642853f7c29f7884d9d60772837c0bdd, type: 3}
+  enemyPrefab: {fileID: 3909207524506738849, guid: d589c049e1782664c9d017c2f31347c9, type: 3}
   highlightTilePrefab: {fileID: 2088068471157347722, guid: b158c356a8eb54e469824f348eaa9b94, type: 3}
   nightBoard: {fileID: 4338915156489441334, guid: d357b73b856d9a947958371fe50c10e3, type: 3}
   countdownText: {fileID: 0}
@@ -346,10 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e08b17bf984d3085d1c52f45ad274a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 8
-  _height: 8
-  _cellSize: 1
-  _gridOffset: {x: -7, y: -4, z: 0}
 --- !u!114 &283686391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,6 +1274,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754317175}
   m_CullTransparentMesh: 1
+--- !u!1 &772656963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 772656964}
+  m_Layer: 0
+  m_Name: EnemySpawnPosition2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &772656964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772656963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.45, y: -0.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &874590994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3368,6 +3395,7 @@ SceneRoots:
   - {fileID: 1500790190}
   - {fileID: 970932184}
   - {fileID: 325555201}
+  - {fileID: 772656964}
   - {fileID: 1568250210}
   - {fileID: 2145711279}
   - {fileID: 43087472}

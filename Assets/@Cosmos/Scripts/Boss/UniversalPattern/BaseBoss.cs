@@ -439,4 +439,13 @@ public abstract class BaseBoss : MonoBehaviour
     {
         _animator.SetTrigger("AttackTrigger");
     }
+    
+    /// <summary>
+    /// 애니메이션 트리거 설정
+    /// </summary>
+    /// <param name="trigger">트리거 이름 </param>
+    public void SetAnimationTrigger(string trigger)
+    {
+        _animator.SetTrigger(trigger);
+    }
 }
