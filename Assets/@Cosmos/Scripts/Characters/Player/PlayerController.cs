@@ -131,11 +131,15 @@ public class PlayerController : MonoBehaviour
     
         Vector3 startPos = transform.position;
         Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
+        
+        // 이동 전에 논리적 위치를 미리 옮김
+        // 따라서, 공격 판정이 오기 전에 아슬아슬하게 피했을 때, 이미 점프를 시작했으면 안 맞게 되면서 피하는 느낌이 들 것
+        _currentX = newPos.x;
+        _currentY = newPos.y;
+        
         float jumpHeight = 0.3f;
     
         float elapsedTime = 0;
-        bool positionUpdated = false; // 논리적 위치 업데이트 여부
-        float midPoint = _moveTime * 0.5f; // 애니메이션 중간 지점 (0.1초)
     
         while (elapsedTime < _moveTime)
         {
@@ -147,33 +151,13 @@ public class PlayerController : MonoBehaviour
         
             // 점프 높이 계산
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
-        
             transform.position = new Vector3(x, y + extraHeight, 0);
-            
-            // 애니메이션 중간 지점에서 논리적 위치 업데이트
-            if (!positionUpdated && elapsedTime >= midPoint)
-            {
-                _currentX = newPos.x;
-                _currentY = newPos.y;
-                positionUpdated = true;
-                
-                // 디버그용 로그 (필요시 제거)
-                Debug.Log($"논리적 위치 업데이트: ({_currentX}, {_currentY}) at {elapsedTime:F2}s");
-            }
-            
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // 최종 위치 설정 (물리적 위치만)
         transform.position = targetPos;
-        
-        // 논리적 위치가 업데이트되지 않은 경우 (프레임 드랍 등으로 인해)
-        if (!positionUpdated)
-        {
-            _currentX = newPos.x;
-            _currentY = newPos.y;
-        }
         
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
