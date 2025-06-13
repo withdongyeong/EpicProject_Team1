@@ -8,13 +8,13 @@ public class StoreSlot : MonoBehaviour
     private GameObject objectPrefab;
     private bool isPurchased = false;
     private Image image;
-    private InfoUI infoUI;
+    private HoverTileInfo hoverTileInfo;
 
 
     private void Awake()
     {
         image = GetComponent<Image>();
-        infoUI = GetComponent<InfoUI>();
+        hoverTileInfo = GetComponent<HoverTileInfo>();
     }
 
     public GameObject GetObject()
@@ -85,6 +85,8 @@ public class StoreSlot : MonoBehaviour
         isPurchased = false; // 초기화
         image.color = Color.white; // 초기 색상 설정
         image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
-        infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
+        //infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
+        hoverTileInfo.SetTileObject(prefab.GetComponent<TileObject>());
+        
     }
 }

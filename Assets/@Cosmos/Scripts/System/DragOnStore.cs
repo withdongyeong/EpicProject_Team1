@@ -39,6 +39,8 @@ public class DragOnStore : DraggableObject
             foreach (Cell cell in g.GetComponentsInChildren<Cell>())
             {
                 cell.AddComponent<BoxCollider2D>();
+                HoverTileInfo hti = cell.AddComponent<HoverTileInfo>();
+                hti.SetTileObject(g.GetComponent<TileObject>());
             }
             
             
