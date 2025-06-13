@@ -10,13 +10,16 @@ public class InfoTextRenderer : MonoBehaviour
     /// </summary>
     Dictionary<string, GameObject> _textDict = new();
 
-    private GameObject descriptionTextPrefab; // 설명 텍스트
+    Dictionary<string, string> _synergyDict = new();
 
+    private GameObject descriptionTextPrefab; // 설명 텍스트
+    private GameObject synergyTextPrefab; // 시너지 텍스트
 
     private void Awake()
     {
         LoadToDict();
         descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
+        synergyTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/SynergyText");
     }
 
     /// <summary>
@@ -26,6 +29,16 @@ public class InfoTextRenderer : MonoBehaviour
     public void InstantiateDescriptionText(string tileInfo)
     {
         List<string> tags = Parse(tileInfo);
+        if(tags.Count > 0)
+        {
+            TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
+            string synergy = "";
+            foreach(string tag in tags)
+            {
+                synergy = synergy + "#" + tag + " ";
+            }
+            synergyText.SetText(synergy);
+        }
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
         descriptionText.SetText(tileInfo);
         foreach(string tag in tags)
@@ -40,7 +53,11 @@ public class InfoTextRenderer : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// 안에 string을 넣으면 아이콘을 불러오기 위한 구문을(sprite name ="") 싹 다 긁어와서 안의 내용물을 가져옵니다.
+    /// </summary>
+    /// <param name="input">무슨 아이콘을 썼는지 파싱당할 string 입니다</param>
+    /// <returns></returns>
     private List<string> Parse(string input)
     {
         List<string> result = new();
@@ -59,6 +76,9 @@ public class InfoTextRenderer : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// GimmickText들을 load해서 dictonary에 넣는 메서드입니다
+    /// </summary>
     private void LoadToDict()
     {
         GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/UI/InfoUI/GimmickText");
@@ -79,6 +99,8 @@ public class InfoTextRenderer : MonoBehaviour
         }
         Debug.Log(_textDict.Count + "개의 기믹텍스트 로드 완료");
     }
+
+    //TODO: 나중에 다중 언어를 지원할때 여기서 시너지(#토템 이런것들)번역을 담은 스크립터블 오브젝트를 불러오면 됩니다
 
 
 }

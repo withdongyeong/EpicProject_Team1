@@ -63,8 +63,10 @@ public class InfoPanel : MonoBehaviour
         //이제 이거 대신 이거 쓰면 됩니다
         textRenderer.InstantiateDescriptionText(currentTileObject.GetTileData().Description);
 
-        //// 비용 텍스트 설정
-        //costText.text = $"Cost: {currentTileObject.GetTileData().TileCost}";
+        // 비용 텍스트 설정
+        TextMeshProUGUI costText = Instantiate(costTextPrefab, transform).GetComponent<TextMeshProUGUI>();
+        costText.text = $"{currentTileObject.GetTileData().TileCost} Gold";
+        costText.color = Color.yellow; // 비용 텍스트 색상 설정
         //// 종류 텍스트 설정
         //string category = "무기";
         //switch(currentTileObject.GetTileData().TileCategory)

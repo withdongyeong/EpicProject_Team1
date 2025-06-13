@@ -368,7 +368,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -525,7 +525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spiderWebCount: 6
-  _spiderWebPrefeb: {fileID: 5766239426588173162, guid: 0be99db770907f34db2d26cdbbc88dcc, type: 3}
+  _spiderWebPrefab: {fileID: 5766239426588173162, guid: 0be99db770907f34db2d26cdbbc88dcc, type: 3}
+  _warningPrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
 --- !u!114 &4489645647110412417
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,7 +18,7 @@ public class GameUIManager : MonoBehaviour
     
     private GameStateManager _gameStateManager;
 
-    [Header("전환 씬 이름")] private string _buildingSceneName = "TestSceneKDY";
+    [Header("전환 씬 이름")] private string _buildingSceneName = "ShopScene";
 
     /// <summary>
     /// 초기화 및 이벤트 연결
