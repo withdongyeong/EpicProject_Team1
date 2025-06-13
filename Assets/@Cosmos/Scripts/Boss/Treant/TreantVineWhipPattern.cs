@@ -18,15 +18,16 @@ public class TreantVineWhipPattern : IBossAttackPattern
         _whipCount = whipCount;
         _playerController = playerController;
     }
-
-    public void Execute(BaseBoss boss)
+    
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteDiagonalAttack(boss));
+        yield return boss.StartCoroutine(ExecuteDiagonalAttack(boss));
     }
+    
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _warningTilePrefab != null;
+        return boss.GridSystem != null && boss.BombManager.PlayerController != null && _warningTilePrefab != null;
     }
 
     /// <summary>

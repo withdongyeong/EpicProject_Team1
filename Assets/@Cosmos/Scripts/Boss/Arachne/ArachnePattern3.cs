@@ -2,255 +2,174 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 아라크네 패턴3 - BombManager 사용 버전
+/// </summary>
 public class ArachnePattern3 : IBossAttackPattern
 {
-    private GameObject _warningAriaPrefab;
-    private GameObject _poisionAriaPrefeb;
+    private GameObject _poisionAriaPrefab;
     private GameObject _spiderLegPrefab;
-    private PlayerController _playerController;
 
     public string PatternName => "ArachnePattern3";
 
     /// <summary>
-    /// 영역 공격 패턴 생성자 - 거대화 이미지, 다리
+    /// 아라크네 패턴3 생성자
     /// </summary>
-    public ArachnePattern3(GameObject warningAriaPrefab,GameObject poisionAriaPrefeb, GameObject spiderLegPrefab, PlayerController playerController)
+    /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
+    /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
+    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject spiderLegPrefab)
     {
-        _warningAriaPrefab = warningAriaPrefab;
-        _poisionAriaPrefeb = poisionAriaPrefeb;
+        _poisionAriaPrefab = poisionAriaPrefab;
         _spiderLegPrefab = spiderLegPrefab;
-        _playerController = playerController;
-    }
-
-    public void Execute(BaseBoss boss)
-    {
-        boss.StartCoroutine(SpiderLeg(boss));
-    }
-
-    public bool CanExecute(BaseBoss boss)
-    {
-        return boss.GridSystem != null && boss.Player != null && _spiderLegPrefab != null;
     }
 
     /// <summary>
-    /// 다리 패턴
+    /// 패턴 실행 - 4번 3x3 공격 + 2번 대각선 슬래쉬
     /// </summary>
-    /// <param name="boss"></param>
-    /// <returns></returns>
+    /// <param name="boss">보스 객체</param>
+    public IEnumerator Execute(BaseBoss boss)
+    {
+        yield return boss.StartCoroutine(SpiderLeg(boss));
+    }
+
+    /// <summary>
+    /// 패턴 실행 가능 여부 확인
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
+    /// <returns>실행 가능 여부</returns>
+    public bool CanExecute(BaseBoss boss)
+    {
+        return boss.BombManager != null && 
+               boss.BombManager.PlayerController != null && 
+               _poisionAriaPrefab != null && 
+               _spiderLegPrefab != null;
+    }
+
+    /// <summary>
+    /// 메인 패턴 루틴
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
     private IEnumerator SpiderLeg(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteAreaAttack(boss));
-        yield return new WaitForSeconds(0.7f);
-        boss.StartCoroutine(ExecuteAreaAttack(boss));
-        yield return new WaitForSeconds(0.7f);
-        boss.StartCoroutine(ExecuteAreaAttack(boss));
-        yield return new WaitForSeconds(0.7f);
-        boss.StartCoroutine(ExecuteAreaAttack(boss));
+        // 1단계: 4번의 3x3 범위 공격 (한 칸 제외)
+        for (int i = 0; i < 4; i++)
+        {
+            boss.StartCoroutine(ExecuteAreaAttack(boss));
+            yield return new WaitForSeconds(0.7f);
+        }
+
         yield return new WaitForSeconds(0.9f);
+
+        // 2단계: 첫 번째 대각선 슬래쉬 (↘)
         boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
         yield return new WaitForSeconds(0.2f);
+
+        // 3단계: 두 번째 대각선 슬래쉬 (↙)
         boss.StartCoroutine(SpiderLeg_DiagonalSlash2(boss));
     }
 
+    /// <summary>
+    /// 3x3 범위 공격 (한 방향 제외)
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)
     {
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
 
-        List<Vector2Int> directionsToExclude = new List<Vector2Int>
-        {
+        // 제외할 방향 랜덤 선택
+        Vector2Int[] excludeDirections = {
             new Vector2Int(-1, 0), // 왼쪽
             new Vector2Int(1, 0),  // 오른쪽
             new Vector2Int(0, 1),  // 위
-            new Vector2Int(0, -1), // 아래
+            new Vector2Int(0, -1)  // 아래
         };
 
-        // 플레이어 위치 가져오기
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        Vector2Int excludeDirection = excludeDirections[Random.Range(0, excludeDirections.Length)];
 
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
-
-        // 경고 타일 표시 (3x3 영역)
-        GameObject[] warningTiles = new GameObject[9];
-        int index = 0;
-
-        Vector2Int excludeDirection = directionsToExclude[Random.Range(0, directionsToExclude.Count)];
-
-        Vector2Int safaAria = new Vector2Int();
-
+        // 3x3 영역에서 한 칸 제외한 모양 생성
+        List<Vector3Int> attackShape = new List<Vector3Int>();
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
             {
-                int tileX = playerX + x;
-                int tileY = playerY + y;
-
-                // 현재 좌표
-                if ((x == excludeDirection.x && y == excludeDirection.y))
-                {
-                    safaAria.x = tileX;
-                    safaAria.y = tileY;
+                // 제외할 방향은 스킵
+                if (x == excludeDirection.x && y == excludeDirection.y)
                     continue;
-                }
 
-                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-                {
-                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    warningTiles[index] = Object.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                    index++;
-                }
+                attackShape.Add(new Vector3Int(x, y, 0));
             }
         }
 
-        // 경고 대기
-        yield return new WaitForSeconds(0.6f);
+        // 플레이어 추적 공격 (제외된 칸은 안전지대)
+        boss.BombManager.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
+                                              warningDuration: 0.6f, explosionDuration: 0.7f, damage: 20);
 
         boss.AttackAnimation();
-        SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
+        
+        // 폭발 사운드는 0.6초 후 재생
+        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.6f));
 
-        // 플레이어가 영역 내에 있는지 확인
-        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int currentX = GridPosition.x;
-        int currentY = GridPosition.y;
-
-
-        if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
-        {
-            if (!(currentX == safaAria.x && currentY == safaAria.y))
-            {
-                boss.ApplyDamageToPlayer(20);
-            }
-
-        }
-
-        // 공격 영역에 폭발 이펙트 생성
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                // 현재 좌표
-                if ((x == excludeDirection.x && y == excludeDirection.y)) continue;
-
-                int tileX = playerX + x;
-                int tileY = playerY + y;
-
-                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-                {
-                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    boss.CreateDamageEffect(tilePos, _poisionAriaPrefeb, 0.7f);
-                }
-            }
-        }
-
-        // 경고 타일 제거
-        foreach (GameObject tile in warningTiles)
-        {
-            if (tile != null)
-            {
-                Object.Destroy(tile);
-            }
-        }
+        yield return null;
     }
 
+    /// <summary>
+    /// 첫 번째 대각선 슬래쉬 (↘ 방향)
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
     private IEnumerator SpiderLeg_DiagonalSlash1(BaseBoss boss)
     {
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
-
-        GameObject[] warningTiles = new GameObject[5];
-        int index = 0;
-
+        // 대각선 5칸 모양 생성 (↘ 방향)
+        List<Vector3Int> slashShape = new List<Vector3Int>();
         for (int i = -2; i <= 2; i++)
         {
-            int tileX = playerX + i;
-            int tileY = playerY + i; // ↘ 방향: x == y
-
-            if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-            { 
-                Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                index++;
-
-                yield return new WaitForSeconds(0.05f);
-            }
+            slashShape.Add(new Vector3Int(i, i, 0)); // 상대 좌표
         }
 
-        yield return new WaitForSeconds(0.3f);
+        // 플레이어 추적 대각선 공격
+        boss.BombManager.ExecuteTargetingBomb(slashShape, _spiderLegPrefab,
+                                              warningDuration: 0.35f, explosionDuration: 0.3f, damage: 20);
 
         boss.AttackAnimation();
-        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
+        
+        // 0.35초 후 사운드 재생
+        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.35f));
 
-        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int currentX = GridPosition.x;
-        int currentY = GridPosition.y;
-
-
-        if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
-        {
-            boss.ApplyDamageToPlayer(20);
-        }
-
-        Vector3 tilePosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerX, playerY, 0));
-        boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
-
-        foreach (GameObject tile in warningTiles)
-        {
-            if (tile != null)
-            {
-                GameObject.Destroy(tile);
-            }
-        }
+        yield return null;
     }
 
+    /// <summary>
+    /// 두 번째 대각선 슬래쉬 (↙ 방향)
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
     private IEnumerator SpiderLeg_DiagonalSlash2(BaseBoss boss)
     {
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
-
-        GameObject[] warningTiles = new GameObject[5];
-        int index = 0;
-
+        // 대각선 5칸 모양 생성 (↙ 방향)
+        List<Vector3Int> slashShape = new List<Vector3Int>();
         for (int i = -2; i <= 2; i++)
         {
-            int tileX = playerX + i;
-            int tileY = playerY - i; // ↙ 방향: x == -y
-
-            if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-            {
-                Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-                index++;
-
-                yield return new WaitForSeconds(0.05f);
-            }
+            slashShape.Add(new Vector3Int(i, -i, 0)); // 상대 좌표
         }
 
-        yield return new WaitForSeconds(0.3f);
+        // 플레이어 추적 대각선 공격
+        boss.BombManager.ExecuteTargetingBomb(slashShape, _spiderLegPrefab,
+                                              warningDuration: 0.35f, explosionDuration: 0.3f, damage: 20);
 
         boss.AttackAnimation();
-        SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
+        
+        // 0.35초 후 사운드 재생
+        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.35f));
 
-        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int currentX = GridPosition.x;
-        int currentY = GridPosition.y;
+        yield return null;
+    }
 
-        if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
-        {
-            boss.ApplyDamageToPlayer(20);
-        }
-
-        Vector3 tilePosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerX, playerY, 0));
-        boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
-
-        foreach (GameObject tile in warningTiles)
-        {
-            if (tile != null)
-            {
-                GameObject.Destroy(tile);
-            }
-        }
-
+    /// <summary>
+    /// 지연된 사운드 재생
+    /// </summary>
+    /// <param name="soundName">사운드 이름</param>
+    /// <param name="delay">지연 시간</param>
+    private IEnumerator PlayDelayedSound(string soundName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.Instance.ArachneSoundClip(soundName);
     }
 }
