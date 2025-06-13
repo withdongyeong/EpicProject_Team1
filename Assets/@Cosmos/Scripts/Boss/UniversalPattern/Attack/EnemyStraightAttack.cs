@@ -16,15 +16,15 @@ public class EnemyStraightAttack : IBossAttackPattern
         _warningPrefab = warningPrefab;
         _tentaclePrefab = tentaclePrefab;
     }
-
-    public void Execute(BaseBoss boss)
+    
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteAttackPattern());
+        yield return boss.StartCoroutine(ExecuteAttackPattern());
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _warningPrefab != null;
+        return boss.BombManager.PlayerController != null && _warningPrefab != null;
     }
 
     /// <summary>

@@ -16,15 +16,15 @@ public class WindAriaPattern : IBossAttackPattern
         _warningPrefab = warningPrefab;
         _teantWindMagicPrefab = teantWindMagicPrefab;
     }
-
-    public void Execute(BaseBoss boss)
+    
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(WindMagicPattern());
+        yield return boss.StartCoroutine(WindMagicPattern());
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _warningPrefab != null;
+        return boss.BombManager.PlayerController != null && _warningPrefab != null;
     }
 
     /// <summary>

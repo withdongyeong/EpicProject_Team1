@@ -8,7 +8,6 @@ using System.Collections.Generic;
 public class ArachneSpiderLegPattern : IBossAttackPattern
 {
     private GameObject _spiderLegPrefab;
-    private BombAvoidanceManager _bombManager;
     private List<Vector3Int> _diagonalSlash1Shape;
     private List<Vector3Int> _diagonalSlash2Shape;
     
@@ -22,7 +21,6 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     public ArachneSpiderLegPattern(GameObject spiderLegPrefab, BombAvoidanceManager bombManager)
     {
         _spiderLegPrefab = spiderLegPrefab;
-        _bombManager = bombManager;
         
         // ↘ 방향 대각선 (x == y)
         _diagonalSlash1Shape = new List<Vector3Int>();
@@ -43,9 +41,9 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     /// 패턴 실행
     /// </summary>
     /// <param name="boss">보스 객체</param>
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(SpiderLeg(boss));
+        yield return boss.StartCoroutine(SpiderLeg(boss));
     }
 
     /// <summary>
@@ -55,7 +53,7 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _spiderLegPrefab != null && _bombManager != null;
+        return boss.BombManager.PlayerController != null && _spiderLegPrefab != null && boss.BombManager != null;
     }
 
     /// <summary>
@@ -67,13 +65,13 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     {
         // 첫 번째 대각선 공격 (↘)
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-        _bombManager.ExecuteTargetingBomb(_diagonalSlash1Shape, _spiderLegPrefab, 
+        boss.BombManager.ExecuteTargetingBomb(_diagonalSlash1Shape, _spiderLegPrefab, 
                                           warningDuration: 1.0f, explosionDuration: 0.3f, damage: 10);
         
         yield return new WaitForSeconds(0.3f);
         
         // 두 번째 대각선 공격 (↙)
-        _bombManager.ExecuteTargetingBomb(_diagonalSlash2Shape, _spiderLegPrefab, 
+        boss.BombManager.ExecuteTargetingBomb(_diagonalSlash2Shape, _spiderLegPrefab, 
                                           warningDuration: 0.5f, explosionDuration: 0.3f, damage: 10);
     }
 }

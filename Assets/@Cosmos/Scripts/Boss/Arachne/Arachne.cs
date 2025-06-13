@@ -1,21 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
+/// <summary>
+/// 아라크네 보스 - 새로운 패턴 시스템 적용 (디버그 강화)
+/// </summary>
 public class Arachne : BaseBoss
 {
     [Header("보스 전용 프리팹들")]
-    public GameObject SpiderWebPrefeb;
-
-    public List<GameObject> SummonSpiders;
-
-    public GameObject spiderSilkPrefeb;
-
     public GameObject warningAria;
     public GameObject poisionAriaPrefeb;
-
-    public GameObject SpiderLeg;
-
-    public PlayerController PlayerController;
+    public GameObject spiderLeg;
 
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
@@ -24,53 +17,37 @@ public class Arachne : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 400;
-        PatternCooldown = 3.5f;
-    }
-
-    protected override void Start()
-    {
-        PlayerController = FindAnyObjectByType<PlayerController>();
-        // 부모 클래스 초기화 호출
-        base.Start();
+        Debug.Log($"Arachne.Awake: MaxHealth set to {MaxHealth}");
     }
 
     /// <summary>
-    /// 공격 패턴 초기화 - 5가지 패턴 모두 등록
+    /// 공격 패턴 초기화 - 새로운 그룹 시스템 사용 (디버그 강화)
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        // 패턴 1: 거미줄
-        //AddAttackPattern(new ArachneSpiderWebPattern(SpiderWebPrefeb, 3, PlayerController));
-
-        // 패턴 2: 종자 거미 공격
-        //AddAttackPattern(new ArachneSummonSpiderPattern(SummonSpiders, 4));
-
-        // 패턴 3: 거미줄 잡기
-        //AddAttackPattern(new ArachneSpiderSilkPattern(spiderSilkPrefeb, 1));
-
-        // 패턴 4: 독 분출
-        //AddAttackPattern(new ArachnePoisionAriaPattern(warningAria, poisionAriaPrefeb, PlayerController));
-
-        //패턴 5: 다리 공격
-        //AddAttackPattern(new ArachneSpiderLegPattern(warningAria, SpiderLeg, PlayerController));
-
-        //신패턴 1 - 양쪽 슬래쉬
-        AddAttackPattern(new ArachnePattern1(warningAria, poisionAriaPrefeb, SpiderLeg, PlayerController));
-
-        //신패턴 2 - 쫒아가다가 3/4 공격
-        AddAttackPattern(new ArachnePattern2(warningAria, poisionAriaPrefeb, SpiderLeg, PlayerController));
-
-        //신패턴 3 - 플레이어 위치로 3*3 공격 마지막에 양 슬래쉬
-        AddAttackPattern(new ArachnePattern3(warningAria, poisionAriaPrefeb, SpiderLeg, PlayerController));
-
-        Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
-    }
-
-    /// <summary>
-    /// 등록된 공격 패턴 목록 반환 (디버그용)
-    /// </summary>
-    private System.Collections.Generic.List<IBossAttackPattern> GetAttackPatterns()
-    {
-        return new System.Collections.Generic.List<IBossAttackPattern>();
+        // 그룹 A: Pattern1 → Pattern3
+        Debug.Log("Arachne: Creating Group A (Pattern1 → Pattern3)");
+        AddGroup()
+            .AddPattern(new ArachnePattern1(spiderLeg), 3f)
+            .AddPattern(new ArachnePattern1(spiderLeg), 3f)
+            .AddPattern(new ArachnePattern1(spiderLeg), 3f)
+            .SetGroupInterval(1f);
+        Debug.Log("Arachne: Group A created successfully");
+    
+        // 개별 패턴: Pattern2 (중간 패턴)
+        Debug.Log("Arachne: Adding individual Pattern2");
+        AddIndividualPattern(new ArachnePattern2(poisionAriaPrefeb), 1f);
+        Debug.Log("Arachne: Individual Pattern2 added successfully");
+        
+        // 그룹 C: Pattern1 → Pattern2 → Pattern3
+        Debug.Log("Arachne: Creating Group C (Pattern1 → Pattern2 → Pattern3)");
+        AddGroup()
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, spiderLeg), 3f)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, spiderLeg), 3f)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, spiderLeg), 3f)
+            .SetGroupInterval(1f);
+        Debug.Log("Arachne: Group C created successfully");
+    
+        Debug.Log($"Arachne: Pattern system initialized successfully");
     }
 }

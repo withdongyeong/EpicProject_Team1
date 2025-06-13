@@ -15,15 +15,14 @@ public class RapidFirePattern : IBossAttackPattern
         _shotCount = shotCount;
         _shotInterval = shotInterval;
     }
-
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteRapidFire(boss));
+        yield return boss.StartCoroutine(ExecuteRapidFire(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _projectilePrefab != null;
+        return boss.BombManager.PlayerController != null && _projectilePrefab != null;
     }
 
     /// <summary>
@@ -33,7 +32,7 @@ public class RapidFirePattern : IBossAttackPattern
     {
         for (int i = 0; i < _shotCount; i++)
         {
-            Vector3 direction = (boss.Player.transform.position - boss.transform.position).normalized;
+            Vector3 direction = (boss.BombManager.PlayerController.transform.position - boss.transform.position).normalized;
             GameObject projectileObj = TileObject.Instantiate(_projectilePrefab, boss.transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
 

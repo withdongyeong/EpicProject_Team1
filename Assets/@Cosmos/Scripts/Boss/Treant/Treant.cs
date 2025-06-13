@@ -16,7 +16,7 @@ public class Treant : BaseBoss
     {       
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 0.6f;
+        // PatternCooldown = 0.6f;
     }
 
     /// <summary>
@@ -37,16 +37,16 @@ public class Treant : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         //바닥 나무 패턴
-        AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab, PlayerController));
+        // AddAttackPattern(new TreeTrapPattern(WarningTilePrefab, TreeTrapPrefab, PlayerController));
 
         //작물 던지기 패턴
-        AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
+        // AddAttackPattern(new RapidFirePattern(CropsPrefeb, 3, 0.1f));
 
         //강제 이동 패턴
-        AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic));
+        // AddAttackPattern(new WindAriaPattern(WarningAriaPrefeb, TreantWindMagic));
 
         //덩굴채찍
-        AddAttackPattern(new TreantVineWhipPattern(WarningTilePrefab, TreeTrapPrefab, 2, PlayerController));
+        // AddAttackPattern(new TreantVineWhipPattern(WarningTilePrefab, TreeTrapPrefab, 2, PlayerController));
 
        //종자 뿌리기 - HP 50이하 마다
 

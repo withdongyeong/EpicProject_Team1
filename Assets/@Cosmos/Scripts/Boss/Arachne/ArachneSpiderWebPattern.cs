@@ -9,7 +9,6 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
 {
     private GameObject _spiderWebPrefab;
     private int _spiderWebCount;
-    private BombAvoidanceManager _bombManager;
     private List<Vector3Int> _singlePointShape;
     
     public string PatternName => "ArachneSpiderWeb";
@@ -24,7 +23,6 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     {
         _spiderWebPrefab = spiderWebPrefab;
         _spiderWebCount = spiderWebCount;
-        _bombManager = bombManager;
         
         // 단일 점 모양 (거미줄은 한 칸만 차지)
         _singlePointShape = new List<Vector3Int>
@@ -37,9 +35,9 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// 패턴 실행
     /// </summary>
     /// <param name="boss">보스 객체</param>
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteSpiderWebAttack(boss));
+        yield return boss.StartCoroutine(ExecuteSpiderWebAttack(boss));
     }
 
     /// <summary>
@@ -49,7 +47,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _spiderWebPrefab != null && _bombManager != null;
+        return boss.BombManager.PlayerController != null && _spiderWebPrefab != null && boss.BombManager != null;
     }
 
     /// <summary>
@@ -61,11 +59,11 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
         for (int i = 0; i < _spiderWebCount; i++)
         {
             // 랜덤 위치 생성 (플레이어 위치 제외)
-            Vector3Int randomPosition = GenerateRandomPositionExcludingPlayer();
+            Vector3Int randomPosition = GenerateRandomPositionExcludingPlayer(boss);
             
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
-                _bombManager.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab, 
+                boss.BombManager.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab, 
                                               warningDuration: 0.1f, explosionDuration: 5.0f, damage: 0);
             }
             
@@ -77,9 +75,9 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// 플레이어 위치를 제외한 랜덤 위치 생성
     /// </summary>
     /// <returns>유효한 랜덤 위치</returns>
-    private Vector3Int GenerateRandomPositionExcludingPlayer()
+    private Vector3Int GenerateRandomPositionExcludingPlayer(BaseBoss boss)
     {
-        Vector3Int playerGridPos = GridManager.Instance.WorldToGridPosition(_bombManager.PlayerController.transform.position);
+        Vector3Int playerGridPos = GridManager.Instance.WorldToGridPosition(boss.BombManager.PlayerController.transform.position);
         
         for (int attempts = 0; attempts < 20; attempts++) // 최대 20번 시도
         {

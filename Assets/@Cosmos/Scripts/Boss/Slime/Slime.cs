@@ -18,7 +18,7 @@ public class Slime : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 0.5f;
+        // PatternCooldown = 0.5f;
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public class Slime : BaseBoss
         //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle));
 
         //바닥 분출 촉수 패턴
-        AddAttackPattern(new DiagonalCrossPattern(warningTilePrefab, SlimeTrapTentacle, PlayerController));
+        // AddAttackPattern(new DiagonalCrossPattern(warningTilePrefab, SlimeTrapTentacle, PlayerController));
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 public class ArachnePoisionAriaPattern : IBossAttackPattern
 {
     private GameObject _explosionEffectPrefab;
-    private BombAvoidanceManager _bombManager;
     private List<Vector3Int> _attackShape;
     
     public string PatternName => "ArachnePoisionAria";
@@ -17,10 +17,9 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// </summary>
     /// <param name="explosionEffectPrefab">폭발 이펙트 프리팹</param>
     /// <param name="bombManager">폭탄 피하기 매니저</param>
-    public ArachnePoisionAriaPattern(GameObject explosionEffectPrefab, BombAvoidanceManager bombManager)
+    public ArachnePoisionAriaPattern(GameObject explosionEffectPrefab)
     {
         _explosionEffectPrefab = explosionEffectPrefab;
-        _bombManager = bombManager;
         
         // 3x3 공격 모양 설정
         _attackShape = new List<Vector3Int>();
@@ -37,17 +36,17 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// 패턴 실행
     /// </summary>
     /// <param name="boss">보스 객체</param>
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
         // 사운드 재생
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
         
         // 플레이어 추적 폭탄 공격 실행
-        _bombManager.ExecuteTargetingBomb(_attackShape, _explosionEffectPrefab, 
+        boss.BombManager.ExecuteTargetingBomb(_attackShape, _explosionEffectPrefab, 
                                           warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
         
         // 또는 지연 후 재생
-        boss.StartCoroutine(PlayExplosionSoundDelayed());
+        yield return boss.StartCoroutine(PlayExplosionSoundDelayed());
     }
 
     /// <summary>
@@ -66,8 +65,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && 
+        return boss.BombManager.PlayerController != null && 
                _explosionEffectPrefab != null && 
-               _bombManager != null;
+               boss.BombManager != null;
     }
 }
