@@ -81,7 +81,7 @@ public class ArachnePattern2 : IBossAttackPattern
 
         if ((currentX == playerX) && (currentY == playerY))
         {
-            boss.ApplyDamageToPlayer(1);
+            boss.ApplyDamageToPlayer(10);
         }
 
         // 공격 영역에 폭발 이펙트 생성
@@ -150,7 +150,7 @@ public class ArachnePattern2 : IBossAttackPattern
 
         if (isPlayerHit)
         {
-            boss.ApplyDamageToPlayer(1);
+            boss.ApplyDamageToPlayer(20);
         }
 
         foreach (Vector3 pos in attackPositions)

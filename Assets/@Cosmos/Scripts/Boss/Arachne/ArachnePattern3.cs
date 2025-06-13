@@ -118,7 +118,7 @@ public class ArachnePattern3 : IBossAttackPattern
         {
             if (!(currentX == safaAria.x && currentY == safaAria.y))
             {
-                boss.ApplyDamageToPlayer(10);
+                boss.ApplyDamageToPlayer(20);
             }
 
         }
@@ -188,7 +188,7 @@ public class ArachnePattern3 : IBossAttackPattern
 
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
         {
-            boss.ApplyDamageToPlayer(10);
+            boss.ApplyDamageToPlayer(20);
         }
 
         Vector3 tilePosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerX, playerY, 0));
@@ -238,7 +238,7 @@ public class ArachnePattern3 : IBossAttackPattern
 
         if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
         {
-            boss.ApplyDamageToPlayer(10);
+            boss.ApplyDamageToPlayer(20);
         }
 
         Vector3 tilePosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerX, playerY, 0));
