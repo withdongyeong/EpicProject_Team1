@@ -405,6 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _warningPrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
+  _warningPrefabType2: {fileID: 1845840710705793256, guid: b28333480126a14468700cf82aa44bfb, type: 3}
+  _warningPrefabType3: {fileID: 1845840710705793256, guid: a9e8ccd013cce314099c3180b3ca628e, type: 3}
 --- !u!1 &308916937
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +880,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 3.171875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
