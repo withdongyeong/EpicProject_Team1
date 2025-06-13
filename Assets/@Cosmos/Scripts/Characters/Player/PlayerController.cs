@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
     
     /// <summary>
     /// 점프 효과가 있는 이동 애니메이션
+    /// 이동 중간에 논리적 위치를 옮김
     /// </summary>
     private IEnumerator MoveAnimation(Vector3Int newPos)
     {
@@ -133,6 +134,8 @@ public class PlayerController : MonoBehaviour
         float jumpHeight = 0.3f;
     
         float elapsedTime = 0;
+        bool positionUpdated = false; // 논리적 위치 업데이트 여부
+        float midPoint = _moveTime * 0.5f; // 애니메이션 중간 지점 (0.1초)
     
         while (elapsedTime < _moveTime)
         {
@@ -146,19 +149,37 @@ public class PlayerController : MonoBehaviour
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
         
             transform.position = new Vector3(x, y + extraHeight, 0);
+            
+            // 애니메이션 중간 지점에서 논리적 위치 업데이트
+            if (!positionUpdated && elapsedTime >= midPoint)
+            {
+                _currentX = newPos.x;
+                _currentY = newPos.y;
+                positionUpdated = true;
+                
+                // 디버그용 로그 (필요시 제거)
+                Debug.Log($"논리적 위치 업데이트: ({_currentX}, {_currentY}) at {elapsedTime:F2}s");
+            }
+            
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        // 최종 위치 설정 (물리적 위치만)
         transform.position = targetPos;
-        _currentX = newPos.x;
-        _currentY = newPos.y;
+        
+        // 논리적 위치가 업데이트되지 않은 경우 (프레임 드랍 등으로 인해)
+        if (!positionUpdated)
+        {
+            _currentX = newPos.x;
+            _currentY = newPos.y;
+        }
+        
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 
         SoundManager.Instance.PlayPlayerSound("PlayerMove");
     }
-    
     /// <summary>
     /// 현재 그리드 위치 업데이트
     /// </summary>

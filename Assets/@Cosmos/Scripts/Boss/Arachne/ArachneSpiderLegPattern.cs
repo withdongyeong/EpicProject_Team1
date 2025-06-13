@@ -1,139 +1,79 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 
+/// <summary>
+/// 수정된 아라크네 거미 다리 패턴 - BombAvoidanceManager 사용
+/// </summary>
 public class ArachneSpiderLegPattern : IBossAttackPattern
 {
-    private GameObject _warningAriaPrefab;
     private GameObject _spiderLegPrefab;
-    private PlayerController _playerController;
-
+    private BombAvoidanceManager _bombManager;
+    private List<Vector3Int> _diagonalSlash1Shape;
+    private List<Vector3Int> _diagonalSlash2Shape;
+    
     public string PatternName => "ArachneSpiderLeg";
 
     /// <summary>
-    /// 영역 공격 패턴 생성자 - 거대화 이미지, 다리
+    /// 아라크네 거미 다리 패턴 생성자
     /// </summary>
-    public ArachneSpiderLegPattern(GameObject warningAriaPrefab, GameObject spiderLegPrefab, PlayerController playerController)
+    /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
+    /// <param name="bombManager">폭탄 피하기 매니저</param>
+    public ArachneSpiderLegPattern(GameObject spiderLegPrefab, BombAvoidanceManager bombManager)
     {
-        _warningAriaPrefab = warningAriaPrefab;
         _spiderLegPrefab = spiderLegPrefab;
-        _playerController = playerController;
+        _bombManager = bombManager;
+        
+        // ↘ 방향 대각선 (x == y)
+        _diagonalSlash1Shape = new List<Vector3Int>();
+        for (int i = -2; i <= 2; i++)
+        {
+            _diagonalSlash1Shape.Add(new Vector3Int(i, i, 0));
+        }
+        
+        // ↙ 방향 대각선 (x == -y)
+        _diagonalSlash2Shape = new List<Vector3Int>();
+        for (int i = -2; i <= 2; i++)
+        {
+            _diagonalSlash2Shape.Add(new Vector3Int(i, -i, 0));
+        }
     }
 
+    /// <summary>
+    /// 패턴 실행
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
     public void Execute(BaseBoss boss)
     {
         boss.StartCoroutine(SpiderLeg(boss));
     }
 
+    /// <summary>
+    /// 패턴 실행 가능 여부 확인
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
+    /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _spiderLegPrefab != null;
+        return boss.Player != null && _spiderLegPrefab != null && _bombManager != null;
     }
 
     /// <summary>
-    /// 다리 패턴
+    /// 거미 다리 패턴 메인 코루틴
     /// </summary>
-    /// <param name="boss"></param>
+    /// <param name="boss">보스 객체</param>
     /// <returns></returns>
     private IEnumerator SpiderLeg(BaseBoss boss)
     {
-        boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
-        yield return new WaitForSeconds(0.3f);
-        boss.StartCoroutine(SpiderLeg_DiagonalSlash2(boss));
-    }
-
-    private IEnumerator SpiderLeg_DiagonalSlash1(BaseBoss boss)
-    {
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
-
-        GameObject[] warningTiles = new GameObject[5];
-        int index = 0;
-
-        for (int i = -2; i <= 2; i++)
-        {
-            int tileX = playerX + i;
-            int tileY = playerY + i; // ↘ 방향: x == y
-
-            // if (boss.GridSystem.IsValidPosition(tileX, tileY))
-            // {
-            //     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-            //     warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-            //     index++;
-            // }
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        boss.AttackAnimation();
+        // 첫 번째 대각선 공격 (↘)
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-
-        // boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
-        // if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == (currentY - playerY))
-        // {
-        //     boss.ApplyDamageToPlayer(10);
-        // }
-        //
-        // Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
-        // boss.CreateDamageEffect(tilePosition, _spiderLegPrefab, 0.3f);
-
-        foreach (GameObject tile in warningTiles)
-        {
-            if (tile != null)
-            {
-                GameObject.Destroy(tile);
-            }
-        }
-    }
-
-    private IEnumerator SpiderLeg_DiagonalSlash2(BaseBoss boss)
-    {
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
-
-        GameObject[] warningTiles = new GameObject[5];
-        int index = 0;
-
-        for (int i = -2; i <= 2; i++)
-        {
-            int tileX = playerX + i;
-            int tileY = playerY - i; // ↙ 방향: x == -y
-            //
-            // if (boss.GridSystem.IsValidPosition(tileX, tileY))
-            // {
-            //     Vector3 tilePos = boss.GridSystem.GetWorldPosition(tileX, tileY);
-            //     warningTiles[index] = GameObject.Instantiate(_warningAriaPrefab, tilePos, Quaternion.identity);
-            //     index++;
-            // }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        boss.AttackAnimation();
-        // SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-        //
-        // boss.GridSystem.GetXY(boss.Player.transform.position, out int currentX, out int currentY);
-        // if (Mathf.Abs(currentX - playerX) == Mathf.Abs(currentY - playerY) && (currentX - playerX) == -(currentY - playerY))
-        // {
-        //     boss.ApplyDamageToPlayer(10);
-        // }
-        //
-        // Vector3 tilePosition = boss.GridSystem.GetWorldPosition(playerX, playerY);
-        // boss.CreateDamageEffect_Inversion(tilePosition, _spiderLegPrefab, 0.3f);
-
-        foreach (GameObject tile in warningTiles)
-        {
-            if (tile != null)
-            {
-                GameObject.Destroy(tile);
-            }
-        }
-
+        _bombManager.ExecuteTargetingBomb(_diagonalSlash1Shape, _spiderLegPrefab, 
+                                          warningDuration: 1.0f, explosionDuration: 0.3f, damage: 10);
+        
+        yield return new WaitForSeconds(0.3f);
+        
+        // 두 번째 대각선 공격 (↙)
+        _bombManager.ExecuteTargetingBomb(_diagonalSlash2Shape, _spiderLegPrefab, 
+                                          warningDuration: 0.5f, explosionDuration: 0.3f, damage: 10);
     }
 }
-
-
