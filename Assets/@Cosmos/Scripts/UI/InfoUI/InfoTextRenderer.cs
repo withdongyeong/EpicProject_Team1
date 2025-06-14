@@ -44,6 +44,7 @@ public class InfoTextRenderer : MonoBehaviour
     /// <param name="tileInfo">tiledata.description 넣어주시면 됩니다</param>
     public void InstantiateDescriptionText(TileObject tileInfo)
     {
+        //태그 프리팹 추가
         List<string> tags = Parse(tileInfo.GetTileData().Description);
         if(tags.Count > 0)
         {
@@ -56,14 +57,19 @@ public class InfoTextRenderer : MonoBehaviour
             synergy += _categotyDict[tileInfo.GetTileData().TileCategory] + " "; // 카테고리 태그 추가
             synergyText.SetText(synergy);
         }
+
+        //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
         descriptionText.SetText(tileInfo.GetTileData().Description);
+
+        //태그 설명 추가
         foreach(string tag in tags)
         {
             if(_textDict.TryGetValue(tag,out GameObject prefab))
             {
-                TextUIResizer textUIResizer = Instantiate(prefab, transform).GetComponentInChildren<TextUIResizer>();
-                textUIResizer.SetText();
+                //TextUIResizer textUIResizer = Instantiate(prefab, transform).GetComponentInChildren<TextUIResizer>();
+                //textUIResizer.SetText();
+                Instantiate(prefab, transform);
             }
 
         }
