@@ -127,12 +127,12 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 대각선 공격
         boss.BombManager.ExecuteTargetingBomb(slashShape, _spiderLegPrefab,
-                                              warningDuration: 0.35f, explosionDuration: 0.3f, damage: 20);
+                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
         boss.AttackAnimation();
         
         // 0.35초 후 사운드 재생
-        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.35f));
+        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
 
         yield return null;
     }
@@ -152,12 +152,12 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 대각선 공격
         boss.BombManager.ExecuteTargetingBomb(slashShape, _spiderLegPrefab,
-                                              warningDuration: 0.35f, explosionDuration: 0.3f, damage: 20);
+                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
         boss.AttackAnimation();
         
         // 0.35초 후 사운드 재생
-        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.35f));
+        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
 
         yield return null;
     }

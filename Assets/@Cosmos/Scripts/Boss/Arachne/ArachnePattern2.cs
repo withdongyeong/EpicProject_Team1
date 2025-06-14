@@ -68,12 +68,21 @@ public class ArachnePattern2 : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     private IEnumerator SpiderAttack(BaseBoss boss)
     {
+        boss.BombManager.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
+                                                 warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+
+        // 사운드 재생
+        SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
+        boss.AttackAnimation();
+
+        yield return new WaitForSeconds(0.5f);
+
         // 1단계: 6번의 플레이어 추적 공격
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
             // 플레이어 추적 단일 점 공격
             boss.BombManager.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
-                                                  warningDuration: 0.3f, explosionDuration: 0.7f, damage: 10);
+                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
             
             // 사운드 재생
             SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");

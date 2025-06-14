@@ -75,7 +75,7 @@ public class ArachnePattern1 : IBossAttackPattern
 
             // BombManager로 고정 위치 공격 실행
             boss.BombManager.ExecuteFixedBomb(slashShape, centerPos, _spiderLegPrefab,
-                                              warningDuration: 0.2f, explosionDuration: 0.3f, damage: 20);
+                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
             // 사운드 재생
             SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
@@ -108,7 +108,7 @@ public class ArachnePattern1 : IBossAttackPattern
 
             // BombManager로 고정 위치 공격 실행
             boss.BombManager.ExecuteFixedBomb(slashShape, centerPos, _spiderLegPrefab,
-                                              warningDuration: 0.2f, explosionDuration: 0.3f, damage: 20);
+                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
             // 사운드 재생
             SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -114,6 +114,7 @@ public class BombAvoidanceManager : MonoBehaviour
         ExecuteTargetingBomb(shape, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
     }
     
+
     /// <summary>
     /// 랜덤 위치 폭탄 공격 (기본 전조 타입)
     /// </summary>
