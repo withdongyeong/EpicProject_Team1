@@ -95,7 +95,6 @@ public class GridManager : Singleton<GridManager>
     public Vector3Int GridSize => gridSize;
     [SerializeField] private GameObject startPoint;
     private GridCell[,] grid;
-    [SerializeField] GameObject draggablePlane;
     
     // 스프라이트 관리
     [SerializeField] private Sprite occupiedSprite; // 점유용 스프라이트
@@ -163,7 +162,6 @@ public class GridManager : Singleton<GridManager>
                 }
             }
         }
-        SpawnDragPlane();
     }
 
     public Vector3 GridToWorldPosition(Vector3Int gridPos)
@@ -243,13 +241,7 @@ public class GridManager : Singleton<GridManager>
         }
         return true;
     }
-
-    private void SpawnDragPlane()
-    {
-        Vector3 planePosition = (GridToWorldPosition(Vector3Int.zero) + GridToWorldPosition(new Vector3Int(maxSize, maxSize, 0))) / 2 - new Vector3(0.5f,0.5f,0);
-        var plane = Instantiate(draggablePlane, planePosition,Quaternion.identity,transform);
-        plane.transform.localScale = new Vector3(maxSize, maxSize, 1);
-    }
+    
 
     public void ChangeCellSprite(Vector3Int gridPos, bool isPreview)
     {
@@ -259,7 +251,7 @@ public class GridManager : Singleton<GridManager>
         }
         else
         {
-            Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
+            //Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
         }
     }
 

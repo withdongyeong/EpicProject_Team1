@@ -26,10 +26,6 @@ public enum TileCategory
     Summon,     // 소환수
 }
 
-/// <summary>
-/// 인벤토리 아이템 데이터 클래스
-/// </summary>
-///
 public enum TileType
 {
     Attack,
@@ -41,6 +37,21 @@ public enum TileType
     Sword,
     Totem
 }
+
+public enum TileTag
+{
+    Weapon,
+    MagicCircle,
+    Summon,
+    Armor,
+    Trinket,
+    Potion,
+    Fire,
+    Ice,
+    Sword,
+    Totem,
+}
+
 [Serializable]
 public class TileInfo
 {

@@ -16,15 +16,15 @@ public class TreeTrapPattern : IBossAttackPattern
         _treeTrapPrefab = treeTrapPrefab;
         _playerController = playerController;
     }
-
-    public void Execute(BaseBoss boss)
+    
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(TreeTrap(boss));
+        yield return boss.StartCoroutine(TreeTrap(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _warningTilePrefab != null && _treeTrapPrefab != null;
+        return boss.BombManager.PlayerController != null && _warningTilePrefab != null && _treeTrapPrefab != null;
     }
 
     /// <summary>

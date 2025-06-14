@@ -15,7 +15,7 @@ public class GoblinKing : BaseBoss
     {
         // 기본 스탯 설정
         MaxHealth = 200;
-        PatternCooldown = 1f;
+        // PatternCooldown = 1f;
     }
 
     protected override void Start()
@@ -32,10 +32,10 @@ public class GoblinKing : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         //마구 던지기
-        AddAttackPattern(new GoblinJunkPattern(GoblinJunk, 6, 0.1f, this.transform));
-
-        //고블린 소환
-        AddAttackPattern(new SummonGoblinPattern(Goblrin, 1, BattleFieldTransform));
+        // AddAttackPattern(new GoblinJunkPattern(GoblinJunk, 6, 0.1f, this.transform));
+        //
+        // //고블린 소환
+        // AddAttackPattern(new SummonGoblinPattern(Goblrin, 1, BattleFieldTransform));
 
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");

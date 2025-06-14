@@ -415,14 +415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d594e634e295e4e968c7c58d9ace7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpiderWebPrefeb: {fileID: 5766239426588173162, guid: 0be99db770907f34db2d26cdbbc88dcc, type: 3}
-  SummonSpiders:
-  - {fileID: 761273609342075144, guid: 38230aca71e416e47bfdf4c217fa4d6b, type: 3}
-  spiderSilkPrefeb: {fileID: 296322699537774834, guid: 5f63f474a8bc3cd41bf81beed0c9d0d1, type: 3}
   warningAria: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
   poisionAriaPrefeb: {fileID: 2655093744207988788, guid: cd1aaf5c0d03a134f95d6bf4b5b168ad, type: 3}
-  SpiderLeg: {fileID: 2655093744207988788, guid: b3a6a5f40ffba7c43a61542ef840466c, type: 3}
-  PlayerController: {fileID: 0}
+  spiderLeg: {fileID: 2655093744207988788, guid: b3a6a5f40ffba7c43a61542ef840466c, type: 3}
 --- !u!114 &-7510056609366963668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +514,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6316585728366198449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18a1ec62abcc1dc4789f8ae919a0aac4, type: 3}
   m_Name: 
@@ -534,7 +529,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6316585728366198449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04286bdfa7912aa4d85001a5d6b3493d, type: 3}
   m_Name: 

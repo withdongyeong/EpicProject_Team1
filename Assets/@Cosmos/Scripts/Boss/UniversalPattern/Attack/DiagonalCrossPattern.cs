@@ -17,15 +17,15 @@ public class DiagonalCrossPattern : IBossAttackPattern
         _explosionEffectPrefab = explosionEffectPrefab;
         _playerController = playerController;
     }
-
-    public void Execute(BaseBoss boss)
+    
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(ExecuteDiagonalCrossAttack(boss));
+        yield return boss.StartCoroutine(ExecuteDiagonalCrossAttack(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.Player != null && _warningTilePrefab != null;
+        return boss.BombManager.PlayerController != null && _warningTilePrefab != null;
     }
 
     /// <summary>

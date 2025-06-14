@@ -25,14 +25,14 @@ public class GoblinJunkPattern : IBossAttackPattern
         _transform = transform;
     }
 
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(GoblrinJunkAttack(boss));
+        yield return boss.StartCoroutine(GoblrinJunkAttack(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _junkPrefab != null;
+        return boss.GridSystem != null && boss.BombManager.PlayerController != null && _junkPrefab != null;
     }
 
     /// <summary>

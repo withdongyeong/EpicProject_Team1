@@ -3,13 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 폭탄 피하기 공격 관리자
+/// 전조 타일 타입 열거형
+/// </summary>
+public enum WarningType
+{
+    Type1 = 0,  // 기본 : 폭발 느낌표
+    Type2 = 1,  // 보스 물리 공격
+    Type3 = 2   // 오브젝트 소환형
+}
+
+/// <summary>
+/// 폭탄 피하기 공격 관리자 (다중 전조 타입 지원)
 /// </summary>
 public class BombAvoidanceManager : MonoBehaviour
 {
     private PlayerController _playerController;
     private PlayerHealth _playerHealth;
-    public GameObject _warningPrefab;
+    
+    [Header("전조 타일 프리팹들")]
+    public GameObject _warningPrefab;        // Type1 (기본)
+    public GameObject _warningPrefabType2;   // Type2
+    public GameObject _warningPrefabType3;   // Type3
     
     public PlayerController PlayerController 
     { 
@@ -21,6 +35,18 @@ public class BombAvoidanceManager : MonoBehaviour
     { 
         get => _warningPrefab; 
         set => _warningPrefab = value; 
+    }
+    
+    public GameObject WarningPrefabType2 
+    { 
+        get => _warningPrefabType2; 
+        set => _warningPrefabType2 = value; 
+    }
+    
+    public GameObject WarningPrefabType3 
+    { 
+        get => _warningPrefabType3; 
+        set => _warningPrefabType3 = value; 
     }
     
     private void Awake()
@@ -52,7 +78,30 @@ public class BombAvoidanceManager : MonoBehaviour
     }
     
     /// <summary>
-    /// 플레이어 추적 폭탄 공격
+    /// 전조 타입에 따른 프리팹 반환
+    /// </summary>
+    /// <param name="warningType">전조 타입</param>
+    /// <returns>해당 타입의 전조 프리팹</returns>
+    private GameObject GetWarningPrefab(WarningType warningType)
+    {
+        switch (warningType)
+        {
+            case WarningType.Type1:
+                return _warningPrefab;
+            case WarningType.Type2:
+                return _warningPrefabType2 ?? _warningPrefab; // null이면 기본값 사용
+            case WarningType.Type3:
+                return _warningPrefabType3 ?? _warningPrefab; // null이면 기본값 사용
+            default:
+                Debug.LogWarning($"Unknown WarningType: {warningType}, using default");
+                return _warningPrefab;
+        }
+    }
+    
+    // ========== 기존 메소드들 (기본 타입 사용) ==========
+    
+    /// <summary>
+    /// 플레이어 추적 폭탄 공격 (기본 전조 타입)
     /// </summary>
     /// <param name="shape">공격 모양 (상대 좌표)</param>
     /// <param name="explosionPrefab">폭발 이펙트 프리팹</param>
@@ -62,12 +111,11 @@ public class BombAvoidanceManager : MonoBehaviour
     public void ExecuteTargetingBomb(List<Vector3Int> shape, GameObject explosionPrefab, 
                                      float warningDuration, float explosionDuration, int damage)
     {
-        Vector3Int playerPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, playerPosition));
+        ExecuteTargetingBomb(shape, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
     }
     
     /// <summary>
-    /// 랜덤 위치 폭탄 공격
+    /// 랜덤 위치 폭탄 공격 (기본 전조 타입)
     /// </summary>
     /// <param name="shape">공격 모양 (상대 좌표)</param>
     /// <param name="count">랜덤 중심점 개수</param>
@@ -79,11 +127,11 @@ public class BombAvoidanceManager : MonoBehaviour
     public void ExecuteRandomBomb(List<Vector3Int> shape, int count, int range, GameObject explosionPrefab, 
                                   float warningDuration, float explosionDuration, int damage)
     {
-        StartCoroutine(ExecuteRandomBombCoroutine(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage));
+        ExecuteRandomBomb(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
     }
     
     /// <summary>
-    /// 고정 위치 폭탄 공격
+    /// 고정 위치 폭탄 공격 (기본 전조 타입)
     /// </summary>
     /// <param name="shape">공격 모양 (상대 좌표)</param>
     /// <param name="targetPosition">고정 중심 위치</param>
@@ -94,20 +142,71 @@ public class BombAvoidanceManager : MonoBehaviour
     public void ExecuteFixedBomb(List<Vector3Int> shape, Vector3Int targetPosition, GameObject explosionPrefab, 
                                  float warningDuration, float explosionDuration, int damage)
     {
-        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, targetPosition));
+        ExecuteFixedBomb(shape, targetPosition, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
+    }
+    
+    // ========== 새로운 메소드들 (전조 타입 지정 가능) ==========
+    
+    /// <summary>
+    /// 플레이어 추적 폭탄 공격 (전조 타입 지정)
+    /// </summary>
+    /// <param name="shape">공격 모양 (상대 좌표)</param>
+    /// <param name="explosionPrefab">폭발 이펙트 프리팹</param>
+    /// <param name="warningDuration">경고 지속 시간</param>
+    /// <param name="explosionDuration">폭발 지속 시간</param>
+    /// <param name="damage">데미지</param>
+    /// <param name="warningType">전조 타일 타입</param>
+    public void ExecuteTargetingBomb(List<Vector3Int> shape, GameObject explosionPrefab, 
+                                     float warningDuration, float explosionDuration, int damage, WarningType warningType)
+    {
+        Vector3Int playerPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
+        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, playerPosition, warningType));
     }
     
     /// <summary>
-    /// 단일 중심점 폭탄 공격 코루틴
+    /// 랜덤 위치 폭탄 공격 (전조 타입 지정)
+    /// </summary>
+    /// <param name="shape">공격 모양 (상대 좌표)</param>
+    /// <param name="count">랜덤 중심점 개수</param>
+    /// <param name="range">랜덤 생성 범위</param>
+    /// <param name="explosionPrefab">폭발 이펙트 프리팹</param>
+    /// <param name="warningDuration">경고 지속 시간</param>
+    /// <param name="explosionDuration">폭발 지속 시간</param>
+    /// <param name="damage">데미지</param>
+    /// <param name="warningType">전조 타일 타입</param>
+    public void ExecuteRandomBomb(List<Vector3Int> shape, int count, int range, GameObject explosionPrefab, 
+                                  float warningDuration, float explosionDuration, int damage, WarningType warningType)
+    {
+        StartCoroutine(ExecuteRandomBombCoroutine(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage, warningType));
+    }
+    
+    /// <summary>
+    /// 고정 위치 폭탄 공격 (전조 타입 지정)
+    /// </summary>
+    /// <param name="shape">공격 모양 (상대 좌표)</param>
+    /// <param name="targetPosition">고정 중심 위치</param>
+    /// <param name="explosionPrefab">폭발 이펙트 프리팹</param>
+    /// <param name="warningDuration">경고 지속 시간</param>
+    /// <param name="explosionDuration">폭발 지속 시간</param>
+    /// <param name="damage">데미지</param>
+    /// <param name="warningType">전조 타일 타입</param>
+    public void ExecuteFixedBomb(List<Vector3Int> shape, Vector3Int targetPosition, GameObject explosionPrefab, 
+                                 float warningDuration, float explosionDuration, int damage, WarningType warningType)
+    {
+        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, targetPosition, warningType));
+    }
+    
+    /// <summary>
+    /// 단일 중심점 폭탄 공격 코루틴 (전조 타입 지원)
     /// </summary>
     private IEnumerator ExecuteBombCoroutine(List<Vector3Int> shape, GameObject explosionPrefab, 
-                                             float warningDuration, float explosionDuration, int damage, Vector3Int centerPosition)
+                                             float warningDuration, float explosionDuration, int damage, Vector3Int centerPosition, WarningType warningType)
     {
         // 공격 위치 계산
         List<Vector3Int> attackPositions = CalculateAttackPositions(shape, centerPosition);
         
-        // 경고 타일 생성
-        List<GameObject> warningTiles = CreateWarningTiles(attackPositions);
+        // 지정된 타입의 경고 타일 생성
+        List<GameObject> warningTiles = CreateWarningTiles(attackPositions, warningType);
         
         // 경고 대기
         yield return new WaitForSeconds(warningDuration);
@@ -123,10 +222,10 @@ public class BombAvoidanceManager : MonoBehaviour
     }
     
     /// <summary>
-    /// 랜덤 폭탄 공격 코루틴
+    /// 랜덤 폭탄 공격 코루틴 (전조 타입 지원)
     /// </summary>
     private IEnumerator ExecuteRandomBombCoroutine(List<Vector3Int> shape, int count, int range, GameObject explosionPrefab, 
-                                                   float warningDuration, float explosionDuration, int damage)
+                                                   float warningDuration, float explosionDuration, int damage, WarningType warningType)
     {
         Vector3Int basePosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         List<Vector3Int> allAttackPositions = new List<Vector3Int>();
@@ -142,8 +241,8 @@ public class BombAvoidanceManager : MonoBehaviour
             allAttackPositions.AddRange(positions);
         }
         
-        // 경고 타일 생성
-        List<GameObject> warningTiles = CreateWarningTiles(allAttackPositions);
+        // 지정된 타입의 경고 타일 생성
+        List<GameObject> warningTiles = CreateWarningTiles(allAttackPositions, warningType);
         
         // 경고 대기
         yield return new WaitForSeconds(warningDuration);
@@ -178,16 +277,31 @@ public class BombAvoidanceManager : MonoBehaviour
     }
     
     /// <summary>
-    /// 경고 타일 생성
+    /// 경고 타일 생성 (기본 타입)
     /// </summary>
     private List<GameObject> CreateWarningTiles(List<Vector3Int> positions)
     {
+        return CreateWarningTiles(positions, WarningType.Type1);
+    }
+    
+    /// <summary>
+    /// 경고 타일 생성 (전조 타입 지정)
+    /// </summary>
+    private List<GameObject> CreateWarningTiles(List<Vector3Int> positions, WarningType warningType)
+    {
         List<GameObject> warningTiles = new List<GameObject>();
+        GameObject warningPrefab = GetWarningPrefab(warningType);
+        
+        if (warningPrefab == null)
+        {
+            Debug.LogError($"Warning prefab for type {warningType} is null!");
+            return warningTiles;
+        }
         
         foreach (Vector3Int gridPos in positions)
         {
             Vector3 worldPos = GridManager.Instance.GridToWorldPosition(gridPos);
-            GameObject warningTile = Instantiate(_warningPrefab, worldPos, Quaternion.identity);
+            GameObject warningTile = Instantiate(warningPrefab, worldPos, Quaternion.identity);
             warningTiles.Add(warningTile);
         }
         

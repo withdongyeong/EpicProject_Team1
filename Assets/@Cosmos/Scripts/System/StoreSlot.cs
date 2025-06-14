@@ -8,15 +8,13 @@ public class StoreSlot : MonoBehaviour
     private GameObject objectPrefab;
     private bool isPurchased = false;
     private Image image;
-    private StoreDragSystem _storeDragSystem;
-    private InfoUI infoUI;
+    private HoverTileInfo hoverTileInfo;
 
 
     private void Awake()
     {
         image = GetComponent<Image>();
-        _storeDragSystem = GetComponent<StoreDragSystem>();
-        infoUI = GetComponent<InfoUI>();
+        hoverTileInfo = GetComponent<HoverTileInfo>();
     }
 
     public GameObject GetObject()
@@ -29,6 +27,27 @@ public class StoreSlot : MonoBehaviour
         return objectPrefab; // 오브젝트 반환
     }
     
+    
+    public bool CanPurchase()
+    {
+        // 이미 구매한 오브젝트라면
+        if (isPurchased)
+        {
+            Debug.Log("이미 구매한 오브젝트입니다.");
+            return false;
+        }
+
+        // 돈이 충분하다면
+        if (GoldManager.Instance.CurrentGold >= objectCost)
+        {
+            return true;
+        }
+        else // 돈이 부족하다면
+        {
+            Debug.Log("돈이 부족합니다.");
+            return false;
+        }
+    }
     /// <summary>
     /// 물건을 사는 메서드입니다
     /// </summary>
@@ -66,6 +85,8 @@ public class StoreSlot : MonoBehaviour
         isPurchased = false; // 초기화
         image.color = Color.white; // 초기 색상 설정
         image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
-        infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
+        //infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
+        hoverTileInfo.SetTileObject(prefab.GetComponent<TileObject>());
+        
     }
 }

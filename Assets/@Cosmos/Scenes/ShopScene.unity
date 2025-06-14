@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 51518041}
   - component: {fileID: 51518040}
   - component: {fileID: 51518042}
-  - component: {fileID: 51518043}
-  - component: {fileID: 51518044}
+  - component: {fileID: 51518046}
+  - component: {fileID: 51518045}
   m_Layer: 5
   m_Name: slot
   m_TagString: Untagged
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &51518043
+--- !u!114 &51518045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,10 +218,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 51518038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63108d32c43d714c94ee4afd873b843, type: 3}
+  m_Script: {fileID: 11500000, guid: 2495f67294b5e5244b56fd53199ebb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &51518044
+--- !u!114 &51518046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,11 +230,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 51518038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe1baf8a5ef0ae4a8526ce57282b014, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a0eb55b5636a8418987e8ff657399c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObject: {fileID: 0}
-  isUIElement: 1
 --- !u!1 &61962381
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,8 +298,8 @@ GameObject:
   - component: {fileID: 228507149}
   - component: {fileID: 228507148}
   - component: {fileID: 228507150}
-  - component: {fileID: 228507151}
-  - component: {fileID: 228507152}
+  - component: {fileID: 228507154}
+  - component: {fileID: 228507153}
   m_Layer: 5
   m_Name: slot
   m_TagString: Untagged
@@ -378,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &228507151
+--- !u!114 &228507153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,10 +385,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 228507146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63108d32c43d714c94ee4afd873b843, type: 3}
+  m_Script: {fileID: 11500000, guid: 2495f67294b5e5244b56fd53199ebb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &228507152
+--- !u!114 &228507154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,11 +397,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 228507146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe1baf8a5ef0ae4a8526ce57282b014, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a0eb55b5636a8418987e8ff657399c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObject: {fileID: 0}
-  isUIElement: 1
 --- !u!1 &247090425
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +541,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -628,8 +624,8 @@ GameObject:
   - component: {fileID: 283250800}
   - component: {fileID: 283250799}
   - component: {fileID: 283250801}
-  - component: {fileID: 283250802}
-  - component: {fileID: 283250803}
+  - component: {fileID: 283250805}
+  - component: {fileID: 283250804}
   m_Layer: 5
   m_Name: slot
   m_TagString: Untagged
@@ -706,7 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &283250802
+--- !u!114 &283250804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -715,10 +711,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 283250797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63108d32c43d714c94ee4afd873b843, type: 3}
+  m_Script: {fileID: 11500000, guid: 2495f67294b5e5244b56fd53199ebb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &283250803
+--- !u!114 &283250805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -727,11 +723,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 283250797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe1baf8a5ef0ae4a8526ce57282b014, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a0eb55b5636a8418987e8ff657399c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObject: {fileID: 0}
-  isUIElement: 1
 --- !u!1 &314308728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,8 +1538,8 @@ GameObject:
   - component: {fileID: 803118955}
   - component: {fileID: 803118954}
   - component: {fileID: 803118956}
-  - component: {fileID: 803118957}
-  - component: {fileID: 803118958}
+  - component: {fileID: 803118960}
+  - component: {fileID: 803118959}
   m_Layer: 5
   m_Name: slot
   m_TagString: Untagged
@@ -1622,7 +1616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &803118957
+--- !u!114 &803118959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1631,10 +1625,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 803118952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63108d32c43d714c94ee4afd873b843, type: 3}
+  m_Script: {fileID: 11500000, guid: 2495f67294b5e5244b56fd53199ebb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &803118958
+--- !u!114 &803118960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1643,11 +1637,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 803118952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe1baf8a5ef0ae4a8526ce57282b014, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a0eb55b5636a8418987e8ff657399c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObject: {fileID: 0}
-  isUIElement: 1
 --- !u!1 &809852214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,8 +2813,8 @@ GameObject:
   - component: {fileID: 1760861594}
   - component: {fileID: 1760861593}
   - component: {fileID: 1760861596}
-  - component: {fileID: 1760861597}
-  - component: {fileID: 1760861598}
+  - component: {fileID: 1760861600}
+  - component: {fileID: 1760861599}
   m_Layer: 5
   m_Name: slot
   m_TagString: Untagged
@@ -2899,7 +2891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1760861597
+--- !u!114 &1760861599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2908,10 +2900,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760861591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63108d32c43d714c94ee4afd873b843, type: 3}
+  m_Script: {fileID: 11500000, guid: 2495f67294b5e5244b56fd53199ebb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1760861598
+--- !u!114 &1760861600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2920,11 +2912,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760861591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe1baf8a5ef0ae4a8526ce57282b014, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a0eb55b5636a8418987e8ff657399c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObject: {fileID: 0}
-  isUIElement: 1
 --- !u!1 &1790381604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,7 +3366,6 @@ MonoBehaviour:
   cellPrefab: {fileID: 568023074742637454, guid: 3b76cf904a96b334bbb51f4ec2f3e4ad, type: 3}
   maxSize: 9
   startPoint: {fileID: 1911385607}
-  draggablePlane: {fileID: 9195849366027700149, guid: dcab27d1e96c22a4f8e2c3d7293e2adf, type: 3}
   occupiedSprite: {fileID: 21300000, guid: 8153df8c128105d4eba6da2f968e5339, type: 3}
   defaultSprite: {fileID: -4908184131564490280, guid: b46b3f0d34ef26d4f9fdc94eee979d95, type: 3}
 --- !u!4 &2052188540
