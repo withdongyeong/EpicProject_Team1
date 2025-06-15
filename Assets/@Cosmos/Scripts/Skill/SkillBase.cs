@@ -2,16 +2,20 @@
 
 public abstract class SkillBase : MonoBehaviour
 {
-    
+
+    private SkillUseManager sm;
     [Header("Skill Info")] 
     public string skillName;
     public float cooldown = 5f;
+    private float defaultCooldown;
     private float lastUsedTime = -Mathf.Infinity;
 
     private Material _coolTimeMaterial;
-
+    
     private void Start()
     {
+        defaultCooldown = cooldown;
+        sm = SkillUseManager.Instance;
         if(TryGetComponent<CombineCell>(out CombineCell combineCell))
         {
             _coolTimeMaterial = combineCell.GetSprite().material;
@@ -40,7 +44,12 @@ public abstract class SkillBase : MonoBehaviour
             return false;
         }
 
-        Activate(user);
+        cooldown = defaultCooldown * sm.CooldownFactor;
+        for(int i =0; i < sm.SkillActivationCount; i++)
+        {
+            Debug.Log("sm.SkillActivationCount: " + sm.SkillActivationCount);
+            Activate(user);
+        }
         lastUsedTime = Time.time;
         return true;
     }

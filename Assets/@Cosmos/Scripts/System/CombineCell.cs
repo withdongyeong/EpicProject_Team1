@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class CombineCell : MonoBehaviour
 {
-    public GameObject coreCell;
-    public GameObject tile;
+    private GameObject coreCell;
     private SpriteRenderer sr;
-    public SkillBase[] skills;
-    public TileObject tileObject;
+    private SkillBase[] skills;
+    private TileObject tileObject;
 
     private void Awake()
     
@@ -19,7 +18,6 @@ public class CombineCell : MonoBehaviour
         skills = GetComponents<SkillBase>();
         sr = GetComponentInChildren<SpriteRenderer>();
         tileObject = GetComponentInParent<TileObject>();
-        tile = tileObject.gameObject;
     }
 
 
@@ -27,6 +25,18 @@ public class CombineCell : MonoBehaviour
     {
         return sr;
     }
+    
+    public GameObject GetCoreCell()
+    {
+        return coreCell;
+    }
+    
+    public TileObject GetTileObject()
+    {
+        return tileObject;
+    }
+    
+    
     public void ExecuteSkill()
     {
         if (skills == null || skills.Length == 0)
@@ -34,7 +44,7 @@ public class CombineCell : MonoBehaviour
             Debug.LogWarning("No skills assigned to CombineCell.");
             return;
         }
-
+        
         foreach (var skill in skills)
         {
             if (skill != null)

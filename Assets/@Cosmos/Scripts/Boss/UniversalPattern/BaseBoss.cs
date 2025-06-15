@@ -184,7 +184,7 @@ public abstract class BaseBoss : MonoBehaviour
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
-        Debug.Log(damage);
+        Debug.Log("Boss 가 데미지 받음 : " + damage);
         
         if (_currentHealth <= 0)
         {
