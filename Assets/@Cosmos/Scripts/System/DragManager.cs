@@ -76,14 +76,23 @@ public class DragManager : Singleton<DragManager>
     
     public void PlaceObject()
     {
-        Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().coreCell.transform.position;
+        Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().GetCoreCell().transform.position;
         corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
         currentDragObject.transform.position = corePos;
         currentDragObject.transform.SetParent(GridManager.Instance.transform);
-        foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
+        foreach (var cell in currentDragObject.GetComponentsInChildren<Cell>())
         {
             Transform t = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
+            if (cell.GetType() == typeof(StarCell)) //스타셀일때
+            {
+                StarCell starCell = cell as StarCell;
+                StarBase starSkill = starCell.GetStarSkill();
+                GridManager.Instance.AddStarSkill(gridPos, starSkill);
+                continue;
+            }
+            
+            // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
     }
@@ -112,6 +121,10 @@ public class DragManager : Singleton<DragManager>
         if (currentDragObject == null) return false;
         foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
         {
+            if (cell.GetType() == typeof(StarCell)) // 스타셀일 때는 배치 가능 여부를 따지지 않음
+            {
+                continue;
+            }
             Transform child = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
             if (!GridManager.Instance.IsCellAvailable(gridPos))
