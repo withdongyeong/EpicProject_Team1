@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
             {
                 HandleMovement();
             }
-            CheckTileInteraction();
+            
         }
         else
         {
@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
 
         // 최종 위치 설정 (물리적 위치만)
         transform.position = targetPos;
+        CheckTileInteraction();
         
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
@@ -192,12 +193,10 @@ public class PlayerController : MonoBehaviour
     {
         Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0); // 1. 현재 위치 가져오기 (_currentX, _currentY) 는 이미 grid 좌표로 설정되어 있음
         Cell currentCell = _gridManager.GetCellData(currentPos);
-        CombineCell comCell = currentCell?.GetObjectData();
-        comCell?.ExecuteSkill();
-        /*if (currentTile != null && currentTile.GetState() == BaseTile.TileState.Ready)
+        if (currentCell != null)
         {
-            
-        }*/
+            SkillUseManager.Instance.UseSkill(currentPos);
+        }
     }
 
     /// <summary>

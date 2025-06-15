@@ -17,6 +17,7 @@ public class ProjectileSkill : SkillBase
         targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)
         {
+            Debug.Log("★★★★★★★★★★");
             FireProjectile();
         }
     }
