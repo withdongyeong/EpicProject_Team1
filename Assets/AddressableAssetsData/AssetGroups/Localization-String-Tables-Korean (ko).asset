@@ -15,6 +15,18 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Korean (ko)
   m_GUID: 5572cc4c1971af84493929c45df5b369
   m_SerializeEntries:
+  - m_GUID: 0f232eca34e91a0448a0f4871749b234
+    m_Address: TileName_Text_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a9967bc29f007244b4e1088d48bbe30
+    m_Address: TileDescription_Text_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cc630d212abe1574ea245fe8a3db4034
     m_Address: UI_Text_ko
     m_ReadOnly: 1
