@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    [SerializeField]
+    
     private CombineCell combinedCell;
     private void Awake()
     {
@@ -14,8 +14,9 @@ public class Cell : MonoBehaviour
     }
 
 
-    public CombineCell GetObjectData()
+    public CombineCell GetCombineCell()
     {
         return combinedCell;
     }
+    
 }
