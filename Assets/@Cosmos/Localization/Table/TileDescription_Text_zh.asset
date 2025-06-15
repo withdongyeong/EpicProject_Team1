@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TileDescription_Text_zh
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: zh
+  m_SharedData: {fileID: 11400000, guid: d813aebed15488749bb46d37f60f1e46, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 37952823296
+    m_Localized: "\u53D1\u5C04\u5F3A\u5927\u7684\u6295\u5C04\u4F53 \u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>30</color>\uFF09"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406208
+    m_Localized: "\u83B7\u5F971\u4E2A\u9632\u5FA1\u7F51\u3002\n\u9632\u5FA1\u7F51:\u9632\u6B621\u6B21\u635F\u4F24\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406209
+    m_Localized: "\u4E2A\u522B\u683C\uFF083\uFF09:\u6062\u590D\u4F53\u529B<color=green>15</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406210
+    m_Localized: "\u5806\u53E0\u56FE\u817E<sprite name=\"Totem\"> 3\u4E2A\u56FE\u817E<sprite
+      name=\"Totem\">\u5806\u79EF\u540E\u542F\u52A8\u3002\n\u542F\u52A8\u65F6: \u53D1\u5C04\u6295\u5C04\u4F53
+      \u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406211
+    m_Localized: "\u53D1\u5C04\u4E09\u4E2A\u6295\u5C04\u4F53\u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>5
+      X 3</color>\uFF09\n\u51FB\u4E2D: \u8D4B\u4E88\u706B\u7130<sprite name=\"Fire\"
+      >"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406212
+    m_Localized: "\u53D1\u5C04\u6295\u5C04\u4F53 \u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>5</color>\uFF09\n\u51FB\u4E2D:\u8D4B\u4E88\u706B\u7130<sprite
+      name=\"Fire\"> 1 \u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406213
+    m_Localized: "\u5355\u4E2A\u683C (3) : \u53D1\u5C04\u6295\u5C04\u4F53 \u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>5</color>\uFF09\n\u51FB\u4E2D\u65F6:
+      \u8D4B\u4E88\u51BB\u75AE<sprite name=\" Ice\"> 1 \u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406214
+    m_Localized: "\u83B7\u5F9715\u4E2A\u4FDD\u62A4\u819C\u3002\n\u4FDD\u62A4\u819C:\u9632\u6B62\u4E00\u5B9A\u6570\u91CF\u7684\u7834\u635F\u3002
+      \u6BCF\u79D2\u51CF\u5C11\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406215
+    m_Localized: "\u5806\u53E0\u56FE\u817E<sprite name=\"Totem\"> 3\u4E2A\u56FE\u817E<sprite
+      name=\"Totem\">\u5806\u79EF\u540E\u542F\u52A8\u3002\n\u542F\u52A8\u65F6:\u6062\u590D\u4F53\u529B<color=green>7</color>\u3002\n\u5F3A\u5316\u65F6:\u6062\u590D\u91CF\u589E\u52A02\u500D\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406216
+    m_Localized: "\u6062\u590D\u4F53\u529B<color=green>15</color>\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406217
+    m_Localized: "\u5355\u4E2A\u683C (3) : \u53D1\u5C04\u6295\u5C04\u4F53 \u3002
+      \u5982\u679C\u5BF9\u8C61\u5904\u4E8E\u6655\u5012\u72B6\u6001\uFF0C\u53D7\u5BB3\u91CF\u4F1A\u7FFB4\u500D\u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>5/20</color>\uFF09\n\u51FB\u4E2D:
+      \u8D4B\u4E88\u51BB\u75AE<sprite name=\" Ice\" >"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406218
+    m_Localized: "\u5806\u53E0\u56FE\u817E<sprite name=\"Totem\"> 3\u4E2A\u56FE\u817E<sprite
+      name=\"Totem\">\u5806\u79EF\u540E\u542F\u52A8\u3002\n\u542F\u52A8\u65F6: \u53D1\u5C04\u6295\u5C04\u4F53
+      \u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>10</color>\n\u6C5F\u534E\u5E02:\u4F24\u5BB3\u662F5\u500D\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406219
+    m_Localized: "\u5A36\u739B()\u5A1C()\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406220
+    m_Localized: "\u83B7\u5F9730\u4E2A\u4FDD\u62A4\u819C\u3002\n\u4FDD\u62A4\u819C:\u9632\u6B62\u4E00\u5B9A\u6570\u91CF\u7684\u7834\u635F\u3002
+      \u6BCF\u79D2\u51CF\u5C11\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406221
+    m_Localized: "\u53EC\u5524\u5251<sprite name=\"Sword\">,\u6240\u6709\u5251\u90FD\u8FDB\u884C\u653B\u51FB\u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>5</color>\uFF09"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406222
+    m_Localized: "3\u4E2A\u53EC\u5524\u5251<sprite name=\"Sword\">,\u6BCF\u6B21\u53EC\u5524\u65F6,\u6240\u6709\u5251<sprite
+      name=\"Sword\">\u90FD\u4F1A\u653B\u51FB\u3002\n\uFF08\u53D7\u5BB3\u91CF:<color=red>5</color>\uFF09"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

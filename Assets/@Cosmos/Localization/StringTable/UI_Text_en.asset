@@ -42,6 +42,28 @@ MonoBehaviour:
     m_Localized: Victory
     m_Metadata:
       m_Items: []
+  - m_Id: 538766287183872
+    m_Localized: 'Flame<sprite name="Fire">: Damage as much as the stack every second
+      and decrease the stack by one.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 538766316544000
+    m_Localized: 'Statue <sprite name="Ice">: 5 superimposes, knocks the enemy out
+      for 1 second.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 538766316544001
+    m_Localized: 'Sword<sprite name="Sword">: Summoner that is maintained for a certain
+      period of time. If you give commands to the sword, all swords perform the same
+      command.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 538766316544002
+    m_Localized: 'Totem<sprite name="Totem">: piling up to three. When three are
+      gathered, the effect is triggered and disappeared. The third stacked totem
+      is enhanced.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
