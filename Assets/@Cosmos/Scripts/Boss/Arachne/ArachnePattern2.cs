@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// 아라크네 패턴2 - BombManager 사용 버전
@@ -68,29 +69,38 @@ public class ArachnePattern2 : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     private IEnumerator SpiderAttack(BaseBoss boss)
     {
+        boss.BombManager.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
+                                                 warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+
+        // 사운드 재생
+        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));
+        boss.AttackAnimation();
+
+        yield return new WaitForSeconds(0.3f);
+
         // 1단계: 6번의 플레이어 추적 공격
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
             // 플레이어 추적 단일 점 공격
             boss.BombManager.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
-                                                  warningDuration: 0.3f, explosionDuration: 0.7f, damage: 10);
-            
+                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+
             // 사운드 재생
-            SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
+            boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.85f));
+
             boss.AttackAnimation();
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.3f);
         }
 
         // 2단계: 첫 번째 대형 공격 (가로 절반)
-        Coroutine bigAttack1 = boss.StartCoroutine(PoisonBigAttack(boss, true));
-        yield return new WaitForSeconds(0.2f);
-        
+        Coroutine bigAttack1 = boss.StartCoroutine(PoisonBigAttack_LShape(boss));
+
         // 3단계: 두 번째 대형 공격 (세로 절반)
-        Coroutine bigAttack2 = boss.StartCoroutine(PoisonBigAttack(boss, false));
+        //Coroutine bigAttack2 = boss.StartCoroutine(PoisonBigAttack(boss, false));
         
         // 두 번째 대형 공격 완료까지 대기
-        yield return bigAttack2;
+        yield return bigAttack1;
     }
 
     /// <summary>
@@ -98,34 +108,42 @@ public class ArachnePattern2 : IBossAttackPattern
     /// </summary>
     /// <param name="boss">보스 객체</param>
     /// <param name="isHorizontal">가로 절반(true) vs 세로 절반(false)</param>
-    private IEnumerator PoisonBigAttack(BaseBoss boss, bool isHorizontal)
+    private IEnumerator PoisonBigAttack_LShape(BaseBoss boss)
     {
         int splitValue = 5;
-        List<Vector3Int> attackShape = new List<Vector3Int>();
+        HashSet<Vector3Int> attackShape = new HashSet<Vector3Int>();
 
-        // 공격 영역 계산
         for (int x = 0; x < 9; x++)
         {
             for (int y = 0; y < 9; y++)
             {
-                bool shouldAttack = isHorizontal ? y < splitValue : x < splitValue;
+                // L자 범위 조건: 좌측 또는 상단
+                bool inHorizontal = y < splitValue;
+                bool inVertical = x < splitValue;
 
-                if (shouldAttack)
+                if (inHorizontal || inVertical)
                 {
-                    // 체스판 패턴 (짝수 좌표 제외)
+                    // 체스판 패턴: 짝수 좌표 제외
                     if (x % 2 == 0 && y % 2 == 0) continue;
-                    
+
                     attackShape.Add(new Vector3Int(x - 4, y - 4, 0)); // 중심 기준 상대 좌표
                 }
             }
         }
 
-        // 중심점을 (4,4)로 설정하여 고정 위치 공격
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
-        
-        boss.BombManager.ExecuteFixedBomb(attackShape, centerPos, _poisionAriaPrefab,
+
+        boss.BombManager.ExecuteFixedBomb(attackShape.ToList(), centerPos, _poisionAriaPrefab,
                                           warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
 
+        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));
+
         yield return null;
+    }
+
+    private IEnumerator PlayDelayedSound(string soundName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.Instance.ArachneSoundClip(soundName);
     }
 }
