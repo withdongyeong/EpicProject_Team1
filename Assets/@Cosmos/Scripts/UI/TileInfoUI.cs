@@ -34,17 +34,17 @@ public class TileInfoUI : MonoBehaviour
         }
 
         //통합된 셀 스크립트의 타일오브젝트를 가져오기
-        CombineCell cC = GridManager.Instance.GetCellData(gridPosition).GetObjectData();
+        CombineCell cC = GridManager.Instance.GetCellData(gridPosition).GetCombineCell();
 
         // 타일 오브젝트가 변경되면 패널 숨김
-        if (cC.tileObject != tileObject)
+        if (cC.GetTileObject() != tileObject)
         {
             HideInfoPanel();
         }
-        tileObject = cC.tileObject;
+        tileObject = cC.GetTileObject();
 
         //패널 위치를 설정하기 위해 오브젝트 기준 위치로 변환
-        gridPosition = GridManager.Instance.WorldToGridPosition(cC.tile.transform.position);
+        gridPosition = GridManager.Instance.WorldToGridPosition(tileObject.transform.position);
         Vector3 offset = new Vector3(4.5f, 0.5f, 0f); // 패널 위치 오프셋
         panelPos = GridManager.Instance.GridToWorldPosition(gridPosition) + offset;
 

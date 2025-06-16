@@ -51,7 +51,7 @@ public class DragObjectOnPlane : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
 
             //통합된 셀 스크립트를 가져옵니다
-            CombineCell cC = GridManager.Instance.GetCellData(clickedGridPosition).GetObjectData();
+            CombineCell cC = GridManager.Instance.GetCellData(clickedGridPosition).GetCombineCell();
             //셀 스크립트를 통해 타일을 가져옵니다.
             Transform tile = cC.transform.parent;
 

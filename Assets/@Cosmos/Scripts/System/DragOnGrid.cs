@@ -23,6 +23,12 @@ public class DragOnGrid : DraggableObject
             {
                 Transform t = cell.transform;
                 Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
+                if(cell.GetType() == typeof(StarCell))
+                {
+                    StarBase starSkill = (cell as StarCell).GetStarSkill();
+                    GridManager.Instance.RemoveStarSkill(gridPos, starSkill);
+                    continue;
+                }
                 GridManager.Instance.ReleaseCell(gridPos);
             }
         }
