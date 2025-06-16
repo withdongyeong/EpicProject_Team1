@@ -28,18 +28,18 @@ public class Arachne : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         //그룹 A: 거미줄 -> 슬래쉬
-        //AddGroup()
-        //    .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), 1.5f)
-        //    .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg), 1f)
-        //    .SetGroupInterval(1f);
+        AddGroup()
+            .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), 1.5f)
+            .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg), 1f)
+            .SetGroupInterval(1f);
 
         // 개별 패턴: Pattern2 (중간 패턴)
-        //AddGroup()
-        //  .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
-        //  .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)
-        //  .SetGroupInterval(1f);
+        AddGroup()
+          .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
+          .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)
+          .SetGroupInterval(1f);
 
-        ////그룹 C: 
+        //그룹 C: 
         AddGroup()
             .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg), 1f)
             .SetGroupInterval(1f);
