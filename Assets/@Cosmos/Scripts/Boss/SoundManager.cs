@@ -56,12 +56,18 @@ public class SoundManager : Singleton<SoundManager>
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
     //UI 사운드볼륨
-    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>    
+    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>
     {
         {"DeploymentActivate", 0.05f},
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.3f }
     };
+
+    Dictionary<string, AudioClip> BGMSoundDictionary = new Dictionary<string, AudioClip>();
+    //UI 사운드볼륨
+    private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
+    { };
+
 
     protected override void Awake()
     {
@@ -98,13 +104,23 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-        AudioClip[]UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
+        AudioClip[] UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
 
         foreach (AudioClip clip in UIaudioClips)
         {
             if (!UISoundDictionary.ContainsKey(clip.name))
             {
-               UISoundDictionary.Add(clip.name, clip);
+                UISoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] BGMaudioClips = Resources.LoadAll<AudioClip>("Sounds/BGM");
+
+        foreach (AudioClip clip in BGMaudioClips)
+        {
+            if (!BGMSoundDictionary.ContainsKey(clip.name))
+            {
+                BGMSoundDictionary.Add(clip.name, clip);
             }
         }
 
@@ -195,6 +211,22 @@ public class SoundManager : Singleton<SoundManager>
             {
                 float volume = UISoundVolumeDictionary.ContainsKey(clip) ? UISoundVolumeDictionary[clip] : 1f;
                 interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// UI 사운드 재생 - UI가 나오면 수정 필요
+    /// </summary>
+    public void BGMSoundClip(string clip)
+    {
+        if (clip != null && interactionAudioSource != null)
+        {
+            AudioClip tileClip = BGMSoundDictionary.ContainsKey(clip) ? BGMSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                bgm = tileClip;
+                PlayBGMSound(bgm, bgmVolume);
             }
         }
     }
