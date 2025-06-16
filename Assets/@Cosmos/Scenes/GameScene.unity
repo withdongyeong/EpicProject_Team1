@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647eba9a8a06460b881562af760d0742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _warningPrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
+  _warningPrefab: {fileID: 1845840710705793256, guid: e5bc4d0f66cecaf4c89ca4ec9cef693f, type: 3}
   _warningPrefabType2: {fileID: 1845840710705793256, guid: b28333480126a14468700cf82aa44bfb, type: 3}
   _warningPrefabType3: {fileID: 1845840710705793256, guid: a9e8ccd013cce314099c3180b3ca628e, type: 3}
 --- !u!1 &308916937
@@ -941,7 +941,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.390625
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

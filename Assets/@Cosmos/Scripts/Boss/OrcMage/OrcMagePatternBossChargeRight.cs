@@ -104,6 +104,8 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
         // 돌진 애니메이션 시작
         boss.SetAnimationTrigger("Attack1Hand");
         
+        int stepCount = 0; // 스텝 카운터
+        
         for (int x = start.x; x <= end.x; x++)
         {
             Vector3Int currentPos = new Vector3Int(x, start.y, 0);
@@ -115,27 +117,40 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
             List<Vector3Int> bossArea = GetBossArea(currentPos);
             boss.BombManager.ExecuteWarningThenDamage(bossArea, currentPos, 0.3f, 25, WarningType.Type2);
             
-            // 스파이크 공격 (\l/ 모양)
-            yield return ExecuteSpikeAttack(boss, currentPos);
+            // 스파이크 공격 (번갈아가며)
+            yield return ExecuteAlternatingSpike(boss, currentPos, stepCount);
             
+            stepCount++;
             yield return new WaitForSeconds(0.1f); // 빠른 이동
         }
     }
 
     /// <summary>
-    /// 스파이크 공격 실행 - \l/ 모양으로 위아래 대각선
+    /// 번갈아가는 스파이크 공격 - | -> \/ -> | -> \/
     /// </summary>
-    private IEnumerator ExecuteSpikeAttack(BaseBoss boss, Vector3Int centerPos)
+    private IEnumerator ExecuteAlternatingSpike(BaseBoss boss, Vector3Int centerPos, int stepCount)
     {
-        // \l/ 모양 스파이크 패턴
-        Vector3Int[] spikeDirections = {
-            new Vector3Int(-1, 1, 0),  // ↖ 대각선
-            new Vector3Int(0, 1, 0),   // ↑ 수직
-            new Vector3Int(1, 1, 0),   // ↗ 대각선
-            new Vector3Int(-1, -1, 0), // ↙ 대각선  
-            new Vector3Int(0, -1, 0),  // ↓ 수직
-            new Vector3Int(1, -1, 0)   // ↘ 대각선
-        };
+        Vector3Int[] spikeDirections;
+        
+        // 스텝에 따라 번갈아가며 패턴 선택
+        if (stepCount % 2 == 0)
+        {
+            // 짝수 스텝: | 패턴 (수직)
+            spikeDirections = new Vector3Int[] {
+                new Vector3Int(0, 1, 0),   // ↑ 수직
+                new Vector3Int(0, -1, 0)   // ↓ 수직
+            };
+        }
+        else
+        {
+            // 홀수 스텝: \/ 패턴 (대각선)
+            spikeDirections = new Vector3Int[] {
+                new Vector3Int(-1, 1, 0),  // ↖ 대각선
+                new Vector3Int(1, 1, 0),   // ↗ 대각선
+                new Vector3Int(-1, -1, 0), // ↙ 대각선  
+                new Vector3Int(1, -1, 0)   // ↘ 대각선
+            };
+        }
 
         foreach (Vector3Int direction in spikeDirections)
         {
