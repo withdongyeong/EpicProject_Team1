@@ -91,7 +91,7 @@ public class OrcMagePatternWave : IBossAttackPattern
             }
             else
             {
-                yield return new WaitForSeconds(0.1f); // 나머지는 빠르게
+                yield return new WaitForSeconds(0.15f); // 나머지는 빠르게
             }
         }
     }
