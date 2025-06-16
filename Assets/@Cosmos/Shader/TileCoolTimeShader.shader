@@ -37,19 +37,22 @@
                 float2 uv : TEXCOORD0;
             };
 
+
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
-                float3 worldPos : TEXCOORD1;
+                float localY : TEXCOORD1;
             };
+
+
 
             v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                o.localY = v.vertex.y; // 로컬 Y
                 return o;
             }
 
@@ -57,16 +60,14 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                // 월드 y 기준으로 채워지는 비율 계산
-                float ratio = saturate((i.worldPos.y - _WorldSpaceBottomY) / _WorldSpaceHeight);
+                float ratio = saturate((i.localY - _WorldSpaceBottomY) / _WorldSpaceHeight);
 
                 if (ratio > _FillAmount)
                 {
-                    // 위쪽은 어둡게
                     col.rgb *= 0.3;
                 }
 
-                return col;
+                    return col;
             }
             ENDCG
         }

@@ -17,9 +17,13 @@ public abstract class SkillBase : MonoBehaviour
     {
         defaultCooldown = cooldown;
         sm = SkillUseManager.Instance;
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        if (TryGetComponent<CombineCell>(out CombineCell combineCell))
+        {
+            _coolTimeMaterial = combineCell.GetSprite().material;
+            _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
+            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
+        }
 
-        
     }
 
     private void LateUpdate()
@@ -68,15 +72,4 @@ public abstract class SkillBase : MonoBehaviour
         return Mathf.Max(0f, (lastUsedTime + cooldown) - Time.time);
     }
 
-    //TODO: 현재 '전투씬에 돌입함'을 알 수 있는 방법이 없습니다 해당 방법이 추가되면 이 함수를 해당 이벤트에 구독시키면 됩니다
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (TryGetComponent<CombineCell>(out CombineCell combineCell))
-        {
-            _coolTimeMaterial = combineCell.GetSprite().material;
-            _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
-            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().bounds.min.y);
-        }
-    }
-    
 }
