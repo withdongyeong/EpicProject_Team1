@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class SkillBase : MonoBehaviour
 {
@@ -16,12 +17,13 @@ public abstract class SkillBase : MonoBehaviour
     {
         defaultCooldown = cooldown;
         sm = SkillUseManager.Instance;
-        if(TryGetComponent<CombineCell>(out CombineCell combineCell))
+        if (TryGetComponent<CombineCell>(out CombineCell combineCell))
         {
             _coolTimeMaterial = combineCell.GetSprite().material;
             _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
-            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().bounds.min.y);
+            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
         }
+
     }
 
     private void LateUpdate()
@@ -69,4 +71,5 @@ public abstract class SkillBase : MonoBehaviour
     {
         return Mathf.Max(0f, (lastUsedTime + cooldown) - Time.time);
     }
+
 }
