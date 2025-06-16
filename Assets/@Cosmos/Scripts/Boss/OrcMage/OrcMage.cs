@@ -2,12 +2,13 @@ using Cosmos.Scripts.Boss.OrcMage;
 using UnityEngine;
 
 /// <summary>
-/// 오크 메이지 보스 - 기본 구조 (패턴 추가 예정)
+/// 오크 메이지 보스 - 그라운드 스파이크 패턴 추가
 /// </summary>
 public class OrcMage : BaseBoss
 {
     [Header("오크 메이지 전용 프리팹들")]
     public GameObject frogPrefab;        // 개구리 투사체 이펙트
+    public GameObject groundSpikePrefab; // 그라운드 스파이크 이펙트
 
     /// <summary>
     /// 오크 메이지 초기화 - 고유한 스탯 설정
@@ -20,18 +21,16 @@ public class OrcMage : BaseBoss
     }
 
     /// <summary>
-    /// 공격 패턴 초기화 - 현재는 비어있음 (패턴 추가 예정)
+    /// 공격 패턴 초기화 - 패턴 추가
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        Debug.Log("OrcMage.InitializeAttackPatterns: No patterns registered yet");
+        Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");
         
-        // TODO: 패턴들을 하나씩 추가할 예정
-        // 패턴 1 : 개구리 투사체
-        // 패턴 2 : 마력 돌진
-        AddIndividualPattern(new OrcMagePattern1(frogPrefab), 3f);
-        
-        Debug.Log("OrcMage: Ready for pattern implementation");
+        // AddIndividualPattern(new OrcMagePattern1(frogPrefab), 2f);
+        AddIndividualPattern(new OrcMagePattern2(groundSpikePrefab), 2f);
+            
+        Debug.Log($"OrcMage: Pattern system initialized successfully");
     }
 
     /// <summary>
