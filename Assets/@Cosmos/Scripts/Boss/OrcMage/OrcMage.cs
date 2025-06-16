@@ -15,8 +15,8 @@ public class OrcMage : BaseBoss
     /// </summary>
     protected void Awake()
     {
-        // 기본 스탯 설정 (메이지는 체력이 낮지만 강력한 공격)
-        MaxHealth = 300;
+        // 기본 스탯 설정
+        MaxHealth = 600;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
@@ -28,7 +28,18 @@ public class OrcMage : BaseBoss
         Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");
         
         // AddIndividualPattern(new OrcMagePattern1(frogPrefab), 2f);
-        AddIndividualPattern(new OrcMagePattern2(groundSpikePrefab), 2f);
+        AddIndividualPattern(new OrcMagePatternWave(groundSpikePrefab), 2f);
+        AddIndividualPattern(new OrcMagePatternExpandingSquare(groundSpikePrefab), 2f);
+        AddIndividualPattern(new OrcMagePatternChainExplosion(groundSpikePrefab), 2f);
+        // 기본기
+        AddIndividualPattern(new OrcMagePatternSpiral(groundSpikePrefab), 2f);
+        // 돌진 패턴은 항상 시작 - 끝 매칭
+        AddGroup()
+            .AddPattern(new OrcMagePatternBossChargeLeft(groundSpikePrefab), 2f)
+            .AddPattern(new OrcMagePatternWave(groundSpikePrefab), 2f)
+            .AddPattern(new OrcMagePatternExpandingSquare(groundSpikePrefab), 2f)
+            .AddPattern(new OrcMagePatternBossChargeRight(groundSpikePrefab), 2f)
+            .SetGroupInterval(2f);
             
         Debug.Log($"OrcMage: Pattern system initialized successfully");
     }
