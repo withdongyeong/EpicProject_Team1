@@ -28,13 +28,21 @@ public class ArachnePattern1 : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     public IEnumerator Execute(BaseBoss boss)
     {
-        // 두 개의 코루틴을 동시에 시작
         Coroutine slash1 = boss.StartCoroutine(SpiderSlash1(boss));
+
+        yield return new WaitForSeconds(2f);
+
         Coroutine slash2 = boss.StartCoroutine(SpiderSlash2(boss));
+
+        yield return new WaitForSeconds(2f);
+
+        // 두 개의 코루틴을 동시에 시작
+        Coroutine slash3 = boss.StartCoroutine(SpiderSlash1(boss));
+        Coroutine slash4 = boss.StartCoroutine(SpiderSlash2(boss));
         
         // 두 코루틴이 모두 완료될 때까지 대기
-        yield return slash1;
-        yield return slash2;
+        yield return slash3;
+        yield return slash4;
     }
 
     /// <summary>
@@ -93,7 +101,7 @@ public class ArachnePattern1 : IBossAttackPattern
             // 공격 애니메이션
             boss.AttackAnimation();
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -134,7 +142,7 @@ public class ArachnePattern1 : IBossAttackPattern
             // 공격 애니메이션
             boss.AttackAnimation();
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 

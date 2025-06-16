@@ -10,7 +10,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     private GameObject _spiderWebPrefab;
     private int _spiderWebCount;
     private List<Vector3Int> _singlePointShape;
-    
+
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
@@ -23,7 +23,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     {
         _spiderWebPrefab = spiderWebPrefab;
         _spiderWebCount = spiderWebCount;
-        
+
         // 단일 점 모양 (거미줄은 한 칸만 차지)
         _singlePointShape = new List<Vector3Int>
         {

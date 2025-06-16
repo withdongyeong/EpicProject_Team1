@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 /// <summary>
 /// 아라크네 패턴3 - BombManager 사용 버전
@@ -95,7 +96,7 @@ public class ArachnePattern3 : IBossAttackPattern
             for (int y = -1; y <= 1; y++)
             {
                 // 제외할 방향은 스킵
-                if (x == excludeDirection.x && y == excludeDirection.y)
+                if ((x == excludeDirection.x && y == excludeDirection.y) || (Mathf.Abs(x) == 1 && Mathf.Abs(y) == 1))
                     continue;
 
                 attackShape.Add(new Vector3Int(x, y, 0));

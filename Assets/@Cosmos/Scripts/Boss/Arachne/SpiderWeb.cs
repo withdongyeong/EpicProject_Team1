@@ -16,7 +16,9 @@ public class SpiderWeb : MonoBehaviour
     {
         PlayerController playerController = collision.GetComponent<PlayerController>();
 
-        if (playerController != null)
+        Vector3 PlayerPosition = GridManager.Instance.GridToWorldPosition(new Vector3Int(playerController.CurrentX, playerController.CurrentY, 0));
+
+        if (playerController != null && PlayerPosition == this.transform.position)
         {
             IsHitPlayer = true;
             playerController.Bind(1f);
