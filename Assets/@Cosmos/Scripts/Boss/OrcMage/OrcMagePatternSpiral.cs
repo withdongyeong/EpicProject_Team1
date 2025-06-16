@@ -40,7 +40,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
                 boss.BombManager.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _groundSpikePrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 0.6f, damage: 20, WarningType.Type1);
+                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
             }
 
             // 첫 번째 그룹만 0.3초, 나머지는 0.15초로 빠르게

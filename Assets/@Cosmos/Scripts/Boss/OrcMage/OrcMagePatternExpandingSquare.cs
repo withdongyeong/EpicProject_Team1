@@ -39,7 +39,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
             List<Vector3Int> squareShape = CreateHollowSquare(size, randomDirection);
             
             boss.BombManager.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 0.6f, damage: 25, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
             
             if (size == 1 || size == 2)
             {

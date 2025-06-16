@@ -39,7 +39,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
             List<Vector3Int> explosionShape = CreateExplosionShape();
 
             boss.BombManager.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 0.6f, damage: 18, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 18, WarningType.Type1);
 
             yield return new WaitForSeconds(0.25f); // 빠른 연쇄
         }

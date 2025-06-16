@@ -32,8 +32,9 @@ public class OrcMagePatternWave : IBossAttackPattern
         for (int wave = 0; wave < 3; wave++)
         {
             // 플레이어 위치를 매번 새로 확인
-            Vector3Int playerPos = boss.GridSystem.WorldToGridPosition(boss.BombManager.PlayerController.transform.position);
-            
+            Vector3Int playerPos =
+                boss.GridSystem.WorldToGridPosition(boss.BombManager.PlayerController.transform.position);
+
             yield return ExecuteWave(boss, playerPos, wave);
             if (wave < 2) yield return new WaitForSeconds(0.8f);
         }
@@ -46,7 +47,7 @@ public class OrcMagePatternWave : IBossAttackPattern
     {
         // 웨이브별로 다른 방향 선택 (상하좌우)
         WaveDirection direction = GetWaveDirection(playerPos, waveIndex);
-        
+
         // 랜덤 안전구간 생성
         int safeIndex = Random.Range(0, 9);
 
@@ -55,7 +56,7 @@ public class OrcMagePatternWave : IBossAttackPattern
         {
             Vector3Int center;
             List<Vector3Int> lineShape;
-            
+
             switch (direction)
             {
                 case WaveDirection.TopToBottom:
@@ -81,11 +82,12 @@ public class OrcMagePatternWave : IBossAttackPattern
             }
 
             boss.BombManager.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 0.5f, damage: 25, WarningType.Type1);
-            
-            if (step == 0 || step == 1)
+                warningDuration: 0.8f, explosionDuration: 0.5f, damage: 25, WarningType.Type1);
+
+            // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속
+            if (step == 0)
             {
-                yield return new WaitForSeconds(0.3f); // 1, 2번째에 여유 주고
+                yield return new WaitForSeconds(0.3f); // 첫 번째만 여유
             }
             else
             {
@@ -101,28 +103,36 @@ public class OrcMagePatternWave : IBossAttackPattern
     {
         // 플레이어가 있는 영역을 피해서 방향 선택
         WaveDirection[] availableDirections;
-        
+
         if (playerPos.y <= 2) // 아래쪽에 있으면
         {
-            availableDirections = new[] { WaveDirection.TopToBottom, WaveDirection.LeftToRight, WaveDirection.RightToLeft };
+            availableDirections = new[]
+                { WaveDirection.TopToBottom, WaveDirection.LeftToRight, WaveDirection.RightToLeft };
         }
         else if (playerPos.y >= 6) // 위쪽에 있으면
         {
-            availableDirections = new[] { WaveDirection.BottomToTop, WaveDirection.LeftToRight, WaveDirection.RightToLeft };
+            availableDirections = new[]
+                { WaveDirection.BottomToTop, WaveDirection.LeftToRight, WaveDirection.RightToLeft };
         }
         else if (playerPos.x <= 2) // 왼쪽에 있으면
         {
-            availableDirections = new[] { WaveDirection.RightToLeft, WaveDirection.TopToBottom, WaveDirection.BottomToTop };
+            availableDirections = new[]
+                { WaveDirection.RightToLeft, WaveDirection.TopToBottom, WaveDirection.BottomToTop };
         }
         else if (playerPos.x >= 6) // 오른쪽에 있으면
         {
-            availableDirections = new[] { WaveDirection.LeftToRight, WaveDirection.TopToBottom, WaveDirection.BottomToTop };
+            availableDirections = new[]
+                { WaveDirection.LeftToRight, WaveDirection.TopToBottom, WaveDirection.BottomToTop };
         }
         else // 중앙에 있으면 모든 방향 가능
         {
-            availableDirections = new[] { WaveDirection.TopToBottom, WaveDirection.BottomToTop, WaveDirection.LeftToRight, WaveDirection.RightToLeft };
+            availableDirections = new[]
+            {
+                WaveDirection.TopToBottom, WaveDirection.BottomToTop, WaveDirection.LeftToRight,
+                WaveDirection.RightToLeft
+            };
         }
-        
+
         // 웨이브 인덱스에 따라 순환 선택
         return availableDirections[waveIndex % availableDirections.Length];
     }
@@ -133,7 +143,7 @@ public class OrcMagePatternWave : IBossAttackPattern
     private List<Vector3Int> CreateHorizontalLineWithGap(int gapColumn)
     {
         List<Vector3Int> line = new List<Vector3Int>();
-        
+
         for (int x = -4; x <= 4; x++)
         {
             int actualColumn = x + 4; // 0~8로 변환
@@ -142,7 +152,7 @@ public class OrcMagePatternWave : IBossAttackPattern
                 line.Add(new Vector3Int(x, 0, 0));
             }
         }
-        
+
         return line;
     }
 
@@ -152,7 +162,7 @@ public class OrcMagePatternWave : IBossAttackPattern
     private List<Vector3Int> CreateVerticalLineWithGap(int gapRow)
     {
         List<Vector3Int> line = new List<Vector3Int>();
-        
+
         for (int y = -4; y <= 4; y++)
         {
             int actualRow = y + 4; // 0~8로 변환
@@ -161,7 +171,7 @@ public class OrcMagePatternWave : IBossAttackPattern
                 line.Add(new Vector3Int(0, y, 0));
             }
         }
-        
+
         return line;
     }
 
@@ -170,9 +180,9 @@ public class OrcMagePatternWave : IBossAttackPattern
     /// </summary>
     private enum WaveDirection
     {
-        TopToBottom,    // 위→아래
-        BottomToTop,    // 아래→위
-        LeftToRight,    // 왼쪽→오른쪽
-        RightToLeft     // 오른쪽→왼쪽
+        TopToBottom, // 위→아래
+        BottomToTop, // 아래→위
+        LeftToRight, // 왼쪽→오른쪽
+        RightToLeft // 오른쪽→왼쪽
     }
 }

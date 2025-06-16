@@ -115,7 +115,7 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
             
             // 보스 위치 공격 (전조 + 피격 판정)
             List<Vector3Int> bossArea = GetBossArea(currentPos);
-            boss.BombManager.ExecuteWarningThenDamage(bossArea, currentPos, 0.3f, 25, WarningType.Type2);
+            boss.BombManager.ExecuteWarningThenDamage(bossArea, currentPos, 0.8f, 25, WarningType.Type2);
             
             // 스파이크 공격 (번갈아가며)
             yield return ExecuteAlternatingSpike(boss, currentPos, stepCount);
@@ -158,7 +158,7 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
             if (spikeLine.Count > 0)
             {
                 boss.BombManager.ExecuteFixedBomb(spikeLine, centerPos, _groundSpikePrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 0.6f, damage: 20, WarningType.Type1);
+                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
             }
         }
         
