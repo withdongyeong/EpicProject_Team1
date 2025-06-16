@@ -102,12 +102,12 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 공격 (제외된 칸은 안전지대)
         boss.BombManager.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
-                                              warningDuration: 0.6f, explosionDuration: 0.7f, damage: 20);
+                                              warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
 
         boss.AttackAnimation();
         
-        // 폭발 사운드는 0.6초 후 재생
-        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.6f));
+        // 폭발 사운드는 0.8초 후 재생
+        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));
 
         yield return null;
     }
@@ -156,7 +156,6 @@ public class ArachnePattern3 : IBossAttackPattern
 
         boss.AttackAnimation();
         
-        // 0.35초 후 사운드 재생
         boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
 
         yield return null;

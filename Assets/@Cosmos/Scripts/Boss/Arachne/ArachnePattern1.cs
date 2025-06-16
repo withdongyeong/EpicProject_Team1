@@ -78,8 +78,8 @@ public class ArachnePattern1 : IBossAttackPattern
                                               warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
             // 사운드 재생
-            SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-            
+            boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
+
             // 공격 애니메이션
             boss.AttackAnimation();
 
@@ -111,12 +111,18 @@ public class ArachnePattern1 : IBossAttackPattern
                                               warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
             // 사운드 재생
-            SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-            
+            boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
+
             // 공격 애니메이션
             boss.AttackAnimation();
 
             yield return new WaitForSeconds(0.3f); // 0.2 + 0.1 (기존 타이밍)
         }
+    }
+
+    private IEnumerator PlayDelayedSound(string soundName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.Instance.ArachneSoundClip(soundName);
     }
 }

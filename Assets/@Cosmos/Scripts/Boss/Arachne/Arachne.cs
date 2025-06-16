@@ -32,23 +32,17 @@ public class Arachne : BaseBoss
             .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), 1.5f)
             .AddPattern(new ArachnePattern1(spiderLeg), 1f)
             .SetGroupInterval(1f);
-        Debug.Log("Arachne: Group A created successfully");
 
         // 개별 패턴: Pattern2 (중간 패턴)
-        Debug.Log("Arachne: Adding individual Pattern2");
         AddGroup()
           .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
           .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)
           .SetGroupInterval(1f);
-        //Debug.Log("Arachne: Individual Pattern2 added successfully");
 
         //그룹 C: 
         Debug.Log("Arachne: Creating Group C (Pattern1 → Pattern2 → Pattern3)");
         AddGroup()
-            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, spiderLeg), 3f)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, spiderLeg), 1f)
             .SetGroupInterval(1f);
-        //Debug.Log("Arachne: Group C created successfully");
-
-        Debug.Log($"Arachne: Pattern system initialized successfully");
     }
 }

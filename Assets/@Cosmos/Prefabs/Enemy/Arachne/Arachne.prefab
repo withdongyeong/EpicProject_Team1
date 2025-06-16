@@ -305,8 +305,6 @@ GameObject:
   - component: {fileID: -7510056609366963668}
   - component: {fileID: 1121223837648869681}
   - component: {fileID: 1247811677137083655}
-  - component: {fileID: 7488824126855270173}
-  - component: {fileID: 4489645647110412417}
   m_Layer: 0
   m_Name: Arachne
   m_TagString: Untagged
@@ -508,36 +506,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7488824126855270173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316585728366198449}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a1ec62abcc1dc4789f8ae919a0aac4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spiderWebCount: 6
-  _spiderWebPrefab: {fileID: 5766239426588173162, guid: 0be99db770907f34db2d26cdbbc88dcc, type: 3}
-  _warningPrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
---- !u!114 &4489645647110412417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316585728366198449}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04286bdfa7912aa4d85001a5d6b3493d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spiderSilkPrefeb: {fileID: 296322699537774834, guid: 5f63f474a8bc3cd41bf81beed0c9d0d1, type: 3}
-  gridSize: 8
-  cellSize: 1
 --- !u!1 &7869579781745359309
 GameObject:
   m_ObjectHideFlags: 0
