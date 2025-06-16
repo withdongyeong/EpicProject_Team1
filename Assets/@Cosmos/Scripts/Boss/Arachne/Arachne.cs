@@ -9,7 +9,8 @@ public class Arachne : BaseBoss
     [Header("보스 전용 프리팹들")]
     public GameObject warningAria;
     public GameObject poisionAriaPrefeb;
-    public GameObject spiderLeg;
+    public GameObject LToRspiderLeg;
+    public GameObject RToLspiderLeg;
     public GameObject SpiderWeb;
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
@@ -27,22 +28,20 @@ public class Arachne : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         //그룹 A: 거미줄 -> 슬래쉬
-        Debug.Log("Arachne: Creating Group A (Pattern1 → Pattern3)");
-        AddGroup()
-            .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), 1.5f)
-            .AddPattern(new ArachnePattern1(spiderLeg), 1f)
-            .SetGroupInterval(1f);
+        //AddGroup()
+        //    .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), 1.5f)
+        //    .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg), 1f)
+        //    .SetGroupInterval(1f);
 
         // 개별 패턴: Pattern2 (중간 패턴)
-        AddGroup()
-          .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
-          .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)
-          .SetGroupInterval(1f);
+        //AddGroup()
+        //  .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
+        //  .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)
+        //  .SetGroupInterval(1f);
 
-        //그룹 C: 
-        Debug.Log("Arachne: Creating Group C (Pattern1 → Pattern2 → Pattern3)");
+        ////그룹 C: 
         AddGroup()
-            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, spiderLeg), 1f)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg), 1f)
             .SetGroupInterval(1f);
     }
 }
