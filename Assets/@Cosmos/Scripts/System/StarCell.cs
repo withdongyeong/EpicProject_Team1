@@ -1,10 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StarCell : Cell
 {
     private StarBase starSkill;
-    
-    
     
     
     private void Awake()

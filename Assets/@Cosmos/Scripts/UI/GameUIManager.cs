@@ -96,6 +96,7 @@ public class GameUIManager : MonoBehaviour
     private void ReturnToBuilding()
     {
         TimeScaleManager.Instance.ResetTimeScale();
+        SoundManager.Instance.BGMSoundClip(_buildingSceneName + "BGM");
         SceneManager.LoadScene(_buildingSceneName);
     }
 
