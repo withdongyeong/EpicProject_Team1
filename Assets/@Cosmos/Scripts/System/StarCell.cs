@@ -3,16 +3,19 @@
 public class StarCell : Cell
 {
     private StarBase starSkill;
+    private CombinedStarCell _combinedStarCell;
 
     private void Awake()
     {
-        starSkill = GetComponent<StarBase>();
-        if (starSkill == null)
-        {
-            Debug.LogError("스타스킬이 없는데요 ???? ");
-        }
+        
     }
-    
+
+    private void Start()
+    {
+        _combinedStarCell = transform.parent.GetComponent<CombinedStarCell>();
+        starSkill = _combinedStarCell.GetStarSkill();
+    }
+
     public Vector3Int GetStarCellPosition()
     {
         return GridManager.Instance.WorldToGridPosition(transform.position);
@@ -29,10 +32,15 @@ public class StarCell : Cell
         }
         return GridManager.Instance.GetCellData(GetStarCellPosition()).GetCombineCell().GetTileObject();
     }
-    
-    
+
     public StarBase GetStarSkill()
     {
         return starSkill;
     }
+
+    public CombinedStarCell GetCombinedStarCell()
+    {
+        return _combinedStarCell;
+    }
+
 }
