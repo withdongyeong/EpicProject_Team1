@@ -40,10 +40,10 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        GameManager gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        StageManager stageManager = GameObject.FindAnyObjectByType<StageManager>();
         return boss.GridSystem != null && 
-               gameManager != null && 
-               gameManager.Player != null && 
+               stageManager != null && 
+               stageManager.Player != null && 
                _summonSpiders != null && 
                _summonSpiders.Count > 0;
     }
@@ -55,10 +55,10 @@ public class ArachneSummonSpiderPattern : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     private IEnumerator SummonSpider(BaseBoss boss)
     {   
-        GameManager gameManager = GameObject.FindAnyObjectByType<GameManager>();
-        if (gameManager == null || gameManager.Player == null)
+        StageManager stageManager = GameObject.FindAnyObjectByType<StageManager>();
+        if (stageManager == null || stageManager.Player == null)
         {
-            Debug.LogError("GameManager or Player not found for ArachneSummonSpiderPattern!");
+            Debug.LogError("StageManager or Player not found for ArachneSummonSpiderPattern!");
             yield break;
         }
 

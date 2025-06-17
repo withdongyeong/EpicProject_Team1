@@ -6,7 +6,7 @@ public class SlimeActtckTentacle : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerHealth player = other.GetComponent<PlayerHealth>();
+        PlayerHp player = other.GetComponent<PlayerHp>();
         if (player != null)
         {
             player.TakeDamage(damage);

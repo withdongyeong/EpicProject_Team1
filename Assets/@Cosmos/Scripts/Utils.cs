@@ -1,6 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
+
+public enum GameState
+{
+    MainMenu,
+    Playing,
+    Victory,
+    Defeat
+}
+
 public enum SkillState
 {
     Charging, // 충전 중

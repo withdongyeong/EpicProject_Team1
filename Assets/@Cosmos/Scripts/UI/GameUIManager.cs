@@ -31,7 +31,7 @@ public class GameUIManager : MonoBehaviour
         
         // 게임 상태 매니저 참조
         _gameStateManager = GameStateManager.Instance;
-        _gameStateManager.OnGameStateChanged += HandleGameStateChanged;
+        EventBus.SubscribeGameStateChanged(HandleGameStateChanged);
         
         // 버튼 이벤트 연결
         if (victoryReturnButton != null)
@@ -47,17 +47,17 @@ public class GameUIManager : MonoBehaviour
     /// <summary>
     /// 게임 상태 변경 처리
     /// </summary>
-    private void HandleGameStateChanged(GameStateManager.GameState newState)
+    private void HandleGameStateChanged(GameState newState)
     {
         switch (newState)
         {
-            case GameStateManager.GameState.Victory:
+            case GameState.Victory:
                 ShowVictoryPanel();
                 break;
-            case GameStateManager.GameState.Defeat:
+            case GameState.Defeat:
                 ShowDefeatPanel();
                 break;
-            case GameStateManager.GameState.Playing:
+            case GameState.Playing:
                 HideResultPanels();
                 break;
         }
@@ -114,7 +114,6 @@ public class GameUIManager : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
-        if (_gameStateManager != null)
-            _gameStateManager.OnGameStateChanged -= HandleGameStateChanged;
+        EventBus.UnsubscribeGameStateChanged(HandleGameStateChanged);
     }
 }
