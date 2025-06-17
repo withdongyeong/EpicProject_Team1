@@ -708,6 +708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedStarCell
       objectReference: {fileID: 0}
+    - target: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1372,10 +1376,16 @@ PrefabInstance:
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileSprite
       value: 
-      objectReference: {fileID: 815724821, guid: 40034fea3869e8145b590650ab6676b3, type: 3}
+      objectReference: {fileID: 21300000, guid: a5aeafa8e35617a41831db5cab4582a1, type: 3}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.description
-      value: "\uAC1C\uBCC4\uCE78(3): \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      value: "\uAC1C\uBCC4\uCE78(3): \uCCB4\uB825\uC744 <color=green>15</color> \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n<sprite
+        name=\"Star\">\uC5D0 \uC704\uCE58\uD55C \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC758
+        \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCategory
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x

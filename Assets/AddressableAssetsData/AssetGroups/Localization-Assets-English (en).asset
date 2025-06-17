@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-English (en)
   m_GUID: 1a363fd1b87426e4781a45c8498a010e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 9128b553ed8f0104c859cb5404b56ba3
+    m_Address: HeirofLightBold SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: d97ad773042266f429aa5ac654aedd88, type: 2}
   m_SchemaSet:
