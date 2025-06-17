@@ -9,4 +9,11 @@ public class Test : MonoBehaviour
         SoundManager.Instance.BGMSoundClip("GameSceneBGM");
         SceneManager.LoadScene("GameScene");
     }
+    
+    // 다음 씬으로 넘어가는 함수
+    public void NextScene2()
+    {
+        SoundManager.Instance.BGMSoundClip("OrcMage");
+        SceneManager.LoadScene("GameScene2");
+    }
 }

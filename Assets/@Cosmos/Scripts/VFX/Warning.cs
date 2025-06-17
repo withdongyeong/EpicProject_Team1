@@ -95,7 +95,7 @@ public class Warning : MonoBehaviour
         
         // 알파 애니메이션 (0.5에서 1로)
         float alphaProgress = alphaCurve.Evaluate(progress);
-        float currentAlpha = Mathf.Lerp(startAlpha, 1f, alphaProgress); // 0.5f → 1f
+        float currentAlpha = Mathf.Lerp(startAlpha, 0.6f, alphaProgress); // 0.5f → 1f
         
         Color currentColor = originalColor;
         currentColor.a = currentAlpha;
