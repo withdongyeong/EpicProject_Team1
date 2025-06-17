@@ -23,8 +23,8 @@ public class SoundManager : Singleton<SoundManager>
         { "StickRoll", 1f },
         { "AriaActive", 1f },
         { "PlayerMove", 0.1f },
-        { "PlayerDamage", 0.3f },
-        { "PlayerDead", 0.3f }
+        { "PlayerDamage", 1f },
+        { "PlayerDead", 1f }
     };
 
     // 타일 사운드 딕셔너리
