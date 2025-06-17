@@ -5,7 +5,7 @@ using TMPro;
 public class TextUIResizer : MonoBehaviour
 {
     private TextMeshProUGUI textMeshPro;
-    private float padding = 10f;
+    //private float padding = 10f;
 
     private void Awake()
     {

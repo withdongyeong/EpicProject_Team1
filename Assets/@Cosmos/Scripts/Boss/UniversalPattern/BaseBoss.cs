@@ -62,12 +62,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// 애니메이터 프로퍼티
     /// </summary>
     public Animator Animator { get => _animator; }
-
-    // Events
-    /// <summary>
-    /// 보스 사망 이벤트
-    /// </summary>
-    public event Action OnBossDeath;
+    
 
     /// <summary>
     /// 보스 초기화
@@ -204,25 +199,26 @@ public abstract class BaseBoss : MonoBehaviour
         _isDead = true;
         Debug.Log($"{GetType().Name} DEFEATED!");
         
-        OnBossDeath?.Invoke();
+        // 사망 이벤트 발생
+        EventBus.PublishBossDeath();
         _animator.SetTrigger("DeadTrigger");
 
         // GameManager에 보스 사망 알림
-        GameManager gameManager = FindAnyObjectByType<GameManager>();
-        if (gameManager != null)
+        StageManager stageManager = FindAnyObjectByType<StageManager>();
+        if (stageManager != null)
         {
-            StartCoroutine(BossDeath(gameManager));
+            StartCoroutine(BossDeath(stageManager));
         }
     }
 
     /// <summary>
     /// 보스 사망 처리 코루틴
     /// </summary>
-    /// <param name="gameManager">게임 매니저</param>
-    private IEnumerator BossDeath(GameManager gameManager)
+    /// <param name="stageManager">게임 매니저</param>
+    private IEnumerator BossDeath(StageManager stageManager)
     {
         yield return new WaitForSeconds(0.1f);
-        gameManager.HandleBossDeath();
+        stageManager.HandleBossDeath();
     }
 
     /// <summary>
@@ -256,16 +252,7 @@ public abstract class BaseBoss : MonoBehaviour
             Destroy(effect, second);
         }
     }
-
-    /// <summary>
-    /// 플레이어에게 데미지 적용 (더 이상 사용하지 않음 - BombManager가 처리)
-    /// </summary>
-    /// <param name="damage">데미지 양</param>
-    [System.Obsolete("Use BombManager for damage dealing instead")]
-    public void ApplyDamageToPlayer(int damage)
-    {
-        Debug.LogWarning("ApplyDamageToPlayer is deprecated. Use BombManager for damage dealing.");
-    }
+    
 
     /// <summary>
     /// 상태이상 적용 루틴

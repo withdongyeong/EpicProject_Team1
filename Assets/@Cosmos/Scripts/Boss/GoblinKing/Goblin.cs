@@ -43,9 +43,9 @@ public class Goblin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+        PlayerHp playerHp = collision.GetComponent<PlayerHp>();
 
-        if (playerHealth != null)
+        if (playerHp != null)
         {
             Destroy(this.gameObject);
             return;

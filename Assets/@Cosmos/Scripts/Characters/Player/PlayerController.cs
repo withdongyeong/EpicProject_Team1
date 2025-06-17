@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // 게임이 Playing 상태일 때만 입력 처리
-        if (GameStateManager.Instance.CurrentState == GameStateManager.GameState.Playing)
+        if (GameStateManager.Instance.CurrentState == GameState.Playing)
         {
             if (!_isMoving && !_playerDebuff.IsBind)
             {
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.Instance.PlayPlayerSound("AriaActive");
 
-        FindAnyObjectByType<GameManager>().SpawnGroundEffect();
+        FindAnyObjectByType<StageManager>().SpawnGroundEffect();
     }
     
     /// <summary>

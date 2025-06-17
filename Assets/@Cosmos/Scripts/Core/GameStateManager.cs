@@ -4,58 +4,18 @@ using UnityEngine;
 /// <summary>
 /// 게임 상태를 관리하는 매니저 클래스
 /// </summary>
-public class GameStateManager : MonoBehaviour
+public class GameStateManager : Singleton<GameStateManager>
 {
-    public enum GameState
-    {
-        MainMenu,
-        Playing,
-        Victory,
-        Defeat
-    }
-
     private static GameStateManager _instance;
     private GameState _currentState;
     private TimeScaleManager _timeScaleManager;
-
-    // 이벤트 정의
-    public event Action<GameState> OnGameStateChanged;
-
-    // 싱글톤 인스턴스
-    public static GameStateManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindAnyObjectByType<GameStateManager>();
-                if (_instance == null)
-                {
-                    GameObject obj = new GameObject("GameStateManager");
-                    _instance = obj.AddComponent<GameStateManager>();
-                    DontDestroyOnLoad(obj);
-                }
-            }
-            return _instance;
-        }
-    }
-
+   
     public GameState CurrentState { get => _currentState; }
 
-    private void Awake()
+    private void Start()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
-        
         // 타임스케일 매니저 참조 확보
         _timeScaleManager = TimeScaleManager.Instance;
-        
         // 기본 상태 설정
         SetGameState(GameState.Playing);
     }
@@ -79,7 +39,8 @@ public class GameStateManager : MonoBehaviour
                 break;
         }
         
-        OnGameStateChanged?.Invoke(newState);
+        // 상태 변경 이벤트 발생
+        EventBus.PublishGameStateChanged(newState);
     }
 
     /// <summary>

@@ -8,4 +8,9 @@ public class Test : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+    
+    public void TestNextScene()
+    {
+        SceneManager.LoadScene("GameScene_75");
+    }
 }

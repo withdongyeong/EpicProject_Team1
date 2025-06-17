@@ -18,7 +18,7 @@ public enum WarningType
 public class BombAvoidanceManager : MonoBehaviour
 {
     private PlayerController _playerController;
-    private PlayerHealth _playerHealth;
+    private PlayerHp _playerHp;
     
     [Header("전조 타일 프리팹들")]
     public GameObject _warningPrefab;        // Type1 (기본)
@@ -56,9 +56,9 @@ public class BombAvoidanceManager : MonoBehaviour
             _playerController = FindAnyObjectByType<PlayerController>();
         }
         
-        if (_playerHealth == null && _playerController != null)
+        if (_playerHp == null && _playerController != null)
         {
-            _playerHealth = _playerController.GetComponent<PlayerHealth>();
+            _playerHp = _playerController.GetComponent<PlayerHp>();
         }
     }
     
@@ -71,9 +71,9 @@ public class BombAvoidanceManager : MonoBehaviour
             Debug.Log($"Start에서 PlayerController 재검색: {_playerController}");
         }
     
-        if (_playerHealth == null && _playerController != null)
+        if (_playerHp == null && _playerController != null)
         {
-            _playerHealth = _playerController.GetComponent<PlayerHealth>();
+            _playerHp = _playerController.GetComponent<PlayerHp>();
         }
     }
     
@@ -322,9 +322,9 @@ public class BombAvoidanceManager : MonoBehaviour
             if (playerGridPos == attackPos)
             {
                 // PlayerHealth를 통해 데미지 적용
-                if (_playerHealth != null)
+                if (_playerHp != null)
                 {
-                    _playerHealth.TakeDamage(damage);
+                    _playerHp.TakeDamage(damage);
                 }
                 break;
             }

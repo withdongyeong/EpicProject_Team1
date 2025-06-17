@@ -1,22 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 
 /// <summary>
 /// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
 /// 싱글톤 제거, 일반 MonoBehaviour로 동작
 /// </summary>
-public class GameManager : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
     [Header("프리팹들")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject highlightTilePrefab;
     
-    [Header("타일프리팹을 넣는 리스트")]
-    private List<GameObject> tilePrefabList = new();
-
     [Header("보드 프리팹")] public GameObject nightBoard;
     
     [Header("UI")]
@@ -29,7 +26,7 @@ public class GameManager : MonoBehaviour
     // 시스템 참조
     private BaseBoss _enemy;
     private PlayerController _player;
-    private PlayerHealth _playerHealth;
+    private PlayerHp _playerHp;
     private PlayerMana _playerMana;
     private GameStateManager _gameStateManager;
 
@@ -42,24 +39,27 @@ public class GameManager : MonoBehaviour
     public GameObject EnemySpawnPosition => enemySpawnPosition;
     public PlayerController Player => _player;
     public BaseBoss Enemy => _enemy;
-    public PlayerHealth PlayerHealth => _playerHealth;
+    public PlayerHp PlayerHp => _playerHp;
     public PlayerMana PlayerMana => _playerMana;
-    
+
     /// <summary>
     /// 게임 초기화
     /// </summary>
+    
+
     private void Start()
     {
         // 필수 컴포넌트 검증
         if (!ValidateComponents())
         {
-            Debug.LogError("[GameManager] 필수 컴포넌트가 누락되어 게임을 시작할 수 없습니다!");
+            Debug.LogError("[StageManager] 필수 컴포넌트가 누락되어 게임을 시작할 수 없습니다!");
             return;
         }
 
         InitializeSystems();
         CreateGameContent();
         StartCoroutine(StartCountdown());
+        EventBus.PublishGameStart();
     }
 
     /// <summary>
@@ -73,13 +73,13 @@ public class GameManager : MonoBehaviour
         // 프리팹 검증
         if (playerPrefab == null)
         {
-            Debug.LogError("[GameManager] PlayerPrefab이 할당되지 않았습니다!");
+            Debug.LogError("[StageManager] PlayerPrefab이 할당되지 않았습니다!");
             isValid = false;
         }
 
         if (enemyPrefab == null)
         {
-            Debug.LogError("[GameManager] EnemyPrefab이 할당되지 않았습니다!");
+            Debug.LogError("[StageManager] EnemyPrefab이 할당되지 않았습니다!");
             isValid = false;
         }
         
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
                 countdownText = textObj.GetComponent<TextMeshProUGUI>();
                 if (countdownText != null)
                 {
-                    Debug.Log("[GameManager] CountdownText를 자동으로 찾았습니다.");
+                    Debug.Log("[StageManager] CountdownText를 자동으로 찾았습니다.");
                 }
             }
         }
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
             if (spawnObj != null)
             {
                 enemySpawnPosition = spawnObj;
-                Debug.Log("[GameManager] EnemySpawnPosition을 자동으로 찾았습니다.");
+                Debug.Log("[StageManager] EnemySpawnPosition을 자동으로 찾았습니다.");
             }
         }
     }
@@ -203,14 +203,14 @@ public class GameManager : MonoBehaviour
         {
             //Vector3 spawnPosition = _player.transform.position;
             Vector3 spawnPosition = new Vector3(-3.5f, 0f, 0f);
-            
+
             GameObject effect = Instantiate(nightBoard, spawnPosition, Quaternion.identity);
-            
-            Debug.Log("[GameManager] 지팡이 땅 찍기 이펙트 생성!");
+
+
         }
         else
         {
-            Debug.LogWarning("[GameManager] GroundEffectPrefab이 할당되지 않았습니다!");
+            Debug.LogWarning("[StageManager] GroundEffectPrefab이 할당되지 않았습니다!");
         }
     }
     
@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour
         Vector3 position = GridManager.Instance.GridToWorldPosition(new Vector3Int(4, 4, 0));
         GameObject playerObj = Instantiate(playerPrefab, position, Quaternion.identity);
         _player = playerObj.GetComponent<PlayerController>();
-        _playerHealth = playerObj.GetComponent<PlayerHealth>();
+        _playerHp = playerObj.GetComponent<PlayerHp>();
         _playerMana = playerObj.GetComponent<PlayerMana>();
         
         // Animator를 UnscaledTime 모드로 설정 (timeScale 영향 안받음)
@@ -233,9 +233,9 @@ public class GameManager : MonoBehaviour
         }
         
         // 플레이어 사망 이벤트 연결
-        if (_playerHealth != null)
+        if (_playerHp != null)
         {
-            _playerHealth.OnPlayerDeath += HandlePlayerDeath;
+           EventBus.SubscribePlayerDeath(HandlePlayerDeath);;
         }
     }
     
@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         else
         {
             enemyPosition = new Vector3(13f, 3.5f, 0f);
-            Debug.LogWarning("[GameManager] EnemySpawnPosition이 설정되지 않아 기본 위치를 사용합니다.");
+            Debug.LogWarning("[StageManager] EnemySpawnPosition이 설정되지 않아 기본 위치를 사용합니다.");
         }
         
         GameObject enemyObj = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
@@ -262,7 +262,7 @@ public class GameManager : MonoBehaviour
         // 적 사망 이벤트 연결
         if (_enemy != null)
         {
-            _enemy.OnBossDeath += HandleBossDeath;
+            EventBus.SubscribeBossDeath(HandleBossDeath);
         }
     }
     
@@ -289,7 +289,7 @@ public class GameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// 게임 재시작
+    /// 게임 재시작 , 상점씬으로 돌아가게 해야합니다.
     /// </summary>
     public void RestartGame()
     {
@@ -297,35 +297,19 @@ public class GameManager : MonoBehaviour
         if (_player != null) Destroy(_player.gameObject);
         if (_enemy != null) Destroy(_enemy.gameObject);
         
-        // 이벤트 연결 해제
-        UnsubscribeEvents();
-        
         // 게임 콘텐츠 재생성
         CreateGameContent();
         StartCoroutine(StartCountdown());
     }
 
-    /// <summary>
-    /// 이벤트 연결 해제
-    /// </summary>
-    private void UnsubscribeEvents()
-    {
-        if (_playerHealth != null)
-        {
-            _playerHealth.OnPlayerDeath -= HandlePlayerDeath;
-        }
-        
-        if (_enemy != null)
-        {
-            _enemy.OnBossDeath -= HandleBossDeath;
-        }
-    }
+    
     
     /// <summary>
-    /// 컴포넌트 정리
+    /// 이벤트 정리 해제
     /// </summary>
     private void OnDestroy()
     {
-        UnsubscribeEvents();
+        EventBus.UnsubscribePlayerDeath(HandlePlayerDeath);
+        EventBus.UnsubscribeBossDeath(HandleBossDeath);
     }
 }

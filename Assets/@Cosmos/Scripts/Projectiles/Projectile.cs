@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour
         // 적 진영 투사체가 아군에게 충돌
         if (_team == ProjectileTeam.Enemy)
         {
-            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            PlayerHp player = other.GetComponent<PlayerHp>();
             if (player != null)
             {
                 player.TakeDamage(damage);

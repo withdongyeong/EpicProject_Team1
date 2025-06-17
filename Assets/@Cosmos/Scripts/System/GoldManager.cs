@@ -13,16 +13,11 @@ public class GoldManager : Singleton<GoldManager>
     /// 현재 소유하고 있는 골드입니다.
     /// </summary>
     public int CurrentGold => _currentGold;
-
-    /// <summary>
-    /// 소유 골드가 바뀔때를 받는 액션입니다. 들어오는 인자는 바뀐 후 보유한 골드 양입니다.
-    /// </summary>
-    public Action<int> OnCurrentGoldChange;
+    
 
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(gameObject);
         SetCurrentGold(30);
     }
 
@@ -45,7 +40,7 @@ public class GoldManager : Singleton<GoldManager>
         {
             _currentGold = gold;
         }
-        CallGoldChangeAction();
+        EventBus.PublishGoldChanged(_currentGold);
         
     }
 
@@ -56,7 +51,7 @@ public class GoldManager : Singleton<GoldManager>
     public void ModifyCurrentGold(int gold)
     {
         _currentGold = Mathf.Max(_currentGold + gold, 0);
-        CallGoldChangeAction();
+        EventBus.PublishGoldChanged(_currentGold);
     }
 
     /// <summary>
@@ -80,14 +75,9 @@ public class GoldManager : Singleton<GoldManager>
         else
         {
             _currentGold -= gold;
-            CallGoldChangeAction();
+            EventBus.PublishGoldChanged(_currentGold);
             return true;
         }
 
-    }
-
-    private void CallGoldChangeAction()
-    {
-        OnCurrentGoldChange?.Invoke(_currentGold);
     }
 }

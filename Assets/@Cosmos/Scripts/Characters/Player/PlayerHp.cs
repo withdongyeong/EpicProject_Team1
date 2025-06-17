@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// 플레이어 체력 관리 시스템
 /// </summary>
-public class PlayerHealth : MonoBehaviour
+public class PlayerHp : MonoBehaviour
 {
     private PlayerShield _playerShield;
     private PlayerProtection _playerProtection;
@@ -14,10 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
-
-    public event Action<int> OnHealthChanged;
-    public event Action OnPlayerDeath;
-
+    
     private void Awake()
     {
         _playerShield = GetComponent<PlayerShield>();
@@ -27,9 +24,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
-        
-        // 초기 체력 상태 이벤트 발생
-        OnHealthChanged?.Invoke(_currentHealth);
     }
     
     /// <summary>
@@ -48,8 +42,6 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         
-        OnHealthChanged?.Invoke(_currentHealth);
-        
         if (_currentHealth <= 0)
         {
             // 죽었으면 죽음 애니메이션 재생
@@ -60,10 +52,12 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             // 살아있으면 피격 애니메이션 재생
-            FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Damaged");
+            FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Damaged");
 
             SoundManager.Instance.PlayPlayerSound("PlayerDead");
         }
+
+        EventBus.PublishPlayerHpChanged(_currentHealth);
     }
     
     /// <summary>
@@ -73,8 +67,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth += amount;
         _currentHealth = Mathf.Min(_maxHealth, _currentHealth);
+        EventBus.PublishPlayerHpChanged(_currentHealth);
         
-        OnHealthChanged?.Invoke(_currentHealth);
     }
 
     /// <summary>
@@ -83,7 +77,8 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망");
-        FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Death");
-        OnPlayerDeath?.Invoke();
+        FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Death");
+        EventBus.PublishPlayerDeath();
+        
     }
 }
