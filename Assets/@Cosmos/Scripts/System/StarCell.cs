@@ -3,8 +3,7 @@
 public class StarCell : Cell
 {
     private StarBase starSkill;
-    
-    
+
     private void Awake()
     {
         starSkill = GetComponent<StarBase>();
