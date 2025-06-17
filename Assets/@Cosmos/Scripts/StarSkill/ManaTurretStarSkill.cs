@@ -2,8 +2,8 @@
 
 public class ManaTurretStarSkill : StarBase
 {
-    public override void Activate()
+    public override void Activate(TileObject tileObject)
     {
-        base.Activate();
+        base.Activate(tileObject);
     }
 }

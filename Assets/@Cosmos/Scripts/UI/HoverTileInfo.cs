@@ -6,6 +6,8 @@ public class HoverTileInfo : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
 {
     private InfoPanel infoPanel;
     private TileObject tileObject; // TileObject 컴포넌트 참조
+    private GameObject combinedStarCell; // 스타셀의 부모 오브젝트
+
     private void Awake()
     {
         infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include); 
@@ -14,11 +16,6 @@ public class HoverTileInfo : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
             Debug.LogError("InfoPanel 없음.");
         }
     }
-
-    private void Start()
-    {
-    }
-
 
     public void SetTileObject(TileObject tileObject)
     {
@@ -46,17 +43,9 @@ public class HoverTileInfo : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
                 infoPanel.Show(tileObject, position, true);
         }
 
-        if(GetComponent<StarCell>() != null)
+        if(tileObject.CombinedStarCell != null)
         {
-            SpriteRenderer sr = GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.enabled = true; // 스타셀의 스프라이트 렌더러 활성화
-            }
-            else
-            {
-                Debug.LogError("SpriteRenderer component not found on StarCell.");
-            }
+            tileObject.CombinedStarCell.SetActive(true); // 스타셀의 부모 오브젝트 활성화
         }
     }
     
@@ -67,17 +56,9 @@ public class HoverTileInfo : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
             infoPanel.Hide();
         }
 
-        if (GetComponent<StarCell>() != null)
+        if (tileObject.CombinedStarCell != null)
         {
-            SpriteRenderer sr = GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.enabled = false; // 스타셀의 스프라이트 렌더러 비활성화
-            }
-            else
-            {
-                Debug.LogError("SpriteRenderer component not found on StarCell.");
-            }
+            tileObject.CombinedStarCell.SetActive(false); // 스타셀의 부모 오브젝트 비활성화
         }
     }
 }
