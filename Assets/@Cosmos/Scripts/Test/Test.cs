@@ -8,4 +8,10 @@ public class Test : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+    
+    // 다음 씬으로 넘어가는 함수
+    public void NextScene2()
+    {
+        SceneManager.LoadScene("GameScene2");
+    }
 }
