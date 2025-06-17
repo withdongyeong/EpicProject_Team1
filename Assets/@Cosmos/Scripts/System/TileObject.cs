@@ -6,8 +6,10 @@ public class TileObject : MonoBehaviour
     public TileData data;
     [SerializeField]
     private TileInfo tileInfo;
+    private GameObject combinedStarCell;
 
     public string Description { get => tileInfo.Description; }
+    public GameObject CombinedStarCell { get => combinedStarCell; }
 
     private bool isInitialized = false;
 
@@ -29,6 +31,11 @@ public class TileObject : MonoBehaviour
         if (tileInfo.TileSprite == null)
         {
             Debug.LogError("Tile sprite is not assigned in TileObject.");
+        }
+        combinedStarCell = GetComponentInChildren<CombinedStarCell>() ? GetComponentInChildren<CombinedStarCell>().gameObject : null;
+        if (combinedStarCell != null)
+        {
+            //combinedStarCell.SetActive(false); // 스타셀의 부모 오브젝트 비활성화
         }
         isInitialized = true;
     }
