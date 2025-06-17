@@ -23,7 +23,6 @@ public abstract class BaseBoss : MonoBehaviour
     
     // 새로운 패턴 시스템
     private List<ExecutableUnit> _executableUnits;
-    private Coroutine _attackCoroutine;
 
     private Animator _animator;
 
@@ -90,7 +89,7 @@ public abstract class BaseBoss : MonoBehaviour
         }
         
         // 공격 루틴 시작 - 수정된 버전
-        _attackCoroutine = StartCoroutine(AttackRoutine());
+        StartCoroutine(AttackRoutine());
 
         // 상태이상 적용 루틴 시작  
         StartCoroutine(ApplyDebuffsRoutine());
@@ -274,6 +273,8 @@ public abstract class BaseBoss : MonoBehaviour
     /// <param name="time">중지 시간</param>
     public void StopAttack(float time)
     {
+        _isStopped = true;
+        StopAllCoroutines();
         StartCoroutine(StopAttackRoutine(time));
     }
 
@@ -283,15 +284,9 @@ public abstract class BaseBoss : MonoBehaviour
     /// <param name="time">중지 시간</param>
     public IEnumerator StopAttackRoutine(float time)
     {
-        _isStopped = true;
-        if (_attackCoroutine != null)
-        {
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
-        }
         yield return new WaitForSeconds(time);
         _isStopped = false;
-        _attackCoroutine = StartCoroutine(AttackRoutine());
+        StartCoroutine(AttackRoutine());
         StartCoroutine(ApplyDebuffsRoutine());
     }
 
@@ -425,5 +420,20 @@ public abstract class BaseBoss : MonoBehaviour
     public void AttackAnimation()
     {
         _animator.SetTrigger("AttackTrigger");
+    }
+    
+    /// <summary>
+    /// 애니메이션 트리거 설정
+    /// </summary>
+    /// <param name="trigger">트리거 이름 </param>
+    public void SetAnimationTrigger(string trigger)
+    {
+        _animator.SetTrigger(trigger);
+    }
+    
+    public IEnumerator PlayOrcExplosionSoundDelayed(string clipName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.Instance.OrcMageSoundClip(clipName);
     }
 }

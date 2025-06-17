@@ -10,7 +10,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     private GameObject _spiderWebPrefab;
     private int _spiderWebCount;
     private List<Vector3Int> _singlePointShape;
-    
+
     public string PatternName => "ArachneSpiderWeb";
 
     /// <summary>
@@ -19,11 +19,11 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// <param name="spiderWebPrefab">거미줄 프리팹</param>
     /// <param name="spiderWebCount">거미줄 개수</param>
     /// <param name="bombManager">폭탄 피하기 매니저</param>
-    public ArachneSpiderWebPattern(GameObject spiderWebPrefab, int spiderWebCount, BombAvoidanceManager bombManager)
+    public ArachneSpiderWebPattern(GameObject spiderWebPrefab, int spiderWebCount)
     {
         _spiderWebPrefab = spiderWebPrefab;
         _spiderWebCount = spiderWebCount;
-        
+
         // 단일 점 모양 (거미줄은 한 칸만 차지)
         _singlePointShape = new List<Vector3Int>
         {
@@ -55,20 +55,27 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteSpiderWebAttack(BaseBoss boss)
     {
+        List<Vector3Int> webPositions = new List<Vector3Int>();
+
         // 방법 1: 순차적으로 거미줄 설치 (기존 방식과 유사)
         for (int i = 0; i < _spiderWebCount; i++)
         {
             // 랜덤 위치 생성 (플레이어 위치 제외)
             Vector3Int randomPosition = GenerateRandomPositionExcludingPlayer(boss);
-            
+
+            webPositions.Add(randomPosition);
+        }
+
+        foreach(var randomPosition in  webPositions)
+        {
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
-                boss.BombManager.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab, 
-                                              warningDuration: 0.1f, explosionDuration: 5.0f, damage: 0);
+                boss.BombManager.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab,
+                                              warningDuration: 0.5f, explosionDuration: 5.0f, damage: 0, warningType: WarningType.Type3);
             }
-            
-            yield return new WaitForSeconds(0.2f);
-        }
+        }    
+
+        yield return 0;
     }
 
     /// <summary>

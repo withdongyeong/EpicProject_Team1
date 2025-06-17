@@ -14,6 +14,7 @@ public class StoreSlotController : MonoBehaviour
     private List<GameObject> _legendaryStoreTiles = new();
     //test
     public List<GameObject> testList = new List<GameObject>();
+    public bool isTest;
 
 
     private void Awake()
@@ -72,7 +73,10 @@ public class StoreSlotController : MonoBehaviour
 
             }
             //test
-            //chosenList = testList;
+            if(isTest)
+            {
+                chosenList = testList;
+            }
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);

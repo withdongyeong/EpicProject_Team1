@@ -100,15 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3053d19b6194c77afaa43609b8cfb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 0.1
-  startScale: 1.1
+  animationDuration: 0.8
+  startScale: 1.2
+  startAlpha: 0.1
   scaleCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  colorCurve:
+  alphaCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2

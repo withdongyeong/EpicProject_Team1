@@ -3,10 +3,11 @@ using UnityEngine;
 public class Warning : MonoBehaviour
 {
     [Header("애니메이션 설정")]
-    [SerializeField] private float animationDuration = 0.1f; // 총 애니메이션 시간
-    [SerializeField] private float startScale = 1.1f; // 시작 크기 (원래 크기의 1.5배)
-    [SerializeField] private AnimationCurve scaleCurve; // 크기 변화 곡선 (1.5배→1배)
-    [SerializeField] private AnimationCurve colorCurve; // 색상 변화 곡선 (흰색→원래색)
+    public float animationDuration = 0.8f; // 총 애니메이션 시간
+    public float startScale = 1.4f; // 시작 크기
+    public float startAlpha = 0.5f; // 시작 알파값
+    [SerializeField] private AnimationCurve scaleCurve; // 크기 변화 곡선
+    [SerializeField] private AnimationCurve alphaCurve; // 알파 변화 곡선
     
     private SpriteRenderer spriteRenderer;
     private Vector3 originalScale;
@@ -31,15 +32,15 @@ public class Warning : MonoBehaviour
         if (scaleCurve == null || scaleCurve.keys.Length == 0)
         {
             scaleCurve = new AnimationCurve();
-            scaleCurve.AddKey(0f, 0f); // 시작에서 0 리턴 = Lerp(1.5, 1, 0) = 1.5배
-            scaleCurve.AddKey(1f, 1f); // 끝에서 1 리턴 = Lerp(1.5, 1, 1) = 1배
+            scaleCurve.AddKey(0f, 0f); // 시작에서 0 리턴 = Lerp(1.4, 1, 0) = 1.4배
+            scaleCurve.AddKey(1f, 1f); // 끝에서 1 리턴 = Lerp(1.4, 1, 1) = 1배
         }
         
-        if (colorCurve == null || colorCurve.keys.Length == 0)
+        if (alphaCurve == null || alphaCurve.keys.Length == 0)
         {
-            colorCurve = new AnimationCurve();
-            colorCurve.AddKey(0f, 0f); // 시작에서 0 리턴 = Lerp(흰색, 원래색, 0) = 흰색
-            colorCurve.AddKey(1f, 1f); // 끝에서 1 리턴 = Lerp(흰색, 원래색, 1) = 원래색
+            alphaCurve = new AnimationCurve();
+            alphaCurve.AddKey(0f, 0f); // 시작에서 0 리턴 = Lerp(0.5, 1, 0) = 0.5 알파
+            alphaCurve.AddKey(1f, 1f); // 끝에서 1 리턴 = Lerp(0.5, 1, 1) = 1 알파
         }
     }
 
@@ -65,7 +66,11 @@ public class Warning : MonoBehaviour
         
         // 초기 설정
         transform.localScale = originalScale * startScale; // 크게 시작
-        spriteRenderer.color = Color.white; // 흰색으로 시작
+        
+        // 알파값만 변경하고 색상은 원래 색 유지
+        Color startColor = originalColor;
+        startColor.a = startAlpha;
+        spriteRenderer.color = startColor;
         
         animationTimer = 0f;
         isAnimating = true;
@@ -85,16 +90,16 @@ public class Warning : MonoBehaviour
         
         // 크기 애니메이션 (크게 시작해서 원래 크기로)
         float scaleProgress = scaleCurve.Evaluate(progress);
-        float currentScaleMultiplier = Mathf.Lerp(startScale, 1f, scaleProgress); // 1.5f → 1f
+        float currentScaleMultiplier = Mathf.Lerp(startScale, 1f, scaleProgress); // 1.4f → 1f
         transform.localScale = originalScale * currentScaleMultiplier;
         
-        // 색상 애니메이션 (흰색에서 원래 색으로)
-        float colorProgress = colorCurve.Evaluate(progress);
-        Color currentColor = Color.Lerp(Color.white, originalColor, colorProgress);
-        spriteRenderer.color = currentColor;
+        // 알파 애니메이션 (0.5에서 1로)
+        float alphaProgress = alphaCurve.Evaluate(progress);
+        float currentAlpha = Mathf.Lerp(startAlpha, 0.6f, alphaProgress); // 0.5f → 1f
         
-        // 디버그용 (필요시 주석 해제)
-        // Debug.Log($"Progress: {progress:F2}, Scale: {currentScaleMultiplier:F2}, Color: {currentColor}");
+        Color currentColor = originalColor;
+        currentColor.a = currentAlpha;
+        spriteRenderer.color = currentColor;
     }
 
     /// <summary>

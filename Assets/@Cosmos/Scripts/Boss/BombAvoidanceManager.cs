@@ -1,16 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-/// <summary>
-/// 전조 타일 타입 열거형
-/// </summary>
-public enum WarningType
-{
-    Type1 = 0,  // 기본 : 폭발 느낌표
-    Type2 = 1,  // 보스 물리 공격
-    Type3 = 2   // 오브젝트 소환형
-}
 
 /// <summary>
 /// 폭탄 피하기 공격 관리자 (다중 전조 타입 지원)
@@ -98,6 +88,123 @@ public class BombAvoidanceManager : MonoBehaviour
         }
     }
     
+    // ========== 전조만 표시하는 메소드들 ==========
+    
+    /// <summary>
+    /// 특정 위치에 전조만 표시 (기본 타입)
+    /// </summary>
+    /// <param name="position">전조 표시 위치</param>
+    /// <param name="duration">전조 지속 시간</param>
+    public void ShowWarningOnly(Vector3Int position, float duration)
+    {
+        ShowWarningOnly(position, duration, WarningType.Type1);
+    }
+    
+    /// <summary>
+    /// 특정 위치에 전조만 표시 (타입 지정)
+    /// </summary>
+    /// <param name="position">전조 표시 위치</param>
+    /// <param name="duration">전조 지속 시간</param>
+    /// <param name="warningType">전조 타입</param>
+    public void ShowWarningOnly(Vector3Int position, float duration, WarningType warningType)
+    {
+        StartCoroutine(ShowWarningOnlyCoroutine(position, duration, warningType));
+    }
+    
+    /// <summary>
+    /// 여러 위치에 전조만 표시 (기본 타입)
+    /// </summary>
+    /// <param name="positions">전조 표시 위치들</param>
+    /// <param name="duration">전조 지속 시간</param>
+    public void ShowWarningOnly(List<Vector3Int> positions, float duration)
+    {
+        ShowWarningOnly(positions, duration, WarningType.Type1);
+    }
+    
+    /// <summary>
+    /// 여러 위치에 전조만 표시 (타입 지정)
+    /// </summary>
+    /// <param name="positions">전조 표시 위치들</param>
+    /// <param name="duration">전조 지속 시간</param>
+    /// <param name="warningType">전조 타입</param>
+    public void ShowWarningOnly(List<Vector3Int> positions, float duration, WarningType warningType)
+    {
+        StartCoroutine(ShowWarningOnlyCoroutine(positions, duration, warningType));
+    }
+    
+    /// <summary>
+    /// 전조 → 데미지만 (이펙트 없음) - 기본 타입
+    /// </summary>
+    /// <param name="shape">공격 모양 (상대 좌표)</param>
+    /// <param name="targetPosition">고정 중심 위치</param>
+    /// <param name="warningDuration">경고 지속 시간</param>
+    /// <param name="damage">데미지</param>
+    public void ExecuteWarningThenDamage(List<Vector3Int> shape, Vector3Int targetPosition, 
+                                         float warningDuration, int damage)
+    {
+        ExecuteWarningThenDamage(shape, targetPosition, warningDuration, damage, WarningType.Type1);
+    }
+    
+    /// <summary>
+    /// 전조 → 데미지만 (이펙트 없음) - 타입 지정
+    /// </summary>
+    /// <param name="shape">공격 모양 (상대 좌표)</param>
+    /// <param name="targetPosition">고정 중심 위치</param>
+    /// <param name="warningDuration">경고 지속 시간</param>
+    /// <param name="damage">데미지</param>
+    /// <param name="warningType">전조 타입</param>
+    public void ExecuteWarningThenDamage(List<Vector3Int> shape, Vector3Int targetPosition, 
+                                         float warningDuration, int damage, WarningType warningType)
+    {
+        StartCoroutine(ExecuteWarningThenDamageCoroutine(shape, targetPosition, warningDuration, damage, warningType));
+    }
+    
+    /// <summary>
+    /// 단일 위치 전조 표시 코루틴
+    /// </summary>
+    private IEnumerator ShowWarningOnlyCoroutine(Vector3Int position, float duration, WarningType warningType)
+    {
+        List<Vector3Int> positions = new List<Vector3Int> { position };
+        yield return StartCoroutine(ShowWarningOnlyCoroutine(positions, duration, warningType));
+    }
+    
+    /// <summary>
+    /// 다중 위치 전조 표시 코루틴
+    /// </summary>
+    private IEnumerator ShowWarningOnlyCoroutine(List<Vector3Int> positions, float duration, WarningType warningType)
+    {
+        // 전조 타일 생성
+        List<GameObject> warningTiles = CreateWarningTiles(positions, warningType);
+        
+        // 지정된 시간 동안 대기
+        yield return new WaitForSeconds(duration);
+        
+        // 전조 타일 제거
+        DestroyWarningTiles(warningTiles);
+    }
+    
+    /// <summary>
+    /// 전조 → 데미지만 코루틴 (이펙트 없음)
+    /// </summary>
+    private IEnumerator ExecuteWarningThenDamageCoroutine(List<Vector3Int> shape, Vector3Int targetPosition, 
+                                                          float warningDuration, int damage, WarningType warningType)
+    {
+        // 공격 위치 계산
+        List<Vector3Int> attackPositions = CalculateAttackPositions(shape, targetPosition);
+        
+        // 지정된 타입의 경고 타일 생성
+        List<GameObject> warningTiles = CreateWarningTiles(attackPositions, warningType);
+        
+        // 경고 대기
+        yield return new WaitForSeconds(warningDuration);
+        
+        // 경고 타일 제거
+        DestroyWarningTiles(warningTiles);
+        
+        // 플레이어 피격 판정만 수행 (이펙트 없음)
+        CheckPlayerDamage(attackPositions, damage);
+    }
+    
     // ========== 기존 메소드들 (기본 타입 사용) ==========
     
     /// <summary>
@@ -114,6 +221,7 @@ public class BombAvoidanceManager : MonoBehaviour
         ExecuteTargetingBomb(shape, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
     }
     
+
     /// <summary>
     /// 랜덤 위치 폭탄 공격 (기본 전조 타입)
     /// </summary>

@@ -25,7 +25,7 @@ public class InfoTextRenderer : MonoBehaviour
         { "Totem", "토템<sprite name=\"Totem\">" },
         { "Sword", "검<sprite name=\"Sword\">" },
         { "Fire", "화염<sprite name=\"Fire\">" },
-        { "Ice", "얼음<sprite name=\"Ice\">" },
+        { "Ice", "얼음<sprite name=\"Ice\">" }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -52,7 +52,11 @@ public class InfoTextRenderer : MonoBehaviour
             string synergy = "";
             foreach (string tag in tags)
             {
-                synergy = synergy + _synergyDict[tag] + " ";
+                if(_synergyDict.ContainsKey(tag))
+                {
+                    synergy = synergy + _synergyDict[tag] + " ";
+                }
+                
             }
             synergy += _categotyDict[tileInfo.GetTileData().TileCategory] + " "; // 카테고리 태그 추가
             synergyText.SetText(synergy);
@@ -85,9 +89,9 @@ public class InfoTextRenderer : MonoBehaviour
         List<string> result = new();
         var regex = new Regex(@"<sprite name=""(.*?)"">");
 
-        var mathces = regex.Matches(input);
+        var matches = regex.Matches(input);
 
-        foreach (Match match in mathces)
+        foreach (Match match in matches)
         {
             string name = match.Groups[1].Value;
             if(!result.Contains(name))

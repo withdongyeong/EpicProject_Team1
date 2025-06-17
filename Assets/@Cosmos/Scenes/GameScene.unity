@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647eba9a8a06460b881562af760d0742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _warningPrefab: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
+  _warningPrefab: {fileID: 1845840710705793256, guid: e5bc4d0f66cecaf4c89ca4ec9cef693f, type: 3}
   _warningPrefabType2: {fileID: 1845840710705793256, guid: b28333480126a14468700cf82aa44bfb, type: 3}
   _warningPrefabType3: {fileID: 1845840710705793256, guid: a9e8ccd013cce314099c3180b3ca628e, type: 3}
 --- !u!1 &308916937
@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 325555200}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.08, y: -0.54, z: 0}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1339,6 +1339,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754317175}
   m_CullTransparentMesh: 1
+--- !u!1 &772656963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 772656964}
+  m_Layer: 0
+  m_Name: EnemySpawnPosition2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &772656964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772656963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &874590994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1533,10 @@ PrefabInstance:
     - target: {fileID: 3525037450235066444, guid: 3be816a903e7fa74eb6bd4526a27c59e, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525037450235066444, guid: 3be816a903e7fa74eb6bd4526a27c59e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3680741919607081846, guid: 3be816a903e7fa74eb6bd4526a27c59e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3672,6 +3707,7 @@ SceneRoots:
   - {fileID: 1500790190}
   - {fileID: 970932184}
   - {fileID: 325555201}
+  - {fileID: 772656964}
   - {fileID: 1568250210}
   - {fileID: 2145711279}
   - {fileID: 43087472}
