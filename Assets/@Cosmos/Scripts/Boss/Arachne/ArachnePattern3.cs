@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 /// <summary>
 /// 아라크네 패턴3 - BombManager 사용 버전
@@ -8,7 +9,8 @@ using System.Collections.Generic;
 public class ArachnePattern3 : IBossAttackPattern
 {
     private GameObject _poisionAriaPrefab;
-    private GameObject _spiderLegPrefab;
+    private GameObject _lToRspiderLeg;
+    private GameObject _rToLspiderLeg;
 
     public string PatternName => "ArachnePattern3";
 
@@ -17,10 +19,11 @@ public class ArachnePattern3 : IBossAttackPattern
     /// </summary>
     /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
     /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
-    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject spiderLegPrefab)
+    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab)
     {
         _poisionAriaPrefab = poisionAriaPrefab;
-        _spiderLegPrefab = spiderLegPrefab;
+        _lToRspiderLeg = LToRspiderLegPrefab;
+        _rToLspiderLeg = RToLspiderLegPrefab;
     }
 
     /// <summary>
@@ -41,8 +44,8 @@ public class ArachnePattern3 : IBossAttackPattern
     {
         return boss.BombManager != null && 
                boss.BombManager.PlayerController != null && 
-               _poisionAriaPrefab != null && 
-               _spiderLegPrefab != null;
+               _poisionAriaPrefab != null &&
+               _lToRspiderLeg != null;
     }
 
     /// <summary>
@@ -93,7 +96,7 @@ public class ArachnePattern3 : IBossAttackPattern
             for (int y = -1; y <= 1; y++)
             {
                 // 제외할 방향은 스킵
-                if (x == excludeDirection.x && y == excludeDirection.y)
+                if ((x == excludeDirection.x && y == excludeDirection.y) || (Mathf.Abs(x) == 1 && Mathf.Abs(y) == 1))
                     continue;
 
                 attackShape.Add(new Vector3Int(x, y, 0));
@@ -102,12 +105,12 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 공격 (제외된 칸은 안전지대)
         boss.BombManager.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
-                                              warningDuration: 0.6f, explosionDuration: 0.7f, damage: 20);
+                                              warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
 
         boss.AttackAnimation();
         
-        // 폭발 사운드는 0.6초 후 재생
-        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.6f));
+        // 폭발 사운드는 0.8초 후 재생
+        boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));
 
         yield return null;
     }
@@ -119,20 +122,27 @@ public class ArachnePattern3 : IBossAttackPattern
     private IEnumerator SpiderLeg_DiagonalSlash1(BaseBoss boss)
     {
         // 대각선 5칸 모양 생성 (↘ 방향)
+        List<Vector3Int> EffectslashShape = new List<Vector3Int>();
         List<Vector3Int> slashShape = new List<Vector3Int>();
         for (int i = -2; i <= 2; i++)
         {
-            slashShape.Add(new Vector3Int(i, i, 0)); // 상대 좌표
+            if (i == 0) EffectslashShape.Add(new Vector3Int(i, i, 0));
+            else slashShape.Add(new Vector3Int(i, i, 0)); // 상대 좌표
         }
 
+        //플레이어 위치
+        Vector3Int PlayerPoint = new Vector3Int(boss.BombManager.PlayerController.CurrentX, boss.BombManager.PlayerController.CurrentY, 0);
         // 플레이어 추적 대각선 공격
-        boss.BombManager.ExecuteTargetingBomb(slashShape, _spiderLegPrefab,
-                                              warningDuration: 0.35f, explosionDuration: 0.3f, damage: 20);
+        boss.BombManager.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _rToLspiderLeg,
+                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+        // 데미지만
+        boss.BombManager.ExecuteWarningThenDamage(slashShape, PlayerPoint,
+                                          warningDuration: 0.8f, damage: 20);
 
         boss.AttackAnimation();
         
         // 0.35초 후 사운드 재생
-        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.35f));
+        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
 
         yield return null;
     }
@@ -144,20 +154,27 @@ public class ArachnePattern3 : IBossAttackPattern
     private IEnumerator SpiderLeg_DiagonalSlash2(BaseBoss boss)
     {
         // 대각선 5칸 모양 생성 (↙ 방향)
+        List<Vector3Int> EffectslashShape = new List<Vector3Int>();
         List<Vector3Int> slashShape = new List<Vector3Int>();
         for (int i = -2; i <= 2; i++)
         {
-            slashShape.Add(new Vector3Int(i, -i, 0)); // 상대 좌표
+            if (i == 0) EffectslashShape.Add(new Vector3Int(i, -i, 0));
+            else slashShape.Add(new Vector3Int(i, -i, 0)); // 상대 좌표
         }
 
+        //플레이어 위치
+        Vector3Int PlayerPoint = new Vector3Int(boss.BombManager.PlayerController.CurrentX, boss.BombManager.PlayerController.CurrentY,0);
+
         // 플레이어 추적 대각선 공격
-        boss.BombManager.ExecuteTargetingBomb(slashShape, _spiderLegPrefab,
-                                              warningDuration: 0.35f, explosionDuration: 0.3f, damage: 20);
+        boss.BombManager.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _lToRspiderLeg,
+                                                     warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+        // 데미지만
+        boss.BombManager.ExecuteWarningThenDamage(slashShape, PlayerPoint,
+                                          warningDuration: 0.8f, damage: 20);
 
         boss.AttackAnimation();
         
-        // 0.35초 후 사운드 재생
-        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.35f));
+        boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
 
         yield return null;
     }

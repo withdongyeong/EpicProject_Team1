@@ -7,7 +7,8 @@ using System.Collections.Generic;
 /// </summary>
 public class ArachnePattern1 : IBossAttackPattern
 {
-    private GameObject _spiderLegPrefab;
+    private GameObject _lToRspiderLegPrefab;
+    private GameObject _rToLspiderLegPrefab;
 
     public string PatternName => "ArachnePattern1";
 
@@ -15,9 +16,10 @@ public class ArachnePattern1 : IBossAttackPattern
     /// 아라크네 패턴1 생성자
     /// </summary>
     /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
-    public ArachnePattern1(GameObject spiderLegPrefab)
+    public ArachnePattern1(GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab)
     {
-        _spiderLegPrefab = spiderLegPrefab;
+        _lToRspiderLegPrefab = LToRspiderLegPrefab;
+        _rToLspiderLegPrefab = RToLspiderLegPrefab;
     }
 
     /// <summary>
@@ -26,13 +28,21 @@ public class ArachnePattern1 : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     public IEnumerator Execute(BaseBoss boss)
     {
-        // 두 개의 코루틴을 동시에 시작
         Coroutine slash1 = boss.StartCoroutine(SpiderSlash1(boss));
+
+        yield return new WaitForSeconds(2f);
+
         Coroutine slash2 = boss.StartCoroutine(SpiderSlash2(boss));
+
+        yield return new WaitForSeconds(2f);
+
+        // 두 개의 코루틴을 동시에 시작
+        Coroutine slash3 = boss.StartCoroutine(SpiderSlash1(boss));
+        Coroutine slash4 = boss.StartCoroutine(SpiderSlash2(boss));
         
         // 두 코루틴이 모두 완료될 때까지 대기
-        yield return slash1;
-        yield return slash2;
+        yield return slash3;
+        yield return slash4;
     }
 
     /// <summary>
@@ -45,13 +55,13 @@ public class ArachnePattern1 : IBossAttackPattern
         
         var test1 = boss.BombManager;
         var test2 = boss.BombManager.PlayerController;
-        var test3 = _spiderLegPrefab;
+        var test3 = _lToRspiderLegPrefab;
         var test4 = boss.BombManager != null && 
-                    boss.BombManager.PlayerController != null && 
-                    _spiderLegPrefab != null;
+                    boss.BombManager.PlayerController != null &&
+                    _lToRspiderLegPrefab != null;
         return boss.BombManager != null && 
-               boss.BombManager.PlayerController != null && 
-               _spiderLegPrefab != null;
+               boss.BombManager.PlayerController != null &&
+               _lToRspiderLegPrefab != null;
     }
 
     /// <summary>
@@ -67,23 +77,31 @@ public class ArachnePattern1 : IBossAttackPattern
             Vector3Int centerPos = new Vector3Int(centerX, centerY, 0);
 
             // 대각선 5칸 모양 생성 (↘ 방향)
+            List<Vector3Int> EffectslashShape = new List<Vector3Int>();
             List<Vector3Int> slashShape = new List<Vector3Int>();
             for (int j = -2; j <= 2; j++)
             {
-                slashShape.Add(new Vector3Int(j, j, 0)); // 상대 좌표
+                if (j == 0) EffectslashShape.Add(new Vector3Int(j, j, 0));
+                else slashShape.Add(new Vector3Int(j, j, 0)); // 상대 좌표
             }
 
-            // BombManager로 고정 위치 공격 실행
-            boss.BombManager.ExecuteFixedBomb(slashShape, centerPos, _spiderLegPrefab,
-                                              warningDuration: 0.2f, explosionDuration: 0.3f, damage: 20);
+            //이펙트 데미지
+            boss.BombManager.ExecuteFixedBomb(EffectslashShape, centerPos, _rToLspiderLegPrefab,
+                                  warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+
+            yield return new WaitForSeconds(0.05f);
+
+            // 데미지만
+            boss.BombManager.ExecuteWarningThenDamage(slashShape, centerPos,
+                                              warningDuration: 0.8f, damage: 20);
 
             // 사운드 재생
-            SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-            
+            boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
+
             // 공격 애니메이션
             boss.AttackAnimation();
 
-            yield return new WaitForSeconds(0.3f); // 0.2 + 0.1 (기존 타이밍)
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -100,23 +118,37 @@ public class ArachnePattern1 : IBossAttackPattern
             Vector3Int centerPos = new Vector3Int(centerX, centerY, 0);
 
             // 대각선 5칸 모양 생성 (↙ 방향)
+            List<Vector3Int> EffectslashShape = new List<Vector3Int>();
             List<Vector3Int> slashShape = new List<Vector3Int>();
             for (int j = -2; j <= 2; j++)
             {
-                slashShape.Add(new Vector3Int(j, -j, 0)); // 상대 좌표
+                if (j == 0) EffectslashShape.Add(new Vector3Int(j, -j, 0));
+                else slashShape.Add(new Vector3Int(j, -j, 0)); // 상대 좌표
             }
 
-            // BombManager로 고정 위치 공격 실행
-            boss.BombManager.ExecuteFixedBomb(slashShape, centerPos, _spiderLegPrefab,
-                                              warningDuration: 0.2f, explosionDuration: 0.3f, damage: 20);
+            //이펙트
+            boss.BombManager.ExecuteFixedBomb(EffectslashShape, centerPos, _lToRspiderLegPrefab,
+                                  warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+
+            yield return new WaitForSeconds(0.05f);
+
+            // 데미지만
+            boss.BombManager.ExecuteWarningThenDamage(slashShape, centerPos,
+                                              warningDuration: 0.8f, damage: 20);
 
             // 사운드 재생
-            SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-            
+            boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
+
             // 공격 애니메이션
             boss.AttackAnimation();
 
-            yield return new WaitForSeconds(0.3f); // 0.2 + 0.1 (기존 타이밍)
+            yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    private IEnumerator PlayDelayedSound(string soundName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.Instance.ArachneSoundClip(soundName);
     }
 }
