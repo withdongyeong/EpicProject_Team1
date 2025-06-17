@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3249486552240177032, guid: af1a116ed832d2f47a88523321211555, type: 3}
-  enemyPrefab: {fileID: 6316585728366198449, guid: 642853f7c29f7884d9d60772837c0bdd, type: 3}
+  enemyPrefab: {fileID: 3909207524506738849, guid: d589c049e1782664c9d017c2f31347c9, type: 3}
   highlightTilePrefab: {fileID: 2088068471157347722, guid: b158c356a8eb54e469824f348eaa9b94, type: 3}
   nightBoard: {fileID: 4338915156489441334, guid: d357b73b856d9a947958371fe50c10e3, type: 3}
   countdownText: {fileID: 0}
@@ -1533,10 +1533,6 @@ PrefabInstance:
     - target: {fileID: 3525037450235066444, guid: 3be816a903e7fa74eb6bd4526a27c59e, type: 3}
       propertyPath: m_Name
       value: SoundManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525037450235066444, guid: 3be816a903e7fa74eb6bd4526a27c59e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3680741919607081846, guid: 3be816a903e7fa74eb6bd4526a27c59e, type: 3}
       propertyPath: m_LocalPosition.x

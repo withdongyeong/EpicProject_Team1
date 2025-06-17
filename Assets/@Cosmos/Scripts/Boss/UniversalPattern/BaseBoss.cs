@@ -448,4 +448,10 @@ public abstract class BaseBoss : MonoBehaviour
     {
         _animator.SetTrigger(trigger);
     }
+    
+    public IEnumerator PlayOrcExplosionSoundDelayed(string clipName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.Instance.OrcMageSoundClip(clipName);
+    }
 }
