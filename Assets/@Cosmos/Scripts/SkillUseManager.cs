@@ -24,7 +24,7 @@ public class SkillUseManager : Singleton<SkillUseManager>
         skillActivationCount = 1;
         Cell cell = gm.GetCellData(cellPos);
         CombineCell comCell = cell.GetCombineCell();
-        //이 밑 두개의 변수는 곽민준 추가입니다
+        //이 밑 부터 곽민준 추가입니다
         List<Cell> cells = new(); //타일의 모든 셀들을 담을 리스트입니다
         CombineCell[] combineCells = comCell.GetTileObject().GetComponentsInChildren<CombineCell>(); //타일의 모든 셀들을 찾는 배열
 
@@ -34,8 +34,6 @@ public class SkillUseManager : Singleton<SkillUseManager>
             cells.AddRange(combineCell.GetComponentsInChildren<Cell>());
         }
 
-        //동일 부모를 가지고 있으면 중첩 되지 않게 하기 위해 추가한 HashSet입니다
-        HashSet<Transform> parentGroup = new();
         //최종적으로 발동할 스킬 리스트입니다
         List<StarBase> starResult = new();
 
@@ -48,7 +46,7 @@ public class SkillUseManager : Singleton<SkillUseManager>
             {
                 foreach (StarBase starSkill in starSkills)
                 {
-                    if (starSkill.transform.parent != null && parentGroup.Add(starSkill.transform.parent))
+                    if (!starResult.Contains(starSkill))
                     {
                         starResult.Add(starSkill);
                     }
@@ -57,7 +55,7 @@ public class SkillUseManager : Singleton<SkillUseManager>
         }
         if (starResult.Count > 0)
         {
-            ActivateStarSkill(starResult);
+            ActivateStarSkill(starResult, comCell.GetTileObject());
         }
 
         comCell.ExecuteSkill();
@@ -77,12 +75,12 @@ public class SkillUseManager : Singleton<SkillUseManager>
     
     
 
-    private void ActivateStarSkill(List<StarBase> starSkills)
+    private void ActivateStarSkill(List<StarBase> starSkills, TileObject tileObject)
     {
         foreach (StarBase starSkill in starSkills)
         {
             Debug.Log("Activating star skill: " + starSkill.name);
-            starSkill.Activate();
+            starSkill.Activate(tileObject);
         }
     }
 }
