@@ -26,7 +26,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.AttackAnimation();
+        boss.SetAnimationTrigger("Attack1");
 
         Vector3Int center = new Vector3Int(4, 4, 0);
         List<Vector3Int> spiralPositions = GenerateSpiralPositions(center);
@@ -36,6 +36,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
         {
             List<Vector3Int> singlePoint = new List<Vector3Int> { Vector3Int.zero };
             
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             // 4개씩 그룹 동시 실행
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {

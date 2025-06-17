@@ -57,7 +57,12 @@ public class SoundManager : Singleton<SoundManager>
     //오크메이지 사운드볼륨
     private Dictionary<string, float> OrcMageSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"OrcMage_DamageActivate", 0.6f},
+        {"OrcMage_DieActivate", 0.6f },
+        {"OrcMage_FrogActivate", 1f },
+        {"OrcMage_RunActivate", 0.3f },
+        {"OrcMage_ScreamActivate", 0.6f },
+        {"OrcMage_SpikeActivate", 0.2f }
     };
 
 
@@ -75,7 +80,10 @@ public class SoundManager : Singleton<SoundManager>
     Dictionary<string, AudioClip> BGMSoundDictionary = new Dictionary<string, AudioClip>();
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
-    { };
+    {
+        {"GameSceneBGM", 0.3f },
+        {"OrcMage", 0.3f }
+    };
 
 
     protected override void Awake()

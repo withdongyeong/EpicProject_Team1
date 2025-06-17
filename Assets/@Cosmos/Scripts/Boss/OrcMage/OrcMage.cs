@@ -1,3 +1,4 @@
+using System.Collections;
 using Cosmos.Scripts.Boss.OrcMage;
 using UnityEngine;
 
@@ -51,9 +52,9 @@ public class OrcMage : BaseBoss
     {
         Debug.Log("OrcMage: Casting final spell before death...");
         
+        SetAnimationTrigger("Death");
+        SoundManager.Instance.OrcMageSoundClip("OrcMage_DieActivate");
         // 기본 사망 처리 호출
         base.Die();
-        
-        // TODO: 추후 특별한 사망 이펙트나 사운드 추가 가능
     }
 }

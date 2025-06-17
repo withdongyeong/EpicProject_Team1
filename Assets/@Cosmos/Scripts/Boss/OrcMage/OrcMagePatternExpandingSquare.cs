@@ -26,7 +26,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.AttackAnimation();
+        boss.SetAnimationTrigger("Attack2Hand");
 
         Vector3Int center = new Vector3Int(4, 4, 0); // 그리드 중앙
 
@@ -38,6 +38,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
         {
             List<Vector3Int> squareShape = CreateHollowSquare(size, randomDirection);
             
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             boss.BombManager.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
             

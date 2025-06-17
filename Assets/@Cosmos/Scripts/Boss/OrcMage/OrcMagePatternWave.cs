@@ -26,11 +26,10 @@ public class OrcMagePatternWave : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.AttackAnimation();
-
         // 3번의 웨이브 실행 (각각 다른 방향)
         for (int wave = 0; wave < 3; wave++)
         {
+            boss.SetAnimationTrigger("Attack2Hand");
             // 플레이어 위치를 매번 새로 확인
             Vector3Int playerPos =
                 boss.GridSystem.WorldToGridPosition(boss.BombManager.PlayerController.transform.position);
@@ -80,9 +79,10 @@ public class OrcMagePatternWave : IBossAttackPattern
                     lineShape = CreateHorizontalLineWithGap(safeIndex);
                     break;
             }
-
+            
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             boss.BombManager.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
-                warningDuration: 0.8f, explosionDuration: 0.5f, damage: 25, WarningType.Type1);
+                warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
             // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속
             if (step == 0)

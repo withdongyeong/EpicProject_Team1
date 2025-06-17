@@ -44,7 +44,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
             Debug.Log("OrcMagePattern1.Execute: Starting row-by-row frog summoning");
             
             // 공격 애니메이션 트리거
-            boss.AttackAnimation();
+            boss.SetAnimationTrigger("Attack2");
             
             // 1단계: 1행 → 9행 순차 소환
             yield return SummonFromTopToBottom(boss);

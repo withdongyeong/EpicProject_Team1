@@ -28,7 +28,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
         /// </summary>
         public IEnumerator Execute(BaseBoss boss)
         {
-            boss.AttackAnimation();
+            boss.SetAnimationTrigger("Attack1");
 
             // 3번의 웨이브 실행
             for (int wave = 0; wave < 3; wave++)
@@ -49,6 +49,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
                 List<Vector3Int> lineShape = CreateHorizontalLine();
                 Vector3Int center = new Vector3Int(4, 8 - row, 0); // 위부터 시작
 
+                boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
                 boss.BombManager.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
                                                   warningDuration: 0.3f, explosionDuration: 0.5f, damage: 25, WarningType.Type1);
 

@@ -26,7 +26,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.AttackAnimation();
+        boss.SetAnimationTrigger("Attack2");
 
         // 12개의 랜덤 폭발을 연쇄적으로
         List<Vector3Int> usedPositions = new List<Vector3Int>();
@@ -38,6 +38,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
 
             List<Vector3Int> explosionShape = CreateExplosionShape();
 
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             boss.BombManager.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 18, WarningType.Type1);
 

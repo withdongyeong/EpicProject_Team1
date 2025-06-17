@@ -26,8 +26,6 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.AttackAnimation();
-
         // 1. 랜덤 행 선택 (2~6행, 가장자리 피함)
         int targetRow = Random.Range(2, 7);
         Vector3Int startPosition = new Vector3Int(8, targetRow, 0); // 오른쪽 끝
@@ -35,6 +33,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
 
         // 2. EnemySpawnPosition에서 시작 지점으로 이동 (Walk 애니메이션)
         boss.SetAnimationTrigger("Walk");
+        SoundManager.Instance.OrcMageSoundClip("OrcMage_ScreamActivate");
         yield return MoveBossToPosition(boss, startPosition);
 
         // 3. 도착지에 전조 + 피격 판정
@@ -111,6 +110,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             Vector3Int currentPos = new Vector3Int(x, start.y, 0);
             
             // 보스 이동
+            SoundManager.Instance.OrcMageSoundClip("OrcMage_RunActivate");
             yield return MoveBossToPosition(boss, currentPos);
             
             // 보스 위치 공격 (전조 + 피격 판정)
@@ -152,6 +152,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             };
         }
 
+        boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
         foreach (Vector3Int direction in spikeDirections)
         {
             List<Vector3Int> spikeLine = CreateSpikeLine(centerPos, direction);
