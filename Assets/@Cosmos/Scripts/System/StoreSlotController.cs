@@ -72,7 +72,7 @@ public class StoreSlotController : MonoBehaviour
 
             }
             //test
-            //chosenList = testList;
+            chosenList = testList;
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
