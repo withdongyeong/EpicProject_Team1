@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TestStarSkill : StarBase
 {
-    public override void Activate()
+    public override void Activate(TileObject tile)
     {
-        base.Activate();
+        base.Activate(tile);
         if (tileInfo.TileCategory == TileCategory.Weapon)
         {
             skillUseManager.SetSkillActivationCount(5);

@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StarBase : MonoBehaviour
 {
     
-    protected StarCell starCell;
+    protected CombinedStarCell combinedStarCell;
     protected TileObject tileObject;
     protected TileInfo tileInfo;
     protected SkillUseManager skillUseManager;
@@ -12,15 +12,15 @@ public class StarBase : MonoBehaviour
     private void Awake()
     {
         skillUseManager = SkillUseManager.Instance;
-        starCell = GetComponent<StarCell>();
-        if (starCell == null)
+        combinedStarCell = GetComponent<CombinedStarCell>();
+        if (combinedStarCell == null)
         {
-            Debug.LogError("StarCell component not found in parent of StarBase.");
+            Debug.LogError("CombinedStarCell component not found in parent of StarBase.");
         }
     }
-    public virtual void Activate()
+    public virtual void Activate(TileObject tile)
     {
-        tileObject = starCell.GetTileObject();
+        tileObject = tile;
         tileInfo = tileObject.GetTileData();
     }
 }
