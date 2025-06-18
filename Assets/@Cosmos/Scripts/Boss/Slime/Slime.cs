@@ -3,16 +3,11 @@
 public class Slime : BaseBoss
 {
     [Header("슬라임 전용 프리팹들")]
-    public GameObject warningTilePrefab;
-
     public GameObject SlimeMucus;
 
-    public GameObject warningAriaPrefab;
     public GameObject SlimeActtckTentacle;
 
     public GameObject SlimeTrapTentacle;
-
-    PlayerController PlayerController;
 
     private void Awake()
     {
@@ -26,8 +21,6 @@ public class Slime : BaseBoss
     /// </summary>
     protected override void Start()
     {
-        PlayerController = FindAnyObjectByType<PlayerController>();
-
         // 부모 클래스 초기화 호출
         base.Start();
     
@@ -38,10 +31,12 @@ public class Slime : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //점액 패턴
-        //AddAttackPattern(new RapidFirePattern(SlimeMucus, 3, 0.05f));
-
         //찌르기 촉수 패턴
+        AddGroup()
+            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 5), 1.5f)
+            .SetGroupInterval(1f);
+
+        //
         //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle));
 
         //바닥 분출 촉수 패턴
