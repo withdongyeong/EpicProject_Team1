@@ -142,6 +142,7 @@ public class DragManager : Singleton<DragManager>
         if (currentDragObject == null) return;
         foreach (Cell cell in currentDragObject.GetComponentsInChildren<Cell>())
         {
+            if (cell.GetType() == typeof(StarCell)) continue;
             Transform t = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
             GridManager.Instance.ChangeCellSprite(gridPos, true);

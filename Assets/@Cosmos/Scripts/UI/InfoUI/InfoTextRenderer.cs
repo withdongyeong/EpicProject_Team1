@@ -122,7 +122,6 @@ public class InfoTextRenderer : MonoBehaviour
                 Debug.LogError(prefab.name + "이자식 끝이 GimmickText가 아닌데예");
             }
         }
-        Debug.Log(_textDict.Count + "개의 기믹텍스트 로드 완료");
     }
 
     //TODO: 나중에 다중 언어를 지원할때 여기서 시너지(#토템 이런것들)번역을 담은 스크립터블 오브젝트를 불러오면 됩니다
