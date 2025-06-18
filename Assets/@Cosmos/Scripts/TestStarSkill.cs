@@ -7,8 +7,8 @@ public class TestStarSkill : StarBase
         base.Activate(tile);
         if (tileInfo.TileCategory == TileCategory.Weapon)
         {
-            skillUseManager.SetSkillActivationCount(5);
-            skillUseManager.MultiplyCooldown(0.99f); // 50% 감소
+            //skillUseManager.SetSkillActivationCount(5);
+            //skillUseManager.MultiplyCooldown(0.99f); // 50% 감소
         }
     }
 }

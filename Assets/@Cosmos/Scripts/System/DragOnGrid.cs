@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 
 
@@ -11,6 +11,7 @@ public class DragOnGrid : DraggableObject
     private float rotateZ;
     protected override void BeginDrag()
     {
+        Debug.Log("드래그 시작");
         // 드래그 시작 시 원래 위치와 회전값 저장
         rotateZ = transform.rotation.eulerAngles.z;
         //드래그 시작 시 원래 위치 저장

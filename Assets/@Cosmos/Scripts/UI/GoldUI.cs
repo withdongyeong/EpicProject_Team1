@@ -9,8 +9,14 @@ public class GoldUI : MonoBehaviour
     {
         EventBus.SubscribeGoldChanged(ChangeGoldUI);
         goldText = GetComponent<TextMeshProUGUI>();
+        
     }
-    
+
+    private void Start()
+    {
+        ChangeGoldUI(GoldManager.Instance.CurrentGold);
+    }
+
     private void ChangeGoldUI(int gold)
     {
         goldText.text = $"Gold : {gold}";

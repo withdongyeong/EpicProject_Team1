@@ -89,3 +89,11 @@ public class TileInfo
         tileCategory = data.tileCategory;
     }
 }
+
+/// <summary>
+/// 인접 효과에 의한 버프를 담는 클래스입니다.
+/// </summary>
+public class StarBuff
+{
+
+}
