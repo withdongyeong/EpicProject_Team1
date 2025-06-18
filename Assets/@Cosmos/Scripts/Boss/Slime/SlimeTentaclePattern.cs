@@ -6,9 +6,9 @@ public class SlimeTentaclePattern : IBossAttackPattern
     private GameObject _slimeTentacle;
     private int _tentatacleCount;
 
-    private float waitDuration = 0.5f;
-    private float tentacleLength = 18f;
-    private float tentacleGrowTime = 0.3f;
+    private float waitDuration = 0.2f;
+    private float tentacleLength = 15f;
+    private float tentacleGrowTime = 0.4f;
     private float tentacleLifetime = 0.6f;
 
     public string PatternName => "SlimeTentaclePattern";
@@ -42,7 +42,7 @@ public class SlimeTentaclePattern : IBossAttackPattern
             for(int j = 8; j >= 0; j--)
             {
                 Vector3Int WarningPosision = new Vector3Int(j, randomY, 0);
-                boss.BombManager.ShowWarningOnly(WarningPosision, 0.8f, WarningType.Type1);
+                boss.BombManager.ShowWarningOnly(WarningPosision, 0.8f, WarningType.Type2);
                 yield return new WaitForSeconds(0.05f);
             }
 
@@ -108,7 +108,7 @@ public class SlimeTentaclePattern : IBossAttackPattern
     /// </summary>
     private IEnumerator MoveBossToWorldPosition(BaseBoss boss, Vector3 targetWorldPos)
     {
-        float moveSpeed = 8f; // 이동 속도
+        float moveSpeed = 15f; // 이동 속도
 
         while (Vector3.Distance(boss.transform.position, targetWorldPos) > 0.1f)
         {

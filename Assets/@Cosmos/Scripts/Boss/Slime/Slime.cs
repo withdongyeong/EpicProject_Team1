@@ -29,25 +29,20 @@ public class Slime : BaseBoss
     {
         //찌르기 촉수 패턴
         AddGroup()
-            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 5), 0.0f)
+            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 3), 0.0f)
+            .SetGroupInterval(1f);
+
+
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 1f)
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
             .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
-            .SetGroupInterval(1f);
-
-        AddGroup()
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 1f)
-            .SetGroupInterval(1f);
-
-        AddGroup()
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 1f)
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
             .SetGroupInterval(1f);
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
