@@ -75,6 +75,7 @@ public class SlimeTentaclePattern : IBossAttackPattern
 
         float elapsed = 0;
 
+        SoundManager.Instance.SlimeSoundClip("SlimeTentacleActivate");
         while (elapsed < tentacleGrowTime)
         {
             float t = elapsed / tentacleGrowTime;

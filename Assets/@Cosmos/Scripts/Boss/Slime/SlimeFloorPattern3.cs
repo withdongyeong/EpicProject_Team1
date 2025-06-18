@@ -14,6 +14,7 @@ public class SlimeFloorPattern3 : IBossAttackPattern
 
     public IEnumerator Execute(BaseBoss boss)
     {
+        boss.AttackAnimation();
         yield return SlimeFloorPattern(boss);
     }
 
@@ -86,6 +87,11 @@ public class SlimeFloorPattern3 : IBossAttackPattern
 
         boss.BombManager.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
                                         warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+
+        yield return new WaitForSeconds(0.6f);
+        SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
+        yield return new WaitForSeconds(0.4f);
+        SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
 
         yield return 0;
     }

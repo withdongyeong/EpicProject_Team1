@@ -16,6 +16,7 @@ public class SlimeFloorPattern1 : IBossAttackPattern
 
     public IEnumerator Execute(BaseBoss boss)
     {
+        boss.AttackAnimation();
         yield return SlimeFloorPattern(boss);
     }
 
@@ -24,29 +25,36 @@ public class SlimeFloorPattern1 : IBossAttackPattern
         return _slimeFloorPrefeb != null;
     }
 
-    //대각선 + 중앙 3 * 3
+    //대각선
     public IEnumerator SlimeFloorPattern(BaseBoss boss)
     {
-        List<Vector3Int> diagonalList = new List<Vector3Int>();
-        List<Vector3Int> diagonalAnti = new List<Vector3Int>();
+        List<Vector3Int> gridWithoutWindmill = new List<Vector3Int>();
 
         for (int i = -4; i <= 4; i++)
         {
             if (i == 0)
             {
-                diagonalList.Add(new Vector3Int(0, 0, 0));
+                gridWithoutWindmill.Add(new Vector3Int(0, 0, 0));
                 continue;
             }
             else
             {
-                diagonalList.Add(new Vector3Int(i, i, 0));
-                diagonalList.Add(new Vector3Int(i, -i, 0));
+                gridWithoutWindmill.Add(new Vector3Int(i, i, 0));
+                gridWithoutWindmill.Add(new Vector3Int(i, -i, 0));
             }
         }
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
-        boss.BombManager.ExecuteFixedBomb(diagonalList, centerPos, _slimeFloorPrefeb,
+
+
+
+        boss.BombManager.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
                                         warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+
+        yield return new WaitForSeconds(0.6f);
+        SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
+        yield return new WaitForSeconds(0.4f);
+        SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
 
         yield return 0;
     }
