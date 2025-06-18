@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombineCell : MonoBehaviour
@@ -20,7 +22,10 @@ public class CombineCell : MonoBehaviour
         skills = GetComponents<SkillBase>();
         sr = GetComponentInChildren<SpriteRenderer>();
         tileObject = GetComponentInParent<TileObject>();
+
+        //밑에 두개는 인접효과가 변경될때 호출되는 액션과 함수의 이름입니다.
         tileObject.OnStarListChanged += UpdateStarList;
+        tileObject.OnStarListUpdateCompleted += GiveSkillStarList;
     }
 
 
@@ -65,6 +70,16 @@ public class CombineCell : MonoBehaviour
     {
         OnStarListChanged?.Invoke();
     }
+
+    private void GiveSkillStarList(List<StarBase> starBases)
+    {
+        foreach(SkillBase skill in skills)
+        {
+            skill.UpdateStarList(starBases);
+        }
+    }
+
+
 
     private void OnDestroy()
     {

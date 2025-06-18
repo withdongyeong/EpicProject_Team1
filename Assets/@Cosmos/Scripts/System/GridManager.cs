@@ -56,7 +56,7 @@ public class GridCell
         }
         
         cell = cellData;
-        Debug.Log("좌표 " + GridPosition + "셀 데이터가 할당되었습니다: " + cell);
+        //Debug.Log("좌표 " + GridPosition + "셀 데이터가 할당되었습니다: " + cell);
         ChangeSpriteTest();
     }
 
@@ -69,7 +69,7 @@ public class GridCell
         }
 
         cell = null;
-        Debug.Log(cell);
+        //Debug.Log(cell);
         ChangeSpriteTest();
     }
 
@@ -237,8 +237,8 @@ public class GridManager : Singleton<GridManager>
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
             //곽민준이 친 코드입니다. 해당 그리드에 할당된 인접 효과가 변경되면 타일이 다시 계산하게 합니다.
             grid[gridPos.x, gridPos.y].OnStarListChange += cellData.GetCombineCell().GetTileObject().UpdateStarList;
-            Debug.Log(grid[gridPos.x, gridPos.y].cell);
-            Debug.Log(GetCellData(gridPos));
+            //Debug.Log(grid[gridPos.x, gridPos.y].cell);
+            //Debug.Log(GetCellData(gridPos));
         }
     }
 
@@ -250,7 +250,7 @@ public class GridManager : Singleton<GridManager>
             //곽민준이 친 코드입니다. 액션을 구독 취소하는 스크립트입니다.
             grid[gridPos.x, gridPos.y].OnStarListChange -= grid[gridPos.x, gridPos.y].cell.GetCombineCell().GetTileObject().UpdateStarList;
             grid[gridPos.x, gridPos.y].ReleaseCellData();       
-            Debug.Log("해제했습니다");
+            //Debug.Log("해제했습니다");
             grid[gridPos.x, gridPos.y].ChangeSpriteTest(); // 기본 스프라이트로 복원
         }
     }
@@ -259,7 +259,7 @@ public class GridManager : Singleton<GridManager>
     {
         if (IsWithinGrid(gridPos))
         {
-            if(grid[gridPos.x, gridPos.y].IsOccupied) Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
+            //if(grid[gridPos.x, gridPos.y].IsOccupied) Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
             return !grid[gridPos.x, gridPos.y].IsOccupied;
         }
         Debug.Log("범위 밖 " + gridPos);

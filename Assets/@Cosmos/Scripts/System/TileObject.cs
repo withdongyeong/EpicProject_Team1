@@ -14,7 +14,11 @@ public class TileObject : MonoBehaviour
 
     private bool isInitialized = false;
 
+    //그리드의 스타 리스트가 변경되었을때의 액션입니다.
     public Action OnStarListChanged;
+
+    //자신의 스타 리스트가 최종적으로 업데이트 되었을때의 액션입니다.
+    public Action<List<StarBase>> OnStarListUpdateCompleted;
 
     private List<StarBase> starList = new();
 
@@ -50,8 +54,10 @@ public class TileObject : MonoBehaviour
     /// </summary>
     public void UpdateStarList()
     {
+        Debug.Log("재계산 시작합니다");
         starList.Clear();
         OnStarListChanged?.Invoke();
+        OnStarListUpdateCompleted?.Invoke(starList);
         Debug.Log(starList);
     }
 
