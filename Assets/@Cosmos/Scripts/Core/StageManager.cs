@@ -202,7 +202,7 @@ public class StageManager : MonoBehaviour
         if (nightBoard != null && _player != null)
         {
             //Vector3 spawnPosition = _player.transform.position;
-            Vector3 spawnPosition = new Vector3(-3.5f, 0f, 0f);
+            Vector3 spawnPosition = new Vector3(0, 0f, 0f);
 
             GameObject effect = Instantiate(nightBoard, spawnPosition, Quaternion.identity);
 
