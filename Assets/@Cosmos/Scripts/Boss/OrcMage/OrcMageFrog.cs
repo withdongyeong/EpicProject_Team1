@@ -24,7 +24,7 @@ public class OrcMageFrog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+        PlayerHp playerHealth = collision.GetComponent<PlayerHp>();
 
         if (playerHealth != null)
         {

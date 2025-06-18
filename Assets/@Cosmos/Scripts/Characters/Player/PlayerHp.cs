@@ -1,7 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections;
-    
+using UnityEditor.SceneManagement;
+
 /// <summary>
 /// 플레이어 체력 관리 시스템 (무적 시간 및 깜박임 포함)
 /// </summary>
@@ -73,7 +74,7 @@ public class PlayerHp : MonoBehaviour
         else
         {
             // 살아있으면 피격 처리 및 무적 시간 시작
-            FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Damaged");
+            FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Damaged");
             SoundManager.Instance.PlayPlayerSound("PlayerDamage");
             
             StartInvincibility();
@@ -179,7 +180,7 @@ public class PlayerHp : MonoBehaviour
         // 무적 시간 강제 종료 (죽었으니까)
         EndInvincibility();
         
-        FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Death");
+        FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Death");
         EventBus.PublishPlayerDeath();
     }
     
