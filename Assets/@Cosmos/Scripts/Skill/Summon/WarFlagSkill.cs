@@ -16,9 +16,9 @@ public class WarFlagSkill : SwordSkill
         }
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         playerController = FindAnyObjectByType<PlayerController>();
         SummonWarFlag();
         if (targetEnemy != null)

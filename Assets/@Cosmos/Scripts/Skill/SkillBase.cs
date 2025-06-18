@@ -39,7 +39,7 @@ public abstract class SkillBase : MonoBehaviour
     /// <summary>
     /// 스킬 발동 시도. 쿨타임을 체크하고 성공 시 Activate 호출.
     /// </summary>
-    public bool TryActivate(GameObject user)
+    public bool TryActivate()
     {
         if (IsOnCooldown)
         {
@@ -50,7 +50,7 @@ public abstract class SkillBase : MonoBehaviour
         for(int i =0; i < sm.SkillActivationCount; i++)
         {
             Debug.Log("sm.SkillActivationCount: " + sm.SkillActivationCount);
-            Activate(user);
+            Activate();
         }
         lastUsedTime = Time.time;
         return true;
@@ -59,7 +59,7 @@ public abstract class SkillBase : MonoBehaviour
     /// <summary>
     /// 자식 클래스에서 반드시 구현해야 하는 스킬 효과
     /// </summary>
-    protected virtual void Activate(GameObject user)
+    protected virtual void Activate()
     {
         SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
     }

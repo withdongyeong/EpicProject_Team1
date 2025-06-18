@@ -13,10 +13,9 @@ public class TestSkill : SkillBase
         Debug.Log("시작함");
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         FindAnyObjectByType<BaseBoss>().TakeDamage(10);
-        Debug.Log("TestSkill activated by " + user.name);
     }
 }

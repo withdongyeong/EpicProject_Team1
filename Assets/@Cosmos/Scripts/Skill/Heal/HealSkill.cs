@@ -12,9 +12,9 @@ public class HealSkill : SkillBase
     /// <summary>
     /// 타일 발동 - 플레이어 체력 회복
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         _playerHp = FindAnyObjectByType<PlayerHp>();
         if (_playerHp != null)
         {

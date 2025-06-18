@@ -13,9 +13,9 @@ public class SwordSkill : SkillBase
         swordPrefabs = Resources.LoadAll<GameObject>("Prefabs/Swords");
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         // 타겟 적 찾기
         targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)

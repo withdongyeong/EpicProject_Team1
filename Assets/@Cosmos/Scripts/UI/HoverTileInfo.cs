@@ -43,9 +43,10 @@ public class HoverTileInfo : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
                 infoPanel.Show(tileObject, position, true);
         }
 
-        if(tileObject.CombinedStarCell != null)
+        // 콤바인드스타셀 활성화
+        if (tileObject.CombinedStarCell != null)
         {
-            tileObject.CombinedStarCell.SetActive(true); // 스타셀의 부모 오브젝트 활성화
+            tileObject.CombinedStarCell.SetActive(true); 
         }
     }
     
@@ -56,9 +57,10 @@ public class HoverTileInfo : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
             infoPanel.Hide();
         }
 
+        // 콤바인드스타셀 비활성화
         if (tileObject.CombinedStarCell != null)
         {
-            tileObject.CombinedStarCell.SetActive(false); // 스타셀의 부모 오브젝트 비활성화
+            tileObject.CombinedStarCell.SetActive(false);
         }
     }
 }
