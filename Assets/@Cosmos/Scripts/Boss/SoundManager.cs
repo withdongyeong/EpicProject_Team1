@@ -292,7 +292,7 @@ public class SoundManager : Singleton<SoundManager>
     /// </summary>
     public void UISoundClip(string clip)
     {
-        Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
+        //Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;

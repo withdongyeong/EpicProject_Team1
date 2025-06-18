@@ -98,6 +98,9 @@ public class GameUIManager : MonoBehaviour
         TimeScaleManager.Instance.ResetTimeScale();
         SoundManager.Instance.BGMSoundClip(_buildingSceneName + "BGM");
         SceneManager.LoadScene(_buildingSceneName);
+        
+        // 게임 격자 다시 상점 자리로 원위치
+        GridManager.Instance.transform.position = new Vector3(0, 0, 0);
     }
 
     /// <summary>

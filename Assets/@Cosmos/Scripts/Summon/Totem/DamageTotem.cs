@@ -6,6 +6,12 @@ public class DamageTotem : BaseTotem
 
     [SerializeField] GameObject _lesserProjectile;
     [SerializeField] GameObject _betterProjectile;
+
+    private void Awake()
+    {
+        _lesserProjectile = Resources.Load<GameObject>("Prefabs/Projectiles/Totem1");
+        _betterProjectile = Resources.Load<GameObject>("Prefabs/Projectiles/Totem1 Better");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
