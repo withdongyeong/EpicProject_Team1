@@ -8,6 +8,8 @@ public class CombineCell : MonoBehaviour
     private SkillBase[] skills;
     private TileObject tileObject;
 
+    public Action OnStarListChanged;
+
     private void Awake()
     
     {
@@ -18,6 +20,7 @@ public class CombineCell : MonoBehaviour
         skills = GetComponents<SkillBase>();
         sr = GetComponentInChildren<SpriteRenderer>();
         tileObject = GetComponentInParent<TileObject>();
+        tileObject.OnStarListChanged += UpdateStarList;
     }
 
 
@@ -57,5 +60,18 @@ public class CombineCell : MonoBehaviour
             }
         }
     }
-    
+
+    private void UpdateStarList()
+    {
+        OnStarListChanged?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        if(tileObject!=null)
+        {
+            tileObject.OnStarListChanged -= UpdateStarList;
+        }       
+    }
+
 }

@@ -10,7 +10,7 @@ public class CooldownStarSkill : StarBase
         base.Activate(tileObject);
         if (tileInfo.TileCategory == targetCategory)
         {
-            skillUseManager.MultiplyCooldown(cooldownFactor);
+            //skillUseManager.MultiplyCooldown(cooldownFactor);
         }
     }
 }

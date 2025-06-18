@@ -6,12 +6,12 @@ public class StarBase : MonoBehaviour
     protected CombinedStarCell combinedStarCell;
     protected TileObject tileObject;
     protected TileInfo tileInfo;
-    protected SkillUseManager skillUseManager;
+    //protected SkillUseManager skillUseManager;
     
     
     private void Awake()
     {
-        skillUseManager = SkillUseManager.Instance;
+        //skillUseManager = SkillUseManager.Instance;
         combinedStarCell = GetComponent<CombinedStarCell>();
         if (combinedStarCell == null)
         {

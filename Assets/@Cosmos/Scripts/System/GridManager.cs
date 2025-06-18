@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using static Unity.Cinemachine.CinemachineSplineRoll;
 
 public class GridCell
 {
@@ -11,6 +12,28 @@ public class GridCell
     public Vector3 WorldPosition { get; private set; }
     public bool IsOccupied { get; set; }
     public SpriteRenderer sr { get; set; }
+
+    /// <summary>
+    /// 이 셀에 할당된 인접 효과가 변동되었을때 발동할 이벤트입니다. 이 셀에 놓인 타일 오브젝트가 구독합니다.
+    /// </summary>
+    private event Action _onStarListChange;
+
+    /// <summary>
+    /// 이벤트를 구독할 때 쓰는 메서드입니다.
+    /// </summary>
+    public event Action OnStarListChange
+    {
+        add => _onStarListChange += value;
+        remove => _onStarListChange -= value;
+    }
+
+    /// <summary>
+    /// 이벤트를 발동시킬 때 쓰는 메서드입니다.
+    /// </summary>
+    public void OnStarListChanged()
+    {
+        _onStarListChange?.Invoke();
+    }
 
     public GridCell(Vector3Int gridPos, Vector3 worldPos)
     {
@@ -53,6 +76,8 @@ public class GridCell
     public void AddStarSkill(StarBase starSkill)
     {
         starList.Add(starSkill);
+        //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
+        OnStarListChanged();
     }
     
     public void RemoveStarSkill(StarBase starSkill)
@@ -60,6 +85,8 @@ public class GridCell
         if (starList.Contains(starSkill))
         {
             starList.Remove(starSkill);
+            //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
+            OnStarListChanged();
         }
         else
         {
@@ -208,6 +235,8 @@ public class GridManager : Singleton<GridManager>
             SoundManager.Instance.UISoundClip("DeploymentActivate");
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
+            //곽민준이 친 코드입니다. 해당 그리드에 할당된 인접 효과가 변경되면 타일이 다시 계산하게 합니다.
+            grid[gridPos.x, gridPos.y].OnStarListChange += cellData.GetCombineCell().GetTileObject().UpdateStarList;
             Debug.Log(grid[gridPos.x, gridPos.y].cell);
             Debug.Log(GetCellData(gridPos));
         }
@@ -218,7 +247,9 @@ public class GridManager : Singleton<GridManager>
         if (!IsCellAvailable(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = false;
-            grid[gridPos.x, gridPos.y].ReleaseCellData();
+            //곽민준이 친 코드입니다. 액션을 구독 취소하는 스크립트입니다.
+            grid[gridPos.x, gridPos.y].OnStarListChange -= grid[gridPos.x, gridPos.y].cell.GetCombineCell().GetTileObject().UpdateStarList;
+            grid[gridPos.x, gridPos.y].ReleaseCellData();       
             Debug.Log("해제했습니다");
             grid[gridPos.x, gridPos.y].ChangeSpriteTest(); // 기본 스프라이트로 복원
         }

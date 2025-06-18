@@ -195,7 +195,8 @@ public class PlayerController : MonoBehaviour
         Cell currentCell = _gridManager.GetCellData(currentPos);
         if (currentCell != null)
         {
-            SkillUseManager.Instance.UseSkill(currentPos);
+            //TODO: 여기서 발동하는 로직 원래대로 돌리기
+            //SkillUseManager.Instance.UseSkill(currentPos);
         }
     }
 

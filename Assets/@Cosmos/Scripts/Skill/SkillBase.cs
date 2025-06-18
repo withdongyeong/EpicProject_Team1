@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public abstract class SkillBase : MonoBehaviour
 {
 
-    private SkillUseManager sm;
+    //private SkillUseManager sm;
     [Header("Skill Info")] 
     public string skillName;
     public float cooldown = 5f;
@@ -16,7 +16,7 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Start()
     {
         defaultCooldown = cooldown;
-        sm = SkillUseManager.Instance;
+        //sm = SkillUseManager.Instance;
         if (TryGetComponent<CombineCell>(out CombineCell combineCell))
         {
             _coolTimeMaterial = combineCell.GetSprite().material;
@@ -46,12 +46,12 @@ public abstract class SkillBase : MonoBehaviour
             return false;
         }
 
-        cooldown = defaultCooldown * sm.CooldownFactor;
-        for(int i =0; i < sm.SkillActivationCount; i++)
-        {
-            Debug.Log("sm.SkillActivationCount: " + sm.SkillActivationCount);
-            Activate(user);
-        }
+        //cooldown = defaultCooldown * sm.CooldownFactor;
+        //for(int i =0; i < sm.SkillActivationCount; i++)
+        //{
+        //    Debug.Log("sm.SkillActivationCount: " + sm.SkillActivationCount);
+        //    Activate(user);
+        //}
         lastUsedTime = Time.time;
         return true;
     }
