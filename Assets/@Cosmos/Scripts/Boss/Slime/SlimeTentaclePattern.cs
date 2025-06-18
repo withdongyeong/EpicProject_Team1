@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SlimeTentaclePattern : IBossAttackPattern
 {
     private GameObject _slimeTentacle;
     private int _tentatacleCount;
 
-    private float moveDuration = 0.3f;
-    private float waitDuration = 0.2f;
-    private float tentacleLength = 3f;
-    private float tentacleGrowTime = 0.5f;
-    private float tentacleLifetime = 2f;
+    private float waitDuration = 0.5f;
+    private float tentacleLength = 18f;
+    private float tentacleGrowTime = 0.3f;
+    private float tentacleLifetime = 0.6f;
 
     public string PatternName => "SlimeTentaclePattern";
 
@@ -24,59 +21,101 @@ public class SlimeTentaclePattern : IBossAttackPattern
 
     public IEnumerator Execute(BaseBoss boss)
     {
-        yield return 0;
+        yield return SlimeTentacle(boss);
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return true;
+        return _slimeTentacle != null;
     }
 
     public IEnumerator SlimeTentacle(BaseBoss boss)
     {
-        // 1. 랜덤 위치 선택 (0~9)
-        float randomY = Random.Range(0, 9);
-        Vector3 targetPosition = new Vector3(0, randomY, 0);
+        Vector3 Startposition = boss.transform.position;
 
-        // 2. 천천히 이동
-        Vector3 startPos = boss.gameObject.transform.position;
-        float elapsed = 0;
-        while (elapsed < moveDuration)
+        for (int i = 0; i < _tentatacleCount; i++)
         {
-            boss.gameObject.transform.position = Vector3.Lerp(startPos, targetPosition, elapsed / moveDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            // 1. 랜덤 위치 선택 (0~9)
+            int randomY = boss.BombManager.PlayerController.CurrentY;
+
+            // 2. 위험 알림
+            for(int j = 8; j >= 0; j--)
+            {
+                Vector3Int WarningPosision = new Vector3Int(j, randomY, 0);
+                boss.BombManager.ShowWarningOnly(WarningPosision, 0.8f, WarningType.Type1);
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            Vector3Int endPosition = new Vector3Int(11, randomY, 0);
+
+            // 3. 천천히 이동
+            yield return MoveBossToPosition(boss, endPosition);
+
+            // 4. 0.2초 대기
+            yield return new WaitForSeconds(waitDuration);
+
+            // 5. 촉수 생성
+            GameObject tentacle = GameObject.Instantiate(_slimeTentacle, boss.gameObject.transform.position, Quaternion.identity);
+            boss.StartCoroutine(GrowTentacle(tentacle));
+
+            // 6. 일정 시간 후 삭제
+            GameObject.Destroy(tentacle, tentacleLifetime);
+
+            yield return new WaitForSeconds(1f);
         }
-        boss.gameObject.transform.position = targetPosition;
 
-        // 3. 0.2초 대기
-        yield return new WaitForSeconds(waitDuration);
-
-        // 4. 촉수 생성
-        GameObject tentacle = GameObject.Instantiate(_slimeTentacle, boss.gameObject.transform.position, Quaternion.identity);
-        boss.StartCoroutine(GrowTentacle(tentacle));
-
-        // 5. 일정 시간 후 삭제
-        GameObject.Destroy(tentacle, tentacleLifetime);
-
-        // 패턴 반복 대기 시간 (옵션)
-        yield return new WaitForSeconds(1f);
+        yield return MoveBossToWorldPosition(boss, Startposition);
     }
 
     IEnumerator GrowTentacle(GameObject tentacle)
     {
         Vector3 originalScale = tentacle.transform.localScale;
         Vector3 targetScale = new Vector3(tentacleLength, originalScale.y, originalScale.z);
+        Vector3 startPosition = tentacle.transform.position;
+
         float elapsed = 0;
 
         while (elapsed < tentacleGrowTime)
         {
             float t = elapsed / tentacleGrowTime;
-            tentacle.transform.localScale = Vector3.Lerp(originalScale, targetScale, t);
+
+            // Scale 증가
+            float currentLength = Mathf.Lerp(originalScale.x, targetScale.x, t);
+            tentacle.transform.localScale = new Vector3(currentLength, originalScale.y, originalScale.z);
+
+            // 왼쪽 방향으로 길어지게 위치 보정
+            tentacle.transform.position = startPosition + new Vector3(-(currentLength / 2f), 0, 0);
+
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         tentacle.transform.localScale = targetScale;
+        tentacle.transform.position = startPosition + new Vector3(-(targetScale.x / 2f), 0, 0);
+    }
+
+    /// <summary>
+    /// 보스를 특정 위치로 이동 (그리드 좌표)
+    /// </summary>
+    private IEnumerator MoveBossToPosition(BaseBoss boss, Vector3Int targetGridPos)
+    {
+        Vector3 targetWorldPos = boss.GridSystem.GridToWorldPosition(targetGridPos);
+        yield return MoveBossToWorldPosition(boss, targetWorldPos);
+    }
+
+    /// <summary>
+    /// 보스를 월드 좌표로 이동
+    /// </summary>
+    private IEnumerator MoveBossToWorldPosition(BaseBoss boss, Vector3 targetWorldPos)
+    {
+        float moveSpeed = 8f; // 이동 속도
+
+        while (Vector3.Distance(boss.transform.position, targetWorldPos) > 0.1f)
+        {
+            boss.transform.position = Vector3.MoveTowards(boss.transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        boss.transform.position = targetWorldPos;
     }
 }

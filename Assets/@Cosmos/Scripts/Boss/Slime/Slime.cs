@@ -3,17 +3,13 @@
 public class Slime : BaseBoss
 {
     [Header("슬라임 전용 프리팹들")]
-    public GameObject SlimeMucus;
-
     public GameObject SlimeActtckTentacle;
-
     public GameObject SlimeTrapTentacle;
 
     private void Awake()
     {
         // 기본 스탯 설정
-        MaxHealth = 200;
-        // PatternCooldown = 0.5f;
+        MaxHealth = 400;
     }
 
     /// <summary>
@@ -33,14 +29,26 @@ public class Slime : BaseBoss
     {
         //찌르기 촉수 패턴
         AddGroup()
-            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 5), 1.5f)
+            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 5), 0.0f)
             .SetGroupInterval(1f);
 
-        //
-        //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle));
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
+            .SetGroupInterval(1f);
 
-        //바닥 분출 촉수 패턴
-        // AddAttackPattern(new DiagonalCrossPattern(warningTilePrefab, SlimeTrapTentacle, PlayerController));
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 1f)
+            .SetGroupInterval(1f);
+
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+            .SetGroupInterval(1f);
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
