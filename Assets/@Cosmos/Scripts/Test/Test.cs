@@ -8,6 +8,8 @@ public class Test : MonoBehaviour
     {
         SoundManager.Instance.BGMSoundClip("GameSceneBGM");
         SceneManager.LoadScene("GameScene");
+        // 게임 격자 옮김 (게임에 따라 다르게 할 수도 있을듯)
+        GridManager.Instance.transform.position = new Vector3(7f, 0, 0);
     }
     
     public void TestNextScene()
@@ -19,5 +21,7 @@ public class Test : MonoBehaviour
     {
         SoundManager.Instance.BGMSoundClip("OrcMage");
         SceneManager.LoadScene("GameScene2");
+        // 게임 격자 옮김 (게임에 따라 다르게 할 수도 있을듯)
+        GridManager.Instance.transform.position = new Vector3(7f, 0, 0);
     }
 }
