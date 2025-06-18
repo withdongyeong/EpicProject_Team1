@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
-    
+using UnityEditor.SceneManagement;
+
 /// <summary>
 /// 플레이어 체력 관리 시스템 (무적 시간 및 깜박임 포함)
 /// </summary>
-public class PlayerHealth : MonoBehaviour
+public class PlayerHp : MonoBehaviour
 {
     private PlayerShield _playerShield;
     private PlayerProtection _playerProtection;
@@ -25,8 +26,7 @@ public class PlayerHealth : MonoBehaviour
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
     public bool IsInvincible { get => _isInvincible; }
 
-    public event Action<int> OnHealthChanged;
-    public event Action OnPlayerDeath;
+   
 
     private void Awake()
     {
@@ -43,9 +43,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
-        
-        // 초기 체력 상태 이벤트 발생
-        OnHealthChanged?.Invoke(_currentHealth);
     }
     
     /// <summary>
@@ -68,8 +65,6 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         
-        OnHealthChanged?.Invoke(_currentHealth);
-        
         if (_currentHealth <= 0)
         {
             // 죽었으면 죽음 처리
@@ -79,7 +74,7 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             // 살아있으면 피격 처리 및 무적 시간 시작
-            FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Damaged");
+            FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Damaged");
             SoundManager.Instance.PlayPlayerSound("PlayerDamage");
             
             StartInvincibility();
@@ -158,6 +153,8 @@ public class PlayerHealth : MonoBehaviour
         {
             _spriteRenderer.enabled = true;
         }
+
+        EventBus.PublishPlayerHpChanged(_currentHealth);
     }
     
     /// <summary>
@@ -167,8 +164,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth += amount;
         _currentHealth = Mathf.Min(_maxHealth, _currentHealth);
+        EventBus.PublishPlayerHpChanged(_currentHealth);
         
-        OnHealthChanged?.Invoke(_currentHealth);
     }
 
     /// <summary>
@@ -177,12 +174,14 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망");
+        FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Death");
+        
         
         // 무적 시간 강제 종료 (죽었으니까)
         EndInvincibility();
         
-        FindAnyObjectByType<GameManager>().Player.Animator.SetTrigger("Death");
-        OnPlayerDeath?.Invoke();
+        FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Death");
+        EventBus.PublishPlayerDeath();
     }
     
     /// <summary>

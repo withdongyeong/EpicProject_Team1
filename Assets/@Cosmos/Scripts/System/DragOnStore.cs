@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public class DragOnStore : DraggableObject
     {
         originalObject = storeSlot.GetObject();
         dragObject = Instantiate(originalObject);
-        dragObject.name = "dragObject";
+        //dragObject.name = "dragObject";
     }                                 
     
     protected override void EndDrag()

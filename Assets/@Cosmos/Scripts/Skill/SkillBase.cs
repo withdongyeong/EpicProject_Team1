@@ -13,7 +13,7 @@ public abstract class SkillBase : MonoBehaviour
 
     private Material _coolTimeMaterial;
     
-    private void Start()
+    protected virtual void Start()
     {
         defaultCooldown = cooldown;
         sm = SkillUseManager.Instance;

@@ -12,7 +12,7 @@ public class SkillUseManager : Singleton<SkillUseManager>
     
     public float CooldownFactor => cooldownFactor;
     public int SkillActivationCount => skillActivationCount;
-    protected void Awake()
+    protected override void Awake()
     {
         base.Awake();
         gm = GridManager.Instance;

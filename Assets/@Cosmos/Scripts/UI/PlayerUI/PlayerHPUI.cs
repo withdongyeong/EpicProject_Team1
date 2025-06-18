@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHPUI : MonoBehaviour
@@ -8,7 +9,7 @@ public class PlayerHPUI : MonoBehaviour
     private Image hPUI;
 
     //hp와 보호막 수치가 들어가있는 스크립트입니다
-    private PlayerHealth playerHealth;
+    private PlayerHp _playerHp;
     private PlayerProtection playerProtect;
 
     //현재 hp, 최대 hp, 현재 보호막 수치입니다
@@ -17,21 +18,31 @@ public class PlayerHPUI : MonoBehaviour
     private int currentProtect;
 
 
-    void Start()
+    private void Awake()
     {
-        //초기화하는 과정입니다. UI들과 playerHealth,PlayerProtection을 씬에서 찾아 가져옵니다
+        EventBus.SubscribeGameStart(Init);
+    }
+    
+    private void Update()
+    {
+        ChangeBar();
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStart(Init);
+    }
+    
+    
+    private void Init()
+    {
+        //초기화하는 과정입니다. UI들과 _playerHp,PlayerProtection을 씬에서 찾아 가져옵니다
         protectUI = transform.GetChild(0).GetComponent<Image>();
         hPUI = transform.GetChild(1).GetComponent<Image>();
 
-        playerHealth = FindAnyObjectByType<PlayerHealth>();
-        maxHP = playerHealth.MaxHealth;
+        _playerHp = FindAnyObjectByType<PlayerHp>();
+        maxHP = _playerHp.MaxHealth;
         playerProtect = FindAnyObjectByType<PlayerProtection>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ChangeBar();
     }
 
     /// <summary>
@@ -40,7 +51,7 @@ public class PlayerHPUI : MonoBehaviour
     private void ChangeBar()
     {
         //현재 HP와 현재 보호막을 가져옵니다
-        currenthP = playerHealth.CurrentHealth;
+        currenthP = _playerHp.CurrentHealth;
         currentProtect = playerProtect.ProtectionAmount;
 
         //최대 HP + 현재 보호막에서 최대 HP가 차지하는 분량을 계산합니다
