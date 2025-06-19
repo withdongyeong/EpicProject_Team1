@@ -25,7 +25,9 @@ public class InfoTextRenderer : MonoBehaviour
         { "Totem", "토템<sprite name=\"Totem\">" },
         { "Sword", "검<sprite name=\"Sword\">" },
         { "Fire", "화염<sprite name=\"Fire\">" },
-        { "Ice", "얼음<sprite name=\"Ice\">" }
+        { "Ice", "얼음<sprite name=\"Ice\">" },
+        { "Shield", "방어막<sprite name=\"Shield\">" },
+        { "Barrier", "보호막<sprite name=\"Barrier\">" }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -73,6 +75,7 @@ public class InfoTextRenderer : MonoBehaviour
             {
                 //TextUIResizer textUIResizer = Instantiate(prefab, transform).GetComponentInChildren<TextUIResizer>();
                 //textUIResizer.SetText();
+                Debug.Log(tag + prefab.name);
                 Instantiate(prefab, transform);
             }
 
@@ -116,7 +119,9 @@ public class InfoTextRenderer : MonoBehaviour
                 if(!_textDict.ContainsKey(tag))
                 {
                     _textDict.Add(tag, prefab);
+                    Debug.Log(prefab.name);
                 }
+                
             }
             else
             {
