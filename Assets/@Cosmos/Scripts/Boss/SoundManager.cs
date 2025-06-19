@@ -98,7 +98,6 @@ public class SoundManager : Singleton<SoundManager>
     protected override void Awake()
     {
         base.Awake();
-        EventBus.Init();
 
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
