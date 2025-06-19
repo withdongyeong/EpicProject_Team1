@@ -48,21 +48,20 @@ public class InfoTextRenderer : MonoBehaviour
     {
         //태그 프리팹 추가
         List<string> tags = Parse(tileInfo.GetTileData().Description);
-        if(tags.Count > 0)
+        TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
+        string synergy = "";
+        if (tags.Count > 0)
         {
-            TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
-            string synergy = "";
             foreach (string tag in tags)
             {
                 if(_synergyDict.ContainsKey(tag))
                 {
                     synergy = synergy + _synergyDict[tag] + " ";
                 }
-                
             }
-            synergy += _categotyDict[tileInfo.GetTileData().TileCategory] + " "; // 카테고리 태그 추가
-            synergyText.SetText(synergy);
         }
+        synergy += _categotyDict[tileInfo.GetTileData().TileCategory] + " "; // 카테고리 태그 추가
+        synergyText.SetText(synergy);
 
         //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();

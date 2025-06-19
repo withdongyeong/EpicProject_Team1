@@ -26,9 +26,9 @@ public class TotemSummonSkill : SkillBase
         _totem = Resources.Load<GameObject>(filePath);
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         _totemManager = FindAnyObjectByType<TotemManager>();
         if (_totemManager != null)
         {
