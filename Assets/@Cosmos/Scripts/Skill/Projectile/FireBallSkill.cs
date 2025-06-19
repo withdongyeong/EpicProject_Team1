@@ -12,9 +12,9 @@ public class FireBallSkill : FireBoltSkill
     /// <summary>
     /// 세 번의 발사체를 0.3초 간격으로 발사합니다.
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         if (targetEnemy != null)
         {
             StartCoroutine(FireProjectileWithDelay());
