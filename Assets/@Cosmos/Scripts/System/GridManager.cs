@@ -138,16 +138,16 @@ public class GridCell
 
 public class GridManager : Singleton<GridManager>
 {
-    public GameObject cellPrefab;
+    private GameObject cellPrefab;
     private int maxSize = 9;
     private Vector3Int gridSize;
     public Vector3Int GridSize => gridSize;
-    [SerializeField] private GameObject startPoint;
+    private GameObject startPoint;
     private GridCell[,] grid;
     
     // 스프라이트 관리
-    [SerializeField] private Sprite occupiedSprite; // 점유용 스프라이트
-    [SerializeField] private Sprite defaultSprite; // 기본 스프라이트
+    private Sprite occupiedSprite; // 점유용 스프라이트
+    private Sprite defaultSprite; // 기본 스프라이트
 
     /// <summary>
     /// 점유 스프라이트를 반환합니다.
@@ -168,6 +168,15 @@ public class GridManager : Singleton<GridManager>
     protected override void Awake()
     {
         base.Awake();
+        cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
+        occupiedSprite = Resources.Load<Sprite>("Arts/UI/OccupiedSprite"); // 점유 스프라이트 로드
+        defaultSprite = Resources.Load<Sprite>("Arts/UI/DefaultSprite"); // 기본 스프라이트 로드
+        if(occupiedSprite == null){
+            Debug.LogError("점유 스프라이트를 로드하지 못했습니다. 경로를 확인하세요.");
+        }
+        if(defaultSprite == null){
+            Debug.LogError("기본 스프라이트를 로드하지 못했습니다. 경로를 확인하세요.");
+        }
         InitializeGrid();
         InitGround();
     }

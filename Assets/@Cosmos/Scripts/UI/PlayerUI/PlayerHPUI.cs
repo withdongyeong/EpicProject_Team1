@@ -25,6 +25,7 @@ public class PlayerHPUI : MonoBehaviour
     
     private void Update()
     {
+        if(_playerHp == null) return;
         ChangeBar();
     }
     

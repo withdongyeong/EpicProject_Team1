@@ -9,8 +9,8 @@ using UnityEngine;
 public abstract class BaseBoss : MonoBehaviour
 {
     [Header("기본 스탯")]
-    [SerializeField]
     private int _maxHealth = 100;
+    [SerializeField]
     private int _currentHealth;
     private bool _isDead = false;
     

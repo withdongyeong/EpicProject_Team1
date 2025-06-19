@@ -7,6 +7,7 @@ public class CombineCell : MonoBehaviour
 {
     private GameObject coreCell;
     private SpriteRenderer sr;
+    [SerializeField]
     private SkillBase[] skills;
     private TileObject tileObject;
 

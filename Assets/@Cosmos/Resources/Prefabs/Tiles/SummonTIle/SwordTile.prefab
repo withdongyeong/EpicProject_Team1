@@ -74,6 +74,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedStarCell
       objectReference: {fileID: 0}
+    - target: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -150,7 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
-  targetCategory: 5
 --- !u!4 &7986490609754848299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
@@ -439,10 +442,17 @@ PrefabInstance:
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileSprite
       value: 
-      objectReference: {fileID: 712035800519618848, guid: 29086c31fac99af4ea32afe021cedef9, type: 3}
+      objectReference: {fileID: 21300000, guid: c481c18951dfee140b37e27f1ef4a39d, type: 3}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.description
-      value: "\uAC80\uC744 \uC18C\uD658\uD558\uACE0 \uBAA8\uB4E0 \uAC80\uC774 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+      value: "\uAC80<sprite name=\"Sword\">\uC744 \uC18C\uD658\uD558\uACE0 \uBAA8\uB4E0
+        \uAC80\uC774 \uACF5\uACA9\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9: <color=red>5</color>
+        )\n\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C \uC18C\uD658\uC218<sprite
+        name=\"Summon\">\uC758 \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCategory
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x

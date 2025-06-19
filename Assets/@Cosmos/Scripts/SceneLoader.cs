@@ -9,7 +9,7 @@ public static class SceneLoader
     
 
     public static void LoadTitle() => SceneManager.LoadScene(TitleScene);
-    public static void LoadSetup() => SceneManager.LoadScene(BuildingScene);
+    public static void LoadBuilding() => SceneManager.LoadScene(BuildingScene);
     public static void LoadStage() => SceneManager.LoadScene(StageScene);
     public static void ReloadCurrentScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     public static void LoadSceneWithName(string sceneName) => SceneManager.LoadScene(sceneName);

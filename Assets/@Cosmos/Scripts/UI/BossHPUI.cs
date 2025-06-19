@@ -18,21 +18,13 @@ public class BossHPUI : MonoBehaviour
 
     private void Awake()
     {
+        EventBus.SubscribeGameStart(Init);
         hpUI = transform.GetChild(1).GetComponent<Image>();
         debuffPanel = transform.GetChild(2).gameObject;
         debuffUI = Resources.LoadAll<GameObject>("Prefabs/UI/BossDebuffUI");
         activeDebuffUIs = new Dictionary<BossDebuff, (GameObject icon, GameObject text)>();
     }
-
-    private void Start()
-    {
-        // 최대 체력 설정
-        _enemy = FindAnyObjectByType<BaseBoss>();
-        if (_enemy != null)
-        {
-            maxHP = _enemy.MaxHealth;
-        }
-    }
+    
 
     /// <summary>
     /// 매 프레임 체력 업데이트
@@ -45,7 +37,19 @@ public class BossHPUI : MonoBehaviour
         ChangeBar();
     }
 
-    /// <summary>
+
+
+    private void Init()
+    {
+        // 최대 체력 설정
+        _enemy = FindAnyObjectByType<BaseBoss>();
+        if (_enemy != null)
+        {
+            maxHP = _enemy.MaxHealth;
+        }
+    }
+
+/// <summary>
     /// 체력바를 현재 체력에 맞게 업데이트합니다.
     /// </summary>
     private void ChangeBar()

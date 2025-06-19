@@ -756,7 +756,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3824,11 +3824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cb00028db710c42b5c1669127f0156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 568023074742637454, guid: 3b76cf904a96b334bbb51f4ec2f3e4ad, type: 3}
-  maxSize: 9
-  startPoint: {fileID: 1911385607}
-  occupiedSprite: {fileID: 21300000, guid: 8153df8c128105d4eba6da2f968e5339, type: 3}
-  defaultSprite: {fileID: -4908184131564490280, guid: b46b3f0d34ef26d4f9fdc94eee979d95, type: 3}
 --- !u!4 &2052188540
 Transform:
   m_ObjectHideFlags: 0
@@ -3979,7 +3974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740c41dada43dfe4ba94e006a0266760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadThis: {fileID: 11400000, guid: 6eeac900c2171674fb8601db3046d219, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

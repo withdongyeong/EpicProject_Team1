@@ -10,7 +10,6 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class DragManager : Singleton<DragManager>
 {
-    [SerializeField]
     private GameObject currentDragObject;
     private Camera mainCamera;
     private SmoothRotator smoothRotator;

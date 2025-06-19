@@ -473,11 +473,18 @@ PrefabInstance:
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileSprite
       value: 
-      objectReference: {fileID: -8394182993697925659, guid: 04addf3a4201710498b299f15d617e0a, type: 3}
+      objectReference: {fileID: 21300000, guid: bd60c81f24b7f514e98ee1cbd0ea909b, type: 3}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.description
-      value: "\uAC80\uC744 3\uAC1C\uC18C\uD658\uD558\uACE0 \uC18C\uD658 \uB420 \uB54C\uB9C8\uB2E4
-        \uBAA8\uB4E0 \uAC80\uC774 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+      value: "\uAC80<sprite name=\"Sword\">\uC744 3\uAC1C\uC18C\uD658\uD558\uACE0
+        \uC18C\uD658 \uB420 \uB54C\uB9C8\uB2E4 \uBAA8\uB4E0 \uAC80<sprite name=\"Sword\">\uC774
+        \uACF5\uACA9\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9: <color=red>5</color>)\n\uBCC4<sprite
+        name=\"Star\">\uC5D0 \uC704\uCE58\uD55C \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
+        \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCategory
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x
@@ -608,6 +615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombineStarCell
       objectReference: {fileID: 0}
+    - target: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -692,7 +703,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
-  targetCategory: 5
 --- !u!1001 &9129099733213938996
 PrefabInstance:
   m_ObjectHideFlags: 0

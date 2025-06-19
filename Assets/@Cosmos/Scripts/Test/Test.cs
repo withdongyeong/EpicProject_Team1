@@ -15,6 +15,7 @@ public class Test : MonoBehaviour
     public void TestNextScene()
     {
         SceneManager.LoadScene("StageScene_KYH");
+        GridManager.Instance.transform.position = new Vector3(7f, 0, 0);
     }
     // 다음 씬으로 넘어가는 함수
     public void NextScene2()

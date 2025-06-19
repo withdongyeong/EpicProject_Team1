@@ -169,6 +169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedStarCell
       objectReference: {fileID: 0}
+    - target: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -256,7 +260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
-  targetCategory: 1
 --- !u!4 &8094219818973424765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
@@ -727,11 +730,18 @@ PrefabInstance:
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.tileSprite
       value: 
-      objectReference: {fileID: -8262534425414574923, guid: 4a1e83143faf5dc49b66c3e2a0581595, type: 3}
+      objectReference: {fileID: 21300000, guid: bbdf7988e06819a45988df62dc79e5d8, type: 3}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.description
-      value: "3\uAC1C\uC758 \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n\uC801\uC911\uC2DC:
-        \uC810\uD654\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      value: "3\uAC1C\uC758 \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
+        <color=red>5 X 3</color> )\n\uC801\uC911\uC2DC: \uD654\uC5FC<sprite name=\"Fire\">\uC744
+        \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C
+        \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC758 \uCFE8\uD0C0\uC784\uC744
+        10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCategory
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x
