@@ -16,7 +16,7 @@ public class InfoTextRenderer : MonoBehaviour
         { TileCategory.MagicCircle, "마법진<sprite name=\"MagicCircle\">" },
         { TileCategory.Armor, "방어구<sprite name=\"Armor\">" },
         { TileCategory.Consumable, "소모품<sprite name=\"Potion\">" },
-        { TileCategory.Accessory, "장신구<sprite name=\"Trinket\">" },
+        { TileCategory.Trinket, "장신구<sprite name=\"Trinket\">" },
         { TileCategory.Summon, "소환수<sprite name=\"Summon\">" }
     };
 

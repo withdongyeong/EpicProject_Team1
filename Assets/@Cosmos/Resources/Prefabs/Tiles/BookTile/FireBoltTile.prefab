@@ -288,7 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
-  targetCategory: 1
+  starBuff:
+    passive_CoolTimeBuff: 0.1
+    passive_DamageBuff: 0.1
 --- !u!1001 &8664842753980697619
 PrefabInstance:
   m_ObjectHideFlags: 0
