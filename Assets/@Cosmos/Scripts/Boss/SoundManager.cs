@@ -89,8 +89,8 @@ public class SoundManager : Singleton<SoundManager>
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"ShopSceneBGM", 0.2f},
-        {"GameSceneBGM", 0.3f },
         {"OrcMage", 0.3f },
+        {"GameSceneBGM", 0.2f },
         {"SlimeBGM", 0.1f }
     };
 

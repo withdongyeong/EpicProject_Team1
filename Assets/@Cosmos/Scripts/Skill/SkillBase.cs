@@ -129,18 +129,28 @@ public abstract class SkillBase : MonoBehaviour
     /// </summary>
     protected virtual void InitPassiveStarList()
     {
-        finalCooldown = cooldown;
+        //먼저 저번 게임의 인접 효과가 적용되지 않게 하도록, 초기화합니다.
+        ClearStarBuff();
         if(starList != null)
         {
             foreach (StarBase star in starList)
             {
                 StarBuff starBuff = star.StarBuff;
-                finalCooldown *= star.CooldownFactor;
+                finalCooldown *= (1-star.CooldownFactor);
                 starBuff.Action_OnActivate.Invoke(tileObject);
                 onActivateAction += starBuff.Action_OnActivate;
             }
         }
         
+    }
+
+    /// <summary>
+    /// 현재 적용된 인접 효과들을 전부 제거합니다.
+    /// </summary>
+    protected virtual void ClearStarBuff()
+    {
+        finalCooldown = cooldown;
+        onActivateAction = null;
     }
 
     protected virtual void OnDestroy()
