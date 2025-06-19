@@ -41,7 +41,6 @@ public abstract class SkillBase : MonoBehaviour
     {
         //'전투가 시작될때' 타이밍입니다.
         EventBus.SubscribeGameStart(InitPassiveStarList);
-        //실험
     }
 
     protected virtual void Start()

@@ -368,6 +368,10 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
+    /// <summary>
+    /// 이동 불가 위치를 추가합니다. 이미 추가된 위치는 무시합니다.
+    /// </summary>
+    /// <param name="position"></param>
     public void AddUnmovableGridPosition(Vector3Int position)
     {
         if (!unmovableGridPositions.Contains(position))
@@ -377,6 +381,22 @@ public class GridManager : Singleton<GridManager>
         else
         {
             Debug.LogWarning("이미 추가된 이동 불가 위치입니다: " + position);
+        }
+    }
+
+    /// <summary>
+    /// 이동 불가 위치를 제거합니다. 존재하지 않는 위치는 무시합니다.
+    /// </summary>
+    /// <param name="position"></param>
+    public void RemoveUnmovableGridPosition(Vector3Int position)
+    {
+        if (unmovableGridPositions.Contains(position))
+        {
+            unmovableGridPositions.Remove(position);
+        }
+        else
+        {
+            Debug.LogWarning("이동 불가 위치에 존재하지 않는 위치입니다: " + position);
         }
     }
 
