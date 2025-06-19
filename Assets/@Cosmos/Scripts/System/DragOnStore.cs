@@ -38,9 +38,13 @@ public class DragOnStore : DraggableObject
             GameObject g = DragManager.Instance.GetCurrentDragObject();
             foreach (Cell cell in g.GetComponentsInChildren<Cell>())
             {
-                cell.AddComponent<BoxCollider2D>();
-                HoverTileInfo hti = cell.AddComponent<HoverTileInfo>();
-                hti.SetTileObject(g.GetComponent<TileObject>());
+                if(cell.GetType() == typeof(Cell))
+                {
+                    cell.AddComponent<BoxCollider2D>();
+                    HoverTileInfo hti = cell.AddComponent<HoverTileInfo>();
+                    hti.SetTileObject(g.GetComponent<TileObject>());
+                }
+                
             }
             
             

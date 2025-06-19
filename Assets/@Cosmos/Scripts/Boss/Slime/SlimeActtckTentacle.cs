@@ -2,7 +2,7 @@
 
 public class SlimeActtckTentacle : MonoBehaviour
 {
-    private int damage = 10;
+    private int damage = 20;
 
     void OnTriggerEnter2D(Collider2D other)
     {

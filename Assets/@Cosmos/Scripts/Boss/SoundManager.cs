@@ -65,6 +65,16 @@ public class SoundManager : Singleton<SoundManager>
         {"OrcMage_SpikeActivate", 0.2f }
     };
 
+    //아라크네 사운드 딕셔너리
+    private Dictionary<string, AudioClip> SlimeSoundDictionary = new Dictionary<string, AudioClip>();
+    //아라크네 볼륨 딕셔너리
+    private Dictionary<string, float> SlimeSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"PoisionExplotionActivate", 1f},
+        {"PoisonBallActivate", 1f },
+        {"SlimeTentacleActivate", 0.5f },
+    };
+
 
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
@@ -82,7 +92,8 @@ public class SoundManager : Singleton<SoundManager>
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"GameSceneBGM", 0.3f },
-        {"OrcMage", 0.3f }
+        {"OrcMage", 0.3f },
+        {"SlimeBGM", 0.1f }
     };
 
 
@@ -131,6 +142,15 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
+        AudioClip[] SlimeMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Slime");
+
+        foreach (AudioClip clip in SlimeMageaudioClips)
+        {
+            if (!SlimeSoundDictionary.ContainsKey(clip.name))
+            {
+                SlimeSoundDictionary.Add(clip.name, clip);
+            }
+        }
 
         AudioClip[] UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
 
@@ -247,11 +267,32 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     /// <summary>
+    /// 슬라임 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void SlimeSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = SlimeSoundDictionary.ContainsKey(clip) ? SlimeSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+
+    /// <summary>
     /// UI 사운드 재생 - UI가 나오면 수정 필요
     /// </summary>
     public void UISoundClip(string clip)
     {
-        Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
+        //Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
@@ -264,7 +305,7 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     /// <summary>
-    /// UI 사운드 재생 - UI가 나오면 수정 필요
+    /// BGM 사운드 재생 - UI가 나오면 수정 필요
     /// </summary>
     public void BGMSoundClip(string clip)
     {
@@ -273,8 +314,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = BGMSoundDictionary.ContainsKey(clip) ? BGMSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                bgm = tileClip;
-                PlayBGMSound(bgm, bgmVolume);
+                float volume = BGMSoundVolumeDictionary.ContainsKey(clip) ? BGMSoundVolumeDictionary[clip] : 1f;
+                PlayBGMSound(tileClip, volume);
             }
         }
     }

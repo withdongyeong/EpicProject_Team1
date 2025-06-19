@@ -66,7 +66,7 @@ public class StoreSlot : MonoBehaviour
         {
             isPurchased = true; // 구매 상태로 변경
             image.color = Color.gray; // 색상 변경
-            Debug.Log($"오브젝트 구매 완료: {objectPrefab.name} (가격: {objectCost})");
+            //Debug.Log($"오브젝트 구매 완료: {objectPrefab.name} (가격: {objectCost})");
             return true;
         }
         else // 돈이 없어요
@@ -79,7 +79,7 @@ public class StoreSlot : MonoBehaviour
     }
     public void SetSlot(int cost, GameObject prefab)
     {
-        Debug.Log(cost);
+        //Debug.Log(cost);
         this.objectCost = cost;
         this.objectPrefab = prefab;
         isPurchased = false; // 초기화
