@@ -16,7 +16,7 @@ public class StarBase : MonoBehaviour
     //protected SkillUseManager skillUseManager;
     
     
-    private void Awake()
+    protected virtual void Awake()
     {
         //skillUseManager = SkillUseManager.Instance;
         combinedStarCell = GetComponent<CombinedStarCell>();
@@ -24,18 +24,9 @@ public class StarBase : MonoBehaviour
         {
             Debug.LogError("CombinedStarCell component not found in parent of StarBase.");
         }
-        //실험용 구문입니다.
-        starBuff.RegisterActivateAction(ActivateManaTurret);
+
     }
 
-    //이것도 실험용 구문입니다.
-    private void ActivateManaTurret(TileObject tile)
-    {
-        if(tile.GetTileData().TileCategory == TileCategory.Weapon)  
-        {
-            Debug.Log("마나포탑 발사");
-        }
-    }
 
 
 

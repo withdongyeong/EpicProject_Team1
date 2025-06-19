@@ -8,26 +8,25 @@ public class ManaTurretStarSkill : StarBase
     private BaseBoss targetEnemy;
 
     public int Damage { get => damage; set => damage = value; }
-    
-    public override void Activate(TileObject tileObject)
+
+    protected override void Awake()
     {
-        base.Activate(tileObject);
-
-        // 이동불가 좌표에 위치 추가
-        GridManager.Instance.AddUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
-
-        targetEnemy = FindAnyObjectByType<BaseBoss>();
-        if (targetEnemy != null)
-        {
-            ActivateManaTurret();
-        }
+        base.Awake();
+        starBuff.RegisterActivateAction(ActivateManaTurret);
+        EventBus.SubscribeGameStart(HandleGameStart);
     }
 
-    private void ActivateManaTurret()
+    public void HandleGameStart()
+    {
+        targetEnemy = FindAnyObjectByType<BaseBoss>();
+        GridManager.Instance.AddUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
+    }
+
+    private void ActivateManaTurret(TileObject tileObject)
     {
         // 무기 스킬이 먼저 나가도록 대기
         //yield return new WaitForSeconds(1f);
-        if (tileInfo.TileCategory == TileCategory.Weapon && projectilePrefab != null)
+        if (tileObject.GetTileData().TileCategory == TileCategory.Weapon && projectilePrefab != null)
         {
             Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             Vector3 direction = (targetEnemy.transform.position - spawnPos).normalized;
@@ -35,5 +34,11 @@ public class ManaTurretStarSkill : StarBase
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStart(HandleGameStart);
+        GridManager.Instance.RemoveUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
     }
 }

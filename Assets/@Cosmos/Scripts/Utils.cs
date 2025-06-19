@@ -115,7 +115,7 @@ public class TileInfo
 
 
     /// <summary>
-    /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션 리스트입니다.
+    /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션입니다.
     /// </summary>
     private Action<TileObject> action_OnActivate;
 

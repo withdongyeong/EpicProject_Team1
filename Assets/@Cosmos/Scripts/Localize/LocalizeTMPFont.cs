@@ -20,7 +20,7 @@ public class LocalizeTMPFont : LocalizedAssetEvent<
     }
 }
 
-// ✅ LocalizedAsset<T>를 상속해야 함
+// LocalizedAsset<T>를 상속해야 함
 [System.Serializable]
 public class LocalizedTMPFont : LocalizedAsset<TMP_FontAsset> { }
 
