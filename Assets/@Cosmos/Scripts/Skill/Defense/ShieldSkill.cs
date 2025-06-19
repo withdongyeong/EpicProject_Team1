@@ -9,9 +9,9 @@ public class ShieldSkill : SkillBase
     /// <summary>
     /// 타일 발동 - 플레이어 방어 효과 부여
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         _playerShield = FindAnyObjectByType<PlayerShield>();
         if (_playerShield != null)
         {

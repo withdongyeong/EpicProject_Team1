@@ -84,6 +84,7 @@ public class GridCell
     {
         if (starList.Contains(starSkill))
         {
+            Debug.Log("스타 스킬 제거합니다");
             starList.Remove(starSkill);
             //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
             OnStarListChanged();
@@ -149,6 +150,11 @@ public class GridManager : Singleton<GridManager>
     private Sprite occupiedSprite; // 점유용 스프라이트
     private Sprite defaultSprite; // 기본 스프라이트
 
+    // 이동불가 그리드
+    [SerializeField] private List<Vector3Int> unmovableGridPositions = new List<Vector3Int>();
+
+    public List<Vector3Int> UnmovableGridPositions => unmovableGridPositions;
+
     /// <summary>
     /// 점유 스프라이트를 반환합니다.
     /// </summary>
@@ -164,6 +170,7 @@ public class GridManager : Singleton<GridManager>
     {
         return defaultSprite;
     }
+
 
     protected override void Awake()
     {
@@ -196,7 +203,7 @@ public class GridManager : Singleton<GridManager>
             }
         }
     }
-
+    
     private void InitGround()
     {
         GameObject gridCells = new GameObject("GridBlocks");
@@ -240,6 +247,15 @@ public class GridManager : Singleton<GridManager>
             SoundManager.Instance.UISoundClip("DeploymentActivate");
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
+
+            //List<StarBase> starskills = GetStarSkills(gridPos);
+            //if (starskills != null && starskills.Count > 0)
+            //{
+            //    foreach (StarBase starSkill in starskills)
+            //    {
+            //        starSkill.GetComponent<CombinedStarCell>().UpdateAdjacentTileObjects(); // 인접 효과를 받는 타일 오브젝트 업데이트
+            //    }
+            //}
             //곽민준이 친 코드입니다. 해당 그리드에 할당된 인접 효과가 변경되면 타일이 다시 계산하게 합니다.
             grid[gridPos.x, gridPos.y].OnStarListChange += cellData.GetCombineCell().GetTileObject().UpdateStarList;
             //Debug.Log(grid[gridPos.x, gridPos.y].cell);
@@ -356,6 +372,19 @@ public class GridManager : Singleton<GridManager>
             }
         }
     }
+
+    public void AddUnmovableGridPosition(Vector3Int position)
+    {
+        if (!unmovableGridPositions.Contains(position))
+        {
+            unmovableGridPositions.Add(position);
+        }
+        else
+        {
+            Debug.LogWarning("이미 추가된 이동 불가 위치입니다: " + position);
+        }
+    }
+
     //---------------------------------------------------------------------------------------
     // 테스트 메서드들
     public void TestPrintInventoryItemDataGrid()

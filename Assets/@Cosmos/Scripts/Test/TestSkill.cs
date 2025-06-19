@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class TestSkill : SkillBase
 {
-    private void Awake()
+    protected override void  Awake()
     {
+        base.Awake();
         cooldown = 5;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Debug.Log("시작함");
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         FindAnyObjectByType<BaseBoss>().TakeDamage(10);
-        Debug.Log("TestSkill activated by " + user.name);
     }
 }

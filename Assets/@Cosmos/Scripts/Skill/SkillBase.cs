@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,18 +16,32 @@ public abstract class SkillBase : MonoBehaviour
     private float cooldownFactor;
     //계수를 적용한 최종 쿨다운 입니다.
     private float finalCooldown;
+
     private float lastUsedTime = -Mathf.Infinity;
 
     private Material _coolTimeMaterial;
+
+    //타일 오브젝트입니다.
+    protected TileObject tileObject;
 
     /// <summary>
     /// 적용받고 있는 인접효과 리스트입니다.
     /// </summary>
     protected List<StarBase> starList;
 
+    /// <summary>
+    /// Activate때 발동시킬 인접효과 함수들의 액션입니다.
+    /// </summary>
+    protected Action<TileObject> onActivateAction;
+
+
+
+
     protected virtual void Awake()
     {
+        //'전투가 시작될때' 타이밍입니다.
         EventBus.SubscribeGameStart(InitPassiveStarList);
+        //실험
     }
 
     protected virtual void Start()
@@ -37,6 +52,7 @@ public abstract class SkillBase : MonoBehaviour
             _coolTimeMaterial = combineCell.GetSprite().material;
             _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
             _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
+            tileObject = combineCell.GetTileObject();
         }
 
     }
@@ -54,14 +70,14 @@ public abstract class SkillBase : MonoBehaviour
     /// <summary>
     /// 스킬 발동 시도. 쿨타임을 체크하고 성공 시 Activate 호출.
     /// </summary>
-    public bool TryActivate(GameObject user)
+    public bool TryActivate()
     {
         if (IsOnCooldown)
         {
             return false;
         }
 
-        Activate(user);
+        Activate();
 
         //cooldown = defaultCooldown * sm.CooldownFactor;
         //for(int i =0; i < sm.SkillActivationCount; i++)
@@ -76,9 +92,18 @@ public abstract class SkillBase : MonoBehaviour
     /// <summary>
     /// 자식 클래스에서 반드시 구현해야 하는 스킬 효과
     /// </summary>
-    protected virtual void Activate(GameObject user)
+    protected virtual void Activate()
     {
         SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
+
+        if(onActivateAction == null)
+        {
+
+        }
+        // 타일 발동시 발동시킬 인접 효과의 액션 리스트를 발동시킵니다.
+        onActivateAction?.Invoke(tileObject);
+        
+        
     }
 
     /// <summary>
@@ -90,7 +115,10 @@ public abstract class SkillBase : MonoBehaviour
     }
 
 
-    //현재 적용되는 인접 효과를 업데이트하는 함수
+    /// <summary>
+    /// 현재 적용되는 인접 효과를 업데이트하는 함수
+    /// </summary>
+    /// <param name="starBases"></param>
     public void UpdateStarList(List<StarBase> starBases)
     {
         starList = starBases;
@@ -106,7 +134,10 @@ public abstract class SkillBase : MonoBehaviour
         {
             foreach (StarBase star in starList)
             {
+                StarBuff starBuff = star.StarBuff;
                 finalCooldown *= star.CooldownFactor;
+                starBuff.Action_OnActivate.Invoke(tileObject);
+                onActivateAction += starBuff.Action_OnActivate;
             }
         }
         

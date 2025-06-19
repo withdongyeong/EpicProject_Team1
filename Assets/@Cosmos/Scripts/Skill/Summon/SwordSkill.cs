@@ -8,14 +8,15 @@ public class SwordSkill : SkillBase
     private GameObject[] swordPrefabs;
     private GameObject summonedSword;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         swordPrefabs = Resources.LoadAll<GameObject>("Prefabs/Swords");
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         // 타겟 적 찾기
         targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)

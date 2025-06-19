@@ -112,7 +112,8 @@ public class PlayerController : MonoBehaviour
         int newY = _currentY + dy;
         Vector3Int pos = new Vector3Int(newX, newY, 0);
         
-        if (_gridManager.IsWithinGrid(pos))
+        bool isMovable = _gridManager.UnmovableGridPositions.Contains(pos) == false; // 이동 불가능한 위치인지 확인
+        if (_gridManager.IsWithinGrid(pos) && isMovable)
         {
             StartCoroutine(MoveAnimation(pos));
             return true;

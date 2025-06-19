@@ -26,11 +26,11 @@ public class TotemSummonSkill : SkillBase
         _totem = Resources.Load<GameObject>(filePath);
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
-        _totemHandler = FindAnyObjectByType<TotemHandler>();
-        if (_totemHandler != null)
+        base.Activate();
+        _totemManager = FindAnyObjectByType<TotemManager>();
+        if (_totemManager != null)
         {
             var summonedTotem = Instantiate(_totem, _totemHandler.transform);
             summonedTotem.transform.localPosition = Vector3.zero;

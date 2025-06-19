@@ -779,14 +779,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5239491403843918143}
+      addedObject: {fileID: 6290757629958239110}
   m_SourcePrefab: {fileID: 100100000, guid: eff93a65110a3754a935d437437ab34d, type: 3}
 --- !u!1 &1758704872815447753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
   m_PrefabInstance: {fileID: 6166540374215475006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5239491403843918143
+--- !u!114 &6290757629958239110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,10 +795,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758704872815447753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fc19423f89470439de5bdf4f95764d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3aa38ed277ed0784b8e5edcb9f7c8db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
+  starBuff:
+    passive_CoolTimeBuff: 0.1
+    passive_DamageBuff: 0.1
 --- !u!4 &2959522034681498651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
@@ -1378,7 +1381,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a5aeafa8e35617a41831db5cab4582a1, type: 3}
     - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: tileInfo.description
-      value: "\uAC1C\uBCC4\uCE78(3): \uCCB4\uB825\uC744 <color=green>15</color> \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\uBCC4<sprite
+      value: "\uAC1C\uBCC4\uCE78(3): \uCCB4\uB825\uC744 <color=green>15</color> \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n<sprite
         name=\"Star\">\uC5D0 \uC704\uCE58\uD55C \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC758
         \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
       objectReference: {fileID: 0}

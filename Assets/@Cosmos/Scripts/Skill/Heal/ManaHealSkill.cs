@@ -7,7 +7,7 @@ public class ManaHealSkill : HealSkill
     /// <summary>
     /// 타일 발동 - 플레이어 체력 회복
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
         _playerMana = FindAnyObjectByType<PlayerMana>();
         if (_playerMana != null)

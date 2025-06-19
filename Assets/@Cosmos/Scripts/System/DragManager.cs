@@ -94,6 +94,7 @@ public class DragManager : Singleton<DragManager>
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
+        currentDragObject.GetComponent<TileObject>().UpdateStarList();
     }
 
 

@@ -2,8 +2,9 @@
 
 public class IcicleSkill : ProjectileSkill
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         damage = 5;
     }
 

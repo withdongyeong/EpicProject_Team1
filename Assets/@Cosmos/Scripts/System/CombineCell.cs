@@ -58,7 +58,7 @@ public class CombineCell : MonoBehaviour
         {
             if (skill != null)
             {
-                skill.TryActivate(coreCell);
+                skill.TryActivate();
             }
             else
             {
