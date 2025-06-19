@@ -18,7 +18,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss != null && _groundSpikePrefab != null && boss.BombManager != null;
+        return boss != null && _groundSpikePrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         List<Vector3Int> bossArea = GetBossArea(position);
         
         // 전조 → 데미지 (이펙트 없음)
-        boss.BombManager.ExecuteWarningThenDamage(bossArea, position, 0.8f, 30, WarningType.Type2);
+        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 0.8f, 30, WarningType.Type2);
         yield return new WaitForSeconds(0.8f);
     }
 
@@ -115,7 +115,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             
             // 보스 위치 공격 (전조 + 피격 판정)
             List<Vector3Int> bossArea = GetBossArea(currentPos);
-            boss.BombManager.ExecuteWarningThenDamage(bossArea, currentPos, 0.8f, 25, WarningType.Type2);
+            boss.BombHandler.ExecuteWarningThenDamage(bossArea, currentPos, 0.8f, 25, WarningType.Type2);
             
             // 스파이크 공격 (번갈아가며)
             yield return ExecuteAlternatingSpike(boss, currentPos, stepCount);
@@ -158,7 +158,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             List<Vector3Int> spikeLine = CreateSpikeLine(centerPos, direction);
             if (spikeLine.Count > 0)
             {
-                boss.BombManager.ExecuteFixedBomb(spikeLine, centerPos, _groundSpikePrefab,
+                boss.BombHandler.ExecuteFixedBomb(spikeLine, centerPos, _groundSpikePrefab,
                                                   warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
             }
         }

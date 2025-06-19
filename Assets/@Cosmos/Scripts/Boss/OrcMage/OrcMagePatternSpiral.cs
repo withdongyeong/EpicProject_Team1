@@ -18,7 +18,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss != null && _groundSpikePrefab != null && boss.BombManager != null;
+        return boss != null && _groundSpikePrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
             // 4개씩 그룹 동시 실행
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
-                boss.BombManager.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _groundSpikePrefab,
+                boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _groundSpikePrefab,
                                                   warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
             }
 

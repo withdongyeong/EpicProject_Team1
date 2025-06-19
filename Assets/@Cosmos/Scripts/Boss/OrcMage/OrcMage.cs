@@ -14,8 +14,9 @@ public class OrcMage : BaseBoss
     /// <summary>
     /// 오크 메이지 초기화 - 고유한 스탯 설정
     /// </summary>
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // 기본 스탯 설정
         MaxHealth = 600;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");

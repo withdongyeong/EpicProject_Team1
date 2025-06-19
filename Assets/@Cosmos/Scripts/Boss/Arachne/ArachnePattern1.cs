@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 아라크네 패턴1 - BombManager 사용 버전
+/// 아라크네 패턴1 - BombHandler 사용 버전
 /// </summary>
 public class ArachnePattern1 : IBossAttackPattern
 {
@@ -53,14 +53,14 @@ public class ArachnePattern1 : IBossAttackPattern
     public bool CanExecute(BaseBoss boss)
     {
         
-        var test1 = boss.BombManager;
-        var test2 = boss.BombManager.PlayerController;
+        var test1 = boss.BombHandler;
+        var test2 = boss.BombHandler.PlayerController;
         var test3 = _lToRspiderLegPrefab;
-        var test4 = boss.BombManager != null && 
-                    boss.BombManager.PlayerController != null &&
+        var test4 = boss.BombHandler != null && 
+                    boss.BombHandler.PlayerController != null &&
                     _lToRspiderLegPrefab != null;
-        return boss.BombManager != null && 
-               boss.BombManager.PlayerController != null &&
+        return boss.BombHandler != null && 
+               boss.BombHandler.PlayerController != null &&
                _lToRspiderLegPrefab != null;
     }
 
@@ -90,13 +90,13 @@ public class ArachnePattern1 : IBossAttackPattern
             }
 
             //이펙트 데미지
-            boss.BombManager.ExecuteFixedBomb(EffectslashShape, centerPos, _rToLspiderLegPrefab,
+            boss.BombHandler.ExecuteFixedBomb(EffectslashShape, centerPos, _rToLspiderLegPrefab,
                                   warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
             yield return new WaitForSeconds(0.05f);
 
             // 데미지만
-            boss.BombManager.ExecuteWarningThenDamage(slashShape, centerPos,
+            boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
                                               warningDuration: 0.8f, damage: 20);
 
             // 사운드 재생
@@ -135,13 +135,13 @@ public class ArachnePattern1 : IBossAttackPattern
             }
 
             //이펙트
-            boss.BombManager.ExecuteFixedBomb(EffectslashShape, centerPos, _lToRspiderLegPrefab,
+            boss.BombHandler.ExecuteFixedBomb(EffectslashShape, centerPos, _lToRspiderLegPrefab,
                                   warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
             yield return new WaitForSeconds(0.05f);
 
             // 데미지만
-            boss.BombManager.ExecuteWarningThenDamage(slashShape, centerPos,
+            boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
                                               warningDuration: 0.8f, damage: 20);
 
             // 사운드 재생

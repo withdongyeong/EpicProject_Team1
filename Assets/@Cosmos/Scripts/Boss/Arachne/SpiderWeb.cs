@@ -14,6 +14,7 @@ public class SpiderWeb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(!collision.gameObject.CompareTag("Player"))return;
         PlayerController playerController = collision.GetComponent<PlayerController>();
 
         Debug.Log(playerController.CurrentX + ", " + playerController.CurrentY);

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 수정된 아라크네 거미줄 패턴 - BombAvoidanceManager 사용
+/// 수정된 아라크네 거미줄 패턴 - BombAvoidanceHandler 사용
 /// </summary>
 public class ArachneSpiderWebPattern : IBossAttackPattern
 {
@@ -47,7 +47,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager.PlayerController != null && _spiderWebPrefab != null && boss.BombManager != null;
+        return boss.BombHandler.PlayerController != null && _spiderWebPrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
         {
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
-                boss.BombManager.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab,
+                boss.BombHandler.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab,
                                               warningDuration: 0.5f, explosionDuration: 5.0f, damage: 0, warningType: WarningType.Type3);
             }
         }    
@@ -84,7 +84,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// <returns>유효한 랜덤 위치</returns>
     private Vector3Int GenerateRandomPositionExcludingPlayer(BaseBoss boss)
     {
-        Vector3Int playerGridPos = GridManager.Instance.WorldToGridPosition(boss.BombManager.PlayerController.transform.position);
+        Vector3Int playerGridPos = GridManager.Instance.WorldToGridPosition(boss.BombHandler.PlayerController.transform.position);
         
         for (int attempts = 0; attempts < 20; attempts++) // 최대 20번 시도
         {

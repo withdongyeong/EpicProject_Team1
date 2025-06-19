@@ -22,26 +22,28 @@ public class PlayerHPUI : MonoBehaviour
    public Vector3 offsetPosition = new Vector3(0, 2, 0); // 플레이어 위 오프셋
    public float uiScale = 0.005f; // UI 크기 조절
 
-   private void Awake()
-   {
-       EventBus.SubscribeGameStart(Init);
-   }
-   
-   private void Update()
-   {
-       ChangeBar();
-   }
-   
-   private void OnDestroy()
-   {
-       EventBus.UnsubscribeGameStart(Init);
-   }
-   
-   private void Init()
-   {
-       //UI 초기화
-       protectUI = transform.GetChild(0).GetComponent<Image>();
-       hPUI = transform.GetChild(1).GetComponent<Image>();
+    private void Awake()
+    {
+        EventBus.SubscribeGameStart(Init);
+    }
+    
+    private void Update()
+    {
+        if(_playerHp == null) return;
+        ChangeBar();
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStart(Init);
+    }
+    
+    
+    private void Init()
+    {
+        //초기화하는 과정입니다. UI들과 _playerHp,PlayerProtection을 씬에서 찾아 가져옵니다
+        protectUI = transform.GetChild(0).GetComponent<Image>();
+        hPUI = transform.GetChild(1).GetComponent<Image>();
 
        _playerHp = FindAnyObjectByType<PlayerHp>();
        if (_playerHp != null)

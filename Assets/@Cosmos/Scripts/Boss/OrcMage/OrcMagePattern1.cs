@@ -32,7 +32,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
         /// <returns>실행 가능 여부</returns>
         public bool CanExecute(BaseBoss boss)
         {
-            return boss != null && _frogPrefab != null && boss.BombManager != null;
+            return boss != null && _frogPrefab != null && boss.BombHandler != null;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
             Vector3Int warningPos = new Vector3Int(8, row, 0);
             
             // Type3 전조 0.2초 동안 표시
-            boss.BombManager.ShowWarningOnly(warningPos, 0.2f, type);
+            boss.BombHandler.ShowWarningOnly(warningPos, 0.2f, type);
             
             // 전조 표시 시간 대기
             yield return new WaitForSeconds(0.2f);

@@ -20,7 +20,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
 
         public bool CanExecute(BaseBoss boss)
         {
-            return boss != null && _groundSpikePrefab != null && boss.BombManager != null;
+            return boss != null && _groundSpikePrefab != null && boss.BombHandler != null;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
                 Vector3Int center = new Vector3Int(4, 8 - row, 0); // 위부터 시작
 
                 boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
-                boss.BombManager.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
+                boss.BombHandler.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
                                                   warningDuration: 0.3f, explosionDuration: 0.5f, damage: 25, WarningType.Type1);
 
                 yield return new WaitForSeconds(0.2f); // 빠른 연속 실행

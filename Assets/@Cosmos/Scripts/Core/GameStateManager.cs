@@ -17,7 +17,7 @@ public class GameStateManager : Singleton<GameStateManager>
         // 타임스케일 매니저 참조 확보
         _timeScaleManager = TimeScaleManager.Instance;
         // 기본 상태 설정
-        SetGameState(GameState.Playing);
+        SetGameState(GameState.Building);
     }
 
     /// <summary>
@@ -31,11 +31,11 @@ public class GameStateManager : Singleton<GameStateManager>
         switch (newState)
         {
             case GameState.Playing:
-                Time.timeScale = 1.0f;
+                _timeScaleManager.ResetTimeScale();
                 break;
             case GameState.Victory:
             case GameState.Defeat:
-                Time.timeScale = 0.0f;
+                _timeScaleManager.StopTimeScale();
                 break;
         }
         

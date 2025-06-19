@@ -14,7 +14,7 @@ public static class EventBus
         _isInitialized = true;
     }
     //GameStart 관련 이벤트
-    private static Action _onGameStart;
+    private static Action _onGameStart; //게임 자체의 시작이 아닌 Stage 시작임... 오해금물 !
     public static void SubscribeGameStart(Action handler) => _onGameStart += handler; 
     public static void UnsubscribeGameStart(Action handler) => _onGameStart -= handler;
     public static void PublishGameStart() => _onGameStart?.Invoke();

@@ -15,8 +15,9 @@ public class Arachne : BaseBoss
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // 기본 스탯 설정
         MaxHealth = 400;
         Debug.Log($"Arachne.Awake: MaxHealth set to {MaxHealth}");

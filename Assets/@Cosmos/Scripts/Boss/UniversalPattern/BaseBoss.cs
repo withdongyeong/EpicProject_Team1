@@ -10,6 +10,7 @@ public abstract class BaseBoss : MonoBehaviour
 {
     [Header("기본 스탯")]
     private int _maxHealth = 100;
+    [SerializeField]
     private int _currentHealth;
     private bool _isDead = false;
     
@@ -19,7 +20,7 @@ public abstract class BaseBoss : MonoBehaviour
 
     // 컴포넌트 참조
     private GridManager _gridSystem;
-    private BombAvoidanceManager _bombManager;
+    private BombAvoidanceHandler _bombHandler;
     
     // 새로운 패턴 시스템
     private List<ExecutableUnit> _executableUnits;
@@ -55,18 +56,22 @@ public abstract class BaseBoss : MonoBehaviour
     /// <summary>
     /// 폭탄 회피 매니저 프로퍼티
     /// </summary>
-    public BombAvoidanceManager BombManager { get => _bombManager; }
+    public BombAvoidanceHandler BombHandler { get => _bombHandler; }
 
     /// <summary>
     /// 애니메이터 프로퍼티
     /// </summary>
     public Animator Animator { get => _animator; }
-    
 
+
+    protected virtual void Awake()
+    {
+        EventBus.SubscribeGameStart(Init);
+    }
     /// <summary>
     /// 보스 초기화
     /// </summary>
-    protected virtual void Start()
+    private void Init()
     {
         _currentHealth = _maxHealth;
         
@@ -74,7 +79,7 @@ public abstract class BaseBoss : MonoBehaviour
         _gridSystem = GridManager.Instance;
         _bossDebuff = GetComponent<BossDebuffs>();
         _animator = GetComponent<Animator>();
-        _bombManager = FindAnyObjectByType<BombAvoidanceManager>();
+        _bombHandler = FindAnyObjectByType<BombAvoidanceHandler>();
         
         // 패턴 리스트 초기화
         _executableUnits = new List<ExecutableUnit>();
@@ -96,13 +101,15 @@ public abstract class BaseBoss : MonoBehaviour
 
         Debug.Log($"{GetType().Name} spawned with {_maxHealth} HP and {_executableUnits.Count} executable units!");
         
-        // BombManager 할당 확인
-        if (_bombManager == null)
+        // BombHandler 할당 확인
+        if (_bombHandler == null)
         {
-            Debug.LogWarning($"{GetType().Name}: BombAvoidanceManager not found in scene!");
+            Debug.LogWarning($"{GetType().Name}: BombAvoidanceHandler not found in scene!");
         }
     }
 
+ 
+  
     /// <summary>
     /// 공격 패턴 초기화 - 상속받는 클래스에서 반드시 구현
     /// </summary>
@@ -203,21 +210,21 @@ public abstract class BaseBoss : MonoBehaviour
         _animator.SetTrigger("DeadTrigger");
 
         // GameManager에 보스 사망 알림
-        StageManager stageManager = FindAnyObjectByType<StageManager>();
-        if (stageManager != null)
+        StageHandler stageHandler = FindAnyObjectByType<StageHandler>();
+        if (stageHandler != null)
         {
-            StartCoroutine(BossDeath(stageManager));
+            StartCoroutine(BossDeath(stageHandler));
         }
     }
 
     /// <summary>
     /// 보스 사망 처리 코루틴
     /// </summary>
-    /// <param name="stageManager">게임 매니저</param>
-    private IEnumerator BossDeath(StageManager stageManager)
+    /// <param name="stageHandler">게임 매니저</param>
+    private IEnumerator BossDeath(StageHandler stageHandler)
     {
         yield return new WaitForSeconds(0.1f);
-        stageManager.HandleBossDeath();
+        stageHandler.HandleBossDeath();
     }
 
     /// <summary>
@@ -435,5 +442,11 @@ public abstract class BaseBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         SoundManager.Instance.OrcMageSoundClip(clipName);
+    }
+
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStart(Init);
     }
 }

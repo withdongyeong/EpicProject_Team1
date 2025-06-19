@@ -140,6 +140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinedStarCell
       objectReference: {fileID: 0}
+    - target: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -221,7 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
-  targetCategory: 5
 --- !u!1001 &4201711098336351259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,6 +431,36 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 32f651f82b51b0a419217fb4914ab246, type: 2}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileName
+      value: "\uCE58\uC720 \uD1A0\uD15C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileGrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 684f600f5ddd74d4e87c4c6b1efa4fa6, type: 3}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.description
+      value: "\uD1A0\uD15C<sprite name=\"Totem\">\uC744 \uC313\uC2B5\uB2C8\uB2E4.
+        3\uAC1C\uC758 \uD1A0\uD15C<sprite name=\"Totem\">\uC774 \uC313\uC774\uBA74
+        \uBC1C\uB3D9\uD569\uB2C8\uB2E4.\n\uBC1C\uB3D9\uC2DC: \uCCB4\uB825\uC744 <color=green>7</color>
+        \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\uAC15\uD654\uC2DC: \uD68C\uBCF5\uB7C9\uC774
+        2\uBC30\uAC00 \uB429\uB2C8\uB2E4.\n\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C
+        \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758 \uCFE8\uD0C0\uC784\uC744
+        10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 82030637887893111, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: tileInfo.tileCategory
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -552,7 +585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   cooldown: 3
-  _totem: {fileID: 6485138151210822274, guid: 83fe982a8da4949438c47405cc30f8b2, type: 3}
   _totemPower: 7
 --- !u!4 &7883326662870146218 stripped
 Transform:

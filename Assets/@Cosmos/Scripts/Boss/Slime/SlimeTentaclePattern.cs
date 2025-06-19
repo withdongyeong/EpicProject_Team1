@@ -36,13 +36,13 @@ public class SlimeTentaclePattern : IBossAttackPattern
         for (int i = 0; i < _tentatacleCount; i++)
         {
             // 1. 랜덤 위치 선택 (0~9)
-            int randomY = boss.BombManager.PlayerController.CurrentY;
+            int randomY = boss.BombHandler.PlayerController.CurrentY;
 
             // 2. 위험 알림
             for(int j = 8; j >= 0; j--)
             {
                 Vector3Int WarningPosision = new Vector3Int(j, randomY, 0);
-                boss.BombManager.ShowWarningOnly(WarningPosision, 0.8f, WarningType.Type2);
+                boss.BombHandler.ShowWarningOnly(WarningPosision, 0.8f, WarningType.Type2);
                 yield return new WaitForSeconds(0.05f);
             }
 

@@ -32,7 +32,7 @@ public class GoblinJunkPattern : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.BombManager.PlayerController != null && _junkPrefab != null;
+        return boss.GridSystem != null && boss.BombHandler.PlayerController != null && _junkPrefab != null;
     }
 
     /// <summary>

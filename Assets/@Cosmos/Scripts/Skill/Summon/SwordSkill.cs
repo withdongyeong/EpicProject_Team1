@@ -48,7 +48,7 @@ public class SwordSkill : SkillBase
             // 검 소환
             summonedSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             SwordController swordController = summonedSword.GetComponent<SwordController>();
-            SwordManager swordManager = FindAnyObjectByType<SwordManager>();
+            SwordHandler swordHandler = FindAnyObjectByType<SwordHandler>();
             if (swordController != null)
             {
                 swordController.Damage = damage; // 공격력 설정
@@ -59,7 +59,7 @@ public class SwordSkill : SkillBase
             }
 
             // 타겟 적에게 검 발사
-            swordManager.ActivateSkill(targetEnemy.transform.position);
+            swordHandler.ActivateSkill(targetEnemy.transform.position);
         }
     }
 }

@@ -11,7 +11,7 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     protected override void Awake()
     {
         
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        EventBus.SubscribeSceneLoaded(OnSceneLoaded);
     }
     
     /// <summary>
@@ -24,7 +24,7 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
     }
 
     public void StopTimeScale()

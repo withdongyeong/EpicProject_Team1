@@ -25,7 +25,7 @@ public abstract class BaseTotem : MonoBehaviour
     {
         _totemPower = totemPower;
         _anim = GetComponent<Animator>();
-        FindAnyObjectByType<TotemManager>().AddToTotemList(this);
+        FindAnyObjectByType<TotemHandler>().AddToTotemList(this);
     }
 
     /// <summary>

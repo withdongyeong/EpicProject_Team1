@@ -13,6 +13,7 @@ public class CombinedStarCell : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.SetActive(true);
         starSkill = GetComponent<StarBase>();
         if (starSkill == null)
         {

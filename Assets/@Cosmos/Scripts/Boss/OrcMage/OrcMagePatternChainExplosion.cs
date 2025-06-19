@@ -18,7 +18,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss != null && _groundSpikePrefab != null && boss.BombManager != null;
+        return boss != null && _groundSpikePrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
             List<Vector3Int> explosionShape = CreateExplosionShape();
 
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
-            boss.BombManager.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
+            boss.BombHandler.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 18, WarningType.Type1);
 
             yield return new WaitForSeconds(0.25f); // 빠른 연쇄

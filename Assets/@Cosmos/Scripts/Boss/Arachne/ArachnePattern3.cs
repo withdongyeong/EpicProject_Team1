@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 아라크네 패턴3 - BombManager 사용 버전
+/// 아라크네 패턴3 - BombHandler 사용 버전
 /// </summary>
 public class ArachnePattern3 : IBossAttackPattern
 {
@@ -41,8 +41,8 @@ public class ArachnePattern3 : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager != null && 
-               boss.BombManager.PlayerController != null && 
+        return boss.BombHandler != null && 
+               boss.BombHandler.PlayerController != null && 
                _poisionAriaPrefab != null &&
                _lToRspiderLeg != null;
     }
@@ -103,7 +103,7 @@ public class ArachnePattern3 : IBossAttackPattern
         }
 
         // 플레이어 추적 공격 (제외된 칸은 안전지대)
-        boss.BombManager.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
+        boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
                                               warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
 
         boss.AttackAnimation();
@@ -130,12 +130,12 @@ public class ArachnePattern3 : IBossAttackPattern
         }
 
         //플레이어 위치
-        Vector3Int PlayerPoint = new Vector3Int(boss.BombManager.PlayerController.CurrentX, boss.BombManager.PlayerController.CurrentY, 0);
+        Vector3Int PlayerPoint = new Vector3Int(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY, 0);
         // 플레이어 추적 대각선 공격
-        boss.BombManager.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _rToLspiderLeg,
+        boss.BombHandler.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _rToLspiderLeg,
                                               warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
         // 데미지만
-        boss.BombManager.ExecuteWarningThenDamage(slashShape, PlayerPoint,
+        boss.BombHandler.ExecuteWarningThenDamage(slashShape, PlayerPoint,
                                           warningDuration: 0.8f, damage: 20);
 
         boss.AttackAnimation();
@@ -162,13 +162,13 @@ public class ArachnePattern3 : IBossAttackPattern
         }
 
         //플레이어 위치
-        Vector3Int PlayerPoint = new Vector3Int(boss.BombManager.PlayerController.CurrentX, boss.BombManager.PlayerController.CurrentY,0);
+        Vector3Int PlayerPoint = new Vector3Int(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY,0);
 
         // 플레이어 추적 대각선 공격
-        boss.BombManager.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _lToRspiderLeg,
+        boss.BombHandler.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _lToRspiderLeg,
                                                      warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
         // 데미지만
-        boss.BombManager.ExecuteWarningThenDamage(slashShape, PlayerPoint,
+        boss.BombHandler.ExecuteWarningThenDamage(slashShape, PlayerPoint,
                                           warningDuration: 0.8f, damage: 20);
 
         boss.AttackAnimation();

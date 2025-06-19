@@ -6,6 +6,9 @@ using UnityEngine;
 public enum GameState
 {
     MainMenu,
+    Title,
+    Building,
+    StageSelect,
     Playing,
     Victory,
     Defeat
