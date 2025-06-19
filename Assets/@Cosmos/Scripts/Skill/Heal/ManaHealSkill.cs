@@ -7,7 +7,7 @@ public class ManaHealSkill : HealSkill
     /// <summary>
     /// 타일 발동 - 플레이어 체력 회복
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
         _playerMana = FindAnyObjectByType<PlayerMana>();
         if (_playerMana != null)
@@ -39,11 +39,12 @@ public class ManaHealSkill : HealSkill
             GameObject effectObj = Instantiate(
                 _healEffectPrefab,
                 _playerMana.transform.position,
-                Quaternion.identity
+                Quaternion.identity,
+                _playerMana.transform
             );
 
             // 일정 시간 후 이펙트 제거
-            Destroy(effectObj, 0.1f);
+            Destroy(effectObj, 0.6f);
         }
     }
 }

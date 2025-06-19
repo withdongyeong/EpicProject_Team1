@@ -2,7 +2,7 @@
 
 public class HealTotem : BaseTotem
 {
-    private PlayerHealth _playerHealth;
+    private PlayerHp _playerHp;
 
 
     [SerializeField] protected GameObject _healEffectPrefab;
@@ -10,7 +10,7 @@ public class HealTotem : BaseTotem
 
     public override void InitializeTotem(int totemPower)
     {
-        _playerHealth = FindAnyObjectByType<PlayerHealth>();
+        _playerHp = FindAnyObjectByType<PlayerHp>();
         base.InitializeTotem(totemPower);
     }
 
@@ -30,7 +30,7 @@ public class HealTotem : BaseTotem
     private void HealPlayer()
     {
         // 플레이어 체력 회복
-        _playerHealth.Heal(_totemPower);
+        _playerHp.Heal(_totemPower);
 
         // 회복 이펙트 생성
         CreateHealEffect();
@@ -41,17 +41,18 @@ public class HealTotem : BaseTotem
     /// </summary>
     private void CreateHealEffect()
     {
-        if (_healEffectPrefab != null && _playerHealth != null)
+        if (_healEffectPrefab != null && _playerHp != null)
         {
             // 플레이어 위치에 회복 이펙트 생성
             GameObject effectObj = Instantiate(
                 _healEffectPrefab,
-                _playerHealth.transform.position,
-                Quaternion.identity
+                _playerHp.transform.position,
+                Quaternion.identity,
+                _playerHp.transform
             );
 
             // 일정 시간 후 이펙트 제거
-            Destroy(effectObj, 0.1f);
+            Destroy(effectObj, 0.6f);
         }
     }
 }

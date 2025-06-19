@@ -1,18 +1,47 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using System.Collections.Generic;
+using static Unity.Cinemachine.CinemachineSplineRoll;
 
 public class GridCell
 {
     public Cell cell { get; private set; }
+    
+    public List<StarBase> starList { get; private set; } //AKA 인접효과
     public Vector3Int GridPosition { get; private set; }
     public Vector3 WorldPosition { get; private set; }
     public bool IsOccupied { get; set; }
     public SpriteRenderer sr { get; set; }
+
+    /// <summary>
+    /// 이 셀에 할당된 인접 효과가 변동되었을때 발동할 이벤트입니다. 이 셀에 놓인 타일 오브젝트가 구독합니다.
+    /// </summary>
+    private event Action _onStarListChange;
+
+    /// <summary>
+    /// 이벤트를 구독할 때 쓰는 메서드입니다.
+    /// </summary>
+    public event Action OnStarListChange
+    {
+        add => _onStarListChange += value;
+        remove => _onStarListChange -= value;
+    }
+
+    /// <summary>
+    /// 이벤트를 발동시킬 때 쓰는 메서드입니다.
+    /// </summary>
+    public void OnStarListChanged()
+    {
+        _onStarListChange?.Invoke();
+    }
 
     public GridCell(Vector3Int gridPos, Vector3 worldPos)
     {
         GridPosition = gridPos;
         WorldPosition = worldPos;
         IsOccupied = false;
+        cell = null; // 초기에는 셀 데이터가 없습니다.
+        starList = new List<StarBase>(); // 스타 스킬 리스트 초기화
     }
 
     /// <summary>
@@ -27,7 +56,7 @@ public class GridCell
         }
         
         cell = cellData;
-        Debug.Log("좌표 " + GridPosition + "셀 데이터가 할당되었습니다: " + cell);
+        //Debug.Log("좌표 " + GridPosition + "셀 데이터가 할당되었습니다: " + cell);
         ChangeSpriteTest();
     }
 
@@ -40,10 +69,31 @@ public class GridCell
         }
 
         cell = null;
-        Debug.Log(cell);
+        //Debug.Log(cell);
         ChangeSpriteTest();
     }
+
+    public void AddStarSkill(StarBase starSkill)
+    {
+        starList.Add(starSkill);
+        //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
+        OnStarListChanged();
+    }
     
+    public void RemoveStarSkill(StarBase starSkill)
+    {
+        if (starList.Contains(starSkill))
+        {
+            Debug.Log("스타 스킬 제거합니다");
+            starList.Remove(starSkill);
+            //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
+            OnStarListChanged();
+        }
+        else
+        {
+            Debug.LogWarning("스타 스킬이 리스트에 없습니다: " + starSkill);
+        }
+    }
     /// <summary>
     /// 스프라이트를 점유 상태에 따라 변경합니다.
     /// </summary>
@@ -89,17 +139,21 @@ public class GridCell
 
 public class GridManager : Singleton<GridManager>
 {
-    public GameObject cellPrefab;
-    [SerializeField] private int maxSize = 5;
+    private GameObject cellPrefab;
+    private int maxSize = 9;
     private Vector3Int gridSize;
     public Vector3Int GridSize => gridSize;
-    [SerializeField] private GameObject startPoint;
+    private GameObject startPoint;
     private GridCell[,] grid;
-    [SerializeField] GameObject draggablePlane;
     
     // 스프라이트 관리
-    [SerializeField] private Sprite occupiedSprite; // 점유용 스프라이트
-    [SerializeField] private Sprite defaultSprite; // 기본 스프라이트
+    private Sprite occupiedSprite; // 점유용 스프라이트
+    private Sprite defaultSprite; // 기본 스프라이트
+
+    // 이동불가 그리드
+    [SerializeField] private List<Vector3Int> unmovableGridPositions = new List<Vector3Int>();
+
+    public List<Vector3Int> UnmovableGridPositions => unmovableGridPositions;
 
     /// <summary>
     /// 점유 스프라이트를 반환합니다.
@@ -117,20 +171,26 @@ public class GridManager : Singleton<GridManager>
         return defaultSprite;
     }
 
+
     protected override void Awake()
     {
         base.Awake();
+        cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
+        occupiedSprite = Resources.Load<Sprite>("Arts/UI/OccupiedSprite"); // 점유 스프라이트 로드
+        defaultSprite = Resources.Load<Sprite>("Arts/UI/DefaultSprite"); // 기본 스프라이트 로드
+        if(occupiedSprite == null){
+            Debug.LogError("점유 스프라이트를 로드하지 못했습니다. 경로를 확인하세요.");
+        }
+        if(defaultSprite == null){
+            Debug.LogError("기본 스프라이트를 로드하지 못했습니다. 경로를 확인하세요.");
+        }
         InitializeGrid();
         InitGround();
     }
 
-    private void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     private void InitializeGrid()
     {
+        startPoint = transform.GetChild(0).gameObject;
         gridSize = new Vector3Int(maxSize, maxSize, 0);
         grid = new GridCell[gridSize.x, gridSize.y];
         for (int x = 0; x < gridSize.x; x++)
@@ -143,7 +203,7 @@ public class GridManager : Singleton<GridManager>
             }
         }
     }
-
+    
     private void InitGround()
     {
         GameObject gridCells = new GameObject("GridBlocks");
@@ -163,7 +223,6 @@ public class GridManager : Singleton<GridManager>
                 }
             }
         }
-        SpawnDragPlane();
     }
 
     public Vector3 GridToWorldPosition(Vector3Int gridPos)
@@ -188,8 +247,19 @@ public class GridManager : Singleton<GridManager>
             SoundManager.Instance.UISoundClip("DeploymentActivate");
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
-            Debug.Log(grid[gridPos.x, gridPos.y].cell);
-            Debug.Log(GetCellData(gridPos));
+
+            //List<StarBase> starskills = GetStarSkills(gridPos);
+            //if (starskills != null && starskills.Count > 0)
+            //{
+            //    foreach (StarBase starSkill in starskills)
+            //    {
+            //        starSkill.GetComponent<CombinedStarCell>().UpdateAdjacentTileObjects(); // 인접 효과를 받는 타일 오브젝트 업데이트
+            //    }
+            //}
+            //곽민준이 친 코드입니다. 해당 그리드에 할당된 인접 효과가 변경되면 타일이 다시 계산하게 합니다.
+            grid[gridPos.x, gridPos.y].OnStarListChange += cellData.GetCombineCell().GetTileObject().UpdateStarList;
+            //Debug.Log(grid[gridPos.x, gridPos.y].cell);
+            //Debug.Log(GetCellData(gridPos));
         }
     }
 
@@ -198,8 +268,10 @@ public class GridManager : Singleton<GridManager>
         if (!IsCellAvailable(gridPos))
         {
             grid[gridPos.x, gridPos.y].IsOccupied = false;
-            grid[gridPos.x, gridPos.y].ReleaseCellData();
-            Debug.Log("해제했습니다");
+            //곽민준이 친 코드입니다. 액션을 구독 취소하는 스크립트입니다.
+            grid[gridPos.x, gridPos.y].OnStarListChange -= grid[gridPos.x, gridPos.y].cell.GetCombineCell().GetTileObject().UpdateStarList;
+            grid[gridPos.x, gridPos.y].ReleaseCellData();       
+            //Debug.Log("해제했습니다");
             grid[gridPos.x, gridPos.y].ChangeSpriteTest(); // 기본 스프라이트로 복원
         }
     }
@@ -208,7 +280,7 @@ public class GridManager : Singleton<GridManager>
     {
         if (IsWithinGrid(gridPos))
         {
-            if(grid[gridPos.x, gridPos.y].IsOccupied) Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
+            //if(grid[gridPos.x, gridPos.y].IsOccupied) Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
             return !grid[gridPos.x, gridPos.y].IsOccupied;
         }
         Debug.Log("범위 밖 " + gridPos);
@@ -230,25 +302,51 @@ public class GridManager : Singleton<GridManager>
         return grid[gridPos.x,gridPos.y].cell;
     }
 
-    public bool CanPlaceBlock(Transform draggedTransform)
+    public void AddStarSkill(Vector3Int gridPos, StarBase starSkill)
     {
-        foreach (Cell cell in draggedTransform.GetComponentsInChildren<Cell>())
+        if (IsWithinGrid(gridPos))
         {
-            Transform child = cell.transform;
-            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(child.position);
-            if (!GridManager.Instance.IsCellAvailable(gridPos))
+            if (grid[gridPos.x, gridPos.y].starList == null)
             {
-                return false;
+                Debug.LogError("존재해서는 안되는 에러로그: " + gridPos);
+                return;
             }
+            grid[gridPos.x, gridPos.y].AddStarSkill(starSkill);
         }
-        return true;
+        else
+        {
+            Debug.Log("범위 바깥입니다: " + gridPos);
+        }
     }
-
-    private void SpawnDragPlane()
+    
+    public void RemoveStarSkill(Vector3Int gridPos, StarBase starSkill)
     {
-        Vector3 planePosition = (GridToWorldPosition(Vector3Int.zero) + GridToWorldPosition(new Vector3Int(maxSize, maxSize, 0))) / 2 - new Vector3(0.5f,0.5f,0);
-        var plane = Instantiate(draggablePlane, planePosition,Quaternion.identity,transform);
-        plane.transform.localScale = new Vector3(maxSize, maxSize, 1);
+        if (IsWithinGrid(gridPos))
+        {
+            if (grid[gridPos.x, gridPos.y].starList == null)
+            {
+                Debug.LogError("존재해서는 안되는 에러로그: " + gridPos);
+                return;
+            }
+            grid[gridPos.x, gridPos.y].RemoveStarSkill(starSkill);
+        }
+        else
+        {
+            Debug.Log("범위 바깥입니다: " + gridPos);
+        }
+    }
+    
+    public List<StarBase> GetStarSkills(Vector3Int gridPos)
+    {
+        if (IsWithinGrid(gridPos))
+        {
+            return grid[gridPos.x, gridPos.y].starList;
+        }
+        else
+        {
+            Debug.Log("범위 바깥입니다: " + gridPos);
+            return null;
+        }
     }
 
     public void ChangeCellSprite(Vector3Int gridPos, bool isPreview)
@@ -259,7 +357,7 @@ public class GridManager : Singleton<GridManager>
         }
         else
         {
-            Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
+            //Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
         }
     }
 
@@ -274,6 +372,20 @@ public class GridManager : Singleton<GridManager>
             }
         }
     }
+
+    public void AddUnmovableGridPosition(Vector3Int position)
+    {
+        if (!unmovableGridPositions.Contains(position))
+        {
+            unmovableGridPositions.Add(position);
+        }
+        else
+        {
+            Debug.LogWarning("이미 추가된 이동 불가 위치입니다: " + position);
+        }
+    }
+
+    //---------------------------------------------------------------------------------------
     // 테스트 메서드들
     public void TestPrintInventoryItemDataGrid()
     {

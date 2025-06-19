@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TileName_Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: a340f86a0a5e8aa44b14306fa1bddec5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 50112110592
+    m_Localized: ArchmageStaff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887808
+    m_Localized: Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887809
+    m_Localized: BigHeart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887810
+    m_Localized: DamageTotem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887811
+    m_Localized: FireBall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887812
+    m_Localized: FireBolt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887813
+    m_Localized: FrostStaff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887814
+    m_Localized: Hat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887815
+    m_Localized: HealTotem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887816
+    m_Localized: Heart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887817
+    m_Localized: Icicle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887818
+    m_Localized: KoreaTotem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887819
+    m_Localized: ManaPotion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887820
+    m_Localized: Robe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887821
+    m_Localized: Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50128887822
+    m_Localized: WarFlag
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -7,22 +7,23 @@ public class GoldUI : MonoBehaviour
 
     private void Awake()
     {
+        EventBus.SubscribeGoldChanged(ChangeGoldUI);
         goldText = GetComponent<TextMeshProUGUI>();
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        GoldManager.Instance.OnCurrentGoldChange += ChangeGoldUI;
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        ChangeGoldUI(GoldManager.Instance.CurrentGold);
     }
 
     private void ChangeGoldUI(int gold)
     {
         goldText.text = $"Gold : {gold}";
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGoldChanged(ChangeGoldUI);
     }
 }

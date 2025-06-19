@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -13,10 +14,15 @@ public class PlayerSummons : MonoBehaviour
 
     private bool isGameStarted;
 
+
+    private void Awake()
+    {
+        EventBus.SubscribeGameStateChanged(GameStart);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameStateManager.Instance.OnGameStateChanged += GameStart;
         //TODO: 나중에 기믹 매니저 생기면 토템 매니저 자동 생성 하지 말것
         var totemManager = Instantiate(_totemManager, transform);
         AddToList(totemManager.GetComponent<ISummon>());
@@ -56,12 +62,17 @@ public class PlayerSummons : MonoBehaviour
         }
     }
 
-    private void GameStart(GameStateManager.GameState state)
+    private void GameStart(GameState state)
     {
-        if(state == GameStateManager.GameState.Playing)
+        if(state == GameState.Playing)
         {
             isGameStarted = true;
         }
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStateChanged(GameStart);
     }
 
 

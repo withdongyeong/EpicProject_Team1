@@ -50,13 +50,13 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // 게임이 Playing 상태일 때만 입력 처리
-        if (GameStateManager.Instance.CurrentState == GameStateManager.GameState.Playing)
+        if (GameStateManager.Instance.CurrentState == GameState.Playing)
         {
             if (!_isMoving && !_playerDebuff.IsBind)
             {
                 HandleMovement();
             }
-            CheckTileInteraction();
+            
         }
         else
         {
@@ -112,7 +112,8 @@ public class PlayerController : MonoBehaviour
         int newY = _currentY + dy;
         Vector3Int pos = new Vector3Int(newX, newY, 0);
         
-        if (_gridManager.IsWithinGrid(pos))
+        bool isMovable = _gridManager.UnmovableGridPositions.Contains(pos) == false; // 이동 불가능한 위치인지 확인
+        if (_gridManager.IsWithinGrid(pos) && isMovable)
         {
             StartCoroutine(MoveAnimation(pos));
             return true;
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
     
     /// <summary>
     /// 점프 효과가 있는 이동 애니메이션
+    /// 이동 중간에 논리적 위치를 옮김
     /// </summary>
     private IEnumerator MoveAnimation(Vector3Int newPos)
     {
@@ -130,6 +132,12 @@ public class PlayerController : MonoBehaviour
     
         Vector3 startPos = transform.position;
         Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
+        
+        // 이동 전에 논리적 위치를 미리 옮김
+        // 따라서, 공격 판정이 오기 전에 아슬아슬하게 피했을 때, 이미 점프를 시작했으면 안 맞게 되면서 피하는 느낌이 들 것
+        _currentX = newPos.x;
+        _currentY = newPos.y;
+        
         float jumpHeight = 0.3f;
     
         float elapsedTime = 0;
@@ -144,21 +152,20 @@ public class PlayerController : MonoBehaviour
         
             // 점프 높이 계산
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
-        
             transform.position = new Vector3(x, y + extraHeight, 0);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        // 최종 위치 설정 (물리적 위치만)
         transform.position = targetPos;
-        _currentX = newPos.x;
-        _currentY = newPos.y;
+        CheckTileInteraction();
+        
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 
         SoundManager.Instance.PlayPlayerSound("PlayerMove");
     }
-    
     /// <summary>
     /// 현재 그리드 위치 업데이트
     /// </summary>
@@ -177,7 +184,7 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.Instance.PlayPlayerSound("AriaActive");
 
-        FindAnyObjectByType<GameManager>().SpawnGroundEffect();
+        FindAnyObjectByType<StageHandler>().SpawnGroundEffect();
     }
     
     /// <summary>
@@ -187,12 +194,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0); // 1. 현재 위치 가져오기 (_currentX, _currentY) 는 이미 grid 좌표로 설정되어 있음
         Cell currentCell = _gridManager.GetCellData(currentPos);
-        CombineCell comCell = currentCell?.GetObjectData();
+        CombineCell comCell = currentCell?.GetCombineCell();
         comCell?.ExecuteSkill();
-        /*if (currentTile != null && currentTile.GetState() == BaseTile.TileState.Ready)
-        {
-            
-        }*/
+
     }
 
     /// <summary>

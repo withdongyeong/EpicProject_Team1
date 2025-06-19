@@ -3,34 +3,25 @@
 public class Slime : BaseBoss
 {
     [Header("슬라임 전용 프리팹들")]
-    public GameObject warningTilePrefab;
-
-    public GameObject SlimeMucus;
-
-    public GameObject warningAriaPrefab;
     public GameObject SlimeActtckTentacle;
-
     public GameObject SlimeTrapTentacle;
 
     PlayerController PlayerController;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 200;
-        PatternCooldown = 0.5f;
+        MaxHealth = 400;
     }
 
     /// <summary>
     /// 보스 초기화 - 고유한 스탯 설정
     /// </summary>
-    protected override void Start()
+    protected void Start()
     {
         PlayerController = FindAnyObjectByType<PlayerController>();
 
-        // 부모 클래스 초기화 호출
-        base.Start();
-    
     }
 
     /// <summary>
@@ -38,14 +29,23 @@ public class Slime : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //점액 패턴
-        //AddAttackPattern(new RapidFirePattern(SlimeMucus, 3, 0.05f));
-
         //찌르기 촉수 패턴
-        //AddAttackPattern(new EnemyStraightAttack(warningAriaPrefab, SlimeActtckTentacle));
+        AddGroup()
+            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 3), 0.0f)
+            .SetGroupInterval(1f);
 
-        //바닥 분출 촉수 패턴
-        AddAttackPattern(new DiagonalCrossPattern(warningTilePrefab, SlimeTrapTentacle, PlayerController));
+
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+            .SetGroupInterval(1f);
+
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
+            .SetGroupInterval(1f);
 
         Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }

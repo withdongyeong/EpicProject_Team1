@@ -1,105 +1,72 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using System.Collections.Generic;
+
+/// <summary>
+/// 수정된 아라크네 독 분출 패턴 - 새로운 BombAvoidanceHandler 사용
+/// </summary>
 public class ArachnePoisionAriaPattern : IBossAttackPattern
 {
-    private GameObject _warningTilePrefab;
     private GameObject _explosionEffectPrefab;
-
-    private PlayerController _playerController;
+    private List<Vector3Int> _attackShape;
     
     public string PatternName => "ArachnePoisionAria";
 
     /// <summary>
-    /// 영역 공격 패턴 생성자
+    /// 아라크네 독 분출 패턴 생성자
     /// </summary>
-    public ArachnePoisionAriaPattern(GameObject warningTilePrefab, GameObject explosionEffectPrefab, PlayerController playerController)
+    /// <param name="explosionEffectPrefab">폭발 이펙트 프리팹</param>
+    /// <param name="bombManager">폭탄 피하기 매니저</param>
+    public ArachnePoisionAriaPattern(GameObject explosionEffectPrefab)
     {
-        _warningTilePrefab = warningTilePrefab;
         _explosionEffectPrefab = explosionEffectPrefab;
-        _playerController = playerController;
-    }
-
-    public void Execute(BaseBoss boss)
-    {
-        boss.StartCoroutine(ExecuteAreaAttack(boss));
-    }
-
-    public bool CanExecute(BaseBoss boss)
-    {
-        return boss.Player != null && _warningTilePrefab != null;
+        
+        // 3x3 공격 모양 설정
+        _attackShape = new List<Vector3Int>();
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                _attackShape.Add(new Vector3Int(x, y, 0));
+            }
+        }
     }
 
     /// <summary>
-    /// 독 분출
+    /// 패턴 실행
     /// </summary>
-    private IEnumerator ExecuteAreaAttack(BaseBoss boss)
+    /// <param name="boss">보스 객체</param>
+    public IEnumerator Execute(BaseBoss boss)
     {
+        // 사운드 재생
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
+        
+        // 플레이어 추적 폭탄 공격 실행
+        boss.BombHandler.ExecuteTargetingBomb(_attackShape, _explosionEffectPrefab, 
+                                          warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
+        
+        // 또는 지연 후 재생
+        yield return boss.StartCoroutine(PlayExplosionSoundDelayed());
+    }
 
-        // 플레이어 위치 가져오기
-        Vector3Int GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int playerX = GridPosition.x;
-        int playerY = GridPosition.y;
-
-        // 경고 타일 표시 (3x3 영역)
-        GameObject[] warningTiles = new GameObject[9];
-        int index = 0;
-
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                int tileX = playerX + x;
-                int tileY = playerY + y;
-
-                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-                {
-                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    warningTiles[index] = Object.Instantiate(_warningTilePrefab, tilePos, Quaternion.identity);
-                    index++;
-                }
-            }
-        }
-
-        // 경고 대기
-        yield return new WaitForSeconds(0.6f);
-
-        boss.AttackAnimation();
+    /// <summary>
+    /// 폭발 사운드 지연 재생
+    /// </summary>
+    private System.Collections.IEnumerator PlayExplosionSoundDelayed()
+    {
+        yield return new WaitForSeconds(0.6f); // 경고 시간 후
         SoundManager.Instance.ArachneSoundClip("PoisionExplotionActivate");
+    }
 
-        // 플레이어가 영역 내에 있는지 확인
-        GridPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        int currentX = GridPosition.x;
-        int currentY = GridPosition.y;
-
-        if (Mathf.Abs(currentX - playerX) <= 1 && Mathf.Abs(currentY - playerY) <= 1)
-        {
-            boss.ApplyDamageToPlayer(10);
-        }
-
-        // 공격 영역에 폭발 이펙트 생성
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                int tileX = playerX + x;
-                int tileY = playerY + y;
-
-                if (GridManager.Instance.IsWithinGrid(new Vector3Int(tileX, tileY, 0)))
-                {
-                    Vector3 tilePos = GridManager.Instance.GridToWorldPosition(new Vector3Int(tileX, tileY, 0));
-                    boss.CreateDamageEffect(tilePos, _explosionEffectPrefab, 0.7f);
-                }
-            }
-        }
-
-        // 경고 타일 제거
-        foreach (GameObject tile in warningTiles)
-        {
-            if (tile != null)
-            {
-                Object.Destroy(tile);
-            }
-        }
+    /// <summary>
+    /// 패턴 실행 가능 여부 확인
+    /// </summary>
+    /// <param name="boss">보스 객체</param>
+    /// <returns>실행 가능 여부</returns>
+    public bool CanExecute(BaseBoss boss)
+    {
+        return boss.BombHandler.PlayerController != null && 
+               _explosionEffectPrefab != null && 
+               boss.BombHandler != null;
     }
 }

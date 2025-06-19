@@ -9,9 +9,9 @@ public class ProtectionSkill : SkillBase
     /// <summary>
     /// 타일 발동 - 플레이어 보호 효과 부여
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         _playerProtection = FindAnyObjectByType<PlayerProtection>();
         if (_playerProtection != null)
         {

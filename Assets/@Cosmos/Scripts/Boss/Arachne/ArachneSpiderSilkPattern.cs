@@ -20,14 +20,14 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
         _spiderSilkCount = spiderSilkCount;
     }
 
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(SpiderSilk(boss));
+        yield return boss.StartCoroutine(SpiderSilk(boss));
     }
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _spiderSilkPrefeb != null;
+        return boss.GridSystem != null && boss.BombHandler.PlayerController != null && _spiderSilkPrefeb != null;
     }
 
     /// <summary>

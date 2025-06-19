@@ -12,6 +12,9 @@ public class StoreSlotController : MonoBehaviour
     private List<GameObject> _rareStoreTiles = new();
     private List<GameObject> _epicStoreTiles = new();
     private List<GameObject> _legendaryStoreTiles = new();
+    //test
+    public List<GameObject> testList = new List<GameObject>();
+    public bool isTest;
 
 
     private void Awake()
@@ -50,7 +53,7 @@ public class StoreSlotController : MonoBehaviour
             {
                 chosenGrade = TileGrade.Legendary;
             }
-            Debug.Log(chosenGrade);
+            //Debug.Log(chosenGrade);
 
             List<GameObject> chosenList = _normalStoreTiles;
             switch(chosenGrade)
@@ -68,6 +71,11 @@ public class StoreSlotController : MonoBehaviour
                     chosenList = _legendaryStoreTiles;
                     break;
 
+            }
+            //test
+            if(isTest)
+            {
+                chosenList = testList;
             }
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];

@@ -15,15 +15,13 @@ public class SummonGoblinPattern : IBossAttackPattern
         _goblinCount = goblinCount;
         _transform = transform;
     }
-
-    public void Execute(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(SummonGoblin(boss));
+        yield return boss.StartCoroutine(SummonGoblin(boss));
     }
-
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.Player != null && _goblin != null;
+        return boss.GridSystem != null && boss.BombHandler.PlayerController != null && _goblin != null;
     }
 
 

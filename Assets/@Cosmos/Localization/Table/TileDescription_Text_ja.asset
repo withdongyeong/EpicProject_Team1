@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TileDescription_Text_ja
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ja
+  m_SharedData: {fileID: 11400000, guid: d813aebed15488749bb46d37f60f1e46, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 37952823296
+    m_Localized: "\u5F37\u529B\u306A\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8\uFF1A<color=red>30</color>)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406208
+    m_Localized: "\u9632\u5FA1\u819C\u30921\u7372\u5F97\u3057\u307E\u3059\u3002\n\u9632\u5FA1\u819C:1\u56DE\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u9632\u304E\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406209
+    m_Localized: "\u500B\u5225\u30DE\u30B9(3):\u4F53\u529B\u3092<color=green>15</color>\u56DE\u5FA9\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406210
+    m_Localized: "\u30C8\u30FC\u30C6\u30E0<sprite name=\"Totem\">\u3092\u7A4D\u307F\u307E\u3059\u3002
+      3\u3064\u306E\u30C8\u30FC\u30C6\u30E0<spritename=\"Totem\">\u304C\u305F\u307E\u308B\u3068\u767A\u52D5\u3057\u307E\u3059\u3002\n\u767A\u52D5\u6642:\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406211
+    m_Localized: "3\u3064\u306E\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>5
+      X3</color>)\n\u7684\u4E2D\u6642:\u706B\u708E<sprite name=\"Fire\">\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406212
+    m_Localized: "\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>5</color>)\n\u7684\u4E2D\u6642:\u706B\u708E<sprite
+      name=\"Fire\">\u30921\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406213
+    m_Localized: "\u500B\u5225\u30DE\u30B9(3):\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>5</color>)\n\u7684\u4E2D\u6642:\u51CD\u50B7<sprite
+      name=\"Ice\">\u30921\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406214
+    m_Localized: "\u30B7\u30FC\u30EB\u30C9\u3092 15 \u7372\u5F97\u3057\u307E\u3059\u3002\n\u30B7\u30FC\u30EB\u30C9:\u4E00\u5B9A\u91CF\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u9632\u304E\u307E\u3059\u3002
+      \u6BCE\u79D2\u6E1B\u5C11\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406215
+    m_Localized: "\u30C8\u30FC\u30C6\u30E0<sprite name=\"Totem\">\u3092\u7A4D\u307F\u307E\u3059\u3002
+      3\u3064\u306E\u30C8\u30FC\u30C6\u30E0<spritename=\"Totem\">\u304C\u305F\u307E\u308B\u3068\u767A\u52D5\u3057\u307E\u3059\u3002\n\u767A\u52D5\u6642:\u4F53\u529B\u3092<color=green>7</color>\u56DE\u5FA9\u3057\u307E\u3059\u3002\n\u5F37\u5316\u6642:\u56DE\u5FA9\u91CF\u304C
+      2 \u500D\u306B\u306A\u308A\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406216
+    m_Localized: "\u4F53\u529B\u3092<color=green>15</color>\u56DE\u5FA9\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406217
+    m_Localized: "\u500B\u5225\u30DE\u30B9\uFF083\uFF09:\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002
+      \u5BFE\u8C61\u304C\u6C17\u7D76\u72B6\u614B\u3060\u3068\u3001\u30C0\u30E1\u30FC\u30B8\u304C4\u500D\u306B\u306A\u308A\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>5
+      / 20</color>)\n\u7684\u4E2D\u6642:\u51CD\u50B7<spritename=\"Ice\">\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406218
+    m_Localized: "\u30C8\u30FC\u30C6\u30E0<sprite name=\"Totem\">\u3092\u7A4D\u307F\u307E\u3059\u3002
+      3\u3064\u306E\u30C8\u30FC\u30C6\u30E0<sprite name=\"Totem\">\u304C\u305F\u307E\u308B\u3068\u767A\u52D5\u3057\u307E\u3059\u3002\n\u767A\u52D5\u6642:\u5F3E\u3092\u767A\u5C04\u3057\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>10</color>\n\u5F37\u5316\u6642:
+      \u30C0\u30E1\u30FC\u30B8\u304C 5 \u500D\u306B\u306A\u308A\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406219
+    m_Localized: "\u30DE\u30CA()\u3092()\u5F97\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406220
+    m_Localized: "\u30B7\u30FC\u30EB\u30C9\u3092 30 \u7372\u5F97\u3057\u307E\u3059\u3002\n\u30B7\u30FC\u30EB\u30C9:\u4E00\u5B9A\u91CF\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u9632\u304E\u307E\u3059\u3002
+      \u6BCE\u79D2\u6E1B\u5C11\u3057\u307E\u3059\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406221
+    m_Localized: "\u5263<sprite name=\"Sword\">\u3092\u53EC\u559A\u3057\u3001\u3059\u3079\u3066\u306E\u5263\u304C\u653B\u6483\u3055\u305B\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>5</color>)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37965406222
+    m_Localized: "\u5263<sprite name=\"Sword\">\u30923\u3064\u53EC\u559A\u3057\u3001\u53EC\u559A\u3055\u308C\u308B\u305F\u3073\u306B\u3059\u3079\u3066\u306E\u5263<sprite
+      name=\"Sword\">\u304C\u653B\u6483\u3055\u305B\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:<color=red>5</color>)"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

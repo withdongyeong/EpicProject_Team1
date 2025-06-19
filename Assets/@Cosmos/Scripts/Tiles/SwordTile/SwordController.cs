@@ -74,13 +74,6 @@ public class SwordController : MonoBehaviour
     /// </summary>
     private Collider2D swordCollider;
     
-    // Events
-    /// <summary>
-    /// 상태 변경 이벤트
-    /// </summary>
-    public event Action<SwordState> OnStateChanged;
-    
-
     // Properties
     /// <summary>
     /// 검의 현재 상태 프로퍼티
@@ -389,7 +382,6 @@ public class SwordController : MonoBehaviour
         
         // 상태 변경 시 처리
         OnStateEnter(newState, oldState);
-        OnStateChanged?.Invoke(newState);
     }
 
     /// <summary>

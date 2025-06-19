@@ -13,10 +13,10 @@ public class ArachneSpider : MonoBehaviour
 
     private void Update()
     {
-        // ¿ÞÂÊÀ¸·Î ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         transform.Translate(Vector2.left * speed * Time.deltaTime);
 
-        // Ä«¸Þ¶ó ¹ÛÀ¸·Î ³ª°¡¸é ÆÄ±«
+        // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½
         Vector3 viewportPos = mainCamera.WorldToViewportPoint(transform.position);
         if (viewportPos.x < 0 || viewportPos.y < 0 || viewportPos.y > 1)
         {
@@ -26,12 +26,12 @@ public class ArachneSpider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+        PlayerHp playerHp = collision.GetComponent<PlayerHp>();
 
-        if (playerHealth != null)
+        if (playerHp != null)
         {
-            playerHealth.TakeDamage(damage);
-            Destroy(gameObject); // Ãæµ¹ ÈÄ ½ºÆÄÀÌ´õ Á¦°Å
+            playerHp.TakeDamage(damage);
+            Destroy(gameObject); // ï¿½æµ¹ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 }

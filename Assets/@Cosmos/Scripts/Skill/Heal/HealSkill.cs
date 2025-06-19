@@ -5,18 +5,18 @@ public class HealSkill : SkillBase
     [SerializeField] protected int _healAmount = 25;
     [SerializeField] protected GameObject _healEffectPrefab;
 
-    private PlayerHealth _playerHealth;
+    private PlayerHp _playerHp;
 
     public int HealAmount { get => _healAmount; set => _healAmount = value; }
 
     /// <summary>
     /// 타일 발동 - 플레이어 체력 회복
     /// </summary>
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
-        _playerHealth = FindAnyObjectByType<PlayerHealth>();
-        if (_playerHealth != null)
+        base.Activate();
+        _playerHp = FindAnyObjectByType<PlayerHp>();
+        if (_playerHp != null)
         {
             HealPlayer();
         }
@@ -28,7 +28,7 @@ public class HealSkill : SkillBase
     private void HealPlayer()
     {
         // 플레이어 체력 회복
-        _playerHealth.Heal(_healAmount);
+        _playerHp.Heal(_healAmount);
 
         // 회복 이펙트 생성
         CreateHealEffect();
@@ -39,17 +39,18 @@ public class HealSkill : SkillBase
     /// </summary>
     private void CreateHealEffect()
     {
-        if (_healEffectPrefab != null && _playerHealth != null)
+        if (_healEffectPrefab != null && _playerHp != null)
         {
             // 플레이어 위치에 회복 이펙트 생성
             GameObject effectObj = Instantiate(
                 _healEffectPrefab,
-                _playerHealth.transform.position,
-                Quaternion.identity
+                _playerHp.transform.position,
+                Quaternion.identity,
+                _playerHp.transform
             );
 
             // 일정 시간 후 이펙트 제거
-            Destroy(effectObj, 0.1f);
+            Destroy(effectObj, 0.6f);
         }
     }
 

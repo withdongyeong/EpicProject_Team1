@@ -12,11 +12,7 @@ public class PlayerProtection : MonoBehaviour
     public int ProtectionAmount => _protectionAmount;
     private Coroutine _protectionCoroutine;
     private GameObject _activeProtectionEffect;
-
-
-
-    //보호 상태 이벤트
-    public event Action<bool> OnProtectionChanged;
+    
 
     /// <summary>
     /// 보호 상태 설정
@@ -38,7 +34,7 @@ public class PlayerProtection : MonoBehaviour
         }
 
         // 보호 상태 변경 이벤트 발생
-        OnProtectionChanged?.Invoke(_isProtected);
+        EventBus.PublishPlayerProtectionChanged(isProtected);
 
         Debug.Log($"플레이어보호 상태 변경: {_isProtected}");
     }

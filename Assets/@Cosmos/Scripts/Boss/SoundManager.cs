@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
 {
     [Tooltip("오디오 스코어")]
-    [SerializeField] private AudioSource interactionAudioSource;
-
-    [SerializeField] private AudioSource bgmAudioSource;
-
-    [Header("BGM")]
-    [Tooltip("BGM")]
-    [SerializeField] private AudioClip bgm;
-    [Tooltip("BGM 볼륨")]
-    [SerializeField] private float bgmVolume;
+    private AudioSource interactionAudioSource;
+    private AudioSource bgmAudioSource;
 
     // 플레이어 사운드 딕셔너리
     private Dictionary<string, AudioClip> playerSoundDictionary = new Dictionary<string, AudioClip>();
@@ -23,8 +20,8 @@ public class SoundManager : Singleton<SoundManager>
         { "StickRoll", 1f },
         { "AriaActive", 1f },
         { "PlayerMove", 0.1f },
-        { "PlayerDamage", 0.3f },
-        { "PlayerDead", 0.3f }
+        { "PlayerDamage", 1f },
+        { "PlayerDead", 1f }
     };
 
     // 타일 사운드 딕셔너리
@@ -52,20 +49,58 @@ public class SoundManager : Singleton<SoundManager>
         {"SpiderSilkActivate", 0.8f }
     };
 
+    //오크메이지 사운드 딕셔너리
+    Dictionary<string, AudioClip> OrcMageSoundDictionary = new Dictionary<string, AudioClip>();
+    //오크메이지 사운드볼륨
+    private Dictionary<string, float> OrcMageSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"OrcMage_DamageActivate", 0.6f},
+        {"OrcMage_DieActivate", 0.6f },
+        {"OrcMage_FrogActivate", 1f },
+        {"OrcMage_RunActivate", 0.3f },
+        {"OrcMage_ScreamActivate", 0.6f },
+        {"OrcMage_SpikeActivate", 0.2f }
+    };
+
+    //아라크네 사운드 딕셔너리
+    private Dictionary<string, AudioClip> SlimeSoundDictionary = new Dictionary<string, AudioClip>();
+    //아라크네 볼륨 딕셔너리
+    private Dictionary<string, float> SlimeSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"PoisionExplotionActivate", 1f},
+        {"PoisonBallActivate", 1f },
+        {"SlimeTentacleActivate", 0.5f },
+    };
+
 
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
     //UI 사운드볼륨
-    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>    
+    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>
     {
         {"DeploymentActivate", 0.05f},
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.3f }
     };
 
+    //BGM 사운드 딕셔너리
+    Dictionary<string, AudioClip> BGMSoundDictionary = new Dictionary<string, AudioClip>();
+    //BGM 사운드 볼륨
+    private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"ShopSceneBGM", 0.2f},
+        {"OrcMage", 0.3f },
+        {"GameSceneBGM", 0.2f },
+        {"SlimeBGM", 0.1f }
+    };
+
+
     protected override void Awake()
     {
         base.Awake();
+
+        interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
+        bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
 
         // 플레이어 사운드 초기화
         AudioClip[] playeraudioClips = Resources.LoadAll<AudioClip>("Sounds/Player");
@@ -98,33 +133,47 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-        AudioClip[]UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
+        AudioClip[] OrcMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/OrcMage");
+
+        foreach (AudioClip clip in OrcMageaudioClips)
+        {
+            if (!OrcMageSoundDictionary.ContainsKey(clip.name))
+            {
+                OrcMageSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] SlimeMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Slime");
+
+        foreach (AudioClip clip in SlimeMageaudioClips)
+        {
+            if (!SlimeSoundDictionary.ContainsKey(clip.name))
+            {
+                SlimeSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
 
         foreach (AudioClip clip in UIaudioClips)
         {
             if (!UISoundDictionary.ContainsKey(clip.name))
             {
-               UISoundDictionary.Add(clip.name, clip);
+                UISoundDictionary.Add(clip.name, clip);
             }
         }
 
-    }
+        AudioClip[] BGMaudioClips = Resources.LoadAll<AudioClip>("Sounds/BGM");
 
-    private void Start()
-    {
-        Debug.Log("playerSoundDictionary: " + playerSoundDictionary.Count);
-
-        PlayBGMSound(bgm, bgmVolume);
-    }
-
-    public void PlayBGMSound(AudioClip clip, float volume = 0.3f)
-    {
-        if (clip != null && bgmAudioSource != null)
+        foreach (AudioClip clip in BGMaudioClips)
         {
-            bgmAudioSource.clip = clip;
-            bgmAudioSource.volume = volume;
-            bgmAudioSource.Play();
+            if (!BGMSoundDictionary.ContainsKey(clip.name))
+            {
+                BGMSoundDictionary.Add(clip.name, clip);
+            }
         }
+
+        EventBus.SubscribeSceneLoaded(OnSceneLoaded);
     }
 
     /// <summary>
@@ -185,11 +234,52 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     /// <summary>
+    /// 오크메이지 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void OrcMageSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = OrcMageSoundDictionary.ContainsKey(clip) ? OrcMageSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = OrcMageSoundVolumeDictionary.ContainsKey(clip) ? OrcMageSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 슬라임 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void SlimeSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = SlimeSoundDictionary.ContainsKey(clip) ? SlimeSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+
+    /// <summary>
     /// UI 사운드 재생 - UI가 나오면 수정 필요
     /// </summary>
     public void UISoundClip(string clip)
     {
-        Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
+        //Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
@@ -198,6 +288,60 @@ public class SoundManager : Singleton<SoundManager>
                 float volume = UISoundVolumeDictionary.ContainsKey(clip) ? UISoundVolumeDictionary[clip] : 1f;
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
+        }
+    }
+
+    /// <summary>
+    /// BGM 사운드 재생 - UI가 나오면 수정 필요
+    /// </summary>
+    public void BGMSoundClip(string clip)
+    {
+        if (clip != null && interactionAudioSource != null)
+        {
+            AudioClip tileClip = BGMSoundDictionary.ContainsKey(clip) ? BGMSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = BGMSoundVolumeDictionary.ContainsKey(clip) ? BGMSoundVolumeDictionary[clip] : 1f;
+                PlayBGMSound(tileClip, volume);
+            }
+        }
+    }
+
+    public void PlayBGMSound(AudioClip clip, float volume = 0.3f)
+    {
+        if (clip != null && bgmAudioSource != null)
+        {
+            bgmAudioSource.clip = clip;
+            bgmAudioSource.volume = volume;
+            bgmAudioSource.Play();
+        }
+    }
+
+    /// <summary>
+    /// 씬 이동에 따른 BGM 선택
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    { 
+        switch (scene.name)
+        {
+            case "ShopScene":
+                BGMSoundClip("ShopSceneBGM");
+                break;
+            case "GameScene":
+                BGMSoundClip("GameSceneBGM");
+                break;
+            case "GameScene2":
+                BGMSoundClip("OrcMage");
+                break;
+            case "GameScene3":
+                BGMSoundClip("SlimeBGM");
+                break;
+            default:
+                BGMSoundClip("ShopSceneBGM");
+                //bgmAudioSource.Stop(); // 기본은 정지
+                break;
         }
     }
 }

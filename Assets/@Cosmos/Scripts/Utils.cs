@@ -1,5 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+
+public enum GameState
+{
+    MainMenu,
+    Title,
+    Building,
+    StageSelect,
+    Playing,
+    Victory,
+    Defeat
+}
 
 public enum SkillState
 {
@@ -22,14 +35,10 @@ public enum TileCategory
     MagicCircle, // 마법진
     Armor,       // 방어구
     Consumable,  // 소모품
-    Accessory,   // 장신구
+    Trinket,   // 장신구
     Summon,     // 소환수
 }
 
-/// <summary>
-/// 인벤토리 아이템 데이터 클래스
-/// </summary>
-///
 public enum TileType
 {
     Attack,
@@ -41,6 +50,21 @@ public enum TileType
     Sword,
     Totem
 }
+
+public enum TileTag
+{
+    Weapon,
+    MagicCircle,
+    Summon,
+    Armor,
+    Trinket,
+    Potion,
+    Fire,
+    Ice,
+    Sword,
+    Totem,
+}
+
 [Serializable]
 public class TileInfo
 {
@@ -68,4 +92,41 @@ public class TileInfo
         tileCost = data.tileCost;
         tileCategory = data.tileCategory;
     }
+}
+
+
+
+/// <summary>
+/// 인접 효과에 의한 버프를 담는 클래스입니다.
+/// </summary>
+[Serializable] public class StarBuff
+{
+    [SerializeField] private float passive_CoolTimeBuff = 0.1f;
+    [SerializeField] private float passive_DamageBuff = 0.1f;
+
+    /// <summary>
+    /// 전투 시작시 쿨타임 관련 계수입니다.
+    /// </summary>
+    public float Passive_CoolTimBuff => passive_CoolTimeBuff;
+    /// <summary>
+    /// 전투 시작시 데미지 관련 계수입니다.
+    /// </summary>
+    public float Passive_DamageBuff => passive_DamageBuff;
+
+
+    /// <summary>
+    /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션 리스트입니다.
+    /// </summary>
+    private Action<TileObject> action_OnActivate;
+
+    public void RegisterActivateAction(Action<TileObject> act)
+    {
+        action_OnActivate += act;
+    }
+
+    /// <summary>
+    /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션 리스트입니다.
+    /// </summary>
+    public Action<TileObject> Action_OnActivate => action_OnActivate;
+
 }

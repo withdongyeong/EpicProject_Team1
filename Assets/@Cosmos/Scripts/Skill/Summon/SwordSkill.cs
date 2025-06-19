@@ -8,14 +8,15 @@ public class SwordSkill : SkillBase
     private GameObject[] swordPrefabs;
     private GameObject summonedSword;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         swordPrefabs = Resources.LoadAll<GameObject>("Prefabs/Swords");
     }
 
-    protected override void Activate(GameObject user)
+    protected override void Activate()
     {
-        base.Activate(user);
+        base.Activate();
         // 타겟 적 찾기
         targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)
@@ -47,7 +48,7 @@ public class SwordSkill : SkillBase
             // 검 소환
             summonedSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             SwordController swordController = summonedSword.GetComponent<SwordController>();
-            SwordManager swordManager = FindAnyObjectByType<SwordManager>();
+            SwordHandler swordHandler = FindAnyObjectByType<SwordHandler>();
             if (swordController != null)
             {
                 swordController.Damage = damage; // 공격력 설정
@@ -58,7 +59,7 @@ public class SwordSkill : SkillBase
             }
 
             // 타겟 적에게 검 발사
-            swordManager.ActivateSkill(targetEnemy.transform.position);
+            swordHandler.ActivateSkill(targetEnemy.transform.position);
         }
     }
 }
