@@ -84,6 +84,7 @@ public class GridCell
     {
         if (starList.Contains(starSkill))
         {
+            Debug.Log("스타 스킬 제거합니다");
             starList.Remove(starSkill);
             //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
             OnStarListChanged();

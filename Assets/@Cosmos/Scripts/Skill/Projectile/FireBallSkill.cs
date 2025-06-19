@@ -3,8 +3,9 @@ using System.Collections;
 
 public class FireBallSkill : FireBoltSkill
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         damage = 5;
     }
 

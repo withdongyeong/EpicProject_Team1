@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class TestSkill : SkillBase
 {
-    private void Awake()
+    protected override void  Awake()
     {
+        base.Awake();
         cooldown = 5;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Debug.Log("시작함");
     }
 

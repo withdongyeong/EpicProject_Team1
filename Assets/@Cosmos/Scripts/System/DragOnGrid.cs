@@ -18,20 +18,19 @@ public class DragOnGrid : DraggableObject
         originalPosition = transform.position;
         rotateZ = transform.rotation.eulerAngles.z;
         GameObject dragObject = gameObject;
-        foreach (CombineCell cc in dragObject.GetComponentsInChildren<CombineCell>())
+        
+        //StarCell도 Cell이기 때문에 잡아냅니다
+        foreach(Cell cell in dragObject.GetComponentsInChildren<Cell>())
         {
-            foreach (Cell cell in cc.GetComponentsInChildren<Cell>())
+            Transform t = cell.transform;
+            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
+            if (cell.GetType() == typeof(StarCell))
             {
-                Transform t = cell.transform;
-                Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
-                if(cell.GetType() == typeof(StarCell))
-                {
-                    StarBase starSkill = (cell as StarCell).GetStarSkill();
-                    GridManager.Instance.RemoveStarSkill(gridPos, starSkill);
-                    continue;
-                }
-                GridManager.Instance.ReleaseCell(gridPos);
+                StarBase starSkill = (cell as StarCell).GetStarSkill();
+                GridManager.Instance.RemoveStarSkill(gridPos, starSkill);
+                continue;
             }
+            GridManager.Instance.ReleaseCell(gridPos);
         }
     }
     
