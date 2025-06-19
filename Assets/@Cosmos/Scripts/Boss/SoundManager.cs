@@ -339,7 +339,8 @@ public class SoundManager : Singleton<SoundManager>
                 BGMSoundClip("SlimeBGM");
                 break;
             default:
-                bgmAudioSource.Stop(); // 기본은 정지
+                BGMSoundClip("ShopSceneBGM");
+                //bgmAudioSource.Stop(); // 기본은 정지
                 break;
         }
     }
