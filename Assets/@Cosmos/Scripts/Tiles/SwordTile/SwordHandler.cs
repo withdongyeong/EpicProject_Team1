@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class SwordManager : MonoBehaviour
+public class SwordHandler : MonoBehaviour
 {
     /// <summary>
     /// 모든 검 컨트롤러 리스트

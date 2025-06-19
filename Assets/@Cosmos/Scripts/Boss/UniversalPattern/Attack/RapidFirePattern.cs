@@ -22,7 +22,7 @@ public class RapidFirePattern : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager.PlayerController != null && _projectilePrefab != null;
+        return boss.BombHandler.PlayerController != null && _projectilePrefab != null;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class RapidFirePattern : IBossAttackPattern
     {
         for (int i = 0; i < _shotCount; i++)
         {
-            Vector3 direction = (boss.BombManager.PlayerController.transform.position - boss.transform.position).normalized;
+            Vector3 direction = (boss.BombHandler.PlayerController.transform.position - boss.transform.position).normalized;
             GameObject projectileObj = TileObject.Instantiate(_projectilePrefab, boss.transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
 

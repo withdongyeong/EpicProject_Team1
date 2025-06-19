@@ -74,7 +74,7 @@ public class PlayerHp : MonoBehaviour
         else
         {
             // 살아있으면 피격 처리 및 무적 시간 시작
-            FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Damaged");
+            FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Damaged");
             SoundManager.Instance.PlayPlayerSound("PlayerDamage");
             
             StartInvincibility();
@@ -174,13 +174,13 @@ public class PlayerHp : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망");
-        FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Death");
+        FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Death");
         
         
         // 무적 시간 강제 종료 (죽었으니까)
         EndInvincibility();
         
-        FindAnyObjectByType<StageManager>().Player.Animator.SetTrigger("Death");
+        FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Death");
         EventBus.PublishPlayerDeath();
     }
     

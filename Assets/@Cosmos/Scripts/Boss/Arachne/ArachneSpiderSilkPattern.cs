@@ -27,7 +27,7 @@ public class ArachneSpiderSilkPattern : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.BombManager.PlayerController != null && _spiderSilkPrefeb != null;
+        return boss.GridSystem != null && boss.BombHandler.PlayerController != null && _spiderSilkPrefeb != null;
     }
 
     /// <summary>

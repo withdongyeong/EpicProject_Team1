@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// 수정된 아라크네 독 분출 패턴 - 새로운 BombAvoidanceManager 사용
+/// 수정된 아라크네 독 분출 패턴 - 새로운 BombAvoidanceHandler 사용
 /// </summary>
 public class ArachnePoisionAriaPattern : IBossAttackPattern
 {
@@ -42,7 +42,7 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
         SoundManager.Instance.ArachneSoundClip("PoisonBallActivate");
         
         // 플레이어 추적 폭탄 공격 실행
-        boss.BombManager.ExecuteTargetingBomb(_attackShape, _explosionEffectPrefab, 
+        boss.BombHandler.ExecuteTargetingBomb(_attackShape, _explosionEffectPrefab, 
                                           warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
         
         // 또는 지연 후 재생
@@ -65,8 +65,8 @@ public class ArachnePoisionAriaPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager.PlayerController != null && 
+        return boss.BombHandler.PlayerController != null && 
                _explosionEffectPrefab != null && 
-               boss.BombManager != null;
+               boss.BombHandler != null;
     }
 }

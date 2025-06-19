@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// 아라크네 패턴2 - BombManager 사용 버전
+/// 아라크네 패턴2 - BombHandler 사용 버전
 /// </summary>
 public class ArachnePattern2 : IBossAttackPattern
 {
@@ -58,8 +58,8 @@ public class ArachnePattern2 : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager != null && 
-               boss.BombManager.PlayerController != null && 
+        return boss.BombHandler != null && 
+               boss.BombHandler.PlayerController != null && 
                _poisionAriaPrefab != null;
     }
 
@@ -69,7 +69,7 @@ public class ArachnePattern2 : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     private IEnumerator SpiderAttack(BaseBoss boss)
     {
-        boss.BombManager.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
+        boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
 
         // 사운드 재생
@@ -82,7 +82,7 @@ public class ArachnePattern2 : IBossAttackPattern
         for (int i = 0; i < 5; i++)
         {
             // 플레이어 추적 단일 점 공격
-            boss.BombManager.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
+            boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
                                                   warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
 
             // 사운드 재생
@@ -133,7 +133,7 @@ public class ArachnePattern2 : IBossAttackPattern
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
-        boss.BombManager.ExecuteFixedBomb(attackShape.ToList(), centerPos, _poisionAriaPrefab,
+        boss.BombHandler.ExecuteFixedBomb(attackShape.ToList(), centerPos, _poisionAriaPrefab,
                                           warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
 
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));

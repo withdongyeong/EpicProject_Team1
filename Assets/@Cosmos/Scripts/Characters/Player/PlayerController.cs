@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.Instance.PlayPlayerSound("AriaActive");
 
-        FindAnyObjectByType<StageManager>().SpawnGroundEffect();
+        FindAnyObjectByType<StageHandler>().SpawnGroundEffect();
     }
     
     /// <summary>

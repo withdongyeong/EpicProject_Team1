@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 3004238364497677759}
   m_Layer: 0
   m_Name: Player(Summon)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -518,6 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7477b90b90839458cf3b46315389d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincibilityDuration: 0.5
+  blinkCount: 5
 --- !u!114 &1725828651089743520
 MonoBehaviour:
   m_ObjectHideFlags: 0

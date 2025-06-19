@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 폭탄 피하기 공격 관리자 (다중 전조 타입 지원)
 /// </summary>
-public class BombAvoidanceManager : MonoBehaviour
+public class BombAvoidanceHandler : MonoBehaviour
 {
     private PlayerController _playerController;
     private PlayerHp _playerHp;

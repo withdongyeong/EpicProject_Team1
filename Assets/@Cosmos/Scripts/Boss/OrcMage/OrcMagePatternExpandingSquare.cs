@@ -18,7 +18,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss != null && _groundSpikePrefab != null && boss.BombManager != null;
+        return boss != null && _groundSpikePrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
             List<Vector3Int> squareShape = CreateHollowSquare(size, randomDirection);
             
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
-            boss.BombManager.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
+            boss.BombHandler.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
             
             if (size == 1 || size == 2)

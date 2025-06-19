@@ -7,7 +7,7 @@ using TMPro;
 /// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
 /// 싱글톤 제거, 일반 MonoBehaviour로 동작
 /// </summary>
-public class StageManager : MonoBehaviour
+public class StageHandler : MonoBehaviour
 {
     [Header("프리팹들")]
     [SerializeField] private GameObject playerPrefab;
@@ -52,11 +52,12 @@ public class StageManager : MonoBehaviour
         // 필수 컴포넌트 검증
         if (!ValidateComponents())
         {
-            Debug.LogError("[StageManager] 필수 컴포넌트가 누락되어 게임을 시작할 수 없습니다!");
+            Debug.LogError("[StageHandler] 필수 컴포넌트가 누락되어 게임을 시작할 수 없습니다!");
             return;
         }
 
-        InitializeSystems();
+        _gameStateManager = GameStateManager.Instance;
+        
         CreateGameContent();
         StartCoroutine(StartCountdown());
         EventBus.PublishGameStart();
@@ -73,13 +74,13 @@ public class StageManager : MonoBehaviour
         // 프리팹 검증
         if (playerPrefab == null)
         {
-            Debug.LogError("[StageManager] PlayerPrefab이 할당되지 않았습니다!");
+            Debug.LogError("[StageHandler] PlayerPrefab이 할당되지 않았습니다!");
             isValid = false;
         }
 
         if (enemyPrefab == null)
         {
-            Debug.LogError("[StageManager] EnemyPrefab이 할당되지 않았습니다!");
+            Debug.LogError("[StageHandler] EnemyPrefab이 할당되지 않았습니다!");
             isValid = false;
         }
         
@@ -102,7 +103,7 @@ public class StageManager : MonoBehaviour
                 countdownText = textObj.GetComponent<TextMeshProUGUI>();
                 if (countdownText != null)
                 {
-                    Debug.Log("[StageManager] CountdownText를 자동으로 찾았습니다.");
+                    Debug.Log("[StageHandler] CountdownText를 자동으로 찾았습니다.");
                 }
             }
         }
@@ -113,17 +114,9 @@ public class StageManager : MonoBehaviour
             if (spawnObj != null)
             {
                 enemySpawnPosition = spawnObj;
-                Debug.Log("[StageManager] EnemySpawnPosition을 자동으로 찾았습니다.");
+                Debug.Log("[StageHandler] EnemySpawnPosition을 자동으로 찾았습니다.");
             }
         }
-    }
-    
-    /// <summary>
-    /// 시스템들 초기화
-    /// </summary>
-    private void InitializeSystems()
-    {
-        _gameStateManager = GameStateManager.Instance;
     }
     
     /// <summary>
@@ -210,7 +203,7 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[StageManager] GroundEffectPrefab이 할당되지 않았습니다!");
+            Debug.LogWarning("[StageHandler] GroundEffectPrefab이 할당되지 않았습니다!");
         }
     }
     
@@ -253,7 +246,7 @@ public class StageManager : MonoBehaviour
         else
         {
             enemyPosition = new Vector3(13f, 3.5f, 0f);
-            Debug.LogWarning("[StageManager] EnemySpawnPosition이 설정되지 않아 기본 위치를 사용합니다.");
+            Debug.LogWarning("[StageHandler] EnemySpawnPosition이 설정되지 않아 기본 위치를 사용합니다.");
         }
         
         GameObject enemyObj = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);

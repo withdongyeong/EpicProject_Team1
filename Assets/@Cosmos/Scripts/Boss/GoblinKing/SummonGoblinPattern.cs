@@ -21,7 +21,7 @@ public class SummonGoblinPattern : IBossAttackPattern
     }
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.GridSystem != null && boss.BombManager.PlayerController != null && _goblin != null;
+        return boss.GridSystem != null && boss.BombHandler.PlayerController != null && _goblin != null;
     }
 
 

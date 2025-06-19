@@ -24,7 +24,7 @@ public class EnemyStraightAttack : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager.PlayerController != null && _warningPrefab != null;
+        return boss.BombHandler.PlayerController != null && _warningPrefab != null;
     }
 
     /// <summary>

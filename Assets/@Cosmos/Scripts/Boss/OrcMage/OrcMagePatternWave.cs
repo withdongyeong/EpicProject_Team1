@@ -18,7 +18,7 @@ public class OrcMagePatternWave : IBossAttackPattern
 
     public bool CanExecute(BaseBoss boss)
     {
-        return boss != null && _groundSpikePrefab != null && boss.BombManager != null;
+        return boss != null && _groundSpikePrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class OrcMagePatternWave : IBossAttackPattern
             boss.SetAnimationTrigger("Attack2Hand");
             // 플레이어 위치를 매번 새로 확인
             Vector3Int playerPos =
-                boss.GridSystem.WorldToGridPosition(boss.BombManager.PlayerController.transform.position);
+                boss.GridSystem.WorldToGridPosition(boss.BombHandler.PlayerController.transform.position);
 
             yield return ExecuteWave(boss, playerPos, wave);
             if (wave < 2) yield return new WaitForSeconds(0.8f);
@@ -81,7 +81,7 @@ public class OrcMagePatternWave : IBossAttackPattern
             }
             
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
-            boss.BombManager.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
+            boss.BombHandler.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
                 warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
             // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속

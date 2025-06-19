@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 수정된 아라크네 거미 다리 패턴 - BombAvoidanceManager 사용
+/// 수정된 아라크네 거미 다리 패턴 - BombAvoidanceHandler 사용
 /// </summary>
 public class ArachneSpiderLegPattern : IBossAttackPattern
 {
@@ -17,8 +17,8 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     /// 아라크네 거미 다리 패턴 생성자
     /// </summary>
     /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
-    /// <param name="bombManager">폭탄 피하기 매니저</param>
-    public ArachneSpiderLegPattern(GameObject spiderLegPrefab, BombAvoidanceManager bombManager)
+    /// <param name="bombHandler">폭탄 피하기 매니저</param>
+    public ArachneSpiderLegPattern(GameObject spiderLegPrefab, BombAvoidanceHandler bombHandler)
     {
         _spiderLegPrefab = spiderLegPrefab;
         
@@ -53,7 +53,7 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombManager.PlayerController != null && _spiderLegPrefab != null && boss.BombManager != null;
+        return boss.BombHandler.PlayerController != null && _spiderLegPrefab != null && boss.BombHandler != null;
     }
 
     /// <summary>
@@ -65,13 +65,13 @@ public class ArachneSpiderLegPattern : IBossAttackPattern
     {
         // 첫 번째 대각선 공격 (↘)
         SoundManager.Instance.ArachneSoundClip("SpiderLegActivate");
-        boss.BombManager.ExecuteTargetingBomb(_diagonalSlash1Shape, _spiderLegPrefab, 
+        boss.BombHandler.ExecuteTargetingBomb(_diagonalSlash1Shape, _spiderLegPrefab, 
                                           warningDuration: 1.0f, explosionDuration: 0.3f, damage: 10);
         
         yield return new WaitForSeconds(0.3f);
         
         // 두 번째 대각선 공격 (↙)
-        boss.BombManager.ExecuteTargetingBomb(_diagonalSlash2Shape, _spiderLegPrefab, 
+        boss.BombHandler.ExecuteTargetingBomb(_diagonalSlash2Shape, _spiderLegPrefab, 
                                           warningDuration: 0.5f, explosionDuration: 0.3f, damage: 10);
     }
 }
