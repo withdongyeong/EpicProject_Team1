@@ -35,7 +35,7 @@ public enum TileCategory
     MagicCircle, // 마법진
     Armor,       // 방어구
     Consumable,  // 소모품
-    Accessory,   // 장신구
+    Trinket,   // 장신구
     Summon,     // 소환수
 }
 
