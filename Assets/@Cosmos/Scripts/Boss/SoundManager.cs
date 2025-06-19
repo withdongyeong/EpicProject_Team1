@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
 {
     [Tooltip("오디오 스코어")]
-    [SerializeField] private AudioSource interactionAudioSource;
-
-    [SerializeField] private AudioSource bgmAudioSource;
-
-    [Header("BGM")]
-    [Tooltip("BGM")]
-    [SerializeField] private AudioClip bgm;
-    [Tooltip("BGM 볼륨")]
-    [SerializeField] private float bgmVolume;
+    private AudioSource interactionAudioSource;
+    private AudioSource bgmAudioSource;
 
     // 플레이어 사운드 딕셔너리
     private Dictionary<string, AudioClip> playerSoundDictionary = new Dictionary<string, AudioClip>();
@@ -91,6 +88,7 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
+        {"ShopSceneBGM", 0.2f},
         {"GameSceneBGM", 0.3f },
         {"OrcMage", 0.3f },
         {"SlimeBGM", 0.1f }
@@ -100,6 +98,10 @@ public class SoundManager : Singleton<SoundManager>
     protected override void Awake()
     {
         base.Awake();
+        EventBus.Init();
+
+        interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
+        bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
 
         // 플레이어 사운드 초기화
         AudioClip[] playeraudioClips = Resources.LoadAll<AudioClip>("Sounds/Player");
@@ -172,21 +174,7 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-    }
-
-    private void Start()
-    {
-        PlayBGMSound(bgm, bgmVolume);
-    }
-
-    public void PlayBGMSound(AudioClip clip, float volume = 0.3f)
-    {
-        if (clip != null && bgmAudioSource != null)
-        {
-            bgmAudioSource.clip = clip;
-            bgmAudioSource.volume = volume;
-            bgmAudioSource.Play();
-        }
+        EventBus.SubscribeSceneLoaded(OnSceneLoaded);
     }
 
     /// <summary>
@@ -320,4 +308,40 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
+    public void PlayBGMSound(AudioClip clip, float volume = 0.3f)
+    {
+        if (clip != null && bgmAudioSource != null)
+        {
+            bgmAudioSource.clip = clip;
+            bgmAudioSource.volume = volume;
+            bgmAudioSource.Play();
+        }
+    }
+
+    /// <summary>
+    /// 씬 이동에 따른 BGM 선택
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    { 
+        switch (scene.name)
+        {
+            case "ShopScene":
+                BGMSoundClip("ShopSceneBGM");
+                break;
+            case "GameScene":
+                BGMSoundClip("GameSceneBGM");
+                break;
+            case "GameScene2":
+                BGMSoundClip("OrcMage");
+                break;
+            case "GameScene3":
+                BGMSoundClip("SlimeBGM");
+                break;
+            default:
+                bgmAudioSource.Stop(); // 기본은 정지
+                break;
+        }
+    }
 }
