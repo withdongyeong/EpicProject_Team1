@@ -64,7 +64,7 @@
 
                 if (ratio > _FillAmount)
                 {
-                    col.rgb *= 0.3;
+                    col.rgb = float3(0.2, 0.2, 0.2);
                 }
 
                     return col;
