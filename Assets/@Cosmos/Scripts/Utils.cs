@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -90,10 +91,39 @@ public class TileInfo
     }
 }
 
+
+
 /// <summary>
 /// 인접 효과에 의한 버프를 담는 클래스입니다.
 /// </summary>
-public class StarBuff
+[Serializable] public class StarBuff
 {
+    [SerializeField] private float passive_CoolTimeBuff = 0.1f;
+    [SerializeField] private float passive_DamageBuff = 0.1f;
+
+    /// <summary>
+    /// 전투 시작시 쿨타임 관련 계수입니다.
+    /// </summary>
+    public float Passive_CoolTimBuff => passive_CoolTimeBuff;
+    /// <summary>
+    /// 전투 시작시 데미지 관련 계수입니다.
+    /// </summary>
+    public float Passive_DamageBuff => passive_DamageBuff;
+
+
+    /// <summary>
+    /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션 리스트입니다.
+    /// </summary>
+    private Action<TileObject> action_OnActivate;
+
+    public void RegisterActivateAction(Action<TileObject> act)
+    {
+        action_OnActivate += act;
+    }
+
+    /// <summary>
+    /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션 리스트입니다.
+    /// </summary>
+    public Action<TileObject> Action_OnActivate => action_OnActivate;
 
 }
