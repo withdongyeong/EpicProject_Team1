@@ -2,8 +2,9 @@
 
 public class FireBoltSkill : ProjectileSkill
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         damage = 5;
     }
 

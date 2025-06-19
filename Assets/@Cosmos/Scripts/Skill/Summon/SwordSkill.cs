@@ -8,8 +8,9 @@ public class SwordSkill : SkillBase
     private GameObject[] swordPrefabs;
     private GameObject summonedSword;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         swordPrefabs = Resources.LoadAll<GameObject>("Prefabs/Swords");
     }
 

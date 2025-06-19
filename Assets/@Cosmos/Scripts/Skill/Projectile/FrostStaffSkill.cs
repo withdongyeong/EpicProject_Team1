@@ -2,8 +2,9 @@
 
 public class FrostStaffSkill : ProjectileSkill
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         damage = 5;
     }
     protected override void FireProjectile()
