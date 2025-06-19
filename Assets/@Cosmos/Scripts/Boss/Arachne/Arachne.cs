@@ -34,7 +34,7 @@ public class Arachne : BaseBoss
             .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg), 1f)
             .SetGroupInterval(1f);
 
-        // 개별 패턴: Pattern2 (중간 패턴)
+        //개별 패턴: Pattern2(중간 패턴)
         AddGroup()
           .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
           .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)

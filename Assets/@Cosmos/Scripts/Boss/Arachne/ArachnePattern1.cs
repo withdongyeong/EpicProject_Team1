@@ -28,17 +28,17 @@ public class ArachnePattern1 : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     public IEnumerator Execute(BaseBoss boss)
     {
-        Coroutine slash1 = boss.StartCoroutine(SpiderSlash1(boss));
+        Coroutine slash1 = boss.StartCoroutine(SpiderSlash1(boss, true));
 
         yield return new WaitForSeconds(2f);
 
-        Coroutine slash2 = boss.StartCoroutine(SpiderSlash2(boss));
+        Coroutine slash2 = boss.StartCoroutine(SpiderSlash2(boss, false));
 
         yield return new WaitForSeconds(2f);
 
         // 두 개의 코루틴을 동시에 시작
-        Coroutine slash3 = boss.StartCoroutine(SpiderSlash1(boss));
-        Coroutine slash4 = boss.StartCoroutine(SpiderSlash2(boss));
+        Coroutine slash3 = boss.StartCoroutine(SpiderSlash1(boss, true));
+        Coroutine slash4 = boss.StartCoroutine(SpiderSlash2(boss, true));
         
         // 두 코루틴이 모두 완료될 때까지 대기
         yield return slash3;
@@ -68,12 +68,16 @@ public class ArachnePattern1 : IBossAttackPattern
     /// 첫 번째 대각선 슬래쉬 (우하향 ↘)
     /// </summary>
     /// <param name="boss">보스 객체</param>
-    private IEnumerator SpiderSlash1(BaseBoss boss)
+    private IEnumerator SpiderSlash1(BaseBoss boss, bool isTorsion)
     {
         for (int i = 0; i < 9; i++)
         {
             int centerX = i;
             int centerY = 8 - i;
+
+            if(isTorsion) centerY = 8 - i;
+            else centerY = 8 - i + 1;
+
             Vector3Int centerPos = new Vector3Int(centerX, centerY, 0);
 
             // 대각선 5칸 모양 생성 (↘ 방향)
@@ -109,18 +113,22 @@ public class ArachnePattern1 : IBossAttackPattern
     /// 두 번째 대각선 슬래쉬 (좌하향 ↙)
     /// </summary>
     /// <param name="boss">보스 객체</param>
-    private IEnumerator SpiderSlash2(BaseBoss boss)
+    private IEnumerator SpiderSlash2(BaseBoss boss, bool isTorsion)
     {
         for (int i = 0; i < 9; i++)
         {
             int centerX = 8 - i;
             int centerY = 8 - i;
+         
+           if(isTorsion == true) centerY = 8 - i;
+           else centerY = 8 - i +1;
+
             Vector3Int centerPos = new Vector3Int(centerX, centerY, 0);
 
             // 대각선 5칸 모양 생성 (↙ 방향)
             List<Vector3Int> EffectslashShape = new List<Vector3Int>();
             List<Vector3Int> slashShape = new List<Vector3Int>();
-            for (int j = -2; j <= 2; j++)
+            for (int j = -2; j <= 3; j++)
             {
                 if (j == 0) EffectslashShape.Add(new Vector3Int(j, -j, 0));
                 else slashShape.Add(new Vector3Int(j, -j, 0)); // 상대 좌표

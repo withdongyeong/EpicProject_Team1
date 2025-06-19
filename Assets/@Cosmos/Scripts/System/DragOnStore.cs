@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public class DragOnStore : DraggableObject
     {
         originalObject = storeSlot.GetObject();
         dragObject = Instantiate(originalObject);
-        dragObject.name = "dragObject";
+        //dragObject.name = "dragObject";
     }                                 
     
     protected override void EndDrag()
@@ -38,9 +38,13 @@ public class DragOnStore : DraggableObject
             GameObject g = DragManager.Instance.GetCurrentDragObject();
             foreach (Cell cell in g.GetComponentsInChildren<Cell>())
             {
-                cell.AddComponent<BoxCollider2D>();
-                HoverTileInfo hti = cell.AddComponent<HoverTileInfo>();
-                hti.SetTileObject(g.GetComponent<TileObject>());
+                if(cell.GetType() == typeof(Cell))
+                {
+                    cell.AddComponent<BoxCollider2D>();
+                    HoverTileInfo hti = cell.AddComponent<HoverTileInfo>();
+                    hti.SetTileObject(g.GetComponent<TileObject>());
+                }
+                
             }
             
             

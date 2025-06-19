@@ -8,16 +8,11 @@ public class KoreaTotem : BaseTotem
 
     [SerializeField] GameObject _lesserProjectile;
     [SerializeField] GameObject _betterProjectile;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        _lesserProjectile = Resources.Load<GameObject>("Prefabs/Projectiles/Totem2");
+        _betterProjectile = Resources.Load<GameObject>("Prefabs/Projectiles/Totem2 Better");
     }
 
     public override void InitializeTotem(int totemPower)
