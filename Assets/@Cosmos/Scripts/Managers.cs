@@ -43,6 +43,6 @@ public class Managers : MonoBehaviour
 
     private void Start()
     {
-        SceneLoader.LoadSceneWithName("BuildingScene_KYH");
+        SceneLoader.LoadSceneWithName("BuildingScene");
     }
 }

@@ -41,26 +41,17 @@ public class BombAvoidanceHandler : MonoBehaviour
     
     private void Awake()
     {
+        EventBus.SubscribeGameStart(Init);
+    }
+    
+
+    private void Init()
+    {
         if (_playerController == null)
         {
             _playerController = FindAnyObjectByType<PlayerController>();
         }
         
-        if (_playerHp == null && _playerController != null)
-        {
-            _playerHp = _playerController.GetComponent<PlayerHp>();
-        }
-    }
-    
-    private void Start()
-    {
-        // Awake에서 못 찾았으면 Start에서 다시 시도
-        if (_playerController == null)
-        {
-            _playerController = FindAnyObjectByType<PlayerController>();
-            Debug.Log($"Start에서 PlayerController 재검색: {_playerController}");
-        }
-    
         if (_playerHp == null && _playerController != null)
         {
             _playerHp = _playerController.GetComponent<PlayerHp>();
@@ -466,5 +457,11 @@ public class BombAvoidanceHandler : MonoBehaviour
                 Destroy(tile);
             }
         }
+    }
+    
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStart(Init);
     }
 }

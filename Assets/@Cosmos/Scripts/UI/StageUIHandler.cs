@@ -18,8 +18,6 @@ public class StageUIHandler : MonoBehaviour
     
     private GameStateManager _gameStateManager;
 
-    [Header("전환 씬 이름")] private string _buildingSceneName = "ShopScene";
-
     /// <summary>
     /// 초기화 및 이벤트 연결
     /// </summary>
@@ -96,8 +94,7 @@ public class StageUIHandler : MonoBehaviour
     private void ReturnToBuilding()
     {
         TimeScaleManager.Instance.ResetTimeScale();
-        SoundManager.Instance.BGMSoundClip(_buildingSceneName + "BGM");
-        SceneManager.LoadScene(_buildingSceneName);
+        SceneLoader.LoadBuilding();
         
         // 게임 격자 다시 상점 자리로 원위치
         GridManager.Instance.transform.position = new Vector3(0, 0, 0);
