@@ -48,7 +48,7 @@ public class SlimeFloorPattern1 : IBossAttackPattern
 
 
 
-        boss.BombManager.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
+        boss.BombHandler.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
                                         warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
 
         yield return new WaitForSeconds(0.6f);

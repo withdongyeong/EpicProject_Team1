@@ -3238,7 +3238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1334819888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,7 +3252,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 0}
-  maxSize: 5
   startPoint: {fileID: 0}
   occupiedSprite: {fileID: 0}
   defaultSprite: {fileID: 0}
@@ -4261,8 +4260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 568023074742637454, guid: 3b76cf904a96b334bbb51f4ec2f3e4ad, type: 3}
-  maxSize: 9
-  startPoint: {fileID: 1911385607}
+  startPoint: {fileID: 0}
   occupiedSprite: {fileID: 21300000, guid: 8153df8c128105d4eba6da2f968e5339, type: 3}
   defaultSprite: {fileID: -4908184131564490280, guid: b46b3f0d34ef26d4f9fdc94eee979d95, type: 3}
 --- !u!4 &2052188540
