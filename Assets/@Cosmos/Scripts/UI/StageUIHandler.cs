@@ -5,7 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 게임 UI 관리 클래스
 /// </summary>
-public class GameUIManager : MonoBehaviour
+public class StageUIHandler : MonoBehaviour
 {
     [Header("결과 패널")]
     public GameObject victoryPanel;    // 승리 시 표시되는 패널

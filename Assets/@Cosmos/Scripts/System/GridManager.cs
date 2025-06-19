@@ -112,7 +112,7 @@ public class GridCell
 public class GridManager : Singleton<GridManager>
 {
     public GameObject cellPrefab;
-    [SerializeField] private int maxSize = 5;
+    private int maxSize = 9;
     private Vector3Int gridSize;
     public Vector3Int GridSize => gridSize;
     [SerializeField] private GameObject startPoint;
@@ -145,13 +145,9 @@ public class GridManager : Singleton<GridManager>
         InitGround();
     }
 
-    private void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     private void InitializeGrid()
     {
+        startPoint = transform.GetChild(0).gameObject;
         gridSize = new Vector3Int(maxSize, maxSize, 0);
         grid = new GridCell[gridSize.x, gridSize.y];
         for (int x = 0; x < gridSize.x; x++)
