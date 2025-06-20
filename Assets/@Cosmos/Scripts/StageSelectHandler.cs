@@ -33,6 +33,9 @@ public class StageSelectHandler : MonoBehaviour
     {
         Boss selectedBoss = (Boss)GameManager.StageNum;  
         enemyPrefab = Resources.Load<GameObject>($"BossPrefab/{selectedBoss}");
+
+        SoundManager.Instance.BGMSoundClip(selectedBoss.ToString() + "BGM");
+
         backgroundSprite = Resources.Load<Sprite>($"Arts/Background/Vertical3");  
         if (enemyPrefab == null || backgroundSprite == null)
         {

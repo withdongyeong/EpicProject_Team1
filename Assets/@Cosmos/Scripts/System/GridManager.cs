@@ -259,14 +259,6 @@ public class GridManager : Singleton<GridManager>
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
 
-            //List<StarBase> starskills = GetStarSkills(gridPos);
-            //if (starskills != null && starskills.Count > 0)
-            //{
-            //    foreach (StarBase starSkill in starskills)
-            //    {
-            //        starSkill.GetComponent<CombinedStarCell>().UpdateAdjacentTileObjects(); // 인접 효과를 받는 타일 오브젝트 업데이트
-            //    }
-            //}
             //곽민준이 친 코드입니다. 해당 그리드에 할당된 인접 효과가 변경되면 타일이 다시 계산하게 합니다.
             grid[gridPos.x, gridPos.y].OnStarListChange += cellData.GetCombineCell().GetTileObject().UpdateStarList;
             //Debug.Log(grid[gridPos.x, gridPos.y].cell);
