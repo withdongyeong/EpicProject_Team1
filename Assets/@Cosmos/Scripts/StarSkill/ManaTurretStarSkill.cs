@@ -12,7 +12,7 @@ public class ManaTurretStarSkill : StarBase
     protected override void Awake()
     {
         base.Awake();
-        starBuff.RegisterActivateAction(ActivateManaTurret);
+        //starBuff.RegisterActivateAction(ActivateManaTurret);
         EventBus.SubscribeGameStart(HandleGameStart);
     }
 
