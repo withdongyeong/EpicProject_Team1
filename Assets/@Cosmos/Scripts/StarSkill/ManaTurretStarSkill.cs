@@ -1,44 +1,59 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ManaTurretStarSkill : StarBase
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private GameObject projectilePrefab;
-    private BaseBoss targetEnemy;
+    private ManaTurretSkill skill;
 
     public int Damage { get => damage; set => damage = value; }
 
     protected override void Awake()
     {
         base.Awake();
-        //starBuff.RegisterActivateAction(ActivateManaTurret);
+        starBuff.RegisterActivateAction(ActivateManaTurret);
         EventBus.SubscribeGameStart(HandleGameStart);
+        EventBus.SubscribeSceneLoaded(HandleSceneLoaded);
+
+        skill = transform.parent.GetComponentInChildren<ManaTurretSkill>();
     }
 
+    /// <summary>
+    /// 전투 시작 시 타겟 적을 설정하고 그리드에 이동 불가 위치를 추가합니다.
+    /// </summary>
     public void HandleGameStart()
     {
-        targetEnemy = FindAnyObjectByType<BaseBoss>();
         GridManager.Instance.AddUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
     }
 
-    private void ActivateManaTurret(TileObject tileObject)
+    /// <summary>
+    /// 빌딩 씬이 시작될 때 이동 불가 위치를 제거합니다.
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
+    private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 무기 스킬이 먼저 나가도록 대기
-        //yield return new WaitForSeconds(1f);
-        if (tileObject.GetTileData().TileCategory == TileCategory.Weapon && projectilePrefab != null)
+        if (scene.name == "BuildingScene")
         {
-            Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-            Vector3 direction = (targetEnemy.transform.position - spawnPos).normalized;
-            GameObject projectileObj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-            Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
+            GridManager.Instance.RemoveUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
         }
+    }
+
+    private void ActivateManaTurret(SkillBase skillbase)
+    {
+        if(skillbase.TileObject.GetTileData().TileCategory != TileCategory.Weapon || skillbase.TileObject.name.Contains("ManaAI"))
+        {
+            return;
+        }
+        skill.ActivateManaTurret();
     }
 
     private void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(HandleGameStart);
+        EventBus.UnsubscribeSceneLoaded(HandleSceneLoaded);
         GridManager.Instance.RemoveUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
     }
 }

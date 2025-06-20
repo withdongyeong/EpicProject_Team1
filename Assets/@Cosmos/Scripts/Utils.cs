@@ -128,6 +128,15 @@ public enum BuffableTileStat
     }
 
     /// <summary>
+    /// 전투 시작시 발동시킬 함수를 등록 해제하는 메서드입니다.
+    /// </summary>
+    /// <param name="act"></param>
+    public void UnregisterGameStartAction(Action<SkillBase> act)
+    {
+        action_OnGameStart -= act;
+    }
+
+    /// <summary>
     /// 전투 시작시 발동시킬 함수들을 담을 액션입니다.
     /// </summary>
     public Action<SkillBase> Action_OnGameStart => action_OnGameStart;
@@ -144,6 +153,15 @@ public enum BuffableTileStat
     public void RegisterActivateAction(Action<SkillBase> act)
     {
         action_OnActivate += act;
+    }
+
+    /// <summary>
+    /// 타일 발동시 발동시킬 함수를 등록 해제하는 메서드입니다.
+    /// </summary>
+    /// <param name="act"></param>
+    public void UnregisterActivateAction(Action<SkillBase> act)
+    {
+        action_OnActivate -= act;
     }
 
     /// <summary>
