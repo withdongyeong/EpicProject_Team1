@@ -26,6 +26,7 @@ public abstract class BaseBoss : MonoBehaviour
     private List<ExecutableUnit> _executableUnits;
 
     private Animator _animator;
+    private DamageTextHandler _damageTextHandler;
 
     // Properties
     /// <summary>
@@ -67,6 +68,7 @@ public abstract class BaseBoss : MonoBehaviour
     protected virtual void Awake()
     {
         EventBus.SubscribeGameStart(Init);
+        _damageTextHandler = FindAnyObjectByType<DamageTextHandler>();
     }
     /// <summary>
     /// 보스 초기화
@@ -185,8 +187,7 @@ public abstract class BaseBoss : MonoBehaviour
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
-        Debug.Log("Boss 가 데미지 받음 : " + damage);
-        
+        _damageTextHandler.SpawnDamageText(damage);
         if (_currentHealth <= 0)
         {
             Die();
