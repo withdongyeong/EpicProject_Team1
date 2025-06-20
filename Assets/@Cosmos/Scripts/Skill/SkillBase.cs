@@ -136,7 +136,6 @@ public abstract class SkillBase : MonoBehaviour
             {
                 StarBuff starBuff = star.StarBuff;
                 finalCooldown *= (1-star.CooldownFactor);
-                starBuff.Action_OnActivate.Invoke(tileObject);
                 onActivateAction += starBuff.Action_OnActivate;
             }
         }
