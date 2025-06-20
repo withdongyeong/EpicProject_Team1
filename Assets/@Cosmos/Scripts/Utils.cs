@@ -94,32 +94,54 @@ public class TileInfo
     }
 }
 
-
+/// <summary>
+/// 버프될 수 있는 타일의 스탯을 의미합니다. 만약 버프시키고 싶은 타일의 스탯이 있다면, 여기에 넣으면 됩니다.
+/// </summary>
+public enum BuffableTileStat
+{
+    //쿨타임
+    CoolTime,
+    //데미지
+    Damage,
+    //힐량
+    HealAmount
+}
 
 /// <summary>
 /// 인접 효과에 의한 버프를 담는 클래스입니다.
 /// </summary>
 [Serializable] public class StarBuff
 {
-    [SerializeField] private float passive_CoolTimeBuff = 0.1f;
-    [SerializeField] private float passive_DamageBuff = 0.1f;
 
     /// <summary>
-    /// 전투 시작시 쿨타임 관련 계수입니다.
+    /// 전투 시작시 발동시킬 함수들을 담을 액션입니다.
     /// </summary>
-    public float Passive_CoolTimBuff => passive_CoolTimeBuff;
-    /// <summary>
-    /// 전투 시작시 데미지 관련 계수입니다.
-    /// </summary>
-    public float Passive_DamageBuff => passive_DamageBuff;
+    private Action<SkillBase> action_OnGameStart;
 
+    /// <summary>
+    /// 전투 시작시 발동시킬 함수로 등록하는 메서드입니다.
+    /// </summary>
+    /// <param name="act">이 함수를 전투 시작시 실행시킵니다.</param>
+    public void RegisterGameStartAction(Action<SkillBase> act)
+    {
+        action_OnGameStart += act;
+    }
+
+    /// <summary>
+    /// 전투 시작시 발동시킬 함수들을 담을 액션입니다.
+    /// </summary>
+    public Action<SkillBase> Action_OnGameStart => action_OnGameStart;
 
     /// <summary>
     /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션입니다.
     /// </summary>
-    private Action<TileObject> action_OnActivate;
+    private Action<SkillBase> action_OnActivate;
 
-    public void RegisterActivateAction(Action<TileObject> act)
+    /// <summary>
+    /// 타일 발동시 발동시킬 함수로 등록하는 메서드입니다.
+    /// </summary>
+    /// <param name="act">이 함수를 타일 발동시 발동시킵니다.</param>
+    public void RegisterActivateAction(Action<SkillBase> act)
     {
         action_OnActivate += act;
     }
@@ -127,6 +149,45 @@ public class TileInfo
     /// <summary>
     /// 타일이 발동되었을때 발동시킬 함수들을 담을 액션 리스트입니다.
     /// </summary>
-    public Action<TileObject> Action_OnActivate => action_OnActivate;
+    public Action<SkillBase> Action_OnActivate => action_OnActivate;
 
+}
+
+/// <summary>
+/// 버프되는 스탯, 버프되는 양을 담은 클래스입니다.
+/// </summary>
+[Serializable] public class TileBuffData
+{
+
+    /// <summary>
+    /// 버프를 받을 스탯입니다.
+    /// </summary>
+    private BuffableTileStat _tileStat;
+
+    /// <summary>
+    /// 버프를 받을 스탯에 접근합니다.
+    /// </summary>
+    public BuffableTileStat TileStat => _tileStat;
+
+
+    /// <summary>
+    /// 버프를 받는 양입니다.
+    /// </summary>
+    private float _value;
+
+    /// <summary>
+    /// 버프를 받는 양에 접근합니다.
+    /// </summary>
+    public float Value => _value;
+
+    /// <summary>
+    ///  버프되는 조건, 버프되는 스탯, 버프되는 양을 담은 클래스입니다.
+    /// </summary>
+    /// <param name="condition">버프되는 조건입니다</param>
+    /// <param name="value">버프되는 양입니다.</param>
+    public TileBuffData(BuffableTileStat tileStat, float value)
+    {
+        _tileStat = tileStat;
+        _value = value;
+    }
 }
