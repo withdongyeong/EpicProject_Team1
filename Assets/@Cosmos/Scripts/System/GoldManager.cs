@@ -18,13 +18,14 @@ public class GoldManager : Singleton<GoldManager>
     protected override void Awake()
     {
         base.Awake();
-        SetCurrentGold(30);
+        SetCurrentGold(20);
+        EventBus.SubscribeBossDeath(GetGoldPerStage);    
     }
 
     // Update is called once per frame
     void Update()
     {
-         if(Input.GetKeyDown(KeyCode.D))
+         if(Input.GetKeyDown(KeyCode.F12))
         {
             ModifyCurrentGold(1);
         }
@@ -79,5 +80,15 @@ public class GoldManager : Singleton<GoldManager>
             return true;
         }
 
+    }
+
+    private void GetGoldPerStage()
+    {
+        ModifyCurrentGold(15);
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeBossDeath(GetGoldPerStage);
     }
 }

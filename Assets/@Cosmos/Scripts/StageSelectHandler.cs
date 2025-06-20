@@ -31,7 +31,7 @@ public class StageSelectHandler : MonoBehaviour
     
     public void StageSelect()
     {
-        Boss selectedBoss = (Boss)GameManager.StageNum;  
+        Boss selectedBoss = (Boss)GameManager.Instance.StageNum;  
         enemyPrefab = Resources.Load<GameObject>($"BossPrefab/{selectedBoss}");
 
         SoundManager.Instance.BGMSoundClip(selectedBoss.ToString() + "BGM");

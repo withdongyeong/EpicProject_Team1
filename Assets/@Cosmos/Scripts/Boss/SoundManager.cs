@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
