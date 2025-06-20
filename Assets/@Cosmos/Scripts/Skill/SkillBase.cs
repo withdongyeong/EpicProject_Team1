@@ -169,6 +169,7 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void ClearStarBuff()
     {
         finalCooldown = cooldown;
+        onGameStartAction = null;
         onActivateAction = null;
     }
 

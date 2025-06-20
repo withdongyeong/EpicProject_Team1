@@ -2,11 +2,13 @@
 
 public class ProjectileSkill : SkillBase
 {
+    [SerializeField] protected int firstDamage;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
 
     public int Damage { get => damage; set => damage = value; }
+
 
     /// <summary>
     /// 타일 발동 - 투사체 발사
@@ -35,5 +37,18 @@ public class ProjectileSkill : SkillBase
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
         }
+    }
+
+    protected override void ClearStarBuff()
+    {
+        base.ClearStarBuff();
+        damage = firstDamage;
+    }
+
+    public override void ApplyStatBuff(TileBuffData buffData)
+    {
+        base.ApplyStatBuff(buffData);
+        if (buffData.TileStat == BuffableTileStat.Damage)
+            damage += Mathf.FloorToInt(buffData.Value);
     }
 }
