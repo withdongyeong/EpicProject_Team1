@@ -21,17 +21,17 @@ public class StageSelectHandler : MonoBehaviour
 {
     private enum Boss
     {
-        Arachne = 1,
-        OrcMage = 2,
-        Slime = 3
+        Slime = 1,
+        Arachne = 2,
+        OrcMage = 3
     }
     
     public static GameObject enemyPrefab;
     public static Sprite backgroundSprite;
     
-    public void StageSelect(int bossNum)
+    public void StageSelect()
     {
-        Boss selectedBoss = (Boss)bossNum;
+        Boss selectedBoss = (Boss)GameManager.StageNum;  
         enemyPrefab = Resources.Load<GameObject>($"BossPrefab/{selectedBoss}");
         backgroundSprite = Resources.Load<Sprite>($"Arts/Background/Vertical3");  
         if (enemyPrefab == null || backgroundSprite == null)
