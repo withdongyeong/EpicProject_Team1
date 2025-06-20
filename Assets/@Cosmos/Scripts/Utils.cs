@@ -94,6 +94,14 @@ public class TileInfo
     }
 }
 
+[Serializable] public class ShopChanceClass
+{
+    public float shop_NormalChance; //노말 등급의 확률입니다
+    public float shop_RareChance; //레어 등급의 확률입니다
+    public float shop_EpicChance; //에픽 등급의 확률입니다
+    public float shop_LegendaryChance; //레전더리 등급의 확률입니다
+}
+
 /// <summary>
 /// 버프될 수 있는 타일의 스탯을 의미합니다. 만약 버프시키고 싶은 타일의 스탯이 있다면, 여기에 넣으면 됩니다.
 /// </summary>

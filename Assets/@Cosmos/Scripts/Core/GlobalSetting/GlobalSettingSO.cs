@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Setting", menuName = "GlobalSetting/Setting")]
 public class GlobalSettingSO : ScriptableObject
@@ -16,10 +18,8 @@ public class GlobalSettingSO : ScriptableObject
     public int totem_HeadInt;
 
     [Header("상점 등급 확률표")]
-    public float shop_NormalChance; //노말 등급의 확률입니다
-    public float shop_RareChance; //레어 등급의 확률입니다
-    public float shop_EpicChance; //에픽 등급의 확률입니다
-    public float shop_LegendaryChance; //레전더리 등급의 확률입니다
+    public List<ShopChanceClass> shop_ChanceList;
+
 
     [Header("언어")]
     public SynergyTranslationSO language_SynergyTranslationSO; // 시너지(#화염)의 언어를 결정하는 SO입니다
