@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     //곽민준이 건들였습니다
-    private static int stageNum = 1;
+    private int stageNum = 1;
 
     protected override void Awake()
     {
         base.Awake();
+        stageNum = 1;
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
         EventBus.SubscribeBossDeath(AddStageNum);
     }
 
-    public static int StageNum => stageNum;
+    public int StageNum => Instance.stageNum;
 
     public void AddStageNum()
     {
