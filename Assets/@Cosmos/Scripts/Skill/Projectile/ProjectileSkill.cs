@@ -2,6 +2,7 @@
 
 public class ProjectileSkill : SkillBase
 {
+    [SerializeField] protected int firstDamage;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
@@ -45,10 +46,24 @@ public class ProjectileSkill : SkillBase
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
         }
     }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
         // 구독 해제
         EventBus.UnsubscribeGameStart(HandleGameStart);
+    }
+
+    protected override void ClearStarBuff()
+    {
+        base.ClearStarBuff();
+        damage = firstDamage;
+    }
+
+    public override void ApplyStatBuff(TileBuffData buffData)
+    {
+        base.ApplyStatBuff(buffData);
+        if (buffData.TileStat == BuffableTileStat.Damage)
+            damage += Mathf.FloorToInt(buffData.Value);
     }
 }
