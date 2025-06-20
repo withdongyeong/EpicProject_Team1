@@ -413,6 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d594e634e295e4e968c7c58d9ace7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentHealth: 0
   warningAria: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
   poisionAriaPrefeb: {fileID: 2655093744207988788, guid: cd1aaf5c0d03a134f95d6bf4b5b168ad, type: 3}
   LToRspiderLeg: {fileID: 2655093744207988788, guid: 2546633204f268a4dbd5b15e690147e6, type: 3}
