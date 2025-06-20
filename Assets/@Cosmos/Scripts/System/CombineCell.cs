@@ -50,7 +50,7 @@ public class CombineCell : MonoBehaviour
     {
         if (skills == null || skills.Length == 0)
         {
-            Debug.LogWarning("No skills assigned to CombineCell.");
+            Debug.Log("No skills assigned to CombineCell.");
             return;
         }
         

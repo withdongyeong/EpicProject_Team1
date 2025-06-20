@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class SlimeFloorPattern2 : IBossAttackPattern
 {
@@ -82,6 +83,8 @@ public class SlimeFloorPattern2 : IBossAttackPattern
                 }
             }
         }
+
+        gridWithoutWindmill.Add(new Vector3Int(0, 0, 0));
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 

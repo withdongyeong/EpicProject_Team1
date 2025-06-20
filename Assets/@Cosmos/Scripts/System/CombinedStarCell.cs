@@ -34,20 +34,4 @@ public class CombinedStarCell : MonoBehaviour
     {
         return starSkill;
     }
-
-    /// <summary>
-    /// 인접 효과를 받는 타일 오브젝트 리스트를 업데이트합니다.
-    /// </summary>
-    public void UpdateAdjacentTileObjects()
-    {
-        for (int i = 0; i < starCell.Count; i++)
-        {
-            Vector3Int starCellGridPos = GridManager.Instance.WorldToGridPosition(starCell[i].transform.position);
-            TileObject tileObject = GridManager.Instance.GetCellData(starCellGridPos).GetCombineCell().GetTileObject();
-            if (tileObject != null && !adjacentTileObjects.Contains(tileObject))
-            {
-                adjacentTileObjects.Add(tileObject);
-            }
-        }
-    }
 }

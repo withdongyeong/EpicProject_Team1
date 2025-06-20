@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 
@@ -22,7 +22,8 @@ public class StageSelectHandler : MonoBehaviour
     private enum Boss
     {
         Arachne = 1,
-        OrcMage = 2
+        OrcMage = 2,
+        Slime = 3
     }
     
     public static GameObject enemyPrefab;
@@ -32,7 +33,10 @@ public class StageSelectHandler : MonoBehaviour
     {
         Boss selectedBoss = (Boss)bossNum;
         enemyPrefab = Resources.Load<GameObject>($"BossPrefab/{selectedBoss}");
-        backgroundSprite = Resources.Load<Sprite>($"Arts/Background/Vertical3");
+
+        SoundManager.Instance.BGMSoundClip(selectedBoss.ToString() + "BGM");
+
+        backgroundSprite = Resources.Load<Sprite>($"Arts/Background/Vertical3");  
         if (enemyPrefab == null || backgroundSprite == null)
         {
             Debug.LogError($"Stage {selectedBoss} resources not found.");

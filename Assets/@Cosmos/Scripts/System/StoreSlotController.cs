@@ -108,8 +108,9 @@ public class StoreSlotController : MonoBehaviour
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
+        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
 
-        foreach(GameObject tilePrefab in allTilePrefabs)
+        foreach (GameObject tilePrefab in allTilePrefabs)
         {
             if(tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade == TileGrade.Normal)
             {

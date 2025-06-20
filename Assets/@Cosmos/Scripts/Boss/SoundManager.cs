@@ -327,17 +327,10 @@ public class SoundManager : Singleton<SoundManager>
     { 
         switch (scene.name)
         {
-            case "ShopScene":
+            case "BuildingScene":
                 BGMSoundClip("ShopSceneBGM");
                 break;
-            case "GameScene":
-                BGMSoundClip("GameSceneBGM");
-                break;
-            case "GameScene2":
-                BGMSoundClip("OrcMage");
-                break;
-            case "GameScene3":
-                BGMSoundClip("SlimeBGM");
+            case "StageScene":
                 break;
             default:
                 BGMSoundClip("ShopSceneBGM");
