@@ -7,8 +7,6 @@ public class StarBase : MonoBehaviour
     protected TileObject tileObject;
     protected TileInfo tileInfo;
 
-    [SerializeField] private float cooldownFactor = 0.1f;
-    public float CooldownFactor => cooldownFactor;
 
     [SerializeField] protected StarBuff starBuff = new();
 
