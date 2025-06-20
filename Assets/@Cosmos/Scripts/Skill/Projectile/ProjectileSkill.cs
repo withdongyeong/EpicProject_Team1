@@ -8,16 +8,25 @@ public class ProjectileSkill : SkillBase
 
     public int Damage { get => damage; set => damage = value; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        EventBus.SubscribeGameStart(HandleGameStart);
+    }
+
+    private void HandleGameStart()
+    {
+        targetEnemy = FindAnyObjectByType<BaseBoss>();
+    }
+
     /// <summary>
     /// 타일 발동 - 투사체 발사
     /// </summary>
     protected override void Activate()
     {
         base.Activate();
-        targetEnemy = FindAnyObjectByType<BaseBoss>();
         if (targetEnemy != null)
         {
-            Debug.Log("★★★★★★★★★★");
             FireProjectile();
         }
     }
@@ -35,5 +44,11 @@ public class ProjectileSkill : SkillBase
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
         }
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        // 구독 해제
+        EventBus.UnsubscribeGameStart(HandleGameStart);
     }
 }

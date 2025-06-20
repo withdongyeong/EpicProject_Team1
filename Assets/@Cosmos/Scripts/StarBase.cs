@@ -25,9 +25,6 @@ public class StarBase : MonoBehaviour
 
     }
 
-
-
-
     public virtual void Activate(TileObject tile)
     {
         tileObject = tile;
