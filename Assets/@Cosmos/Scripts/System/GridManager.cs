@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 using static Unity.Cinemachine.CinemachineSplineRoll;
 
 public class GridCell
@@ -175,6 +177,7 @@ public class GridManager : Singleton<GridManager>
     protected override void Awake()
     {
         base.Awake();
+        EventBus.SubscribeSceneLoaded(GridPosChange);
         cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
         occupiedSprite = Resources.Load<Sprite>("Arts/UI/OccupiedSprite"); // 점유 스프라이트 로드
         defaultSprite = Resources.Load<Sprite>("Arts/UI/DefaultSprite"); // 기본 스프라이트 로드
@@ -188,6 +191,14 @@ public class GridManager : Singleton<GridManager>
         InitGround();
     }
 
+
+    private void GridPosChange(Scene scene, LoadSceneMode mode)
+    {
+        if(SceneLoader.IsInBuilding())
+            transform.position = new Vector3(0, 0, 0);
+        else if(SceneLoader.IsInStage())
+            transform.position = new Vector3(7f, 0, 0);
+    }
     private void InitializeGrid()
     {
         startPoint = transform.GetChild(0).gameObject;
@@ -403,6 +414,11 @@ public class GridManager : Singleton<GridManager>
         {
             Debug.LogWarning("이동 불가 위치에 존재하지 않는 위치입니다: " + position);
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeSceneLoaded(GridPosChange);
     }
 
     //---------------------------------------------------------------------------------------
