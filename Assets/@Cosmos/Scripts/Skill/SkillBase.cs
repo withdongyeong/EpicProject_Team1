@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,10 @@ public abstract class SkillBase : MonoBehaviour
     [Header("Skill Info")] 
     public string skillName;
     public float cooldown = 5f;
+
+    [Header("Animation Settings")]
+    private float pulseScale = 1.3f; // 펄스 시 확대 배율
+    private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
 
     //쿨다운 계수입니다.
     private float cooldownFactor;
@@ -105,6 +110,9 @@ public abstract class SkillBase : MonoBehaviour
     {
         SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
 
+        // 펄스 애니메이션 실행
+        StartCoroutine(PulseAnimation());
+
         if(onActivateAction == null)
         {
 
@@ -113,6 +121,52 @@ public abstract class SkillBase : MonoBehaviour
         onActivateAction?.Invoke(this);
         
         
+    }
+
+    /// <summary>
+    /// 타일 오브젝트의 스케일을 펄스 애니메이션으로 변경
+    /// </summary>
+    private IEnumerator PulseAnimation()
+    {
+        if (tileObject == null) yield break;
+
+        Transform tileTransform = tileObject.transform;
+        Vector3 originalScale = tileTransform.localScale;
+        Vector3 targetScale = originalScale * pulseScale;
+
+        float elapsedTime = 0f;
+        float halfDuration = pulseDuration * 0.5f;
+
+        // 확대 애니메이션 (0.5배 시간)
+        while (elapsedTime < halfDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / halfDuration;
+            
+            // 부드러운 곡선을 위한 Ease Out
+            t = 1f - Mathf.Pow(1f - t, 2f);
+            
+            tileTransform.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+
+        // 축소 애니메이션 (0.5배 시간)
+        while (elapsedTime < halfDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / halfDuration;
+            
+            // 부드러운 곡선을 위한 Ease In
+            t = Mathf.Pow(t, 2f);
+            
+            tileTransform.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            yield return null;
+        }
+
+        // 정확히 원래 스케일로 복원
+        tileTransform.localScale = originalScale;
     }
 
     /// <summary>
