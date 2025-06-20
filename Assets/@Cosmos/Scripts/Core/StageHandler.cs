@@ -22,6 +22,8 @@ public class StageHandler : MonoBehaviour
 
     [Header("몬스터 소환 위치")]
     [SerializeField] private GameObject enemySpawnPosition;
+
+    private SpriteRenderer backgroundSpriteRenderer;
     
     // 시스템 참조
     private BaseBoss _enemy;
@@ -124,6 +126,9 @@ public class StageHandler : MonoBehaviour
     /// </summary>
     private void CreateGameContent()
     {
+        enemyPrefab = StageSelectHandler.enemyPrefab;
+        backgroundSpriteRenderer = transform.GetChild(0).transform.GetComponent<SpriteRenderer>();
+        backgroundSpriteRenderer.sprite = StageSelectHandler.backgroundSprite;
         SpawnPlayer();
         SpawnEnemy();
     }
