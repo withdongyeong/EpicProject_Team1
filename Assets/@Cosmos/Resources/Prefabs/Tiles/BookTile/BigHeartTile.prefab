@@ -779,14 +779,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6290757629958239110}
+      addedObject: {fileID: 6527838391165695916}
   m_SourcePrefab: {fileID: 100100000, guid: eff93a65110a3754a935d437437ab34d, type: 3}
 --- !u!1 &1758704872815447753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
   m_PrefabInstance: {fileID: 6166540374215475006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6290757629958239110
+--- !u!114 &6527838391165695916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,13 +795,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758704872815447753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aa38ed277ed0784b8e5edcb9f7c8db3, type: 3}
+  m_Script: {fileID: 11500000, guid: 00fc19423f89470439de5bdf4f95764d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownFactor: 0.1
   starBuff:
     passive_CoolTimeBuff: 0.1
     passive_DamageBuff: 0.1
+  tileCategory: 0
+  tileStat: 0
+  amount: 0.99
 --- !u!4 &2959522034681498651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}

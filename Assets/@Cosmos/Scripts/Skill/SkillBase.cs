@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,14 +24,25 @@ public abstract class SkillBase : MonoBehaviour
     protected TileObject tileObject;
 
     /// <summary>
+    /// 스킬의 타일 오브젝트입니다.
+    /// </summary>
+    public TileObject TileObject => tileObject;
+
+    /// <summary>
     /// 적용받고 있는 인접효과 리스트입니다.
     /// </summary>
     protected List<StarBase> starList;
 
+
+    /// <summary>
+    /// 게임 시작시 발동시킬 인접효과 함수들의 액션입니다.
+    /// </summary>
+    protected Action<SkillBase> onGameStartAction;
+
     /// <summary>
     /// Activate때 발동시킬 인접효과 함수들의 액션입니다.
     /// </summary>
-    protected Action<TileObject> onActivateAction;
+    protected Action<SkillBase> onActivateAction;
 
 
 
@@ -100,7 +110,7 @@ public abstract class SkillBase : MonoBehaviour
 
         }
         // 타일 발동시 발동시킬 인접 효과의 액션 리스트를 발동시킵니다.
-        onActivateAction?.Invoke(tileObject);
+        onActivateAction?.Invoke(this);
         
         
     }
@@ -135,10 +145,21 @@ public abstract class SkillBase : MonoBehaviour
             foreach (StarBase star in starList)
             {
                 StarBuff starBuff = star.StarBuff;
-                finalCooldown *= (1-star.CooldownFactor);
+                onGameStartAction += starBuff.Action_OnGameStart;
                 onActivateAction += starBuff.Action_OnActivate;
             }
         }
+        onGameStartAction?.Invoke(this);
+    }
+
+    /// <summary>
+    /// 주어진 스탯 종류와 버프 양에 따라 자기 자신에게 버프를 적용하는 로직입니다.
+    /// </summary>
+    /// <param name="buffData">주어진 버프 데이터입니다. .TileStat은 버프할 스탯의 종류를, .Value는 버프할 양입니다.</param>
+    public virtual void ApplyStatBuff(TileBuffData buffData)
+    {
+        if (buffData.TileStat == BuffableTileStat.CoolTime)
+            finalCooldown *= (1-buffData.Value);
         
     }
 
