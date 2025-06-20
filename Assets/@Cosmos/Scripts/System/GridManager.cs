@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 using static Unity.Cinemachine.CinemachineSplineRoll;
 
 public class GridCell
@@ -175,6 +177,7 @@ public class GridManager : Singleton<GridManager>
     protected override void Awake()
     {
         base.Awake();
+        EventBus.SubscribeSceneLoaded(GridPosChange);
         cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
         occupiedSprite = Resources.Load<Sprite>("Arts/UI/OccupiedSprite"); // 점유 스프라이트 로드
         defaultSprite = Resources.Load<Sprite>("Arts/UI/DefaultSprite"); // 기본 스프라이트 로드
@@ -188,6 +191,14 @@ public class GridManager : Singleton<GridManager>
         InitGround();
     }
 
+
+    private void GridPosChange(Scene scene, LoadSceneMode mode)
+    {
+        if(SceneLoader.IsInBuilding())
+            transform.position = new Vector3(0, 0, 0);
+        else if(SceneLoader.IsInStage())
+            transform.position = new Vector3(7f, 0, 0);
+    }
     private void InitializeGrid()
     {
         startPoint = transform.GetChild(0).gameObject;
@@ -248,14 +259,6 @@ public class GridManager : Singleton<GridManager>
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
 
-            //List<StarBase> starskills = GetStarSkills(gridPos);
-            //if (starskills != null && starskills.Count > 0)
-            //{
-            //    foreach (StarBase starSkill in starskills)
-            //    {
-            //        starSkill.GetComponent<CombinedStarCell>().UpdateAdjacentTileObjects(); // 인접 효과를 받는 타일 오브젝트 업데이트
-            //    }
-            //}
             //곽민준이 친 코드입니다. 해당 그리드에 할당된 인접 효과가 변경되면 타일이 다시 계산하게 합니다.
             grid[gridPos.x, gridPos.y].OnStarListChange += cellData.GetCombineCell().GetTileObject().UpdateStarList;
             //Debug.Log(grid[gridPos.x, gridPos.y].cell);
@@ -373,6 +376,10 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
+    /// <summary>
+    /// 이동 불가 위치를 추가합니다. 이미 추가된 위치는 무시합니다.
+    /// </summary>
+    /// <param name="position"></param>
     public void AddUnmovableGridPosition(Vector3Int position)
     {
         if (!unmovableGridPositions.Contains(position))
@@ -383,6 +390,27 @@ public class GridManager : Singleton<GridManager>
         {
             Debug.LogWarning("이미 추가된 이동 불가 위치입니다: " + position);
         }
+    }
+
+    /// <summary>
+    /// 이동 불가 위치를 제거합니다. 존재하지 않는 위치는 무시합니다.
+    /// </summary>
+    /// <param name="position"></param>
+    public void RemoveUnmovableGridPosition(Vector3Int position)
+    {
+        if (unmovableGridPositions.Contains(position))
+        {
+            unmovableGridPositions.Remove(position);
+        }
+        else
+        {
+            Debug.LogWarning("이동 불가 위치에 존재하지 않는 위치입니다: " + position);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeSceneLoaded(GridPosChange);
     }
 
     //---------------------------------------------------------------------------------------

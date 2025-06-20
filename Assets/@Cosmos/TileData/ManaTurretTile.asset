@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: ManaTurretTile
   m_EditorClassIdentifier: 
   tileName: "\uB9C8\uB098 \uD3EC\uD0D1"
-  description: "\uAC80<sprite name=\"Sword\">\uC744 3\uAC1C\uC18C\uD658\uD558\uACE0
-    \uC18C\uD658 \uB420 \uB54C\uB9C8\uB2E4 \uBAA8\uB4E0 \uAC80<sprite name=\"Sword\">\uC774
-    \uACF5\uACA9\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9: <color=red>5</color>)\n<sprite
-    name=\"Star\">\uC5D0 \uC704\uCE58\uD55C \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
-    \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+  description: "<color=red>\uBC1F\uC544\uC11C \uBC1C\uB3D9\uC2DC\uD0AC \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.
+    \uD1B5\uACFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.</color>\n\uBCC4<sprite name=\"Star\">\uC5D0
+    \uC704\uCE58\uD55C \uBB34\uAE30<sprite name=\"Weapon\"> \uBC1C\uB3D9 \uC2DC \uD568\uAED8
+    \uACF5\uACA9\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9: <color=red>10</color>)"
   tileCategory: 0
-  tileSprite: {fileID: -2757887451555568444, guid: f92305cc2e8b12c45b4660ea56da5a76, type: 3}
+  tileSprite: {fileID: -2108378710, guid: 22ba3a436395b044e9cbdd4013eb7456, type: 3}
   tileGrade: 2
   tileCost: 8

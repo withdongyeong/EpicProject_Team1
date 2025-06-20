@@ -37,15 +37,16 @@ public class StoreSlotController : MonoBehaviour
         {
             float roll = Random.value * 100f;
             TileGrade chosenGrade;
-            if(roll < GlobalSetting.Shop_NormalChance)
+            //TODO: 이거 줄 줄이기
+            if(roll < GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum-1].shop_NormalChance)
             {
                 chosenGrade = TileGrade.Normal;
             }
-            else if(roll < GlobalSetting.Shop_NormalChance + GlobalSetting.Shop_RareChance)
+            else if(roll < GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_NormalChance + GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_RareChance)
             {
                 chosenGrade = TileGrade.Rare;
             }
-            else if(roll < GlobalSetting.Shop_NormalChance + GlobalSetting.Shop_RareChance + GlobalSetting.Shop_EpicChance)
+            else if(roll < GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_NormalChance + GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_RareChance + GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_EpicChance)
             {
                 chosenGrade = TileGrade.Epic;
             }
@@ -108,8 +109,9 @@ public class StoreSlotController : MonoBehaviour
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
+        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
 
-        foreach(GameObject tilePrefab in allTilePrefabs)
+        foreach (GameObject tilePrefab in allTilePrefabs)
         {
             if(tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade == TileGrade.Normal)
             {

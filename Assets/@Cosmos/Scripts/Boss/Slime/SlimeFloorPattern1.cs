@@ -34,7 +34,6 @@ public class SlimeFloorPattern1 : IBossAttackPattern
         {
             if (i == 0)
             {
-                gridWithoutWindmill.Add(new Vector3Int(0, 0, 0));
                 continue;
             }
             else
@@ -42,6 +41,19 @@ public class SlimeFloorPattern1 : IBossAttackPattern
                 gridWithoutWindmill.Add(new Vector3Int(i, i, 0));
                 gridWithoutWindmill.Add(new Vector3Int(i, -i, 0));
             }
+        }
+
+
+        for (int i = -2; i <= 2; i++)
+        {
+            for (int j = -2; j <= 2; j++)
+            {
+                if ((Mathf.Abs(i) != Mathf.Abs(j)))
+                {
+                    gridWithoutWindmill.Add(new Vector3Int(i, j, 0));
+                }
+            }
+
         }
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0);

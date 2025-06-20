@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +11,10 @@ public abstract class SkillBase : MonoBehaviour
     [Header("Skill Info")] 
     public string skillName;
     public float cooldown = 5f;
+
+    [Header("Animation Settings")]
+    private float pulseScale = 1.3f; // 펄스 시 확대 배율
+    private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
 
     //쿨다운 계수입니다.
     private float cooldownFactor;
@@ -25,14 +29,25 @@ public abstract class SkillBase : MonoBehaviour
     protected TileObject tileObject;
 
     /// <summary>
+    /// 스킬의 타일 오브젝트입니다.
+    /// </summary>
+    public TileObject TileObject => tileObject;
+
+    /// <summary>
     /// 적용받고 있는 인접효과 리스트입니다.
     /// </summary>
     protected List<StarBase> starList;
 
+
+    /// <summary>
+    /// 게임 시작시 발동시킬 인접효과 함수들의 액션입니다.
+    /// </summary>
+    protected Action<SkillBase> onGameStartAction;
+
     /// <summary>
     /// Activate때 발동시킬 인접효과 함수들의 액션입니다.
     /// </summary>
-    protected Action<TileObject> onActivateAction;
+    protected Action<SkillBase> onActivateAction;
 
 
 
@@ -41,7 +56,6 @@ public abstract class SkillBase : MonoBehaviour
     {
         //'전투가 시작될때' 타이밍입니다.
         EventBus.SubscribeGameStart(InitPassiveStarList);
-        //실험
     }
 
     protected virtual void Start()
@@ -96,14 +110,63 @@ public abstract class SkillBase : MonoBehaviour
     {
         SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
 
+        // 펄스 애니메이션 실행
+        StartCoroutine(PulseAnimation());
+
         if(onActivateAction == null)
         {
 
         }
         // 타일 발동시 발동시킬 인접 효과의 액션 리스트를 발동시킵니다.
-        onActivateAction?.Invoke(tileObject);
+        onActivateAction?.Invoke(this);
         
         
+    }
+
+    /// <summary>
+    /// 타일 오브젝트의 스케일을 펄스 애니메이션으로 변경
+    /// </summary>
+    private IEnumerator PulseAnimation()
+    {
+        if (tileObject == null) yield break;
+
+        Transform tileTransform = tileObject.transform;
+        Vector3 originalScale = tileTransform.localScale;
+        Vector3 targetScale = originalScale * pulseScale;
+
+        float elapsedTime = 0f;
+        float halfDuration = pulseDuration * 0.5f;
+
+        // 확대 애니메이션 (0.5배 시간)
+        while (elapsedTime < halfDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / halfDuration;
+            
+            // 부드러운 곡선을 위한 Ease Out
+            t = 1f - Mathf.Pow(1f - t, 2f);
+            
+            tileTransform.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+
+        // 축소 애니메이션 (0.5배 시간)
+        while (elapsedTime < halfDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / halfDuration;
+            
+            // 부드러운 곡선을 위한 Ease In
+            t = Mathf.Pow(t, 2f);
+            
+            tileTransform.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            yield return null;
+        }
+
+        // 정확히 원래 스케일로 복원
+        tileTransform.localScale = originalScale;
     }
 
     /// <summary>
@@ -136,11 +199,21 @@ public abstract class SkillBase : MonoBehaviour
             foreach (StarBase star in starList)
             {
                 StarBuff starBuff = star.StarBuff;
-                finalCooldown *= (1-star.CooldownFactor);
-                starBuff.Action_OnActivate.Invoke(tileObject);
+                onGameStartAction += starBuff.Action_OnGameStart;
                 onActivateAction += starBuff.Action_OnActivate;
             }
         }
+        onGameStartAction?.Invoke(this);
+    }
+
+    /// <summary>
+    /// 주어진 스탯 종류와 버프 양에 따라 자기 자신에게 버프를 적용하는 로직입니다.
+    /// </summary>
+    /// <param name="buffData">주어진 버프 데이터입니다. .TileStat은 버프할 스탯의 종류를, .Value는 버프할 양입니다.</param>
+    public virtual void ApplyStatBuff(TileBuffData buffData)
+    {
+        if (buffData.TileStat == BuffableTileStat.CoolTime)
+            finalCooldown *= (1-buffData.Value);
         
     }
 
@@ -150,6 +223,7 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void ClearStarBuff()
     {
         finalCooldown = cooldown;
+        onGameStartAction = null;
         onActivateAction = null;
     }
 

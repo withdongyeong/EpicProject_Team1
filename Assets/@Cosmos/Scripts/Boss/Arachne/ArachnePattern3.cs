@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 /// <summary>
 /// 아라크네 패턴3 - BombHandler 사용 버전
@@ -105,7 +104,7 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 공격 (제외된 칸은 안전지대)
         boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
-                                              warningDuration: 0.6f, explosionDuration: 0.7f, damage: 10);
+                                              warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
 
         boss.AttackAnimation();
         

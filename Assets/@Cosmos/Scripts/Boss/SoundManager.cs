@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
@@ -98,6 +94,7 @@ public class SoundManager : Singleton<SoundManager>
     protected override void Awake()
     {
         base.Awake();
+        EventBus.Init();
 
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
@@ -326,17 +323,10 @@ public class SoundManager : Singleton<SoundManager>
     { 
         switch (scene.name)
         {
-            case "ShopScene":
+            case "BuildingScene":
                 BGMSoundClip("ShopSceneBGM");
                 break;
-            case "GameScene":
-                BGMSoundClip("GameSceneBGM");
-                break;
-            case "GameScene2":
-                BGMSoundClip("OrcMage");
-                break;
-            case "GameScene3":
-                BGMSoundClip("SlimeBGM");
+            case "StageScene":
                 break;
             default:
                 BGMSoundClip("ShopSceneBGM");

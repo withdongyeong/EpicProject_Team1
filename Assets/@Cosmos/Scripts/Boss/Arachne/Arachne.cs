@@ -19,7 +19,7 @@ public class Arachne : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 400;
+        MaxHealth = 700;
         Debug.Log($"Arachne.Awake: MaxHealth set to {MaxHealth}");
     }
 

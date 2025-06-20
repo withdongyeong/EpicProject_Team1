@@ -236,14 +236,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2701922408363993852}
+      addedObject: {fileID: 2812959446894648832}
   m_SourcePrefab: {fileID: 100100000, guid: eff93a65110a3754a935d437437ab34d, type: 3}
 --- !u!1 &4696703924938108591 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
   m_PrefabInstance: {fileID: 924878782039334744}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2701922408363993852
+--- !u!114 &2812959446894648832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,13 +252,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4696703924938108591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fc19423f89470439de5bdf4f95764d, type: 3}
+  m_Script: {fileID: 11500000, guid: 092837a7446f1e94491f45926ac7e57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownFactor: 0.1
-  starBuff:
-    passive_CoolTimeBuff: 0.1
-    passive_DamageBuff: 0.1
+  tileCategory: 1
+  tileStat: 0
+  amount: 0.1
 --- !u!4 &8094219818973424765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
@@ -859,6 +858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   cooldown: 5
+  firstDamage: 10
   damage: 10
   projectilePrefab: {fileID: 603461643113537889, guid: ca57db8a7f76a364a9b2b9c5aea5c092, type: 3}
 --- !u!4 &8433488283157050153 stripped

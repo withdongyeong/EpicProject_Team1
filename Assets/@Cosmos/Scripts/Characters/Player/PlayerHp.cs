@@ -1,7 +1,5 @@
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
 
 /// <summary>
 /// 플레이어 체력 관리 시스템 (무적 시간 및 깜박임 포함)

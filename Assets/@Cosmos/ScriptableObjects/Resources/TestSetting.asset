@@ -17,7 +17,17 @@ MonoBehaviour:
   totem_Offset: {x: 0, y: 0.5}
   totem_ActivatePos: {x: 1.7, y: 2.4}
   totem_HeadInt: 3
-  shop_NormalChance: 0
-  shop_RareChance: 70
-  shop_EpicChance: 30
-  shop_LegendaryChance: 0
+  shop_ChanceList:
+  - shop_NormalChance: 50
+    shop_RareChance: 50
+    shop_EpicChance: 0
+    shop_LegendaryChance: 0
+  - shop_NormalChance: 30
+    shop_RareChance: 40
+    shop_EpicChance: 30
+    shop_LegendaryChance: 0
+  - shop_NormalChance: 15
+    shop_RareChance: 30
+    shop_EpicChance: 35
+    shop_LegendaryChance: 20
+  language_SynergyTranslationSO: {fileID: 0}
