@@ -34,7 +34,6 @@ public class SlimeFloorPattern1 : IBossAttackPattern
         {
             if (i == 0)
             {
-                gridWithoutWindmill.Add(new Vector3Int(0, 0, 0));
                 continue;
             }
             else
