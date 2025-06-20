@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Cosmos.Scripts.Boss.OrcMage;
 using UnityEngine;
 
@@ -18,7 +18,7 @@ public class OrcMage : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 600;
+        MaxHealth = 1100;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
