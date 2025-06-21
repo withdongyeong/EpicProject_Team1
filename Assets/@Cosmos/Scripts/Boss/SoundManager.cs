@@ -15,7 +15,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         { "StickRoll", 1f },
         { "AriaActive", 1f },
-        { "PlayerMove", 0.1f },
+        { "PlayerMove", 0.03f },
         { "PlayerDamage", 1f },
         { "PlayerDead", 1f }
     };
@@ -85,8 +85,8 @@ public class SoundManager : Singleton<SoundManager>
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"ShopSceneBGM", 0.2f},
-        {"OrcMage", 0.3f },
-        {"GameSceneBGM", 0.2f },
+        {"OrcMageBGM", 0.3f },
+        {"ArachneBGM", 0.2f },
         {"SlimeBGM", 0.1f }
     };
 
