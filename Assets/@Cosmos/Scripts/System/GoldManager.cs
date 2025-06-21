@@ -27,7 +27,7 @@ public class GoldManager : Singleton<GoldManager>
     {
          if(Input.GetKeyDown(KeyCode.F12))
         {
-            ModifyCurrentGold(1);
+            ModifyCurrentGold(100);
         }
     }
 
