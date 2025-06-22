@@ -22,7 +22,7 @@ public class ArchmageStaffStarSkill : StarBase
     /// <param name="skillBase"></param>
     private void GatherAxodia(SkillBase skillBase)
     {
-        if (skillBase.TileObject.name.Contains("Fire") || skillBase.TileObject.name.Contains("Frost"))
+        if (skillBase.TileObject.name.Contains("Goddess") || skillBase.TileObject.name.Contains("Clock"))
         {
             skill.AddAdjacentTile(skillBase.TileObject.name);
         }

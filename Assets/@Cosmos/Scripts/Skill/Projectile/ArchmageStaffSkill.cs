@@ -9,12 +9,12 @@ public class ArchmageStaffSkill : ProjectileSkill
 
     public void AddAdjacentTile(string tile)
     {
-        if (tile.Contains("Fire") && !isNearbyGoddess)
+        if (tile.Contains("Goddess") && !isNearbyGoddess)
         {
             isNearbyGoddess = true;
             AddAxodia();
         }
-        else if (tile.Contains("Frost") && !isNearbyWatch)
+        else if (tile.Contains("Clock") && !isNearbyWatch)
         {
             isNearbyWatch = true;
             AddAxodia();
