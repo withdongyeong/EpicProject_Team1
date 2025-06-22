@@ -446,8 +446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   cooldown: 5
-  firstDamage: 10
-  damage: 10
+  firstDamage: 100
+  damage: 100
   projectilePrefab: {fileID: 603461643113537889, guid: 8336e6024d17fc04981f54d2aec53d57, type: 3}
 --- !u!4 &8433488283157050153 stripped
 Transform:
