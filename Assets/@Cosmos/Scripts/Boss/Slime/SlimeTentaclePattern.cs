@@ -8,7 +8,7 @@ public class SlimeTentaclePattern : IBossAttackPattern
 
     private float waitDuration = 0.2f;
     private float tentacleLength = 15f;
-    private float tentacleGrowTime = 0.4f;
+    private float tentacleGrowTime = 1.3f;
     private float tentacleLifetime = 0.6f;
 
     public string PatternName => "SlimeTentaclePattern";
@@ -35,7 +35,7 @@ public class SlimeTentaclePattern : IBossAttackPattern
 
         for (int i = 0; i < _tentatacleCount; i++)
         {
-            // 1. 랜덤 위치 선택 (0~9)
+            // 1. 위치 선택 (0~9)
             int randomY = boss.BombHandler.PlayerController.CurrentY;
 
             // 2. 위험 알림
@@ -71,28 +71,34 @@ public class SlimeTentaclePattern : IBossAttackPattern
     {
         Vector3 originalScale = tentacle.transform.localScale;
         Vector3 targetScale = new Vector3(tentacleLength, originalScale.y, originalScale.z);
-        Vector3 startPosition = tentacle.transform.position;
+
+        BoxCollider2D collider = tentacle.GetComponent<BoxCollider2D>();
+        Vector2 originalSize = collider.size;
+        Vector2 originalOffset = collider.offset;
 
         float elapsed = 0;
-
         SoundManager.Instance.SlimeSoundClip("SlimeTentacleActivate");
+
         while (elapsed < tentacleGrowTime)
         {
+            if (tentacle == null) yield return null;
+
             float t = elapsed / tentacleGrowTime;
 
-            // Scale 증가
+            // 스프라이트 길이 (정상 속도)
             float currentLength = Mathf.Lerp(originalScale.x, targetScale.x, t);
             tentacle.transform.localScale = new Vector3(currentLength, originalScale.y, originalScale.z);
 
-            // 왼쪽 방향으로 길어지게 위치 보정
-            tentacle.transform.position = startPosition + new Vector3(-(currentLength / 2f), 0, 0);
+            // ✅ 콜라이더 길이
+            float colliderT = Mathf.Clamp01(t/2);
+            float colliderLength = Mathf.Lerp(originalScale.x, targetScale.x, colliderT);
+
+            collider.size = new Vector2(colliderLength, originalSize.y);
+            collider.offset = new Vector2(-colliderLength * 0.5f, originalOffset.y);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        tentacle.transform.localScale = targetScale;
-        tentacle.transform.position = startPosition + new Vector3(-(targetScale.x / 2f), 0, 0);
     }
 
     /// <summary>

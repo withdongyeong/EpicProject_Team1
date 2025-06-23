@@ -35,17 +35,17 @@ public class Slime : BaseBoss
             .SetGroupInterval(1f);
 
 
-        AddGroup()
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
-            .SetGroupInterval(1f);
+        //AddGroup()
+        //    .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 0.8f)
+        //    .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
+        //    .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+        //    .SetGroupInterval(1f);
 
-        AddGroup()
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
-            .SetGroupInterval(1f);
+        //AddGroup()
+        //    .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 0.8f)
+        //    .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
+        //    .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
+        //    .SetGroupInterval(1f);
     }
 
     /// <summary>
