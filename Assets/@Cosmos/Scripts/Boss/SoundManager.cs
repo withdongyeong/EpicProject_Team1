@@ -7,6 +7,7 @@ public class SoundManager : Singleton<SoundManager>
     [Tooltip("오디오 스코어")]
     private AudioSource interactionAudioSource;
     private AudioSource bgmAudioSource;
+    private AudioSource BlackHoleAudioSource;
 
     // 플레이어 사운드 딕셔너리
     private Dictionary<string, AudioClip> playerSoundDictionary = new Dictionary<string, AudioClip>();
@@ -81,7 +82,8 @@ public class SoundManager : Singleton<SoundManager>
     {
         {"DeploymentActivate", 0.05f},
         {"RerollActivate", 0.5f },
-        {"ButtonActivate", 0.3f }
+        {"ButtonActivate", 0.3f },
+        {"BlackHoleStartActivate", 0.8f }
     };
 
     //BGM 사운드 딕셔너리
@@ -89,7 +91,7 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"ShopSceneBGM", 0.05f},
+        {"ShopSceneBGM", 0.1f},
         {"OrcMageBGM", 0.3f },
         {"ArachneBGM", 0.2f },
         {"SlimeBGM", 0.1f }
@@ -103,6 +105,7 @@ public class SoundManager : Singleton<SoundManager>
 
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
+        BlackHoleAudioSource = transform.GetChild(2).GetComponent<AudioSource>();
 
         // 플레이어 사운드 초기화
         AudioClip[] playeraudioClips = Resources.LoadAll<AudioClip>("Sounds/Player");
@@ -337,5 +340,15 @@ public class SoundManager : Singleton<SoundManager>
                 //bgmAudioSource.Stop(); // 기본은 정지
                 break;
         }
+    }
+
+    public void BlackHoleReady()
+    {
+        BlackHoleAudioSource.volume = 0.5f;
+    }
+
+    public void BlackHoleNotReady()
+    {
+        BlackHoleAudioSource.volume = 0f;
     }
 }

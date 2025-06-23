@@ -33,11 +33,13 @@ public class Sell_Blackhole : MonoBehaviour
         if (_collider.OverlapPoint(mouseWorldPos))
         {
             _sr.color = _pointColor;
+            SoundManager.Instance.BlackHoleReady();
             _animator.speed = 1.3f;
         }
         else
         {
             _sr.color = Color.white;
+            SoundManager.Instance.BlackHoleNotReady();
             _animator.speed = 0.6f;
         }
     }
@@ -47,6 +49,7 @@ public class Sell_Blackhole : MonoBehaviour
     {
         if(_collider.bounds.Contains(tile.transform.position))
         {
+            SoundManager.Instance.UISoundClip("BlackHoleStartActivate");
             return true;
         }
         else

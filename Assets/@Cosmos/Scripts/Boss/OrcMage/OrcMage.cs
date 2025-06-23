@@ -46,6 +46,12 @@ public class OrcMage : BaseBoss
         Debug.Log($"OrcMage: Pattern system initialized successfully");
     }
 
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.OrcMageSoundClip("OrcMage_DamageActivate");
+        base.DamageFeedback();
+    }
+
     /// <summary>
     /// 오크 메이지 전용 사망 처리 (오버라이드 가능)
     /// </summary>
