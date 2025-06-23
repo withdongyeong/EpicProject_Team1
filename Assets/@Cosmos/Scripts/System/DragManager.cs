@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 /// <summary>
@@ -13,10 +13,15 @@ public class DragManager : Singleton<DragManager>
     private GameObject currentDragObject;
     private Camera mainCamera;
     private SmoothRotator smoothRotator;
+    private Sell_Blackhole sellScript;
     
     private bool isDragging = false; // 드래그 중인지 여부
     public bool IsDragging => isDragging; // 외부에서 드래그 상태를 확인할 수 있도록 공개
+
     
+
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -94,7 +99,11 @@ public class DragManager : Singleton<DragManager>
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
-        currentDragObject.GetComponent<TileObject>().UpdateStarList();
+        TileObject tileObject = currentDragObject.GetComponent<TileObject>();
+        //배치된 타일이 인접효과를 계산하게 합니다
+        tileObject.UpdateStarList();
+        //타일이 배치되었음을 알립니다. 현재 사용하는애가 없습니다.
+        EventBus.PublishTilePlaced(tileObject);
     }
 
 
@@ -155,4 +164,35 @@ public class DragManager : Singleton<DragManager>
         
         smoothRotator.RotateZ(currentDragObject.transform,UpdatePreviewCell);
     }
+
+    
+
+    //이 밑은 판매와 관련된 메서드입니다
+    public void AssignSell(Sell_Blackhole sell_Blackhole)
+    {
+        sellScript = sell_Blackhole;
+    }
+
+    
+    public bool TrySellTile(TileObject tile)
+    {
+        if(sellScript == null)
+        {
+            Debug.Log("판매를 담당하는 스크립트가 없어요");
+            return false;
+        }
+        if(sellScript.CheckSell(tile))
+        {
+            //가격의 50%를 돌려받습니다. +1은 올림을 위해 적용하였습니다.
+            GoldManager.Instance.ModifyCurrentGold((tile.GetTileData().TileCost + 1) / 2);
+            EventBus.PublishTileSell(tile);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 }
