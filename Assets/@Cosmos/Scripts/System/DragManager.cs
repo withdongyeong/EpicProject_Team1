@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 
@@ -16,7 +17,14 @@ public class DragManager : Singleton<DragManager>
     
     private bool isDragging = false; // 드래그 중인지 여부
     public bool IsDragging => isDragging; // 외부에서 드래그 상태를 확인할 수 있도록 공개
-    
+
+    /// <summary>
+    /// 현재 배치되어있는 타일들의 이름 리스트입니다.
+    /// </summary>
+    private List<string> _placedTileList = new();
+
+    public List<string> PlacedTileList => _placedTileList;
+
     protected override void Awake()
     {
         base.Awake();
@@ -94,7 +102,13 @@ public class DragManager : Singleton<DragManager>
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
-        currentDragObject.GetComponent<TileObject>().UpdateStarList();
+        TileObject tileObject = currentDragObject.GetComponent<TileObject>();
+        //배치된 타일이 인접효과를 계산하게 합니다
+        tileObject.UpdateStarList();
+        //배치된 타일 리스트에 넣습니다
+        AddPlacedTileList(tileObject);
+        //타일이 배치되었음을 알립니다. 현재 사용하는애가 없습니다.
+        EventBus.PublishTilePlaced(tileObject);
     }
 
 
@@ -154,5 +168,10 @@ public class DragManager : Singleton<DragManager>
         if (currentDragObject == null) return;
         
         smoothRotator.RotateZ(currentDragObject.transform,UpdatePreviewCell);
+    }
+
+    private void AddPlacedTileList(TileObject tileObject)
+    {
+        _placedTileList.Add(tileObject.GetTileData().TileName);
     }
 }
