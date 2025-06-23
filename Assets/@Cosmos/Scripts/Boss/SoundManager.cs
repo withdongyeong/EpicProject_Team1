@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
@@ -33,7 +32,8 @@ public class SoundManager : Singleton<SoundManager>
         {"IcicleSkillActivate", 0.2f },
         {"FrostStaffSkillActivate", 0.2f },
         {"TotemSummonSkillActivate", 0.1f },
-        {"ManaTurretSkillActivate", 0.3f }
+        {"ManaTurretSkillActivate", 0.3f },
+        {"ProjectileSkillActivate", 0.3f}
     };
 
     //아라크네 사운드 딕셔너리
@@ -62,18 +62,17 @@ public class SoundManager : Singleton<SoundManager>
         {"OrcMage_SpikeActivate", 0.2f }
     };
 
-    //아라크네 사운드 딕셔너리
+    //슬라임 사운드 딕셔너리
     private Dictionary<string, AudioClip> SlimeSoundDictionary = new Dictionary<string, AudioClip>();
-    //아라크네 볼륨 딕셔너리
+    //슬라임 볼륨 딕셔너리
     private Dictionary<string, float> SlimeSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"PoisionExplotionActivate", 1f},
         {"PoisonBallActivate", 1f },
         {"SlimeTentacleActivate", 0.5f },
-        { "SlimeDamageActivate", 1f},
-        { "SlimeDeadActivate", 0.3f}
+        {"SlimeDamageActivate", 1f},
+        {"SlimeDeadActivate", 0.3f}
     };
-
 
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
@@ -282,7 +281,6 @@ public class SoundManager : Singleton<SoundManager>
     /// </summary>
     public void UISoundClip(string clip)
     {
-        //Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
