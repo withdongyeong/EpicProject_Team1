@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1967835574231978633}
   - component: {fileID: -6975171826096878716}
   m_Layer: 0
-  m_Name: HitEffectBasic
+  m_Name: HitEffect_Frost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87d11ccdc1f11348b6ea3c7e074b519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitSound: {fileID: 8300000, guid: d76708799194fdc4cb6d2d9f54746aec, type: 3}
+  HitSound: {fileID: 8300000, guid: 64ca5ded3e7d2de47ad8d12f6a5f627e, type: 3}
