@@ -33,7 +33,7 @@ public class DragManager : Singleton<DragManager>
     {
         if (isDragging)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
             {
                 RotateObject();
             }
@@ -173,6 +173,10 @@ public class DragManager : Singleton<DragManager>
         sellScript = sell_Blackhole;
     }
 
+    public void ActivateSellText(GameObject tile)
+    {
+        sellScript.ActivateSellText((tile.GetComponent<TileObject>().GetTileData().TileCost+1)/2);
+    }
     
     public bool TrySellTile(TileObject tile)
     {
@@ -194,5 +198,9 @@ public class DragManager : Singleton<DragManager>
         }
     }
 
+    public void DisableSellText()
+    {
+        sellScript.DisableSellText();
+    }
 
 }
