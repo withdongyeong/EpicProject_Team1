@@ -175,7 +175,7 @@ public class DragManager : Singleton<DragManager>
 
     public void ActivateSellText(GameObject tile)
     {
-        sellScript.ActivateSellText(tile.GetComponent<TileObject>().GetTileData().TileCost);
+        sellScript.ActivateSellText((tile.GetComponent<TileObject>().GetTileData().TileCost+1)/2);
     }
     
     public bool TrySellTile(TileObject tile)
