@@ -68,6 +68,12 @@ public static class EventBus
     public static void SubscribeTilePlaced(Action<TileObject> handler) => _onTilePlaced += handler;
     public static void UnSubscribeTilePlaced(Action<TileObject> handler) => _onTilePlaced -= handler;
     public static void PublishTilePlaced(TileObject tileObject) => _onTilePlaced?.Invoke(tileObject);
+
+    //타일이 판매되었을 때 호출되는 이벤트
+    private static Action<TileObject> _onTileSell;
+    public static void SubscribeTileSell(Action<TileObject> handler) => _onTileSell += handler;
+    public static void UnSubscribeTileSell(Action<TileObject> handler) => _onTileSell -= handler;
+    public static void PublishTileSell(TileObject tileObject) => _onTileSell?.Invoke(tileObject);
    
 
     
