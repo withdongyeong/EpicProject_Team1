@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
@@ -224,8 +225,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = ArachneSoundDictionary.ContainsKey(clip) ? ArachneSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = ArachneSoundVolumeDictionary.ContainsKey(clip) ? ArachneSoundVolumeDictionary[clip] : 1f;
-                interactionAudioSource.PlayOneShot(tileClip, volume);
+                    float volume = ArachneSoundVolumeDictionary.ContainsKey(clip) ? ArachneSoundVolumeDictionary[clip] : 1f;
+                    interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -244,8 +245,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = OrcMageSoundDictionary.ContainsKey(clip) ? OrcMageSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = OrcMageSoundVolumeDictionary.ContainsKey(clip) ? OrcMageSoundVolumeDictionary[clip] : 1f;
-                interactionAudioSource.PlayOneShot(tileClip, volume);
+                    float volume = OrcMageSoundVolumeDictionary.ContainsKey(clip) ? OrcMageSoundVolumeDictionary[clip] : 1f;
+                    interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -264,8 +265,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = SlimeSoundDictionary.ContainsKey(clip) ? SlimeSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
-                interactionAudioSource.PlayOneShot(tileClip, volume);
+                    float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
+                    interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
