@@ -45,6 +45,17 @@ public class Arachne : BaseBoss
             .SetGroupInterval(1f);
     }
 
+
+    /// <summary>
+    /// 아라크네 전용 전투 데미지 피드백
+    /// </summary>
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.ArachneSoundClip("ArachneDamageActivate");
+
+        base.DamageFeedback();
+    }
+
     /// <summary>
     /// 아라크네 전용 사망 처리 (오버라이드 가능)
     /// </summary>

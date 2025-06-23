@@ -194,8 +194,13 @@ public abstract class BaseBoss : MonoBehaviour
         }
         else
         {
-            _animator.SetTrigger("DamageTrigger");
+            DamageFeedback();
         }
+    }
+
+    protected virtual void DamageFeedback()
+    {
+        _animator.SetTrigger("DamageTrigger");
     }
 
     /// <summary>

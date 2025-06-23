@@ -44,7 +44,9 @@ public class SoundManager : Singleton<SoundManager>
         {"PoisionExplotionActivate", 1f},
         {"PoisonBallActivate", 1f },
         {"SpiderLegActivate", 0.5f },
-        {"SpiderSilkActivate", 0.8f }
+        {"SpiderSilkActivate", 0.8f },
+        { "ArachneDamageActivate", 0.3f},
+        { "ArachneDeadActivate", 1f}
     };
 
     //오크메이지 사운드 딕셔너리
@@ -88,7 +90,7 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"ShopSceneBGM", 0.2f},
+        {"ShopSceneBGM", 0.05f},
         {"OrcMageBGM", 0.3f },
         {"ArachneBGM", 0.2f },
         {"SlimeBGM", 0.1f }

@@ -49,6 +49,16 @@ public class Slime : BaseBoss
     }
 
     /// <summary>
+    /// 슬라임 전용 전투 데미지 피드백
+    /// </summary>
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
+
+        base.DamageFeedback();
+    }
+
+    /// <summary>
     /// 슬라임 전용 사망 처리 (오버라이드 가능)
     /// </summary>
     protected override void Die()
