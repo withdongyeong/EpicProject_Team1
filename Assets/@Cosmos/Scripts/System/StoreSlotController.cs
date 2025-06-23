@@ -42,15 +42,15 @@ public class StoreSlotController : MonoBehaviour
             float roll = Random.value * 100f;
             TileGrade chosenGrade;
             //TODO: 이거 줄 줄이기
-            if(roll < GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum-1].shop_NormalChance)
+            if(roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
             {
                 chosenGrade = TileGrade.Normal;
             }
-            else if(roll < GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_NormalChance + GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_RareChance)
+            else if(roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
             {
                 chosenGrade = TileGrade.Rare;
             }
-            else if(roll < GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_NormalChance + GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_RareChance + GlobalSetting.Shop_ChanceList[GameManager.Instance.StageNum - 1].shop_EpicChance)
+            else if(roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
             {
                 chosenGrade = TileGrade.Epic;
             }
