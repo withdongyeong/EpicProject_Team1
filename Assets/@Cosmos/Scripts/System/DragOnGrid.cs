@@ -18,6 +18,9 @@ public class DragOnGrid : DraggableObject
         originalPosition = transform.position;
         rotateZ = transform.rotation.eulerAngles.z;
         GameObject dragObject = gameObject;
+
+        //'여기에 놓아 판매'문구를 활성화합니다
+        DragManager.Instance.ActivateSellText(dragObject);
         
         //StarCell도 Cell이기 때문에 잡아냅니다
         foreach(Cell cell in dragObject.GetComponentsInChildren<Cell>())
@@ -37,6 +40,8 @@ public class DragOnGrid : DraggableObject
     
     protected override void EndDrag()
     {
+        //'여기에 놓아 판매'문구를 비활성화 합니다.
+        DragManager.Instance.DisableSellText();
         //만약 판매 구역에 얘가 들어가 있을경우
         if(DragManager.Instance.TrySellTile(GetComponent<TileObject>()))
         {

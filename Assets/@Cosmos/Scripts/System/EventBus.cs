@@ -74,8 +74,8 @@ public static class EventBus
     public static void SubscribeTileSell(Action<TileObject> handler) => _onTileSell += handler;
     public static void UnSubscribeTileSell(Action<TileObject> handler) => _onTileSell -= handler;
     public static void PublishTileSell(TileObject tileObject) => _onTileSell?.Invoke(tileObject);
-   
 
+    public static void Reset() => _isInitialized = false;
     
    
     
