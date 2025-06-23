@@ -3,6 +3,8 @@ using System;
 
 public class SwordController : MonoBehaviour
 {
+    private GameObject _hitEffect;
+
     /// <summary>
     /// 스킬 타입
     /// </summary>
@@ -167,6 +169,8 @@ public class SwordController : MonoBehaviour
         {
             player = playerObj.transform;
         }
+
+        _hitEffect = Resources.Load("Prefabs/HitEffect/HitEffect_Sword") as GameObject;
 
         // 5초 후에 오브젝트 파괴
         Destroy(gameObject, 7f);
@@ -451,7 +455,7 @@ public class SwordController : MonoBehaviour
             BaseBoss monster = other.GetComponent<BaseBoss>();
             if (monster != null)
             {
-                monster.TakeDamage(_damage);
+                monster.TakeDamage(_damage, _hitEffect);
                 skillDashTimer = 0.02f;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
@@ -28,13 +29,14 @@ public class SoundManager : Singleton<SoundManager>
     {
         { "HealSkillActivate", 0.1f},
         { "FireBallSkillActivate", 0.5f},
-        { "FireBoltSkillActivate", 0.3f},
+        { "FireBoltSkillActivate", 0.2f},
         {"ShieldSkillActivate", 0.3f },
         {"IcicleSkillActivate", 0.2f },
         {"FrostStaffSkillActivate", 0.2f },
         {"TotemSummonSkillActivate", 0.1f },
         {"ManaTurretSkillActivate", 0.3f },
-        {"ProjectileSkillActivate", 0.3f}
+        {"ProjectileSkillActivate", 0.3f},
+        { "ArchmageStaffSkillActivate", 0.6f}
     };
 
     //아라크네 사운드 딕셔너리
@@ -42,11 +44,11 @@ public class SoundManager : Singleton<SoundManager>
     //아라크네 볼륨 딕셔너리
     private Dictionary<string, float> ArachneSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"PoisionExplotionActivate", 1f},
-        {"PoisonBallActivate", 1f },
-        {"SpiderLegActivate", 0.5f },
+        {"PoisionExplotionActivate", 0.7f},
+        {"PoisonBallActivate", 0.7f },
+        {"SpiderLegActivate", 0.3f },
         {"SpiderSilkActivate", 0.8f },
-        { "ArachneDamageActivate", 0.3f},
+        {"ArachneDamageActivate", 0.3f},
         { "ArachneDeadActivate", 1f}
     };
 
@@ -91,7 +93,7 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"ShopSceneBGM", 0.1f},
+        {"ShopSceneBGM", 0.2f},
         {"OrcMageBGM", 0.3f },
         {"ArachneBGM", 0.2f },
         {"SlimeBGM", 0.1f }
@@ -335,8 +337,11 @@ public class SoundManager : Singleton<SoundManager>
                 break;
             case "StageScene":
                 break;
+            case "LogoScene":
+                break;
+            case "TitleScene":
+                break;
             default:
-                BGMSoundClip("ShopSceneBGM");
                 //bgmAudioSource.Stop(); // 기본은 정지
                 break;
         }
@@ -350,5 +355,13 @@ public class SoundManager : Singleton<SoundManager>
     public void BlackHoleNotReady()
     {
         BlackHoleAudioSource.volume = 0f;
+    }
+
+    public void DamageEffectStart(AudioClip audioClip)
+    {
+        if (audioClip != null)
+        {
+            interactionAudioSource.PlayOneShot(audioClip, 0.5f);
+        }
     }
 }
