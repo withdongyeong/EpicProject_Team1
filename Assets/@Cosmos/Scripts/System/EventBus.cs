@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine.SceneManagement;
 
 
@@ -62,6 +62,12 @@ public static class EventBus
     public static void SubscribePlayerProtectionChanged(Action<bool> handler) => _onPlayerProtectionChanged += handler;
     public static void UnsubscribePlayerProtectionChanged(Action<bool> handler) => _onPlayerProtectionChanged -= handler;
     public static void PublishPlayerProtectionChanged(bool isProtected) => _onPlayerProtectionChanged?.Invoke(isProtected);
+
+    //그리드에 타일이 배치되었을 때 호출되는 이벤트
+    private static Action<TileObject> _onTilePlaced;
+    public static void SubscribeTilePlaced(Action<TileObject> handler) => _onTilePlaced += handler;
+    public static void UnSubscribeTilePlaced(Action<TileObject> handler) => _onTilePlaced -= handler;
+    public static void PublishTilePlaced(TileObject tileObject) => _onTilePlaced?.Invoke(tileObject);
    
 
     
