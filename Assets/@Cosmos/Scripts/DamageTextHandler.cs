@@ -4,7 +4,6 @@ using DamageNumbersPro;
 
 public class DamageTextHandler : MonoBehaviour
 {
-    public bool isVer2 = false; // true면 UI로 표시, false면 월드 공간에 표시
     //Assign prefab in inspector.(임시)
     public DamageNumber numberPrefab;
     public RectTransform rectParent;
