@@ -37,21 +37,29 @@ public class DragOnGrid : DraggableObject
     
     protected override void EndDrag()
     {
-        //1. 그리드 안에 배치 가능하다면 -> 배치
-        if (DragManager.Instance.CanPlaceTile())
+        //만약 판매 구역에 얘가 들어가 있을경우
+        if(DragManager.Instance.TrySellTile(GetComponent<TileObject>()))
         {
-            DragManager.Instance.PlaceObject();
-            return;
+            DragManager.Instance.DestroyObject();
         }
-        //2. 그리드 안에 배치 불가능하다면 -> 원래 위치로
-        if (!DragManager.Instance.CanPlaceTile())
+        else
         {
-            //원래 위치로 되돌리기
-            DragManager.Instance.SetObjectPosition(originalPosition);
-            //원래 회전으로 되돌리기
-            transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
-            DragManager.Instance.PlaceObject();
-            return;
+            //1. 그리드 안에 배치 가능하다면 -> 배치
+            if (DragManager.Instance.CanPlaceTile())
+            {
+                DragManager.Instance.PlaceObject();
+                return;
+            }
+            //2. 그리드 안에 배치 불가능하다면 -> 원래 위치로
+            if (!DragManager.Instance.CanPlaceTile())
+            {
+                //원래 위치로 되돌리기
+                DragManager.Instance.SetObjectPosition(originalPosition);
+                //원래 회전으로 되돌리기
+                transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
+                DragManager.Instance.PlaceObject();
+                return;
+            }
         }
         
         //그 외

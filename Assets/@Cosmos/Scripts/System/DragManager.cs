@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 
 /// <summary>
@@ -14,16 +13,14 @@ public class DragManager : Singleton<DragManager>
     private GameObject currentDragObject;
     private Camera mainCamera;
     private SmoothRotator smoothRotator;
+    private Sell_Blackhole sellScript;
     
     private bool isDragging = false; // 드래그 중인지 여부
     public bool IsDragging => isDragging; // 외부에서 드래그 상태를 확인할 수 있도록 공개
 
-    /// <summary>
-    /// 현재 배치되어있는 타일들의 이름 리스트입니다.
-    /// </summary>
-    private List<string> _placedTileList = new();
+    
 
-    public List<string> PlacedTileList => _placedTileList;
+
 
     protected override void Awake()
     {
@@ -105,8 +102,6 @@ public class DragManager : Singleton<DragManager>
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
         //배치된 타일이 인접효과를 계산하게 합니다
         tileObject.UpdateStarList();
-        //배치된 타일 리스트에 넣습니다
-        AddPlacedTileList(tileObject);
         //타일이 배치되었음을 알립니다. 현재 사용하는애가 없습니다.
         EventBus.PublishTilePlaced(tileObject);
     }
@@ -170,8 +165,34 @@ public class DragManager : Singleton<DragManager>
         smoothRotator.RotateZ(currentDragObject.transform,UpdatePreviewCell);
     }
 
-    private void AddPlacedTileList(TileObject tileObject)
+    
+
+    //이 밑은 판매와 관련된 메서드입니다
+    public void AssignSell(Sell_Blackhole sell_Blackhole)
     {
-        _placedTileList.Add(tileObject.GetTileData().TileName);
+        sellScript = sell_Blackhole;
     }
+
+    
+    public bool TrySellTile(TileObject tile)
+    {
+        if(sellScript == null)
+        {
+            Debug.Log("판매를 담당하는 스크립트가 없어요");
+            return false;
+        }
+        if(sellScript.CheckSell(tile))
+        {
+            //가격의 50%를 돌려받습니다. +1은 올림을 위해 적용하였습니다.
+            GoldManager.Instance.ModifyCurrentGold((tile.GetTileData().TileCost + 1) / 2);
+            EventBus.PublishTileSell(tile);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 }

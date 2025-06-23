@@ -163,7 +163,7 @@ public class StoreSlotController : MonoBehaviour
         else
         {
             //조건을 만족하면 끝냅니다.
-            if (DragManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RequiredTile.tileName))
+            if (GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RequiredTile.tileName))
             {
                 _safeInt = 0;
                 return tile;
