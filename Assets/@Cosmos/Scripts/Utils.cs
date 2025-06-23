@@ -69,13 +69,14 @@ public enum TileTag
 [Serializable]
 public class TileInfo
 {
-    [SerializeField] private string tileName;
-    [SerializeField] private string description;
-    [SerializeField] private Sprite tileSprite;
-    [SerializeField] private TileGrade tileGrade;
-    [SerializeField] private int tileCost;
-    [SerializeField] private string tileData;
-    [SerializeField] private TileCategory tileCategory;
+    private string tileName;
+    private string description;
+    private Sprite tileSprite;
+    private TileGrade tileGrade;
+    private int tileCost;
+    private string tileData;
+    private TileCategory tileCategory;
+    private TileData requiredTile;
 
     public string TileName => tileName;
     public string Description => description;
@@ -83,6 +84,7 @@ public class TileInfo
     public TileGrade TileGrade => tileGrade;
     public int TileCost => tileCost;
     public TileCategory TileCategory => tileCategory;
+    public TileData RequiredTile => requiredTile;
 
     public TileInfo(TileData data)
     {
@@ -92,6 +94,7 @@ public class TileInfo
         tileGrade = data.tileGrade;
         tileCost = data.tileCost;
         tileCategory = data.tileCategory;
+        requiredTile = data.requiredTile;
     }
 }
 
