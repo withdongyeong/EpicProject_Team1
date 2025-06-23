@@ -113,7 +113,9 @@ public enum BuffableTileStat
     //데미지
     Damage,
     //힐량
-    HealAmount
+    HealAmount,
+    //마법진의 경우, 마법진의 효과를 의미합니다.
+    MagicCircle, 
 }
 
 /// <summary>
