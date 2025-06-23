@@ -55,6 +55,6 @@ public class Managers : MonoBehaviour
     }
     private void Start()
     {
-        SceneLoader.LoadSceneWithName("BuildingScene");
+        SceneLoader.LoadLogo();
     }
 }
