@@ -32,7 +32,8 @@ public class SoundManager : Singleton<SoundManager>
         {"ShieldSkillActivate", 0.3f },
         {"IcicleSkillActivate", 0.2f },
         {"FrostStaffSkillActivate", 0.2f },
-        {"TotemSummonSkillActivate", 0.1f }
+        {"TotemSummonSkillActivate", 0.1f },
+        {"ManaTurretSkillActivate", 0.3f }
     };
 
     //아라크네 사운드 딕셔너리
