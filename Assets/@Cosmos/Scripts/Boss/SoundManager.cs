@@ -67,6 +67,8 @@ public class SoundManager : Singleton<SoundManager>
         {"PoisionExplotionActivate", 1f},
         {"PoisonBallActivate", 1f },
         {"SlimeTentacleActivate", 0.5f },
+        { "SlimeDamageActivate", 1f},
+        { "SlimeDeadActivate", 0.3f}
     };
 
 
