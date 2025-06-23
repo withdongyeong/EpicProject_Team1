@@ -36,7 +36,20 @@ public class StageSelectHandler : MonoBehaviour
 
         SoundManager.Instance.BGMSoundClip(selectedBoss.ToString() + "BGM");
 
-        backgroundSprite = Resources.Load<Sprite>($"Arts/Background/Gradient1");  
+        // backgroundSprite = Resources.Load<Sprite>($"Arts/Background/Gradient1");
+        switch (selectedBoss)
+        {
+            case Boss.Slime:
+                backgroundSprite = Resources.Load<Sprite>($"Arts/Background/space");
+                break;
+            case Boss.Arachne:
+                backgroundSprite = Resources.Load<Sprite>($"Arts/Background/space2");
+                break;
+            case Boss.OrcMage:
+                backgroundSprite = Resources.Load<Sprite>($"Arts/Background/space3");
+                break;
+        }
+        
         if (enemyPrefab == null || backgroundSprite == null)
         {
             Debug.LogError($"Stage {selectedBoss} resources not found.");
