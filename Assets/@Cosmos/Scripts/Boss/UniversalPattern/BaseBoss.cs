@@ -187,7 +187,7 @@ public abstract class BaseBoss : MonoBehaviour
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
-        _damageTextHandler.SpawnDamageText(damage);
+        _damageTextHandler.SpawnDamageText2(damage);
         if (_currentHealth <= 0)
         {
             Die();
