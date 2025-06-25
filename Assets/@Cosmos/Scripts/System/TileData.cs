@@ -15,6 +15,5 @@ public class TileData : ScriptableObject
     [Header("Gameplay Values")]
     public TileGrade tileGrade = TileGrade.Normal;
     public int tileCost = 1;
-    public TileData requiredTile;
     
 }

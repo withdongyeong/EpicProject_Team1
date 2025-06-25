@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
@@ -8,7 +7,6 @@ public class SoundManager : Singleton<SoundManager>
     [Tooltip("오디오 스코어")]
     private AudioSource interactionAudioSource;
     private AudioSource bgmAudioSource;
-    private AudioSource BlackHoleAudioSource;
 
     // 플레이어 사운드 딕셔너리
     private Dictionary<string, AudioClip> playerSoundDictionary = new Dictionary<string, AudioClip>();
@@ -17,7 +15,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         { "StickRoll", 1f },
         { "AriaActive", 1f },
-        { "PlayerMove", 0.03f },
+        { "PlayerMove", 0.1f },
         { "PlayerDamage", 1f },
         { "PlayerDead", 1f }
     };
@@ -29,14 +27,11 @@ public class SoundManager : Singleton<SoundManager>
     {
         { "HealSkillActivate", 0.1f},
         { "FireBallSkillActivate", 0.5f},
-        { "FireBoltSkillActivate", 0.2f},
+        { "FireBoltSkillActivate", 0.3f},
         {"ShieldSkillActivate", 0.3f },
         {"IcicleSkillActivate", 0.2f },
         {"FrostStaffSkillActivate", 0.2f },
-        {"TotemSummonSkillActivate", 0.1f },
-        {"ManaTurretSkillActivate", 0.3f },
-        {"ProjectileSkillActivate", 0.3f},
-        { "ArchmageStaffSkillActivate", 0.6f}
+        {"TotemSummonSkillActivate", 0.1f }
     };
 
     //아라크네 사운드 딕셔너리
@@ -44,12 +39,10 @@ public class SoundManager : Singleton<SoundManager>
     //아라크네 볼륨 딕셔너리
     private Dictionary<string, float> ArachneSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"PoisionExplotionActivate", 0.7f},
-        {"PoisonBallActivate", 0.7f },
-        {"SpiderLegActivate", 0.3f },
-        {"SpiderSilkActivate", 0.8f },
-        {"ArachneDamageActivate", 0.3f},
-        { "ArachneDeadActivate", 1f}
+        {"PoisionExplotionActivate", 1f},
+        {"PoisonBallActivate", 1f },
+        {"SpiderLegActivate", 0.5f },
+        {"SpiderSilkActivate", 0.8f }
     };
 
     //오크메이지 사운드 딕셔너리
@@ -65,17 +58,16 @@ public class SoundManager : Singleton<SoundManager>
         {"OrcMage_SpikeActivate", 0.2f }
     };
 
-    //슬라임 사운드 딕셔너리
+    //아라크네 사운드 딕셔너리
     private Dictionary<string, AudioClip> SlimeSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //아라크네 볼륨 딕셔너리
     private Dictionary<string, float> SlimeSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"PoisionExplotionActivate", 1f},
         {"PoisonBallActivate", 1f },
         {"SlimeTentacleActivate", 0.5f },
-        {"SlimeDamageActivate", 1f},
-        {"SlimeDeadActivate", 0.3f}
     };
+
 
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
@@ -84,8 +76,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         {"DeploymentActivate", 0.05f},
         {"RerollActivate", 0.5f },
-        {"ButtonActivate", 0.3f },
-        {"BlackHoleStartActivate", 0.8f }
+        {"ButtonActivate", 0.3f }
     };
 
     //BGM 사운드 딕셔너리
@@ -94,8 +85,8 @@ public class SoundManager : Singleton<SoundManager>
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"ShopSceneBGM", 0.2f},
-        {"OrcMageBGM", 0.3f },
-        {"ArachneBGM", 0.2f },
+        {"OrcMage", 0.3f },
+        {"GameSceneBGM", 0.2f },
         {"SlimeBGM", 0.1f }
     };
 
@@ -107,7 +98,6 @@ public class SoundManager : Singleton<SoundManager>
 
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
-        BlackHoleAudioSource = transform.GetChild(2).GetComponent<AudioSource>();
 
         // 플레이어 사운드 초기화
         AudioClip[] playeraudioClips = Resources.LoadAll<AudioClip>("Sounds/Player");
@@ -234,8 +224,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = ArachneSoundDictionary.ContainsKey(clip) ? ArachneSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                    float volume = ArachneSoundVolumeDictionary.ContainsKey(clip) ? ArachneSoundVolumeDictionary[clip] : 1f;
-                    interactionAudioSource.PlayOneShot(tileClip, volume);
+                float volume = ArachneSoundVolumeDictionary.ContainsKey(clip) ? ArachneSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -254,8 +244,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = OrcMageSoundDictionary.ContainsKey(clip) ? OrcMageSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                    float volume = OrcMageSoundVolumeDictionary.ContainsKey(clip) ? OrcMageSoundVolumeDictionary[clip] : 1f;
-                    interactionAudioSource.PlayOneShot(tileClip, volume);
+                float volume = OrcMageSoundVolumeDictionary.ContainsKey(clip) ? OrcMageSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -274,8 +264,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = SlimeSoundDictionary.ContainsKey(clip) ? SlimeSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                    float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
-                    interactionAudioSource.PlayOneShot(tileClip, volume);
+                float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -286,6 +276,7 @@ public class SoundManager : Singleton<SoundManager>
     /// </summary>
     public void UISoundClip(string clip)
     {
+        //Debug.Log("UISoundDictionary.Count:" + UISoundDictionary.Count);
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
@@ -337,31 +328,10 @@ public class SoundManager : Singleton<SoundManager>
                 break;
             case "StageScene":
                 break;
-            case "LogoScene":
-                break;
-            case "TitleScene":
-                break;
             default:
+                BGMSoundClip("ShopSceneBGM");
                 //bgmAudioSource.Stop(); // 기본은 정지
                 break;
-        }
-    }
-
-    public void BlackHoleReady()
-    {
-        BlackHoleAudioSource.volume = 0.5f;
-    }
-
-    public void BlackHoleNotReady()
-    {
-        BlackHoleAudioSource.volume = 0f;
-    }
-
-    public void DamageEffectStart(AudioClip audioClip)
-    {
-        if (audioClip != null)
-        {
-            interactionAudioSource.PlayOneShot(audioClip, 0.5f);
         }
     }
 }

@@ -10,6 +10,7 @@ public class SlimeActtckTentacle : MonoBehaviour
         if (player != null)
         {
             player.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

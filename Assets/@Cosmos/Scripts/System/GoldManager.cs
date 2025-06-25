@@ -19,8 +19,7 @@ public class GoldManager : Singleton<GoldManager>
     {
         base.Awake();
         SetCurrentGold(20);
-        EventBus.SubscribeBossDeath(GetGoldPerStage);
-        EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
+        EventBus.SubscribeBossDeath(GetGoldPerStage);    
     }
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class GoldManager : Singleton<GoldManager>
     {
          if(Input.GetKeyDown(KeyCode.F12))
         {
-            ModifyCurrentGold(100);
+            ModifyCurrentGold(1);
         }
     }
 
@@ -88,15 +87,8 @@ public class GoldManager : Singleton<GoldManager>
         ModifyCurrentGold(15);
     }
 
-
-    private void GetGoldOnPlayerDeath()
-    {
-        ModifyCurrentGold(10);
-    }
-
     private void OnDestroy()
     {
         EventBus.UnsubscribeBossDeath(GetGoldPerStage);
-        EventBus.UnsubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 }

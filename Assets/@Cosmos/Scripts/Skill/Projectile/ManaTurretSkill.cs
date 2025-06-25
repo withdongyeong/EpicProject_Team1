@@ -16,9 +16,6 @@ public class ManaTurretSkill : ProjectileSkill
         {
             Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
-            projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
         }

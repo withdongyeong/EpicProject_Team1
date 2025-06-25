@@ -5,6 +5,7 @@ using UnityEngine;
 public class TileObject : MonoBehaviour
 {
     public TileData data;
+    [SerializeField]
     private TileInfo tileInfo;
     private GameObject combinedStarCell;
 

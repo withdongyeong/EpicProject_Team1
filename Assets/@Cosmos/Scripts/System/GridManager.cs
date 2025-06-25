@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+using static Unity.Cinemachine.CinemachineSplineRoll;
 
 public class GridCell
 {
@@ -157,13 +158,6 @@ public class GridManager : Singleton<GridManager>
     public List<Vector3Int> UnmovableGridPositions => unmovableGridPositions;
 
     /// <summary>
-    /// 현재 배치되어있는 타일들의 이름 리스트입니다.
-    /// </summary>
-    private List<string> _placedTileList = new();
-
-    public List<string> PlacedTileList => _placedTileList;
-
-    /// <summary>
     /// 점유 스프라이트를 반환합니다.
     /// </summary>
     public Sprite GetOccupiedSprite()
@@ -184,8 +178,6 @@ public class GridManager : Singleton<GridManager>
     {
         base.Awake();
         EventBus.SubscribeSceneLoaded(GridPosChange);
-        EventBus.SubscribeTilePlaced(AddPlacedTileList);
-        EventBus.SubscribeTileSell(RemovePlacedTileList);
         cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
         occupiedSprite = Resources.Load<Sprite>("Arts/UI/OccupiedSprite"); // 점유 스프라이트 로드
         defaultSprite = Resources.Load<Sprite>("Arts/UI/DefaultSprite"); // 기본 스프라이트 로드
@@ -416,24 +408,10 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
-    //이 밑은 타일이 배치되었을때/판매되었을때 
-    private void AddPlacedTileList(TileObject tileObject)
-    {
-        _placedTileList.Add(tileObject.GetTileData().TileName);
-    }
-
-    private void RemovePlacedTileList(TileObject tileObject)
-    {
-        _placedTileList.Remove(tileObject.GetTileData().TileName);
-    }    
-
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(GridPosChange);
-        EventBus.UnSubscribeTilePlaced(AddPlacedTileList);
-        EventBus.UnSubscribeTileSell(RemovePlacedTileList);
     }
-
 
     //---------------------------------------------------------------------------------------
     // 테스트 메서드들

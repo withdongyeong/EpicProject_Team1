@@ -516,7 +516,8 @@ MonoBehaviour:
   skillName: 
   cooldown: 3
   firstDamage: 10
-  projectilePrefab: {fileID: 603461643113537889, guid: cca036cc38fd70142aeb961bf5f3f963, type: 3}
+  damage: 10
+  projectilePrefab: {fileID: 603461643113537889, guid: 310dd52b216708a4a80938bc9054490d, type: 3}
 --- !u!4 &8433488283157050153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}

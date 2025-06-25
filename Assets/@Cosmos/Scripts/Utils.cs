@@ -37,7 +37,6 @@ public enum TileCategory
     Consumable,  // 소모품
     Trinket,   // 장신구
     Summon,     // 소환수
-    None, //없음
 }
 
 public enum TileType
@@ -69,14 +68,13 @@ public enum TileTag
 [Serializable]
 public class TileInfo
 {
-    private string tileName;
-    private string description;
-    private Sprite tileSprite;
-    private TileGrade tileGrade;
-    private int tileCost;
-    private string tileData;
-    private TileCategory tileCategory;
-    private TileData requiredTile;
+    [SerializeField] private string tileName;
+    [SerializeField] private string description;
+    [SerializeField] private Sprite tileSprite;
+    [SerializeField] private TileGrade tileGrade;
+    [SerializeField] private int tileCost;
+    [SerializeField] private string tileData;
+    [SerializeField] private TileCategory tileCategory;
 
     public string TileName => tileName;
     public string Description => description;
@@ -84,7 +82,6 @@ public class TileInfo
     public TileGrade TileGrade => tileGrade;
     public int TileCost => tileCost;
     public TileCategory TileCategory => tileCategory;
-    public TileData RequiredTile => requiredTile;
 
     public TileInfo(TileData data)
     {
@@ -94,7 +91,6 @@ public class TileInfo
         tileGrade = data.tileGrade;
         tileCost = data.tileCost;
         tileCategory = data.tileCategory;
-        requiredTile = data.requiredTile;
     }
 }
 
@@ -116,9 +112,7 @@ public enum BuffableTileStat
     //데미지
     Damage,
     //힐량
-    HealAmount,
-    //마법진의 경우, 마법진의 효과를 의미합니다.
-    MagicCircle, 
+    HealAmount
 }
 
 /// <summary>

@@ -54,8 +54,6 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        // '전투씬이 시작될 때' 타이밍입니다.(보스x, 플레이어x)
-        EventBus.SubscribeSceneLoaded(InitClearStarList);
         //'전투가 시작될때' 타이밍입니다.
         EventBus.SubscribeGameStart(InitPassiveStarList);
     }
@@ -190,24 +188,12 @@ public abstract class SkillBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 씬이 로드될 때, 인접 효과를 초기화하는 메서드입니다. override하신다음에 개조하시면 됩니다.
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
-    protected virtual void InitClearStarList(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "StageScene")
-        {
-            // 전투씬 시작시 인접 효과를 초기화합니다.
-            ClearStarBuff();
-        }
-    }
-
-    /// <summary>
     /// 현재 적용받고 있는 인접효과중에서, 게임이 시작되었을때 적용받을 효과를 적용받는 메서드입니다. override하신다음에 개조하시면 됩니다.
     /// </summary>
     protected virtual void InitPassiveStarList()
     {
+        //먼저 저번 게임의 인접 효과가 적용되지 않게 하도록, 초기화합니다.
+        ClearStarBuff();
         if(starList != null)
         {
             foreach (StarBase star in starList)
@@ -243,7 +229,6 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        EventBus.UnsubscribeSceneLoaded(InitClearStarList);
         EventBus.UnsubscribeGameStart(InitPassiveStarList);
     }
 }

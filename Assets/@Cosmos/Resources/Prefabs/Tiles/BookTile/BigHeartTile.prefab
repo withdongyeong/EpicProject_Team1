@@ -339,8 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   cooldown: 5
-  _healAmount: 7
-  _enchantedHealAmount: 10
+  _healAmount: 15
   _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!4 &9127531905601906501 stripped
 Transform:
@@ -468,8 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   cooldown: 5
-  _healAmount: 7
-  _enchantedHealAmount: 10
+  _healAmount: 15
   _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!1001 &4984459444230833439
 PrefabInstance:
@@ -781,14 +779,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4442328500540936843}
+      addedObject: {fileID: 7466060425522344337}
   m_SourcePrefab: {fileID: 100100000, guid: eff93a65110a3754a935d437437ab34d, type: 3}
 --- !u!1 &1758704872815447753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
   m_PrefabInstance: {fileID: 6166540374215475006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4442328500540936843
+--- !u!114 &7466060425522344337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -797,9 +795,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758704872815447753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: add4d1a513bf4ba4b9d4ddde92e31ea7, type: 3}
+  m_Script: {fileID: 11500000, guid: 092837a7446f1e94491f45926ac7e57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileCategory: 1
+  tileStat: 0
+  amount: 0.1
 --- !u!4 &2959522034681498651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971634796502872869, guid: eff93a65110a3754a935d437437ab34d, type: 3}
@@ -1144,8 +1145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   cooldown: 5
-  _healAmount: 7
-  _enchantedHealAmount: 10
+  _healAmount: 15
   _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!1 &7281041991409893499 stripped
 GameObject:
