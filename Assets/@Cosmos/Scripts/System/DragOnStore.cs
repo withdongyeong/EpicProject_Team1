@@ -23,7 +23,13 @@ public class DragOnStore : DraggableObject
     protected override void BeginDrag()
     {
         originalObject = storeSlot.GetObject();
-        dragObject = Instantiate(originalObject);
+        Vector3 mousePosition = Input.mousePosition;
+        Camera mainCamera = Camera.main;
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
+        //드래그 오브젝트 생성 및 위치 초기화
+        dragObject = Instantiate(originalObject,worldPosition,originalObject.transform.rotation);
+        DragManager.Instance.LocalPos = Vector3.zero;
         //dragObject.name = "dragObject";
     }                                 
     

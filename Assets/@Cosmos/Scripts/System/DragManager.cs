@@ -18,6 +18,8 @@ public class DragManager : Singleton<DragManager>
     private bool isDragging = false; // 드래그 중인지 여부
     public bool IsDragging => isDragging; // 외부에서 드래그 상태를 확인할 수 있도록 공개
 
+    public Vector3 LocalPos { get; set; }
+
     
 
 
@@ -37,6 +39,12 @@ public class DragManager : Singleton<DragManager>
             {
                 RotateObject();
             }
+            Vector3 mousePosition = Input.mousePosition;
+            mainCamera = Camera.main;
+            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+            worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
+                                  // 드래그 오브젝트 위치 업데이트
+            currentDragObject.transform.position = worldPosition + LocalPos;
         }
     }
     
@@ -44,6 +52,11 @@ public class DragManager : Singleton<DragManager>
     {
         isDragging = true;
         currentDragObject = draggableObject;
+        Vector3 mousePosition = Input.mousePosition;
+        mainCamera = Camera.main;
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
+        LocalPos = currentDragObject.transform.position - worldPosition; //현재 마우스 위치 기준으로 현재 드래그되는 타일의 로컬 포지션.
         
     }
     
@@ -52,13 +65,6 @@ public class DragManager : Singleton<DragManager>
         if (currentDragObject == null || !isDragging)
             return;
 
-        Vector3 mousePosition = Input.mousePosition;
-        mainCamera = Camera.main;
-        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-        worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
-        
-        // 드래그 오브젝트 위치 업데이트
-        currentDragObject.transform.position = worldPosition;
         // 그리드 미리보기 업데이트
         UpdatePreviewCell();
     }
