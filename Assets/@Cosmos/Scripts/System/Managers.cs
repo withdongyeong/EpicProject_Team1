@@ -16,7 +16,9 @@ public class Managers : MonoBehaviour
     private GameObject gameStateManager;
     private GameObject timeScaleManager;
     private GameObject goldManager;
+    private GameObject StageSelectManager;
     private GameObject globalSetting;
+    
 
 
 
@@ -29,20 +31,30 @@ public class Managers : MonoBehaviour
         gameStateManager = Resources.Load<GameObject>("GameStateManager");
         timeScaleManager = Resources.Load<GameObject>("TimeScaleManager");
         goldManager = Resources.Load<GameObject>("GoldManager");
+        StageSelectManager = Resources.Load<GameObject>("StageSelectManager");
         globalSetting = Resources.Load<GameObject>("GlobalSetting");
         //Instantiate the managers
-        Instantiate(gameManager);
-        Instantiate(soundManager);
-        Instantiate(dragManager);
-        Instantiate(gridManager);
-        Instantiate(gameStateManager);
-        Instantiate(timeScaleManager);
-        Instantiate(goldManager);
-        Instantiate(globalSetting);
+        MakeManager(gameManager);
+        MakeManager(soundManager);
+        MakeManager(dragManager);
+        MakeManager(gridManager);
+        MakeManager(gameStateManager);
+        MakeManager(timeScaleManager);
+        MakeManager(goldManager);
+        MakeManager(StageSelectManager);
+        MakeManager(globalSetting);
     }
 
+    private void MakeManager(GameObject manager)
+    {
+        GameObject m = Instantiate(manager);
+        if (m == null)
+        {
+            Debug.LogWarning("Managers cannot be instantiated" + manager.name);
+        }
+    }
     private void Start()
     {
-        SceneLoader.LoadSceneWithName("BuildingScene");
+        SceneLoader.LoadLogo();
     }
 }

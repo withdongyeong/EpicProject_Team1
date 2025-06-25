@@ -118,7 +118,6 @@ public class InfoTextRenderer : MonoBehaviour
                 if(!_textDict.ContainsKey(tag))
                 {
                     _textDict.Add(tag, prefab);
-                    Debug.Log(prefab.name);
                 }
                 
             }

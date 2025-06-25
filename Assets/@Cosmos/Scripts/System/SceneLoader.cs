@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 public static class SceneLoader
 {
     public const string TitleScene = "TitleScene";
+    public const string LogoScene = "LogoScene"; 
     public const string BuildingScene = "BuildingScene";
     public const string StageScene = "StageScene";
     
 
     public static void LoadTitle() => SceneManager.LoadScene(TitleScene);
+    public static void LoadLogo() => SceneManager.LoadScene(LogoScene);
     public static void LoadBuilding() => SceneManager.LoadScene(BuildingScene);
     public static void LoadStage() => SceneManager.LoadScene(StageScene);
     public static void ReloadCurrentScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);

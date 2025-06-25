@@ -1,38 +1,47 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    //곽민준이 건들였습니다
-    private int stageNum = 1;
-
     protected override void Awake()
     {
         base.Awake();
-        stageNum = 1;
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
-        EventBus.SubscribeBossDeath(AddStageNum);
     }
 
-    public int StageNum => Instance.stageNum;
-
-    public void AddStageNum()
+    private void Update()
     {
-        stageNum++;
+        if(Input.GetKeyDown(KeyCode.F10))
+        {
+            ResetGame();
+        }
     }
-    
-    
+
+
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
-        EventBus.UnsubscribeBossDeath(AddStageNum);
+        SceneLoader.LoadSceneWithName("InitializeScene");
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("씬 로드됨: " + scene.name);
+    }
+
+    private void ResetGame()
+    {
+        EventBus.Reset();
+        Destroy(SoundManager.Instance.gameObject);
+        Destroy(DragManager.Instance.gameObject);
+        Destroy(GridManager.Instance.gameObject);
+        Destroy(GameStateManager.Instance.gameObject);
+        Destroy(TimeScaleManager.Instance.gameObject);
+        Destroy(GoldManager.Instance.gameObject);
+        Destroy(StageSelectManager.Instance.gameObject);
+        Destroy(GlobalSetting.Instance.gameObject);
+        Destroy(Instance.gameObject);
     }
 
 }
