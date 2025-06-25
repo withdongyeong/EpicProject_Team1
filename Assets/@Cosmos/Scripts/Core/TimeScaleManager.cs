@@ -10,7 +10,7 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     
     protected override void Awake()
     {
-        base.Awake();
+        
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
     }
     

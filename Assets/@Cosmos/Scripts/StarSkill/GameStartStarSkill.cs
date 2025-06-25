@@ -31,8 +31,7 @@ public class GameStartStarSkill : StarBase
     /// <param name="skillBase"></param>
     protected void TryApplyBuff(SkillBase skillBase)
     {
-        //만약 대상 카테고리가 None이면 모두에게 버프를 넣습니다.
-        if (tileCategory == TileCategory.None || skillBase.TileObject.GetTileData().TileCategory == tileCategory)
+        if (skillBase.TileObject.GetTileData().TileCategory == tileCategory)
         {
             skillBase.ApplyStatBuff(initBuff);
         }

@@ -126,10 +126,9 @@ public class StageHandler : MonoBehaviour
     /// </summary>
     private void CreateGameContent()
     {
-        enemyPrefab = StageSelectManager.currentStageData.enemyPrefab;
+        enemyPrefab = StageSelectHandler.enemyPrefab;
         backgroundSpriteRenderer = transform.GetChild(0).transform.GetComponent<SpriteRenderer>();
-        backgroundSpriteRenderer.sprite = StageSelectManager.currentStageData.backgroundSprite;
-        SoundManager.Instance.PlayBGMSound(StageSelectManager.currentStageData.bgmClip, StageSelectManager.currentStageData.bgmVolume);
+        backgroundSpriteRenderer.sprite = StageSelectHandler.backgroundSprite;
         SpawnPlayer();
         SpawnEnemy();
     }

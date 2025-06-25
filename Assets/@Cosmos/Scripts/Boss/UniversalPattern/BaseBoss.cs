@@ -181,18 +181,10 @@ public abstract class BaseBoss : MonoBehaviour
     /// 데미지 처리
     /// </summary>
     /// <param name="damage">받을 데미지</param>
-    public virtual void TakeDamage(int damage, GameObject hitObject = null)
+    public virtual void TakeDamage(int damage)
     {
         if (_isDead) return;
-        if (hitObject == null)
-        {
-            hitObject = Resources.Load("Prefabs/HitEffect/HitEffectBasic") as GameObject;
-        }
-        float randomX = UnityEngine.Random.Range(-0.5f, 0.5f);
-        float randomY = UnityEngine.Random.Range(-0.5f, 0.5f);
-        Vector3 hitPosition = transform.position + new Vector3(randomX, randomY, 0);
-        Instantiate(hitObject, hitPosition, Quaternion.identity);
-        Debug.Log(hitObject.name);
+
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
@@ -202,13 +194,8 @@ public abstract class BaseBoss : MonoBehaviour
         }
         else
         {
-            DamageFeedback();
+            _animator.SetTrigger("DamageTrigger");
         }
-    }
-
-    protected virtual void DamageFeedback()
-    {
-        _animator.SetTrigger("DamageTrigger");
     }
 
     /// <summary>

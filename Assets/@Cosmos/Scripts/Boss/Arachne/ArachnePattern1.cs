@@ -144,8 +144,8 @@ public class ArachnePattern1 : IBossAttackPattern
             boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
                                               warningDuration: 0.8f, damage: 20);
 
-            // 사운드 재생 - 하나만 재생
-            if(!isTorsion) boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
+            // 사운드 재생
+            boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
 
             // 공격 애니메이션
             boss.AttackAnimation();

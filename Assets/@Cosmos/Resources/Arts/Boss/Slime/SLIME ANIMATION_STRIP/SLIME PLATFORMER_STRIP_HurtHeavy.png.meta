@@ -130,19 +130,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -150,10 +137,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 20
+        y: 17
+        width: 30
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +159,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 69
+        y: 17
+        width: 44
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +181,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
+        x: 130
+        y: 33
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +203,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
+        x: 135
+        y: 17
+        width: 41
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,10 +225,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
+        x: 193
+        y: 17
+        width: 46
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +247,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
+        x: 256
+        y: 17
+        width: 48
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,10 +269,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_HurtHeavy_6
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
+        x: 329
+        y: 17
+        width: 41
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,11 +287,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SLIME PLATFORMER_STRIP_HurtHeavy_7
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 17
+        width: 43
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 223174bcb4e19cd30800000000000000
+      internalID: 4452123017514259234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 187102dad0852864ca4a3584aa798c5c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -321,6 +330,7 @@ TextureImporter:
       SLIME PLATFORMER_STRIP_HurtHeavy_4: 8426421098496332684
       SLIME PLATFORMER_STRIP_HurtHeavy_5: -4404707566957530647
       SLIME PLATFORMER_STRIP_HurtHeavy_6: -5991624519892479166
+      SLIME PLATFORMER_STRIP_HurtHeavy_7: 4452123017514259234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,8 +11,6 @@ public class Projectile : MonoBehaviour
     private BossDebuff bossDebuff = BossDebuff.None; // 상태 이상
     private ProjectileTeam _team; // 투사체 소속 진영
 
-    private GameObject hitEffect;
-   
     public enum ProjectileTeam
     {
         Player,
@@ -33,12 +31,6 @@ public class Projectile : MonoBehaviour
         _team = projectileTeam;
         damage = givenDamage;
     }
-
-    private void Start()
-    {
-        hitEffect = Resources.Load("Prefabs/HitEffect/HitEffect_Frost") as GameObject;
-    }
-
     void Update()
     {
         transform.position += Time.deltaTime * direction * speed;
@@ -71,19 +63,11 @@ public class Projectile : MonoBehaviour
             BaseBoss enemy = other.GetComponent<BaseBoss>();
             if (enemy != null)
             {
-                
+                enemy.TakeDamage(damage);
                 if(bossDebuff != BossDebuff.None)
                 {
-                    if(bossDebuff == BossDebuff.Frostbite)
-                    {
-                        enemy.TakeDamage(damage, hitEffect);
-                    }
-                    else enemy.TakeDamage(damage, null);
-
                     enemy.AddDebuff(bossDebuff); // 상태 이상 추가
                 }
-                else enemy.TakeDamage(damage, null);
-
                 Destroy(gameObject);
             }
         }

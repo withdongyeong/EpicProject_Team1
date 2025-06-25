@@ -3,7 +3,7 @@
 public class ProjectileSkill : SkillBase
 {
     [SerializeField] protected int firstDamage;
-    protected int damage = 10;
+    [SerializeField] protected int damage = 10;
     [SerializeField] protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
 
@@ -42,9 +42,6 @@ public class ProjectileSkill : SkillBase
             Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             Vector3 direction = (targetEnemy.transform.position - spawnPos).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-            Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
-            projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
         }

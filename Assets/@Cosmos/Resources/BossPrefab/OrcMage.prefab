@@ -134,7 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76d599f2b8a4d3f95781060acf503ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 0
   frogPrefab: {fileID: 7186528436087033463, guid: 6a2a803b4a1f13a4ea1654ef7790b5e1, type: 3}
   groundSpikePrefab: {fileID: 9114323422099295405, guid: 5e268869a8c53c14c878364033ebb428, type: 3}
 --- !u!95 &3286467988717038182
@@ -202,7 +201,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1991636812, guid: dbda2fea3b0794d469ac7bf23555c63c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

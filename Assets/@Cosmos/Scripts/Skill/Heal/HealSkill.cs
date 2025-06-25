@@ -3,9 +3,7 @@
 public class HealSkill : SkillBase
 {
     [SerializeField] protected int _healAmount = 25;
-    [SerializeField] protected int _enchantedHealAmount = 25;
     [SerializeField] protected GameObject _healEffectPrefab;
-    private bool isEnchanted = false; // 스킬이 강화되었는지 여부를 나타내는 변수
 
     private PlayerHp _playerHp;
 
@@ -29,11 +27,6 @@ public class HealSkill : SkillBase
     /// </summary>
     private void HealPlayer()
     {
-        if (isEnchanted)
-        {
-            // 스킬이 강화된 상태에서는 회복량 증가
-            _playerHp.Heal(_enchantedHealAmount);
-        }
         // 플레이어 체력 회복
         _playerHp.Heal(_healAmount);
 
@@ -59,28 +52,6 @@ public class HealSkill : SkillBase
             // 일정 시간 후 이펙트 제거
             Destroy(effectObj, 0.6f);
         }
-    }
-
-    /// <summary>
-    /// 타일 버프 적용 - 마법진 버프를 받으면 스킬이 강화됨
-    /// </summary>
-    /// <param name="buffData"></param>
-    public override void ApplyStatBuff(TileBuffData buffData)
-    {
-        base.ApplyStatBuff(buffData);
-        if (buffData.TileStat == BuffableTileStat.MagicCircle)
-        {
-            isEnchanted = true; // 스킬이 강화됨
-        }
-    }
-
-    /// <summary>
-    /// 스킬 강화 해제 - 스킬이 강화된 상태를 초기화
-    /// </summary>
-    protected override void ClearStarBuff()
-    {
-        base.ClearStarBuff();
-        isEnchanted = false; // 스킬 강화 비활성화
     }
 
 }

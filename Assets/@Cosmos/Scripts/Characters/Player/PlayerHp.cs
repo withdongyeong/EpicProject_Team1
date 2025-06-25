@@ -10,9 +10,7 @@ public class PlayerHp : MonoBehaviour
     private PlayerProtection _playerProtection;
     private SpriteRenderer _spriteRenderer;
 
-    
     private int _maxHealth = 100;
-    [SerializeField]
     private int _currentHealth;
     
     [Header("무적 시간 설정")]
