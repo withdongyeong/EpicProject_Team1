@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+
 public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private InfoPanel infoPanel;
     private TileObject tileObject; // TileObject 컴포넌트 참조
     private GameObject combinedStarCell; // 스타셀의 부모 오브젝트
+
     private void Awake()
     {
         EventBus.SubscribeSceneLoaded(HandleSceneLoaded);
@@ -15,9 +17,10 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             Debug.LogError("InfoPanel 없음.");
         }
     }
+
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "BuildingScene")
+        if(scene.name == "BuildingScene")
         {
             infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
             if (infoPanel == null)
@@ -26,10 +29,13 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
         }
     }
+
+
     public void SetTileObject(TileObject tileObject)
     {
         this.tileObject = tileObject;
     }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         Vector3 position;
@@ -55,6 +61,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             tileObject.CombinedStarCell.SetActive(true);
         }
     }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         if (infoPanel != null)
@@ -67,8 +74,11 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             tileObject.CombinedStarCell.SetActive(false);
         }
     }
+
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(HandleSceneLoaded);
     }
+
 }
+

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework.Constraints;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 아라크네 보스 - 새로운 패턴 시스템 적용 (디버그 강화)
@@ -44,5 +43,27 @@ public class Arachne : BaseBoss
         AddGroup()
             .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg), 1f)
             .SetGroupInterval(1f);
+    }
+
+
+    /// <summary>
+    /// 아라크네 전용 전투 데미지 피드백
+    /// </summary>
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.ArachneSoundClip("ArachneDamageActivate");
+
+        base.DamageFeedback();
+    }
+
+    /// <summary>
+    /// 아라크네 전용 사망 처리 (오버라이드 가능)
+    /// </summary>
+    protected override void Die()
+    {
+        SetAnimationTrigger("DeadTrigger");
+        SoundManager.Instance.ArachneSoundClip("ArachneDeadActivate");
+        // 기본 사망 처리 호출
+        base.Die();
     }
 }

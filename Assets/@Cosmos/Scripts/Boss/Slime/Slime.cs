@@ -46,15 +46,26 @@ public class Slime : BaseBoss
             .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
             .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
             .SetGroupInterval(1f);
-
-        Debug.Log($"{GetType().Name}: {GetAttackPatterns().Count} attack patterns initialized");
     }
 
     /// <summary>
-    /// 등록된 공격 패턴 목록 반환 (디버그용)
+    /// 슬라임 전용 전투 데미지 피드백
     /// </summary>
-    private System.Collections.Generic.List<IBossAttackPattern> GetAttackPatterns()
+    protected override void DamageFeedback()
     {
-        return new System.Collections.Generic.List<IBossAttackPattern>();
+        SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
+
+        base.DamageFeedback();
+    }
+
+    /// <summary>
+    /// 슬라임 전용 사망 처리 (오버라이드 가능)
+    /// </summary>
+    protected override void Die()
+    {
+        SetAnimationTrigger("DeadTrigger");
+        SoundManager.Instance.SlimeSoundClip("SlimeDeadActivate");
+        // 기본 사망 처리 호출
+        base.Die();
     }
 }

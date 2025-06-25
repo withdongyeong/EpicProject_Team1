@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042a3e843dd14db49a585303e08aca35, type: 3}
+  m_Name: Stage2
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6316585728366198449, guid: 642853f7c29f7884d9d60772837c0bdd, type: 3}
+  backgroundSprite: {fileID: 991049441188381412, guid: d41d9d2a9837caa43817e37b5b5b236c, type: 3}
+  bgmClip: {fileID: 8300000, guid: a35d33194d8065b439f63e1d6ff9acc6, type: 3}
+  bgmVolume: 0.2

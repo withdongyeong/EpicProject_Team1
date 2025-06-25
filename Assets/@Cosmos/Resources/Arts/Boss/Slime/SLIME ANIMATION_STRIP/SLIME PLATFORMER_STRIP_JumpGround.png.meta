@@ -139,6 +139,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -146,10 +159,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 17
-        width: 25
-        height: 38
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +181,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 28
-        width: 23
-        height: 33
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +203,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 44
-        width: 29
-        height: 20
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +225,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_3
       rect:
         serializedVersion: 2
-        x: 345
-        y: 32
-        width: 22
-        height: 31
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +247,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_4
       rect:
         serializedVersion: 2
-        x: 20
-        y: 17
-        width: 30
-        height: 23
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +269,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_5
       rect:
         serializedVersion: 2
-        x: 76
-        y: 17
-        width: 44
-        height: 18
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +291,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_6
       rect:
         serializedVersion: 2
-        x: 396
-        y: 17
-        width: 41
-        height: 18
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,10 +313,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_7
       rect:
         serializedVersion: 2
-        x: 458
-        y: 17
-        width: 46
-        height: 16
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -322,10 +335,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_8
       rect:
         serializedVersion: 2
-        x: 532
-        y: 17
-        width: 29
-        height: 25
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,10 +357,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_9
       rect:
         serializedVersion: 2
-        x: 594
-        y: 17
-        width: 33
-        height: 20
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -366,10 +379,10 @@ TextureImporter:
       name: SLIME PLATFORMER_STRIP_JumpGround_10
       rect:
         serializedVersion: 2
-        x: 660
-        y: 17
-        width: 30
-        height: 23
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -388,7 +401,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 44efe51e505a26744a7a25d3f0f61656
     internalID: 0
     vertices: []
     indices: 
