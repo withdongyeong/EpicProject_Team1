@@ -24,8 +24,14 @@ public class BossDebuffs : MonoBehaviour
     // 상태 이상 배열
     private int[] debuffs = new int[Enum.GetValues(typeof(BossDebuff)).Length];
 
+    // 구름 상태 여부
+    private bool isCloudy = false; 
+
     // 상태 이상 배열 접근용 프로퍼티
     public int[] Debuffs => debuffs;
+
+    // 구름 상태 여부 프로퍼티
+    public bool IsCloudy { get => isCloudy; set => isCloudy = value; }
 
     private void Start()
     {
@@ -42,13 +48,32 @@ public class BossDebuffs : MonoBehaviour
         switch (debuff)
         {
             case BossDebuff.Burning:
-                if (debuffs[(int)BossDebuff.Burning] >= 10) return; // 화상 상태 이상은 최대 5개까지만 허용
+                if (debuffs[(int)BossDebuff.Burning] >= 10) return; // 화상 상태 이상은 최대 10개까지만 허용
+                // 구름 상태에서는 20% 확률로화상 상태 이상 추가하지 않음
+                if (isCloudy)
+                {
+                    if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+                    {
+                        Debug.Log("Cloudy weather prevented burning debuff.");
+                        break;
+                    }
+                }
                 debuffs[(int)BossDebuff.Burning]++; // 화상 상태 이상 카운트 증가
                 break;
             case BossDebuff.Frostbite:
                 if (debuffs[(int)BossDebuff.Frostbite] >= 5)
                     ApplyFreezingEffect(); // 동상 상태 이상이 5개 이상일 때 동결 효과 적용
                 if (boss.IsStopped) return; // 보스가 이미 멈춰있으면 동상 상태 이상 추가하지 않음
+                // 구름 상태에서는 20% 확률로 동상 상태 이상 두배로 부여
+                if (isCloudy)
+                {
+                    if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+                    {
+                        debuffs[(int)BossDebuff.Frostbite] += 2; // 동상 상태 이상 두배로 증가
+                        Debug.Log("Cloudy weather doubled frostbite debuff.");
+                        break;
+                    }
+                }
                 debuffs[(int)BossDebuff.Frostbite]++; // 동상 상태 이상 카운트 증가
                 break;
             default:
