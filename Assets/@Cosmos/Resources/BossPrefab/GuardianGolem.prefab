@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2219378295472462248}
   - component: {fileID: 4247251401535051797}
   - component: {fileID: -6323340495086877731}
-  - component: {fileID: -8504169836117672626}
+  - component: {fileID: 939752821750276508}
+  - component: {fileID: -8260159059963844110}
   m_Layer: 0
-  m_Name: LightningKnight
+  m_Name: GuardianGolem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8804577451312863447, guid: 1d104e8a33124524ea6b9bf0c9742d6e, type: 3}
+  m_Sprite: {fileID: -5692019844244004641, guid: e1db558e1520b684ba375390fc0aebf4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -129,7 +130,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.37, y: 0.31}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.6666666, y: 1.6666666}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff99289d900b6147a370fb57199ab42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8504169836117672626
+--- !u!114 &939752821750276508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,10 +186,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5495918271223003766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c0b926207793d49914a424791038b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bc7ab27fd4bc154e9d3f94576baee94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  LightningActtck: {fileID: 9114323422099295405, guid: e378b0037dea1fa4fab80a9c79081448, type: 3}
-  Lightningball: {fileID: 6240613559509360692, guid: 1bfc2ea6fc63d6b4ca84bbe963682f10, type: 3}
-  LightningFlow: {fileID: 0}
+  groundSpikePrefab: {fileID: 9114323422099295405, guid: 5e268869a8c53c14c878364033ebb428, type: 3}
+--- !u!114 &-8260159059963844110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495918271223003766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ce6c27270f7fd4595a6658f58106aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallObject: {fileID: 5766239426588173162, guid: f877725be13c064409512241235cdcc2, type: 3}
