@@ -17,7 +17,9 @@ public class Managers : MonoBehaviour
     private GameObject timeScaleManager;
     private GameObject goldManager;
     private GameObject StageSelectManager;
+    private GameObject FadeManager;
     private GameObject globalSetting;
+    
     
 
 
@@ -32,6 +34,7 @@ public class Managers : MonoBehaviour
         timeScaleManager = Resources.Load<GameObject>("TimeScaleManager");
         goldManager = Resources.Load<GameObject>("GoldManager");
         StageSelectManager = Resources.Load<GameObject>("StageSelectManager");
+        FadeManager = Resources.Load<GameObject>("FadeManager");
         globalSetting = Resources.Load<GameObject>("GlobalSetting");
         //Instantiate the managers
         MakeManager(gameManager);
@@ -42,6 +45,7 @@ public class Managers : MonoBehaviour
         MakeManager(timeScaleManager);
         MakeManager(goldManager);
         MakeManager(StageSelectManager);
+        MakeManager(FadeManager);
         MakeManager(globalSetting);
     }
 
@@ -55,6 +59,6 @@ public class Managers : MonoBehaviour
     }
     private void Start()
     {
-        SceneLoader.LoadLogo();
+        //SceneLoader.LoadLogo();
     }
 }

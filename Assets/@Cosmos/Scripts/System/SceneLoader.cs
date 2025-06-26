@@ -7,14 +7,14 @@ public static class SceneLoader
     public const string LogoScene = "LogoScene"; 
     public const string BuildingScene = "BuildingScene";
     public const string StageScene = "StageScene";
-    
 
-    public static void LoadTitle() => SceneManager.LoadScene(TitleScene);
-    public static void LoadLogo() => SceneManager.LoadScene(LogoScene);
-    public static void LoadBuilding() => SceneManager.LoadScene(BuildingScene);
-    public static void LoadStage() => SceneManager.LoadScene(StageScene);
-    public static void ReloadCurrentScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    public static void LoadSceneWithName(string sceneName) => SceneManager.LoadScene(sceneName);
+
+    public static void LoadTitle() => FadeManager.Instance.LoadSceneWithFade(TitleScene);
+    public static void LoadLogo() => FadeManager.Instance.LoadSceneWithFade(LogoScene);
+    public static void LoadBuilding() => FadeManager.Instance.LoadSceneWithFade(BuildingScene);
+    public static void LoadStage() => FadeManager.Instance.LoadSceneWithFade(StageScene);
+    public static void ReloadCurrentScene() => FadeManager.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
+    public static void LoadSceneWithName(string sceneName) => FadeManager.Instance.LoadSceneWithFade(sceneName);
     
     
     public static bool IsCurrentScene(string sceneName) => SceneManager.GetActiveScene().name == sceneName;
@@ -48,5 +48,4 @@ public static class SceneLoader
         }
         return false;
     }
-    
 }
