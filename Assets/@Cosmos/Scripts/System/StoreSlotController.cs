@@ -88,8 +88,8 @@ public class StoreSlotController : MonoBehaviour
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
             
             //이미지 비율을 맞추기 위한 코드입니다.
-            storeSlots[i].GetComponent<Image>().preserveAspect = true;
-        
+            //storeSlots[i].GetComponent<Image>().preserveAspect = true;
+            storeSlots[i].GetComponent<Image>().SetNativeSize();
         }
     }
 
