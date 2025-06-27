@@ -1,0 +1,96 @@
+﻿using UnityEngine;
+
+public class TurtleBase : SummonBase
+{
+    /// <summary>
+    /// 마지막으로 공격한 시간입니다. 시작하자마자 쿨이 돕니다.
+    /// </summary>
+    private float _lastUsedTime;
+
+    private float _chargeInterval = 1.0f;
+
+    /// <summary>
+    /// 차지할때마다 사용하는 보호막 양입니다.
+    /// </summary>
+    private int _consumeProtection = 3;
+
+    /// <summary>
+    /// 차지된 횟수입니다.
+    /// </summary>
+    private int _chargedProtection = 0;
+
+    /// <summary>
+    /// 보호막 스크립트입니다
+    /// </summary>
+    private PlayerProtection _protectionScript;
+
+    /// <summary>
+    /// 발사체 프리팹입니다. 여기에 회전하는 거북이 넣으면 회전하면서 날아갑니다.
+    /// </summary>
+    private GameObject _projectilePrefab;
+
+    /// <summary>
+    /// 색깔 바꾸기용입니다.
+    /// </summary>
+    private SpriteRenderer _spriteRenderer;
+
+    /// <summary>
+    /// 무지개빛으로 빛나는 주기입니다.
+    /// </summary>
+    private float _cycleDuration = 1f;
+
+    protected override void WhenStart()
+    {
+        base.WhenStart();
+        _lastUsedTime = Time.time;
+        _protectionScript = FindAnyObjectByType<PlayerProtection>();
+        _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/TurtleProjectile");
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+    }
+
+    private void Update()
+    {
+        if(Time.time - _lastUsedTime > _chargeInterval)
+        {
+            Charge();
+            _lastUsedTime = Time.time;
+        }
+        if(_chargedProtection >= 5)
+        {
+            float hue = Mathf.Repeat(Time.time / _cycleDuration, 1f);
+            Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
+            _spriteRenderer.color = rainbowColor;
+        }
+    }
+
+    private void Charge()
+    {
+        if(_chargedProtection < 5)
+        {
+            if (_protectionScript.TryProtectionBlock(_consumeProtection))
+            {
+                _chargedProtection ++;
+            }
+        }
+    }
+
+    public void Fire()
+    {
+        if(_projectilePrefab != null)
+        {
+            Vector3 dir = (FindAnyObjectByType<BaseBoss>().transform.position - transform.position);
+            GameObject projectileObj = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
+            Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, dir);
+            Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
+            projectileObj.transform.rotation = lookRotation * clockwise90;
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 5);
+            Destroy(gameObject);
+        }
+    }
+
+
+
+
+}
