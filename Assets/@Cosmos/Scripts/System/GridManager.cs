@@ -203,9 +203,9 @@ public class GridManager : Singleton<GridManager>
     private void GridPosChange(Scene scene, LoadSceneMode mode)
     {
         if(SceneLoader.IsInBuilding())
-            transform.position = new Vector3(0, 0, 0);
+            transform.position = new Vector3(0, 2f, 0);
         else if(SceneLoader.IsInStage())
-            transform.position = new Vector3(7f, 0, 0);
+            transform.position = new Vector3(0, 0, 0);
     }
     private void InitializeGrid()
     {
