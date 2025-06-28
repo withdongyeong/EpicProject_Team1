@@ -15,14 +15,6 @@ public class LightningKnight : BaseBoss
     }
 
     /// <summary>
-    /// 보스 초기화 - 고유한 스탯 설정
-    /// </summary>
-    protected void Start()
-    {
-
-    }
-
-    /// <summary>
     /// 공격 패턴 초기화 - 2가지 패턴 모두 등록
     /// </summary>
     protected override void InitializeAttackPatterns()
