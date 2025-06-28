@@ -65,6 +65,18 @@ public class PlayerSummons : MonoBehaviour
         }
     }
 
+    public void RemoveFromList(ISummon summon)
+    {
+        if(!_summonList.Contains(summon))
+        {
+            Debug.Log("소환물 리스트에 등록 안된 소환물을 리스트에서 제거하려고 했습니다.");
+        }
+        else
+        {
+            _summonList.Remove(summon);
+        }
+    }
+
     private void GameStart(GameState state)
     {
         if(state == GameState.Playing)
