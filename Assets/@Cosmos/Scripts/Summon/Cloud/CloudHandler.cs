@@ -16,35 +16,16 @@ public class CloudHandler : MonoBehaviour
             if (value >= 0)
             {
                 _cloudLevel = value;
+                // 구름 레벨이 변경되면 구름 오브젝트 업데이트
                 UpdateCloudVisuals();
             }
         }
-    }
-
-    private void Awake()
-    {
-        EventBus.SubscribeGameStateChanged(GameStart);
-    }
-
-    private void GameStart(GameState state)
-    {
-        _boss = FindAnyObjectByType<BaseBoss>();
     }
 
     /// <summary>
     /// 현재 활성화된 구름 오브젝트를 반환합니다. 구름 레벨에 따라 다를 수 있습니다.
     /// </summary>
     public Cloud CurrentCloud => _currentCloud;
-
-    private void Start()
-    {
-        // 구름 프리팹을 Resources 폴더에서 로드
-        _cloudPrefab = Resources.LoadAll<GameObject>("Prefabs/Summons/Cloud");
-        if (_cloudPrefab == null)
-        {
-            Debug.LogError("Cloud prefab not found in Resources folder.");
-        }
-    }
 
     /// <summary>
     /// 구름 레벨에 따라 구름 오브젝트를 업데이트합니다.
@@ -53,8 +34,12 @@ public class CloudHandler : MonoBehaviour
     {
         if (_currentCloud == null)
         {
+            if (_cloudPrefab == null)
+            {
+                Initialize();
+            }
             // 구름 오브젝트가 없으면 새로 생성
-            if (_cloudPrefab != null && _cloudPrefab.Length > 0 && _cloudLevel - 1 < _cloudPrefab.Length && _boss != null)
+            if (_cloudPrefab != null && _cloudPrefab.Length > 0 && _cloudLevel < _cloudPrefab.Length && _boss != null)
             {
                 _currentCloud = Instantiate(_cloudPrefab[_cloudLevel - 1], _boss.transform).GetComponent<Cloud>();
                 _currentCloud.transform.localPosition = new Vector3(0, 2, 0); // 위치 초기화
@@ -63,17 +48,24 @@ public class CloudHandler : MonoBehaviour
         else
         {
             // 구름 레벨이 변경되면 기존 구름 오브젝트를 제거하고 새로 생성
-            Destroy(_currentCloud);
-            if (_cloudLevel - 1 < _cloudPrefab.Length)
+            if (_cloudLevel < _cloudPrefab.Length)
             {
+                Destroy(_currentCloud);
                 _currentCloud = Instantiate(_cloudPrefab[_cloudLevel - 1], _boss.transform).GetComponent<Cloud>();
                 _currentCloud.transform.localPosition = new Vector3(0, 2, 0); // 위치 초기화
             }
         }
+        Debug.LogError($"Cloud level updated to {_cloudLevel}. Current cloud: {_currentCloud?.name ?? "None"}");
     }
 
-    private void OnDestroy()
+    private void Initialize()
     {
-        EventBus.UnsubscribeGameStateChanged(GameStart);
+        // 구름 프리팹을 Resources 폴더에서 로드
+        _cloudPrefab = Resources.LoadAll<GameObject>("Prefabs/Summons/Cloud");
+        if (_cloudPrefab == null)
+        {
+            Debug.LogError("Cloud prefab not found in Resources folder.");
+        }
+        _boss = FindAnyObjectByType<BaseBoss>();
     }
 }

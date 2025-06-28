@@ -192,7 +192,8 @@ public abstract class BaseBoss : MonoBehaviour
         float randomY = UnityEngine.Random.Range(-0.5f, 0.5f);
         Vector3 hitPosition = transform.position + new Vector3(randomX, randomY, 0);
         Instantiate(hitObject, hitPosition, Quaternion.identity);
-        Debug.Log(hitObject.name);
+        damage = _bossDebuff.ApplyMarkEffect(damage);
+        damage = _bossDebuff.ApplyPainEffect(damage);
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);

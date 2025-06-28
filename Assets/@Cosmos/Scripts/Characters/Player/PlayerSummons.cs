@@ -19,6 +19,8 @@ public class PlayerSummons : MonoBehaviour
     private void Awake()
     {
         EventBus.SubscribeGameStateChanged(GameStart);
+        //구름 매니저 자동 생성
+        Instantiate(_cloudManager, transform);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,8 +29,6 @@ public class PlayerSummons : MonoBehaviour
         //토템 매니저 자동 생성
         var totemManager = Instantiate(_totemManager, transform);
         AddToList(totemManager.GetComponent<ISummon>());
-        //구름 매니저 자동 생성
-        Instantiate(_cloudManager, transform);
     }
 
     // Update is called once per frame

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 874450517066477754}
   - component: {fileID: 6681056296066975375}
   m_Layer: 0
-  m_Name: 2Cloud
+  m_Name: 3Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9061715113613508192, guid: 23cfe745e0af5d84b83e057a196ae569, type: 3}
+  m_Sprite: {fileID: 3783641371078005230, guid: eb94d200db2ae5546a030bcba672bff4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 55680744621745615}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5761defb949458643a62f0c2bcda75a0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 478ef815b295518468228de0858ea5f1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

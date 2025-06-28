@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 //화상, 기절
@@ -7,7 +6,10 @@ public enum BossDebuff
 {
     None,// 상태 이상 없음
     Burning,
-    Frostbite
+    Frostbite,
+    Mark,
+    Curse,
+    Pain,
 }
 
 /// <summary>
@@ -27,11 +29,17 @@ public class BossDebuffs : MonoBehaviour
     // 구름 상태 여부
     private bool isCloudy = false; 
 
+    // 저주 상태 이상 최대치
+    private int maxCurseCount = 30;
+
     // 상태 이상 배열 접근용 프로퍼티
     public int[] Debuffs => debuffs;
 
     // 구름 상태 여부 프로퍼티
     public bool IsCloudy { get => isCloudy; set => isCloudy = value; }
+
+    // 저주 상태 이상 최대치 프로퍼티
+    public int MaxCurseCount { get => maxCurseCount; set => maxCurseCount = value; }
 
     private void Start()
     {
@@ -54,27 +62,35 @@ public class BossDebuffs : MonoBehaviour
                 {
                     if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
                     {
-                        Debug.Log("Cloudy weather prevented burning debuff.");
                         break;
                     }
                 }
                 debuffs[(int)BossDebuff.Burning]++; // 화상 상태 이상 카운트 증가
                 break;
             case BossDebuff.Frostbite:
-                if (debuffs[(int)BossDebuff.Frostbite] >= 5)
-                    ApplyFreezingEffect(); // 동상 상태 이상이 5개 이상일 때 동결 효과 적용
                 if (boss.IsStopped) return; // 보스가 이미 멈춰있으면 동상 상태 이상 추가하지 않음
                 // 구름 상태에서는 20% 확률로 동상 상태 이상 두배로 부여
                 if (isCloudy)
                 {
                     if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
                     {
-                        debuffs[(int)BossDebuff.Frostbite] += 2; // 동상 상태 이상 두배로 증가
-                        Debug.Log("Cloudy weather doubled frostbite debuff.");
-                        break;
+                        debuffs[(int)BossDebuff.Frostbite]++; // 동상 상태 이상 두배로 증가
                     }
                 }
                 debuffs[(int)BossDebuff.Frostbite]++; // 동상 상태 이상 카운트 증가
+                if (debuffs[(int)BossDebuff.Frostbite] >= 5)
+                    ApplyFreezingEffect(); // 동상 상태 이상이 5개 이상일 때 동결 효과 적용
+                break;
+            case BossDebuff.Mark:
+                if (debuffs[(int)BossDebuff.Mark] >= 1) return; // Mark 상태 이상은 최대 1개까지만 허용
+                debuffs[(int)BossDebuff.Mark]++; // Mark 상태 이상 카운트 증가
+                break;
+            case BossDebuff.Curse:
+                if (debuffs[(int)BossDebuff.Curse] >= maxCurseCount) return; // Curse 상태 이상은 최대 maxCurseCount까지만 허용
+                debuffs[(int)BossDebuff.Curse]++; // Curse 상태 이상 카운트 증가
+                break;
+            case BossDebuff.Pain:
+                debuffs[(int)BossDebuff.Pain]++; // Pain 상태 이상 카운트 증가
                 break;
             default:
                 break; // 다른 상태 이상은 처리하지 않음
@@ -100,12 +116,9 @@ public class BossDebuffs : MonoBehaviour
     /// </summary>
     public void ApplyAllDebuffs()
     {
-        Debug.Log("Applying all debuffs to the boss...");
         // 화상 효과 적용
         if (debuffs[(int)BossDebuff.Burning] > 0)
         {
-            Debug.Log($"Burning debuff count: {debuffs[(int)BossDebuff.Burning]}");
-
             ApplyBurningEffect();
         }
         // 동상 효과 적용
@@ -145,5 +158,63 @@ public class BossDebuffs : MonoBehaviour
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
         boss.StopAttack(1f);
+    }
+
+    /// <summary>
+    /// 낙인 상태 이상이 있을 때 데미지를 증가시키는 효과를 적용합니다.
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <returns></returns>
+    public int ApplyMarkEffect(int damage)
+    {
+        if (debuffs[(int)BossDebuff.Mark] > 0)
+        {
+            // 낙인 상태 이상이 있을 때 데미지 증가
+            int markDamage = damage + (int)(damage * 0.5f); // 50% 추가 데미지
+            RemoveDebuff(BossDebuff.Mark);
+            return markDamage;
+        }
+        return damage; // 낙인 상태 이상이 없으면 원래 데미지 반환
+    }
+
+    /// <summary>
+    /// 고통 상태 이상이 있을 때 데미지를 증가시키는 효과를 적용합니다.
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <returns></returns>
+    public int ApplyPainEffect(int damage)
+    {
+        if (debuffs[(int)BossDebuff.Pain] > 0)
+        {
+            // Pain 상태 이상이 있을 때 데미지 증가
+            int painDamage = damage + (int)(damage * debuffs[(int)BossDebuff.Pain] * 0.1f); // 고통 스택당 10% 추가 데미지
+            return painDamage;
+        }
+        return damage; // Pain 상태 이상이 없으면 원래 데미지 반환
+    }
+
+    /// <summary>
+    /// 모든 상태 이상을 저주로 변환합니다.
+    /// </summary>
+    public void TurnEveryDebuffsToCurse()
+    {
+        // 모든 상태 이상을 저주로 변환
+        for (int i = 0; i < debuffs.Length; i++)
+        {
+            if (debuffs[i] > 0 && (BossDebuff)i != BossDebuff.Curse)
+            {
+                BossDebuff debuffType = (BossDebuff)i;
+                int count = debuffs[i];
+                for (int j = 0; j < count; j++)
+                {
+                    //if(debuffs[(int)BossDebuff.Curse] >= maxCurseCount)
+                    //{
+                    //    return; // 저주 상태 이상이 최대치에 도달하면 변환 중지
+                    //}
+                    RemoveDebuff(debuffType); // 기존 상태 이상 제거
+                    AddDebuff(BossDebuff.Curse); // 저주 상태 이상 추가
+                }
+            }
+        }
     }
 }
