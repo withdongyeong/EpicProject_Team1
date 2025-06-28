@@ -54,6 +54,7 @@ public class BossDebuffs : MonoBehaviour
             default:
                 break; // 다른 상태 이상은 처리하지 않음
         }
+
         bossHPUI.UpdateDebuffUI(debuff, debuffs[(int)debuff]);
     }
 
@@ -83,6 +84,7 @@ public class BossDebuffs : MonoBehaviour
 
             ApplyBurningEffect();
         }
+
         // 동상 효과 적용
         if (debuffs[(int)BossDebuff.Frostbite] > 0)
         {
@@ -111,14 +113,41 @@ public class BossDebuffs : MonoBehaviour
             ApplyFreezingEffect();
         }
     }
-    
+
     /// <summary>
-    /// 동상 효과가 5개 이상일 때 보스에게 적용되는 효과입니다.
+    /// 동상 효과 적용시 이펙트 생성
     /// </summary>
     private void ApplyFreezingEffect()
     {
+        // 기존 디버프 처리
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
         boss.StopAttack(1f);
+    
+        // 애니메이터 일시중지 (원래 속도 저장)
+        float originalAnimatorSpeed = boss.Animator.speed;
+        boss.Animator.speed = 0f;
+    
+        // 10초 후 애니메이터 재생 재개
+        StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
+    
+        // FreezeEffect 프리팹 소환
+        GameObject freezeEffectPrefab = Resources.Load<GameObject>("Effect/FreezeEffect");
+        if (freezeEffectPrefab != null)
+        {
+            GameObject freezeEffect = Instantiate(freezeEffectPrefab, boss.transform.position, Quaternion.identity);
+        
+            // 옵션: 이펙트를 boss의 자식으로 만들어서 함께 움직이게 하려면
+            // freezeEffect.transform.SetParent(boss.transform);
+        
+            // 10초 후 이펙트 제거 (StopAttack과 동일한 시간)
+            Destroy(freezeEffect, 1f);
+        }
+    }
+
+    private IEnumerator ResumeAnimatorAfterFreeze(float originalSpeed)
+    {
+        yield return new WaitForSeconds(1f);
+        boss.Animator.speed = originalSpeed; // 원래 속도로 복원
     }
 }
