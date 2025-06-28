@@ -6,6 +6,7 @@ public class GuardianGolemPattern1 : IBossAttackPattern
 {
     private GameObject _guardianGolemRook;
     private bool _isOdd;
+
     public string PatternName => "GuardianGolemPattern1";
 
     /// <summary>
@@ -42,13 +43,14 @@ public class GuardianGolemPattern1 : IBossAttackPattern
     private IEnumerator GuardianGolemPattern(BaseBoss boss)
     {
         List<Vector3Int> positions = new List<Vector3Int>();
+        int Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
 
         for (int y = 0; y < 9; y++)
         {
             if (_isOdd && y % 2 == 0) continue;   // 홀수만 저장
             if (!_isOdd && y % 2 != 0) continue;  // 짝수만 저장
 
-            for (int x = 0; x < 9; x++)
+            for (int x = Wallcount; x <= 8 - Wallcount; x++)
             {
                 positions.Add(new Vector3Int(4 - x, 4 - y, 0));
             }

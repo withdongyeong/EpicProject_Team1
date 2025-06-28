@@ -39,9 +39,11 @@ public class GuardianGolemPattern2 : IBossAttackPattern
 
     private IEnumerator GuardianGolemPattern(BaseBoss boss)
     {
+        int deleteCount = boss.gameObject.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+
         List<Vector3Int> positions = new List<Vector3Int>();
 
-        for (int y = 0; y < 9; y++)
+        for (int y = deleteCount; y <= 8 - deleteCount; y++)
         {
             for (int x = 0; x < 9; x++)
             {
@@ -52,6 +54,22 @@ public class GuardianGolemPattern2 : IBossAttackPattern
                 }
             }
         }
+
+        for (int y = 0; y < deleteCount; y++)
+        {
+            for (int x = deleteCount; x <= 8 - deleteCount; x++)
+            {
+                positions.Add(new Vector3Int(4 - x, 4 - y, 0));
+            }
+        }
+        for (int y = 8; y > 8 - deleteCount; y--)
+        {
+            for (int x = deleteCount; x <= 8 - deleteCount; x++)
+            {
+                positions.Add(new Vector3Int(4 - x, 4 - y, 0));
+            }
+        }
+
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0); // 중심은 원하는 기준으로 설정
         boss.BombHandler.ExecuteFixedBomb(positions, centerPos, _guardianGolemRook,

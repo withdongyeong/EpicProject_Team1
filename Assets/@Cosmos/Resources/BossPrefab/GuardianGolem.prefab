@@ -76,7 +76,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5208333, y: -0.65217394}
-    oldSize: {x: 0.48, y: 0.46}
+    oldSize: {x: 0.75, y: 0.71875}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -192,7 +192,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 0
   GuardianGolemRook: {fileID: 9114323422099295405, guid: 84a921bca2a5b1c4fac808634c18ab8e, type: 3}
-  TemporaryWall: {fileID: 5766239426588173162, guid: 90f71486030ffd84fb640b37e98f8b84, type: 3}
 --- !u!114 &-2257408158083843673
 MonoBehaviour:
   m_ObjectHideFlags: 0

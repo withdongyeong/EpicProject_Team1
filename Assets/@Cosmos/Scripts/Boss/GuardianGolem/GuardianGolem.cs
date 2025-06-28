@@ -4,7 +4,6 @@ public class GuardianGolem : BaseBoss
 {
     [Header("보스 전용 프리팹들")]
     public GameObject GuardianGolemRook; // 그라운드 스파이크 이펙트
-    public GameObject TemporaryWall;
     /// <summary>
     /// 오크 메이지 초기화 - 고유한 스탯 설정
     /// </summary>
