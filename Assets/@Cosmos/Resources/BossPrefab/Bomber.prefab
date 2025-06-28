@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2219378295472462248}
   - component: {fileID: 4247251401535051797}
   - component: {fileID: -6323340495086877731}
-  - component: {fileID: -8504169836117672626}
+  - component: {fileID: 4560520829399365880}
   m_Layer: 0
-  m_Name: LightningKnight
+  m_Name: Bomber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8804577451312863447, guid: 1d104e8a33124524ea6b9bf0c9742d6e, type: 3}
+  m_Sprite: {fileID: -640562239354294583, guid: 2f36163ff614220429f0a639d0d43d8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -129,7 +129,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.37, y: 0.31}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1.6666666, y: 1.6666666}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff99289d900b6147a370fb57199ab42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8504169836117672626
+--- !u!114 &4560520829399365880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,10 +185,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5495918271223003766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c0b926207793d49914a424791038b2, type: 3}
+  m_Script: {fileID: 11500000, guid: fe58752080d0ada4c912aa2d8e6a6ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  LightningActtck: {fileID: 9114323422099295405, guid: e378b0037dea1fa4fab80a9c79081448, type: 3}
-  Lightningball: {fileID: 6240613559509360692, guid: 1bfc2ea6fc63d6b4ca84bbe963682f10, type: 3}
-  LightningFlow: {fileID: 0}
+  BombActtck: {fileID: 9114323422099295405, guid: 6e8706064fcd00c4b86777e5486f646d, type: 3}
+  Bombball: {fileID: 6240613559509360692, guid: 63f04ac956d20fe489982550251dbcef, type: 3}

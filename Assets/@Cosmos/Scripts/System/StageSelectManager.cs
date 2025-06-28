@@ -14,7 +14,7 @@ public class StageSelectManager : Singleton<StageSelectManager>
         Slime = 0,
         Arachne = 1,
         OrcMage = 2,
-        LightningKnight = 3,
+        Bomber = 3,
         GuardianGolem = 4
     }
     

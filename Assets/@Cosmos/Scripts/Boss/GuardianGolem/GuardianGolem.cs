@@ -2,9 +2,9 @@
 
 public class GuardianGolem : BaseBoss
 {
-    [Header("오크 메이지 전용 프리팹들")]
-    public GameObject groundSpikePrefab; // 그라운드 스파이크 이펙트
-
+    [Header("보스 전용 프리팹들")]
+    public GameObject GuardianGolemRook; // 그라운드 스파이크 이펙트
+    public GameObject TemporaryWall;
     /// <summary>
     /// 오크 메이지 초기화 - 고유한 스탯 설정
     /// </summary>
@@ -12,7 +12,7 @@ public class GuardianGolem : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 1100;
+        MaxHealth = 800;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
@@ -22,8 +22,18 @@ public class GuardianGolem : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new ArachnePattern2(groundSpikePrefab), 1f)
+            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, true), 0.8f)
+            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, false), 0.8f)
             .SetGroupInterval(1f);
+
+        AddGroup()
+            .AddPattern(new GuardianGolemPattern2(GuardianGolemRook), 0.8f)
+            .SetGroupInterval(1f);
+
+        AddGroup()
+            .AddPattern(new GuardianGolemVerticalWavePattern(GuardianGolemRook), 0.8f)
+            .SetGroupInterval(1f);
+
         Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");
     }
 
