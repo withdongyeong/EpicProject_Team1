@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿/*
+using TMPro;
 using UnityEngine;
 
 public class Sell_Blackhole : MonoBehaviour
@@ -12,7 +13,6 @@ public class Sell_Blackhole : MonoBehaviour
 
     private void Awake()
     {
-        DragManager.Instance.AssignSell(this);
         _collider = GetComponent<Collider2D>();
         _sellText = transform.GetComponentInChildren<TextMeshProUGUI>();
         _sellText.gameObject.SetActive(false);
@@ -70,3 +70,4 @@ public class Sell_Blackhole : MonoBehaviour
         _tileInfo.Hide();
     }    
 }
+*/
