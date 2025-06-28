@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2044615451559326238}
   - component: {fileID: 246404770663118143}
   - component: {fileID: 4151650527754146311}
-  - component: {fileID: 4779686267652731374}
   - component: {fileID: -7510056609366963668}
   - component: {fileID: 1121223837648869681}
-  - component: {fileID: 1247811677137083655}
+  - component: {fileID: -7393490163180575813}
+  - component: {fileID: -2257408158083843673}
+  - component: {fileID: 4577813707116182240}
   m_Layer: 0
-  m_Name: Arachne
+  m_Name: GuardianGolem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +75,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.5208333, y: -0.65217394}
+    oldSize: {x: 0.75, y: 0.71875}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -110,24 +111,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4779686267652731374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316585728366198449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d594e634e295e4e968c7c58d9ace7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentHealth: 0
-  warningAria: {fileID: 1845840710705793256, guid: 0d9934601aa76b04f902fe9112847086, type: 3}
-  poisionAriaPrefeb: {fileID: 2655093744207988788, guid: cd1aaf5c0d03a134f95d6bf4b5b168ad, type: 3}
-  LToRspiderLeg: {fileID: 2655093744207988788, guid: 2546633204f268a4dbd5b15e690147e6, type: 3}
-  RToLspiderLeg: {fileID: 2655093744207988788, guid: b3a6a5f40ffba7c43a61542ef840466c, type: 3}
-  SpiderWeb: {fileID: 5766239426588173162, guid: 0be99db770907f34db2d26cdbbc88dcc, type: 3}
 --- !u!114 &-7510056609366963668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,9 +167,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8650944362789581113, guid: e8257199495e37f4da7cecc14fad8503, type: 3}
+  m_Sprite: {fileID: 7687617968295704727, guid: d3b5612dd50a3c3489b34354cdae7e6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 2}
@@ -195,7 +178,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1247811677137083655
+--- !u!114 &-7393490163180575813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316585728366198449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc7ab27fd4bc154e9d3f94576baee94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  GuardianGolemRook: {fileID: 9114323422099295405, guid: 84a921bca2a5b1c4fac808634c18ab8e, type: 3}
+--- !u!114 &-2257408158083843673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316585728366198449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ce6c27270f7fd4595a6658f58106aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallObject: {fileID: 5766239426588173162, guid: f877725be13c064409512241235cdcc2, type: 3}
+  DeleteCount: 0
+--- !u!95 &4577813707116182240
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -205,9 +216,9 @@ Animator:
   m_GameObject: {fileID: 6316585728366198449}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b0c668c33e1df684d91b469ccce84713, type: 2}
+  m_Controller: {fileID: 6286992587047916036, guid: 8e628832fd2c7de4b83e580205a69ec5, type: 3}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

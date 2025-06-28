@@ -14,6 +14,9 @@ public class StageSelectManager : Singleton<StageSelectManager>
         Slime = 0,
         Arachne = 1,
         OrcMage = 2,
+        Bomber = 3,
+        GuardianGolem = 4,
+        Reaper = 5
     }
     
     public StageDataSO[] stageDataList; // 스테이지 데이터 리스트
