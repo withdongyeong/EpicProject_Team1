@@ -74,7 +74,6 @@ public class InfoTextRenderer : MonoBehaviour
             {
                 //TextUIResizer textUIResizer = Instantiate(prefab, transform).GetComponentInChildren<TextUIResizer>();
                 //textUIResizer.SetText();
-                Debug.Log(tag + prefab.name);
                 Instantiate(prefab, transform);
             }
 

@@ -1,54 +1,36 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-
-
-/// <summary>
-/// Grid에서 Grid로 드래그할 때 사용되는 DraggableObject 클래스입니다.
-/// </summary>
-public class DragOnGrid : DraggableObject
+public class DragOnStorage : DraggableObject
 {
-    private Vector3 originalPosition;
-    private float rotateZ;
+    
+    private Vector3 _originalPosition;
+    private float _rotateZ;
     private SellTilePanel _sellTilePanel;
     private StorageArea _storageArea;
     private TileObject _tileObject;
 
-
     private void Awake()
     {
         _sellTilePanel = FindAnyObjectByType<SellTilePanel>();
-        _tileObject = GetComponent<TileObject>();
         _storageArea = FindAnyObjectByType<StorageArea>();
+        _tileObject = GetComponent<TileObject>();
     }
 
     protected override void BeginDrag()
     {
-
         ShowSellPanel();
         // 드래그 시작 시 원래 위치와 회전값 저장
-        rotateZ = transform.rotation.eulerAngles.z;
+        _rotateZ = transform.rotation.eulerAngles.z;
         //드래그 시작 시 원래 위치 저장
-        originalPosition = transform.position;
-        rotateZ = transform.rotation.eulerAngles.z;
-        GameObject dragObject = gameObject;
-        //StarCell도 Cell이기 때문에 잡아냅니다
-        foreach(Cell cell in dragObject.GetComponentsInChildren<Cell>())
+        _originalPosition = transform.position;
+        _rotateZ = transform.rotation.eulerAngles.z;
+        foreach(Cell cell in gameObject.GetComponentsInChildren<Cell>())
         {
-            Transform t = cell.transform;
-            Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
-            if (cell.GetType() == typeof(StarCell))
-            {
-                StarBase starSkill = (cell as StarCell).GetStarSkill();
-                GridManager.Instance.RemoveStarSkill(gridPos, starSkill);
-                continue;
-            }
-            cell.GetComponent<Collider2D>().enabled = false;
-            GridManager.Instance.ReleaseCell(gridPos);
+            if(cell.GetType() == typeof(Cell))
+                cell.GetComponent<Collider2D>().enabled = false;
         }
     }
-
-
     protected override void EndDrag()
     {
         HideSellPanel();
@@ -61,6 +43,8 @@ public class DragOnGrid : DraggableObject
                 coll.enabled = true;
             }
             DragManager.Instance.PlaceObject();
+            gameObject.AddComponent<DragOnGrid>();
+            Destroy(this);
             return;
         }
 
@@ -79,8 +63,6 @@ public class DragOnGrid : DraggableObject
             {
                 coll.enabled = true;
             }
-            gameObject.AddComponent<DragOnStorage>();
-            Destroy(this);
             return;
         }
         
@@ -92,10 +74,9 @@ public class DragOnGrid : DraggableObject
                 coll.enabled = true;
             }
             //원래 위치로 되돌리기
-            DragManager.Instance.SetObjectPosition(originalPosition);
+            transform.position = _originalPosition;
             //원래 회전으로 되돌리기
-            transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
-            DragManager.Instance.PlaceObject();
+            transform.rotation = Quaternion.Euler(0f, 0f, _rotateZ);
             return;
         }
         

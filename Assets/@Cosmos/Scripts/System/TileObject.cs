@@ -53,11 +53,11 @@ public class TileObject : MonoBehaviour
     /// </summary>
     public void UpdateStarList()
     {
-        Debug.Log("재계산 시작합니다");
+        //Debug.Log("재계산 시작합니다");
         starList.Clear();
         OnStarListChanged?.Invoke();
         OnStarListUpdateCompleted?.Invoke(starList);
-        Debug.Log(starList);
+        //Debug.Log(starList);
     }
 
     /// <summary>
