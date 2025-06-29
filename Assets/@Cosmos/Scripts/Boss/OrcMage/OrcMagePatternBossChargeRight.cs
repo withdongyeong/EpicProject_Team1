@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -152,7 +152,6 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
             };
         }
 
-        boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
         foreach (Vector3Int direction in spikeDirections)
         {
             List<Vector3Int> spikeLine = CreateSpikeLine(centerPos, direction);

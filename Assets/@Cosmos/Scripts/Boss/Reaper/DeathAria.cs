@@ -12,7 +12,7 @@ public class DeathAria : MonoBehaviour
 
     private void Update()
     {
-        if(IsStayPlayer && playerHp.CurrentHealth > 0) playerHp.TakeDamage(10);
+        if(IsStayPlayer && playerHp.CurrentHealth > 0) playerHp.TakeDamage(20);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
