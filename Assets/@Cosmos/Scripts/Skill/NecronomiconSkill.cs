@@ -22,6 +22,10 @@ public class NecronomiconSkill : ProjectileSkill
             {
                 damage += targetEnemy.GetDebuffCount(BossDebuff.Curse); // 기본적으로 저주 개수만큼 피해
             }
+            if (targetEnemy.GetDebuffCount(BossDebuff.Curse) == 0)
+            {
+                damage += 1; // 저주가 없으면 기본 피해량 1 증가
+            }
         }
         base.Activate();
         damage = currentDamage; // 원래 피해량으로 되돌림

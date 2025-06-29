@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 
 //화상, 기절
 public enum BossDebuff
@@ -56,7 +57,7 @@ public class BossDebuffs : MonoBehaviour
         switch (debuff)
         {
             case BossDebuff.Burning:
-                if (debuffs[(int)BossDebuff.Burning] >= 10) return; // 화상 상태 이상은 최대 10개까지만 허용
+                if (debuffs[(int)BossDebuff.Burning] >= 30) return; // 화상 상태 이상은 최대 30개까지만 허용
                 // 구름 상태에서는 20% 확률로화상 상태 이상 추가하지 않음
                 if (isCloudy)
                 {
@@ -78,7 +79,7 @@ public class BossDebuffs : MonoBehaviour
                     }
                 }
                 debuffs[(int)BossDebuff.Frostbite]++; // 동상 상태 이상 카운트 증가
-                if (debuffs[(int)BossDebuff.Frostbite] >= 5)
+                if (debuffs[(int)BossDebuff.Frostbite] >= 10)
                     ApplyFreezingEffect(); // 동상 상태 이상이 5개 이상일 때 동결 효과 적용
                 break;
             case BossDebuff.Mark:
@@ -113,6 +114,19 @@ public class BossDebuffs : MonoBehaviour
     }
 
     /// <summary>
+    /// 모든 상태 이상을 보스에게서 제거합니다.
+    /// </summary>
+    /// <param name="debuff"></param>
+    public void RemoveAllDebuff(BossDebuff debuff)
+    {
+        if (debuffs[(int)debuff] > 0)
+        {
+            debuffs[(int)debuff] = 0; // 상태 이상 카운트 초기화
+            bossHPUI.UpdateDebuffUI(debuff, 0);
+        }
+    }
+
+    /// <summary>
     /// 모든 상태 이상을 보스에게 적용합니다.
     /// </summary>
     public void ApplyAllDebuffs()
@@ -133,12 +147,15 @@ public class BossDebuffs : MonoBehaviour
     /// <summary>
     /// 화상 효과를 보스에게 적용합니다.
     /// </summary>
-    private void ApplyBurningEffect()
+    public void ApplyBurningEffect()
     {
+        if (debuffs[(int)BossDebuff.Burning] <= 0)
+        {
+            return; // 화상 상태 이상이 없으면 적용하지 않음
+        }
         // 화상 효과 적용 로직
         boss.TakeDamage(debuffs[(int)BossDebuff.Burning]); // 화상 상태 이상에 따라 데미지 적용
         RemoveDebuff(BossDebuff.Burning);
-        Debug.Log($"Burning effect applied. Remaining: {debuffs[(int)BossDebuff.Burning]}");
     }
 
     /// <summary>
@@ -146,7 +163,7 @@ public class BossDebuffs : MonoBehaviour
     /// </summary>
     private void ApplyFrostbiteEffect()
     {
-        if (debuffs[(int)BossDebuff.Frostbite] >= 5)
+        if (debuffs[(int)BossDebuff.Frostbite] >= 10)
         {
             ApplyFreezingEffect();
         }
@@ -160,7 +177,7 @@ public class BossDebuffs : MonoBehaviour
         // 기존 디버프 처리
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
-        boss.StopAttack(1f);
+        boss.StopAttack(2f);
     
         // 애니메이터 일시중지 (원래 속도 저장)
         float originalAnimatorSpeed = boss.Animator.speed;
@@ -179,13 +196,13 @@ public class BossDebuffs : MonoBehaviour
             // freezeEffect.transform.SetParent(boss.transform);
         
             // 10초 후 이펙트 제거 (StopAttack과 동일한 시간)
-            Destroy(freezeEffect, 1f);
+            Destroy(freezeEffect, 2f);
         }
     }
 
     private IEnumerator ResumeAnimatorAfterFreeze(float originalSpeed)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         boss.Animator.speed = originalSpeed; // 원래 속도로 복원
     }
 
