@@ -29,10 +29,6 @@ public class PlayerManaUI : MonoBehaviour
         //이벤트에 연결합니다
         _playerMana.OnManaChanged += UpdateManaUI;
         #region 숫자 방식
-        //TODO: 자식에 들어있는 텍스트 찾는거 수정
-        //_manaText2 = _playerMana.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-        //_rectMask = _playerMana.transform.GetChild(1).GetChild(1).GetComponent<RectMask2D>();
-        // _manaText1 = _rectMask.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         #endregion
 
     }
