@@ -31,7 +31,6 @@ public class CombineCell : MonoBehaviour
         tileObject.OnStarListUpdateCompleted += GiveSkillStarList;
     }
 
-
     public SpriteRenderer GetSprite()
     {
         return sr;
@@ -81,8 +80,6 @@ public class CombineCell : MonoBehaviour
             skill.UpdateStarList(starBases);
         }
     }
-
-
 
     private void OnDestroy()
     {
