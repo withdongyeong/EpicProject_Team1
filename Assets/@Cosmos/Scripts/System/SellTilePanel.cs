@@ -10,7 +10,6 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
     private RectTransform _rectTransform;
     private Image _image;
     private DragManager _dm;
-    [SerializeField]
     private TextMeshProUGUI _sellText;
     private bool _isCanSell = false; // 판매 가능 여부
     public bool IsCanSell => _isCanSell;
@@ -62,7 +61,7 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
     {
         gameObject.SetActive(true);
         _rectTransform.anchoredPosition = Vector2.down * 300f;;
-        Debug.Log(_rectTransform.anchoredPosition);
+        
         _sellText.text = "판매 골드 : " + ((tileCost + 1) / 2) + "G";
         _rectTransform.DOAnchorPos(Vector2.zero,0.25f).SetEase(Ease.OutSine).OnComplete(() =>
         {

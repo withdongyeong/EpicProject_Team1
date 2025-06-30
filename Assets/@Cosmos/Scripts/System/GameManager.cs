@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("씬 로드됨: " + scene.name);
+        
     }
 
     private void ResetGame()

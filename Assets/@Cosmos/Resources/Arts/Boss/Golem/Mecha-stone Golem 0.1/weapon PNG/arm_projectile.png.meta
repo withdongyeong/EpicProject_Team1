@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: 7317421fb627e9c43916d3ea4db58721
+guid: 8ea92683ef2b9cd40a8668376cb480e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 95044405116505353
-    second: arm_projectile_glowing_0
-  - first:
-      213: 5053551332890923903
-    second: arm_projectile_glowing_1
-  - first:
-      213: 959987844630726459
-    second: arm_projectile_glowing_2
-  - first:
-      213: 8066067344937695706
-    second: arm_projectile_glowing_3
-  - first:
-      213: 8081469474457304709
-    second: arm_projectile_glowing_4
-  - first:
-      213: -4212147560741854503
-    second: arm_projectile_glowing_5
+      213: 6636585613346608120
+    second: arm_projectile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,11 +126,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arm_projectile_glowing_0
+      name: arm_projectile_0
       rect:
         serializedVersion: 2
         x: 59
-        y: 255
+        y: 55
         width: 37
         height: 16
       alignment: 0
@@ -156,118 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90d8bd4026aa15100800000000000000
-      internalID: 95044405116505353
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm_projectile_glowing_1
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 255
-        width: 37
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f735a239922d12640800000000000000
-      internalID: 5053551332890923903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm_projectile_glowing_2
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 255
-        width: 37
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3748e3cbdf825d00800000000000000
-      internalID: 959987844630726459
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm_projectile_glowing_3
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 155
-        width: 37
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad9b36da38d60ff60800000000000000
-      internalID: 8066067344937695706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm_projectile_glowing_4
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 155
-        width: 37
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58eb0386ba5272070800000000000000
-      internalID: 8081469474457304709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm_projectile_glowing_5
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 155
-        width: 37
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d224744c127b85c0800000000000000
-      internalID: -4212147560741854503
+      spriteID: 8f31ef40473e91c50800000000000000
+      internalID: 6636585613346608120
       vertices: []
       indices: 
       edges: []
@@ -286,12 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      arm_projectile_glowing_0: 95044405116505353
-      arm_projectile_glowing_1: 5053551332890923903
-      arm_projectile_glowing_2: 959987844630726459
-      arm_projectile_glowing_3: 8066067344937695706
-      arm_projectile_glowing_4: 8081469474457304709
-      arm_projectile_glowing_5: -4212147560741854503
+      arm_projectile_0: 6636585613346608120
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -36,7 +36,7 @@ public class StoreSlotController : MonoBehaviour
 
     private void SetupStoreSlots()
     {
-        Debug.Log(storeSlots.Length);
+        
         for (int i = 0; i < storeSlots.Length; i++)
         {
             float roll = Random.value * 100f;
