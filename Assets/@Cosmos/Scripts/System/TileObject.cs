@@ -12,6 +12,8 @@ public class TileObject : MonoBehaviour
     public GameObject CombinedStarCell { get => combinedStarCell; }
 
     private bool isInitialized = false;
+    private bool isStarDisplayEnabled = false; // 스타 셀 표시 여부
+    public bool IsStarDisplayEnabled => isStarDisplayEnabled; // 외부에서 스타 셀 표시 여부를 확인할 수 있도록 공개
 
     //그리드의 스타 리스트가 변경되었을때의 액션입니다.
     public Action OnStarListChanged;
@@ -25,6 +27,7 @@ public class TileObject : MonoBehaviour
     private void Awake()
     {
         InitializeTile();
+        //GetComponentInChildren<CombinedStarCell>(true)?.gameObject.SetActive(true);
     }
     
     private void InitializeTile()
@@ -40,10 +43,10 @@ public class TileObject : MonoBehaviour
         {
             Debug.LogError("Tile sprite is not assigned in TileObject.");
         }
-        combinedStarCell = GetComponentInChildren<CombinedStarCell>() ? GetComponentInChildren<CombinedStarCell>().gameObject : null;
+        combinedStarCell = GetComponentInChildren<CombinedStarCell>(true) ? GetComponentInChildren<CombinedStarCell>(true).gameObject : null;
         if (combinedStarCell != null)
         {
-            //combinedStarCell.SetActive(false); // 스타셀의 부모 오브젝트 비활성화
+            //combinedStarCell.SetActive(true); // 스타셀의 부모 오브젝트 비활성화
         }
         isInitialized = true;
     }
@@ -87,6 +90,30 @@ public class TileObject : MonoBehaviour
     public Sprite GetTileSprite()
     {
         return data.tileSprite;
+    }
+    
+    public void ShowStarCell()
+    {
+        if (combinedStarCell != null)
+        {
+            foreach (var sr in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = true;
+            }
+        }
+        isStarDisplayEnabled = true;
+    }
+
+    public void HideStarCell()
+    {
+        if (combinedStarCell != null)
+        {
+            foreach (var sr in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = false;
+            }
+        }
+        isStarDisplayEnabled = false;
     }
 }
 

@@ -46,8 +46,14 @@ public class DragOnGrid : DraggableObject
             cell.GetComponent<Collider2D>().enabled = false;
             GridManager.Instance.ReleaseCell(gridPos);
         }
+        //_tileObject.ShowStarCell(); << 여기다 넣었는데 안되더라구요 , 코루틴이면 1프레임 쉬고 넣었을텐데 .
     }
 
+    protected override void Drag()
+    {
+        if(!_tileObject.IsStarDisplayEnabled)
+            _tileObject.ShowStarCell();
+    }
 
     protected override void EndDrag()
     {
