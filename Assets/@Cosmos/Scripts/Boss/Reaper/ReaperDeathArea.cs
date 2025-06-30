@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using static UnityEditor.ShaderData;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
-public class ReaperDeathAria : MonoBehaviour
+public class ReaperDeathArea : MonoBehaviour
 {
-    public GameObject DeathAriaPrefeb;
+    public GameObject DeathAreaPrefeb;
 
     private List<Vector3Int> _singlePointShape;
     void Start()
@@ -17,12 +15,12 @@ public class ReaperDeathAria : MonoBehaviour
         };
     }
 
-    public void DeathAriaCreationStart()
+    public void DeathAreaCreationStart()
     {
         StartCoroutine(DeathAriaCreation1());
     }
 
-    public void DeathAriaCreation2Start()
+    public void DeathAreaCreation2Start()
     {
         StartCoroutine(DeathAriaCreation2());
     }
@@ -36,7 +34,7 @@ public class ReaperDeathAria : MonoBehaviour
         {
             if (x == PassX1 || x == PassX2) continue;
 
-            GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(x, 4, 0), DeathAriaPrefeb,
+            GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(x, 4, 0), DeathAreaPrefeb,
                 warningDuration: 0.8f, explosionDuration: 2000.0f, damage: 0, warningType: WarningType.Type3);
         }
 
@@ -52,7 +50,7 @@ public class ReaperDeathAria : MonoBehaviour
         {
             if (y == PassY1 || y == PassY2) continue;
 
-            GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(4, y, 0), DeathAriaPrefeb,
+            GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(4, y, 0), DeathAreaPrefeb,
                                              warningDuration: 0.8f, explosionDuration: 2000.0f, damage: 0, warningType: WarningType.Type3);
         }
 

@@ -21,7 +21,7 @@ public class ReaperPattern3 : IBossAttackPattern
     }
 
     /// <summary>
-    /// 웨이브 패턴 실행 - 매 웨이브마다 다른 방향에서 시작
+    /// 
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
@@ -50,6 +50,8 @@ public class ReaperPattern3 : IBossAttackPattern
 
         boss.BombHandler.ExecuteFixedBomb(BombPos, centerPos, _deathAriaPrefeb,
             warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+
+        boss.AttackAnimation();
 
         yield return new WaitForSeconds(0.3f);
     }

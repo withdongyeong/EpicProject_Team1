@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ReaperShortDeathAriaPattern : IBossAttackPattern
+public class ReaperShortDeathAreaPattern : IBossAttackPattern
 {
     private GameObject _shortDeathAria;
     private int _deathAriaTime;
@@ -12,7 +12,7 @@ public class ReaperShortDeathAriaPattern : IBossAttackPattern
     /// 가디언 골렘 패턴1 생성자
     /// </summary>
     /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
-    public ReaperShortDeathAriaPattern(GameObject ShortDeathAria, int DeathAriaTime)
+    public ReaperShortDeathAreaPattern(GameObject ShortDeathAria, int DeathAriaTime)
     {
         _shortDeathAria = ShortDeathAria;
         _deathAriaTime = DeathAriaTime;

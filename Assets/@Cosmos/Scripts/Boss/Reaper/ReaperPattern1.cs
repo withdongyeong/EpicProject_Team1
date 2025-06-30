@@ -31,8 +31,12 @@ public class ReaperPattern1 : IBossAttackPattern
             Vector3Int playerPos =
                 boss.GridSystem.WorldToGridPosition(boss.BombHandler.PlayerController.transform.position);
 
+            boss.AttackAnimation();
+
             yield return ExecuteWave(boss, playerPos, wave);
             if (wave < 2) yield return new WaitForSeconds(0.8f);
+
+
         }
     }
 

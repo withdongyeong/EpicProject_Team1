@@ -21,34 +21,31 @@ public class Reaper : BaseBoss
     {
         if ((CurrentHealth) < 500 && !IsPase2)
         {
-            this.GetComponent<ReaperDeathAria>().DeathAriaCreationStart();
+            this.GetComponent<ReaperDeathArea>().DeathAreaCreationStart();
             IsPase2 = true;
         }
 
         if ((CurrentHealth) < 200 && !IsPase3)
         {
-            this.GetComponent<ReaperDeathAria>().DeathAriaCreation2Start();
+            this.GetComponent<ReaperDeathArea>().DeathAreaCreation2Start();
             IsPase3 = true;
         }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new ReaperShortDeathAriaPattern(DeathAria, 9), 1f)
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 9), 1f)
             .AddPattern(new ReaperPattern1(ReaperActtck), 2f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new ReaperShortDeathAriaPattern(DeathAria, 4), 1f)
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 4), 1f)
             .AddPattern(new ReaperPattern2(ReaperActtck), 2f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new ReaperShortDeathAriaPattern(DeathAria, 3), 1f)
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 3), 1f)
             .AddPattern(new ReaperPattern3(ReaperActtck), 2f)
             .SetGroupInterval(2f);
     }

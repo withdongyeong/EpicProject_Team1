@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DeathAria : MonoBehaviour
+public class DeathArea : MonoBehaviour
 {
     bool IsStayPlayer;
     PlayerHp playerHp;
