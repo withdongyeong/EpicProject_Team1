@@ -17,7 +17,8 @@ public class TurtleSummonSkill : SkillBase
         base.Activate();
         if(_currentTurtle == null)
         {
-            _currentTurtle = Instantiate(_turtlePrefab).GetComponent<TurtleBase>();
+            Vector3 spawnPos = transform.position + new Vector3(0.5f, 0.5f);
+            _currentTurtle = Instantiate(_turtlePrefab,spawnPos,Quaternion.identity).GetComponent<TurtleBase>();
         }
         else
         {

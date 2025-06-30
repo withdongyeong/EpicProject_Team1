@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TurtleBase : SummonBase
+public class TurtleBase : MonoBehaviour
 {
     /// <summary>
     /// 마지막으로 공격한 시간입니다. 시작하자마자 쿨이 돕니다.
@@ -12,7 +12,7 @@ public class TurtleBase : SummonBase
     /// <summary>
     /// 차지할때마다 사용하는 보호막 양입니다.
     /// </summary>
-    private int _consumeProtection = 3;
+    private int _consumeProtection = 2;
 
     /// <summary>
     /// 차지된 횟수입니다.
@@ -39,14 +39,12 @@ public class TurtleBase : SummonBase
     /// </summary>
     private float _cycleDuration = 1f;
 
-    protected override void WhenStart()
+    private void Start()
     {
-        base.WhenStart();
         _lastUsedTime = Time.time;
         _protectionScript = FindAnyObjectByType<PlayerProtection>();
         _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/TurtleProjectile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 
     private void Update()
