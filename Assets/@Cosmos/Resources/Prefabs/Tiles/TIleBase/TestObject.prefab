@@ -134,12 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 2abc9d380e40d4649a4ba6f27ca7b0d7, type: 2}
-  tileInfo:
-    tileName: 
-    description: 
-    tileSprite: {fileID: 0}
-    tileGrade: 0
-    tileCost: 0
 --- !u!1001 &2417255313038373094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,6 +169,10 @@ PrefabInstance:
     - target: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_Name
       value: CombinedCell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6925715973196014046, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.x

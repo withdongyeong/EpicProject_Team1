@@ -11,6 +11,7 @@ public class DragOnGrid : DraggableObject
     private Vector3 originalPosition;
     private float rotateZ;
     private SellTilePanel _sellTilePanel;
+    private StorageArea _storageArea;
     private TileObject _tileObject;
 
 
@@ -18,24 +19,22 @@ public class DragOnGrid : DraggableObject
     {
         _sellTilePanel = FindAnyObjectByType<SellTilePanel>();
         _tileObject = GetComponent<TileObject>();
+        _storageArea = FindAnyObjectByType<StorageArea>();
     }
 
     protected override void BeginDrag()
     {
 
         ShowSellPanel();
-        
         // 드래그 시작 시 원래 위치와 회전값 저장
         rotateZ = transform.rotation.eulerAngles.z;
         //드래그 시작 시 원래 위치 저장
         originalPosition = transform.position;
         rotateZ = transform.rotation.eulerAngles.z;
         GameObject dragObject = gameObject;
-        
         //StarCell도 Cell이기 때문에 잡아냅니다
         foreach(Cell cell in dragObject.GetComponentsInChildren<Cell>())
         {
-            
             Transform t = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
             if (cell.GetType() == typeof(StarCell))
@@ -47,14 +46,18 @@ public class DragOnGrid : DraggableObject
             cell.GetComponent<Collider2D>().enabled = false;
             GridManager.Instance.ReleaseCell(gridPos);
         }
+        //_tileObject.ShowStarCell(); << 여기다 넣었는데 안되더라구요 , 코루틴이면 1프레임 쉬고 넣었을텐데 .
     }
 
+    protected override void Drag()
+    {
+        if(!_tileObject.IsStarDisplayEnabled)
+            _tileObject.ShowStarCell();
+    }
 
     protected override void EndDrag()
     {
         HideSellPanel();
-        
-        
         
         //1. 그리드 안에 배치 가능하다면 -> 배치
         if (DragManager.Instance.CanPlaceTile())
@@ -67,12 +70,27 @@ public class DragOnGrid : DraggableObject
             return;
         }
 
+        //2. 판매 패널이 열려있고 판매 가능하다면 -> 판매
         if (_sellTilePanel.IsCanSell)
         {
             _sellTilePanel.SellTileObject(_tileObject);
             return;
         }
-        //2. 그리드 안에 배치 불가능하다면 -> 원래 위치로
+        
+        //3. 그리드 밖 보관 공간에 둔다면-> 보관함에 두기
+        if (_storageArea.IsCanStore)
+        {
+            _storageArea.StoreTileObject(_tileObject);
+            foreach (var coll in gameObject.GetComponentsInChildren<Collider2D>())
+            {
+                coll.enabled = true;
+            }
+            gameObject.AddComponent<DragOnStorage>();
+            Destroy(this);
+            return;
+        }
+        
+        //4. 그리드 안에 배치 불가능하다면 -> 원래 위치로
         if (!DragManager.Instance.CanPlaceTile())
         {
             foreach (var coll in gameObject.GetComponentsInChildren<Collider2D>())

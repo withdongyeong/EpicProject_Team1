@@ -26,7 +26,6 @@ public class PlayerSummons : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //토템 매니저 자동 생성
         var totemManager = Instantiate(_totemManager, transform);
         AddToList(totemManager.GetComponent<ISummon>());
     }
