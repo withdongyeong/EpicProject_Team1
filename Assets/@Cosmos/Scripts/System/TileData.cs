@@ -16,5 +16,6 @@ public class TileData : ScriptableObject
     public TileGrade tileGrade = TileGrade.Normal;
     public int tileCost = 1;
     public TileData requiredTile;
+    public TileData rejectTile;
     
 }
