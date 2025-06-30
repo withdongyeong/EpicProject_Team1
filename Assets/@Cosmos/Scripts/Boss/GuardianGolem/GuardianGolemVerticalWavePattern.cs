@@ -55,12 +55,12 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
             yield return new WaitForSeconds(0.3f); // 공격 전체 딜레이 (적절히 조절)
         }
-
-        // 전체 공격이 완료되기를 기다리지 않아도 됨 (병렬 실행)
     }
 
     private IEnumerator ExecuteColumnAttack(BaseBoss boss, int x)
     {
+        boss.AttackAnimation();
+
         for (int y = 0; y < 9; y++)
         {
             List<Vector3Int> positions = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
@@ -73,7 +73,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 explosionDuration: 0.7f,
                 damage: 20
             );
-
+            
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -97,6 +97,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private IEnumerator ExecuteRow(BaseBoss boss, int y)
     {
+        boss.AttackAnimation();
+
         for (int x = Wallcount; x < 9 - Wallcount; x++)
         {
             List<Vector3Int> positions = new List<Vector3Int> { new Vector3Int(0, 0, 0) };

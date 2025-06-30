@@ -60,5 +60,17 @@ public class Bomber : BaseBoss
             .AddPattern(new BomberBigBombPattern(BombActtck, Bombball), 0.2f)
             .SetGroupInterval(2.5f);
     }
+
+    protected override void DamageFeedback()
+    {
+        base.DamageFeedback();
+    }
+
+    protected override void Die()
+    {
+        SetAnimationTrigger("DeadTrigger");
+        // 기본 사망 처리 호출
+        base.Die();
+    }
 }
 
