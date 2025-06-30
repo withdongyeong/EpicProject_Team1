@@ -61,6 +61,8 @@ public class GuardianGolemPattern1 : IBossAttackPattern
         boss.BombHandler.ExecuteFixedBomb(positions, centerPos, _guardianGolemRook,
                                         warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
 
+        boss.AttackAnimation();
+
         yield return new WaitForSeconds(0.3f);
     }
 }
