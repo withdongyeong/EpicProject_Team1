@@ -30,4 +30,11 @@ public class StarBase : MonoBehaviour
         tileObject = tile;
         tileInfo = tileObject.GetTileData();
     }
+
+    /// <summary>
+    /// 별 칸의 조건을 만족하는지 여부를 반환합니다.
+    /// </summary>
+    /// <param name="skillBase"></param>
+    /// <returns></returns>
+    public virtual bool CheckCondition(SkillBase skillBase) => true; // 기본 구현
 }

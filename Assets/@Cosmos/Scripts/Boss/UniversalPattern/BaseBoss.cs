@@ -192,7 +192,12 @@ public abstract class BaseBoss : MonoBehaviour
         float randomY = UnityEngine.Random.Range(-0.5f, 0.5f);
         Vector3 hitPosition = transform.position + new Vector3(randomX, randomY, 0);
         Instantiate(hitObject, hitPosition, Quaternion.identity);
-        Debug.Log(hitObject.name);
+        damage = _bossDebuff.ApplyMarkEffect(damage);
+        damage = _bossDebuff.ApplyPainEffect(damage);
+        if (_isStopped)
+        {
+            damage = Mathf.CeilToInt(damage * 1.5f); // 공격 중지 상태에서는 데미지 1.5배 증가
+        }
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);

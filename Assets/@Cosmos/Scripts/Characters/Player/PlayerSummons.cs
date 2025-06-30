@@ -11,6 +11,7 @@ public class PlayerSummons : MonoBehaviour
     private List<ISummon> _summonList = new();
 
     [SerializeField] private GameObject _totemManager;
+    [SerializeField] private GameObject _cloudManager;
 
     private bool isGameStarted;
 
@@ -18,6 +19,8 @@ public class PlayerSummons : MonoBehaviour
     private void Awake()
     {
         EventBus.SubscribeGameStateChanged(GameStart);
+        //구름 매니저 자동 생성
+        Instantiate(_cloudManager, transform);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

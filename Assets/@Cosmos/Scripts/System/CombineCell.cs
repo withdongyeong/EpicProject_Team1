@@ -13,6 +13,8 @@ public class CombineCell : MonoBehaviour
 
     public Action OnStarListChanged;
 
+    public SkillBase[] Skills => skills;
+
     private void Awake()
     
     {

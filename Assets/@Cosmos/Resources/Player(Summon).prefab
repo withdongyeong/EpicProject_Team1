@@ -518,6 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7477b90b90839458cf3b46315389d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentHealth: 0
   invincibilityDuration: 0.5
   blinkCount: 5
 --- !u!114 &1725828651089743520
@@ -1019,3 +1020,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totemManager: {fileID: 233568901697347898, guid: af8efee9d0e51c24d8976a4ce6b2e4eb, type: 3}
+  _cloudManager: {fileID: 233568901697347898, guid: 664e63504319c01498a8d9d83457f2ed, type: 3}
