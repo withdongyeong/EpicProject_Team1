@@ -7,7 +7,10 @@ public static class SceneLoader
     public const string LogoScene = "LogoScene"; 
     public const string BuildingScene = "BuildingScene";
     public const string StageScene = "StageScene";
-
+    
+    //셋팅 씬
+    public const string SettingScene = "SettingScene";
+    private static bool settingSceneLoaded = false;
 
     public static void LoadTitle() => FadeManager.Instance.LoadSceneWithFade(TitleScene);
     public static void LoadLogo() => FadeManager.Instance.LoadSceneWithFade(LogoScene);
@@ -47,5 +50,19 @@ public static class SceneLoader
             return true;
         }
         return false;
+    }
+
+    public static void ToggleSetting()
+    {
+        if(!settingSceneLoaded)
+        {
+            SceneManager.LoadSceneAsync(SettingScene, LoadSceneMode.Additive);
+            settingSceneLoaded = true;
+        }
+        else
+        {
+            SceneManager.UnloadSceneAsync(SettingScene);
+            settingSceneLoaded = false;
+        }
     }
 }

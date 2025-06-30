@@ -39,6 +39,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(DragManager.Instance.IsDragging) return;
         Vector3 position;
         // 배치된 타일인지 확인
         if (GetComponent<Cell>() != null)

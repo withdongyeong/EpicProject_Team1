@@ -31,6 +31,13 @@ public class DragOnStorage : DraggableObject
                 cell.GetComponent<Collider2D>().enabled = false;
         }
     }
+    
+    protected override void Drag()
+    {
+        if(!_tileObject.IsStarDisplayEnabled)
+            _tileObject.ShowStarCell();
+    }
+    
     protected override void EndDrag()
     {
         HideSellPanel();
