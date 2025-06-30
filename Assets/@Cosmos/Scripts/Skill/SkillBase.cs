@@ -58,6 +58,8 @@ public abstract class SkillBase : MonoBehaviour
         EventBus.SubscribeSceneLoaded(InitClearStarList);
         //'전투가 시작될때' 타이밍입니다.
         EventBus.SubscribeGameStart(InitPassiveStarList);
+        //'상점 진입시' 타이밍입니다.
+        EventBus.SubscribeSceneLoaded(ResetCoolDown);
     }
 
     protected virtual void Start()
@@ -241,9 +243,19 @@ public abstract class SkillBase : MonoBehaviour
         onActivateAction = null;
     }
 
+    private void ResetCoolDown(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "BuildingScene")
+        {
+            lastUsedTime = -Mathf.Infinity;
+        }   
+    }
+
     protected virtual void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(InitClearStarList);
         EventBus.UnsubscribeGameStart(InitPassiveStarList);
+        EventBus.UnsubscribeSceneLoaded(ResetCoolDown);
     }
+
 }
