@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     private Vector3 direction;
     private BossDebuff bossDebuff = BossDebuff.None; // 상태 이상
     private ProjectileTeam _team; // 투사체 소속 진영
+    private bool isFrostHammer = false; // FrostHammer 투사체 여부
 
     private GameObject hitEffect;
    
@@ -23,6 +24,7 @@ public class Projectile : MonoBehaviour
     public float Speed { get => speed; set => speed = value; }
     public ProjectileTeam Team { get => _team; set => _team = value; }
     public BossDebuff BossDebuff { get => bossDebuff; set => bossDebuff = value; }
+    public bool IsFrostHammer { get => isFrostHammer; set => isFrostHammer = value; }
 
     /// <summary>
     /// 투사체 초기화
@@ -71,8 +73,14 @@ public class Projectile : MonoBehaviour
             BaseBoss enemy = other.GetComponent<BaseBoss>();
             if (enemy != null)
             {
-                
-                if(bossDebuff != BossDebuff.None)
+                // FrostHammer 투사체이고 보스가 정지 상태인 경우
+                if (isFrostHammer && enemy.IsStopped)
+                {
+                    enemy.GetComponent<BossDebuffs>().InterruptFrostEffect(); // 동결 효과 중단
+                    damage *= 3; // 피해량 3배 증가
+                }
+
+                if (bossDebuff != BossDebuff.None)
                 {
                     if(bossDebuff == BossDebuff.Frostbite)
                     {

@@ -28,10 +28,13 @@ public class BossDebuffs : MonoBehaviour
     private int[] debuffs = new int[Enum.GetValues(typeof(BossDebuff)).Length];
 
     // 구름 상태 여부
-    private bool isCloudy = false; 
+    private bool isCloudy = false;
 
     // 저주 상태 이상 최대치
     private int maxCurseCount = 30;
+
+    // 동결 효과 코루틴 참조
+    private Coroutine freezeCoroutine;
 
     // 상태 이상 배열 접근용 프로퍼티
     public int[] Debuffs => debuffs;
@@ -178,32 +181,63 @@ public class BossDebuffs : MonoBehaviour
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
         boss.StopAttack(2f);
-    
+
         // 애니메이터 일시중지 (원래 속도 저장)
         float originalAnimatorSpeed = boss.Animator.speed;
         boss.Animator.speed = 0f;
-    
+
         // 10초 후 애니메이터 재생 재개
-        StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
-    
+        freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
+
         // FreezeEffect 프리팹 소환
         GameObject freezeEffectPrefab = Resources.Load<GameObject>("Effect/FreezeEffect");
         if (freezeEffectPrefab != null)
         {
             GameObject freezeEffect = Instantiate(freezeEffectPrefab, boss.transform.position, Quaternion.identity);
-        
-            // 옵션: 이펙트를 boss의 자식으로 만들어서 함께 움직이게 하려면
-            // freezeEffect.transform.SetParent(boss.transform);
-        
+            freezeEffect.name = "FreezeEffect"; // 이펙트 오브젝트에 이름 지정
+                                                // 옵션: 이펙트를 boss의 자식으로 만들어서 함께 움직이게 하려면
+                                                // freezeEffect.transform.SetParent(boss.transform);
+
             // 10초 후 이펙트 제거 (StopAttack과 동일한 시간)
             Destroy(freezeEffect, 2f);
         }
+    }
+
+    /// <summary>
+    /// 동결 효과를 즉시 중단합니다.
+    /// </summary>
+    public void InterruptFrostEffect()
+    {
+        // 동결 코루틴 중지
+        if (freezeCoroutine != null)
+        {
+            StopCoroutine(freezeCoroutine);
+            freezeCoroutine = null;
+        }
+
+        // 애니메이터 속도 복원
+        boss.Animator.speed = 1f; // 기본 속도로 복원
+
+        // 동결 상태 이상 제거
+        debuffs[(int)BossDebuff.Frostbite] = 0;
+        bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
+
+        // 동결 이펙트 오브젝트 제거
+        GameObject freezeEffect = GameObject.Find("FreezeEffect");
+        if (freezeEffect != null)
+        {
+            Destroy(freezeEffect);
+        }
+
+        // 보스 공격 중지 해제
+        boss.StopAttack(0f); // 즉시 공격 재개
     }
 
     private IEnumerator ResumeAnimatorAfterFreeze(float originalSpeed)
     {
         yield return new WaitForSeconds(2f);
         boss.Animator.speed = originalSpeed; // 원래 속도로 복원
+        freezeCoroutine = null;
     }
 
     /// <summary>

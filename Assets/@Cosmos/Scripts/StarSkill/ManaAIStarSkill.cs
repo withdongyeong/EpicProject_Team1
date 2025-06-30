@@ -35,13 +35,21 @@ public class ManaAIStarSkill : StarBase
         }
     }
 
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.name.Contains("ManaTurret"))
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void ActivateManaTurret(SkillBase skillBase)
     {
-        if(!skillBase.TileObject.name.Contains("ManaTurret"))
+        if(CheckCondition(skillBase))
         {
-            return;
+            skill.ActivateManaTurret(skillBase);
         }
-        skill.ActivateManaTurret(skillBase);
     }
 
     private void OnDestroy()

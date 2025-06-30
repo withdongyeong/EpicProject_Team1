@@ -194,6 +194,10 @@ public abstract class BaseBoss : MonoBehaviour
         Instantiate(hitObject, hitPosition, Quaternion.identity);
         damage = _bossDebuff.ApplyMarkEffect(damage);
         damage = _bossDebuff.ApplyPainEffect(damage);
+        if (_isStopped)
+        {
+            damage = Mathf.CeilToInt(damage * 1.5f); // 공격 중지 상태에서는 데미지 1.5배 증가
+        }
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
