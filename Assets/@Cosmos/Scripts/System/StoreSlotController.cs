@@ -36,7 +36,7 @@ public class StoreSlotController : MonoBehaviour
 
     private void SetupStoreSlots()
     {
-        Debug.Log(storeSlots.Length);
+        
         for (int i = 0; i < storeSlots.Length; i++)
         {
             float roll = Random.value * 100f;
@@ -88,8 +88,8 @@ public class StoreSlotController : MonoBehaviour
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
             
             //이미지 비율을 맞추기 위한 코드입니다.
-            storeSlots[i].GetComponent<Image>().preserveAspect = true;
-        
+            //storeSlots[i].GetComponent<Image>().preserveAspect = true;
+            storeSlots[i].GetComponent<Image>().SetNativeSize();
         }
     }
 

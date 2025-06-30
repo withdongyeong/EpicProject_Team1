@@ -364,4 +364,9 @@ public class SoundManager : Singleton<SoundManager>
             interactionAudioSource.PlayOneShot(audioClip, 0.5f);
         }
     }
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
+    }
 }

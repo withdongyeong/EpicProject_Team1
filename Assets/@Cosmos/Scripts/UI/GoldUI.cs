@@ -15,11 +15,12 @@ public class GoldUI : MonoBehaviour
     private void Start()
     {
         ChangeGoldUI(GoldManager.Instance.CurrentGold);
+        
     }
 
     private void ChangeGoldUI(int gold)
     {
-        goldText.text = $"Gold : {gold}";
+        goldText.text = $"{gold} G";
     }
     
     private void OnDestroy()

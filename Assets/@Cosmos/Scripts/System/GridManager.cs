@@ -77,6 +77,7 @@ public class GridCell
     public void AddStarSkill(StarBase starSkill)
     {
         starList.Add(starSkill);
+        Debug.Log(GridPosition + " 좌표에 스타 스킬 추가: " + starSkill);
         //인접 효과 리스트에 추가가 되었으므로 변경되었다는 액션을 호출합니다
         OnStarListChanged();
     }
@@ -203,9 +204,9 @@ public class GridManager : Singleton<GridManager>
     private void GridPosChange(Scene scene, LoadSceneMode mode)
     {
         if(SceneLoader.IsInBuilding())
-            transform.position = new Vector3(0, 0, 0);
+            transform.position = new Vector3(0, 2f, 0);
         else if(SceneLoader.IsInStage())
-            transform.position = new Vector3(7f, 0, 0);
+            transform.position = new Vector3(0, 0, 0);
     }
     private void InitializeGrid()
     {

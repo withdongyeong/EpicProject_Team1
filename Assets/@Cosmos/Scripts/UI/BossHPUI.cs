@@ -173,4 +173,10 @@ public class BossHPUI : MonoBehaviour
             activeDebuffUIs.Remove(debuff);
         }
     }
+    
+    private void OnDestroy()
+    {
+        // 게임 시작 이벤트 구독 해제
+        EventBus.UnsubscribeGameStart(Init);
+    }
 }

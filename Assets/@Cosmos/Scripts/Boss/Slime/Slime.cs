@@ -12,7 +12,7 @@ public class Slime : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 400;
+        MaxHealth = 200;
     }
 
     /// <summary>
