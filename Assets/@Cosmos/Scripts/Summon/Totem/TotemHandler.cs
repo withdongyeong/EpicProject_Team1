@@ -21,7 +21,7 @@ public class TotemContext
     }
 }
 
-public class TotemHandler : SummonBase
+public class TotemHandler : MonoBehaviour
 {
     //현재 활성화된 토템 리스트입니다
     private List<BaseTotem> _currentTotemList = new();
