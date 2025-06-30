@@ -48,12 +48,6 @@ public class PlayerProtection : MonoBehaviour
     /// <param name="amount">보호막량</param>
     public void SetProtection(bool @protected, int amount)
     {
-        // 이미 실행 중인 코루틴이 있다면 중지
-        if (_protectionCoroutine != null)
-        {
-            StopCoroutine(_protectionCoroutine);
-            _protectionCoroutine = null;
-        }
 
         //만약 충전중이라면(장수풍뎅이)
         if (_isCharging)
@@ -63,6 +57,12 @@ public class PlayerProtection : MonoBehaviour
         }
         else if (amount > _protectionAmount)
         {
+            // 이미 실행 중인 코루틴이 있다면 중지
+            if (_protectionCoroutine != null)
+            {
+                StopCoroutine(_protectionCoroutine);
+                _protectionCoroutine = null;
+            }
             // 보호 상태 설정
             SetProtection(@protected);
             _protectionAmount = amount > 0 ? amount : 0; // 보호막량 설정

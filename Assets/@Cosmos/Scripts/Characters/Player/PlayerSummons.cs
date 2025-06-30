@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -21,13 +20,6 @@ public class PlayerSummons : MonoBehaviour
         EventBus.SubscribeGameStateChanged(GameStart);
         //구름 매니저 자동 생성
         Instantiate(_cloudManager, transform);
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        var totemManager = Instantiate(_totemManager, transform);
-        AddToList(totemManager.GetComponent<ISummon>());
     }
 
     // Update is called once per frame

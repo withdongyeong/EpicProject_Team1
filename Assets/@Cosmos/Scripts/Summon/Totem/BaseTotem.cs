@@ -35,7 +35,7 @@ public abstract class BaseTotem : MonoBehaviour
     public virtual void ReadyToActive(TotemContext context)
     {
         _context = context.Clone();
-        GotoActivePos(_context.order);
+        //GotoActivePos(_context.order);
         _anim.SetTrigger("Active");
     }
 
