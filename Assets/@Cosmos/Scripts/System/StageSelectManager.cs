@@ -1,9 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-
-
-
 /// <summary>
 
 /// </summary>
@@ -16,7 +13,8 @@ public class StageSelectManager : Singleton<StageSelectManager>
         OrcMage = 2,
         Bomber = 3,
         GuardianGolem = 4,
-        Reaper = 5
+        Reaper = 5,
+        LightningKnight = 6
     }
     
     public StageDataSO[] stageDataList; // 스테이지 데이터 리스트

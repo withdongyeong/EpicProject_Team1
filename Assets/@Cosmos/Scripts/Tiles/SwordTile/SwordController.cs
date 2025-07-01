@@ -25,7 +25,12 @@ public class SwordController : MonoBehaviour
     /// 검의 데미지
     /// </summary>
     private int _damage = 5;
-    
+
+    /// <summary>
+    /// 불타는 상태 여부
+    /// </summary>
+    private bool _isBurning = false;
+
     /// <summary>
     /// 비행 속도
     /// </summary>
@@ -86,7 +91,12 @@ public class SwordController : MonoBehaviour
     /// 검의 데미지 프로퍼티
     /// </summary>
     public int Damage { get => _damage; set => _damage = value; }
-    
+
+    /// <summary>
+    /// 불타는 상태 여부 프로퍼티  
+    /// </summary>
+    public bool IsBurning { get => _isBurning; set => _isBurning = value; }
+
     /// <summary>
     /// 비행 속도 프로퍼티
     /// </summary>
@@ -456,6 +466,10 @@ public class SwordController : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeDamage(_damage, _hitEffect);
+                if(_isBurning)
+                {
+                    monster.AddDebuff(BossDebuff.Burning);
+                }
                 skillDashTimer = 0.02f;
             }
         }
