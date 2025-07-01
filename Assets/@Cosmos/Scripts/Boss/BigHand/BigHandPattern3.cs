@@ -60,7 +60,7 @@ public class BigHandPattern3 : IBossAttackPattern
                         new List<Vector3Int> { targetPos }, 
                         centerPos, 
                         _attackEffectPrefab,
-                        warningDuration: 0.4f, 
+                        warningDuration: 0.8f, 
                         explosionDuration: 0.6f, 
                         damage: 12, 
                         warningType: WarningType.Type1

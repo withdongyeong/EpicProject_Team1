@@ -59,7 +59,7 @@ public class BigHandPattern5 : IBossAttackPattern
                 attackZone,
                 centerPos,
                 _attackEffectPrefab,
-                warningDuration: 0.6f,
+                warningDuration: 0.8f,
                 explosionDuration: 0.8f,
                 damage: 18,
                 warningType: WarningType.Type1

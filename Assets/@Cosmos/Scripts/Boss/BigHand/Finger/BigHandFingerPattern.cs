@@ -170,14 +170,6 @@ public class BigHandFingerPattern : IBossAttackPattern
         );
     }
 
-    /// <summary>
-    /// 손가락 복귀
-    /// </summary>
-    public void ReturnFinger()
-    {
-        MonoBehaviour.FindObjectOfType<MonoBehaviour>().StartCoroutine(ReturnFingerCoroutine());
-    }
-
     private IEnumerator ReturnFingerCoroutine()
     {
         if (_fingerObject == null) yield break;
@@ -211,8 +203,7 @@ public class BigHandFingerPattern : IBossAttackPattern
             _fingerObject = null;
         }
     }
-
-    // 기존 헬퍼 메서드들 (GetFingerTargetPosition, CalculateFingerTrajectory, etc.)
+    
     private Vector3Int GetFingerTargetPosition(Vector3Int playerPos)
     {
         if (playerPos.x == 4 && playerPos.y == 4)

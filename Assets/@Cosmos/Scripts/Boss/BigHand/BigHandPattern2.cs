@@ -66,7 +66,7 @@ public class BigHandPattern2 : IBossAttackPattern
                 spokesPattern, 
                 centerPos, 
                 _attackEffectPrefab,
-                warningDuration: 0.4f, 
+                warningDuration: 0.8f, 
                 explosionDuration: 0.6f, 
                 damage: 20, 
                 warningType: WarningType.Type1

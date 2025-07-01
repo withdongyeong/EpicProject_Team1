@@ -49,6 +49,8 @@ public class GameStateManager : Singleton<GameStateManager>
     public void StartGame()
     {
         SetGameState(GameState.Playing);
+        // 격자에 남아있는 이동불가 제거
+        GridManager.Instance.ClearAllUnmovableGridPositions();
     }
 
     /// <summary>

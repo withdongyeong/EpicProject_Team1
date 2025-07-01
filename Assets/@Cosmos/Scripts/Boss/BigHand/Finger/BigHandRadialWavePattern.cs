@@ -108,7 +108,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
                         new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                         nextPos,
                         _attackEffectPrefab,
-                        warningDuration: 0.3f,
+                        warningDuration: 0.8f,
                         explosionDuration: 0.4f,
                         damage: 20
                     );

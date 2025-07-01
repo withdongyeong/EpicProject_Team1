@@ -48,7 +48,7 @@ public class BigHandPattern4 : IBossAttackPattern
             blackSquares, 
             new Vector3Int(4, 4, 0), 
             _attackEffectPrefab,
-            warningDuration: 1.0f, 
+            warningDuration: 0.8f, 
             explosionDuration: 0.8f, 
             damage: 18, 
             warningType: WarningType.Type1
@@ -73,7 +73,7 @@ public class BigHandPattern4 : IBossAttackPattern
             whiteSquares, 
             new Vector3Int(4, 4, 0), 
             _attackEffectPrefab,
-            warningDuration: 1.0f, 
+            warningDuration: 0.8f, 
             explosionDuration: 0.8f, 
             damage: 18, 
             warningType: WarningType.Type1
