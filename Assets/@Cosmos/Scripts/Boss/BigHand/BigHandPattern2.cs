@@ -73,7 +73,7 @@ public class BigHandPattern2 : IBossAttackPattern
             );
             
             // 회전 속도 감소: 0.25초 → 0.45초
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.85f);
         }
         
         yield return new WaitForSeconds(0.4f + 0.6f);

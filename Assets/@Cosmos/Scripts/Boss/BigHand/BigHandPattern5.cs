@@ -65,10 +65,10 @@ public class BigHandPattern5 : IBossAttackPattern
                 warningType: WarningType.Type1
             );
 
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.8f);
         }
 
-        yield return new WaitForSeconds(0.6f + 0.8f);
+        yield return new WaitForSeconds(0.8f + 0.8f);
 
         Debug.Log("패턴5 완료");
     }

@@ -69,7 +69,7 @@ public class BigHandPattern3 : IBossAttackPattern
                 
                 yield return new WaitForSeconds(0.04f);
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 

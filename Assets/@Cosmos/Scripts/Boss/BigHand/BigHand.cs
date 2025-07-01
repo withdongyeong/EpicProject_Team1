@@ -79,7 +79,7 @@ public class BigHand : BaseBoss
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
             .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
             .SetGroupInterval(1f);
-
+        
         AddGroup()
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
