@@ -457,6 +457,22 @@ public class GridManager : Singleton<GridManager>
             Debug.Log("----------");
         }
     }
+    
+    /// <summary>
+    /// 모든 이동 불가 위치를 한번에 제거합니다. (플레이어 사망 시 등)
+    /// </summary>
+    public void ClearAllUnmovableGridPositions()
+    {
+        if (unmovableGridPositions.Count > 0)
+        {
+            Debug.Log($"모든 이동 불가 위치 해제: {unmovableGridPositions.Count}개");
+            unmovableGridPositions.Clear();
+        }
+        else
+        {
+            Debug.Log("해제할 이동 불가 위치가 없습니다.");
+        }
+    }
 
     public void TestResetGrid()
     {

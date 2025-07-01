@@ -8,6 +8,27 @@ public class SwordHandler : MonoBehaviour
     /// 모든 검 컨트롤러 리스트
     /// </summary>
     private List<SwordController> swords = new List<SwordController>();
+    private bool isBurning = false;
+
+    /// <summary>
+    /// 불타는 상태 여부
+    /// </summary>
+    public bool IsBurning
+    {
+        get { return isBurning; }
+        set
+        {
+            isBurning = value;
+            // 불타는 상태가 변경될 때 모든 검에 적용
+            foreach (SwordController sword in swords)
+            {
+                if (sword != null)
+                {
+                    sword.IsBurning = value;
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// 초기화
