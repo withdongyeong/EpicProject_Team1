@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: "\uB9DD\uB839"
   description: "\uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9:
-    <color=red>5</color>)\n<color=yellow>\uC801\uC911\uC2DC:</color> \uD654\uC5FC<sprite
+    <color=red>5</color>)\n<color=yellow>\uC801\uC911\uC2DC</color>: \uD654\uC5FC<sprite
     name=\"Fire\">\uC744 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC774
     3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74, 1\uAC1C\uC758 \uD22C\uC0AC\uCCB4\uB97C
@@ -24,3 +24,4 @@ MonoBehaviour:
   tileGrade: 0
   tileCost: 3
   requiredTile: {fileID: 0}
+  rejectTile: {fileID: 0}
