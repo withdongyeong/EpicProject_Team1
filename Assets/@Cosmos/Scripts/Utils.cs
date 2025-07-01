@@ -77,6 +77,7 @@ public class TileInfo
     private string tileData;
     private TileCategory tileCategory;
     private TileData requiredTile;
+    private TileData rejectTile;
 
     public string TileName => tileName;
     public string Description => description;
@@ -85,6 +86,7 @@ public class TileInfo
     public int TileCost => tileCost;
     public TileCategory TileCategory => tileCategory;
     public TileData RequiredTile => requiredTile;
+    public TileData RejectTile => rejectTile;
 
     public TileInfo(TileData data)
     {
@@ -95,6 +97,7 @@ public class TileInfo
         tileCost = data.tileCost;
         tileCategory = data.tileCategory;
         requiredTile = data.requiredTile;
+        rejectTile = data.rejectTile;
     }
 }
 

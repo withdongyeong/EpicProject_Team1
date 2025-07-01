@@ -103,7 +103,7 @@ public class InfoPanel : MonoBehaviour
         costText.color = Color.yellow; // 비용 텍스트 색상 설정
 
         // 위치 업데이트
-        transform.position = position;
+        //transform.position = position;
     }
 
     private void SetBorderByGrade(TileGrade grade)

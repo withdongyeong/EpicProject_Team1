@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class PlayerProtection : MonoBehaviour
@@ -12,6 +11,9 @@ public class PlayerProtection : MonoBehaviour
     public int ProtectionAmount => _protectionAmount;
     private Coroutine _protectionCoroutine;
     private GameObject _activeProtectionEffect;
+
+    //만약 장수풍뎅이 차지중이라면 보호막을 얻지 않습니다
+    private bool _isCharging = false;
     
 
     /// <summary>
@@ -46,22 +48,33 @@ public class PlayerProtection : MonoBehaviour
     /// <param name="amount">보호막량</param>
     public void SetProtection(bool @protected, int amount)
     {
-        // 이미 실행 중인 코루틴이 있다면 중지
-        if (_protectionCoroutine != null)
+
+        //만약 충전중이라면(장수풍뎅이)
+        if (_isCharging)
         {
-            StopCoroutine(_protectionCoroutine);
-            _protectionCoroutine = null;
+            //보호막은 얻지 않고 바로 소모했다고 칩니다.
+            EventBus.PublishProtectionConsume(amount);
+        }
+        else if (amount > _protectionAmount)
+        {
+            // 이미 실행 중인 코루틴이 있다면 중지
+            if (_protectionCoroutine != null)
+            {
+                StopCoroutine(_protectionCoroutine);
+                _protectionCoroutine = null;
+            }
+            // 보호 상태 설정
+            SetProtection(@protected);
+            _protectionAmount = amount > 0 ? amount : 0; // 보호막량 설정
+
+            // 지속 시간 설정
+            if (@protected && amount > 0)
+            {
+                _protectionCoroutine = StartCoroutine(protectionTimer(amount));
+            }
         }
 
-        // 보호 상태 설정
-        SetProtection(@protected);
-        _protectionAmount = amount > 0 ? amount : 0; // 보호막량 설정
-
-        // 지속 시간 설정
-        if (@protected && amount > 0)
-        {
-            _protectionCoroutine = StartCoroutine(protectionTimer(amount));
-        }
+            
     }
 
     /// <summary>
@@ -77,6 +90,7 @@ public class PlayerProtection : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             _protectionAmount-= 3;
+            EventBus.PublishProtectionConsume(3);
 
             if (_protectionAmount <= 0)
             {
@@ -124,7 +138,7 @@ public class PlayerProtection : MonoBehaviour
         }
     }
 
-    public bool TryProtectionBlock(int damage)
+    public bool TryProtectionBlock(int damage, bool isCounsumed = false)
     {
         if (_isProtected && _protectionAmount > 0)
         {
@@ -133,11 +147,31 @@ public class PlayerProtection : MonoBehaviour
             if (_protectionAmount <= 0)
             { 
                 SetProtection(false);
+                //못막은 분 만큼 데미지를 받습니다.
+                GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
                 _protectionAmount = 0;
                 Debug.Log("보호막 소멸로 보호 상태 종료");
+            }
+            if(isCounsumed)
+            {
+                EventBus.PublishProtectionConsume(damage);
             }
             return true; // 보호막으로 데미지 차단 성공
         }
         return false; // 보호막으로 데미지 차단 실패
     }
+
+    /// <summary>
+    /// 보호막을 얻자마자 바로 소모할것인지 아닌지를 정해주는 함수입니다.
+    /// </summary>
+    /// <param name="charge">true면 얻자마자 소모합니다.</param>
+    public void SetChargeBool(bool charge)
+    {
+        _isCharging = charge;
+        if(_protectionAmount > 0)
+        {
+            TryProtectionBlock(_protectionAmount, true);
+        }
+    }
+
 }

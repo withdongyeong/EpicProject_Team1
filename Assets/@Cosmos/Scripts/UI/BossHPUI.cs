@@ -102,6 +102,18 @@ public class BossHPUI : MonoBehaviour
                 iconIndex = 2;
                 textIndex = 3;
                 break;
+            case BossDebuff.Mark:
+                iconIndex = 4;
+                textIndex = 5;
+                break;
+            case BossDebuff.Curse:
+                iconIndex = 6;
+                textIndex = 7;
+                break;
+            case BossDebuff.Pain:
+                iconIndex = 8;
+                textIndex = 9;
+                break;
             default:
                 return; // 지원하지 않는 디버프는 무시
         }
@@ -172,5 +184,11 @@ public class BossHPUI : MonoBehaviour
             }
             activeDebuffUIs.Remove(debuff);
         }
+    }
+    
+    private void OnDestroy()
+    {
+        // 게임 시작 이벤트 구독 해제
+        EventBus.UnsubscribeGameStart(Init);
     }
 }

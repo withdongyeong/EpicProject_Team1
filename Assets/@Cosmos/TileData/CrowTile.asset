@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
+  m_Name: CrowTile
+  m_EditorClassIdentifier: 
+  tileName: "\uAE4C\uB9C8\uADC0"
+  description: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uAE4C\uB9C8\uADC0\uB97C
+    \uC18C\uD658\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCF4\uD638\uB9C9 15 \uC18C\uBAA8
+    \uC2DC</color>: \uC801\uC5D0\uAC8C \uB099\uC778\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
+    name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
+    \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+  tileCategory: 5
+  tileSprite: {fileID: 21300000, guid: b0c0d647c5536d249811c756cef9ba7c, type: 3}
+  tileGrade: 2
+  tileCost: 5
+  requiredTile: {fileID: 0}
+  rejectTile: {fileID: 0}

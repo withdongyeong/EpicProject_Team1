@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     public Animator Animator { get => _animator; set => _animator = value; }
     public PlayerDebuff PlayerDebuff => _playerDebuff;
 
+    //스킬을 발동할 수 있는지 여부입니다. 
+    private bool _canInteractionTile = false;
+
     private void Start()
     {
         _gridManager = GridManager.Instance;
@@ -55,6 +58,10 @@ public class PlayerController : MonoBehaviour
             if (!_isMoving && !_playerDebuff.IsBind)
             {
                 HandleMovement();
+            }
+            if(_canInteractionTile)
+            {
+                CheckTileInteraction();
             }
             
         }
@@ -129,6 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         _isMoving = true;
         _animator.SetBool("IsMoving", true);
+        _canInteractionTile = false;
     
         Vector3 startPos = transform.position;
         Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
@@ -150,6 +158,11 @@ public class PlayerController : MonoBehaviour
             float x = Mathf.Lerp(startPos.x, targetPos.x, t);
             float y = Mathf.Lerp(startPos.y, targetPos.y, t);
         
+            //점프의 반이 지났을때부터 타일과의 상호작용을 가능하게 합니다.
+            if(t > 0.5f)
+            {
+                _canInteractionTile = true;
+            }
             // 점프 높이 계산
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
             transform.position = new Vector3(x, y + extraHeight, 0);
@@ -159,8 +172,7 @@ public class PlayerController : MonoBehaviour
 
         // 최종 위치 설정 (물리적 위치만)
         transform.position = targetPos;
-        CheckTileInteraction();
-        
+
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 

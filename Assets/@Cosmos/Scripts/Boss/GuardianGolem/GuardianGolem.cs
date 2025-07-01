@@ -36,22 +36,20 @@ public class GuardianGolem : BaseBoss
         Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");
     }
 
-    //protected override void DamageFeedback()
-    //{
-    //    SoundManager.Instance.OrcMageSoundClip("OrcMage_DamageActivate");
-    //    base.DamageFeedback();
-    //}
+    protected override void DamageFeedback()
+    {
+        base.DamageFeedback();
+    }
 
-    ///// <summary>
-    ///// 오크 메이지 전용 사망 처리 (오버라이드 가능)
-    ///// </summary>
-    //protected override void Die()
-    //{
-    //    Debug.Log("OrcMage: Casting final spell before death...");
+    /// <summary>
+    /// 오크 메이지 전용 사망 처리 (오버라이드 가능)
+    /// </summary>
+    protected override void Die()
+    {
+        Debug.Log("OrcMage: Casting final spell before death...");
 
-    //    SetAnimationTrigger("Death");
-    //    SoundManager.Instance.OrcMageSoundClip("OrcMage_DieActivate");
-    //    // 기본 사망 처리 호출
-    //    base.Die();
-    //}
+        SetAnimationTrigger("DeathTrigger");
+        // 기본 사망 처리 호출
+        base.Die();
+    }
 }

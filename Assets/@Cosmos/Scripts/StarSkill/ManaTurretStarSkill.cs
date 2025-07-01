@@ -41,13 +41,21 @@ public class ManaTurretStarSkill : StarBase
         }
     }
 
-    private void ActivateManaTurret(SkillBase skillbase)
+    private void ActivateManaTurret(SkillBase skillBase)
     {
-        if(skillbase.TileObject.GetTileData().TileCategory != TileCategory.Weapon || skillbase.TileObject.name.Contains("ManaAI"))
+        if(CheckCondition(skillBase))
         {
-            return;
+            skill.ActivateManaTurret();
         }
-        skill.ActivateManaTurret();
+    }
+
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.GetTileData().TileCategory == TileCategory.Weapon && !skillBase.TileObject.name.Contains("ManaAI"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnDestroy()

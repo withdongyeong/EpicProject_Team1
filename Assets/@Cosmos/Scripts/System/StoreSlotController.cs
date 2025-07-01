@@ -36,21 +36,22 @@ public class StoreSlotController : MonoBehaviour
 
     private void SetupStoreSlots()
     {
-        Debug.Log(storeSlots.Length);
+        List<GameObject> appeardTileList = new();
+        
         for (int i = 0; i < storeSlots.Length; i++)
         {
             float roll = Random.value * 100f;
             TileGrade chosenGrade;
             //TODO: 이거 줄 줄이기
-            if(roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
+            if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
             {
                 chosenGrade = TileGrade.Normal;
             }
-            else if(roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
+            else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
             {
                 chosenGrade = TileGrade.Rare;
             }
-            else if(roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
+            else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
             {
                 chosenGrade = TileGrade.Epic;
             }
@@ -60,7 +61,7 @@ public class StoreSlotController : MonoBehaviour
             }
 
             List<GameObject> chosenList = _normalStoreTiles;
-            switch(chosenGrade)
+            switch (chosenGrade)
             {
                 case TileGrade.Normal:
                     chosenList = _normalStoreTiles;
@@ -84,8 +85,9 @@ public class StoreSlotController : MonoBehaviour
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
             //선택된 타일이 상점에 등장해도 되는지 조건검사를 합니다.
-            chosenTile = CheckTileCondition(chosenTile, chosenList);
+            chosenTile = CheckTileCondition(chosenTile, chosenList, appeardTileList);
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            appeardTileList.Add(chosenTile);
             
             //이미지 비율을 맞추기 위한 코드입니다.
             //storeSlots[i].GetComponent<Image>().preserveAspect = true;
@@ -144,52 +146,118 @@ public class StoreSlotController : MonoBehaviour
     /// <param name="tile">조건을 판단할 타일입니다</param>
     /// <param name="list">내가 조건을 판단할 타일을 뽑은 리스트입니다.</param>
     /// <returns></returns>
-    private GameObject CheckTileCondition(GameObject tile, List<GameObject> list)
+    private GameObject CheckTileCondition(GameObject tile, List<GameObject> list,List<GameObject> alreadyPlacedList)
     {
         _safeInt++;
-        if (_safeInt > 15)
+        if (_safeInt > 20)
         {
             Debug.LogError("너무 많이 조건에 맞는 타일을 상점에 생성하려는 시도가 반복됨! 오류!");
             _safeInt = 0;
             return tile;
         }
         TileObject tileObject = tile.GetComponent<TileObject>();
-        //조건 부분이 null이라면 만족입니다.
-        if(tileObject.GetTileData().RequiredTile == null)
+        bool isAvailable = true;
+        //필요한 타일이 있는지 검사합니다.
+        if(tileObject.GetTileData().RequiredTile != null)
+        {
+            if(!GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RequiredTile.tileName))
+            {
+                isAvailable = false;
+            }
+
+        }
+
+        //겹치면 안되는 타일이 있는지 검사합니다.
+        if(tileObject.GetTileData().RejectTile != null)
+        {
+            if(GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RejectTile.tileName))
+            {
+                isAvailable = false;
+            }
+        }
+
+        //이미 상점에 뜬 타일인지 검사합니다.
+        if(alreadyPlacedList != null)
+        {
+            if(alreadyPlacedList.Contains(tile))
+            {
+                isAvailable = false;
+            }
+        }
+
+        if(isAvailable)
         {
             _safeInt = 0;
             return tile;
         }
         else
         {
-            //조건을 만족하면 끝냅니다.
-            if (GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RequiredTile.tileName))
+            //만족 안했으므로 다시 돌립니다.
+            List<GameObject> newList = new(list);
+            //조건을 만족 안하는 타일을 리스트에서 일시적으로 제거합니다.
+            if (newList.Contains(tile))
             {
-                _safeInt = 0;
-                return tile;
+                newList.Remove(tile);
             }
-                
-            else
+            if (newList.Count == 0)
             {
-                //만족 안했으므로 다시 돌립니다.
-                List<GameObject> newList = new(list);
-                //조건을 만족 안하는 타일을 리스트에서 일시적으로 제거합니다.
-                if(newList.Contains(tile))
-                {
-                    newList.Remove(tile);
-                }
-                if(newList.Count == 0)
-                {
-                    Debug.LogWarning("희귀도에 알맞는, 상점에 등장할 수 있는 타일이 없어용");
-                    return null;
-                }
-                int randomIndex = Random.Range(0, newList.Count);
-                GameObject chosenTile = newList[randomIndex];
-                return CheckTileCondition(chosenTile, newList);
+                Debug.LogWarning("희귀도에 알맞는, 상점에 등장할 수 있는 타일이 없어용");
+                return null;
             }
-            
+            int randomIndex = Random.Range(0, newList.Count);
+            GameObject chosenTile = newList[randomIndex];
+            return CheckTileCondition(chosenTile, newList,alreadyPlacedList);
         }
+
     }
 
-    
+    //private GameObject ChoseTile()
+    //{
+    //    float roll = Random.value * 100f;
+    //    TileGrade chosenGrade;
+    //    //TODO: 이거 줄 줄이기
+    //    if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
+    //    {
+    //        chosenGrade = TileGrade.Normal;
+    //    }
+    //    else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
+    //    {
+    //        chosenGrade = TileGrade.Rare;
+    //    }
+    //    else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
+    //    {
+    //        chosenGrade = TileGrade.Epic;
+    //    }
+    //    else
+    //    {
+    //        chosenGrade = TileGrade.Legendary;
+    //    }
+
+    //    List<GameObject> chosenList = _normalStoreTiles;
+    //    switch (chosenGrade)
+    //    {
+    //        case TileGrade.Normal:
+    //            chosenList = _normalStoreTiles;
+    //            break;
+    //        case TileGrade.Rare:
+    //            chosenList = _rareStoreTiles;
+    //            break;
+    //        case TileGrade.Epic:
+    //            chosenList = _epicStoreTiles;
+    //            break;
+    //        case TileGrade.Legendary:
+    //            chosenList = _legendaryStoreTiles;
+    //            break;
+
+    //    }
+    //    //test
+    //    if (isTest)
+    //    {
+    //        chosenList = testList;
+    //    }
+    //    int randomIndex = Random.Range(0, chosenList.Count);
+    //    GameObject chosenTile = chosenList[randomIndex];
+    //    return chosenTile;
+    //}
+   
 }

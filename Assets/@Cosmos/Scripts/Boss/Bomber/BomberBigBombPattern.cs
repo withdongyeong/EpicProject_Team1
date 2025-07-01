@@ -53,6 +53,8 @@ public class BomberBigBombPattern : IBossAttackPattern
         boss.BombHandler.ExecuteFixedBomb(result, new Vector3Int (4,4,0), _Bigbombball,
                                              warningDuration: 0.8f, explosionDuration: 1.3f, damage: 0, warningType: WarningType.Type3);
 
+        boss.AttackAnimation();
+
         yield return new WaitForSeconds(0.8f);
     }
 

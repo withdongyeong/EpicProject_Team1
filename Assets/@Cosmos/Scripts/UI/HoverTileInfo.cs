@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
@@ -38,15 +39,16 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(DragManager.Instance.IsDragging) return;
         Vector3 position;
         // 배치된 타일인지 확인
         if (GetComponent<Cell>() != null)
         {
-            position = new Vector3(1230f, 600f, 0);
+            position = new Vector3(1750f, 700f, 0); // RectPosition을 이렇게 하면 좀 불안하긴 한데 ..
         }
         else
         {
-            position = new Vector3(880f, 700f, 0);
+            position = new Vector3(1750f, 700f, 0);
         }
         ////현재 마우스 포인터 위치
         //Vector3 mousePosition = Input.mousePosition;
@@ -56,10 +58,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 infoPanel.Show(tileObject, position, true);
         }
         // 콤바인드스타셀 활성화
-        if (tileObject.CombinedStarCell != null)
-        {
-            tileObject.CombinedStarCell.SetActive(true);
-        }
+        tileObject.ShowStarCell();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -69,10 +68,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             infoPanel.Hide();
         }
         // 콤바인드스타셀 비활성화
-        if (tileObject.CombinedStarCell != null)
-        {
-            tileObject.CombinedStarCell.SetActive(false);
-        }
+        tileObject.HideStarCell();
     }
 
     private void OnDestroy()

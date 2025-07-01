@@ -20,10 +20,19 @@ public class ArchmageStaffStarSkill : StarBase
     /// <param name="skillBase"></param>
     private void GatherAxodia(SkillBase skillBase)
     {
-        if (skillBase.TileObject.name.Contains("Goddess") || skillBase.TileObject.name.Contains("Clock"))
+        if (CheckCondition(skillBase))
         {
             skill.AddAdjacentTile(skillBase.TileObject.name);
         }
+    }
+
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.name.Contains("Goddess") || skillBase.TileObject.name.Contains("Clock"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnDestroy()

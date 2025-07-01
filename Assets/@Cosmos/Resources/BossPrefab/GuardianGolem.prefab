@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1121223837648869681}
   - component: {fileID: -7393490163180575813}
   - component: {fileID: -2257408158083843673}
-  - component: {fileID: 4577813707116182240}
+  - component: {fileID: 567013933514544642}
   m_Layer: 0
   m_Name: GuardianGolem
   m_TagString: Untagged
@@ -75,8 +75,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5208333, y: -0.65217394}
-    oldSize: {x: 0.75, y: 0.71875}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -167,7 +167,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7687617968295704727, guid: d3b5612dd50a3c3489b34354cdae7e6b, type: 3}
+  m_Sprite: {fileID: -5688739654425014672, guid: bbecd10eb1b33ec4ca4f5ffab4c3d764, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WallObject: {fileID: 5766239426588173162, guid: f877725be13c064409512241235cdcc2, type: 3}
   DeleteCount: 0
---- !u!95 &4577813707116182240
+--- !u!95 &567013933514544642
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -216,9 +216,9 @@ Animator:
   m_GameObject: {fileID: 6316585728366198449}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 6286992587047916036, guid: 8e628832fd2c7de4b83e580205a69ec5, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0e477b2fefd36124590d4347906bb25e, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

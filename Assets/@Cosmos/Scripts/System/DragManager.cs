@@ -162,6 +162,35 @@ public class DragManager : Singleton<DragManager>
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
             GridManager.Instance.ChangeCellSprite(gridPos, true);
         }
+
+        // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
+        List<SkillBase> skills = new List<SkillBase>();
+
+        // 스타셀의 색상을 초기화하고, 해당 스타셀의 스킬이 조건을 만족하면 색을 바꿉니다.
+        foreach (StarCell starCell in currentDragObject.GetComponentsInChildren<StarCell>())
+        {
+            // 스타셀의 색상을 초기화합니다.
+            SpriteRenderer sr = starCell.GetComponent<SpriteRenderer>();
+            sr.color = Color.black;
+
+            // 스타셀의 위치를 가져오고, 해당 위치의 CellData가 존재하는지 확인합니다.
+            Vector3Int gridPos = starCell.GetStarCellPosition();
+            if (!GridManager.Instance.IsWithinGrid(gridPos) || GridManager.Instance.GetCellData(gridPos) == null)
+            {
+                continue;
+            }
+
+            // 스타셀의 스킬을 가져오고, 해당 스킬이 조건을 만족하는지 확인합니다.
+            SkillBase[] skillBases = GridManager.Instance.GetCellData(gridPos)?.GetCombineCell()?.Skills;
+            foreach (SkillBase skill in skillBases)
+            {
+                if (starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill))
+                {
+                    sr.color = Color.white; // 조건을 만족하면 색상을 흰색으로 변경
+                    skills.Add(skill);
+                }
+            }
+        }
     }
 
     private void RotateObject()

@@ -13,6 +13,8 @@ public class CombineCell : MonoBehaviour
 
     public Action OnStarListChanged;
 
+    public SkillBase[] Skills => skills;
+
     private void Awake()
     
     {
@@ -28,7 +30,6 @@ public class CombineCell : MonoBehaviour
         tileObject.OnStarListChanged += UpdateStarList;
         tileObject.OnStarListUpdateCompleted += GiveSkillStarList;
     }
-
 
     public SpriteRenderer GetSprite()
     {
@@ -79,8 +80,6 @@ public class CombineCell : MonoBehaviour
             skill.UpdateStarList(starBases);
         }
     }
-
-
 
     private void OnDestroy()
     {
