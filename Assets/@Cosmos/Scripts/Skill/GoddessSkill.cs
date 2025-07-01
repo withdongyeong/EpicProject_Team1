@@ -1,15 +1,5 @@
-﻿using UnityEngine;
-
-public class GoddessSkill : SkillBase
+﻿
+public class GoddessSkill : NonActivateSkill
 {
-    protected override void Activate()
-    {
-        
-    }
-
-
-    protected override void LateUpdate()
-    {
-        
-    }
+    
 }

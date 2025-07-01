@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class CrowSummonSkill : SkillBase
+public class CrowSummonSkill : NonActivateSkill
 {
     private GameObject _crowPrefab;
     private Crow _currentCrow;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+        EventBus.SubscribeSceneLoaded(SpawnCrow);
+
+    }
 
     protected override void Start()
     {
@@ -13,10 +20,9 @@ public class CrowSummonSkill : SkillBase
 
     }
 
-    protected override void Activate()
+    protected void SpawnCrow(Scene scene, LoadSceneMode mode)
     {
-        base.Activate();
-        if (_currentCrow == null)
+        if (scene.name == "StageScene")
         {
             Vector3 spawnPos = transform.position + new Vector3(0.5f, 0.5f);
             _currentCrow = Instantiate(_crowPrefab, spawnPos, Quaternion.identity).GetComponent<Crow>();
@@ -27,5 +33,11 @@ public class CrowSummonSkill : SkillBase
     public void DestoryCrow()
     {
         _currentCrow = null;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        EventBus.UnsubscribeSceneLoaded(SpawnCrow);
     }
 }

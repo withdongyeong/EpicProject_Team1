@@ -23,7 +23,7 @@ public abstract class SkillBase : MonoBehaviour
 
     private float lastUsedTime = -Mathf.Infinity;
 
-    private Material _coolTimeMaterial;
+    protected Material _coolTimeMaterial;
 
     //타일 오브젝트입니다.
     protected TileObject tileObject;
@@ -244,7 +244,7 @@ public abstract class SkillBase : MonoBehaviour
         onActivateAction = null;
     }
 
-    private void ResetCoolDown(Scene scene, LoadSceneMode mode)
+    protected virtual void ResetCoolDown(Scene scene, LoadSceneMode mode)
     {
         if(scene.name == "BuildingScene")
         {

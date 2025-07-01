@@ -29,15 +29,15 @@ public class Crow : MonoBehaviour
 
     private void Activate()
     {
+        _currentConsume = 0;
         BaseBoss boss = FindAnyObjectByType<BaseBoss>();
         //TODO: 이거 화상말고 낙인으로 바꿀것
-        boss.AddDebuff(BossDebuff.Burning);
-        _master.DestoryCrow();
-        Destroy(gameObject);
+        boss.AddDebuff(BossDebuff.Mark);
     }
 
     private void OnDestroy()
     {
+        _master.DestoryCrow();
         EventBus.UnSubscribeProtectionConsume(OnProtectionConsume);
     }
 }
