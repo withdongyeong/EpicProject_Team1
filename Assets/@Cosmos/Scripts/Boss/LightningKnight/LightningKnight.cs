@@ -21,28 +21,28 @@ public class LightningKnight : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new LightningKnightPattern3(LightningActtck), 1f)
+            .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(4,0,0)), 1f)
             .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
-            .SetGroupInterval(0.3f);
+            .SetGroupInterval(0.0f);
 
         AddGroup()
           .AddPattern(new LightningKnightDashPattern(startPosition, 4), 1f)
           .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
           .AddPattern(new LightningKnightPattern2(LightningActtck), 1f)
-          .SetGroupInterval(0.3f);
+          .SetGroupInterval(0.0f);
 
         AddGroup()
            .AddPattern(new LightningKnightDashPattern(startPosition, 4), 1f)
-           .AddPattern(new LightningKnightPattern3(LightningActtck), 1f)
+           .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(7, 0, 0)), 1f)
            .AddPattern(new LightningKnightPattern2(LightningActtck), 1f)
            .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
-           .SetGroupInterval(0.3f);
+           .SetGroupInterval(0.0f);
 
         AddGroup()
             .AddPattern(new LightningKnightDashPattern(startPosition, 4), 1f)
             .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
-            .AddPattern(new LightningKnightPattern3(LightningActtck), 1f)
-            .SetGroupInterval(0.3f);
+            .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(2, 0, 0)), 1f)
+            .SetGroupInterval(0.0f);
     }
 
     ///// <summary>
