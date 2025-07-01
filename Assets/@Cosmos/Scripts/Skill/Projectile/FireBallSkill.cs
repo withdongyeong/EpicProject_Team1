@@ -8,7 +8,6 @@ public class FireBallSkill : ProjectileSkill
     protected override void Awake()
     {
         base.Awake();
-        damage = 5;
     }
 
     protected override void Activate()

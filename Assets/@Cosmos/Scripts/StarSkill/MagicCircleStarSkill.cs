@@ -29,6 +29,15 @@ public class MagicCircleStarSkill : StarBase
         }
     }
 
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.GetTileData().TileCategory == TileCategory.MagicCircle)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void AddMagicCircleCount()
     {
         if (!isActivated)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,6 +10,7 @@ public class PlayerSummons : MonoBehaviour
     private List<ISummon> _summonList = new();
 
     [SerializeField] private GameObject _totemManager;
+    [SerializeField] private GameObject _cloudManager;
 
     private bool isGameStarted;
 
@@ -18,13 +18,8 @@ public class PlayerSummons : MonoBehaviour
     private void Awake()
     {
         EventBus.SubscribeGameStateChanged(GameStart);
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        var totemManager = Instantiate(_totemManager, transform);
-        AddToList(totemManager.GetComponent<ISummon>());
+        //구름 매니저 자동 생성
+        Instantiate(_cloudManager, transform);
     }
 
     // Update is called once per frame
