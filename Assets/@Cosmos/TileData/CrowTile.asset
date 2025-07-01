@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: CrowTile
   m_EditorClassIdentifier: 
-  tileName: "\uAE4C\uB9C8\uADC0 \uD0C0\uC77C"
-  description: "<color=yellow>\uBC1F\uC744 \uC2DC:</color> \uAE4C\uB9C8\uADC0\uB97C
-    \uC18C\uD658\uD569\uB2C8\uB2E4. \uAE4C\uB9C8\uADC0\uAC00 \uC18C\uD658\uB41C \uD6C4,
-    \uBCF4\uD638\uB9C9\uC774 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC785\uB294 \uC774\uC678\uC758
-    \uBC29\uBC95\uC73C\uB85C 15 \uC18C\uBAA8 \uB418\uBA74, \uC801\uC5D0\uAC8C \uCDE8\uC57D\uC744
-    \uBD80\uC5EC\uD558\uACE0 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
+  tileName: "\uAE4C\uB9C8\uADC0"
+  description: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uAE4C\uB9C8\uADC0\uB97C
+    \uC18C\uD658\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCF4\uD638\uB9C9 15 \uC18C\uBAA8
+    \uC2DC</color>: \uC801\uC5D0\uAC8C \uB099\uC778\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
     \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
   tileCategory: 5
@@ -25,3 +23,4 @@ MonoBehaviour:
   tileGrade: 2
   tileCost: 5
   requiredTile: {fileID: 0}
+  rejectTile: {fileID: 0}

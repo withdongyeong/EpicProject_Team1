@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: ArmorTile
   m_EditorClassIdentifier: 
   tileName: "\uAC11\uC637"
-  description: "\uBC29\uC5B4\uB9C9<sprite name=\"Shield\">\uC744 1 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
+  description: "\uBC29\uC5B4\uB9C9<sprite name=\"Shield\">\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
   tileCategory: 2
   tileSprite: {fileID: 21300000, guid: ec79ff860d7376c488be87cfdec8d3c6, type: 3}
   tileGrade: 2
   tileCost: 10
+  requiredTile: {fileID: 0}
+  rejectTile: {fileID: 0}
