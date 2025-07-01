@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
-using UnityEngine.Splines.ExtrusionShapes;
 
 public class ReaperPattern3 : IBossAttackPattern
 {

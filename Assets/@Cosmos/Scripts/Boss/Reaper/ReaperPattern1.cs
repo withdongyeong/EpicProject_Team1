@@ -26,7 +26,6 @@ public class ReaperPattern1 : IBossAttackPattern
         // 3번의 웨이브 실행 (각각 다른 방향)
         for (int wave = 0; wave < 3; wave++)
         {
-            boss.SetAnimationTrigger("Attack2Hand");
             // 플레이어 위치를 매번 새로 확인
             Vector3Int playerPos =
                 boss.GridSystem.WorldToGridPosition(boss.BombHandler.PlayerController.transform.position);

@@ -171,10 +171,10 @@ TextureImporter:
       name: lightning-strike-Sheet_0
       rect:
         serializedVersion: 2
-        x: 254
-        y: 94
-        width: 9
-        height: 8
+        x: 210
+        y: 0
+        width: 105
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: lightning-strike-Sheet_1
       rect:
         serializedVersion: 2
-        x: 349
-        y: 70
-        width: 15
-        height: 32
+        x: 315
+        y: 0
+        width: 105
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,9 +215,9 @@ TextureImporter:
       name: lightning-strike-Sheet_2
       rect:
         serializedVersion: 2
-        x: 421
+        x: 420
         y: 0
-        width: 104
+        width: 105
         height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: lightning-strike-Sheet_3
       rect:
         serializedVersion: 2
-        x: 662
-        y: 44
-        width: 29
-        height: 35
+        x: 525
+        y: 0
+        width: 105
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,10 +259,10 @@ TextureImporter:
       name: lightning-strike-Sheet_4
       rect:
         serializedVersion: 2
-        x: 670
-        y: 5
-        width: 45
-        height: 40
+        x: 630
+        y: 0
+        width: 105
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: lightning-strike-Sheet_5
       rect:
         serializedVersion: 2
-        x: 674
-        y: 37
-        width: 14
-        height: 21
+        x: 735
+        y: 0
+        width: 105
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,10 +303,10 @@ TextureImporter:
       name: lightning-strike-Sheet_6
       rect:
         serializedVersion: 2
-        x: 729
-        y: 5
-        width: 153
-        height: 67
+        x: 840
+        y: 0
+        width: 105
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,187 +321,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 565
-        y: 5
-        width: 18
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e13dd65c9d977ce0800000000000000
-      internalID: -1407483063732194842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 588
-        y: 12
-        width: 8
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1274623ff3a47ed0800000000000000
-      internalID: -2417126783533682150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 25
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5e3e20d037b50f680800000000000000
-      internalID: -8723371928518990875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_10
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 3
-        width: 133
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 738c7b8c0494bcac0800000000000000
-      internalID: -3833890115181623241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 558
-        y: 15
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca00769cc9d699e30800000000000000
-      internalID: 4510757021949558956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_12
-      rect:
-        serializedVersion: 2
-        x: 590
-        y: 0
-        width: 40
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4eefbb9a824782890800000000000000
-      internalID: -7482603062880895260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_13
-      rect:
-        serializedVersion: 2
-        x: 525
-        y: 0
-        width: 26
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5cfc2fa94dd23af50800000000000000
-      internalID: 6891402245962911685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightning-strike-Sheet_14
-      rect:
-        serializedVersion: 2
-        x: 629
-        y: 4
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f34438fec2c076f0800000000000000
-      internalID: -688836548804459531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fc67139fcedd8df45b75c45d7d62b239
     internalID: 0
     vertices: []
     indices: 
@@ -513,19 +337,11 @@ TextureImporter:
     nameFileIdTable:
       lightning-strike-Sheet_0: -7579849933766977424
       lightning-strike-Sheet_1: -4786400805496454245
-      lightning-strike-Sheet_10: -3833890115181623241
-      lightning-strike-Sheet_11: 4510757021949558956
-      lightning-strike-Sheet_12: -7482603062880895260
-      lightning-strike-Sheet_13: 6891402245962911685
-      lightning-strike-Sheet_14: -688836548804459531
       lightning-strike-Sheet_2: 9059555273565251864
       lightning-strike-Sheet_3: -7732678912103696262
       lightning-strike-Sheet_4: 4123667530434136340
       lightning-strike-Sheet_5: -4671734317716965665
       lightning-strike-Sheet_6: -2038933606289129500
-      lightning-strike-Sheet_7: -1407483063732194842
-      lightning-strike-Sheet_8: -2417126783533682150
-      lightning-strike-Sheet_9: -8723371928518990875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,14 +4,15 @@ public class LightningKnight : BaseBoss
 {
     [Header("번개기사 전용 프리팹들")]
     public GameObject LightningActtck;
-    public GameObject Lightningball;
-    public GameObject LightningFlow;
 
+    public Vector3 startPosition;
     protected override void Awake()
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 1000;
+        MaxHealth = 700;
+
+        startPosition = this.transform.position;
     }
 
     /// <summary>
@@ -19,32 +20,29 @@ public class LightningKnight : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //벽력일섬 - 가운데를 지나가면서 위 아래로 전기 통하기
         AddGroup()
-          .AddPattern(new LightningKnightWavePattern(LightningActtck), 1f)
-          .SetGroupInterval(1f);
-
-        //번개 소환 3종류
-        AddGroup()
-            .AddPattern(new LightningKnightWavePattern(LightningActtck), 1f)
-            .SetGroupInterval(1f);
+            .AddPattern(new LightningKnightPattern3(LightningActtck), 1f)
+            .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
+            .SetGroupInterval(0.3f);
 
         AddGroup()
-            .AddPattern(new LightningKnightWavePattern(LightningActtck), 1f)
-            .SetGroupInterval(1f);
+          .AddPattern(new LightningKnightDashPattern(startPosition, 4), 1f)
+          .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
+          .AddPattern(new LightningKnightPattern2(LightningActtck), 1f)
+          .SetGroupInterval(0.3f);
 
         AddGroup()
-            .AddPattern(new LightningKnightWavePattern(LightningActtck), 1f)
-            .SetGroupInterval(1f);
+           .AddPattern(new LightningKnightDashPattern(startPosition, 4), 1f)
+           .AddPattern(new LightningKnightPattern3(LightningActtck), 1f)
+           .AddPattern(new LightningKnightPattern2(LightningActtck), 1f)
+           .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
+           .SetGroupInterval(0.3f);
 
-
-        //번개 구슬 소환
         AddGroup()
-            .AddPattern(new LightningKnightSpeardAttack(LightningActtck, Lightningball, new Vector3Int(2, 2, 0)), 0.1f)
-            .AddPattern(new LightningKnightSpeardAttack(LightningActtck, Lightningball, new Vector3Int(6, 2, 0)), 0.1f)
-            .AddPattern(new LightningKnightSpeardAttack(LightningActtck, Lightningball, new Vector3Int(6, 6, 0)), 0.1f)
-            .AddPattern(new LightningKnightSpeardAttack(LightningActtck, Lightningball, new Vector3Int(2, 6, 0)), 0.1f)
-            .SetGroupInterval(2f);
+            .AddPattern(new LightningKnightDashPattern(startPosition, 4), 1f)
+            .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
+            .AddPattern(new LightningKnightPattern3(LightningActtck), 1f)
+            .SetGroupInterval(0.3f);
     }
 
     ///// <summary>
