@@ -23,4 +23,6 @@ MonoBehaviour:
   tileSprite: {fileID: 21300000, guid: bbdf7988e06819a45988df62dc79e5d8, type: 3}
   tileGrade: 0
   tileCost: 3
+  tileCoolTime: 5
   requiredTile: {fileID: 0}
+  rejectTile: {fileID: 0}

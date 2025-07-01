@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "<color=yellow>\uBC1F\uC744 \uC2DC:</color> \uAC70\uBD81\uC774\uB97C
     \uC18C\uD658\uD569\uB2C8\uB2E4. \uB9CC\uC57D \uAC70\uBD81\uC774\uAC00 \uC774\uBBF8
     \uC788\uB2E4\uBA74, \uAC70\uBD81\uC774\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.
-    \uAC70\uBD81\uC774\uB294 1\uCD08\uB9C8\uB2E4 2\uC758 \uBCF4\uD638\uB9C9\uC744
+    \n\uAC70\uBD81\uC774\uB294 1\uCD08\uB9C8\uB2E4 2\uC758 \uBCF4\uD638\uB9C9\uC744
     \uD761\uC218\uD569\uB2C8\uB2E4. \uD761\uC218\uD55C \uD69F\uC218\uB9CC\uD07C \uD53C\uD574\uB7C9\uC774
     \uAC15\uD654\uB429\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9: <color=red>5 X \uD761\uC218\uD55C
     \uD69F\uC218</color>\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color>
@@ -26,4 +26,6 @@ MonoBehaviour:
   tileSprite: {fileID: 21300000, guid: 664f8e92f7cbe4b4084cc02609bdbbdf, type: 3}
   tileGrade: 1
   tileCost: 4
+  tileCoolTime: 1
   requiredTile: {fileID: 0}
+  rejectTile: {fileID: 0}

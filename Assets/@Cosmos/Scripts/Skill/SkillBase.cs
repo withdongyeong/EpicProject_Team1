@@ -71,11 +71,12 @@ public abstract class SkillBase : MonoBehaviour
             _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
             _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
             tileObject = combineCell.GetTileObject();
+            cooldown = tileObject.GetTileData().TileCoolTime;
         }
 
     }
 
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
         _coolTimeMaterial.SetFloat("_FillAmount", 1 - (GetCooldownRemaining() / finalCooldown));
     }
@@ -176,7 +177,7 @@ public abstract class SkillBase : MonoBehaviour
     /// <summary>
     /// 남은 쿨타임 반환
     /// </summary>
-    public float GetCooldownRemaining()
+    public virtual float GetCooldownRemaining()
     {
         return Mathf.Max(0f, (lastUsedTime + finalCooldown) - Time.time);
     }
