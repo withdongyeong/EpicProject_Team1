@@ -34,7 +34,7 @@ public class InfoPanel : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         mainCamera = Camera.main;
         gameObject.SetActive(false); // 초기 비활성화
-        nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/NameText");
+        nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/HeadText");
         //descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
         costTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CostText");
         categoryTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CategoryText");
@@ -70,7 +70,8 @@ public class InfoPanel : MonoBehaviour
         SetBorderByGrade(currentTileObject.GetTileData().TileGrade);
 
         // 이름 텍스트 설정 (textObject 하위에 생성)
-        TextMeshProUGUI nameText = Instantiate(nameTextPrefab, textObject.transform).GetComponent<TextMeshProUGUI>();
+        Transform headText = Instantiate(nameTextPrefab, textObject.transform).transform;
+        TextMeshProUGUI nameText = headText.GetChild(0).GetComponent<TextMeshProUGUI>();
         nameText.text = currentTileObject.GetTileData().TileName;
         switch (currentTileObject.GetTileData().TileGrade)
         {
@@ -90,12 +91,26 @@ public class InfoPanel : MonoBehaviour
                 nameText.color = Color.white;
                 break;
         }
-        // 설명 텍스트 설정
-        //TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        //descriptionText.SetText(currentTileObject.GetTileData().Description);
 
-        //이제 이거 대신 이거 쓰면 됩니다
-        textRenderer.InstantiateDescriptionText(currentTileObject);
+        TextMeshProUGUI coolTimeText = headText.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
+        if(currentTileObject.GetTileData().TileCoolTime != 0)
+        {
+            coolTimeText.text = currentTileObject.GetTileData().TileCoolTime.ToString() + "s";
+        }
+        else
+        {
+            coolTimeText.gameObject.transform.parent.gameObject.SetActive(false);
+        }
+
+
+
+
+            // 설명 텍스트 설정
+            //TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
+            //descriptionText.SetText(currentTileObject.GetTileData().Description);
+
+            //이제 이거 대신 이거 쓰면 됩니다
+            textRenderer.InstantiateDescriptionText(currentTileObject);
 
         // 비용 텍스트 설정 (textObject 하위에 생성)
         TextMeshProUGUI costText = Instantiate(costTextPrefab, textObject.transform).GetComponent<TextMeshProUGUI>();

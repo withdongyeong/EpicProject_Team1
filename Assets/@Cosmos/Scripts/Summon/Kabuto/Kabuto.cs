@@ -85,8 +85,6 @@ public class Kabuto : MonoBehaviour
         projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 3);
         _protection.SetChargeBool(false);
         _isCharging = false;
-        _summoner.DestoryKabuto();
-        Destroy(gameObject);
     }
 
     
