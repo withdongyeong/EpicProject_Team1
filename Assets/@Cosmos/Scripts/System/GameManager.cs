@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
+        Screen.SetResolution(1600, 900, FullScreenMode.Windowed); // 혹은 FullScreen
     }
 
     private void Update()
@@ -15,6 +16,17 @@ public class GameManager : Singleton<GameManager>
         if(Input.GetKeyDown(KeyCode.F10))
         {
             ResetGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneLoader.ToggleSetting();
+        }
+        
+        // Alt + Enter 감지 → 비율 깨짐 방지
+        if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
+        {
+            Screen.fullScreen = !Screen.fullScreen;
         }
     }
 

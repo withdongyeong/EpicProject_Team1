@@ -33,7 +33,7 @@ public abstract class SummonBase : MonoBehaviour, ISummon
 
     private void OnDestroy()
     {
-        FindAnyObjectByType<PlayerSummons>().RemoveFromList(this);
+        FindAnyObjectByType<PlayerSummons>()?.RemoveFromList(this);
     }
 
 }
