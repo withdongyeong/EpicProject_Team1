@@ -6,22 +6,11 @@ public class Slime : BaseBoss
     public GameObject SlimeActtckTentacle;
     public GameObject SlimeTrapTentacle;
 
-    PlayerController PlayerController;
-
     protected override void Awake()
     {
         base.Awake();
         // 기본 스탯 설정
         MaxHealth = 200;
-    }
-
-    /// <summary>
-    /// 보스 초기화 - 고유한 스탯 설정
-    /// </summary>
-    protected void Start()
-    {
-        PlayerController = FindAnyObjectByType<PlayerController>();
-
     }
 
     /// <summary>

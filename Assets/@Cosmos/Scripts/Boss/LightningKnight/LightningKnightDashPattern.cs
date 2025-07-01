@@ -26,51 +26,42 @@ public class LightningKnightDashPattern : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         Vector3 originalPosition = _startTransform;
-        boss.SetAnimationTrigger("DashTrigger");
-        for (int i = 0; i < _dashCount; i++)
+
+        // 4개 경유지
+        Vector3 Start1 = GridManager.Instance.GridToWorldPosition(new Vector3Int(7, 7, 0));
+        Vector3 Start2 = GridManager.Instance.GridToWorldPosition(new Vector3Int(7, 1, 0));
+        Vector3 Start3 = GridManager.Instance.GridToWorldPosition(new Vector3Int(1, 1, 0));
+        Vector3 Start4 = GridManager.Instance.GridToWorldPosition(new Vector3Int(1, 7, 0));
+
+        List<Vector3> dashPoints = new List<Vector3>
         {
-            // 1. 순간적으로 카메라 밖으로 이동 (예: 왼쪽으로)
-            boss.transform.position += new Vector3(10f, 0, 0);
+            Start1, Start2, Start3, Start4, Start1 ,originalPosition
+        };
 
-            // 2. 8방향 중 하나를 선택 (정방향 및 대각선)
-            Vector2[] directions = new Vector2[]
-            {
-            Vector2.up,
-            Vector2.down,
-            Vector2.left,
-            Vector2.right,
-            };
+        boss.SetAnimationTrigger("DashTrigger");
 
-            int dirIndex = Random.Range(0, directions.Length);
-            Vector2 selectedDir = directions[dirIndex];
+        foreach (var target in dashPoints)
+        {
+            // 방향 설정 (flipX)
+            Vector3 direction = (target - boss.transform.position).normalized;
+            if(target == Start1 || target == Start2) boss.GetComponent<SpriteRenderer>().flipX = true;
+            else boss.GetComponent<SpriteRenderer>().flipX = false;
 
-            if(selectedDir == Vector2.left) boss.GetComponent<SpriteRenderer>().flipX = false;
-            else boss.GetComponent<SpriteRenderer>().flipX = true;
+            // 공격 경고 생성
+            boss.StartCoroutine(DamageAreaCreate(boss, boss.transform.position, target));
 
-            boss.StartCoroutine(DamageAreaCreate(boss, selectedDir));
+            yield return new WaitForSeconds(0.65f);
 
-            // 이동 거리 설정
-            float dashDistance = 10f;
-            Vector3 targetPosition = new Vector3(selectedDir.x, selectedDir.y, 0) * dashDistance;
+            // 이동
+            yield return MoveOverTime(boss.transform, target, 0.05f);
 
-            // 3. 천천히 방향으로 이동
-            boss.transform.position = targetPosition;
-
-            // 4. 도착 후 1초 대기
-            yield return new WaitForSeconds(1f);
-
-            // 5. 현재 위치 기준 (0,0,0)에 대한 점대칭 좌표 계산
-            Vector3 mirroredPosition = -boss.transform.position;
-
-            // 6. 빠르게 점대칭 위치로 이동
-            yield return MoveOverTime(boss.transform, mirroredPosition, 0.4f);
+            // 도착 후 약간 대기
+            yield return new WaitForSeconds(0.2f);
         }
 
-        // 7. 잠깐 대기 후 복귀
-        yield return new WaitForSeconds(0.4f);
+        // 대시 종료
         boss.SetAnimationTrigger("NoDashTrigger");
         boss.GetComponent<SpriteRenderer>().flipX = true;
-        boss.transform.position = originalPosition;
     }
 
     private IEnumerator MoveOverTime(Transform target, Vector3 destination, float duration)
@@ -89,35 +80,93 @@ public class LightningKnightDashPattern : IBossAttackPattern
         target.position = destination;
     }
 
-    IEnumerator DamageAreaCreate(BaseBoss boss, Vector2 direction)
+    IEnumerator DamageAreaCreate(BaseBoss boss, Vector3 StartPoint, Vector3 EndPoint)
     {
-        yield return new WaitForSeconds(0.2f);
-        // 방향을 정규화해서 4방향 체크
-        direction = direction.normalized;
+        Vector3Int GridStartPoint = GridManager.Instance.WorldToGridPosition(StartPoint);
+        Vector3Int GridEndPoint = GridManager.Instance.WorldToGridPosition(EndPoint);
 
-        // 9칸의 웨이브 생성 (-4 ~ 4)
-        for (int i = 4; i >= -4; i--)
+        //포지션 2개를 받고 x가 같다 혹은 y가 같으면 위험 생성 다르면 패스
+        if (GridStartPoint.x == GridEndPoint.x && GridStartPoint.x == 1)
         {
-            List<Vector3Int> dashPositions = new List<Vector3Int>();
-
-            float x = direction.x * i;
-            float y = direction.y * i;
-
-            for(int X = -1; X <= 1; X++)
+            for(int vertical =1; vertical < 8; vertical++)
             {
-                for (int Y = -1; Y <= 1; Y++)
+                List<Vector3Int> DangerAreas = new List<Vector3Int>();
+
+                for (int x = -1; x <= 1; x++)
                 {
-                    dashPositions.Add(new Vector3Int(Mathf.RoundToInt(x) + X, Mathf.RoundToInt(y) + Y, 0));
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        DangerAreas.Add(new Vector3Int(GridStartPoint.x + x, vertical + y, 0));
+                    }
                 }
+
+                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+
+                yield return new WaitForSeconds(0.08f);
             }
-
-            boss.BombHandler.ExecuteWarningThenDamage(dashPositions, new Vector3Int(4, 4, 0),
-                                         warningDuration: 0.8f, damage: 0, WarningType.Type2);
-
-            yield return new WaitForSeconds(0.05f);
         }
 
+        if (GridStartPoint.x == GridEndPoint.x && GridStartPoint.x == 7)
+        {
+            for (int vertical = 7; vertical > 0; vertical--)
+            {
+                List<Vector3Int> DangerAreas = new List<Vector3Int>();
+
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        DangerAreas.Add(new Vector3Int(GridStartPoint.x + x, vertical + y, 0));
+                    }
+                }
+
+                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+
+                yield return new WaitForSeconds(0.08f);
+            }
+        }
+
+        if (GridStartPoint.y == GridEndPoint.y && GridStartPoint.x == 1)
+        {
+            for (int horizontal = 1; horizontal < 8; horizontal++)
+            {
+                List<Vector3Int> DangerAreas = new List<Vector3Int>();
+
+                for (int x =-1; x<=1; x++)
+                {
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        DangerAreas.Add(new Vector3Int(horizontal + x, GridStartPoint.y + y, 0));
+                    }
+                }
+
+                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+
+                yield return new WaitForSeconds(0.08f);
+            }
+        }
+
+
+        if (GridStartPoint.y == GridEndPoint.y && GridStartPoint.x == 7)
+        {
+            for (int horizontal = 7; horizontal > 0; horizontal--)
+            {
+                List<Vector3Int> DangerAreas = new List<Vector3Int>();
+
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        DangerAreas.Add(new Vector3Int(horizontal + x, GridStartPoint.y + y, 0));
+                    }
+                }
+
+                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+
+                yield return new WaitForSeconds(0.08f);
+            }
+        }
+
+        yield return 0;
     }
-
-
 }

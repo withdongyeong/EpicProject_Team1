@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public class LightningKnightPattern3 : IBossAttackPattern
 {
     private GameObject _lightningActtck;
-
+    private Vector3Int _startPoint;
     public string PatternName => "LightningKnightPattern3";
 
-    public LightningKnightPattern3(GameObject lightningActtck)
+    public LightningKnightPattern3(GameObject lightningActtck, Vector3Int StartPoint)
     {
         _lightningActtck = lightningActtck;
+        _startPoint = StartPoint;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -35,7 +36,7 @@ public class LightningKnightPattern3 : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(DamageArea, new Vector3Int(4, 4, 0), _lightningActtck,
                                       warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.015f);
         }
     }
 
@@ -44,9 +45,8 @@ public class LightningKnightPattern3 : IBossAttackPattern
         List<Vector3Int> AttackPoints = new List<Vector3Int>();
         Queue<Vector3Int> queue = new Queue<Vector3Int>();
 
-        Vector3Int StartPoint = new Vector3Int(4, 0, 0);
-        AttackPoints.Add(StartPoint);
-        queue.Enqueue(StartPoint);
+        AttackPoints.Add(_startPoint);
+        queue.Enqueue(_startPoint);
 
         while (queue.Count > 0)
         {

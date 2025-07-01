@@ -26,16 +26,20 @@ public class LightningKnightPattern2 : IBossAttackPattern
         //랜덤으로 4번
 
         //플레이어 기준 3*3
-        //플레이어 기준 5*5 단 플레이어 현재 위치 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 10; i++)
         {
-             yield return boss.StartCoroutine(PlayerMovePattern(boss));
+             boss.StartCoroutine(PlayerMovePattern(boss));
+
+            yield return new WaitForSeconds(0.2f);
         }
 
     }
 
     public IEnumerator PlayerMovePattern(BaseBoss boss)
     {
+        int X = Random.Range(1, 8);
+        int Y = Random.Range(1, 8);
+
         boss.AttackAnimation();
 
         List<Vector3Int> AttackPoints = new List<Vector3Int>();
@@ -71,8 +75,8 @@ public class LightningKnightPattern2 : IBossAttackPattern
             }
         }
 
-        boss.BombHandler.ExecuteTargetingBomb(AttackPoints, _lightningActtck,
-                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+        boss.BombHandler.ExecuteFixedBomb(AttackPoints,new Vector3Int(X,Y,0) ,_lightningActtck,
+                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
 
         yield return new WaitForSeconds(1f);
     }
