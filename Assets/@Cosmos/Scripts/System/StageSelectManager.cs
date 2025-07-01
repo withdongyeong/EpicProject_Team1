@@ -14,7 +14,8 @@ public class StageSelectManager : Singleton<StageSelectManager>
         Bomber = 3,
         GuardianGolem = 4,
         Reaper = 5,
-        LightningKnight = 6
+        LightningKnight = 6,
+        Turtree = 7
     }
     
     public StageDataSO[] stageDataList; // 스테이지 데이터 리스트

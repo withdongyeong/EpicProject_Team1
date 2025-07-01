@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 042a3e843dd14db49a585303e08aca35, type: 3}
-  m_Name: Tutorial
+  m_Name: Stage8
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 5495918271223003766, guid: 4d675d23b6abe754aba74ebe490aa4a3, type: 3}
-  backgroundSprite: {fileID: 21300000, guid: 671b8e591290d204fa5105e1456c0ffd, type: 3}
-  bgmClip: {fileID: 8300000, guid: cb40a92b9620e2742b05caa636eb650f, type: 3}
-  bgmVolume: 0.1
+  enemyPrefab: {fileID: 5495918271223003766, guid: d5026f43d32033043817a7a00fac2461, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 6421f779ec5205548bc2a864126c685a, type: 3}
+  bgmClip: {fileID: 8300000, guid: aee205f75e134e8429be6032e13a0c93, type: 3}
+  bgmVolume: 0.3
