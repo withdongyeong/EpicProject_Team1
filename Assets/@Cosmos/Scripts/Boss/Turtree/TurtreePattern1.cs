@@ -104,7 +104,7 @@ public class TurtreePattern1 : IBossAttackPattern
                 break;
             }
 
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.002f);
         }
     }
 

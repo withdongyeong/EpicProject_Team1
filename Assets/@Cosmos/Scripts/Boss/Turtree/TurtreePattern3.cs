@@ -7,36 +7,72 @@ public class TurtreePattern3 : IBossAttackPattern
     private GameObject _treeAttackPrefeb;
 
     public string PatternName => "TurtreePattern3";
+
     public TurtreePattern3(GameObject TreeAttackPrefeb)
     {
         _treeAttackPrefeb = TreeAttackPrefeb;
     }
 
-    public IEnumerator Execute(BaseBoss boss)
-    {
-        yield return BackAttack(boss);
-    }
-
     public bool CanExecute(BaseBoss boss)
     {
-        return _treeAttackPrefeb != null;
+        return boss != null &&
+               _treeAttackPrefeb != null &&
+               GridManager.Instance != null &&
+               boss.BombHandler != null;
     }
 
-    private IEnumerator BackAttack(BaseBoss boss)
+    public IEnumerator Execute(BaseBoss boss)
     {
-        for(int x = -4; x <= 3; x++)
-        {
-            List<Vector3Int> BombPoints = new List<Vector3Int>();
+        Vector3Int centerPos = new Vector3Int(4, 4, 0); // 9x9 중심
 
-            for(int y = -4; y <= 4; y++)
+        int totalRotationSteps = 5;
+        float rotationOffset = 45f; // 각 회차당 회전량 (15도)
+
+        for (int step = 0; step < totalRotationSteps; step++)
+        {
+            List<Vector3Int> spokesPattern = new List<Vector3Int>();
+            spokesPattern.Add(new Vector3Int(0, 0, 0)); // 중심 포함
+
+            for (int spoke = 0; spoke < 5; spoke++)
             {
-                BombPoints.Add(new Vector3Int(x, y, 0));
+                float baseAngle = spoke * 72f;
+                float angle = (baseAngle + step * rotationOffset) * Mathf.Deg2Rad;
+
+                Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+                for (int length = 1; length <= 5; length++)
+                {
+                    Vector2 pos = direction * length;
+                    int x = Mathf.FloorToInt(pos.x + 0.5f); // 오차 방지
+                    int y = Mathf.FloorToInt(pos.y + 0.5f);
+
+                    Vector3Int spokePos = new Vector3Int(x, y, 0);
+                    Vector3Int absolutePos = centerPos + spokePos;
+
+                    if (IsWithin9x9Grid(absolutePos))
+                        spokesPattern.Add(spokePos);
+                }
             }
 
-            boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
-              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+            boss.BombHandler.ExecuteFixedBomb(
+                spokesPattern,
+                centerPos,
+                _treeAttackPrefeb,
+                warningDuration: 0.5f,
+                explosionDuration: 0.5f,
+                damage: 20,
+                warningType: WarningType.Type1
+            );
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
         }
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private bool IsWithin9x9Grid(Vector3Int pos)
+    {
+        return pos.x >= 0 && pos.x <= 8 &&
+               pos.y >= 0 && pos.y <= 8;
     }
 }

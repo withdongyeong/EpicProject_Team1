@@ -32,6 +32,13 @@ public class Turtree : BaseBoss
             .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
             .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
+
+
+        AddGroup()
+            .AddPattern(new TurtreeSummonFrog(Frog, 0.7f), 1f)
+            .AddPattern(new TurtreePattern3(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
+            .SetGroupInterval(1f);
         //2. 공격패턴 -  
         //3. 공격패턴
         //4. 공격패턴

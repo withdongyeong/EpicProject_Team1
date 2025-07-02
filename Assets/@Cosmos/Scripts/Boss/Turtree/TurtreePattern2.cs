@@ -24,12 +24,15 @@ public class TurtreePattern2 : IBossAttackPattern
 
     private IEnumerator BackAttack(BaseBoss boss)
     {
-        for(int x = -4; x <= 3; x++)
+        for(int x = -3; x <= 3; x++)
         {
             List<Vector3Int> BombPoints = new List<Vector3Int>();
-
-            for(int y = -4; y <= 4; y++)
+            int SafeY1 = Random.Range(-4, 5);
+            int SafeY2 = Random.Range(-4, 5);
+            for (int y = -4; y <= 4; y++)
             {
+                if (y == SafeY1 || y == SafeY2) continue;
+
                 BombPoints.Add(new Vector3Int(x, y, 0));
             }
 
