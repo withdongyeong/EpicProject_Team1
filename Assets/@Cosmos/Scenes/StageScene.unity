@@ -264,7 +264,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.5859375
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1143,6 +1143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7360455630710087216, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8478108768304509106, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -1222,19 +1226,19 @@ PrefabInstance:
       objectReference: {fileID: 858724542}
     - target: {fileID: 8461195272395289799, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: m_Size.x
-      value: 30
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8461195272395289799, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: m_Size.y
-      value: 17.333334
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8461195272395289799, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 671b8e591290d204fa5105e1456c0ffd, type: 3}
     - target: {fileID: 8461195272395289799, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

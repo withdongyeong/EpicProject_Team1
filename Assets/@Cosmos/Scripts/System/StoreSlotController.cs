@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class StoreSlotController : MonoBehaviour
 {
     private StoreSlot[] storeSlots;
-
+    
     
 
     private int _safeInt = 0;
@@ -16,9 +16,9 @@ public class StoreSlotController : MonoBehaviour
     private List<GameObject> _rareStoreTiles = new();
     private List<GameObject> _epicStoreTiles = new();
     private List<GameObject> _legendaryStoreTiles = new();
-    //test
-    public List<GameObject> testList = new List<GameObject>();
-    public bool isTest;
+    //가이드용
+    public List<GameObject> guideList = new List<GameObject>();
+    public bool isGuide = false;
 
 
     private void Awake()
@@ -31,6 +31,14 @@ public class StoreSlotController : MonoBehaviour
     private void Start()
     {
         SetupStoreSlots();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            ResetSlotBtn();
+        }
     }
 
 
@@ -77,10 +85,13 @@ public class StoreSlotController : MonoBehaviour
                     break;
 
             }
-            //test
-            if (isTest)
+            //가이드용
+            if (isGuide)
             {
-                chosenList = testList;
+                chosenList = guideList;
+                storeSlots[i].SetSlot(chosenList[0].GetComponent<TileObject>().GetTileData().TileCost, chosenList[0]);
+                storeSlots[i].GetComponent<Image>().SetNativeSize();
+                continue;
             }
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
@@ -211,53 +222,6 @@ public class StoreSlotController : MonoBehaviour
 
     }
 
-    //private GameObject ChoseTile()
-    //{
-    //    float roll = Random.value * 100f;
-    //    TileGrade chosenGrade;
-    //    //TODO: 이거 줄 줄이기
-    //    if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
-    //    {
-    //        chosenGrade = TileGrade.Normal;
-    //    }
-    //    else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
-    //    {
-    //        chosenGrade = TileGrade.Rare;
-    //    }
-    //    else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
-    //    {
-    //        chosenGrade = TileGrade.Epic;
-    //    }
-    //    else
-    //    {
-    //        chosenGrade = TileGrade.Legendary;
-    //    }
-
-    //    List<GameObject> chosenList = _normalStoreTiles;
-    //    switch (chosenGrade)
-    //    {
-    //        case TileGrade.Normal:
-    //            chosenList = _normalStoreTiles;
-    //            break;
-    //        case TileGrade.Rare:
-    //            chosenList = _rareStoreTiles;
-    //            break;
-    //        case TileGrade.Epic:
-    //            chosenList = _epicStoreTiles;
-    //            break;
-    //        case TileGrade.Legendary:
-    //            chosenList = _legendaryStoreTiles;
-    //            break;
-
-    //    }
-    //    //test
-    //    if (isTest)
-    //    {
-    //        chosenList = testList;
-    //    }
-    //    int randomIndex = Random.Range(0, chosenList.Count);
-    //    GameObject chosenTile = chosenList[randomIndex];
-    //    return chosenTile;
-    //}
+    
    
 }

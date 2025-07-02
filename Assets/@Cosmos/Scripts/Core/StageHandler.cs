@@ -12,7 +12,6 @@ public class StageHandler : MonoBehaviour
     [Header("프리팹들")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private GameObject highlightTilePrefab;
     
     [Header("보드 프리팹")] public GameObject nightBoard;
     
@@ -35,7 +34,7 @@ public class StageHandler : MonoBehaviour
     // Public 프로퍼티로 접근 가능하게
     public GameObject PlayerPrefab => playerPrefab;
     public GameObject EnemyPrefab => enemyPrefab;
-    public GameObject HighlightTilePrefab => highlightTilePrefab;
+    
     public TextMeshProUGUI CountdownText => countdownText;
     public float CountdownDuration => countdownDuration;
     public GameObject EnemySpawnPosition => enemySpawnPosition;
@@ -51,16 +50,17 @@ public class StageHandler : MonoBehaviour
 
     private void Start()
     {
+        
+
+        _gameStateManager = GameStateManager.Instance;
+        TryFindUIComponents();
+        CreateGameContent();
         // 필수 컴포넌트 검증
         if (!ValidateComponents())
         {
             Debug.LogError("[StageHandler] 필수 컴포넌트가 누락되어 게임을 시작할 수 없습니다!");
             return;
         }
-
-        _gameStateManager = GameStateManager.Instance;
-        
-        CreateGameContent();
         StartCoroutine(StartCountdown());
         EventBus.PublishGameStart();
     }
@@ -126,10 +126,10 @@ public class StageHandler : MonoBehaviour
     /// </summary>
     private void CreateGameContent()
     {
-        enemyPrefab = StageSelectManager.currentStageData.enemyPrefab;
+        enemyPrefab = StageSelectManager.Instance.currentStageData.enemyPrefab;
         backgroundSpriteRenderer = transform.GetChild(0).transform.GetComponent<SpriteRenderer>();
-        backgroundSpriteRenderer.sprite = StageSelectManager.currentStageData.backgroundSprite;
-        SoundManager.Instance.PlayBGMSound(StageSelectManager.currentStageData.bgmClip, StageSelectManager.currentStageData.bgmVolume);
+        backgroundSpriteRenderer.sprite = StageSelectManager.Instance.currentStageData.backgroundSprite;
+        SoundManager.Instance.PlayBGMSound(StageSelectManager.Instance.currentStageData.bgmClip, StageSelectManager.Instance.currentStageData.bgmVolume);
         SpawnPlayer();
         SpawnEnemy();
     }

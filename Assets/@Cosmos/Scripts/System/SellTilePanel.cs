@@ -43,17 +43,17 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
         if(_dm.IsDragging && _dm.GetCurrentDragObject() != null)
         {
             _isCanSell = true;
-            _image.color = new Color(1, 0.5f, 0, 1f); // 예시로 주황색으로 변경
+            _image.color = new Color(1, 0.5f, 0, 0.8f); // 예시로 주황색으로 변경
         }
         else
         {
             _isCanSell = false;
-            _image.color = new Color(1, 1, 1, 1f); // 원래 색상으로 되돌림
+            _image.color = new Color(1, 1, 1, 0.8f); // 원래 색상으로 되돌림
         }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        _image.color = new Color(1, 1, 1, 1f);
+        _image.color = new Color(1, 1, 1, 0.8f);
         _isCanSell = false; // 마우스가 패널을 벗어나면 판매 가능 여부를 false로 설정
     }
 
