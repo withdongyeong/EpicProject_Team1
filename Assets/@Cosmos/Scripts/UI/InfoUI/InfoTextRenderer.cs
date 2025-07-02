@@ -12,22 +12,22 @@ public class InfoTextRenderer : MonoBehaviour
 
     Dictionary<TileCategory, string> _categotyDict = new Dictionary<TileCategory, string>
     {
-        { TileCategory.Weapon, "무기<sprite name=\"Weapon\">" },
-        { TileCategory.MagicCircle, "마법진<sprite name=\"MagicCircle\">" },
-        { TileCategory.Armor, "방어구<sprite name=\"Armor\">" },
-        { TileCategory.Consumable, "소모품<sprite name=\"Potion\">" },
-        { TileCategory.Trinket, "장신구<sprite name=\"Trinket\">" },
-        { TileCategory.Summon, "소환수<sprite name=\"Summon\">" }
+        { TileCategory.Weapon, "#무기<sprite name=\"Weapon\">" },
+        { TileCategory.MagicCircle, "#마법진<sprite name=\"MagicCircle\">" },
+        { TileCategory.Armor, "#방어구<sprite name=\"Armor\">" },
+        { TileCategory.Consumable, "#소모품<sprite name=\"Potion\">" },
+        { TileCategory.Trinket, "#장신구<sprite name=\"Trinket\">" },
+        { TileCategory.Summon, "#소환수<sprite name=\"Summon\">" }
     };
 
     Dictionary<string, string> _synergyDict = new Dictionary<string, string>
     {
-        { "Totem", "토템<sprite name=\"Totem\">" },
-        { "Sword", "검<sprite name=\"Sword\">" },
-        { "Fire", "화염<sprite name=\"Fire\">" },
-        { "Ice", "얼음<sprite name=\"Ice\">" },
-        { "Shield", "방어막<sprite name=\"Shield\">" },
-        { "Barrier", "보호막<sprite name=\"Barrier\">" }
+        { "Totem", "#토템<sprite name=\"Totem\">" },
+        { "Sword", "#검<sprite name=\"Sword\">" },
+        { "Fire", "#화염<sprite name=\"Fire\">" },
+        { "Ice", "#얼음<sprite name=\"Ice\">" },
+        { "Shield", "#방어막<sprite name=\"Shield\">" },
+        { "Barrier", "#보호막<sprite name=\"Barrier\">" }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -77,7 +77,7 @@ public class InfoTextRenderer : MonoBehaviour
             {
                 Instantiate(linePrefab, transform); // 구분선 추가
                 TextUIResizer tagText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-                tagText.SetText(tagDescription[tag]);
+                tagText.SetTagText(tagDescription[tag]);
             }
         }
     }

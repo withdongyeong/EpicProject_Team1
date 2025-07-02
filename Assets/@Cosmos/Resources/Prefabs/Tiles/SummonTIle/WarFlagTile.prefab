@@ -323,14 +323,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6775856970142495440}
+      addedObject: {fileID: 8518764188060564623}
   m_SourcePrefab: {fileID: 100100000, guid: eff93a65110a3754a935d437437ab34d, type: 3}
 --- !u!1 &1906543006364052950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
   m_PrefabInstance: {fileID: 6309184416661625889}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6775856970142495440
+--- !u!114 &8518764188060564623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1906543006364052950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092837a7446f1e94491f45926ac7e57a, type: 3}
+  m_Script: {fileID: 11500000, guid: e26b5ab42b6db4d45b53ffa4b334a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tileCategory: 5
