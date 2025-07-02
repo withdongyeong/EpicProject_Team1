@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: WraithTile
   m_EditorClassIdentifier: 
   tileName: "\uB9DD\uB839"
-  description: "\uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9:
-    <color=red>5</color>)\n<color=yellow>\uC801\uC911\uC2DC</color>: \uD654\uC5FC<sprite
-    name=\"Fire\">\uC744 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
-    name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC774
-    3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74, 1\uAC1C\uC758 \uD22C\uC0AC\uCCB4\uB97C
-    \uB354 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  description: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uC800\uC8FC
+    \uAC1C\uC218\uC758 \uCD5C\uB300\uCE58\uB97C 40\uC73C\uB85C \uC62C\uB9BD\uB2C8\uB2E4.\n<color=yellow>\uBC1C\uB3D9
+    \uC2DC</color>: \uC800\uC8FC\uB97C 40\uAC1C \uC18C\uBAA8\uD558\uC5EC \uACE0\uD1B5\uC744
+    1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0
+    \uC704\uCE58\uD55C</color> \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC774
+    3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74, \uC800\uC8FC \uC18C\uBAA8\uB7C9\uC774
+    20\uC73C\uB85C \uAC10\uC18C\uD569\uB2C8\uB2E4."
   tileCategory: 1
   tileSprite: {fileID: 21300000, guid: b873196cb8c4e644ab45dbf0fef3e789, type: 3}
   tileGrade: 0
