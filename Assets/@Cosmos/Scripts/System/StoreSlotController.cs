@@ -33,6 +33,14 @@ public class StoreSlotController : MonoBehaviour
         SetupStoreSlots();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            ResetSlotBtn();
+        }
+    }
+
 
     private void SetupStoreSlots()
     {
@@ -214,53 +222,6 @@ public class StoreSlotController : MonoBehaviour
 
     }
 
-    //private GameObject ChoseTile()
-    //{
-    //    float roll = Random.value * 100f;
-    //    TileGrade chosenGrade;
-    //    //TODO: 이거 줄 줄이기
-    //    if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
-    //    {
-    //        chosenGrade = TileGrade.Normal;
-    //    }
-    //    else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
-    //    {
-    //        chosenGrade = TileGrade.Rare;
-    //    }
-    //    else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
-    //    {
-    //        chosenGrade = TileGrade.Epic;
-    //    }
-    //    else
-    //    {
-    //        chosenGrade = TileGrade.Legendary;
-    //    }
-
-    //    List<GameObject> chosenList = _normalStoreTiles;
-    //    switch (chosenGrade)
-    //    {
-    //        case TileGrade.Normal:
-    //            chosenList = _normalStoreTiles;
-    //            break;
-    //        case TileGrade.Rare:
-    //            chosenList = _rareStoreTiles;
-    //            break;
-    //        case TileGrade.Epic:
-    //            chosenList = _epicStoreTiles;
-    //            break;
-    //        case TileGrade.Legendary:
-    //            chosenList = _legendaryStoreTiles;
-    //            break;
-
-    //    }
-    //    //test
-    //    if (isTest)
-    //    {
-    //        chosenList = testList;
-    //    }
-    //    int randomIndex = Random.Range(0, chosenList.Count);
-    //    GameObject chosenTile = chosenList[randomIndex];
-    //    return chosenTile;
-    //}
+    
    
 }
