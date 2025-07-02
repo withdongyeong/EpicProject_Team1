@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/@Cosmos/Scenes/BuildingScene.unity
     guid: ff991f6a43d20944087386c7c5fcd6da
   - enabled: 1
-    path: Assets/@Cosmos/Scenes/BuildingScene_.unity
+    path: Assets/@Cosmos/Scenes/@NoUse/BuildingScene_.unity
     guid: 21a55baf8e4800c4a9736716f5c5f8a7
   - enabled: 1
     path: Assets/@Cosmos/Scenes/StageScene.unity
@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/@Cosmos/Scenes/SettingScene.unity
     guid: bf374d4d3306ef64dab8623d9f1e2400
+  - enabled: 1
+    path: Assets/@Cosmos/Scenes/GuideBuildingScene.unity
+    guid: 08a1c85f68d56df438378bbbc176330e
+  - enabled: 1
+    path: Assets/@Cosmos/Scenes/GuideStageScene.unity
+    guid: 86c2caf4881f95746a723cb91b999627
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 38e4b2541a8dc86428b0313b1cb6f015, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
