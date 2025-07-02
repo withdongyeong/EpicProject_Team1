@@ -1,10 +1,31 @@
 fileFormatVersion: 2
-guid: 6bbbe3e32edfa734fac9905b659800c4
+guid: 0759fd90997e362488bb49276178619b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7726081713596322015
-    second: tile028_0
+      213: 7694898263841791077
+    second: "\uC800\uC8FC2-Sheet_0"
+  - first:
+      213: 8993372567144687224
+    second: "\uC800\uC8FC2-Sheet_1"
+  - first:
+      213: -4027776531295192656
+    second: "\uC800\uC8FC2-Sheet_2"
+  - first:
+      213: -230430447853332463
+    second: "\uC800\uC8FC2-Sheet_3"
+  - first:
+      213: -1538726591317894562
+    second: "\uC800\uC8FC2-Sheet_4"
+  - first:
+      213: -8556538929565792835
+    second: "\uC800\uC8FC2-Sheet_5"
+  - first:
+      213: 3009831594063354834
+    second: "\uC800\uC8FC2-Sheet_6"
+  - first:
+      213: 5353623092224685724
+    second: "\uC800\uC8FC2-Sheet_7"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +72,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +121,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DebuffIcon_Mark_0
+      name: "\uC800\uC8FC2-Sheet_0"
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1df3b9a4581a8ab49aba20272f55c742
-      internalID: -652230225
+      spriteID: 56c5f0f9335c9ca60800000000000000
+      internalID: 7694898263841791077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC800\uC8FC2-Sheet_1"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876e66d63b0eecc70800000000000000
+      internalID: 8993372567144687224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC800\uC8FC2-Sheet_2"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b9be79b5967a18c0800000000000000
+      internalID: -4027776531295192656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC800\uC8FC2-Sheet_3"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11894428ab85dccf0800000000000000
+      internalID: -230430447853332463
       vertices: []
       indices: 
       edges: []
@@ -125,7 +212,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5f061cdccbe8b64cb16e2dcb468c19f
+    spriteID: 1de3c128f73f462469134cdc07bbe074
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +222,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DebuffIcon_Mark_0: -652230225
+      "\uC800\uC8FC2-Sheet_0": 7694898263841791077
+      "\uC800\uC8FC2-Sheet_1": 8993372567144687224
+      "\uC800\uC8FC2-Sheet_2": -4027776531295192656
+      "\uC800\uC8FC2-Sheet_3": -230430447853332463
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

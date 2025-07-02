@@ -85,6 +85,8 @@ public class DragManager : Singleton<DragManager>
     
     public void PlaceObject()
     {
+        //놓으려는 물체가 회전중인지 미리 검사하고, 회전중이면 멈춥니다.
+        TryStopRotate();
         Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().GetCoreCell().transform.position;
         corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
         currentDragObject.transform.position = corePos;
@@ -198,6 +200,17 @@ public class DragManager : Singleton<DragManager>
         if (currentDragObject == null) return;
         
         smoothRotator.RotateZ(currentDragObject.transform,UpdatePreviewCell);
+    }
+
+    /// <summary>
+    /// 팔거나 배치할려고 할때 이 함수를 실행해주세요
+    /// </summary>
+    public void TryStopRotate()
+    {
+        if (currentDragObject == null) return;
+
+        smoothRotator.TryStopRotate();
+        UpdatePreviewCell();
     }
 
 }
