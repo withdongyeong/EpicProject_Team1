@@ -2,14 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
-public class LightningKnightDashPattern : IBossAttackPattern
+public class LightningKnightDash2Pattern : IBossAttackPattern
 {
     private Vector3 _startTransform;
     private List<Vector3Int> _gridDashPoint;
     public string PatternName => "LightningKnightDashPattern";
 
-    public LightningKnightDashPattern(Vector3 startTransform, List<Vector3Int> GridDashPoint)
+    public LightningKnightDash2Pattern(Vector3 startTransform, List<Vector3Int> GridDashPoint)
     {
         _startTransform = startTransform;
         _gridDashPoint = GridDashPoint;
@@ -37,8 +36,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
             Vector3 direction = (target - boss.transform.position).normalized;
 
             // 공격 경고 생성
-            if (_startTransform != target)
-                boss.StartCoroutine(DamageAreaCreate(boss, boss.transform.position, target));
+            boss.StartCoroutine(DamageAreaCreate(boss, boss.transform.position, target));
 
             yield return new WaitForSeconds(0.65f);
 
@@ -85,13 +83,14 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
     IEnumerator DamageAreaCreate(BaseBoss boss, Vector3 StartPoint, Vector3 EndPoint)
     {
+
         Vector3Int GridStartPoint = GridManager.Instance.WorldToGridPosition(StartPoint);
         Vector3Int GridEndPoint = GridManager.Instance.WorldToGridPosition(EndPoint);
 
         //포지션 2개를 받고 x가 같다 혹은 y가 같으면 위험 생성 다르면 패스
         if (GridStartPoint.x == GridEndPoint.x && GridStartPoint.x == 1)
         {
-            for(int vertical =1; vertical < 8; vertical++)
+            for (int vertical = 7; vertical > 0; vertical--)
             {
                 List<Vector3Int> DangerAreas = new List<Vector3Int>();
 
@@ -111,7 +110,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
         if (GridStartPoint.x == GridEndPoint.x && GridStartPoint.x == 7)
         {
-            for (int vertical = 7; vertical > 0; vertical--)
+            for (int vertical = 1; vertical < 8; vertical++)
             {
                 List<Vector3Int> DangerAreas = new List<Vector3Int>();
 
@@ -135,7 +134,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
             {
                 List<Vector3Int> DangerAreas = new List<Vector3Int>();
 
-                for (int x =-1; x<=1; x++)
+                for (int x = -1; x <= 1; x++)
                 {
                     for (int y = -1; y <= 1; y++)
                     {
