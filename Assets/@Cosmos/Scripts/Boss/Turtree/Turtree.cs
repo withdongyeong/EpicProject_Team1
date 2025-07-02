@@ -4,7 +4,7 @@ public class Turtree : BaseBoss
 {
     [Header("보스 전용 프리팹들")]
     public GameObject Mushroom;
-    public GameObject PlantFrand;
+    public GameObject Frog;
 
     public GameObject AttackPrefeb;
 
@@ -13,7 +13,7 @@ public class Turtree : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 200;
+        MaxHealth = 800;
     }
 
     /// <summary>
@@ -21,9 +21,20 @@ public class Turtree : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //1. 남은 HP에 따라 식물 친구들을 소환. 기본(빠름 데미지). 특수(느림 오브젝트에 닿으면 쿨타임 초기화)
+        AddGroup()
+            .AddPattern(new TurtreeSummonFrog(Frog, 0.7f), 1f)
+            .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
+            .SetGroupInterval(1f);
+
+        AddGroup()
+            .AddPattern(new TurtreeSummonFriends(Mushroom, 0.7f), 1f)
+            .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
+            .SetGroupInterval(1f);
         //2. 공격패턴 -  
         //3. 공격패턴
         //4. 공격패턴
+        //5, 공격패턴
     }
 }
