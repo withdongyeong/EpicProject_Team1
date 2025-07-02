@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6bbbe3e32edfa734fac9905b659800c4
+guid: fa53e90518e0bd7488779555518a859b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7726081713596322015
-    second: tile028_0
+      213: -7338694115657024791
+    second: StarDisable_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DebuffIcon_Mark_0
+      name: StarDisable_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,10 +113,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1df3b9a4581a8ab49aba20272f55c742
-      internalID: -652230225
+      spriteID: 9ea73097598b72a90800000000000000
+      internalID: -7338694115657024791
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5f061cdccbe8b64cb16e2dcb468c19f
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DebuffIcon_Mark_0: -652230225
+      StarDisable_0: -7338694115657024791
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
