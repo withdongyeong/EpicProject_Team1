@@ -80,6 +80,16 @@ public class DragOnGrid : DraggableObject
         //3. 그리드 밖 보관 공간에 둔다면-> 보관함에 두기
         if (_storageArea.IsCanStore)
         {
+            //튜토리얼 중이고 , 회전 퀘스트 중이면.. 
+            if (GameManager.Instance.IsInTutorial)
+            {
+                StorageQuest quest = GuideHandler.instance.CurrentQuest as StorageQuest;
+                if (quest != null)
+                {
+                    quest.count++;
+                }
+            }
+            //까지입니다 ..
             _storageArea.StoreTileObject(_tileObject);
             foreach (var coll in gameObject.GetComponentsInChildren<Collider2D>())
             {
@@ -114,7 +124,17 @@ public class DragOnGrid : DraggableObject
         {
             _sellTilePanel = FindAnyObjectByType<SellTilePanel>();
         }
+
         
+        //튜토리얼 용
+        if (GameManager.Instance.IsInTutorial)
+        {
+            if (GuideHandler.instance.CurrentQuest is not SellQuest)
+            {
+                return;
+            }
+        }
+        //여기까지
         _sellTilePanel.ShowPanel(_tileObject.GetTileData().TileCost);
     }
     
@@ -124,7 +144,15 @@ public class DragOnGrid : DraggableObject
         {
             _sellTilePanel = FindAnyObjectByType<SellTilePanel>();
         }
-        
+        //튜토리얼 용
+        if (GameManager.Instance.IsInTutorial)
+        {
+            if (GuideHandler.instance.CurrentQuest is not SellQuest)
+            {
+                return;
+            }
+        }
+        //여기까지
         _sellTilePanel.HidePanel();
     }
 }

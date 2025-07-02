@@ -1,0 +1,125 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class GuideStageUIHandler : MonoBehaviour
+{
+    [Header("결과 패널")]
+    public GameObject victoryPanel;    // 승리 시 표시되는 패널
+    public GameObject defeatPanel;     // 패배 시 표시되는 패널
+
+    [Header("버튼")]
+    public Button victoryReturnButton; // 승리 패널의 돌아가기 버튼
+    public Button defeatReturnButton;  // 패배 패널의 돌아가기 버튼
+    public Button retryButton;         // 재시도 버튼
+    
+    private GameStateManager _gameStateManager;
+
+    /// <summary>
+    /// 초기화 및 이벤트 연결
+    /// </summary>
+    private void Start()
+    {
+        // 패널 초기 상태 설정
+        victoryPanel.SetActive(false);
+        defeatPanel.SetActive(false);
+        
+        // 게임 상태 매니저 참조
+        _gameStateManager = GameStateManager.Instance;
+        EventBus.SubscribeGameStateChanged(HandleGameStateChanged);
+        
+        // 버튼 이벤트 연결
+        if (victoryReturnButton != null)
+            victoryReturnButton.onClick.AddListener(ReturnToTitle);
+            
+        if (defeatReturnButton != null)
+            defeatReturnButton.onClick.AddListener(ReturnToGuideBuilding);
+            
+        if (retryButton != null)
+            retryButton.onClick.AddListener(RetryGame);
+    }
+
+    /// <summary>
+    /// 게임 상태 변경 처리
+    /// </summary>
+    private void HandleGameStateChanged(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.Victory:
+                ShowVictoryPanel();
+                break;
+            case GameState.Defeat:
+                ShowDefeatPanel();
+                break;
+            case GameState.Playing:
+                HideResultPanels();
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 승리 패널 표시
+    /// </summary>
+    private void ShowVictoryPanel()
+    {
+        victoryPanel.SetActive(true);
+        defeatPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 패배 패널 표시
+    /// </summary>
+    private void ShowDefeatPanel()
+    {
+        victoryPanel.SetActive(false);
+        defeatPanel.SetActive(true);
+    }
+
+    /// <summary>
+    /// 결과 패널 숨기기
+    /// </summary>
+    private void HideResultPanels()
+    {
+        victoryPanel.SetActive(false);
+        defeatPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 빌딩 씬으로 돌아가기
+    /// </summary>
+    private void ReturnToTitle()
+    {
+        TimeScaleManager.Instance.ResetTimeScale();
+        SceneLoader.LoadTitle();
+        
+        // 게임 격자 다시 상점 자리로 원위치
+        GridManager.Instance.transform.position = new Vector3(0, 0, 0);
+    }
+    
+    private void ReturnToGuideBuilding()
+    {
+        TimeScaleManager.Instance.ResetTimeScale();
+        SceneLoader.LoadGuideBuilding();
+        
+        // 게임 격자 다시 상점 자리로 원위치
+        GridManager.Instance.transform.position = new Vector3(0, 0, 0);
+    }
+
+    /// <summary>
+    /// 게임 재시도
+    /// </summary>
+    private void RetryGame()
+    {
+        HideResultPanels();
+        _gameStateManager.RestartGame();
+    }
+
+    /// <summary>
+    /// 이벤트 연결 해제
+    /// </summary>
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGameStateChanged(HandleGameStateChanged);
+    }
+}
