@@ -57,7 +57,7 @@ public class MagicCircleStarSkill : StarBase
 
     private void InitClear(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "StageScene")
+        if (SceneLoader.IsInStage())
         {
             isActivated = false; // 씬이 변경될 때마다 초기화
             magicCircleCount = 0; // Magic Circle 개수 초기화
