@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class StoreSlotController : MonoBehaviour
 {
     private StoreSlot[] storeSlots;
-
+    
     
 
     private int _safeInt = 0;
@@ -16,9 +16,9 @@ public class StoreSlotController : MonoBehaviour
     private List<GameObject> _rareStoreTiles = new();
     private List<GameObject> _epicStoreTiles = new();
     private List<GameObject> _legendaryStoreTiles = new();
-    //test
-    public List<GameObject> testList = new List<GameObject>();
-    public bool isTest;
+    //가이드용
+    public List<GameObject> guideList = new List<GameObject>();
+    public bool isGuide = false;
 
 
     private void Awake()
@@ -77,10 +77,13 @@ public class StoreSlotController : MonoBehaviour
                     break;
 
             }
-            //test
-            if (isTest)
+            //가이드용
+            if (isGuide)
             {
-                chosenList = testList;
+                chosenList = guideList;
+                storeSlots[i].SetSlot(chosenList[0].GetComponent<TileObject>().GetTileData().TileCost, chosenList[0]);
+                storeSlots[i].GetComponent<Image>().SetNativeSize();
+                continue;
             }
             int randomIndex = Random.Range(0, chosenList.Count);
             GameObject chosenTile = chosenList[randomIndex];
