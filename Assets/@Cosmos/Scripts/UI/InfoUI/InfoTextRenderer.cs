@@ -8,7 +8,7 @@ public class InfoTextRenderer : MonoBehaviour
     /// <summary>
     /// 안에 들어있는 게임 오브젝트들은 구분선과 설명 텍스트를 가지고 있습니다. FireGimmickText면 앞의 Fire가 키가 됩니다.
     /// </summary>
-    Dictionary<string, GameObject> _textDict = new();
+   // Dictionary<string, GameObject> _textDict = new();
 
     Dictionary<TileCategory, string> _categotyDict = new Dictionary<TileCategory, string>
     {
@@ -32,12 +32,14 @@ public class InfoTextRenderer : MonoBehaviour
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
     private GameObject synergyTextPrefab; // 시너지 텍스트
+    private GameObject linePrefab; // 구분선 프리팹
 
     private void Awake()
     {
-        LoadToDict();
+        //LoadToDict();
         descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
         synergyTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/SynergyText");
+        linePrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/Line");
     }
 
     /// <summary>
@@ -67,16 +69,16 @@ public class InfoTextRenderer : MonoBehaviour
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
         descriptionText.SetText(tileInfo.GetTileData().Description);
 
-        //태그 설명 추가
-        foreach(string tag in tags)
-        {
-            if(_textDict.TryGetValue(tag,out GameObject prefab))
-            {
-                //TextUIResizer textUIResizer = Instantiate(prefab, transform).GetComponentInChildren<TextUIResizer>();
-                //textUIResizer.SetText();
-                Instantiate(prefab, transform);
-            }
 
+        //태그 설명 추가
+        foreach (string tag in tags)
+        {
+            if (tagDescription.ContainsKey(tag))
+            {
+                Instantiate(linePrefab, transform); // 구분선 추가
+                TextUIResizer tagText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
+                tagText.SetText(tagDescription[tag]);
+            }
         }
     }
 
@@ -106,26 +108,34 @@ public class InfoTextRenderer : MonoBehaviour
     /// <summary>
     /// GimmickText들을 load해서 dictonary에 넣는 메서드입니다
     /// </summary>
-    private void LoadToDict()
-    {
-        GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/UI/InfoUI/GimmickText");
-        foreach(GameObject prefab in prefabs)
-        {
-            if(prefab.name.EndsWith("GimmickText"))
-            {
-                string tag = prefab.name.Substring(0, prefab.name.Length - "GimmickText".Length);
-                if(!_textDict.ContainsKey(tag))
-                {
-                    _textDict.Add(tag, prefab);
-                }
+    //private void LoadToDict()
+    //{
+    //    GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/UI/InfoUI/GimmickText");
+    //    foreach(GameObject prefab in prefabs)
+    //    {
+    //        if(prefab.name.EndsWith("GimmickText"))
+    //        {
+    //            string tag = prefab.name.Substring(0, prefab.name.Length - "GimmickText".Length);
+    //            if(!_textDict.ContainsKey(tag))
+    //            {
+    //                _textDict.Add(tag, prefab);
+    //            }
                 
-            }
-            else
-            {
-                Debug.LogError(prefab.name + "이자식 끝이 GimmickText가 아닌데예");
-            }
-        }
-    }
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError(prefab.name + "이자식 끝이 GimmickText가 아닌데예");
+    //        }
+    //    }
+    //}
 
-    //TODO: 나중에 다중 언어를 지원할때 여기서 시너지(#토템 이런것들)번역을 담은 스크립터블 오브젝트를 불러오면 됩니다
+    Dictionary<string, string> tagDescription = new Dictionary<string, string>
+    {
+        { "Fire", "화염<sprite name=\"Fire\">: 1초마다 스택만큼 데미지를 주고 스택이 1 감소합니다." },
+        { "Ice", "동상<sprite name=\"Ice\">: 5번 중첩되면,적을 1초 기절시킵니다." },
+        { "Sword", "검<sprite name=\"Sword\">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다." },
+        { "Totem", "토템<sprite name=\"Totem\">: 3개의 토템이 모일때마다 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다." },
+        { "Shield", "방어막<sprite name=\"Shield\">: 1회의 데미지를 막아줍니다." },
+        { "Barrier", "보호막<sprite name=\"Barrier\">: 일정량의 데미지를 막아줍니다. 매초 감소합니다." }
+    };
 }

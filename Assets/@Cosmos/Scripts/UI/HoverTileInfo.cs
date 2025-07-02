@@ -21,7 +21,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "BuildingScene")
+        if(SceneLoader.IsInBuilding())
         {
             infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
             if (infoPanel == null)

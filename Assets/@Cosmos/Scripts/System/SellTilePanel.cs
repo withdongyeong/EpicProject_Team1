@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -44,6 +44,7 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
             }
         }
         //까지입니다 ..
+        _dm.TryStopRotate();
         GoldManager.Instance.ModifyCurrentGold((tileObject.GetTileData().TileCost + 1) / 2);
         EventBus.PublishTileSell(tileObject);
         DragManager.Instance.DestroyObject();
