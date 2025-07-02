@@ -10,6 +10,18 @@ public class SmoothRotator : MonoBehaviour
     {
         if(!isRotating && target != null)
         {
+            
+            //튜토리얼 중이고 , 회전 퀘스트 중이면.. 
+            if (GameManager.Instance.IsInTutorial)
+            {
+                RotateQuest quest = GuideHandler.instance.CurrentQuest as RotateQuest;
+                if (quest != null)
+                {
+                    quest.tilesRotated++;
+                }
+            }
+            //까지입니다 ..
+
             StartCoroutine(RotateZCoroutine(target,action, angle, duration));
         }
     }
