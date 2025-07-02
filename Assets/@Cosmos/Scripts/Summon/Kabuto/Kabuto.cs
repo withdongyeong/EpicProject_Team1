@@ -59,7 +59,6 @@ public class Kabuto : MonoBehaviour
         _currentConsume = 0;
         _isCastOff = false;
         transform.localScale = Vector3.one;
-        _protection.SetProtection(true, 15);
     }
 
     public void TryCharge()
@@ -85,6 +84,7 @@ public class Kabuto : MonoBehaviour
         projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 3);
         _protection.SetChargeBool(false);
         _isCharging = false;
+        PutOn();
     }
 
     
