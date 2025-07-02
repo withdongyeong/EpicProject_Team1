@@ -5,26 +5,33 @@ using System;
 public class SmoothRotator : MonoBehaviour
 {
     private bool isRotating = false;
+    private Quaternion endRot;
+    private Vector3 startLocalPos;
+    private Coroutine coroutine;
+
+    private Transform _target;
 
     public void RotateZ(Transform target,Action action, float angle = 90f, float duration = 0.1f)
     {
         if(!isRotating && target != null)
         {
-            StartCoroutine(RotateZCoroutine(target,action, angle, duration));
+            coroutine = StartCoroutine(RotateZCoroutine(target,action, angle, duration));
         }
     }
 
     private IEnumerator RotateZCoroutine(Transform target,Action action, float angle, float duration)
     {
         isRotating = true;
-        Quaternion startRot = target.rotation;
-        Quaternion endRot = startRot * Quaternion.Euler(0, 0, angle);
+        _target = target;
+        Quaternion startRot = _target.rotation;
+        endRot = startRot * Quaternion.Euler(0, 0, angle);
+        startLocalPos = DragManager.Instance.LocalPos;
+
         float elapsed = 0f;
-        Vector3 startLocalPos = DragManager.Instance.LocalPos;
 
         while (elapsed < duration)
         {
-            target.rotation = Quaternion.Lerp(startRot, endRot, elapsed / duration);
+            _target.rotation = Quaternion.Lerp(startRot, endRot, elapsed / duration);
             float currentAngle = Mathf.Lerp(0f, angle, elapsed/duration); 
             Quaternion localRot = Quaternion.Euler(0, 0, currentAngle);
             DragManager.Instance.LocalPos = localRot * startLocalPos;
@@ -32,9 +39,22 @@ public class SmoothRotator : MonoBehaviour
             yield return null;
         }
         DragManager.Instance.LocalPos = Quaternion.Euler(0, 0, angle) * startLocalPos;
-        target.rotation = endRot;
+        _target.rotation = endRot;
         isRotating = false;
+        coroutine = null;
         action?.Invoke(); // 회전 완료 후 액션 실행
         
+    }
+
+    public void TryStopRotate()
+    {
+        if(isRotating)
+        {
+            StopCoroutine(coroutine);
+            DragManager.Instance.LocalPos = Quaternion.Euler(0, 0, 90) * startLocalPos;
+            _target.rotation = endRot;
+            isRotating = false;
+            coroutine = null;
+        }
     }
 }
