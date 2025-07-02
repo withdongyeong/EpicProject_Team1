@@ -22,26 +22,26 @@ public class Turtree : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new TurtreeSummonFrog(Frog, 0.7f), 1f)
-            .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 4, 0)), 1f)
             .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new TurtreeSummonFriends(Mushroom, 0.7f), 1f)
-            .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 8, 0)), 1f)
             .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
 
 
         AddGroup()
-            .AddPattern(new TurtreeSummonFrog(Frog, 0.7f), 1f)
+            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 0, 0)), 1f)
             .AddPattern(new TurtreePattern3(AttackPrefeb), 1f)
-            .AddPattern(new TurtreePattern1(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
-        //2. 공격패턴 -  
-        //3. 공격패턴
-        //4. 공격패턴
-        //5, 공격패턴
+
+        AddGroup()
+            .AddPattern(new TurtreePattern4(AttackPrefeb, true), 0.3f)
+            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(0, 8, 0)), 1f)
+            .AddPattern(new TurtreePattern4(AttackPrefeb, false), 0.3f)
+            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(8, 8, 0)), 1f)
+            .SetGroupInterval(1f);
     }
 }
