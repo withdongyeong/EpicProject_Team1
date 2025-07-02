@@ -248,7 +248,7 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void ResetCoolDown(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "BuildingScene")
+        if(SceneLoader.IsInBuilding())
         {
             lastUsedTime = -Mathf.Infinity;
         }   

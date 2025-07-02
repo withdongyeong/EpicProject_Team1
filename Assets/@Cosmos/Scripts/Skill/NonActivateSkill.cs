@@ -8,8 +8,8 @@ public class NonActivateSkill : SkillBase
     }
     protected override void InitClearStarList(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "StageScene")
-        {
+        if (SceneLoader.IsInStage())
+        {   
             // 전투씬 시작시 인접 효과를 초기화합니다.
             ClearStarBuff();
             _coolTimeMaterial.SetFloat("_FillAmount", 0);
@@ -18,7 +18,7 @@ public class NonActivateSkill : SkillBase
 
     protected override void ResetCoolDown(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "BuildingScene")
+        if (SceneLoader.IsInBuilding())
         {
             _coolTimeMaterial.SetFloat("_FillAmount", 1);
         }
