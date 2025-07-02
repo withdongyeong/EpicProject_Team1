@@ -80,7 +80,7 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "BuildingScene")
+        if (SceneLoader.IsInBuilding())
         {
             WallClear();
         }

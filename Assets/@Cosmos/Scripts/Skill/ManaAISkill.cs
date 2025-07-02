@@ -36,7 +36,7 @@ public class ManaAISkill : SkillBase
     /// <param name="mode"></param>
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "BuildingScene")
+        if(SceneLoader.IsInBuilding())
         {
             StopAllCoroutines();
             isInGameScene = false;
