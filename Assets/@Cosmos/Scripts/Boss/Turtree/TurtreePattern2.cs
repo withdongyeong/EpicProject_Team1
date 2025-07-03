@@ -24,7 +24,9 @@ public class TurtreePattern2 : IBossAttackPattern
 
     private IEnumerator BackAttack(BaseBoss boss)
     {
-        for(int x = -3; x <= 3; x++)
+        boss.AttackAnimation();
+
+        for (int x = -3; x <= 3; x++)
         {
             List<Vector3Int> BombPoints = new List<Vector3Int>();
 
@@ -38,7 +40,7 @@ public class TurtreePattern2 : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
               warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

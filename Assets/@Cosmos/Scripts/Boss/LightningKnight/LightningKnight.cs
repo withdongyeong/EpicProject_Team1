@@ -48,15 +48,15 @@ public class LightningKnight : BaseBoss
             .SetGroupInterval(1.0f);
     }
 
-    ///// <summary>
-    ///// 보스 전용 전투 데미지 피드백
-    ///// </summary>
-    //protected override void DamageFeedback()
-    //{
-    //    SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
+    /// <summary>
+    /// 보스 전용 전투 데미지 피드백
+    /// </summary>
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
 
-    //    base.DamageFeedback();
-    //}
+        base.DamageFeedback();
+    }
 
     ///// <summary>
     ///// 보스 전용 사망 처리 (오버라이드 가능)
