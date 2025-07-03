@@ -43,7 +43,7 @@ public class BomberSpeardAttack : IBossAttackPattern
     public IEnumerator BombCreate(BaseBoss boss, Vector3Int centerPos)
     {
         boss.BombHandler.ExecuteFixedBomb(new List<Vector3Int>() { new Vector3Int(0, 0, 0) }, centerPos, _bombball,
-                                             warningDuration: 0f, explosionDuration: 1.3f, damage: 0, warningType: WarningType.Type3);
+                                             warningDuration: 0f, explosionDuration: 0.3f, damage: 0, warningType: WarningType.Type3);
         
         yield return new WaitForSeconds(0.1f);
     }

@@ -1,14 +1,9 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Turtree : BaseBoss
 {
     [Header("보스 전용 프리팹들")]
-    public GameObject Mushroom;
-    public GameObject Frog;
-
     public GameObject AttackPrefeb;
-
 
     protected override void Awake()
     {

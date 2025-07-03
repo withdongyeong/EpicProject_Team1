@@ -28,6 +28,8 @@ public class TurtreePattern6 : IBossAttackPattern
 
     public IEnumerator outskirtBomb(BaseBoss boss, int distance)
     {
+        boss.AttackAnimation();
+
         List<Vector3Int> bombPoint = new List<Vector3Int>();
 
         for (int x = -4; x <=4; x++)

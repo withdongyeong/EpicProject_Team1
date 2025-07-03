@@ -33,6 +33,7 @@ public class TurtreePattern4 : IBossAttackPattern
 
     private IEnumerator RotatingBombAttack(BaseBoss boss, bool K)
     {
+
         List<Vector3Int> points = GetRotating3x3Pattern(Vector3Int.zero);
 
         List<Vector3Int> BombCenter = new List<Vector3Int>();
@@ -44,7 +45,12 @@ public class TurtreePattern4 : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(points, BombCenter[i], _treeAttackPrefeb,
                     warningDuration: 0.8f, explosionDuration: 0.2f, damage: 20);
 
-            if (i == 0 || i == 3) yield return new WaitForSeconds(0.3f);
+            if (i == 0 || i == 3)
+            {
+                boss.AttackAnimation();
+
+                yield return new WaitForSeconds(0.3f);
+            }
         }
     }
 

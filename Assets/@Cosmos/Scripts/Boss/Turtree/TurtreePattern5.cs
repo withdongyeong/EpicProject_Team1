@@ -23,6 +23,8 @@ public class TurtreePattern5 : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
+        boss.AttackAnimation();
+
         Vector3Int center = new Vector3Int(4, 4, 0);
         List<Vector3Int> spiralPositions = GenerateSpiralPositions(center);
 
@@ -38,7 +40,7 @@ public class TurtreePattern5 : IBossAttackPattern
                                                   warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
             }
 
-            yield return new WaitForSeconds(0.1f); // 나머지는 빠르게
+            yield return new WaitForSeconds(0.1f); 
         }
     }
 

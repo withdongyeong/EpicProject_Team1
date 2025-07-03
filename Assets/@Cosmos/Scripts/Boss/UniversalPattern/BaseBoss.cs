@@ -80,7 +80,7 @@ public abstract class BaseBoss : MonoBehaviour
         // 컴포넌트 참조 설정
         _gridSystem = GridManager.Instance;
         _bossDebuff = GetComponent<BossDebuffs>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _bombHandler = FindAnyObjectByType<BombAvoidanceHandler>();
         
         // 패턴 리스트 초기화
@@ -440,6 +440,11 @@ public abstract class BaseBoss : MonoBehaviour
         yield return new WaitForSeconds(patternGroup.IntervalAfterGroup);
     }
 
+    public void boolAnimation(string boolName, bool value)
+    {
+        _animator.SetBool(boolName, value);
+    }
+
     /// <summary>
     /// 공격 애니메이션 트리거
     /// </summary>
@@ -447,7 +452,7 @@ public abstract class BaseBoss : MonoBehaviour
     {
         _animator.SetTrigger("AttackTrigger");
     }
-    
+
     /// <summary>
     /// 애니메이션 트리거 설정
     /// </summary>
