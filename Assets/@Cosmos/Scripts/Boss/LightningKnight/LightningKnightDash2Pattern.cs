@@ -28,7 +28,7 @@ public class LightningKnightDash2Pattern : IBossAttackPattern
         List<Vector3> dashPoints = DashPointCreate(_gridDashPoint);
         dashPoints.Add(originalPosition);
 
-        boss.SetAnimationTrigger("DashTrigger");
+        boss.boolAnimation("IsDash",true);
 
         foreach (var target in dashPoints)
         {
@@ -48,8 +48,7 @@ public class LightningKnightDash2Pattern : IBossAttackPattern
         }
 
         // 대시 종료
-        boss.SetAnimationTrigger("NoDashTrigger");
-        boss.GetComponent<SpriteRenderer>().flipX = true;
+        boss.boolAnimation("IsDash", false);
     }
 
     private List<Vector3> DashPointCreate(List<Vector3Int> GridDashPoint)

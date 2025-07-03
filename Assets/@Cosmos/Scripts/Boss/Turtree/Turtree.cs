@@ -3,11 +3,7 @@
 public class Turtree : BaseBoss
 {
     [Header("보스 전용 프리팹들")]
-    public GameObject Mushroom;
-    public GameObject Frog;
-
     public GameObject AttackPrefeb;
-
 
     protected override void Awake()
     {
@@ -24,24 +20,21 @@ public class Turtree : BaseBoss
         AddGroup()
             .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 4, 0)), 1f)
             .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
-            .SetGroupInterval(1f);
-
-        AddGroup()
-            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 8, 0)), 1f)
-            .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
-            .SetGroupInterval(1f);
-
-
-        AddGroup()
-            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 0, 0)), 1f)
-            .AddPattern(new TurtreePattern3(AttackPrefeb), 1f)
+             .AddPattern(new TurtreePattern3(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
 
         AddGroup()
             .AddPattern(new TurtreePattern4(AttackPrefeb, true), 0.3f)
-            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(0, 8, 0)), 1f)
+            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(4, 8, 0)), 1f)
             .AddPattern(new TurtreePattern4(AttackPrefeb, false), 0.3f)
-            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(8, 8, 0)), 1f)
+             .AddPattern(new TurtreePattern3(AttackPrefeb), 1f)
+            .SetGroupInterval(1f);
+
+        AddGroup()
+            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 8, 0)), 1f)
+            .AddPattern(new TurtreePattern6(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern5(AttackPrefeb), 1f)
+            .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
     }
 }
