@@ -60,7 +60,7 @@ public class TurtreePattern3 : IBossAttackPattern
                 spokesPattern,
                 centerPos,
                 _treeAttackPrefeb,
-                warningDuration: 0.5f,
+                warningDuration: 0.8f,
                 explosionDuration: 0.5f,
                 damage: 20,
                 warningType: WarningType.Type1
