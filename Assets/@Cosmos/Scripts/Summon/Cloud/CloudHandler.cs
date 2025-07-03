@@ -55,7 +55,6 @@ public class CloudHandler : MonoBehaviour
                 _currentCloud.transform.localPosition = new Vector3(0, 2, 0); // 위치 초기화
             }
         }
-        Debug.LogError($"Cloud level updated to {_cloudLevel}. Current cloud: {_currentCloud?.name ?? "None"}");
     }
 
     private void Initialize()
