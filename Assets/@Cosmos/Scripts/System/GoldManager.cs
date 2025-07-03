@@ -18,7 +18,7 @@ public class GoldManager : Singleton<GoldManager>
     protected override void Awake()
     {
         base.Awake();
-        SetCurrentGold(20);
+        SetCurrentGold(16);
         EventBus.SubscribeBossDeath(GetGoldPerStage);
         EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
@@ -85,7 +85,14 @@ public class GoldManager : Singleton<GoldManager>
 
     private void GetGoldPerStage()
     {
-        ModifyCurrentGold(15);
+        if(StageSelectManager.Instance.StageNum < 2)
+        {
+            ModifyCurrentGold(16);
+        }
+        else
+        {
+            ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
+        }
     }
 
 
