@@ -17,12 +17,12 @@ MonoBehaviour:
     3\uAC1C\uC758 \uD1A0\uD15C<sprite name=\"Totem\">\uC774 \uC313\uC774\uBA74 \uBC1C\uB3D9\uD569\uB2C8\uB2E4.\n<color=yellow>\uBC1C\uB3D9
     \uC2DC</color>: \uCCB4\uB825\uC744 <color=green>5</color> \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n<color=yellow>\uAC15\uD654
     \uC2DC</color>: \uD68C\uBCF5\uB7C9\uC774 2\uBC30\uAC00 \uB429\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
-    name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
-    \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+    name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uB9C8\uB2E4
+    \uCFE8\uD0C0\uC784\uC774 10% \uAC10\uC18C\uD569\uB2C8\uB2E4."
   tileCategory: 5
   tileSprite: {fileID: 21300000, guid: 684f600f5ddd74d4e87c4c6b1efa4fa6, type: 3}
   tileGrade: 1
   tileCost: 4
   tileCoolTime: 6
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
