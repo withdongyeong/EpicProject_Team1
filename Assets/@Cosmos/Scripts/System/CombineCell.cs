@@ -63,7 +63,7 @@ public class CombineCell : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Skill {skill?.skillName} is on cooldown or not assigned.");
+                Debug.LogWarning($"Skill {skill?.name} is on cooldown or not assigned.");
             }
         }
     }

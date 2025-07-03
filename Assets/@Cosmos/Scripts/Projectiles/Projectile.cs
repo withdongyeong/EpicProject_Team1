@@ -6,7 +6,7 @@
 public class Projectile : MonoBehaviour
 {
     private int damage = 10;
-    private float speed = 12f;
+    private float speed = 18f;
     private Vector3 direction;
     private BossDebuff bossDebuff = BossDebuff.None; // 상태 이상
     private ProjectileTeam _team; // 투사체 소속 진영
@@ -77,7 +77,7 @@ public class Projectile : MonoBehaviour
                 if (isFrostHammer && enemy.IsStopped)
                 {
                     enemy.GetComponent<BossDebuffs>().InterruptFrostEffect(); // 동결 효과 중단
-                    damage *= 3; // 피해량 3배 증가
+                    damage *= 10; // 피해량 10배 증가
                 }
 
                 if (bossDebuff != BossDebuff.None)

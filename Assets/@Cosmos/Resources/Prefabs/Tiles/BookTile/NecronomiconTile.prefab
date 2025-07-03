@@ -80,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
       propertyPath: m_LocalPosition.y
@@ -146,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -274,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -326,6 +326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8433488283157050153}
     m_Modifications:
+    - target: {fileID: 4413871126957400812, guid: eff93a65110a3754a935d437437ab34d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4413871126957400812, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2
@@ -574,7 +578,6 @@ MonoBehaviour:
   skillName: 
   cooldown: 5
   firstDamage: 0
-  projectilePrefab: {fileID: 603461643113537889, guid: 310dd52b216708a4a80938bc9054490d, type: 3}
 --- !u!4 &8433488283157050153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}

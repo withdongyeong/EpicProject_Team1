@@ -22,6 +22,15 @@ public class TextUIResizer : MonoBehaviour
     public void SetText(string text)
     {
         textMeshPro.text = text;
+        textMeshPro.fontSize = 8f;
+        textMeshPro.ForceMeshUpdate();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(textMeshPro.rectTransform);
+    }
+
+    public void SetTagText(string text)
+    {
+        textMeshPro.text = text;
+        textMeshPro.fontSize = 6.5f;
         textMeshPro.ForceMeshUpdate();
         LayoutRebuilder.ForceRebuildLayoutImmediate(textMeshPro.rectTransform);
     }
