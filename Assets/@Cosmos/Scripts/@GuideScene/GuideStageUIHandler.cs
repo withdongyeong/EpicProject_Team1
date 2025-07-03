@@ -91,7 +91,7 @@ public class GuideStageUIHandler : MonoBehaviour
     private void ReturnToTitle()
     {
         TimeScaleManager.Instance.ResetTimeScale();
-        SceneLoader.LoadTitle();
+        GameManager.Instance.LoadTitle();
         
         // 게임 격자 다시 상점 자리로 원위치
         GridManager.Instance.transform.position = new Vector3(0, 0, 0);

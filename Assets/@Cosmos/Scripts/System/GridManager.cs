@@ -147,6 +147,8 @@ public class GridManager : Singleton<GridManager>
     public Vector3Int GridSize => gridSize;
     private GameObject startPoint;
     private GridCell[,] grid;
+
+    private GameObject gridBlocks;
     
     // 스프라이트 관리
     private Sprite occupiedSprite; // 점유용 스프라이트
@@ -163,6 +165,9 @@ public class GridManager : Singleton<GridManager>
     private List<string> _placedTileList = new();
 
     public List<string> PlacedTileList => _placedTileList;
+    
+    private TilesOnGrid _tilesOnGrid;
+    public TilesOnGrid TilesOnGrid => _tilesOnGrid;
 
     /// <summary>
     /// 점유 스프라이트를 반환합니다.
@@ -184,6 +189,8 @@ public class GridManager : Singleton<GridManager>
     protected override void Awake()
     {
         base.Awake();
+        
+        _tilesOnGrid = GetComponentInChildren<TilesOnGrid>();
         EventBus.SubscribeSceneLoaded(GridPosChange);
         EventBus.SubscribeTilePlaced(AddPlacedTileList);
         EventBus.SubscribeTileSell(RemovePlacedTileList);
@@ -200,6 +207,13 @@ public class GridManager : Singleton<GridManager>
         InitGround();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            ResetGridCompletely();
+        }
+    }
 
     private void GridPosChange(Scene scene, LoadSceneMode mode)
     {
@@ -208,6 +222,7 @@ public class GridManager : Singleton<GridManager>
         else if(SceneLoader.IsInStage())
             transform.position = new Vector3(0, 0, 0);
     }
+    
     private void InitializeGrid()
     {
         startPoint = transform.GetChild(0).gameObject;
@@ -226,14 +241,14 @@ public class GridManager : Singleton<GridManager>
     
     private void InitGround()
     {
-        GameObject gridCells = new GameObject("GridBlocks");
-        gridCells.transform.SetParent(this.transform);
+        gridBlocks = new GameObject("GridBlocks");
+        gridBlocks.transform.SetParent(this.transform);
         for (int x = 0; x < gridSize.x; x++)
         {
             for (int y = 0; y < gridSize.y; y++)
             {
                 Vector3 worldPos = grid[x, y].WorldPosition;
-                GameObject go = Instantiate(cellPrefab, worldPos, Quaternion.identity, gridCells.transform);
+                GameObject go = Instantiate(cellPrefab, worldPos, Quaternion.identity, gridBlocks.transform);
                 grid[x, y].sr = go.GetComponent<SpriteRenderer>();
                 
                 // 기본 스프라이트 설정
@@ -474,16 +489,25 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
-    public void TestResetGrid()
+
+    /// <summary>
+    /// 그리드를 완전히 초기화합니다. 모든 타일 오브젝트를 제거하고, 그리드와 관련된 정보를 초기화합니다.
+    /// </summary>
+    public void ResetGridCompletely()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
-        for (int x = 0; x < gridSize.x; x++)
+        foreach (TileObject to in _tilesOnGrid.GetComponentsInChildren<TileObject>())
         {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                grid[x, y].IsOccupied = false;
-                grid[x, y].ChangeSpriteTest(); // 기본 스프라이트로 복원
-            }
+            Destroy(to.gameObject);
         }
+        Destroy(gridBlocks.gameObject);
+        grid = null;
+        
+        InitializeGrid();
+        InitGround();
+        // 4. 부가 정보 초기화
+        _placedTileList.Clear();
+        ClearAllUnmovableGridPositions();
+        
+        
     }
 }

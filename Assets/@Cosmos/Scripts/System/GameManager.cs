@@ -58,7 +58,14 @@ public class GameManager : Singleton<GameManager>
         Destroy(GlobalSetting.Instance.gameObject);
         Destroy(Instance.gameObject);
     }
-    
+
+
+    public void LoadTitle()
+    {
+        TimeScaleManager.Instance.ResetTimeScale();
+        GridManager.Instance.ResetGridCompletely();
+        SceneLoader.LoadTitle();
+    }
     public void SetTutorial()
     {
         if (SceneLoader.IsInGuide())
