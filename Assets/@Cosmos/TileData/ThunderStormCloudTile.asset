@@ -21,9 +21,9 @@ MonoBehaviour:
     \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758 \uCFE8\uD0C0\uC784\uC744 10%
     \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
   tileCategory: 5
-  tileSprite: {fileID: 21300000, guid: 87667181d1a3e4f4484e623e01c2e58d, type: 3}
+  tileSprite: {fileID: 21300000, guid: 226b9f13a0942e04994abb4e65be6d03, type: 3}
   tileGrade: 2
   tileCost: 8
   tileCoolTime: 6
   requiredTile: {fileID: 11400000, guid: a0586d3f9ad033c4da2838254f9012bc, type: 2}
-  rejectTile: {fileID: 0}
+  rejectTileList: []

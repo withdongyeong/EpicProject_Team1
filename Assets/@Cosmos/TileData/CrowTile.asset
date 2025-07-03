@@ -19,9 +19,9 @@ MonoBehaviour:
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
     \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
   tileCategory: 5
-  tileSprite: {fileID: 21300000, guid: b0c0d647c5536d249811c756cef9ba7c, type: 3}
+  tileSprite: {fileID: 21300000, guid: 542c034629f758041ba148d5b9a5f185, type: 3}
   tileGrade: 2
   tileCost: 5
   tileCoolTime: 0
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
