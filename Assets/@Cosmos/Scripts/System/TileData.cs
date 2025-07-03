@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Tile Data", menuName = "Game/TileData")]
 public class TileData : ScriptableObject
@@ -17,6 +18,6 @@ public class TileData : ScriptableObject
     public int tileCost = 1;
     public float tileCoolTime = 1;
     public TileData requiredTile;
-    public TileData rejectTile;
+    public List<TileData> rejectTileList;
     
 }
