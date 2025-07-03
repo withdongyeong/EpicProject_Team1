@@ -131,11 +131,13 @@ public class InfoTextRenderer : MonoBehaviour
 
     Dictionary<string, string> tagDescription = new Dictionary<string, string>
     {
-        { "Fire", "화염<sprite name=\"Fire\">: 1초마다 스택만큼 데미지를 주고 스택이 1 감소합니다." },
-        { "Ice", "동상<sprite name=\"Ice\">: 5번 중첩되면,적을 1초 기절시킵니다." },
+        { "Fire", "화염<sprite name=\"Fire\">: 1초마다 스택만큼 피해를 주고 스택이 1 감소합니다." },
+        { "Ice", "동상<sprite name=\"Ice\">: 10번 중첩되면,적을 1초 기절시킵니다." },
         { "Sword", "검<sprite name=\"Sword\">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다." },
         { "Totem", "토템<sprite name=\"Totem\">: 3개의 토템이 모일때마다 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다." },
-        { "Shield", "방어막<sprite name=\"Shield\">: 1회의 데미지를 막아줍니다." },
-        { "Barrier", "보호막<sprite name=\"Barrier\">: 일정량의 데미지를 막아줍니다. 매초 감소합니다." }
+        { "Shield", "방어막<sprite name=\"Shield\">: 1회의 피해를 막아줍니다." },
+        { "Barrier", "보호막<sprite name=\"Barrier\">: 일정량의 피해를 막아줍니다. 매초 감소합니다." },
+        {"Pain", "고통<sprite name=\"Pain\">: 받는 피해가 10% 증가합니다." },
+        {"Mark", "낙인<sprite name=\"Pain\">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다." }
     };
 }

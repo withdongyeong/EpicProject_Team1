@@ -13,7 +13,7 @@ public class GlobalSetting : Singleton<GlobalSetting>
     protected override void Awake()
     {
         base.Awake();
-        _instance = Resources.Load<GlobalSettingSO>("TestSetting");
+        _instance = Resources.Load<GlobalSettingSO>("TestSetting2");
     }
     public static Vector2 Summon_Offset => _instance.summon_Offset;
 
