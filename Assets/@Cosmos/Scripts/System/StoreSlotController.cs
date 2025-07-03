@@ -179,12 +179,16 @@ public class StoreSlotController : MonoBehaviour
         }
 
         //겹치면 안되는 타일이 있는지 검사합니다.
-        if(tileObject.GetTileData().RejectTile != null)
+        if(tileObject.GetTileData().RejectTileList.Count > 0)
         {
-            if(GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RejectTile.tileName))
+            foreach(TileData tileData in tileObject.GetTileData().RejectTileList)
             {
-                isAvailable = false;
-            }
+                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName))
+                {
+                    isAvailable = false;
+                }
+            }    
+            
         }
 
         //이미 상점에 뜬 타일인지 검사합니다.
