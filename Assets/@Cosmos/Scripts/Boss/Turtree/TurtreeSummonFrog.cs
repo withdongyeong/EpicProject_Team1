@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class TurtreeSummonFriends : IBossAttackPattern
+public class TurtreeSummonFrog : IBossAttackPattern
 {
     private GameObject _frogPrefab;
     private float _summonInterval;
@@ -13,7 +12,7 @@ public class TurtreeSummonFriends : IBossAttackPattern
     /// </summary>
     /// <param name="frogPrefab">소환할 개구리 프리팹</param>
     /// <param name="summonInterval">각 소환 사이 간격 (기본값: 0.3초)</param>
-    public TurtreeSummonFriends(GameObject frogPrefab, float summonInterval = 0.3f)
+    public TurtreeSummonFrog(GameObject frogPrefab, float summonInterval = 0.3f)
     {
         _frogPrefab = frogPrefab;
         _summonInterval = summonInterval;
@@ -37,7 +36,7 @@ public class TurtreeSummonFriends : IBossAttackPattern
     {
         int R = Random.Range(0, 2);
 
-        if (R == 0) boss.StartCoroutine(SummonFromTopToBottom(boss));
+        if(R == 0) boss.StartCoroutine(SummonFromTopToBottom(boss));
         else boss.StartCoroutine(SummonFromBottomToTop(boss));
 
         yield return null;
@@ -52,7 +51,7 @@ public class TurtreeSummonFriends : IBossAttackPattern
         for (int row = 0; row < 9; row++)
         {
             // 보스 위치 기준으로 상대적 위치 계산 (보스 앞부터 뒤까지)
-            Vector3 summonPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(row, -2, 0));
+            Vector3 summonPos = boss.transform.position + new Vector3(0, row - 4, 0); // -4~+4 범위
 
             // 개구리 소환
             GameObject frog = Object.Instantiate(_frogPrefab, summonPos, Quaternion.identity);
@@ -74,7 +73,7 @@ public class TurtreeSummonFriends : IBossAttackPattern
         for (int row = 8; row >= 0; row--)
         {
             // 보스 위치 기준으로 상대적 위치 계산 (보스 뒤부터 앞까지)
-            Vector3 summonPos = GridManager.Instance.GridToWorldPosition(new Vector3Int(row, -2, 0));
+            Vector3 summonPos = boss.transform.position + new Vector3(0, row - 4, 0); // +4~-4 범위
 
             // 개구리 소환
             GameObject frog = Object.Instantiate(_frogPrefab, summonPos, Quaternion.identity);

@@ -36,7 +36,7 @@ public class LightningKnightPattern3 : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(DamageArea, new Vector3Int(4, 4, 0), _lightningActtck,
                                       warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
-            yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
 
