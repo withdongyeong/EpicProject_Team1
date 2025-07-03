@@ -90,7 +90,7 @@ public class DragManager : Singleton<DragManager>
         Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().GetCoreCell().transform.position;
         corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
         currentDragObject.transform.position = corePos;
-        currentDragObject.transform.SetParent(GridManager.Instance.transform);
+        currentDragObject.transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
         foreach (var cell in currentDragObject.GetComponentsInChildren<Cell>())
         {
             

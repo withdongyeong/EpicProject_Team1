@@ -18,7 +18,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void GOTITLESCENE()
     {
-        SceneLoader.LoadTitle();
+        GameManager.Instance.LoadTitle();
     }
 
     
