@@ -32,7 +32,7 @@ public static class SceneLoader
 
     public static bool IsInBuilding()
     {
-        if (IsCurrentScene(BuildingScene) || IsCurrentScene(GuideBuildingScene)) // 테스트용) 설정 씬
+        if (IsCurrentScene(BuildingScene) || IsCurrentScene(GuideBuildingScene))
         {
             return true;
         }
@@ -41,7 +41,16 @@ public static class SceneLoader
 
     public static bool IsInStage()
     {
-        if(IsCurrentScene(StageScene) || IsCurrentScene(GuideStageScene)) // 테스트용) 스테이지 씬
+        if(IsCurrentScene(StageScene) || IsCurrentScene(GuideStageScene))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    public static bool IsInGuide()
+    {
+        if(IsCurrentScene(GuideBuildingScene) || IsCurrentScene(GuideStageScene)) // 가이드 중인가요 ?
         {
             return true;
         }

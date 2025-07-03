@@ -6,14 +6,13 @@ using System.Collections.Generic;
 public class LightningKnightDashPattern : IBossAttackPattern
 {
     private Vector3 _startTransform;
-    private int _dashCount;
-
+    private List<Vector3Int> _gridDashPoint;
     public string PatternName => "LightningKnightDashPattern";
 
-    public LightningKnightDashPattern(Vector3 startTransform,int dashCount)
+    public LightningKnightDashPattern(Vector3 startTransform, List<Vector3Int> GridDashPoint)
     {
         _startTransform = startTransform;
-        _dashCount = dashCount;
+        _gridDashPoint = GridDashPoint;
     }
     public bool CanExecute(BaseBoss boss)
     {
@@ -27,16 +26,8 @@ public class LightningKnightDashPattern : IBossAttackPattern
     {
         Vector3 originalPosition = _startTransform;
 
-        // 4개 경유지
-        Vector3 Start1 = GridManager.Instance.GridToWorldPosition(new Vector3Int(7, 7, 0));
-        Vector3 Start2 = GridManager.Instance.GridToWorldPosition(new Vector3Int(7, 1, 0));
-        Vector3 Start3 = GridManager.Instance.GridToWorldPosition(new Vector3Int(1, 1, 0));
-        Vector3 Start4 = GridManager.Instance.GridToWorldPosition(new Vector3Int(1, 7, 0));
-
-        List<Vector3> dashPoints = new List<Vector3>
-        {
-            Start1, Start2, Start3, Start4, Start1 ,originalPosition
-        };
+        List<Vector3> dashPoints = DashPointCreate(_gridDashPoint);
+        dashPoints.Add(originalPosition);
 
         boss.SetAnimationTrigger("DashTrigger");
 
@@ -44,11 +35,10 @@ public class LightningKnightDashPattern : IBossAttackPattern
         {
             // 방향 설정 (flipX)
             Vector3 direction = (target - boss.transform.position).normalized;
-            if(target == Start1 || target == Start2) boss.GetComponent<SpriteRenderer>().flipX = true;
-            else boss.GetComponent<SpriteRenderer>().flipX = false;
 
             // 공격 경고 생성
-            boss.StartCoroutine(DamageAreaCreate(boss, boss.transform.position, target));
+            if (_startTransform != target)
+                boss.StartCoroutine(DamageAreaCreate(boss, boss.transform.position, target));
 
             yield return new WaitForSeconds(0.65f);
 
@@ -63,6 +53,19 @@ public class LightningKnightDashPattern : IBossAttackPattern
         boss.SetAnimationTrigger("NoDashTrigger");
         boss.GetComponent<SpriteRenderer>().flipX = true;
     }
+
+    private List<Vector3> DashPointCreate(List<Vector3Int> GridDashPoint)
+    {
+        List<Vector3> DashPoint = new List<Vector3>();
+
+        foreach (var point in GridDashPoint)
+        {
+            DashPoint.Add(GridManager.Instance.GridToWorldPosition(point));
+        }
+
+        return DashPoint;
+    }
+
 
     private IEnumerator MoveOverTime(Transform target, Vector3 destination, float duration)
     {

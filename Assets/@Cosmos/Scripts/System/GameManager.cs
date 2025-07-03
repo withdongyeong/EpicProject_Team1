@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField]
+    private bool isInTutorial = false; // 튜토리얼 진행 중 ?
+    public bool IsInTutorial => isInTutorial;
     protected override void Awake()
     {
         base.Awake();
@@ -39,7 +42,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        SetTutorial();
     }
 
     private void ResetGame()
@@ -54,6 +57,25 @@ public class GameManager : Singleton<GameManager>
         Destroy(StageSelectManager.Instance.gameObject);
         Destroy(GlobalSetting.Instance.gameObject);
         Destroy(Instance.gameObject);
+    }
+
+
+    public void LoadTitle()
+    {
+        TimeScaleManager.Instance.ResetTimeScale();
+        GridManager.Instance.ResetGridCompletely();
+        SceneLoader.LoadTitle();
+    }
+    public void SetTutorial()
+    {
+        if (SceneLoader.IsInGuide())
+        {
+            isInTutorial = true;
+        }
+        else
+        {
+            isInTutorial = false;
+        }
     }
 
 }

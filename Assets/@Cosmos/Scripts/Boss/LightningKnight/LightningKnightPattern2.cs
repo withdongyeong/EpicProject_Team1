@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class LightningKnightPattern2 : IBossAttackPattern
 {
     private GameObject _lightningActtck;
+    private HashSet<Vector2Int> bannedArea = new HashSet<Vector2Int>();
 
     public string PatternName => "LightningKnightPattern2";
 
@@ -23,61 +24,78 @@ public class LightningKnightPattern2 : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
-        //랜덤으로 4번
-
-        //플레이어 기준 3*3
         for (int i = 0; i < 10; i++)
         {
-             boss.StartCoroutine(PlayerMovePattern(boss));
+             boss.StartCoroutine(BombPattern(boss));
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
         }
 
     }
 
-    public IEnumerator PlayerMovePattern(BaseBoss boss)
+    public IEnumerator BombPattern(BaseBoss boss)
     {
-        int X = Random.Range(1, 8);
-        int Y = Random.Range(1, 8);
+        Vector2Int selectedPos = Vector2Int.zero;
+        int attempts = 0;
+        int maxAttempts = 100;
+
+        // 랜덤 좌표 뽑기 시도
+        do
+        {
+            int X = Random.Range(1, 8);
+            int Y = Random.Range(1, 8);
+            selectedPos = new Vector2Int(X, Y);
+            attempts++;
+        }
+        while (IsInBannedArea(selectedPos) && attempts < maxAttempts);
+
+        if (attempts >= maxAttempts)
+            yield break; // 실패하면 종료 (혹은 무시)
+
+        // 새 위치에 대해 3x3 금지 영역 추가
+        AddBannedArea(selectedPos);
 
         boss.AttackAnimation();
 
         List<Vector3Int> AttackPoints = new List<Vector3Int>();
         int i = Random.Range(0, 4);
 
-        for(int x = -1;  x<= 1; x++)
+        for (int x = -1; x <= 1; x++)
         {
-            for(int y = -1; y <=1; y++)
+            for (int y = -1; y <= 1; y++)
             {
                 if (x == 0 && y == 0) continue;
 
-                if (i == 0)
-                {
-
-                    AttackPoints.Add(new Vector3Int(x - 1, y, 0));
-                }
-
-                if (i == 1)
-                {
-                    AttackPoints.Add(new Vector3Int(x + 1, y, 0));
-                }
-
-                if (i == 2)
-                {
-                    AttackPoints.Add(new Vector3Int(x, y - 1, 0));
-                }
-
-                if (i == 3) 
-                {
-                    AttackPoints.Add(new Vector3Int(x, y + 1, 0));
-                }
-
+                AttackPoints.Add(new Vector3Int(x, y, 0));
             }
         }
 
-        boss.BombHandler.ExecuteFixedBomb(AttackPoints,new Vector3Int(X,Y,0) ,_lightningActtck,
-                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+        boss.BombHandler.ExecuteFixedBomb(
+            AttackPoints,
+            new Vector3Int(selectedPos.x, selectedPos.y, 0),
+            _lightningActtck,
+            warningDuration: 0.8f,
+            explosionDuration: 0.7f,
+            damage: 20
+        );
 
         yield return new WaitForSeconds(1f);
+    }
+
+    private bool IsInBannedArea(Vector2Int pos)
+    {
+        return bannedArea.Contains(pos);
+    }
+
+    private void AddBannedArea(Vector2Int center)
+    {
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                Vector2Int banPos = new Vector2Int(center.x + dx, center.y + dy);
+                bannedArea.Add(banPos);
+            }
+        }
     }
 }

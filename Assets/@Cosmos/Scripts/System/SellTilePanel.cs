@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -34,6 +34,17 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
 
     public void SellTileObject(TileObject tileObject)
     {
+        //튜토리얼 중이면 ,,
+        if (GameManager.Instance.IsInTutorial)
+        {
+            SellQuest quest = GuideHandler.instance.CurrentQuest as SellQuest;
+            if (quest != null)
+            {
+                quest.count++;
+            }
+        }
+        //까지입니다 ..
+        _dm.TryStopRotate();
         GoldManager.Instance.ModifyCurrentGold((tileObject.GetTileData().TileCost + 1) / 2);
         EventBus.PublishTileSell(tileObject);
         DragManager.Instance.DestroyObject();
@@ -62,7 +73,9 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
         gameObject.SetActive(true);
         _rectTransform.anchoredPosition = Vector2.down * 300f;;
         
+        
         _sellText.text = "판매 골드 : " + ((tileCost + 1) / 2) + "G";
+        
         _rectTransform.DOAnchorPos(Vector2.zero,0.25f).SetEase(Ease.OutSine).OnComplete(() =>
         {
             _rectTransform.anchoredPosition = Vector2.zero;

@@ -9,7 +9,7 @@ public class TutorialBoss : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 100;
+        MaxHealth = 50;
     }
 
     /// <summary>
