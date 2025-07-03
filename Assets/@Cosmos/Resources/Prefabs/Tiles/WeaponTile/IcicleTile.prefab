@@ -310,11 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8491db9bce77579488ec6ab2a7f1ce2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  firstDamage: 5
-  damage: 5
-  projectilePrefab: {fileID: 603461643113537889, guid: 1a45ca9f8ef0b8a46a5bc37ca14b9e68, type: 3}
+  firstDamage: 7
 --- !u!4 &3588093651998432211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -454,11 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8491db9bce77579488ec6ab2a7f1ce2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  firstDamage: 5
-  damage: 5
-  projectilePrefab: {fileID: 603461643113537889, guid: 1a45ca9f8ef0b8a46a5bc37ca14b9e68, type: 3}
+  firstDamage: 7
 --- !u!1 &8550342521998375208 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474259868635149644, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -609,11 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8491db9bce77579488ec6ab2a7f1ce2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  firstDamage: 5
-  damage: 5
-  projectilePrefab: {fileID: 603461643113537889, guid: 1a45ca9f8ef0b8a46a5bc37ca14b9e68, type: 3}
+  firstDamage: 7
 --- !u!4 &8433488283157050153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}

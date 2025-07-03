@@ -33,12 +33,11 @@ public class ArchmageStaffSkill : ProjectileSkill
         // Axodia가 추가될 때마다 데미지와 쿨타임을 조정합니다.
         if (axodiaCount >= 2)
         {
-            damage = 10;
-            cooldown *= 0.8f; // 쿨타임 감소
+            damage -= 10;
         }
         else if (axodiaCount >= 1)
         {
-            damage += 5;
+            damage += 10;
         }
     }
 

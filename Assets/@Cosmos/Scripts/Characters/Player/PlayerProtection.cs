@@ -89,8 +89,8 @@ public class PlayerProtection : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
 
-            _protectionAmount-= 3;
-            EventBus.PublishProtectionConsume(3);
+            _protectionAmount-= 2;
+            EventBus.PublishProtectionConsume(2);
 
             if (_protectionAmount <= 0)
             {
