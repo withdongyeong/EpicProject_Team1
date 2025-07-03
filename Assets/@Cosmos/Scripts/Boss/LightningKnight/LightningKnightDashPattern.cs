@@ -7,12 +7,14 @@ public class LightningKnightDashPattern : IBossAttackPattern
 {
     private Vector3 _startTransform;
     private List<Vector3Int> _gridDashPoint;
+    private GameObject _AttackEffect;
     public string PatternName => "LightningKnightDashPattern";
 
-    public LightningKnightDashPattern(Vector3 startTransform, List<Vector3Int> GridDashPoint)
+    public LightningKnightDashPattern(Vector3 startTransform, List<Vector3Int> GridDashPoint, GameObject attackEffect)
     {
         _startTransform = startTransform;
         _gridDashPoint = GridDashPoint;
+        _AttackEffect = attackEffect;
     }
     public bool CanExecute(BaseBoss boss)
     {
@@ -39,6 +41,10 @@ public class LightningKnightDashPattern : IBossAttackPattern
             // 공격 경고 생성
             if (_startTransform != target)
                 boss.StartCoroutine(DamageAreaCreate(boss, boss.transform.position, target));
+
+            //웨이브 생성
+            if (target != originalPosition)
+                boss.StartCoroutine(WaveAreaCreate(boss, boss.transform.position, target));
 
             yield return new WaitForSeconds(0.65f);
 
@@ -171,4 +177,92 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
         yield return 0;
     }
+
+    IEnumerator WaveAreaCreate(BaseBoss boss, Vector3 StartPoint, Vector3 EndPoint)
+    {
+        Vector3Int gridStart = GridManager.Instance.WorldToGridPosition(StartPoint);
+        Vector3Int gridEnd = GridManager.Instance.WorldToGridPosition(EndPoint);
+
+        Vector3Int dir = gridEnd - gridStart;
+
+        // 수평 이동 (왼쪽 또는 오른쪽)
+        if (dir.x != 0 && dir.y == 0)
+        {
+            if (dir.x > 0) // 오른쪽
+            {
+                int y = gridEnd.y - 2;
+
+                for (int x = 0; x <= 8; x++)
+                {
+                    for (int dy = y; dy >= 3; dy--)
+                    {
+                        List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
+                        boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+
+                        yield return new WaitForSeconds(0.03f);
+                    }
+                }
+            }
+            else // 왼쪽
+            {
+                int y = gridEnd.y + 2;
+
+                for (int x = 8; x >= 0; x--)
+                {
+                    for (int dy = y; dy <= 5; dy++)
+                    {
+                        List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
+                        boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+
+                        yield return new WaitForSeconds(0.03f);
+                    }
+                }
+            }
+        }
+        // 수직 이동 (위 또는 아래)
+        else if (dir.y != 0 && dir.x == 0)
+        {
+            if (dir.y > 0) // 위로
+            {
+                int x = gridEnd.x + 2;
+
+                for (int y = 0; y <= 8; y++)
+                {
+                    for (int dx = x; dx <= 5; dx++)
+                    {
+                        List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(dx, y, 0) };
+                        boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+
+                        yield return new WaitForSeconds(0.03f);
+                    }
+                }
+            }
+            else // 아래로
+            {
+                int x = gridEnd.x - 2;
+
+                for (int y = 8; y >= 0; y--)
+                {
+                    for (int dx = x; dx >= 3; dx--)
+                    {
+                        List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(dx, y, 0) };
+                        boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+
+                        yield return new WaitForSeconds(0.03f);
+                    }
+                }
+            }
+        }
+
+        yield return null;
+    }
+
+    private IEnumerator ShowWarningAsync(BaseBoss boss, List<Vector3Int> pos, float duration, WarningType type)
+    {
+        boss.BombHandler.ExecuteFixedBomb(pos, new Vector3Int(0, 0, 0), _AttackEffect,
+                                      warningDuration: 0.8f, explosionDuration: duration, damage: 10, type);
+        yield return null;
+    }
 }
+
+
