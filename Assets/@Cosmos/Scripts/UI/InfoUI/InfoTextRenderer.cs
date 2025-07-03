@@ -138,6 +138,6 @@ public class InfoTextRenderer : MonoBehaviour
         { "Shield", "방어막<sprite name=\"Shield\">: 1회의 피해를 막아줍니다." },
         { "Barrier", "보호막<sprite name=\"Barrier\">: 일정량의 피해를 막아줍니다. 매초 감소합니다." },
         {"Pain", "고통<sprite name=\"Pain\">: 받는 피해가 10% 증가합니다." },
-        {"Mark", "낙인<sprite name=\"Pain\">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다." }
+        {"Mark", "낙인<sprite name=\"Mark\">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다." },
     };
 }
