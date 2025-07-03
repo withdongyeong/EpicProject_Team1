@@ -7,6 +7,12 @@ public class ArchmageStaffSkill : ProjectileSkill
     private bool isNearbyWatch = false;
     private int axodiaCount = 0;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/EnergyBall"); // Axodia 투사체 프리팹 로드
+    }
+
     public void AddAdjacentTile(string tile)
     {
         if (tile.Contains("Goddess") && !isNearbyGoddess)
@@ -27,12 +33,11 @@ public class ArchmageStaffSkill : ProjectileSkill
         // Axodia가 추가될 때마다 데미지와 쿨타임을 조정합니다.
         if (axodiaCount >= 2)
         {
-            damage = 10;
-            cooldown *= 0.8f; // 쿨타임 감소
+            damage -= 10;
         }
         else if (axodiaCount >= 1)
         {
-            damage += 5;
+            damage += 10;
         }
     }
 

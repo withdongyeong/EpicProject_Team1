@@ -5,6 +5,7 @@ public class FrostStaffSkill : ProjectileSkill
     protected override void Awake()
     {
         base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/FrostBall"); // FrostStaff 투사체 프리팹 로드
     }
     protected override void FireProjectile()
     {
@@ -18,5 +19,5 @@ public class FrostStaffSkill : ProjectileSkill
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
             projectile.BossDebuff = BossDebuff.Frostbite; // 동상 상태 이상 적용
         }
-    }
+    } 
 }

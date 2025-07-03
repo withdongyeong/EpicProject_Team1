@@ -265,8 +265,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a2e43ff4e955b4f946641dfedf18c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
-  firstDamage: 5
-  damage: 5
-  projectilePrefab: {fileID: 603461643113537889, guid: 3219bad5cf0593d458b8102c267f5093, type: 3}
+  firstDamage: 15
