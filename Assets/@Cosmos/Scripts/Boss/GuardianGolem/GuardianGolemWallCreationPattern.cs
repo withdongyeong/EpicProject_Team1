@@ -78,17 +78,8 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
         DeleteCount++;
     }
 
-    private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (SceneLoader.IsInBuilding())
-        {
-            WallClear();
-        }
-    }
-
     private void OnDestroy()
     {
-        EventBus.UnsubscribeSceneLoaded(HandleSceneLoaded);
         WallClear();
     }
 
@@ -99,5 +90,4 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
             GridManager.Instance.RemoveUnmovableGridPosition(wallPoint);
         }
     }
-
 }
