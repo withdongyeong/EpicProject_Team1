@@ -14,7 +14,6 @@ public class RainbowSkill : SkillBase
         if (isEnchanted) //강화되면 두번
         {
             boss.AddDebuff(BossDebuff.Burning);
-            boss.AddDebuff(BossDebuff.Frostbite);
             boss.AddDebuff(BossDebuff.Curse);
         }
 
