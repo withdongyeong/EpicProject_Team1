@@ -86,14 +86,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8587188808009880823}
+      addedObject: {fileID: 9147512982741497879}
   m_SourcePrefab: {fileID: 100100000, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
 --- !u!1 &728432003050873317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
   m_PrefabInstance: {fileID: 5113804672472986859}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8587188808009880823
+--- !u!114 &9147512982741497879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 728432003050873317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfff0d12c4704e14fa486c66f107ef48, type: 3}
+  m_Script: {fileID: 11500000, guid: e954d464d432bb847a6c28102c95c23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstDamage: 6
@@ -233,14 +233,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2284553833950484665}
+      addedObject: {fileID: 7074156493310759363}
   m_SourcePrefab: {fileID: 100100000, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
 --- !u!1 &2748290956785778094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
   m_PrefabInstance: {fileID: 8664842753980697619}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2284553833950484665
+--- !u!114 &7074156493310759363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2748290956785778094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfff0d12c4704e14fa486c66f107ef48, type: 3}
+  m_Script: {fileID: 11500000, guid: e954d464d432bb847a6c28102c95c23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstDamage: 6
