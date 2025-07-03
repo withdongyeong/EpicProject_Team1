@@ -630,7 +630,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 598235855709806833}
+      addedObject: {fileID: 1963437248616426467}
   m_SourcePrefab: {fileID: 100100000, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
 --- !u!4 &1792049778058759444 stripped
 Transform:
@@ -642,7 +642,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6781383666695238077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
   m_PrefabInstance: {fileID: 6940402922536575888}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &598235855709806833
+--- !u!114 &1963437248616426467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -651,11 +651,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4489265484614685229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ab5f5fd9d09254598e8ed4a6014a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: d041687195c55fb429d49202855b6021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  cooldown: 5
+  cooldown: 0
   _cloudLevel: 1
 --- !u!4 &7883326662870146218 stripped
 Transform:

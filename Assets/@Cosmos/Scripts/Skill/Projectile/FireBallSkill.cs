@@ -8,6 +8,7 @@ public class FireBallSkill : ProjectileSkill
     protected override void Awake()
     {
         base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/FireBall"); // 화염구 프리팹 로드
     }
 
     protected override void Activate()

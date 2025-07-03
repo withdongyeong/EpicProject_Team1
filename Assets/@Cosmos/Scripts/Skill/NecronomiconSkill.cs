@@ -7,6 +7,7 @@ public class NecronomiconSkill : ProjectileSkill
     protected override void Awake()
     {
         base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/EnergyBall"); // 네크로노미콘 투사체 프리팹 로드
     }
 
     protected override void Activate()

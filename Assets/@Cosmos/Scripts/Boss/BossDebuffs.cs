@@ -11,6 +11,7 @@ public enum BossDebuff
     Mark,
     Curse,
     Pain,
+    Freeze, // 동결 상태 이상
 }
 
 /// <summary>
@@ -70,6 +71,8 @@ public class BossDebuffs : MonoBehaviour
                     }
                 }
                 debuffs[(int)BossDebuff.Burning]++; // 화상 상태 이상 카운트 증가
+                PlayDebuffAnim(BossDebuff.Burning); // 화상 상태 이상 애니메이션 재생
+                SetBurningAnimLevel(); // 화상 애니메이션 레벨 설정
                 break;
             case BossDebuff.Frostbite:
                 if (boss.IsStopped) return; // 보스가 이미 멈춰있으면 동상 상태 이상 추가하지 않음
@@ -88,13 +91,17 @@ public class BossDebuffs : MonoBehaviour
             case BossDebuff.Mark:
                 if (debuffs[(int)BossDebuff.Mark] >= 1) return; // Mark 상태 이상은 최대 1개까지만 허용
                 debuffs[(int)BossDebuff.Mark]++; // Mark 상태 이상 카운트 증가
+                PlayDebuffAnim(BossDebuff.Mark); // Mark 상태 이상 애니메이션 재생
                 break;
             case BossDebuff.Curse:
                 if (debuffs[(int)BossDebuff.Curse] >= maxCurseCount) return; // Curse 상태 이상은 최대 maxCurseCount까지만 허용
                 debuffs[(int)BossDebuff.Curse]++; // Curse 상태 이상 카운트 증가
+                PlayDebuffAnim(BossDebuff.Curse); // Curse 상태 이상 애니메이션 재생
+                SetCurseAnimLevel();
                 break;
             case BossDebuff.Pain:
                 debuffs[(int)BossDebuff.Pain]++; // Pain 상태 이상 카운트 증가
+                PlayDebuffAnim(BossDebuff.Pain);
                 break;
             default:
                 break; // 다른 상태 이상은 처리하지 않음
@@ -113,6 +120,25 @@ public class BossDebuffs : MonoBehaviour
         {
             debuffs[(int)debuff]--; // 상태 이상 카운트 감소
             bossHPUI.UpdateDebuffUI(debuff, debuffs[(int)debuff]);
+            if (debuff == BossDebuff.Mark)
+            {
+                // Mark 상태 이상이 제거되면 애니메이션 중지
+                GameObject markEffect = GameObject.Find("MarkEffect");
+                if (markEffect != null)
+                {
+                    Destroy(markEffect); // Mark 이펙트 제거
+                }
+            }
+            else if (debuff == BossDebuff.Burning)
+            {
+                // 화상 상태 이상이 제거되면 애니메이션 레벨 초기화
+                SetBurningAnimLevel();
+            }
+            else if (debuff == BossDebuff.Curse)
+            {
+                // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
+                SetCurseAnimLevel();
+            }
         }
     }
 
@@ -126,6 +152,25 @@ public class BossDebuffs : MonoBehaviour
         {
             debuffs[(int)debuff] = 0; // 상태 이상 카운트 초기화
             bossHPUI.UpdateDebuffUI(debuff, 0);
+            if (debuff == BossDebuff.Mark)
+            {
+                // Mark 상태 이상이 제거되면 애니메이션 중지
+                GameObject markEffect = GameObject.Find("MarkEffect");
+                if (markEffect != null)
+                {
+                    Destroy(markEffect); // Mark 이펙트 제거
+                }
+                else if (debuff == BossDebuff.Burning)
+                {
+                    // 화상 상태 이상이 제거되면 애니메이션 레벨 초기화
+                    SetBurningAnimLevel();
+                }
+                else if (debuff == BossDebuff.Curse)
+                {
+                    // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
+                    SetCurseAnimLevel();
+                }
+            }
         }
     }
 
@@ -173,7 +218,7 @@ public class BossDebuffs : MonoBehaviour
     }
 
     /// <summary>
-    /// 동상 효과 적용시 이펙트 생성
+    /// 빙결 효과를 적용하고 이펙트 생성
     /// </summary>
     private void ApplyFreezingEffect()
     {
@@ -186,21 +231,10 @@ public class BossDebuffs : MonoBehaviour
         float originalAnimatorSpeed = boss.Animator.speed;
         boss.Animator.speed = 0f;
 
-        // 10초 후 애니메이터 재생 재개
+        // 2초 후 애니메이터 재생 재개
         freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
 
-        // FreezeEffect 프리팹 소환
-        GameObject freezeEffectPrefab = Resources.Load<GameObject>("Effect/FreezeEffect");
-        if (freezeEffectPrefab != null)
-        {
-            GameObject freezeEffect = Instantiate(freezeEffectPrefab, boss.transform.position, Quaternion.identity);
-            freezeEffect.name = "FreezeEffect"; // 이펙트 오브젝트에 이름 지정
-                                                // 옵션: 이펙트를 boss의 자식으로 만들어서 함께 움직이게 하려면
-                                                // freezeEffect.transform.SetParent(boss.transform);
-
-            // 10초 후 이펙트 제거 (StopAttack과 동일한 시간)
-            Destroy(freezeEffect, 2f);
-        }
+        PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
     }
 
     /// <summary>
@@ -295,6 +329,98 @@ public class BossDebuffs : MonoBehaviour
                     AddDebuff(BossDebuff.Curse); // 저주 상태 이상 추가
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// 지정된 상태 이상 애니메이션을 재생합니다.
+    /// </summary>
+    /// <param name="debuff">재생할 상태 이상 타입</param>
+    private void PlayDebuffAnim(BossDebuff debuff)
+    {
+        if (GameObject.Find($"{debuff}Effect") != null)
+        {
+            Debug.LogWarning($"{debuff}Effect already exists. Skipping animation.");
+            return; // 이미 이펙트가 존재하면 중복 생성 방지
+        }
+        // 상태 이상 타입에 따라 프리팹 경로 동적 생성
+        string prefabPath = $"Effect/{debuff}Effect";
+        GameObject effectPrefab = Resources.Load<GameObject>(prefabPath);
+        Debug.LogError($"Loading prefab from path: {prefabPath}"); // 디버그용 로그
+
+        if (effectPrefab != null)
+        {
+            GameObject effect = Instantiate(effectPrefab, boss.transform.position, Quaternion.identity);
+            effect.transform.SetParent(boss.transform);
+            effect.name = $"{debuff}Effect"; // 이펙트 오브젝트에 이름 지정
+        }
+    }
+
+    /// <summary>
+    /// 시간이 정해진 상태 이상 애니메이션을 재생합니다.
+    /// </summary>
+    /// <param name="debuff"></param>
+    /// <param name="time"></param>
+    private void PlayDebuffAnim(BossDebuff debuff, float time)
+    {
+        // 상태 이상 타입에 따라 프리팹 경로 동적 생성
+        string prefabPath = $"Effect/{debuff}Effect";
+        GameObject effectPrefab = Resources.Load<GameObject>(prefabPath);
+
+        if (effectPrefab != null)
+        {
+            GameObject effect = Instantiate(effectPrefab, boss.transform.position, Quaternion.identity);
+            effect.transform.SetParent(boss.transform);
+            effect.name = $"{debuff}Effect"; // 이펙트 오브젝트에 이름 지정
+            Destroy(effect, time); // 지정된 시간 후 이펙트 제거
+        }
+    }
+
+    /// <summary>
+    /// 화상 상태 이상 애니메이션 레벨을 설정합니다.
+    /// </summary>
+    private void SetBurningAnimLevel()
+    {
+        // 화상 상태 이상 애니메이션 레벨 설정
+        GameObject burningEffect = GameObject.Find("BurningEffect");
+        if (burningEffect == null)
+        {
+            Debug.LogWarning("BurningEffect not found. Cannot set Burning animation level.");
+            return;
+        }
+        Animator animator = burningEffect.GetComponent<Animator>();
+        if (animator != null)
+        {
+            int burningLevel = debuffs[(int)BossDebuff.Burning];
+            if (burningLevel <= 0)
+            {
+                Destroy(burningEffect); // 화상 상태 이상이 없으면 이펙트 제거
+            }
+            animator.SetInteger("BurningLevel", burningLevel);
+        }
+    }
+
+    /// <summary>
+    /// 저주 상태 이상 애니메이션 레벨을 설정합니다.
+    /// </summary>
+    private void SetCurseAnimLevel()
+    {
+        // 저주 상태 이상 애니메이션 레벨 설정
+        GameObject curseEffect = GameObject.Find("CurseEffect");
+        if (curseEffect == null)
+        {
+            Debug.LogWarning("CurseEffect not found. Cannot set Curse animation level.");
+            return;
+        }
+        Animator animator = curseEffect.GetComponent<Animator>();
+        if (animator != null)
+        {
+            int curseLevel = debuffs[(int)BossDebuff.Curse];
+            if (curseLevel <= 0)
+            {
+                Destroy(curseEffect); // 저주 상태 이상이 없으면 이펙트 제거
+            }
+            animator.SetInteger("CurseLevel", curseLevel);
         }
     }
 }

@@ -16,7 +16,7 @@ public class Cloud : MonoBehaviour
                 transform.parent.GetComponent<BossDebuffs>().IsCloudy = true;
                 break;
             case "RainCloud":
-                ActiveRainCloudSkill();
+                StartCoroutine(RainCloudCoroutine());
                 break;
             case "ThunderstormCloud":
                 break;
@@ -41,14 +41,6 @@ public class Cloud : MonoBehaviour
                 Debug.LogWarning($"Unknown cloud type: {name}. No skill activated.");
                 break;
         }
-    }
-
-    /// <summary>
-    /// 비 구름 스킬 활성화
-    /// </summary>
-    private void ActiveRainCloudSkill()
-    {
-        StartCoroutine(RainCloudCoroutine());
     }
 
     /// <summary>

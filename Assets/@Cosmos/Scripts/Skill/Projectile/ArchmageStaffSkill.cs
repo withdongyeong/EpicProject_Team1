@@ -7,6 +7,12 @@ public class ArchmageStaffSkill : ProjectileSkill
     private bool isNearbyWatch = false;
     private int axodiaCount = 0;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/EnergyBall"); // Axodia 투사체 프리팹 로드
+    }
+
     public void AddAdjacentTile(string tile)
     {
         if (tile.Contains("Goddess") && !isNearbyGoddess)

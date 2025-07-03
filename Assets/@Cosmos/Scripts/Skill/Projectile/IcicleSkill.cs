@@ -2,6 +2,12 @@
 
 public class IcicleSkill : ProjectileSkill
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/Icicle"); // Icicle 투사체 프리팹 로드
+    }
+
     protected override void FireProjectile()
     {
         if (projectilePrefab != null)
