@@ -7,7 +7,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private InfoPanel infoPanel;
     private TileObject tileObject; // TileObject 컴포넌트 참조
     private GameObject combinedStarCell; // 스타셀의 부모 오브젝트
-    private bool isInBuilding = false; // 초기화 여부
+    private bool isInBuilding = true; // 초기화 여부
 
     private void Awake()
     {
