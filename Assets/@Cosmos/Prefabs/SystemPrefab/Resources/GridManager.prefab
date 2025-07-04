@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f609dae879ca8754abda7c788f6c23b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellOccupiedSprites: []
 --- !u!1 &341294545531070246
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cb00028db710c42b5c1669127f0156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occupiedSprite: {fileID: -6532087710655975924, guid: 97a715e4ed302314289353ddc215d95c, type: 3}
+  redSprite: {fileID: -6991699311194490903, guid: d7817cac6dfe0b6489f13fa65e60046c, type: 3}
   unmovableGridPositions: []
 --- !u!1 &3327570488002374194
 GameObject:

@@ -113,29 +113,6 @@ public class GridCell
             sr.sprite = GridManager.Instance.GetDefaultSprite();
         }
     }
-
-    /// <summary>
-    /// 미리 보기용 스프라이트로 변경합니다
-    /// </summary>
-
-    public void ChangeSpritePreview(bool isPreview)
-    {
-        if (isPreview)
-        {
-            if (IsOccupied)
-            {
-                sr.color = Color.red;
-                return;
-            }
-            sr.color = Color.white;
-            sr.sprite = GridManager.Instance.GetOccupiedSprite();
-        }
-        else
-        {
-            sr.color = Color.white; // 미리 보기 해제 시 색상 복원
-            sr.sprite = GridManager.Instance.GetDefaultSprite();
-        }
-    }
 }
 
 public class GridManager : Singleton<GridManager>
@@ -153,8 +130,7 @@ public class GridManager : Singleton<GridManager>
     public GridSpriteController GridSpriteController => _gridSpriteController;
     
     // 스프라이트 관리
-    [SerializeField]
-    private Sprite occupiedSprite; // 점유용 스프라이트
+    [SerializeField] private Sprite redSprite;
     private Sprite defaultSprite; // 기본 스프라이트
 
     // 이동불가 그리드
@@ -172,13 +148,7 @@ public class GridManager : Singleton<GridManager>
     private TilesOnGrid _tilesOnGrid;
     public TilesOnGrid TilesOnGrid => _tilesOnGrid;
 
-    /// <summary>
-    /// 점유 스프라이트를 반환합니다.
-    /// </summary>
-    public Sprite GetOccupiedSprite()
-    {
-        return occupiedSprite;
-    }
+
     
     /// <summary>
     /// 기본 스프라이트를 반환합니다.
@@ -201,7 +171,7 @@ public class GridManager : Singleton<GridManager>
         Sprite[] cells = Resources.LoadAll<Sprite>("NewBoard/cellLine");
         //occupiedSprite = cells.FirstOrDefault(s => s.name == "cellLineOccupied"); // 점유 스프라이트 로드
         defaultSprite = cells.FirstOrDefault(s => s.name == "cellLine"); // 기본 스프라이트 로드
-        if(occupiedSprite == null){
+        if(redSprite == null){
             Debug.LogError("점유 스프라이트를 로드하지 못했습니다. 경로를 확인하세요.");
         }
         if(defaultSprite == null){
@@ -382,20 +352,29 @@ public class GridManager : Singleton<GridManager>
 
     public void SetCellSprite(Vector3Int gridPos, Sprite sprite)
     {
+        if (!IsWithinGrid(gridPos)) return;
+        
+        if (grid[gridPos.x, gridPos.y].IsOccupied)
+        {
+            return;
+        }
         grid[gridPos.x, gridPos.y].sr.sprite = sprite;
     }
-    public void ChangeCellSprite(Vector3Int gridPos, bool isPreview)
+    
+    public void SetCellSpritePreview(Vector3Int gridPos)
     {
-        if (IsWithinGrid(gridPos))
+        if (!IsWithinGrid(gridPos)) return;
+        
+        if (grid[gridPos.x, gridPos.y].IsOccupied)
         {
-            grid[gridPos.x, gridPos.y].ChangeSpritePreview(isPreview);
+            grid[gridPos.x, gridPos.y].sr.color = Color.red;
         }
         else
         {
-            //Debug.Log("범위 바깥ㅇ인데요 " + gridPos);
+            grid[gridPos.x, gridPos.y].sr.color = Color.white;
         }
     }
-
+    
     public void ChangeCellSpriteAll()
     {
         for( int x = 0; x < gridSize.x; x++)
@@ -451,35 +430,7 @@ public class GridManager : Singleton<GridManager>
         _placedTileList.Remove(tileObject.GetTileData().TileName);
     }    
 
-    private void OnDestroy()
-    {
-        EventBus.UnsubscribeSceneLoaded(GridPosChange);
-        EventBus.UnSubscribeTilePlaced(AddPlacedTileList);
-        EventBus.UnSubscribeTileSell(RemovePlacedTileList);
-    }
-
-
-    //---------------------------------------------------------------------------------------
-    // 테스트 메서드들
-    public void TestPrintInventoryItemDataGrid()
-    {
-        for (int x = 0; x < gridSize.x; x++)
-        {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                Vector3Int gridPos = new Vector3Int(x, y, 0);
-                if (GetCellData(gridPos) == null)
-                {
-                    Debug.Log("셀 데이터가 할당되지 않았습니다." + gridPos);
-                }
-                else
-                {
-                    Debug.Log(grid[x,y].cell.name);
-                }
-            }
-            Debug.Log("----------");
-        }
-    }
+ 
     
     /// <summary>
     /// 모든 이동 불가 위치를 한번에 제거합니다. (플레이어 사망 시 등)
@@ -517,5 +468,12 @@ public class GridManager : Singleton<GridManager>
         ClearAllUnmovableGridPositions();
         
         
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeSceneLoaded(GridPosChange);
+        EventBus.UnSubscribeTilePlaced(AddPlacedTileList);
+        EventBus.UnSubscribeTileSell(RemovePlacedTileList);
     }
 }
