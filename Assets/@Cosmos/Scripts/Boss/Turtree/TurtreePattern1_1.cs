@@ -51,8 +51,6 @@ public class TurtreePattern1_1 : IBossAttackPattern
 
             yield return new WaitForSeconds(0.03f);
 
-            BombPoints.Add(new Vector3Int(currentPos.x - 4, currentPos.y - 4, 0));
-
             Vector3Int nextPos = currentPos + directions[currentDir];
             bool added = false;
 
@@ -96,7 +94,7 @@ public class TurtreePattern1_1 : IBossAttackPattern
             if (BombPoints.Count > 0)
             {
                 boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
-                                      warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+                                      warningDuration: 0.8f, explosionDuration: 2, damage: 20);
             }
 
             if (!added || visited.Count >= gridSize * gridSize)

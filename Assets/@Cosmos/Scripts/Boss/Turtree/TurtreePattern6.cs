@@ -44,7 +44,7 @@ public class TurtreePattern6 : IBossAttackPattern
         }
 
         boss.BombHandler.ExecuteFixedBomb(bombPoint, new Vector3Int(4, 4, 0), _attackPrefab,
-                                             warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
+                                             warningDuration: 0.8f, explosionDuration: 2f, damage: 20, WarningType.Type1);
 
         yield return new WaitForSeconds(0.6f);
     }

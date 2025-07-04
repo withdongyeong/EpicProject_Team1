@@ -43,7 +43,7 @@ public class TurtreePattern4 : IBossAttackPattern
         for (int i = 0; i < 9; i++)
         {
             boss.BombHandler.ExecuteFixedBomb(points, BombCenter[i], _treeAttackPrefeb,
-                    warningDuration: 0.8f, explosionDuration: 0.2f, damage: 20);
+                    warningDuration: 0.8f, explosionDuration: 2f, damage: 20);
 
             if (i == 0 || i == 3)
             {
