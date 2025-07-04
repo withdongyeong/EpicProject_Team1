@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 
@@ -58,7 +59,6 @@ public class GridCell
         
         cell = cellData;
         //Debug.Log("좌표 " + GridPosition + "셀 데이터가 할당되었습니다: " + cell);
-        ChangeSpriteTest();
     }
 
     public void ReleaseCellData()
@@ -105,7 +105,7 @@ public class GridCell
         {
             sr.color = Color.white;
             // 점유되었을 때 점유 스프라이트로 변경
-            sr.sprite = GridManager.Instance.GetOccupiedSprite();
+            //sr.sprite = GridManager.Instance.GetOccupiedSprite();
         }
         else 
         {
@@ -150,7 +150,11 @@ public class GridManager : Singleton<GridManager>
 
     private GameObject gridBlocks;
     
+    private GridSpriteController _gridSpriteController;
+    public GridSpriteController GridSpriteController => _gridSpriteController;
+    
     // 스프라이트 관리
+    [SerializeField]
     private Sprite occupiedSprite; // 점유용 스프라이트
     private Sprite defaultSprite; // 기본 스프라이트
 
@@ -189,14 +193,15 @@ public class GridManager : Singleton<GridManager>
     protected override void Awake()
     {
         base.Awake();
-        
+        _gridSpriteController = GetComponentInChildren<GridSpriteController>();
         _tilesOnGrid = GetComponentInChildren<TilesOnGrid>();
         EventBus.SubscribeSceneLoaded(GridPosChange);
         EventBus.SubscribeTilePlaced(AddPlacedTileList);
         EventBus.SubscribeTileSell(RemovePlacedTileList);
         cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
-        occupiedSprite = Resources.Load<Sprite>("Arts/UI/OccupiedSprite"); // 점유 스프라이트 로드
-        defaultSprite = Resources.Load<Sprite>("Arts/UI/DefaultSprite"); // 기본 스프라이트 로드
+        Sprite[] cells = Resources.LoadAll<Sprite>("NewBoard/cellLine");
+        //occupiedSprite = cells.FirstOrDefault(s => s.name == "cellLineOccupied"); // 점유 스프라이트 로드
+        defaultSprite = cells.FirstOrDefault(s => s.name == "cellLine"); // 기본 스프라이트 로드
         if(occupiedSprite == null){
             Debug.LogError("점유 스프라이트를 로드하지 못했습니다. 경로를 확인하세요.");
         }
@@ -376,6 +381,10 @@ public class GridManager : Singleton<GridManager>
         }
     }
 
+    public void SetCellSprite(Vector3Int gridPos, Sprite sprite)
+    {
+        grid[gridPos.x, gridPos.y].sr.sprite = sprite;
+    }
     public void ChangeCellSprite(Vector3Int gridPos, bool isPreview)
     {
         if (IsWithinGrid(gridPos))

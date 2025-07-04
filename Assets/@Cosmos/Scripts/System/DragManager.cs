@@ -107,6 +107,20 @@ public class DragManager : Singleton<DragManager>
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
+        
+        //그냥 cell의 포지션을 GridSpriteController에 보냄
+        Cell[] allCells = currentDragObject.GetComponentsInChildren<Cell>();
+        List<Vector3Int> cellsPos = new List<Vector3Int>();
+
+        foreach (var cell in allCells)
+        {
+            if (cell.GetType() == typeof(Cell))
+                cellsPos.Add(GridManager.Instance.WorldToGridPosition(cell.transform.position));
+        }
+        GridManager.Instance.GridSpriteController.SetSprite(cellsPos.ToArray());
+        //까지
+        
+        
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
         //배치된 타일이 인접효과를 계산하게 합니다
         tileObject.UpdateStarList();
