@@ -225,16 +225,22 @@ public class BossDebuffs : MonoBehaviour
         // 기존 디버프 처리
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
-        boss.StopAttack(2f);
+        if (!boss.Unstoppable)
+        {
+            if (!boss.IsHandBoss)
+            {
+                boss.StopAttack(2f); // 2초 동안 공격 중지
+            }
 
-        // 애니메이터 일시중지 (원래 속도 저장)
-        float originalAnimatorSpeed = boss.Animator.speed;
-        boss.Animator.speed = 0f;
+            // 애니메이터 일시중지 (원래 속도 저장)
+            float originalAnimatorSpeed = boss.Animator.speed;
+            boss.Animator.speed = 0f;
 
-        // 2초 후 애니메이터 재생 재개
-        freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
+            // 2초 후 애니메이터 재생 재개
+            freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
 
-        PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
+            PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
+        }
     }
 
     /// <summary>
