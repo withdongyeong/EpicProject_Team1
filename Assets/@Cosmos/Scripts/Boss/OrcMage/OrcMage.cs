@@ -18,7 +18,7 @@ public class OrcMage : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 1100;
+        MaxHealth = 2000;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
