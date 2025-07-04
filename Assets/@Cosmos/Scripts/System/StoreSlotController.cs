@@ -144,10 +144,14 @@ public class StoreSlotController : MonoBehaviour
 
         foreach (GameObject tilePrefab in allTilePrefabs)
         {
-            TileGrade grade = tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade;
+            TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
+            TileGrade grade = tileInfo.TileGrade;
             if (grade == TileGrade.Normal)
             {
-                _normalStoreTiles.Add(tilePrefab);
+                if(tileInfo.TileName != "초심자의 지팡이")
+                {
+                    _normalStoreTiles.Add(tilePrefab);
+                }      
             }
             else if (grade == TileGrade.Rare)
             {

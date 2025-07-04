@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class BomberBigBombPattern : IBossAttackPattern
 {
@@ -73,7 +74,14 @@ public class BomberBigBombPattern : IBossAttackPattern
         }
         boss.BombHandler.ExecuteFixedBomb(result, new Vector3Int(4, 4, 0), _bombActtck,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+        boss.StartCoroutine(BoomSound());
 
         yield return new WaitForSeconds(0.1f);
+    }
+
+    public IEnumerator BoomSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.BomberSoundClip("BomberAttackActivate");
     }
 }
