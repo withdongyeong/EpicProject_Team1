@@ -4,7 +4,7 @@ public class ProjectileSkill : SkillBase
 {
     [SerializeField] protected int firstDamage;
     protected int damage = 10;
-    [SerializeField] protected GameObject projectilePrefab;
+    protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
 
     public int Damage { get => damage; set => damage = value; }

@@ -17,11 +17,12 @@ MonoBehaviour:
     \uC0C1\uC810\uC5D0 \uB4F1\uC7A5\uD569\uB2C8\uB2E4.\n\uC804\uD22C\uC2DC, \uD1A0\uD15C\uC774
     \uC313\uC774\uB294 \uC704\uCE58\uC785\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uC758
-    \uCFE8\uD0C0\uC784\uC744 20% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+    \uCFE8\uD0C0\uC784\uC744 10% \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
   tileCategory: 5
-  tileSprite: {fileID: 21300000, guid: e84229d3050c7e949ae1af4d4d3e5ce0, type: 3}
+  tileSprite: {fileID: 21300000, guid: a64316a1b01cb1647b918253ebc92704, type: 3}
   tileGrade: 1
-  tileCost: 4
+  tileCost: 3
   tileCoolTime: 0
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 11400000}
+  rejectTileList:
+  - {fileID: 11400000}

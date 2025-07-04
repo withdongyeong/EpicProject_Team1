@@ -261,14 +261,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5615201934507037734}
+      addedObject: {fileID: 3995966220749852009}
   m_SourcePrefab: {fileID: 100100000, guid: eff93a65110a3754a935d437437ab34d, type: 3}
 --- !u!1 &80338088238085057 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5619330219801211383, guid: eff93a65110a3754a935d437437ab34d, type: 3}
   m_PrefabInstance: {fileID: 5541314437593629238}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5615201934507037734
+--- !u!114 &3995966220749852009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 80338088238085057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092837a7446f1e94491f45926ac7e57a, type: 3}
+  m_Script: {fileID: 11500000, guid: e26b5ab42b6db4d45b53ffa4b334a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tileCategory: 5
@@ -383,7 +383,7 @@ PrefabInstance:
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b0c0d647c5536d249811c756cef9ba7c, type: 3}
+      objectReference: {fileID: 21300000, guid: 542c034629f758041ba148d5b9a5f185, type: 3}
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -406,7 +406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_MaskInteraction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -471,8 +471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7766aab35aa26745bd42d0077e06a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
 --- !u!4 &7883326662870146218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2219378295472462248}
   - component: {fileID: 4247251401535051797}
   - component: {fileID: -6323340495086877731}
-  - component: {fileID: -4604555911805887530}
   - component: {fileID: -5268947345392258865}
+  - component: {fileID: 3542159000016346076}
   m_Layer: 0
   m_Name: Turtree
   m_TagString: Untagged
@@ -177,28 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff99289d900b6147a370fb57199ab42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &-4604555911805887530
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5495918271223003766}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8682ec4f1760f974598792fb6ab47fd4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-5268947345392258865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +190,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  Mushroom: {fileID: 7186528436087033463, guid: 58cb754958ae5534e912022df1d315d2, type: 3}
-  Frog: {fileID: 7186528436087033463, guid: 5773a34b19c449349bf6785d1f543241, type: 3}
   AttackPrefeb: {fileID: 9114323422099295405, guid: 6c9eb84b9744e2c40a4661b75378aed2, type: 3}
+--- !u!95 &3542159000016346076
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495918271223003766}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43b4796d060ec4e4494c787afd906a1c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

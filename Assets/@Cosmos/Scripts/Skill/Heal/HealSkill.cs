@@ -4,12 +4,18 @@ public class HealSkill : SkillBase
 {
     [SerializeField] protected int _healAmount = 25;
     [SerializeField] protected int _enchantedHealAmount = 25;
-    [SerializeField] protected GameObject _healEffectPrefab;
+    protected GameObject _healEffectPrefab;
     private bool isEnchanted = false; // 스킬이 강화되었는지 여부를 나타내는 변수
 
     private PlayerHp _playerHp;
 
     public int HealAmount { get => _healAmount; set => _healAmount = value; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _healEffectPrefab = Resources.Load<GameObject>("Effect/HealEffect"); // 이펙트 프리팹 로드
+    }
 
     /// <summary>
     /// 타일 발동 - 플레이어 체력 회복

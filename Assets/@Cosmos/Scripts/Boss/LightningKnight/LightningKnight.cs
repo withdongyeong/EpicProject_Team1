@@ -27,36 +27,36 @@ public class LightningKnight : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-          .AddPattern(new LightningKnightDashPattern(startPosition, PatternA), 1f)
+          .AddPattern(new LightningKnightDashPattern(startPosition, PatternA, LightningActtck), 1f)
           .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(2, 0, 0)), 0f)
           .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
           .AddPattern(new LightningKnightPattern2(LightningActtck), 0f)
           .SetGroupInterval(1.0f);
 
         AddGroup()
-           .AddPattern(new LightningKnightDash2Pattern(startPosition, PatternB), 1f)
+           .AddPattern(new LightningKnightDash2Pattern(startPosition, PatternB, LightningActtck), 1f)
            .AddPattern(new LightningKnightPattern2(LightningActtck), 1f)
            .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(7, 0, 0)), 0f)
            .AddPattern(new LightningKnightPattern1(LightningActtck), 0f)
            .SetGroupInterval(1.0f);
 
-        AddGroup()
-            .AddPattern(new LightningKnightDashPattern(startPosition, PatternC), 1f)
-            .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
-            .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(4, 0, 0)), 1f)
-            .AddPattern(new LightningKnightPattern2(LightningActtck), 0f)
-            .SetGroupInterval(1.0f);
+        //AddGroup()
+        //    .AddPattern(new LightningKnightDashPattern(startPosition, PatternC), 1f)
+        //    .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
+        //    .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(4, 0, 0)), 1f)
+        //    .AddPattern(new LightningKnightPattern2(LightningActtck), 0f)
+        //    .SetGroupInterval(1.0f);
     }
 
-    ///// <summary>
-    ///// 보스 전용 전투 데미지 피드백
-    ///// </summary>
-    //protected override void DamageFeedback()
-    //{
-    //    SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
+    /// <summary>
+    /// 보스 전용 전투 데미지 피드백
+    /// </summary>
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
 
-    //    base.DamageFeedback();
-    //}
+        base.DamageFeedback();
+    }
 
     ///// <summary>
     ///// 보스 전용 사망 처리 (오버라이드 가능)

@@ -11,11 +11,14 @@ public class StoreSlotController : MonoBehaviour
 
     private int _safeInt = 0;
 
+    private GameObject _safePrefab;
+
     //이 밑은 희귀도에 따라서 분류된 리스트입니다
     private List<GameObject> _normalStoreTiles = new();
     private List<GameObject> _rareStoreTiles = new();
     private List<GameObject> _epicStoreTiles = new();
     private List<GameObject> _legendaryStoreTiles = new();
+    private List<GameObject> _mythicStoreTiles = new();
     //가이드용
     public List<GameObject> guideList = new List<GameObject>();
     public bool isGuide = false;
@@ -50,22 +53,28 @@ public class StoreSlotController : MonoBehaviour
         {
             float roll = Random.value * 100f;
             TileGrade chosenGrade;
+            //현재 확률
+            ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum];
             //TODO: 이거 줄 줄이기
-            if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance)
+            if (roll < chanceList.shop_NormalChance)
             {
                 chosenGrade = TileGrade.Normal;
             }
-            else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance)
+            else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance)
             {
                 chosenGrade = TileGrade.Rare;
             }
-            else if (roll < GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_NormalChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_RareChance + GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum].shop_EpicChance)
+            else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance)
             {
                 chosenGrade = TileGrade.Epic;
             }
-            else
+            else if(roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance + chanceList.shop_LegendaryChance)
             {
                 chosenGrade = TileGrade.Legendary;
+            }
+            else
+            {
+                chosenGrade = TileGrade.Mythic;
             }
 
             List<GameObject> chosenList = _normalStoreTiles;
@@ -82,6 +91,9 @@ public class StoreSlotController : MonoBehaviour
                     break;
                 case TileGrade.Legendary:
                     chosenList = _legendaryStoreTiles;
+                    break;
+                case TileGrade.Mythic:
+                    chosenList = _mythicStoreTiles;
                     break;
 
             }
@@ -128,24 +140,30 @@ public class StoreSlotController : MonoBehaviour
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
+        _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
 
         foreach (GameObject tilePrefab in allTilePrefabs)
         {
-            if(tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade == TileGrade.Normal)
+            TileGrade grade = tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade;
+            if (grade == TileGrade.Normal)
             {
                 _normalStoreTiles.Add(tilePrefab);
             }
-            else if (tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade == TileGrade.Rare)
+            else if (grade == TileGrade.Rare)
             {
                 _rareStoreTiles.Add(tilePrefab);
             }
-            else if (tilePrefab.GetComponent<TileObject>().GetTileData().TileGrade == TileGrade.Epic)
+            else if (grade == TileGrade.Epic)
             {
                 _epicStoreTiles.Add(tilePrefab);
             }
-            else
+            else if (grade == TileGrade.Legendary)
             {
                 _legendaryStoreTiles.Add(tilePrefab);
+            }
+            else
+            {
+                _mythicStoreTiles.Add(tilePrefab);
             }
 
         }
@@ -179,12 +197,16 @@ public class StoreSlotController : MonoBehaviour
         }
 
         //겹치면 안되는 타일이 있는지 검사합니다.
-        if(tileObject.GetTileData().RejectTile != null)
+        if(tileObject.GetTileData().RejectTileList.Count > 0)
         {
-            if(GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RejectTile.tileName))
+            foreach(TileData tileData in tileObject.GetTileData().RejectTileList)
             {
-                isAvailable = false;
-            }
+                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName))
+                {
+                    isAvailable = false;
+                }
+            }    
+            
         }
 
         //이미 상점에 뜬 타일인지 검사합니다.
@@ -213,7 +235,7 @@ public class StoreSlotController : MonoBehaviour
             if (newList.Count == 0)
             {
                 Debug.LogWarning("희귀도에 알맞는, 상점에 등장할 수 있는 타일이 없어용");
-                return null;
+                return _safePrefab;
             }
             int randomIndex = Random.Range(0, newList.Count);
             GameObject chosenTile = newList[randomIndex];

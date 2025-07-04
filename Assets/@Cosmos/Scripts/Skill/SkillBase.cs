@@ -8,9 +8,8 @@ public abstract class SkillBase : MonoBehaviour
 {
 
     //private SkillUseManager sm;
-    [Header("Skill Info")] 
-    public string skillName;
-    public float cooldown = 5f;
+    [Header("Skill Info")]
+    protected float cooldown = 5f;
 
     [Header("Animation Settings")]
     private float pulseScale = 1.3f; // 펄스 시 확대 배율

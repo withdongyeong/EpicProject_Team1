@@ -35,8 +35,16 @@ public class TurtreePattern1 : IBossAttackPattern
 
     private HashSet<Vector3Int> visited = new HashSet<Vector3Int>();
 
+    /// <summary>
+    /// 탐색 공격
+    /// </summary>
+    /// <param name="boss"></param>
+    /// <param name="startPos"></param>
+    /// <returns></returns>
     private IEnumerator BFSExplore(BaseBoss boss, Vector3Int startPos)
     {
+        boss.AttackAnimation();
+
         visited = new HashSet<Vector3Int>();
         Queue<(Vector3Int pos, int dir)> queue = new Queue<(Vector3Int, int)>();
 

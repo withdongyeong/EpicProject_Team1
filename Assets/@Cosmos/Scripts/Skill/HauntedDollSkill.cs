@@ -6,13 +6,14 @@ public class HauntedDollSkill : SkillBase
     private bool isEnchanted = false; // 스킬이 강화되었는지 여부를 나타내는 변수
 
     // 힐 관련 변수
-    [SerializeField] private GameObject _healEffectPrefab;
+    private GameObject _healEffectPrefab;
     private PlayerHp _playerHp;
 
     protected override void Awake()
     {
         base.Awake();
         EventBus.SubscribeGameStart(OnGameStart);
+        _healEffectPrefab = Resources.Load<GameObject>("Effect/HealEffect"); // 회복 이펙트 프리팹 로드
     }
 
     private void OnGameStart()

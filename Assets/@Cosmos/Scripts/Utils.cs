@@ -27,7 +27,7 @@ public enum TileGrade
     Rare,     // 희귀 타일
     Epic,     // 에픽 타일
     Legendary, // 전설 타일
-    Myth //신화 타일
+    Mythic //신화 타일
 }
 
 public enum TileCategory
@@ -79,7 +79,7 @@ public class TileInfo
     private string tileData;
     private TileCategory tileCategory;
     private TileData requiredTile;
-    private TileData rejectTile;
+    private List<TileData> rejectTileList;
 
     public string TileName => tileName;
     public string Description => description;
@@ -89,7 +89,7 @@ public class TileInfo
     public float TileCoolTime => tileCoolTime;
     public TileCategory TileCategory => tileCategory;
     public TileData RequiredTile => requiredTile;
-    public TileData RejectTile => rejectTile;
+    public List<TileData> RejectTileList => rejectTileList;
 
     public TileInfo(TileData data)
     {
@@ -101,7 +101,7 @@ public class TileInfo
         tileCoolTime = data.tileCoolTime;
         tileCategory = data.tileCategory;
         requiredTile = data.requiredTile;
-        rejectTile = data.rejectTile;
+        rejectTileList = data.rejectTileList;
     }
 }
 

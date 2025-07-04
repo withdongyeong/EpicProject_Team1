@@ -49,9 +49,6 @@ public class LightningKnightPattern2 : IBossAttackPattern
         }
         while (IsInBannedArea(selectedPos) && attempts < maxAttempts);
 
-        if (attempts >= maxAttempts)
-            yield break; // 실패하면 종료 (혹은 무시)
-
         // 새 위치에 대해 3x3 금지 영역 추가
         AddBannedArea(selectedPos);
 

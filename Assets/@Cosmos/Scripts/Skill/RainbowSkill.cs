@@ -10,10 +10,11 @@ public class RainbowSkill : SkillBase
         BaseBoss boss = FindAnyObjectByType<BaseBoss>();
         boss.AddDebuff(BossDebuff.Burning);
         boss.AddDebuff(BossDebuff.Frostbite);
-        if(isEnchanted) //강화되면 두번
+        boss.AddDebuff(BossDebuff.Curse);
+        if (isEnchanted) //강화되면 두번
         {
             boss.AddDebuff(BossDebuff.Burning);
-            boss.AddDebuff(BossDebuff.Frostbite);
+            boss.AddDebuff(BossDebuff.Curse);
         }
 
     }

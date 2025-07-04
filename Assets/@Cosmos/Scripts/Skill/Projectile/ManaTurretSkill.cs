@@ -3,6 +3,12 @@ using System.Collections;
 
 public class ManaTurretSkill : ProjectileSkill
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/ManaTurret"); // ManaTurret 투사체 프리팹 로드
+    }
+
     protected override void FireProjectile()
     {
         StartCoroutine(WaitAndFire());

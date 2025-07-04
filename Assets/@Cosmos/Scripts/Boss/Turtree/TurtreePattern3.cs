@@ -30,6 +30,8 @@ public class TurtreePattern3 : IBossAttackPattern
 
         for (int step = 0; step < totalRotationSteps; step++)
         {
+            boss.AttackAnimation();
+
             List<Vector3Int> spokesPattern = new List<Vector3Int>();
             spokesPattern.Add(new Vector3Int(0, 0, 0)); // 중심 포함
 
@@ -58,7 +60,7 @@ public class TurtreePattern3 : IBossAttackPattern
                 spokesPattern,
                 centerPos,
                 _treeAttackPrefeb,
-                warningDuration: 0.5f,
+                warningDuration: 0.8f,
                 explosionDuration: 0.5f,
                 damage: 20,
                 warningType: WarningType.Type1
