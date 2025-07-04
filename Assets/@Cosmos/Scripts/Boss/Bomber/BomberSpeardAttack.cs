@@ -80,9 +80,17 @@ public class BomberSpeardAttack : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(result, centerPos, _bombActtck,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
+            boss.StartCoroutine(BombSound());
+
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return null;
+    }
+
+    public IEnumerator BombSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.BomberSoundClip("BomberAttackActivate");
     }
 }

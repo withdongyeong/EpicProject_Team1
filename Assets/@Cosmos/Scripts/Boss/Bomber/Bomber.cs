@@ -63,11 +63,13 @@ public class Bomber : BaseBoss
 
     protected override void DamageFeedback()
     {
+        SoundManager.Instance.BomberSoundClip("BomberDamageActivate");
         base.DamageFeedback();
     }
 
     protected override void Die()
     {
+        SoundManager.Instance.BomberSoundClip("BomberDeadActivate");
         SetAnimationTrigger("DeadTrigger");
         // 기본 사망 처리 호출
         base.Die();
