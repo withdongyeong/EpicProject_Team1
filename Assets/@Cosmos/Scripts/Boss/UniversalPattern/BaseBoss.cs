@@ -17,6 +17,8 @@ public abstract class BaseBoss : MonoBehaviour
     [Header("상태 이상 클래스")]
     private BossDebuffs _bossDebuff;
     private bool _isStopped = false; // 공격 중지 여부
+    private bool _unstoppable = false; // 공격 중지 가능 여부
+    private bool _isHandBoss = false; // 손 보스 여부 (손 보스는 공격 중지 불가능)
 
     // 컴포넌트 참조
     private GridManager _gridSystem;
@@ -48,6 +50,16 @@ public abstract class BaseBoss : MonoBehaviour
     /// 공격 중지 여부 프로퍼티
     /// </summary>
     public bool IsStopped { get => _isStopped; set => _isStopped = value; }
+
+    /// <summary>
+    /// 공격 중지 가능 여부 프로퍼티
+    /// </summary>
+    public bool Unstoppable { get => _unstoppable; set => _unstoppable = value; }
+
+    /// <summary>
+    /// 손 보스 여부 프로퍼티
+    /// </summary>
+    public bool IsHandBoss { get => _isHandBoss; set => _isHandBoss = value; } // 손 보스 여부 프로퍼티
 
     /// <summary>
     /// 그리드 시스템 프로퍼티
