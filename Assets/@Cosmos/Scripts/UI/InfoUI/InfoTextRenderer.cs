@@ -27,7 +27,9 @@ public class InfoTextRenderer : MonoBehaviour
         { "Fire", "#화염<sprite name=\"Fire\">" },
         { "Ice", "#얼음<sprite name=\"Ice\">" },
         { "Shield", "#방어막<sprite name=\"Shield\">" },
-        { "Barrier", "#보호막<sprite name=\"Barrier\">" }
+        { "Barrier", "#보호막<sprite name=\"Barrier\">" },
+        {"Curse", "#저주<sprite name=\"Curse\">" },
+        {"Cloud","#구름<sprite name=\"Cloud\">" }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -97,7 +99,7 @@ public class InfoTextRenderer : MonoBehaviour
         foreach (Match match in matches)
         {
             string name = match.Groups[1].Value;
-            if(!result.Contains(name))
+            if(!result.Contains(name)) 
             {
                 result.Add(name);
             }
@@ -139,5 +141,6 @@ public class InfoTextRenderer : MonoBehaviour
         { "Barrier", "보호막<sprite name=\"Barrier\">: 일정량의 피해를 막아줍니다. 매초 감소합니다." },
         {"Pain", "고통<sprite name=\"Pain\">: 받는 피해가 10% 증가합니다." },
         {"Mark", "낙인<sprite name=\"Mark\">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다." },
+        {"Curse", "저주<sprite name=\"Curse\">: 저주 아이템들이 사용하는 자원입니다. 기본적인 한도는 30입니다." },
     };
 }

@@ -14,7 +14,7 @@ public class Reaper : BaseBoss
         IsPase2 = false; 
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 1000;
+        MaxHealth = 2500;
     }
 
     private void Update()
