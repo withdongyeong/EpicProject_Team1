@@ -16,7 +16,7 @@ public class LightningKnight : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 700;
+        MaxHealth = 2800;
 
         startPosition = this.transform.position;
     }

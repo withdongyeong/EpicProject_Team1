@@ -36,7 +36,6 @@ public class Kabuto : MonoBehaviour
         _protection = FindAnyObjectByType<PlayerProtection>();
         _projectile = Resources.Load<GameObject>("Prefabs/Projectiles/Kabuto");
         _summoner = summoner;
-        _protection.SetProtection(true, 15);
     }
 
     private void OnProtectionConsume(int protection)
@@ -51,14 +50,12 @@ public class Kabuto : MonoBehaviour
     private void CastOff()
     {
         _isCastOff = true;
-        transform.localScale = Vector3.one * 2;
     }
 
     private void PutOn()
     {
         _currentConsume = 0;
         _isCastOff = false;
-        transform.localScale = Vector3.one;
     }
 
     public void TryCharge()

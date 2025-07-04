@@ -9,7 +9,7 @@ public class Turtree : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 800;
+        MaxHealth = 1700;
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Cosmos.Scripts.Boss.OrcMage;
 using UnityEngine;
@@ -46,7 +46,7 @@ public class BigHand : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 2000;
+        MaxHealth = 3500;
         Debug.Log($"BigHand.Awake: MaxHealth set to {MaxHealth}");
     }
 

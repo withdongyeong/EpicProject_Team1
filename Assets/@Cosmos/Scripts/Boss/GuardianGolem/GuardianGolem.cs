@@ -11,7 +11,7 @@ public class GuardianGolem : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 800;
+        MaxHealth = 1300;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
