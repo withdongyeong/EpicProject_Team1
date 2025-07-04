@@ -81,7 +81,7 @@ public class SoundManager : Singleton<SoundManager>
     //슬라임 볼륨 딕셔너리
     private Dictionary<string, float> BomberSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"BomberAttackActivate", 0.1f},
+        {"BomberAttackActivate", 0.05f},
         {"BomberDamageActivate", 0.3f },
         {"BomberDeadActivate", 0.7f },
     };

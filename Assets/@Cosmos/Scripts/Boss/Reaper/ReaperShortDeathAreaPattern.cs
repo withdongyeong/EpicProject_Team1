@@ -67,14 +67,8 @@ public class ReaperShortDeathAreaPattern : IBossAttackPattern
                 webPositions.Add(randomPosition + new Vector3Int(0, 1, 0));
             }
 
-            foreach (var RandomPosition in webPositions)
-            {
-                if (RandomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
-                {
-                    boss.BombHandler.ExecuteFixedBomb(webPositions, new Vector3Int(0, 0, 0), _shortDeathAria,
+           boss.BombHandler.ExecuteFixedBomb(webPositions, new Vector3Int(0, 0, 0), _shortDeathAria,
                                                   warningDuration: 0.5f, explosionDuration: _deathAriaTime, damage: 0, warningType: WarningType.Type3);
-                }
-            }
 
             yield return new WaitForSeconds(0.2f);
         }

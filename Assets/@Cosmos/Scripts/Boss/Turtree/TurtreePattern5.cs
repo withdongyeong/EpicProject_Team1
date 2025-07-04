@@ -37,7 +37,7 @@ public class TurtreePattern5 : IBossAttackPattern
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
                 boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _attackPrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
+                                                  warningDuration: 0.8f, explosionDuration: 2f, damage: 20, WarningType.Type1);
             }
 
             yield return new WaitForSeconds(0.1f); 
