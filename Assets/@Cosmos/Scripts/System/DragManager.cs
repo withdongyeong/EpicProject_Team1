@@ -179,7 +179,8 @@ public class DragManager : Singleton<DragManager>
         {
             // 스타셀의 색상을 초기화합니다.
             SpriteRenderer sr = starCell.GetComponent<SpriteRenderer>();
-            sr.color = Color.black;
+            Sprite spriteDisable = Resources.Load<Sprite>("Arts/UI/StarDisable");
+            sr.sprite = spriteDisable;
 
             // 스타셀의 위치를 가져오고, 해당 위치의 CellData가 존재하는지 확인합니다.
             Vector3Int gridPos = starCell.GetStarCellPosition();
@@ -194,7 +195,8 @@ public class DragManager : Singleton<DragManager>
             {
                 if (starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill))
                 {
-                    sr.color = Color.white; // 조건을 만족하면 색상을 흰색으로 변경
+                    Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
+                    sr.sprite = sprite; // 조건을 만족하면 색상을 흰색으로 변경
                     skills.Add(skill);
                 }
             }

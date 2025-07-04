@@ -340,13 +340,11 @@ public class BossDebuffs : MonoBehaviour
     {
         if (GameObject.Find($"{debuff}Effect") != null)
         {
-            Debug.LogWarning($"{debuff}Effect already exists. Skipping animation.");
             return; // 이미 이펙트가 존재하면 중복 생성 방지
         }
         // 상태 이상 타입에 따라 프리팹 경로 동적 생성
         string prefabPath = $"Effect/{debuff}Effect";
         GameObject effectPrefab = Resources.Load<GameObject>(prefabPath);
-        Debug.LogError($"Loading prefab from path: {prefabPath}"); // 디버그용 로그
 
         if (effectPrefab != null)
         {
