@@ -7,6 +7,7 @@ public class StorageArea : MonoBehaviour ,IPointerEnterHandler, IPointerExitHand
 {
     private DragManager _dm;
     private Image _image;
+    [SerializeField]
     private bool _isCanStore = false; // 저장 가능 여부
     public bool IsCanStore => _isCanStore;
 

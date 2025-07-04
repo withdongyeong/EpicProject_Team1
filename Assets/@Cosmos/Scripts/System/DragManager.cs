@@ -107,6 +107,10 @@ public class DragManager : Singleton<DragManager>
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
+
+        SetGridSprite();
+        
+        
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
         //배치된 타일이 인접효과를 계산하게 합니다
         tileObject.UpdateStarList();
@@ -162,8 +166,10 @@ public class DragManager : Singleton<DragManager>
             if (cell.GetType() == typeof(StarCell)) continue;
             Transform t = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
-            GridManager.Instance.ChangeCellSprite(gridPos, true);
         }
+        
+        SetGridSprite(true);
+        
 
         // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
         List<SkillBase> skills = new List<SkillBase>();
@@ -195,6 +201,28 @@ public class DragManager : Singleton<DragManager>
                 }
             }
         }
+    }
+
+    private void SetGridSprite(bool isPreview = false)
+    {
+        //그냥 cell의 포지션을 GridSpriteController에 보냄
+        Cell[] allCells = currentDragObject.GetComponentsInChildren<Cell>();
+        List<Vector3Int> cellsPos = new List<Vector3Int>();
+
+        foreach (var cell in allCells)
+        {
+            if (cell.GetType() == typeof(Cell))
+                cellsPos.Add(GridManager.Instance.WorldToGridPosition(cell.transform.position));
+        }
+        GridManager.Instance.GridSpriteController.SetSprite(cellsPos.ToArray());
+        if (isPreview)
+        {
+            foreach (Vector3Int pos in cellsPos)
+            {
+                GridManager.Instance.SetCellSpritePreview(pos);
+            }
+        }
+        //까지
     }
 
     private void RotateObject()
