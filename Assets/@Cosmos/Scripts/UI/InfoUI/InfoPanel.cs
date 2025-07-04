@@ -9,6 +9,7 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] private Sprite rareGradeBorder;
     [SerializeField] private Sprite epicGradeBorder;
     [SerializeField] private Sprite legendaryGradeBorder;
+    [SerializeField] private Sprite mythicGradeBorder;
     
     [Header("Common Background Image (Inner)")]
     [SerializeField] private Sprite commonBackgroundSprite;
@@ -82,15 +83,19 @@ public class InfoPanel : MonoBehaviour
                 nameText.color = Color.blue;
                 break;
             case TileGrade.Epic:
-                nameText.color = new Color(0.5f, 0f, 1f); // 보라색
+                nameText.color = new Color(0.5f, 0f, 1f); // 보라
                 break;
             case TileGrade.Legendary:
                 nameText.color = Color.yellow;
+                break;
+            case TileGrade.Mythic:
+                nameText.color = new Color(0.65f, 0.9f, 0.85f);
                 break;
             default:
                 nameText.color = Color.white;
                 break;
         }
+
 
         TextMeshProUGUI coolTimeText = headText.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         if(currentTileObject.GetTileData().TileCoolTime != 0)
@@ -139,11 +144,15 @@ public class InfoPanel : MonoBehaviour
             case TileGrade.Legendary:
                 borderImage.sprite = legendaryGradeBorder;
                 break;
+            case TileGrade.Mythic: // ★ 신화 등급 처리
+                borderImage.sprite = mythicGradeBorder;
+                break;
             default:
                 borderImage.sprite = normalGradeBorder;
                 break;
         }
     }
+
 
     /// <summary>
     /// 패널 숨기기

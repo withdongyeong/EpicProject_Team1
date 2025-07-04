@@ -411,7 +411,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1378275472504835762, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2936627703930910875, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2771,10 +2771,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61acca200e8781740933da878e196254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalGradeBorder: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
-  rareGradeBorder: {fileID: -5543670047920101812, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
-  epicGradeBorder: {fileID: -5248528119860549934, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
-  legendaryGradeBorder: {fileID: 1378275472504835762, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  normalGradeBorder: {fileID: -5543670047920101812, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  rareGradeBorder: {fileID: -5248528119860549934, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  epicGradeBorder: {fileID: 1378275472504835762, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  legendaryGradeBorder: {fileID: 1176354574, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  mythicGradeBorder: {fileID: -2936627703930910875, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   commonBackgroundSprite: {fileID: 21300000, guid: f447f2799b245bb429b5f27c540722c5, type: 3}
   borderImage: {fileID: 393078573}
   backgroundImage: {fileID: 0}
@@ -3058,7 +3059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  m_Sprite: {fileID: 1176354574, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
