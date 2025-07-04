@@ -14,7 +14,7 @@ public class QuestInfoPanel : MonoBehaviour
     public TextMeshProUGUI contentText;
     public TextMeshProUGUI questGoalText;
     public Button closeButton;
-    
+    private bool isOnPanel = false; // 패널이 활성화되어 있는지 여부
     private RectTransform _rectTransform;
 
     private void Awake()
@@ -29,6 +29,13 @@ public class QuestInfoPanel : MonoBehaviour
         OffCanvas();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && isOnPanel)
+        {
+            HidePanel();
+        }
+    }
 
     private void OnCanvas()
     {
@@ -45,7 +52,7 @@ public class QuestInfoPanel : MonoBehaviour
     
     public void ShowPanel(GuideQuest quest)
     {
-        TimeScaleManager.Instance.StopTimeScale();
+        isOnPanel = true;
         OnCanvas();
         titleText.text = quest.titleText;
         subTitleText.text = quest.subTitleText;
@@ -74,7 +81,8 @@ public class QuestInfoPanel : MonoBehaviour
     
     public void HidePanel()
     {
-        TimeScaleManager.Instance.ResetTimeScale();
+        if(!isOnPanel) return;
+        isOnPanel = false;
         if (GuideHandler.instance.CurrentQuest.GetType() == typeof(PlaceQuest))
         {
             SceneLoader.LoadGuideBuilding();

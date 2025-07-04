@@ -107,6 +107,10 @@ public class DragManager : Singleton<DragManager>
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
+
+        SetGridSprite();
+        
+        
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
         //배치된 타일이 인접효과를 계산하게 합니다
         tileObject.UpdateStarList();
@@ -162,8 +166,10 @@ public class DragManager : Singleton<DragManager>
             if (cell.GetType() == typeof(StarCell)) continue;
             Transform t = cell.transform;
             Vector3Int gridPos = GridManager.Instance.WorldToGridPosition(t.position);
-            GridManager.Instance.ChangeCellSprite(gridPos, true);
         }
+        
+        SetGridSprite(true);
+        
 
         // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
         List<SkillBase> skills = new List<SkillBase>();
@@ -173,7 +179,8 @@ public class DragManager : Singleton<DragManager>
         {
             // 스타셀의 색상을 초기화합니다.
             SpriteRenderer sr = starCell.GetComponent<SpriteRenderer>();
-            sr.color = Color.black;
+            Sprite spriteDisable = Resources.Load<Sprite>("Arts/UI/StarDisable");
+            sr.sprite = spriteDisable;
 
             // 스타셀의 위치를 가져오고, 해당 위치의 CellData가 존재하는지 확인합니다.
             Vector3Int gridPos = starCell.GetStarCellPosition();
@@ -188,11 +195,34 @@ public class DragManager : Singleton<DragManager>
             {
                 if (starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill))
                 {
-                    sr.color = Color.white; // 조건을 만족하면 색상을 흰색으로 변경
+                    Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
+                    sr.sprite = sprite; // 조건을 만족하면 색상을 흰색으로 변경
                     skills.Add(skill);
                 }
             }
         }
+    }
+
+    private void SetGridSprite(bool isPreview = false)
+    {
+        //그냥 cell의 포지션을 GridSpriteController에 보냄
+        Cell[] allCells = currentDragObject.GetComponentsInChildren<Cell>();
+        List<Vector3Int> cellsPos = new List<Vector3Int>();
+
+        foreach (var cell in allCells)
+        {
+            if (cell.GetType() == typeof(Cell))
+                cellsPos.Add(GridManager.Instance.WorldToGridPosition(cell.transform.position));
+        }
+        GridManager.Instance.GridSpriteController.SetSprite(cellsPos.ToArray());
+        if (isPreview)
+        {
+            foreach (Vector3Int pos in cellsPos)
+            {
+                GridManager.Instance.SetCellSpritePreview(pos);
+            }
+        }
+        //까지
     }
 
     private void RotateObject()
