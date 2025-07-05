@@ -389,17 +389,13 @@ public abstract class BaseBoss : MonoBehaviour
     {
         int randomIndex = UnityEngine.Random.Range(0, _executableUnits.Count);
         ExecutableUnit selectedUnit = _executableUnits[randomIndex];
-    
-        Debug.Log($"{GetType().Name}: Selected unit {randomIndex} (IsGroup: {selectedUnit.IsGroup})");
         
         if (selectedUnit.IsIndividualPattern)
         {
-            Debug.Log($"{GetType().Name}: Executing individual pattern: {selectedUnit.IndividualPattern.Pattern.PatternName}");
             yield return StartCoroutine(ExecuteIndividualPattern(selectedUnit.IndividualPattern));
         }
         else if (selectedUnit.IsGroup)
         {
-            Debug.Log($"{GetType().Name}: Executing pattern group with {selectedUnit.PatternGroup.Patterns.Count} patterns");
             yield return StartCoroutine(ExecutePatternGroup(selectedUnit.PatternGroup));
         }
         else
