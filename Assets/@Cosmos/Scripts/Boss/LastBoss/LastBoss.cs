@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Cosmos.Scripts.Boss.OrcMage;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 최종 보스
@@ -8,8 +6,16 @@ using UnityEngine;
 public class LastBoss : BaseBoss
 {
     // [Header("최종 보스 전용 프리팹들")]
-    // public GameObject leftHandPrefab;
-    // public GameObject rightHandPrefab;
+    public GameObject staff;              // 지팡이 프리팹 (머리 위 무기용)
+    public GameObject sword;
+    public GameObject frost;
+    public GameObject flame;
+    public GameObject explosionPrefab;   // 공격 이펙트용
+    public GameObject frostExplosionPrefab;
+    public GameObject flameExplosionPrefab;
+    public GameObject swordExplosionPrefab;
+    private GameObject currentWeapon;
+    public GameObject CurrentWeapon => currentWeapon;
 
     /// <summary>
     /// 초기화 - 고유한 스탯 설정
@@ -19,7 +25,6 @@ public class LastBoss : BaseBoss
         base.Awake();
         // 기본 스탯 설정
         MaxHealth = 2000;
-        Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
     /// <summary>
@@ -27,26 +32,94 @@ public class LastBoss : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        Debug.Log("OrcMageLastBoss.InitializeAttackPatterns: Starting pattern initialization");
+        AddGroup().
+            AddPattern(new LastBossPattern_StaffEquip(staff), 0f).
+            AddPattern(new LastBossPattern_Staff(explosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Staff2(explosionPrefab),0f).
+            AddPattern(new LastBossPattern_Staff3(explosionPrefab),0.5f).
+            AddPattern(new LastBossPattern_Staff4(explosionPrefab),0f).
+            AddPattern(new LastBossPattern_Staff5(explosionPrefab),0f).
+            SetGroupInterval(1f);
         
-        // AddIndividualPattern(new BigHandPattern1A(leftHandPrefab, rightHandPrefab), 2f);
-            
-        Debug.Log($"LastBoss: Pattern system initialized successfully");
+        AddGroup().
+            AddPattern(new LastBossPattern_SwordEquip(sword), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Sword2(swordExplosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Sword3(swordExplosionPrefab), 0f).
+            SetGroupInterval(1f);
+        
+        AddGroup().
+            AddPattern(new LastBossPattern_FrostEquip(frost), 0f).
+            AddPattern(new LastBossPattern_Frost1(frostExplosionPrefab), 0f).
+            AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab), 0f).
+            SetGroupInterval(1f);
+        
+        AddGroup().
+            AddPattern(new LastBossPattern_FlameEquip(flame), 0f).
+            AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab), 0.5f).
+            AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab), 0.5f).
+            AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab), 0.5f).
+            AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab), 0.5f).
+            SetGroupInterval(1f);
     }
 
     protected override void DamageFeedback()
     {
-        // SoundManager.Instance.OrcMageSoundClip("OrcMage_DamageActivate");
+        SetAnimationTrigger("Damaged");
         base.DamageFeedback();
     }
+    
+    public void SetWeaponPrefab(GameObject prefab, float offset, bool isOribit)
+    {
+        if (currentWeapon != null)
+        {
+            WeaponFade fade = currentWeapon.GetComponent<WeaponFade>();
+            if (fade != null)
+            {
+                fade.StartFadeOutAndDestroy();
+            }
+            else
+            {
+                Destroy(currentWeapon);
+            }
+        }
 
+        if (prefab == null) return;
+
+        currentWeapon = Instantiate(prefab, transform);
+        currentWeapon.transform.localPosition = Vector3.zero;
+
+        // 회전 or 공전 컴포넌트는 원하는 대로 부착
+        var fadeIn = currentWeapon.AddComponent<WeaponFade>();
+        fadeIn.fadeInOnStart = true;
+
+        if (isOribit)
+        {
+            var orbit = currentWeapon.AddComponent<OrbitAroundBoss>();
+            orbit.bossTransform = this.transform;
+            orbit.radius = offset;
+            orbit.rotationSpeed = 60f;    
+        }
+        else
+        {
+            currentWeapon.transform.localPosition = new Vector3(0f, offset, 0f);
+        }
+        
+        // 예: 자체 회전
+        var rotate = currentWeapon.AddComponent<RotateOverHead>();
+    }
+
+
+    
     /// <summary>
-    /// 오크 메이지 전용 사망 처리 (오버라이드 가능)
+    /// 전용 사망 처리 (오버라이드 가능)
     /// </summary>
     protected override void Die()
     {
         SetAnimationTrigger("Death");
-        // SoundManager.Instance.OrcMageSoundClip("OrcMage_DieActivate");
         // 기본 사망 처리 호출
         base.Die();
     }
