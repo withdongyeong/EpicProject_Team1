@@ -56,6 +56,9 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
 
         // 6. 오른쪽 돌진 완료 후 flip
         FlipBoss(boss);
+        
+        // 빙결 불가 해제
+        boss.Unstoppable = false;
     }
 
     /// <summary>
