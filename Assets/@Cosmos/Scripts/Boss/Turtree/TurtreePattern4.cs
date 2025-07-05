@@ -48,6 +48,7 @@ public class TurtreePattern4 : IBossAttackPattern
             if (i == 0 || i == 3)
             {
                 boss.AttackAnimation();
+                boss.StartCoroutine(TurtreeAttackSound());
 
                 yield return new WaitForSeconds(0.3f);
             }
@@ -99,6 +100,12 @@ public class TurtreePattern4 : IBossAttackPattern
         }
 
         return pattern;
+    }
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 
 }

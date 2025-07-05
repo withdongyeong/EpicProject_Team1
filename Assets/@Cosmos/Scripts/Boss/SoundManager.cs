@@ -87,42 +87,46 @@ public class SoundManager : Singleton<SoundManager>
     };
 
     private Dictionary<string, AudioClip> GolemSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //골렘 볼륨 딕셔너리
     private Dictionary<string, float> GolemSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"GolemAttackActivate", 0.2f},
+        {"GolemDamageActivate", 1f },
+        {"GolemDeadActivate", 1f },
     };
 
     private Dictionary<string, AudioClip> TurtreeSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //나무거북 볼륨 딕셔너리
     private Dictionary<string, float> TurtreeSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"TurtreeAttackActivate", 0.05f},
+        {"TurtreeDamageActivate", 0.3f },
+        {"TurtreeDeadActivate", 0.3f },
     };
 
     private Dictionary<string, AudioClip> ReaperSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //리퍼 볼륨 딕셔너리
     private Dictionary<string, float> ReaperSoundVolumeDictionary = new Dictionary<string, float>
     {
 
     };
 
     private Dictionary<string, AudioClip> KnightSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //기사 볼륨 딕셔너리
     private Dictionary<string, float> KnightSoundVolumeDictionary = new Dictionary<string, float>
     {
 
     };
 
     private Dictionary<string, AudioClip> BigHandSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //손 볼륨 딕셔너리
     private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
     {
 
     };
 
     private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //최종보스 볼륨 딕셔너리
     private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
     {
 
@@ -144,10 +148,10 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"ShopSceneBGM", 0.2f},
-        {"OrcMageBGM", 0.3f },
-        {"ArachneBGM", 0.2f },
-        {"SlimeBGM", 0.1f }
+        {"ShopSceneBGM", 0.1f},
+        {"OrcMageBGM", 0.15f },
+        {"ArachneBGM", 0.1f },
+        {"SlimeBGM", 0.05f }
     };
 
 
