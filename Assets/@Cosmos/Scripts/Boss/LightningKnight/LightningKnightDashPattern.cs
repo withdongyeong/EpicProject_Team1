@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Cinemachine;
 
 
 public class LightningKnightDashPattern : IBossAttackPattern
@@ -109,7 +108,9 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0,0,0) ,0.8f, 20, WarningType.Type2);
+                boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
+
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0,0,0) ,0.8f, 25, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -129,7 +130,9 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 20, WarningType.Type2);
+                boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
+
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 25, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -149,7 +152,9 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 20, WarningType.Type2);
+                boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
+
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 25, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -170,7 +175,9 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 20, WarningType.Type2);
+                boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
+
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 25, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -202,12 +209,12 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     else EndY = y - 2;
 
                     for (int dy = y; dy >= EndY; dy--)
-                        {
-                            List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
-                            boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+                    {
+                        List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
+                        boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
 
-                            yield return new WaitForSeconds(0.03f);
-                        }
+                         yield return new WaitForSeconds(0.03f);
+                    }
                 }
             }
             else // 왼쪽
@@ -245,7 +252,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
                     if (y <= 1 || y >= 7) EndX = x;
                     else if (y <= 3 || y >= 5) EndX = x + 1;
-                    else EndX = y + 2;
+                    else EndX = x + 2;
 
                     for (int dx = x; dx <= EndX; dx++)
                     {
@@ -284,9 +291,17 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
     private IEnumerator ShowWarningAsync(BaseBoss boss, List<Vector3Int> pos, float duration, WarningType type)
     {
+        boss.StartCoroutine(AttacKSoundPlay("KnightAttackActivate"));
+
         boss.BombHandler.ExecuteFixedBomb(pos, new Vector3Int(0, 0, 0), _AttackEffect,
                                       warningDuration: 0.8f, explosionDuration: duration, damage: 10, type);
         yield return null;
+    }
+
+    private IEnumerator AttacKSoundPlay(string SoundName)
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.KnightSoundClip(SoundName);
     }
 }
 

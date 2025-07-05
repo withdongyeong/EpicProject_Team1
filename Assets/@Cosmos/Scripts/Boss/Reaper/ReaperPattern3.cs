@@ -46,11 +46,19 @@ public class ReaperPattern3 : IBossAttackPattern
             }
         }
 
+        boss.StartCoroutine(ReaperAttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(BombPos, centerPos, _deathAriaPrefeb,
             warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
         boss.AttackAnimation();
 
         yield return new WaitForSeconds(0.3f);
+    }
+
+    private IEnumerator ReaperAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
     }
 }

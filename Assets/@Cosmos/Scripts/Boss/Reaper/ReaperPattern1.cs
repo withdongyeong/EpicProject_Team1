@@ -81,7 +81,7 @@ public class ReaperPattern1 : IBossAttackPattern
                     break;
             }
 
-            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+            boss.StartCoroutine(AttackSoundSound());
 
             boss.BombHandler.ExecuteFixedBomb(lineShape1, center, _deathAriaPrefeb,
                 warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
@@ -186,5 +186,11 @@ public class ReaperPattern1 : IBossAttackPattern
         BottomToTop, // 아래→위
         LeftToRight, // 왼쪽→오른쪽
         RightToLeft // 오른쪽→왼쪽
+    }
+
+    private IEnumerator AttackSoundSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
     }
 }

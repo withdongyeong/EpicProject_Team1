@@ -39,6 +39,8 @@ public class LightningKnightPattern1 : IBossAttackPattern
         {
             List<Vector3Int> squareShape = CreateHollowSquare(size, randomDirection);
 
+            boss.StartCoroutine(ReaperKnightAttackSound());
+
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _lightningActtck,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
@@ -90,15 +92,8 @@ public class LightningKnightPattern1 : IBossAttackPattern
         {
             return GetFixedSafeZone(x, y, size, baseDirection);
         }
-
         // 큰 사이즈(3-5)는 랜덤성 추가
         bool isFixedSafe = GetFixedSafeZone(x, y, size, baseDirection);
-
-        //// 기본 안전지대가 아닌 경우, 25% 확률로 추가 안전지대
-        //if (!isFixedSafe && Random.Range(0f, 1f) < 0.1f)
-        //{
-        //    return true;
-        //}
 
         return isFixedSafe;
     }
@@ -162,4 +157,11 @@ public class LightningKnightPattern1 : IBossAttackPattern
 
         return x == safePos.x && y == safePos.y;
     }
+
+    private IEnumerator ReaperKnightAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
+    }
+
 }

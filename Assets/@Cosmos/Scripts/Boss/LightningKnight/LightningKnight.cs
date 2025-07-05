@@ -53,19 +53,19 @@ public class LightningKnight : BaseBoss
     /// </summary>
     protected override void DamageFeedback()
     {
-        SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
+        SoundManager.Instance.SlimeSoundClip("KnightDamageActivate");
 
         base.DamageFeedback();
     }
 
-    ///// <summary>
-    ///// 보스 전용 사망 처리 (오버라이드 가능)
-    ///// </summary>
-    //protected override void Die()
-    //{
-    //    SetAnimationTrigger("DeadTrigger");
-    //    SoundManager.Instance.SlimeSoundClip("SlimeDeadActivate");
-    //    // 기본 사망 처리 호출
-    //    base.Die();
-    //}
+    /// <summary>
+    /// 보스 전용 사망 처리 (오버라이드 가능)
+    /// </summary>
+    protected override void Die()
+    {
+        SetAnimationTrigger("DeadTrigger");
+        SoundManager.Instance.KnightSoundClip("KnightDeadActivate");
+        // 기본 사망 처리 호출
+        base.Die();
+    }
 }

@@ -108,14 +108,19 @@ public class SoundManager : Singleton<SoundManager>
     //리퍼 볼륨 딕셔너리
     private Dictionary<string, float> ReaperSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"ReaperAttackActivate", 0.3f},
+        {"ReaperDamageActivate", 1f },
+        {"ReaperDeadActivate", 1f },
     };
 
     private Dictionary<string, AudioClip> KnightSoundDictionary = new Dictionary<string, AudioClip>();
     //기사 볼륨 딕셔너리
     private Dictionary<string, float> KnightSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"KnightAttackActivate", 0.1f},
+        {"KnightDashActivate", 1f},
+        {"KnightDamageActivate", 1f },
+        {"KnightDeadActivate", 1f },
     };
 
     private Dictionary<string, AudioClip> BigHandSoundDictionary = new Dictionary<string, AudioClip>();

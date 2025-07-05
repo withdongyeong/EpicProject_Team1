@@ -67,6 +67,8 @@ public class LightningKnightPattern2 : IBossAttackPattern
             }
         }
 
+        boss.StartCoroutine(LightningKnightAttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(
             AttackPoints,
             new Vector3Int(selectedPos.x, selectedPos.y, 0),
@@ -94,5 +96,10 @@ public class LightningKnightPattern2 : IBossAttackPattern
                 bannedArea.Add(banPos);
             }
         }
+    }
+    private IEnumerator LightningKnightAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
     }
 }
