@@ -68,7 +68,7 @@ public class TurtreePattern3 : IBossAttackPattern
                 warningType: WarningType.Type1
             );
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
         }
 
         yield return new WaitForSeconds(0.5f);
