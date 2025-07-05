@@ -49,67 +49,84 @@ public class StoreSlotController : MonoBehaviour
     {
         List<GameObject> appeardTileList = new();
         
+        
         for (int i = 0; i < storeSlots.Length; i++)
         {
-            float roll = Random.value * 100f;
-            TileGrade chosenGrade;
-            //현재 확률
-            ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum];
-            //TODO: 이거 줄 줄이기
-            if (roll < chanceList.shop_NormalChance)
+            GameObject chosenTile;
+            bool isLocked = false;
+
+            if (StoreLockManager.Instance.GetStoreLocks(i) != null)
             {
-                chosenGrade = TileGrade.Normal;
-            }
-            else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance)
-            {
-                chosenGrade = TileGrade.Rare;
-            }
-            else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance)
-            {
-                chosenGrade = TileGrade.Epic;
-            }
-            else if(roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance + chanceList.shop_LegendaryChance)
-            {
-                chosenGrade = TileGrade.Legendary;
+                chosenTile = StoreLockManager.Instance.GetStoreLocks(i);
+                isLocked = true;
             }
             else
             {
-                chosenGrade = TileGrade.Mythic;
-            }
+                float roll = Random.value * 100f;
+                TileGrade chosenGrade;
+                //현재 확률
+                ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum];
+                //TODO: 이거 줄 줄이기
+                if (roll < chanceList.shop_NormalChance)
+                {
+                    chosenGrade = TileGrade.Normal;
+                }
+                else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance)
+                {
+                    chosenGrade = TileGrade.Rare;
+                }
+                else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance)
+                {
+                    chosenGrade = TileGrade.Epic;
+                }
+                else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance + chanceList.shop_LegendaryChance)
+                {
+                    chosenGrade = TileGrade.Legendary;
+                }
+                else
+                {
+                    chosenGrade = TileGrade.Mythic;
+                }
 
-            List<GameObject> chosenList = _normalStoreTiles;
-            switch (chosenGrade)
-            {
-                case TileGrade.Normal:
-                    chosenList = _normalStoreTiles;
-                    break;
-                case TileGrade.Rare:
-                    chosenList = _rareStoreTiles;
-                    break;
-                case TileGrade.Epic:
-                    chosenList = _epicStoreTiles;
-                    break;
-                case TileGrade.Legendary:
-                    chosenList = _legendaryStoreTiles;
-                    break;
-                case TileGrade.Mythic:
-                    chosenList = _mythicStoreTiles;
-                    break;
+                List<GameObject> chosenList = _normalStoreTiles;
+                switch (chosenGrade)
+                {
+                    case TileGrade.Normal:
+                        chosenList = _normalStoreTiles;
+                        break;
+                    case TileGrade.Rare:
+                        chosenList = _rareStoreTiles;
+                        break;
+                    case TileGrade.Epic:
+                        chosenList = _epicStoreTiles;
+                        break;
+                    case TileGrade.Legendary:
+                        chosenList = _legendaryStoreTiles;
+                        break;
+                    case TileGrade.Mythic:
+                        chosenList = _mythicStoreTiles;
+                        break;
 
+                }
+                //가이드용
+                if (isGuide)
+                {
+                    chosenList = guideList;
+                    storeSlots[i].SetSlot(chosenList[0].GetComponent<TileObject>().GetTileData().TileCost, chosenList[0]);
+                    storeSlots[i].GetComponent<Image>().SetNativeSize();
+                    continue;
+                }
+                int randomIndex = Random.Range(0, chosenList.Count);
+                chosenTile = chosenList[randomIndex];
+                //선택된 타일이 상점에 등장해도 되는지 조건검사를 합니다.
+                chosenTile = CheckTileCondition(chosenTile, chosenList, appeardTileList);
             }
-            //가이드용
-            if (isGuide)
-            {
-                chosenList = guideList;
-                storeSlots[i].SetSlot(chosenList[0].GetComponent<TileObject>().GetTileData().TileCost, chosenList[0]);
-                storeSlots[i].GetComponent<Image>().SetNativeSize();
-                continue;
-            }
-            int randomIndex = Random.Range(0, chosenList.Count);
-            GameObject chosenTile = chosenList[randomIndex];
-            //선택된 타일이 상점에 등장해도 되는지 조건검사를 합니다.
-            chosenTile = CheckTileCondition(chosenTile, chosenList, appeardTileList);
+            
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            if(isLocked)
+            {
+                storeSlots[i].SetColor(Color.red);
+            }
             appeardTileList.Add(chosenTile);
             
             //이미지 비율을 맞추기 위한 코드입니다.

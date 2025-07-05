@@ -69,6 +69,11 @@ public class GameManager : Singleton<GameManager>
     {
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
+        GoldManager.Instance.SetCurrentGold(16);
+        for(int i =0; i<5; i++)
+        {
+            StoreLockManager.Instance.RemoveStoreLock(i);
+        }      
         SceneLoader.LoadTitle();
     }
     public void SetTutorial()
