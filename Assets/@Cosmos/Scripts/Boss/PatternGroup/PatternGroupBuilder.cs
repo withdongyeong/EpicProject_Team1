@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +20,6 @@ public class PatternGroupBuilder
     public PatternGroupBuilder(Action<ExecutableUnit> onComplete)
     {
         _onComplete = onComplete ?? throw new ArgumentNullException(nameof(onComplete));
-        Debug.Log("PatternGroupBuilder created");
     }
 
     /// <summary>
@@ -33,18 +32,15 @@ public class PatternGroupBuilder
     {
         if (pattern == null)
         {
-            Debug.LogError("PatternGroupBuilder.AddPattern: pattern is null!");
             throw new ArgumentNullException(nameof(pattern));
         }
 
         if (_isGroupIntervalSet)
         {
-            Debug.LogError("PatternGroupBuilder: Cannot add patterns after SetGroupInterval has been called!");
             throw new InvalidOperationException("Cannot add patterns after SetGroupInterval has been called");
         }
 
         _patterns.Add(new PatternElement(pattern, intervalAfterExecution));
-        Debug.Log($"PatternGroupBuilder: Added pattern {pattern.PatternName}, total patterns: {_patterns.Count}");
         return this;
     }
 
@@ -54,17 +50,14 @@ public class PatternGroupBuilder
     /// <param name="intervalAfterGroup">그룹 완료 후 대기시간</param>
     public void SetGroupInterval(float intervalAfterGroup)
     {
-        Debug.Log($"PatternGroupBuilder.SetGroupInterval called with interval: {intervalAfterGroup}");
         
         if (_isGroupIntervalSet)
         {
-            Debug.LogError("PatternGroupBuilder: SetGroupInterval has already been called!");
             throw new InvalidOperationException("SetGroupInterval has already been called");
         }
 
         if (_patterns.Count == 0)
         {
-            Debug.LogError("PatternGroupBuilder: Cannot set group interval without any patterns!");
             throw new InvalidOperationException("Cannot set group interval without any patterns");
         }
 
@@ -89,8 +82,6 @@ public class PatternGroupBuilder
     /// </summary>
     private void BuildGroup()
     {
-        Debug.Log($"PatternGroupBuilder.BuildGroup: Building group with {_patterns.Count} patterns");
-        
         try
         {
             PatternGroup group = new PatternGroup(_groupInterval);
@@ -103,14 +94,11 @@ public class PatternGroupBuilder
                     throw new InvalidOperationException("Pattern element or its Pattern is null");
                 }
                 group.AddPattern(patternElement);
-                Debug.Log($"PatternGroupBuilder.BuildGroup: Added pattern {patternElement.Pattern.PatternName} to group");
             }
 
             ExecutableUnit executableUnit = new ExecutableUnit(group);
-            Debug.Log($"PatternGroupBuilder.BuildGroup: ExecutableUnit created successfully");
             
             _onComplete?.Invoke(executableUnit);
-            Debug.Log($"PatternGroupBuilder: Group built successfully with {_patterns.Count} patterns and {_groupInterval}s group interval");
         }
         catch (Exception ex)
         {

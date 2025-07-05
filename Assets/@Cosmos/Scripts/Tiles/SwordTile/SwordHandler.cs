@@ -30,15 +30,6 @@ public class SwordHandler : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 초기화
-    /// </summary>
-    private void Start()
-    {
-        //RefreshSwordList();
-        Debug.Log("SkillManager initialized");
-    }
-
     #region 칼날폭풍 관련
     ///// <summary>
     ///// 칼날폭풍 스킬 발동
@@ -108,8 +99,6 @@ public class SwordHandler : MonoBehaviour
                 sword.ActivateSkill(targetPosition);
             }
         }
-
-        Debug.Log($"Skill activated at position: {targetPosition}");
     }
 
     /// <summary>

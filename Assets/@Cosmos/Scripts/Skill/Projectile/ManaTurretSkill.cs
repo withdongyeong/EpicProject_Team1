@@ -21,7 +21,7 @@ public class ManaTurretSkill : ProjectileSkill
     {
         // 무기 스킬이 먼저 나가도록 대기
         yield return new WaitForSeconds(0.1f);
-        if (projectilePrefab != null)
+        if (projectilePrefab != null && targetEnemy != null && targetEnemy.gameObject.activeInHierarchy)
         {
             Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
