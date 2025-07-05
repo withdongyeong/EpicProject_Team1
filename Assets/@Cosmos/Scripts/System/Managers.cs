@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 
@@ -18,6 +18,7 @@ public class Managers : MonoBehaviour
     private GameObject goldManager;
     private GameObject StageSelectManager;
     private GameObject FadeManager;
+    private GameObject storeLockManager;
     private GameObject globalSetting;
     
     
@@ -36,6 +37,7 @@ public class Managers : MonoBehaviour
         StageSelectManager = Resources.Load<GameObject>("StageSelectManager");
         FadeManager = Resources.Load<GameObject>("FadeManager");
         globalSetting = Resources.Load<GameObject>("GlobalSetting");
+        storeLockManager = Resources.Load<GameObject>("StoreLockManager");
         //Instantiate the managers
         MakeManager(gameManager);
         MakeManager(soundManager);
@@ -47,6 +49,7 @@ public class Managers : MonoBehaviour
         MakeManager(StageSelectManager);
         MakeManager(FadeManager);
         MakeManager(globalSetting);
+        MakeManager(storeLockManager);
     }
 
     private void MakeManager(GameObject manager)
