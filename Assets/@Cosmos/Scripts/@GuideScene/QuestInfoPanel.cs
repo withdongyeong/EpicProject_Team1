@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,7 +81,9 @@ public class QuestInfoPanel : MonoBehaviour
     
     public void HidePanel()
     {
-        if(!isOnPanel) return;
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+
+        if (!isOnPanel) return;
         isOnPanel = false;
         if (GuideHandler.instance.CurrentQuest.GetType() == typeof(PlaceQuest))
         {

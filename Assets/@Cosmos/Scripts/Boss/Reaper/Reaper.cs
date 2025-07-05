@@ -49,4 +49,11 @@ public class Reaper : BaseBoss
             .AddPattern(new ReaperPattern3(ReaperActtck), 2f)
             .SetGroupInterval(2f);
     }
+
+    protected override void Die()
+    {
+        SoundManager.Instance.ReaperSoundClip("ReaperDeadActivate");
+
+        base.Die();
+    }
 }
