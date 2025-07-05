@@ -24,7 +24,7 @@ public class LastBoss : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 2000;
+        MaxHealth = 5000;
     }
 
     /// <summary>
