@@ -18,17 +18,13 @@ MonoBehaviour:
   totem_ActivatePos: {x: 1.7, y: 2.4}
   totem_HeadInt: 3
   shop_ChanceList:
-  - shop_NormalChance: 80
-    shop_RareChance: 20
+  - shop_NormalChance: 75
+    shop_RareChance: 25
     shop_EpicChance: 0
     shop_LegendaryChance: 0
-  - shop_NormalChance: 80
-    shop_RareChance: 20
+  - shop_NormalChance: 75
+    shop_RareChance: 25
     shop_EpicChance: 0
-    shop_LegendaryChance: 0
-  - shop_NormalChance: 60
-    shop_RareChance: 35
-    shop_EpicChance: 5
     shop_LegendaryChance: 0
   - shop_NormalChance: 50
     shop_RareChance: 40
@@ -50,8 +46,16 @@ MonoBehaviour:
     shop_RareChance: 20
     shop_EpicChance: 30
     shop_LegendaryChance: 20
-  - shop_NormalChance: 20
+  - shop_NormalChance: 15
     shop_RareChance: 20
     shop_EpicChance: 30
-    shop_LegendaryChance: 20
+    shop_LegendaryChance: 25
+  - shop_NormalChance: 15
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 25
+  - shop_NormalChance: 15
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 25
   language_SynergyTranslationSO: {fileID: 0}
