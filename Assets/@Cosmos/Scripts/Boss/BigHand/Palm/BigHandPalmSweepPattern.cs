@@ -50,7 +50,7 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
 
         // 손이 완전히 지나갈 때까지 기다림
         Vector3 endPosition = GetEndPosition();
-        float handMoveTime = 1.5f; // 손이 지나가는 시간
+        float handMoveTime = 1f; // 손이 지나가는 시간
         yield return boss.StartCoroutine(SmoothMovePalm(endPosition, handMoveTime));
 
         // 손바닥 제거
@@ -90,7 +90,7 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
             );
         }
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
     }
 
     /// <summary>
