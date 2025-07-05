@@ -19,13 +19,13 @@ public class Reaper : BaseBoss
 
     private void Update()
     {
-        if ((CurrentHealth) < 500 && !IsPase2)
+        if ((CurrentHealth) < 1700 && !IsPase2)
         {
             this.GetComponent<ReaperDeathArea>().DeathAreaCreationStart();
             IsPase2 = true;
         }
 
-        if ((CurrentHealth) < 200 && !IsPase3)
+        if ((CurrentHealth) < 1000 && !IsPase3)
         {
             this.GetComponent<ReaperDeathArea>().DeathAreaCreation2Start();
             IsPase3 = true;
