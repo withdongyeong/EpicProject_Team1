@@ -9,7 +9,7 @@ public class FrostStaffSkill : ProjectileSkill
     }
     protected override void FireProjectile()
     {
-        if (projectilePrefab != null)
+        if (projectilePrefab != null && targetEnemy != null && targetEnemy.gameObject.activeInHierarchy)
         {
             Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             Vector3 direction = (targetEnemy.transform.position - spawnPos).normalized;

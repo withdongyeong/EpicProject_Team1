@@ -69,7 +69,7 @@ public class Cloud : MonoBehaviour
     /// </summary>
     private void ActiveThunderstormCloudSkill()
     {
-        if (projectilePrefab != null)
+        if (projectilePrefab != null && _boss != null && _boss.gameObject.activeInHierarchy)
         {
             Vector3 direction = (transform.parent.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);

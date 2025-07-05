@@ -103,10 +103,6 @@ public class StageHandler : MonoBehaviour
             if (textObj != null)
             {
                 countdownText = textObj.GetComponent<TextMeshProUGUI>();
-                if (countdownText != null)
-                {
-                    Debug.Log("[StageHandler] CountdownText를 자동으로 찾았습니다.");
-                }
             }
         }
 
@@ -116,7 +112,6 @@ public class StageHandler : MonoBehaviour
             if (spawnObj != null)
             {
                 enemySpawnPosition = spawnObj;
-                Debug.Log("[StageHandler] EnemySpawnPosition을 자동으로 찾았습니다.");
             }
         }
     }

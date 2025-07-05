@@ -112,8 +112,6 @@ public abstract class BaseBoss : MonoBehaviour
 
         // 상태이상 적용 루틴 시작  
         StartCoroutine(ApplyDebuffsRoutine());
-
-        Debug.Log($"{GetType().Name} spawned with {_maxHealth} HP and {_executableUnits.Count} executable units!");
         
         // BombHandler 할당 확인
         if (_bombHandler == null)
@@ -145,8 +143,6 @@ public abstract class BaseBoss : MonoBehaviour
         PatternElement patternElement = new PatternElement(pattern, intervalAfterExecution);
         ExecutableUnit executableUnit = new ExecutableUnit(patternElement);
         _executableUnits.Add(executableUnit);
-        
-        Debug.Log($"Individual pattern added with {intervalAfterExecution}s interval");
     }
     
     /// <summary>
@@ -155,7 +151,6 @@ public abstract class BaseBoss : MonoBehaviour
     /// <returns>패턴 그룹 빌더</returns>
     protected PatternGroupBuilder AddGroup()
     {
-        Debug.Log($"{GetType().Name}: Creating new PatternGroupBuilder");
         return new PatternGroupBuilder(OnGroupBuilt);
     }
 
@@ -181,7 +176,6 @@ public abstract class BaseBoss : MonoBehaviour
 
             _executableUnits.Add(executableUnit);
             int patternCount = executableUnit.PatternGroup.Patterns.Count;
-            Debug.Log($"{GetType().Name}: Pattern group added successfully with {patternCount} patterns. Total executable units: {_executableUnits.Count}");
         }
         catch (Exception ex)
         {
@@ -361,14 +355,12 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     private IEnumerator AttackRoutine()
     {
-        Debug.Log($"{GetType().Name}: AttackRoutine started");
         yield return new WaitForSeconds(1f); // 초반 딜레이
     
         while (!_isDead && !_isStopped)
         {
             if (_executableUnits.Count > 0)
             {
-                Debug.Log($"{GetType().Name}: Executing random unit from {_executableUnits.Count} available units");
                 yield return StartCoroutine(ExecuteRandomUnit()); // 패턴 완료까지 대기 (인터벌 포함)
             }
             else
@@ -377,8 +369,6 @@ public abstract class BaseBoss : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
         }
-    
-        Debug.Log($"{GetType().Name}: AttackRoutine ended (isDead: {_isDead}, isStopped: {_isStopped})");
     }
 
 
