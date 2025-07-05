@@ -169,8 +169,8 @@ public class BigHandFistPattern : IBossAttackPattern
     {
         Debug.Log($"충격파 시작: 중심 {fistCenter}");
         
-        // 거리별로 웨이브 확산 (최대 거리 6까지)
-        for (int distance = 1; distance <= 6; distance++)
+        // 거리별로 웨이브 확산
+        for (int distance = 1; distance <= 8; distance++)
         {
             List<Vector3Int> wavePositions = GetPositionsAtDistance(fistCenter, distance);
             

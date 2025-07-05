@@ -106,7 +106,6 @@ public class BossDebuffs : MonoBehaviour
             default:
                 break; // 다른 상태 이상은 처리하지 않음
         }
-
         bossHPUI.UpdateDebuffUI(debuff, debuffs[(int)debuff]);
     }
 
@@ -225,16 +224,22 @@ public class BossDebuffs : MonoBehaviour
         // 기존 디버프 처리
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
-        boss.StopAttack(2f);
+        if (!boss.Unstoppable)
+        {
+            if (!boss.IsHandBoss)
+            {
+                boss.StopAttack(2f); // 2초 동안 공격 중지
+            }
 
-        // 애니메이터 일시중지 (원래 속도 저장)
-        float originalAnimatorSpeed = boss.Animator.speed;
-        boss.Animator.speed = 0f;
+            // 애니메이터 일시중지 (원래 속도 저장)
+            float originalAnimatorSpeed = boss.Animator.speed;
+            boss.Animator.speed = 0f;
 
-        // 2초 후 애니메이터 재생 재개
-        freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
+            // 2초 후 애니메이터 재생 재개
+            freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
 
-        PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
+            PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
+        }
     }
 
     /// <summary>
@@ -308,14 +313,14 @@ public class BossDebuffs : MonoBehaviour
     }
 
     /// <summary>
-    /// 모든 상태 이상을 저주로 변환합니다.
+    /// 화염과 동상을 저주로 변환합니다.
     /// </summary>
     public void TurnEveryDebuffsToCurse()
     {
         // 모든 상태 이상을 저주로 변환
         for (int i = 0; i < debuffs.Length; i++)
         {
-            if (debuffs[i] > 0 && (BossDebuff)i != BossDebuff.Curse)
+            if (debuffs[i] > 0 && (BossDebuff)i == BossDebuff.Burning && (BossDebuff)i == BossDebuff.Frostbite)
             {
                 BossDebuff debuffType = (BossDebuff)i;
                 int count = debuffs[i];
@@ -351,6 +356,11 @@ public class BossDebuffs : MonoBehaviour
             GameObject effect = Instantiate(effectPrefab, boss.transform.position, Quaternion.identity);
             effect.transform.SetParent(boss.transform);
             effect.name = $"{debuff}Effect"; // 이펙트 오브젝트에 이름 지정
+
+            if (debuff == BossDebuff.Burning)
+            {
+                effect.transform.position = boss.transform.position + new Vector3(0.2f, 0.5f, 0); // 화상 이펙트 위치 조정
+            }
         }
     }
 

@@ -111,6 +111,11 @@ public class TileInfo
     public float shop_RareChance; //레어 등급의 확률입니다
     public float shop_EpicChance; //에픽 등급의 확률입니다
     public float shop_LegendaryChance; //레전더리 등급의 확률입니다
+
+    public float Shop_MythicChance()
+    {
+        return 100 - shop_NormalChance - shop_RareChance - shop_EpicChance - shop_LegendaryChance;
+    }
 }
 
 /// <summary>

@@ -60,8 +60,6 @@ public class TurtreePattern1 : IBossAttackPattern
 
             yield return new WaitForSeconds(0.03f);
 
-            BombPoints.Add(new Vector3Int(currentPos.x - 4, currentPos.y - 4, 0));
-
             Vector3Int nextPos = currentPos + directions[currentDir];
 
             bool added = false;
@@ -100,8 +98,10 @@ public class TurtreePattern1 : IBossAttackPattern
 
             if (BombPoints.Count > 0)
             {
+               boss.StartCoroutine(TurtreeAttackSound());
+
                 boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
-                                      warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+                                      warningDuration: 0.8f, explosionDuration: 2f, damage: 20);
             }
 
             // 💡 루프 중단 조건: 더 이상 유효한 탐색 대상이 없으면 탈출
@@ -117,5 +117,11 @@ public class TurtreePattern1 : IBossAttackPattern
     private bool IsInBounds(Vector3Int pos)
     {
         return pos.x >= 0 && pos.x < gridSize && pos.y >= 0 && pos.y < gridSize;
+    }
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

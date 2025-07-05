@@ -12,24 +12,24 @@ public class InfoTextRenderer : MonoBehaviour
 
     Dictionary<TileCategory, string> _categotyDict = new Dictionary<TileCategory, string>
     {
-        { TileCategory.Weapon, "#무기<sprite name=\"Weapon\">" },
-        { TileCategory.MagicCircle, "#마법진<sprite name=\"MagicCircle\">" },
-        { TileCategory.Armor, "#방어구<sprite name=\"Armor\">" },
-        { TileCategory.Consumable, "#소모품<sprite name=\"Potion\">" },
-        { TileCategory.Trinket, "#장신구<sprite name=\"Trinket\">" },
-        { TileCategory.Summon, "#소환수<sprite name=\"Summon\">" }
+        { TileCategory.Weapon, "<color=#D5F1FF>#무기<sprite name=\"Weapon\"></color>" },
+        { TileCategory.MagicCircle, "<color=#D5F1FF>#마법진<sprite name=\"MagicCircle\"></color>" },
+        { TileCategory.Armor, "<color=#D5F1FF>#방어구<sprite name=\"Armor\"></color>" },
+        { TileCategory.Consumable, "<color=#D5F1FF>#소모품<sprite name=\"Potion\"></color>" },
+        { TileCategory.Trinket, "<color=#D5F1FF>#장신구<sprite name=\"Trinket\"></color>" },
+        { TileCategory.Summon, "<color=#D5F1FF>#소환수<sprite name=\"Summon\"></color>" }
     };
 
     Dictionary<string, string> _synergyDict = new Dictionary<string, string>
     {
-        { "Totem", "#토템<sprite name=\"Totem\">" },
-        { "Sword", "#검<sprite name=\"Sword\">" },
-        { "Fire", "#화염<sprite name=\"Fire\">" },
-        { "Ice", "#얼음<sprite name=\"Ice\">" },
-        { "Shield", "#방어막<sprite name=\"Shield\">" },
-        { "Barrier", "#보호막<sprite name=\"Barrier\">" },
-        {"Curse", "#저주<sprite name=\"Curse\">" },
-        {"Cloud","#구름<sprite name=\"Cloud\">" }
+        { "Totem", "<color=#ECA03E>#토템<sprite name=\"Totem\"></color>" },
+        { "Sword", "<color=#D1DBE5>#검<sprite name=\"Sword\"></color>" },
+        { "Fire", "<color=#DB444C>#화염<sprite name=\"Fire\"></color>" },
+        { "Ice", "<color=#0F88C1>#동상<sprite name=\"Ice\"></color>" },
+        { "Shield", "<color=white>#방어막<sprite name=\"Shield\"></color>" },
+        { "Barrier", "<color=white>#보호막<sprite name=\"Barrier\"></color>" },
+        {"Curse", "<color=#AE3FF3>#저주<sprite name=\"Curse\"></color>" },
+        {"Cloud","<color=white>#구름<sprite name=\"Cloud\"></color>" }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트

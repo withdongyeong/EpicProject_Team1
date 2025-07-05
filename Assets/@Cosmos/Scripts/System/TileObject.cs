@@ -123,7 +123,6 @@ public class TileObject : MonoBehaviour
                 SkillBase[] skillBases = GridManager.Instance.GetCellData(gridPos)?.GetCombineCell()?.Skills;
                 foreach (SkillBase skill in skillBases)
                 {
-                    Debug.Log($"스타셀 위치: {starCell.GetStarSkill()}, 스킬: {skill.name}");
                     if (starCell.GetStarSkill() != null && starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill))
                     {
                         Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
