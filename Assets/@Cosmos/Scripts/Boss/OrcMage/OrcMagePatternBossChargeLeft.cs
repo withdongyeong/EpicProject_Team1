@@ -26,6 +26,9 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
+        // 빙결 불가 설정
+        boss.Unstoppable = true;
+        
         // 1. 랜덤 행 선택 (2~6행, 가장자리 피함)
         int targetRow = Random.Range(2, 7);
         Vector3Int startPosition = new Vector3Int(8, targetRow, 0); // 오른쪽 끝
