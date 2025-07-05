@@ -58,11 +58,19 @@ public class GuardianGolemPattern1 : IBossAttackPattern
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
+        boss.StartCoroutine(AttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(positions, centerPos, _guardianGolemRook,
                                         warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
 
         boss.AttackAnimation();
 
         yield return new WaitForSeconds(0.3f);
+    }
+
+    private IEnumerator AttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 소리 재생 후 대기
+        SoundManager.Instance.GolemSoundClip("GolemAttackActivate");
     }
 }

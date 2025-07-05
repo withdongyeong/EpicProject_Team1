@@ -38,16 +38,16 @@ public class GuardianGolem : BaseBoss
 
     protected override void DamageFeedback()
     {
+        SoundManager.Instance.GolemSoundClip("GolemDamageActivate");
         base.DamageFeedback();
     }
 
     /// <summary>
-    /// 오크 메이지 전용 사망 처리 (오버라이드 가능)
+    /// 골렘 전용 사망 처리 (오버라이드 가능)
     /// </summary>
     protected override void Die()
     {
-        Debug.Log("OrcMage: Casting final spell before death...");
-
+        SoundManager.Instance.GolemSoundClip("GolemDeadActivate");
         SetAnimationTrigger("DeathTrigger");
         // 기본 사망 처리 호출
         base.Die();
