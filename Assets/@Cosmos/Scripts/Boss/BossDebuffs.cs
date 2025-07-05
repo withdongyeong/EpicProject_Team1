@@ -106,7 +106,6 @@ public class BossDebuffs : MonoBehaviour
             default:
                 break; // 다른 상태 이상은 처리하지 않음
         }
-
         bossHPUI.UpdateDebuffUI(debuff, debuffs[(int)debuff]);
     }
 
@@ -314,14 +313,14 @@ public class BossDebuffs : MonoBehaviour
     }
 
     /// <summary>
-    /// 모든 상태 이상을 저주로 변환합니다.
+    /// 화염과 동상을 저주로 변환합니다.
     /// </summary>
     public void TurnEveryDebuffsToCurse()
     {
         // 모든 상태 이상을 저주로 변환
         for (int i = 0; i < debuffs.Length; i++)
         {
-            if (debuffs[i] > 0 && (BossDebuff)i != BossDebuff.Curse)
+            if (debuffs[i] > 0 && (BossDebuff)i == BossDebuff.Burning && (BossDebuff)i == BossDebuff.Frostbite)
             {
                 BossDebuff debuffType = (BossDebuff)i;
                 int count = debuffs[i];

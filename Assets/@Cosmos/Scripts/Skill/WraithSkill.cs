@@ -29,7 +29,6 @@ public class WraithSkill : SkillBase
     protected override void Activate()
     {
         base.Activate();
-        bossDebuffs.TurnEveryDebuffsToCurse(); // 모든 상태 이상을 저주로 변환
         if (isEnchanted)
         {
             AddPain(20); // 강화된 상태면 저주를 20개 소모하고 영구 피해 증폭 10% 적용
@@ -38,6 +37,7 @@ public class WraithSkill : SkillBase
         {
             AddPain(40); // 기본적으로 저주를 40개 소모하고 영구 피해 증폭 10% 적용
         }
+        bossDebuffs.TurnEveryDebuffsToCurse(); // 모든 상태 이상을 저주로 변환
     }
 
     private void AddPain(int curseAmount)
