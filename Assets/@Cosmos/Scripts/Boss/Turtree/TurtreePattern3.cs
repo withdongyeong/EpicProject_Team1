@@ -56,6 +56,8 @@ public class TurtreePattern3 : IBossAttackPattern
                 }
             }
 
+            boss.StartCoroutine(TurtreeAttackSound());
+
             boss.BombHandler.ExecuteFixedBomb(
                 spokesPattern,
                 centerPos,
@@ -66,7 +68,7 @@ public class TurtreePattern3 : IBossAttackPattern
                 warningType: WarningType.Type1
             );
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -76,5 +78,11 @@ public class TurtreePattern3 : IBossAttackPattern
     {
         return pos.x >= 0 && pos.x <= 8 &&
                pos.y >= 0 && pos.y <= 8;
+    }
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

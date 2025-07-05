@@ -98,6 +98,8 @@ public class TurtreePattern1 : IBossAttackPattern
 
             if (BombPoints.Count > 0)
             {
+               boss.StartCoroutine(TurtreeAttackSound());
+
                 boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
                                       warningDuration: 0.8f, explosionDuration: 2f, damage: 20);
             }
@@ -115,5 +117,11 @@ public class TurtreePattern1 : IBossAttackPattern
     private bool IsInBounds(Vector3Int pos)
     {
         return pos.x >= 0 && pos.x < gridSize && pos.y >= 0 && pos.y < gridSize;
+    }
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

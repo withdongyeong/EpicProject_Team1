@@ -43,9 +43,18 @@ public class TurtreePattern6 : IBossAttackPattern
             }
         }
 
+        boss.StartCoroutine(TurtreeAttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(bombPoint, new Vector3Int(4, 4, 0), _attackPrefab,
                                              warningDuration: 0.8f, explosionDuration: 2f, damage: 20, WarningType.Type1);
 
         yield return new WaitForSeconds(0.6f);
+    }
+
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

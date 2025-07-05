@@ -37,4 +37,22 @@ public class Turtree : BaseBoss
             .AddPattern(new TurtreePattern2(AttackPrefeb), 1f)
             .SetGroupInterval(1f);
     }
+
+    protected override void DamageFeedback()
+    {
+        SoundManager.Instance.TurtreeSoundClip("TurtreeDamageActivate");
+        base.DamageFeedback();
+    }
+
+    /// <summary>
+    /// 골렘 전용 사망 처리 (오버라이드 가능)
+    /// </summary>
+    protected override void Die()
+    {
+        SoundManager.Instance.TurtreeSoundClip("TurtreeDeadActivate");
+        SetAnimationTrigger("DeathTrigger");
+        // 기본 사망 처리 호출
+        base.Die();
+    }
+
 }

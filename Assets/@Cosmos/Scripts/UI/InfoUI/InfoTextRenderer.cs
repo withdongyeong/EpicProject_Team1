@@ -22,8 +22,8 @@ public class InfoTextRenderer : MonoBehaviour
 
     Dictionary<string, string> _synergyDict = new Dictionary<string, string>
     {
-        { "Totem", "<color=ECA03E>#토템<sprite name=\"Totem\"></color>" },
-        { "Sword", "<color=D1DBE5#검<sprite name=\"Sword\"></color>" },
+        { "Totem", "<color=#ECA03E>#토템<sprite name=\"Totem\"></color>" },
+        { "Sword", "<color=#D1DBE5>#검<sprite name=\"Sword\"></color>" },
         { "Fire", "<color=#DB444C>#화염<sprite name=\"Fire\"></color>" },
         { "Ice", "<color=#0F88C1>#동상<sprite name=\"Ice\"></color>" },
         { "Shield", "<color=white>#방어막<sprite name=\"Shield\"></color>" },

@@ -36,6 +36,8 @@ public class TurtreePattern5 : IBossAttackPattern
             // 4개씩 그룹 동시 실행
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
+                boss.StartCoroutine(TurtreeAttackSound());
+
                 boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _attackPrefab,
                                                   warningDuration: 0.8f, explosionDuration: 2f, damage: 20, WarningType.Type1);
             }
@@ -102,5 +104,11 @@ public class TurtreePattern5 : IBossAttackPattern
     private bool IsValidPosition(Vector3Int pos)
     {
         return pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9;
+    }
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

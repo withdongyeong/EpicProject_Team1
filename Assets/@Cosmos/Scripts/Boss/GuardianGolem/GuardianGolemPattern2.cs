@@ -70,6 +70,7 @@ public class GuardianGolemPattern2 : IBossAttackPattern
             }
         }
 
+        boss.StartCoroutine(AttackSound());
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0); // 중심은 원하는 기준으로 설정
         boss.BombHandler.ExecuteFixedBomb(positions, centerPos, _guardianGolemRook,
@@ -78,5 +79,11 @@ public class GuardianGolemPattern2 : IBossAttackPattern
         boss.AttackAnimation();
 
         yield return new WaitForSeconds(0.3f);
+    }
+
+    private IEnumerator AttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 소리 재생 후 대기
+        SoundManager.Instance.GolemSoundClip("GolemAttackActivate");
     }
 }

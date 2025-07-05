@@ -63,6 +63,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
         for (int y = 0; y < 9; y++)
         {
+            boss.StartCoroutine(AttackSound());
+
             List<Vector3Int> positions = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
 
             boss.BombHandler.ExecuteFixedBomb(
@@ -87,6 +89,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
         for (int y = 0; y < 9; y++)
         {
             if (y == RandomPoint) continue;
+
             // 각 줄을 병렬적으로 실행
             boss.StartCoroutine(ExecuteRow(boss, y));
 
@@ -101,6 +104,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
         for (int x = Wallcount; x < 9 - Wallcount; x++)
         {
+            boss.StartCoroutine(AttackSound());
+
             List<Vector3Int> positions = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
 
             boss.BombHandler.ExecuteFixedBomb(
@@ -115,5 +120,12 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
             yield return new WaitForSeconds(0.1f); // 좌→우로 순차 폭발
         }
     }
+
+    private IEnumerator AttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 소리 재생 후 대기
+        SoundManager.Instance.GolemSoundClip("GolemAttackActivate");
+    }
+
 }
 
