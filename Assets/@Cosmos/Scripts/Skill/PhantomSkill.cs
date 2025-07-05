@@ -48,9 +48,9 @@ public class PhantomSkill : SkillBase
         base.ApplyStatBuff(buffData);
         if (buffData.TileStat == BuffableTileStat.MagicCircle)
         {
-            if (bossDebuffs.MaxCurseCount < 60)
+            if (FindAnyObjectByType<BossDebuffs>().MaxCurseCount < 60)
             {
-                bossDebuffs.MaxCurseCount = 60; // 저주 상태 이상 최대치 설정
+                FindAnyObjectByType<BossDebuffs>().MaxCurseCount = 60; // 저주 상태 이상 최대치 설정
             }
         }
     }

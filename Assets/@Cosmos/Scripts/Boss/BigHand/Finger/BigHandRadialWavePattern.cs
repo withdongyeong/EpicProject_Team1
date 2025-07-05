@@ -8,7 +8,7 @@ using UnityEngine;
 public class BigHandRadialWavePattern : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
-    private float _growthSpeed = 0.15f; // 성장 속도 (조절 가능)
+    private float _growthSpeed = 0.1f; // 성장 속도 (조절 가능)
 
     public string PatternName => "방사형_확산";
     

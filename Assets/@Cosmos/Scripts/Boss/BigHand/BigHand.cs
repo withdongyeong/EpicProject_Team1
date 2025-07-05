@@ -47,6 +47,8 @@ public class BigHand : BaseBoss
         base.Awake();
         // 기본 스탯 설정
         MaxHealth = 3500;
+        // 빙결 불가 설정
+        IsHandBoss = true;
         Debug.Log($"BigHand.Awake: MaxHealth set to {MaxHealth}");
     }
 
@@ -69,46 +71,12 @@ public class BigHand : BaseBoss
         AddGroup()
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
             .AddPattern(new BigHandFistPrepPattern(attackPrefab), 0f)
             .AddPattern(new BigHandFistPattern(fistPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .SetGroupInterval(1f);
-        
-        AddGroup()
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .SetGroupInterval(1f);
-        
-        AddGroup()
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
-            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandFistPrepPattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFistPattern(fistPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
-            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
             .AddPattern(new BigHandFingerReturnPattern(), 0f)
@@ -117,14 +85,48 @@ public class BigHand : BaseBoss
         AddGroup()
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .SetGroupInterval(1f);
+        
+        AddGroup()
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandFistPrepPattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFistPattern(fistPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
+            .SetGroupInterval(1f);
+        
+        AddGroup()
+            .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
+            .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
             .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandFistPrepPattern(attackPrefab), 0f)
             .AddPattern(new BigHandFistPattern(fistPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab), 0f)
-            .AddPattern(new BigHandFingerReturnPattern(), 0.5f)
+            .AddPattern(new BigHandFingerReturnPattern(), 0f)
             .SetGroupInterval(1f);
         
         

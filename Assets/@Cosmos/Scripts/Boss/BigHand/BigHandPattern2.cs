@@ -72,12 +72,9 @@ public class BigHandPattern2 : IBossAttackPattern
                 warningType: WarningType.Type1
             );
             
-            // 회전 속도 감소: 0.25초 → 0.45초
-            yield return new WaitForSeconds(0.85f);
+            // 회전 속도
+            yield return new WaitForSeconds(0.6f);
         }
-        
-        yield return new WaitForSeconds(0.4f + 0.6f);
-        
         Debug.Log("패턴2 완료");
     }
 

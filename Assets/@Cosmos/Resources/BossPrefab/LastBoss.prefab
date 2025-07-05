@@ -212,5 +212,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  leftHandPrefab: {fileID: 7399596869824652233, guid: f243595f52c7fec4cac479bd19415d9e, type: 3}
-  rightHandPrefab: {fileID: 2253190953738238710, guid: 0e21869022ec03c449c21814395a5228, type: 3}
+  staff: {fileID: 5650701741579612873, guid: bec8fff9d507ec943badd347199e5c2c, type: 3}
+  sword: {fileID: 5017731569837632704, guid: 43c5776b06166ea418237db10d53386c, type: 3}
+  frost: {fileID: 5174803650235917782, guid: e608087c7a3d1ac4a965f6424d4b53f1, type: 3}
+  flame: {fileID: 7335870156966067248, guid: a08ad1faf0bf7a54d9e88bae154c4146, type: 3}
+  explosionPrefab: {fileID: 898110886596449252, guid: 0739b5f1274ae874da7d2bf2e5b4ba9a, type: 3}
+  frostExplosionPrefab: {fileID: 3843559505430893543, guid: 737cc54d952cd0f41892047e3f181412, type: 3}
+  flameExplosionPrefab: {fileID: 1175468250106115107, guid: 93db2bf4f59c62d47b5ecf09d6fde00e, type: 3}
+  swordExplosionPrefab: {fileID: 3843559505430893543, guid: b76012063038ef84182df202b6ad9d58, type: 3}
