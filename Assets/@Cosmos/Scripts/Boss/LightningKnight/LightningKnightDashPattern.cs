@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 
 
 public class LightningKnightDashPattern : IBossAttackPattern
@@ -108,7 +109,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0,0,0) ,0.8f, 20, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -128,7 +129,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 20, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -148,7 +149,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 20, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -169,7 +170,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                     }
                 }
 
-                boss.BombHandler.ShowWarningOnly(DangerAreas, 0.8f, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 0.8f, 20, WarningType.Type2);
 
                 yield return new WaitForSeconds(0.08f);
             }
@@ -194,13 +195,19 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
                 for (int x = 0; x <= 8; x++)
                 {
-                    for (int dy = y; dy >= 3; dy--)
-                    {
-                        List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
-                        boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+                    int EndY;
 
-                        yield return new WaitForSeconds(0.03f);
-                    }
+                    if (x <= 1 || x >= 7) EndY = y;
+                    else if (x <= 3 || x >= 5) EndY = y - 1;
+                    else EndY = y - 2;
+
+                    for (int dy = y; dy >= EndY; dy--)
+                        {
+                            List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
+                            boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
+
+                            yield return new WaitForSeconds(0.03f);
+                        }
                 }
             }
             else // 왼쪽
@@ -209,7 +216,13 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
                 for (int x = 8; x >= 0; x--)
                 {
-                    for (int dy = y; dy <= 5; dy++)
+                    int EndY;
+
+                    if (x <= 1 || x >= 7) EndY = y;
+                    else if (x <= 3 || x >= 5) EndY = y + 1;
+                    else EndY = y + 2;
+
+                    for (int dy = y; dy <= EndY; dy++)
                     {
                         List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(x, dy, 0) };
                         boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
@@ -228,7 +241,13 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
                 for (int y = 0; y <= 8; y++)
                 {
-                    for (int dx = x; dx <= 5; dx++)
+                    int EndX;
+
+                    if (y <= 1 || y >= 7) EndX = x;
+                    else if (y <= 3 || y >= 5) EndX = x + 1;
+                    else EndX = y + 2;
+
+                    for (int dx = x; dx <= EndX; dx++)
                     {
                         List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(dx, y, 0) };
                         boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
@@ -243,7 +262,13 @@ public class LightningKnightDashPattern : IBossAttackPattern
 
                 for (int y = 8; y >= 0; y--)
                 {
-                    for (int dx = x; dx >= 3; dx--)
+                    int EndX;
+
+                    if (y <= 1 || y >= 7) EndX = x;
+                    else if (y <= 3 || y >= 5) EndX = x - 1;
+                    else EndX = x - 2;
+
+                    for (int dx = x; dx >= EndX; dx--)
                     {
                         List<Vector3Int> danger = new List<Vector3Int> { new Vector3Int(dx, y, 0) };
                         boss.StartCoroutine(ShowWarningAsync(boss, danger, 0.8f, WarningType.Type1));
