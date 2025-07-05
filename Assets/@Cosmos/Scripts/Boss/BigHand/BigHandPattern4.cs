@@ -54,7 +54,7 @@ public class BigHandPattern4 : IBossAttackPattern
             warningType: WarningType.Type1
         );
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         
         // 2단계: 흰 칸들 (x+y가 홀수)
         List<Vector3Int> whiteSquares = new List<Vector3Int>();
@@ -79,7 +79,7 @@ public class BigHandPattern4 : IBossAttackPattern
             warningType: WarningType.Type1
         );
         
-        yield return new WaitForSeconds(1.0f + 0.8f);
+        yield return new WaitForSeconds(1.0f);
     }
 
     public void Cleanup()
