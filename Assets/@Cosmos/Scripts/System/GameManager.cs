@@ -21,10 +21,7 @@ public class GameManager : Singleton<GameManager>
             ResetGame();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneLoader.ToggleSetting();
-        }
+        ShowSetting();
         
         // Alt + Enter 감지 → 비율 깨짐 방지
         if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
@@ -39,6 +36,14 @@ public class GameManager : Singleton<GameManager>
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
         SceneLoader.LoadSceneWithName("InitializeScene");
     }
+    
+    private void ShowSetting(){
+        if(Input.GetKeyDown(KeyCode.Escape) && (SceneLoader.IsInBuilding() || SceneLoader.IsInTitle()))
+        {
+            SceneLoader.ToggleSetting();
+        }    
+    }
+      
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -64,6 +69,11 @@ public class GameManager : Singleton<GameManager>
     {
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
+        GoldManager.Instance.SetCurrentGold(16);
+        for(int i =0; i<5; i++)
+        {
+            StoreLockManager.Instance.RemoveStoreLock(i);
+        }      
         SceneLoader.LoadTitle();
     }
     public void SetTutorial()

@@ -43,11 +43,12 @@ public class TurtreePattern4 : IBossAttackPattern
         for (int i = 0; i < 9; i++)
         {
             boss.BombHandler.ExecuteFixedBomb(points, BombCenter[i], _treeAttackPrefeb,
-                    warningDuration: 0.8f, explosionDuration: 0.2f, damage: 20);
+                    warningDuration: 0.8f, explosionDuration: 2f, damage: 20);
 
             if (i == 0 || i == 3)
             {
                 boss.AttackAnimation();
+                boss.StartCoroutine(TurtreeAttackSound());
 
                 yield return new WaitForSeconds(0.3f);
             }
@@ -99,6 +100,12 @@ public class TurtreePattern4 : IBossAttackPattern
         }
 
         return pattern;
+    }
+
+    private IEnumerator TurtreeAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 
 }

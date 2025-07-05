@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class ManaAISkill : SkillBase
+public class ManaAISkill : NonActivateSkill
 {
     private bool isInGameScene = false;
 

@@ -64,7 +64,7 @@ public class TutorialBossPattern : IBossAttackPattern
             _tutorialBossAttack,
             warningDuration: 0.8f,
             explosionDuration: 0.4f,
-            damage: 10
+            damage: 2
         );
 
         yield return null;

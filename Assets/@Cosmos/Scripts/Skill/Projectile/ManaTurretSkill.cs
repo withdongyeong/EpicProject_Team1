@@ -9,6 +9,9 @@ public class ManaTurretSkill : ProjectileSkill
         projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/ManaTurret"); // ManaTurret 투사체 프리팹 로드
     }
 
+    /// <summary>
+    /// 투사체 생성 및 발사
+    /// </summary>
     protected override void FireProjectile()
     {
         StartCoroutine(WaitAndFire());
@@ -23,7 +26,7 @@ public class ManaTurretSkill : ProjectileSkill
             Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
+            Quaternion clockwise90 = Quaternion.Euler(0, 0, 90);
             projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Rendering;
+using UnityEngine;
 
 public class Kabuto : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Kabuto : MonoBehaviour
     private PlayerProtection _protection;
     private GameObject _projectile;
     private KabutoSummonSkill _summoner;
+
+    private Sprite _pupa;
+    private Sprite _imago;
 
 
     private void Update()
@@ -35,8 +39,9 @@ public class Kabuto : MonoBehaviour
         EventBus.SubscribeProtectionConsume(OnProtectionConsume);
         _protection = FindAnyObjectByType<PlayerProtection>();
         _projectile = Resources.Load<GameObject>("Prefabs/Projectiles/Kabuto");
+        _pupa = Resources.Load<Sprite>("Arts/Objects/plus/장수풍뎅이 번데기");
+        _imago = Resources.Load<Sprite>("Arts/Objects/plus/장수풍뎅이 강림");
         _summoner = summoner;
-        _protection.SetProtection(true, 15);
     }
 
     private void OnProtectionConsume(int protection)
@@ -51,14 +56,16 @@ public class Kabuto : MonoBehaviour
     private void CastOff()
     {
         _isCastOff = true;
-        transform.localScale = Vector3.one * 2;
+        _sr.sprite = _imago;
     }
 
     private void PutOn()
     {
         _currentConsume = 0;
         _isCastOff = false;
-        transform.localScale = Vector3.one;
+        _sr.sprite = _pupa;
+        _sr.color = Color.white;
+
     }
 
     public void TryCharge()

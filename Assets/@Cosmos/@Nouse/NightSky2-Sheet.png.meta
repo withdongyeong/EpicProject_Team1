@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: eea73a192c233ce42ba11dea82410a1a
+guid: bce0ec9bd65be5c43926394f4c0ab656
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1765584632101798801
-    second: NightSky3-Sheet_0
+      213: 1799258017804387763
+    second: NightSky2-Sheet 1_0
   - first:
-      213: 6448912037201241689
-    second: NightSky3-Sheet_1
+      213: 9118844587855254696
+    second: NightSky2-Sheet 1_1
   - first:
-      213: -4496879870743846571
-    second: NightSky3-Sheet_2
+      213: 7806393439952204702
+    second: NightSky2-Sheet 1_2
   - first:
-      213: -7136525664689009519
-    second: NightSky3-Sheet_3
+      213: -3107198895632454635
+    second: NightSky2-Sheet 1_3
   - first:
-      213: 2830221012359973893
-    second: NightSky3-Sheet_4
+      213: 6841081996931405777
+    second: NightSky2-Sheet 1_4
   - first:
-      213: 3346549563470922879
-    second: NightSky3-Sheet_5
+      213: -6556648964301942874
+    second: NightSky2-Sheet 1_5
   - first:
-      213: -2328921598631059642
-    second: NightSky3-Sheet_6
+      213: -5504779395477021832
+    second: NightSky2-Sheet 1_6
   - first:
-      213: 1905656721164130844
-    second: NightSky3-Sheet_7
+      213: -990025457326252999
+    second: NightSky2-Sheet 1_7
   - first:
-      213: 5543066623132846803
-    second: NightSky3-Sheet_8
+      213: -4556377279448894090
+    second: NightSky2-Sheet 1_8
   - first:
-      213: -8276582046037587501
-    second: NightSky3-Sheet_9
+      213: -2186608362643548838
+    second: NightSky2-Sheet 1_9
   - first:
-      213: 3328679811105824690
-    second: NightSky3-Sheet_10
+      213: 2131013691744558151
+    second: NightSky2-Sheet 1_10
   - first:
-      213: 4398477332480469645
-    second: NightSky3-Sheet_11
+      213: -8444497195453722900
+    second: NightSky2-Sheet 1_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,281 +129,263 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NightSky3-Sheet_0
+      name: NightSky2-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2304
-        width: 576
-        height: 576
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f6cfeaea1226f77e0800000000000000
-      internalID: -1765584632101798801
+      spriteID: db3cbaecb934c02488c74deb280e7e54
+      internalID: -123475096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_1
+      name: NightSky2-Sheet_1
       rect:
         serializedVersion: 2
-        x: 576
-        y: 2304
-        width: 576
-        height: 576
+        x: 512
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 956ee1d74532f7950800000000000000
-      internalID: 6448912037201241689
+      spriteID: f2a4a5e08eabba247b89a52d1ce62f22
+      internalID: 1895107737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_2
+      name: NightSky2-Sheet_2
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 2304
-        width: 576
-        height: 576
+        x: 1024
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 55165b2459fd791c0800000000000000
-      internalID: -4496879870743846571
+      spriteID: b3a1a80dbcabd8242a508ee122e3c138
+      internalID: -1235462932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_3
+      name: NightSky2-Sheet_3
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 2304
-        width: 576
-        height: 576
+        x: 1536
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 19cc0c908b7f5fc90800000000000000
-      internalID: -7136525664689009519
+      spriteID: 5763f1d0dbedf4942abd09fd039c9374
+      internalID: 434996950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_4
+      name: NightSky2-Sheet_4
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 2304
-        width: 576
-        height: 576
+        x: 2048
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50c009df307f64720800000000000000
-      internalID: 2830221012359973893
+      spriteID: 2a0e363cad65c0942a6fa9e388f12023
+      internalID: 996796754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_5
+      name: NightSky2-Sheet_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 1728
-        width: 576
-        height: 576
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f744ce1e815517e20800000000000000
-      internalID: 3346549563470922879
+      spriteID: 59994043063cd064cb71d8b09d06d945
+      internalID: 412592596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_6
+      name: NightSky2-Sheet_6
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1728
-        width: 576
-        height: 576
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 64f5cdb25220eafd0800000000000000
-      internalID: -2328921598631059642
+      spriteID: 87caad5074e779d47ae64f91ad42d0ba
+      internalID: -174608450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_7
+      name: NightSky2-Sheet_7
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1728
-        width: 576
-        height: 576
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1ad2d8f0b0427a10800000000000000
-      internalID: 1905656721164130844
+      spriteID: 89e0e083d587c96439035b81be845505
+      internalID: 1044464865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_8
+      name: NightSky2-Sheet_8
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 1728
-        width: 576
-        height: 576
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3da482ea9bdecec40800000000000000
-      internalID: 5543066623132846803
+      spriteID: 09683cb397d81654fb6590f2a4acb871
+      internalID: 2015984744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_9
+      name: NightSky2-Sheet_9
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1728
-        width: 576
-        height: 576
+        x: 2048
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d9cd87fa7ca32d80800000000000000
-      internalID: -8276582046037587501
+      spriteID: e1cf583e255c3324e91b7d897b8263dc
+      internalID: -2048498395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_10
+      name: NightSky2-Sheet_10
       rect:
         serializedVersion: 2
         x: 0
-        y: 1152
-        width: 576
-        height: 576
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2bf1affe6a8d13e20800000000000000
-      internalID: 3328679811105824690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NightSky3-Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 1152
-        width: 576
-        height: 576
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d8a2b1b64d78a0d30800000000000000
-      internalID: 4398477332480469645
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NightSky3-Sheet_12
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 1152
-        width: 576
-        height: 576
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,20 +394,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce70ef5562069cc438c0c03d8298f57b
-      internalID: 30390261
+      spriteID: 00051535be5c18049b94502e66a99724
+      internalID: -726649416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_13
+      name: NightSky2-Sheet_11
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 1152
-        width: 576
-        height: 576
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,20 +416,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c43de6ea611840488748627d7f028c7
-      internalID: -1474756393
+      spriteID: c835d4bc9c7c8cd438c998cfa4a5eb49
+      internalID: 124256480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_14
+      name: NightSky2-Sheet_12
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 1152
-        width: 576
-        height: 576
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,20 +438,64 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c90ba4da13d43a143a4c70985d7b9969
-      internalID: -808275577
+      spriteID: ef1c5f27de817ae48bf0f86505c40e7d
+      internalID: 1998213019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_15
+      name: NightSky2-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a4d704c552675438ac56528cd369a6
+      internalID: 170673527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NightSky2-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 180eee092a7a6f6439431f036f6492aa
+      internalID: -1111202618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NightSky2-Sheet_15
       rect:
         serializedVersion: 2
         x: 0
-        y: 576
-        width: 576
-        height: 576
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,20 +504,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adf58cc9d5138434b9fb705928fdce91
-      internalID: 1270230458
+      spriteID: 433f1a9fb72b14247b89f78cc324d4c5
+      internalID: -588339416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_16
+      name: NightSky2-Sheet_16
       rect:
         serializedVersion: 2
-        x: 576
-        y: 576
-        width: 576
-        height: 576
+        x: 512
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -500,20 +526,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be4810b0d145d8b43b5bd95d8493e036
-      internalID: 1165545965
+      spriteID: dabfac0d4bd36d24ca8581fa042e5a76
+      internalID: -203283535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_17
+      name: NightSky2-Sheet_17
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 576
-        width: 576
-        height: 576
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -522,20 +548,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf31d1bb79e7c2a41be4395f422619fd
-      internalID: -1701257742
+      spriteID: 5427a291db522374e89dddecb1df4430
+      internalID: -458958847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_18
+      name: NightSky2-Sheet_18
       rect:
         serializedVersion: 2
-        x: 1728
-        y: 576
-        width: 576
-        height: 576
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -544,20 +570,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb5987c9ad01e9944bddb9bf8b3507dc
-      internalID: 1294892320
+      spriteID: 788436db23e1ae1479adf92372d37e75
+      internalID: -1611072387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_19
+      name: NightSky2-Sheet_19
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 576
-        width: 576
-        height: 576
+        x: 2048
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -566,20 +592,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c7d07eb40a045649a8aa77f293080e4
-      internalID: 1443877206
+      spriteID: 5a680a81c1f92644ba5c0886730850a4
+      internalID: 823755389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_20
+      name: NightSky2-Sheet_20
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 576
-        height: 576
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -588,20 +614,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce0d582b12b9223439519738418e6ac3
-      internalID: -1553729994
+      spriteID: df5687c16d65cde4c8b8131c1fc12c46
+      internalID: 979993970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NightSky3-Sheet_21
+      name: NightSky2-Sheet_21
       rect:
         serializedVersion: 2
-        x: 576
+        x: 512
         y: 0
-        width: 576
-        height: 576
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -610,74 +636,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a9766ed149d5e7428cfa07d220fd8ef
-      internalID: -310290620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NightSky3-Sheet_22
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 576
-        height: 576
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45819484a57ee3b4586c5fda48399b78
-      internalID: 1093607971
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NightSky3-Sheet_23
-      rect:
-        serializedVersion: 2
-        x: 1728
-        y: 0
-        width: 576
-        height: 576
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 18f223c8ef99e524c9b71928e35a8a34
-      internalID: -247874447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NightSky3-Sheet_24
-      rect:
-        serializedVersion: 2
-        x: 2304
-        y: 0
-        width: 576
-        height: 576
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67c7d68cd895b3344a1895bb0d4d8a47
-      internalID: 1214012423
+      spriteID: c49cfe93732ac394ca44f9f52a76db66
+      internalID: -657155643
       vertices: []
       indices: 
       edges: []
@@ -686,7 +646,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: af32103b3768fb44c808ed8f6bfe8728
+    spriteID: a2de09e16e0eba64ca397660aa59b4be
     internalID: 0
     vertices: []
     indices: 
@@ -696,31 +656,28 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NightSky3-Sheet_0: -1765584632101798801
-      NightSky3-Sheet_1: 6448912037201241689
-      NightSky3-Sheet_10: 3328679811105824690
-      NightSky3-Sheet_11: 4398477332480469645
-      NightSky3-Sheet_12: 30390261
-      NightSky3-Sheet_13: -1474756393
-      NightSky3-Sheet_14: -808275577
-      NightSky3-Sheet_15: 1270230458
-      NightSky3-Sheet_16: 1165545965
-      NightSky3-Sheet_17: -1701257742
-      NightSky3-Sheet_18: 1294892320
-      NightSky3-Sheet_19: 1443877206
-      NightSky3-Sheet_2: -4496879870743846571
-      NightSky3-Sheet_20: -1553729994
-      NightSky3-Sheet_21: -310290620
-      NightSky3-Sheet_22: 1093607971
-      NightSky3-Sheet_23: -247874447
-      NightSky3-Sheet_24: 1214012423
-      NightSky3-Sheet_3: -7136525664689009519
-      NightSky3-Sheet_4: 2830221012359973893
-      NightSky3-Sheet_5: 3346549563470922879
-      NightSky3-Sheet_6: -2328921598631059642
-      NightSky3-Sheet_7: 1905656721164130844
-      NightSky3-Sheet_8: 5543066623132846803
-      NightSky3-Sheet_9: -8276582046037587501
+      NightSky2-Sheet_0: -123475096
+      NightSky2-Sheet_1: 1895107737
+      NightSky2-Sheet_10: -726649416
+      NightSky2-Sheet_11: 124256480
+      NightSky2-Sheet_12: 1998213019
+      NightSky2-Sheet_13: 170673527
+      NightSky2-Sheet_14: -1111202618
+      NightSky2-Sheet_15: -588339416
+      NightSky2-Sheet_16: -203283535
+      NightSky2-Sheet_17: -458958847
+      NightSky2-Sheet_18: -1611072387
+      NightSky2-Sheet_19: 823755389
+      NightSky2-Sheet_2: -1235462932
+      NightSky2-Sheet_20: 979993970
+      NightSky2-Sheet_21: -657155643
+      NightSky2-Sheet_3: 434996950
+      NightSky2-Sheet_4: 996796754
+      NightSky2-Sheet_5: 412592596
+      NightSky2-Sheet_6: -174608450
+      NightSky2-Sheet_7: 1044464865
+      NightSky2-Sheet_8: 2015984744
+      NightSky2-Sheet_9: -2048498395
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

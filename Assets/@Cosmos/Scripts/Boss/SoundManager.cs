@@ -77,6 +77,61 @@ public class SoundManager : Singleton<SoundManager>
         {"SlimeDeadActivate", 0.3f}
     };
 
+    private Dictionary<string, AudioClip> BomberSoundDictionary = new Dictionary<string, AudioClip>();
+    //슬라임 볼륨 딕셔너리
+    private Dictionary<string, float> BomberSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"BomberAttackActivate", 0.05f},
+        {"BomberDamageActivate", 0.3f },
+        {"BomberDeadActivate", 0.7f },
+    };
+
+    private Dictionary<string, AudioClip> GolemSoundDictionary = new Dictionary<string, AudioClip>();
+    //골렘 볼륨 딕셔너리
+    private Dictionary<string, float> GolemSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"GolemAttackActivate", 0.2f},
+        {"GolemDamageActivate", 1f },
+        {"GolemDeadActivate", 1f },
+    };
+
+    private Dictionary<string, AudioClip> TurtreeSoundDictionary = new Dictionary<string, AudioClip>();
+    //나무거북 볼륨 딕셔너리
+    private Dictionary<string, float> TurtreeSoundVolumeDictionary = new Dictionary<string, float>
+    {
+        {"TurtreeAttackActivate", 0.05f},
+        {"TurtreeDamageActivate", 0.3f },
+        {"TurtreeDeadActivate", 0.3f },
+    };
+
+    private Dictionary<string, AudioClip> ReaperSoundDictionary = new Dictionary<string, AudioClip>();
+    //리퍼 볼륨 딕셔너리
+    private Dictionary<string, float> ReaperSoundVolumeDictionary = new Dictionary<string, float>
+    {
+
+    };
+
+    private Dictionary<string, AudioClip> KnightSoundDictionary = new Dictionary<string, AudioClip>();
+    //기사 볼륨 딕셔너리
+    private Dictionary<string, float> KnightSoundVolumeDictionary = new Dictionary<string, float>
+    {
+
+    };
+
+    private Dictionary<string, AudioClip> BigHandSoundDictionary = new Dictionary<string, AudioClip>();
+    //손 볼륨 딕셔너리
+    private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
+    {
+
+    };
+
+    private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
+    //최종보스 볼륨 딕셔너리
+    private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
+    {
+
+    };
+
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
     //UI 사운드볼륨
@@ -93,10 +148,10 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"ShopSceneBGM", 0.2f},
-        {"OrcMageBGM", 0.3f },
-        {"ArachneBGM", 0.2f },
-        {"SlimeBGM", 0.1f }
+        {"ShopSceneBGM", 0.1f},
+        {"OrcMageBGM", 0.15f },
+        {"ArachneBGM", 0.1f },
+        {"SlimeBGM", 0.05f }
     };
 
 
@@ -131,7 +186,6 @@ public class SoundManager : Singleton<SoundManager>
 
         AudioClip[] ArachneaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Arachne");
 
-
         foreach (AudioClip clip in ArachneaudioClips)
         {
             if (!ArachneSoundDictionary.ContainsKey(clip.name))
@@ -160,6 +214,76 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
+        AudioClip[] BomberMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Bomber");
+
+        foreach (AudioClip clip in BomberMageaudioClips)
+        {
+            if (!BomberSoundDictionary.ContainsKey(clip.name))
+            {
+                BomberSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] GolemMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Golem");
+
+        foreach (AudioClip clip in GolemMageaudioClips)
+        {
+            if (!GolemSoundDictionary.ContainsKey(clip.name))
+            {
+                GolemSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] TurtreeMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Turtree");
+
+        foreach (AudioClip clip in TurtreeMageaudioClips)
+        {
+            if (!TurtreeSoundDictionary.ContainsKey(clip.name))
+            {
+                TurtreeSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] ReaperMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Reaper");
+
+        foreach (AudioClip clip in ReaperMageaudioClips)
+        {
+            if (!ReaperSoundDictionary.ContainsKey(clip.name))
+            {
+                ReaperSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] KnightMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Knight");
+
+        foreach (AudioClip clip in KnightMageaudioClips)
+        {
+            if (!KnightSoundDictionary.ContainsKey(clip.name))
+            {
+                KnightSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] BigHandMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/BigHand");
+
+        foreach (AudioClip clip in BigHandMageaudioClips)
+        {
+            if (!BigHandSoundDictionary.ContainsKey(clip.name))
+            {
+                BigHandSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
+        AudioClip[] LastBossMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/LastBoss");
+
+        foreach (AudioClip clip in LastBossMageaudioClips)
+        {
+            if (!LastBossSoundDictionary.ContainsKey(clip.name))
+            {
+                LastBossSoundDictionary.Add(clip.name, clip);
+            }
+        }
+
         AudioClip[] UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
 
         foreach (AudioClip clip in UIaudioClips)
@@ -179,6 +303,7 @@ public class SoundManager : Singleton<SoundManager>
                 BGMSoundDictionary.Add(clip.name, clip);
             }
         }
+
 
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
     }
@@ -280,6 +405,145 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
+    /// <summary>
+    /// 폭폭탄 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void BomberSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = BomberSoundDictionary.ContainsKey(clip) ? BomberSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = BomberSoundVolumeDictionary.ContainsKey(clip) ? BomberSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 골렘 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void GolemSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = GolemSoundDictionary.ContainsKey(clip) ? GolemSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = GolemSoundVolumeDictionary.ContainsKey(clip) ? GolemSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 나무거북 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void TurtreeSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = TurtreeSoundDictionary.ContainsKey(clip) ? TurtreeSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = TurtreeSoundVolumeDictionary.ContainsKey(clip) ? TurtreeSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 리퍼 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void ReaperSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = ReaperSoundDictionary.ContainsKey(clip) ? ReaperSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = ReaperSoundVolumeDictionary.ContainsKey(clip) ? ReaperSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 기사 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void KnightSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = KnightSoundDictionary.ContainsKey(clip) ? KnightSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = KnightSoundVolumeDictionary.ContainsKey(clip) ? KnightSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 손 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void BigHandSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = BigHandSoundDictionary.ContainsKey(clip) ? BigHandSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = BigHandSoundVolumeDictionary.ContainsKey(clip) ? BigHandSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 최종보스 사운드 재생
+    /// </summary>
+    /// <param name="clip"></param>
+    public void LastBossSoundClip(string clip)
+    {
+        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+
+        if (clip != null && interactionAudioSource != null)
+        {
+
+            AudioClip tileClip = LastBossSoundDictionary.ContainsKey(clip) ? LastBossSoundDictionary[clip] : null;
+            if (tileClip != null)
+            {
+                float volume = LastBossSoundVolumeDictionary.ContainsKey(clip) ? LastBossSoundVolumeDictionary[clip] : 1f;
+                interactionAudioSource.PlayOneShot(tileClip, volume);
+            }
+        }
+    }
 
     /// <summary>
     /// UI 사운드 재생 - UI가 나오면 수정 필요

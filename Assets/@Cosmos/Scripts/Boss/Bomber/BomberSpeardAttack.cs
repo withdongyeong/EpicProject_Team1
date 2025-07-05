@@ -25,7 +25,7 @@ public class BomberSpeardAttack : IBossAttackPattern
     /// <param name="boss">보스 객체</param>
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.StartCoroutine(BombCreate(boss, _centerPos));
+        //boss.StartCoroutine(BombCreate(boss, _centerPos));
         boss.StartCoroutine(lightningActtck(boss, _centerPos));
         yield return new WaitForSeconds(0.5f);
     }
@@ -80,9 +80,17 @@ public class BomberSpeardAttack : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(result, centerPos, _bombActtck,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
 
+            boss.StartCoroutine(BombSound());
+
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return null;
+    }
+
+    public IEnumerator BombSound()
+    {
+        yield return new WaitForSeconds(0.7f);
+        SoundManager.Instance.BomberSoundClip("BomberAttackActivate");
     }
 }
