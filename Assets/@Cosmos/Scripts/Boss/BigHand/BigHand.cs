@@ -46,7 +46,7 @@ public class BigHand : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 35009999;
+        MaxHealth = 3500;
         // 빙결 불가 설정
         IsHandBoss = true;
         Debug.Log($"BigHand.Awake: MaxHealth set to {MaxHealth}");

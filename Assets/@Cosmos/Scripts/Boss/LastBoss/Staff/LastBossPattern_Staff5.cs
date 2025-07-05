@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// 최종보스 - StaffPattern5 : 중심 X자 제외, 회전형 원형 문양
+/// </summary>
+public class LastBossPattern_Staff5 : IBossAttackPattern
+{
+    private GameObject _explosionPrefab;
+    public string PatternName => "StaffPattern5";
+    public LastBossPattern_Staff5(GameObject explosionPrefab) => _explosionPrefab = explosionPrefab;
+    public bool CanExecute(BaseBoss boss) => boss != null && _explosionPrefab != null;
+
+    public IEnumerator Execute(BaseBoss boss)
+    {
+        boss.SetAnimationTrigger("Attack");
+
+        Vector3Int center = new(4, 4, 0);
+        int[] radii = { 1, 2, 3, 4 };
+
+        for (int ring = 0; ring < radii.Length; ring++)
+        {
+            List<Vector3Int> ringPositions = new();
+            for (int angle = 0; angle < 360; angle += 30)
+            {
+                float rad = angle * Mathf.Deg2Rad;
+                int x = Mathf.RoundToInt(center.x + radii[ring] * Mathf.Cos(rad));
+                int y = Mathf.RoundToInt(center.y + radii[ring] * Mathf.Sin(rad));
+                Vector3Int pos = new Vector3Int(x, y, 0);
+
+                if (!IsCenterX(pos) && IsValid(pos))
+                    ringPositions.Add(pos);
+            }
+
+            foreach (var pos in ringPositions)
+            {
+                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, 20, WarningType.Type1);
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    private bool IsCenterX(Vector3Int pos)
+    {
+        return pos.x == pos.y || pos.x + pos.y == 8;
+    }
+
+    private bool IsValid(Vector3Int pos)
+    {
+        return pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9;
+    }
+}
