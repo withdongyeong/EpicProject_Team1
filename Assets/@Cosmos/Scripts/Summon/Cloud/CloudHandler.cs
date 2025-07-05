@@ -50,9 +50,9 @@ public class CloudHandler : MonoBehaviour
             // 구름 레벨이 변경되면 기존 구름 오브젝트를 제거하고 새로 생성
             if (_cloudLevel < _cloudPrefab.Length)
             {
-                Destroy(_currentCloud);
+                Destroy(_currentCloud.gameObject);
                 _currentCloud = Instantiate(_cloudPrefab[_cloudLevel - 1], _boss.transform).GetComponent<Cloud>();
-                _currentCloud.transform.localPosition = new Vector3(0, 2, 0); // 위치 초기화
+                _currentCloud.transform.localPosition = new Vector3(0, 1.5f, 0); // 위치 초기화
             }
         }
     }

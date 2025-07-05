@@ -356,6 +356,11 @@ public class BossDebuffs : MonoBehaviour
             GameObject effect = Instantiate(effectPrefab, boss.transform.position, Quaternion.identity);
             effect.transform.SetParent(boss.transform);
             effect.name = $"{debuff}Effect"; // 이펙트 오브젝트에 이름 지정
+
+            if (debuff == BossDebuff.Burning)
+            {
+                effect.transform.position = boss.transform.position + new Vector3(0.2f, 0.5f, 0); // 화상 이펙트 위치 조정
+            }
         }
     }
 

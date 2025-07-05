@@ -35,7 +35,7 @@ public class KoreaTotem : BaseTotem
 
     private void FireProjectile(GameObject projectilePrefab, int damage)
     {
-        if (projectilePrefab != null)
+        if (projectilePrefab != null && _targetEnemy != null && _targetEnemy.gameObject.activeInHierarchy)
         {
             Vector3 direction = (_targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
