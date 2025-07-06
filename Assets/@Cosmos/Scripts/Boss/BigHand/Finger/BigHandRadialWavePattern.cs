@@ -9,6 +9,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
     private float _growthSpeed = 0.1f; // 성장 속도 (조절 가능)
+    private int _damage;
 
     public string PatternName => "방사형_확산";
     
@@ -17,9 +18,10 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     /// </summary>
     public float GrowthSpeed { get => _growthSpeed; set => _growthSpeed = value; }
     
-    public BigHandRadialWavePattern(GameObject attackEffectPrefab)
+    public BigHandRadialWavePattern(GameObject attackEffectPrefab, int damage)
     {
         _attackEffectPrefab = attackEffectPrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -110,7 +112,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
                         _attackEffectPrefab,
                         warningDuration: 0.8f,
                         explosionDuration: 0.4f,
-                        damage: 20
+                        damage: _damage
                     );
                 }
                 line.Advance();

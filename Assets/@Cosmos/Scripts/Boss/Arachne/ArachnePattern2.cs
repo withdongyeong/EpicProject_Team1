@@ -11,6 +11,7 @@ public class ArachnePattern2 : IBossAttackPattern
     private GameObject _poisionAriaPrefab;
     private List<Vector3Int> _singlePointShape;
     private List<Vector3Int> _bigAttackShape;
+    private int _damage;
 
     public string PatternName => "ArachnePattern2";
 
@@ -18,9 +19,10 @@ public class ArachnePattern2 : IBossAttackPattern
     /// 아라크네 패턴2 생성자
     /// </summary>
     /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
-    public ArachnePattern2(GameObject poisionAriaPrefab)
+    public ArachnePattern2(GameObject poisionAriaPrefab, int Damage)
     {
         _poisionAriaPrefab = poisionAriaPrefab;
+        _damage = Damage;
         
         // 단일 점 공격 모양
         _singlePointShape = new List<Vector3Int>
@@ -70,7 +72,7 @@ public class ArachnePattern2 : IBossAttackPattern
     private IEnumerator SpiderAttack(BaseBoss boss)
     {
         boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
-                                                 warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+                                                 warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         // 사운드 재생
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));
@@ -83,7 +85,7 @@ public class ArachnePattern2 : IBossAttackPattern
         {
             // 플레이어 추적 단일 점 공격
             boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+                                                  warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
             // 사운드 재생
             boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.85f));
@@ -134,7 +136,7 @@ public class ArachnePattern2 : IBossAttackPattern
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
         boss.BombHandler.ExecuteFixedBomb(attackShape.ToList(), centerPos, _poisionAriaPrefab,
-                                          warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+                                          warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 0.8f));
 

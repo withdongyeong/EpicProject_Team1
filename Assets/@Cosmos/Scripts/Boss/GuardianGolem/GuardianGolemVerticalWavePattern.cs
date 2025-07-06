@@ -6,15 +6,17 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 {
     private GameObject _guardianGolemRook;
     private int Wallcount;
+    private int _damage;
 
     public string PatternName => "GuardianGolemTemporaryWallSummonPattern";
 
     /// <summary>
     /// 임시벽 생성자
     /// </summary>
-    public GuardianGolemVerticalWavePattern(GameObject GuardianGolemRook)
+    public GuardianGolemVerticalWavePattern(GameObject GuardianGolemRook, int damage)
     {
         _guardianGolemRook = GuardianGolemRook;
+        _damage = damage;
     }
 
     /// <summary>
@@ -73,7 +75,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 0.8f,
                 explosionDuration: 0.7f,
-                damage: 20
+                damage: _damage
             );
             
             yield return new WaitForSeconds(0.1f);
@@ -114,7 +116,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 0.8f,
                 explosionDuration: 0.7f,
-                damage: 20
+                damage: _damage
             );
 
             yield return new WaitForSeconds(0.1f); // 좌→우로 순차 폭발

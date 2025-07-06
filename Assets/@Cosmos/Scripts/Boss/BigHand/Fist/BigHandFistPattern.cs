@@ -11,14 +11,16 @@ public class BigHandFistPattern : IBossAttackPattern
     private GameObject _attackEffectPrefab;
     private GameObject _fistObject;
     private List<Vector3Int> _blockedPositions;
+    private int _damage;
 
     public string PatternName => "주먹_공격";
     
-    public BigHandFistPattern(GameObject fistPrefab, GameObject attackEffectPrefab)
+    public BigHandFistPattern(GameObject fistPrefab, GameObject attackEffectPrefab, int damage)
     {
         _fistPrefab = fistPrefab;
         _attackEffectPrefab = attackEffectPrefab;
         _blockedPositions = new List<Vector3Int>();
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -76,7 +78,7 @@ public class BigHandFistPattern : IBossAttackPattern
                 singlePointShape, 
                 pos, 
                 warningDuration: 0.8f, 
-                damage: 40, 
+                damage: _damage, 
                 warningType: WarningType.Type2);
         }
         
@@ -187,7 +189,7 @@ public class BigHandFistPattern : IBossAttackPattern
                         _attackEffectPrefab,
                         warningDuration: 0.8f,
                         explosionDuration: 0.5f,
-                        damage: 25
+                        damage: _damage
                     );
                 }
                 

@@ -14,7 +14,9 @@ public class Reaper : BaseBoss
         IsPase2 = false; 
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 2500;
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(7).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(7).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(7).strongDamage;
     }
 
     private void Update()
@@ -36,17 +38,17 @@ public class Reaper : BaseBoss
     {
         AddGroup()
             .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 9), 1f)
-            .AddPattern(new ReaperPattern1(ReaperActtck), 2f)
+            .AddPattern(new ReaperPattern1(ReaperActtck, WeakDamage), 2f)
             .SetGroupInterval(1f);
 
         AddGroup()
             .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 4), 1f)
-            .AddPattern(new ReaperPattern2(ReaperActtck), 2f)
+            .AddPattern(new ReaperPattern2(ReaperActtck, WeakDamage), 2f)
             .SetGroupInterval(1f);
 
         AddGroup()
             .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 3), 1f)
-            .AddPattern(new ReaperPattern3(ReaperActtck), 2f)
+            .AddPattern(new ReaperPattern3(ReaperActtck, StrongDamage), 2f)
             .SetGroupInterval(2f);
     }
 

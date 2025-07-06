@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d666a71b12275478118094b1958da2, type: 3}
+  m_Name: Setting3
+  m_EditorClassIdentifier: 
+  basicDamage: 0
+  summon_Offset: {x: -0.7, y: 0.55}
+  totem_Offset: {x: 0, y: 0.5}
+  totem_ActivatePos: {x: 1.7, y: 2.4}
+  totem_HeadInt: 3
+  shop_ChanceList:
+  - shop_NormalChance: 75
+    shop_RareChance: 25
+    shop_EpicChance: 0
+    shop_LegendaryChance: 0
+  - shop_NormalChance: 75
+    shop_RareChance: 25
+    shop_EpicChance: 0
+    shop_LegendaryChance: 0
+  - shop_NormalChance: 50
+    shop_RareChance: 40
+    shop_EpicChance: 10
+    shop_LegendaryChance: 0
+  - shop_NormalChance: 40
+    shop_RareChance: 40
+    shop_EpicChance: 20
+    shop_LegendaryChance: 0
+  - shop_NormalChance: 25
+    shop_RareChance: 35
+    shop_EpicChance: 25
+    shop_LegendaryChance: 10
+  - shop_NormalChance: 20
+    shop_RareChance: 30
+    shop_EpicChance: 30
+    shop_LegendaryChance: 15
+  - shop_NormalChance: 20
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 20
+  - shop_NormalChance: 15
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 25
+  - shop_NormalChance: 15
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 25
+  - shop_NormalChance: 15
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 25
+  language_SynergyTranslationSO: {fileID: 0}
+  bossBalanceList:
+  - maxHP: 50
+    weakDamage: 2
+    strongDamage: 2
+  - maxHP: 200
+    weakDamage: 20
+    strongDamage: 30
+  - maxHP: 700
+    weakDamage: 20
+    strongDamage: 30
+  - maxHP: 1000
+    weakDamage: 20
+    strongDamage: 30
+  - maxHP: 1300
+    weakDamage: 30
+    strongDamage: 40
+  - maxHP: 1700
+    weakDamage: 30
+    strongDamage: 40
+  - maxHP: 2000
+    weakDamage: 30
+    strongDamage: 40
+  - maxHP: 2500
+    weakDamage: 30
+    strongDamage: 50
+  - maxHP: 2800
+    weakDamage: 30
+    strongDamage: 50
+  - maxHP: 3500
+    weakDamage: 40
+    strongDamage: 50
+  - maxHP: 4500
+    weakDamage: 40
+    strongDamage: 50

@@ -10,6 +10,8 @@ public abstract class BaseBoss : MonoBehaviour
 {
     [Header("기본 스탯")]
     private int _maxHealth = 100;
+    private int _weakDamage = 0;
+    private int _strongDamage = 0;
     [SerializeField]
     private int _currentHealth;
     private bool _isDead = false;
@@ -35,6 +37,16 @@ public abstract class BaseBoss : MonoBehaviour
     /// 최대 체력 프로퍼티
     /// </summary>
     public int MaxHealth { get => _maxHealth; protected set => _maxHealth = value; }
+    
+    /// <summary>
+    /// 약 데미지
+    /// </summary>
+    public int WeakDamage { get => _weakDamage; protected set => _weakDamage = value; }
+    
+    /// <summary>
+    /// 강데미지
+    /// </summary>
+    public int StrongDamage { get => _strongDamage; protected set => _strongDamage = value; }
     
     /// <summary>
     /// 현재 체력 프로퍼티
@@ -228,6 +240,8 @@ public abstract class BaseBoss : MonoBehaviour
     protected virtual void Die()
     {
         _isDead = true;
+        // 애니메이터 사망처리
+        _animator.SetBool("IsAlive", false);
         Debug.Log($"{GetType().Name} DEFEATED!");
         
         // 사망 이벤트 발생

@@ -8,12 +8,14 @@ using UnityEngine;
 public class OrcMagePatternWave : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
+    private int _damage;
 
     public string PatternName => "OrcMagePattern_Wave";
 
-    public OrcMagePatternWave(GameObject groundSpikePrefab)
+    public OrcMagePatternWave(GameObject groundSpikePrefab, int damage)
     {
         _groundSpikePrefab = groundSpikePrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -82,7 +84,7 @@ public class OrcMagePatternWave : IBossAttackPattern
             
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             boss.BombHandler.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
-                warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속
             if (step == 0)

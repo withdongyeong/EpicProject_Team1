@@ -6,12 +6,14 @@ public class LightningKnightPattern3 : IBossAttackPattern
 {
     private GameObject _lightningActtck;
     private Vector3Int _startPoint;
+    private int _damage;
     public string PatternName => "LightningKnightPattern3";
 
-    public LightningKnightPattern3(GameObject lightningActtck, Vector3Int StartPoint)
+    public LightningKnightPattern3(GameObject lightningActtck, Vector3Int StartPoint, int Damage)
     {
         _lightningActtck = lightningActtck;
         _startPoint = StartPoint;
+        _damage = Damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -36,7 +38,7 @@ public class LightningKnightPattern3 : IBossAttackPattern
             boss.StartCoroutine(LightningKnightAttackSound());
 
             boss.BombHandler.ExecuteFixedBomb(DamageArea, new Vector3Int(4, 4, 0), _lightningActtck,
-                                      warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                                      warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             yield return new WaitForSeconds(0.02f);
         }

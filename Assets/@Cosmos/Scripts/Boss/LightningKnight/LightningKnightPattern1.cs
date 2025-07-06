@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public class LightningKnightPattern1 : IBossAttackPattern
 {
     private GameObject _lightningActtck;
-
+    private int _damage;
     public string PatternName => "LightningKnightPattern1";
 
-    public LightningKnightPattern1(GameObject lightningActtck)
+    public LightningKnightPattern1(GameObject lightningActtck, int damage)
     {
         _lightningActtck = lightningActtck;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -42,7 +43,7 @@ public class LightningKnightPattern1 : IBossAttackPattern
             boss.StartCoroutine(KnightAttackSound());
 
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _lightningActtck,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             if (size == 5 || size == 4)
             {
