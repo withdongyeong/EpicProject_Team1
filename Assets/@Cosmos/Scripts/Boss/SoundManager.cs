@@ -27,16 +27,29 @@ public class SoundManager : Singleton<SoundManager>
     // 타일 볼륨 딕셔너리
     private Dictionary<string, float> tileSoundVolumeDictionary = new Dictionary<string, float>
     {
-        { "HealSkillActivate", 0.1f},
-        { "FireBallSkillActivate", 0.5f},
-        { "FireBoltSkillActivate", 0.2f},
+        {"HealSkillActivate", 0.1f},
+        {"FireBallSkillActivate", 0.5f},
+        {"FireBoltSkillActivate", 0.2f},
         {"ShieldSkillActivate", 0.3f },
         {"IcicleSkillActivate", 0.2f },
+        {"FlamingSwordSkillActivate", 0.5f},
         {"FrostStaffSkillActivate", 0.2f },
         {"TotemSummonSkillActivate", 0.1f },
         {"ManaTurretSkillActivate", 0.3f },
         {"ProjectileSkillActivate", 0.3f},
-        { "ArchmageStaffSkillActivate", 0.6f}
+        {"ArchmageStaffSkillActivate", 0.7f},
+        {"RainbowSkillActivate", 0.1f},
+        {"StaffSkillActivate", 0.3f},
+        {"ProtectionSkillActivate", 1f },
+        {"ShieldSkillRemove", 0.3f },
+        { "SwordSkillActivate", 1f},
+        { "WarFlagSkillActivate", 1f },
+        {"FrostHammerSkillActivate", 1f },
+        { "HauntedDollSkillActivate", 0.3f},
+        {"HauntedDollSkillActivate", 0.8f },
+        {"CloudSkillActivate", 0.5f },
+        {"PhantomSkillActivate", 0.5f },
+        {"NecronomiconSkillActivate", 0.3f }
     };
 
     //아라크네 사운드 딕셔너리
