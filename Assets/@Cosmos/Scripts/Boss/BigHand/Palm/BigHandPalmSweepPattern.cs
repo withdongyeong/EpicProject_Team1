@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,7 +53,7 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
         // 손이 완전히 지나갈 때까지 기다림
         Vector3 endPosition = GetEndPosition();
         float handMoveTime = 1f; // 손이 지나가는 시간
-        yield return boss.StartCoroutine(SmoothMovePalm(endPosition, handMoveTime));
+        yield return boss.StartCoroutine(SmoothMovePalm(boss,endPosition, handMoveTime));
 
         // 손바닥 제거
         if (_palmObject != null)
@@ -82,6 +82,8 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
         // 각 셀에 대해 FixedBomb으로 공격
         foreach (Vector3Int cell in attackCells)
         {
+            boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
+
             boss.BombHandler.ExecuteFixedBomb(
                 new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                 cell,
@@ -197,12 +199,14 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
     /// <summary>
     /// 손바닥을 부드럽게 이동시키는 코루틴
     /// </summary>
-    private IEnumerator SmoothMovePalm(Vector3 endPosition, float duration)
+    private IEnumerator SmoothMovePalm(BaseBoss boss, Vector3 endPosition, float duration)
     {
         if (_palmObject == null) yield break;
 
         Vector3 startPosition = _palmObject.transform.position;
         float elapsedTime = 0f;
+
+        boss.StartCoroutine(PlayAttackSound("BigHandSlideActivate", 0.8f));
 
         while (elapsedTime < duration && _palmObject != null)
         {
@@ -231,5 +235,11 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
         }
 
         Debug.Log("손바닥 쓸어내기 패턴 정리 완료");
+    }
+
+    public IEnumerator PlayAttackSound(string SoundName, float BombTime)
+    {
+        yield return new WaitForSeconds(BombTime); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip(SoundName);
     }
 }

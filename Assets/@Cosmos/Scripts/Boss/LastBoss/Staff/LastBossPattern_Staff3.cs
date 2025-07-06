@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,6 +59,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         {
             if (!visited[cx, cy])
             {
+                boss.StartCoroutine(SoundPlay());
+
                 int gx = gridX[cx, cy];
                 int gy = gridY[cx, cy];
                 boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
@@ -80,5 +82,10 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
                 dir = (dir + 1) % 4;
             }
         }
+    }
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

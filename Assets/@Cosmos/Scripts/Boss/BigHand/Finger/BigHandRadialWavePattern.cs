@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -103,6 +103,8 @@ public class BigHandRadialWavePattern : IBossAttackPattern
             Vector3Int nextPos = line.GetNextPosition();
             if (nextPos != Vector3Int.zero)
             {
+                boss.StartCoroutine(PlayAttackSound());
+
                 // 블록된 위치가 아닌 경우에만 공격
                 if (!line.BlockedPositions.Contains(nextPos))
                 {
@@ -129,6 +131,11 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     public void Cleanup()
     {
         Debug.Log("구불거리는 선형 확산 패턴 정리 완료");
+    }
+    public IEnumerator PlayAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
     }
 }
 
