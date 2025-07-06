@@ -6,6 +6,7 @@ public class SlimeActtckTentacle : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        damage = GlobalSetting.Instance.GetBossBalance(1).strongDamage;
         PlayerHp player = other.GetComponent<PlayerHp>();
         if (player != null)
         {

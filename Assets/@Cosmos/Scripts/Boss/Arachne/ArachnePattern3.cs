@@ -10,6 +10,7 @@ public class ArachnePattern3 : IBossAttackPattern
     private GameObject _poisionAriaPrefab;
     private GameObject _lToRspiderLeg;
     private GameObject _rToLspiderLeg;
+    private int _damage;
 
     public string PatternName => "ArachnePattern3";
 
@@ -18,11 +19,12 @@ public class ArachnePattern3 : IBossAttackPattern
     /// </summary>
     /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
     /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
-    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab)
+    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab, int damage)
     {
         _poisionAriaPrefab = poisionAriaPrefab;
         _lToRspiderLeg = LToRspiderLegPrefab;
         _rToLspiderLeg = RToLspiderLegPrefab;
+        _damage = damage;
     }
 
     /// <summary>
@@ -104,7 +106,7 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 공격 (제외된 칸은 안전지대)
         boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab,
-                                              warningDuration: 0.8f, explosionDuration: 0.7f, damage: 10);
+                                              warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         boss.AttackAnimation();
         
@@ -133,10 +135,10 @@ public class ArachnePattern3 : IBossAttackPattern
         Vector3Int PlayerPoint = new Vector3Int(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY, 0);
         // 플레이어 추적 대각선 공격
         boss.BombHandler.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _rToLspiderLeg,
-                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+                                              warningDuration: 0.8f, explosionDuration: 0.3f, damage: _damage);
         // 데미지만
         boss.BombHandler.ExecuteWarningThenDamage(slashShape, PlayerPoint,
-                                          warningDuration: 0.8f, damage: 20);
+                                          warningDuration: 0.8f, damage: _damage);
 
         boss.AttackAnimation();
         
@@ -166,10 +168,10 @@ public class ArachnePattern3 : IBossAttackPattern
 
         // 플레이어 추적 대각선 공격
         boss.BombHandler.ExecuteFixedBomb(EffectslashShape, PlayerPoint, _lToRspiderLeg,
-                                                     warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+                                                     warningDuration: 0.8f, explosionDuration: 0.3f, damage: _damage);
         // 데미지만
         boss.BombHandler.ExecuteWarningThenDamage(slashShape, PlayerPoint,
-                                          warningDuration: 0.8f, damage: 20);
+                                          warningDuration: 0.8f, damage: _damage);
 
         boss.AttackAnimation();
         

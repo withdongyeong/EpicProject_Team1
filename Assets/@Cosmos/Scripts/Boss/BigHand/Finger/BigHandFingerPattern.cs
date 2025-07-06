@@ -15,12 +15,13 @@ public class BigHandFingerPattern : IBossAttackPattern
     private GameObject _fingerObject;
     private List<Vector3Int> _blockedPositions;
     private Vector3Int _currentTargetPos;
+    private int _damage;
 
     public string PatternName => "손가락_추적공격";
     
     public BigHandFingerPattern(GameObject fingerBottomPrefab, GameObject fingerTopPrefab, 
                               GameObject fingerLeftPrefab, GameObject fingerRightPrefab, 
-                              GameObject attackEffectPrefab)
+                              GameObject attackEffectPrefab, int damage)
     {
         _fingerBottomPrefab = fingerBottomPrefab;
         _fingerTopPrefab = fingerTopPrefab;
@@ -28,6 +29,7 @@ public class BigHandFingerPattern : IBossAttackPattern
         _fingerRightPrefab = fingerRightPrefab;
         _attackEffectPrefab = attackEffectPrefab;
         _blockedPositions = new List<Vector3Int>();
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -165,7 +167,7 @@ public class BigHandFingerPattern : IBossAttackPattern
             _attackEffectPrefab,
             warningDuration: warningDuration, 
             explosionDuration: 0.7f, 
-            damage: 25, 
+            damage: _damage, 
             warningType: WarningType.Type1
         );
     }

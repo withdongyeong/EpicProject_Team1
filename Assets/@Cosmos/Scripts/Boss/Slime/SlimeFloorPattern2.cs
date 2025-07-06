@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class SlimeFloorPattern2 : IBossAttackPattern
 {
     private GameObject _slimeFloorPrefeb;
+    private int _damage;
 
     public string PatternName => "SlimeFloorPattern2";
-    public SlimeFloorPattern2(GameObject SlimeFloorPrefeb)
+    public SlimeFloorPattern2(GameObject SlimeFloorPrefeb, int damage)
     {
         _slimeFloorPrefeb = SlimeFloorPrefeb;
+        _damage = damage;
     }
 
     public IEnumerator Execute(BaseBoss boss)
@@ -88,7 +90,7 @@ public class SlimeFloorPattern2 : IBossAttackPattern
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
         boss.BombHandler.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
-                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         yield return new WaitForSeconds(0.6f);
         SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");

@@ -6,17 +6,19 @@ public class LightningKnightSpeardAttack : IBossAttackPattern
 {
     private GameObject _lightningActtck;
     private GameObject _lightningball;
+    private int _damage;
     private Vector3Int _centerPos;
     public string PatternName => "LightningKnightSpeardAttack";
 
     /// <summary>
     /// 보스 생성자
     /// </summary>
-    public LightningKnightSpeardAttack(GameObject lightningActtck,GameObject lightningball, Vector3Int centerPos)
+    public LightningKnightSpeardAttack(GameObject lightningActtck,GameObject lightningball, Vector3Int centerPos, int damage)
     {
         _lightningActtck = lightningActtck;
         _lightningball = lightningball;
         _centerPos = centerPos;
+        _damage = damage;
     }
 
     /// <summary>
@@ -70,7 +72,7 @@ public class LightningKnightSpeardAttack : IBossAttackPattern
 
             // 공격 실행
             boss.BombHandler.ExecuteFixedBomb(result, centerPos, _lightningActtck,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             yield return new WaitForSeconds(0.1f);
         }

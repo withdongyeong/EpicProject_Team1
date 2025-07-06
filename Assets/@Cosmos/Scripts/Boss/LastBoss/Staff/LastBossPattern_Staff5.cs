@@ -9,7 +9,13 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
     public string PatternName => "StaffPattern5";
-    public LastBossPattern_Staff5(GameObject explosionPrefab) => _explosionPrefab = explosionPrefab;
+    private int _damage;
+
+    public LastBossPattern_Staff5(GameObject explosionPrefab, int damage)
+    {
+        _explosionPrefab = explosionPrefab;
+        _damage = damage;
+    }
     public bool CanExecute(BaseBoss boss) => boss != null && _explosionPrefab != null;
 
     public IEnumerator Execute(BaseBoss boss)
@@ -35,7 +41,7 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
 
             foreach (var pos in ringPositions)
             {
-                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, 20, WarningType.Type1);
+                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
             }
 
             yield return new WaitForSeconds(0.2f);

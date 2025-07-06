@@ -5,12 +5,14 @@ using System.Collections;
 public class TurtreePattern5 : IBossAttackPattern
 {
     private GameObject _attackPrefab;
-
+    private int _damage;
+    
     public string PatternName => "TurtreePattern5";
 
-    public TurtreePattern5(GameObject AttackPrefab)
+    public TurtreePattern5(GameObject AttackPrefab, int Damage)
     {
         _attackPrefab = AttackPrefab;
+        _damage = Damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -39,7 +41,7 @@ public class TurtreePattern5 : IBossAttackPattern
                 boss.StartCoroutine(TurtreeAttackSound());
 
                 boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _attackPrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 2f, damage: 20, WarningType.Type1);
+                                                  warningDuration: 0.8f, explosionDuration: 2f, damage: _damage, WarningType.Type1);
             }
 
             yield return new WaitForSeconds(0.1f); 
