@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     // 방향 기억용
     private bool _facingRight = false; // 기본은 왼쪽
     
+    // 입력 버퍼링 시스템
+    private float _inputBufferTime = 0.05f; // 입력을 수집할 시간
+    private float _inputBufferTimer = 0f;
+    private Vector2 _bufferedInput = Vector2.zero;
+    private bool _hasBufferedInput = false;
+    
     // Getters & Setters
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public bool IsMoving { get => _isMoving; }
@@ -57,7 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!_isMoving && !_playerDebuff.IsBind)
             {
-                HandleMovement();
+                HandleMovementWithBuffer();
             }
             if(_canInteractionTile)
             {
@@ -75,21 +81,78 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void HandleMovement()
+    /// <summary>
+    /// 입력 버퍼링을 사용한 이동 처리
+    /// </summary>
+    private void HandleMovementWithBuffer()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-    
-        if (horizontal != 0 || vertical != 0)
+        
+        Vector2 currentInput = new Vector2(horizontal, vertical);
+        
+        // 새로운 입력이 들어왔을 때
+        if (currentInput.magnitude > 0)
         {
-            int dx = Mathf.RoundToInt(horizontal);
-            int dy = Mathf.RoundToInt(vertical);
+            if (!_hasBufferedInput)
+            {
+                // 첫 번째 입력 - 버퍼링 시작
+                _bufferedInput = currentInput;
+                _hasBufferedInput = true;
+                _inputBufferTimer = _inputBufferTime;
+            }
+            else
+            {
+                // 추가 입력 - 기존 입력과 합성
+                _bufferedInput = CombineInputs(_bufferedInput, currentInput);
+            }
+        }
+        
+        // 버퍼 타이머 처리
+        if (_hasBufferedInput)
+        {
+            _inputBufferTimer -= Time.deltaTime;
+            
+            // 버퍼 시간이 끝났거나, 입력이 없어졌을 때 이동 실행
+            if (_inputBufferTimer <= 0 || currentInput.magnitude == 0)
+            {
+                ExecuteBufferedMovement();
+            }
+        }
+    }
+    
+    /// <summary>
+    /// 두 입력을 합성하여 최종 이동 방향 결정
+    /// </summary>
+    private Vector2 CombineInputs(Vector2 input1, Vector2 input2)
+    {
+        // 각 축에서 가장 최근의 0이 아닌 입력을 사용
+        float finalX = Mathf.Abs(input2.x) > 0 ? input2.x : input1.x;
+        float finalY = Mathf.Abs(input2.y) > 0 ? input2.y : input1.y;
+        
+        return new Vector2(finalX, finalY);
+    }
+    
+    /// <summary>
+    /// 버퍼된 입력을 실행
+    /// </summary>
+    private void ExecuteBufferedMovement()
+    {
+        if (_bufferedInput.magnitude > 0)
+        {
+            int dx = Mathf.RoundToInt(_bufferedInput.x);
+            int dy = Mathf.RoundToInt(_bufferedInput.y);
             
             // 방향 전환 처리
             HandleFlip(dx);
             
             TryMove(dx, dy);
         }
+        
+        // 버퍼 리셋
+        _bufferedInput = Vector2.zero;
+        _hasBufferedInput = false;
+        _inputBufferTimer = 0f;
     }
     
     /// <summary>
@@ -178,6 +241,7 @@ public class PlayerController : MonoBehaviour
 
         SoundManager.Instance.PlayPlayerSound("PlayerMove");
     }
+    
     /// <summary>
     /// 현재 그리드 위치 업데이트
     /// </summary>
