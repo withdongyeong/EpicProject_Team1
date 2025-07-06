@@ -48,6 +48,7 @@ public class StoreSlotController : MonoBehaviour
     private void SetupStoreSlots()
     {
         List<GameObject> appeardTileList = new();
+        List<string> appeardTileNameList = new();
         
         
         for (int i = 0; i < storeSlots.Length; i++)
@@ -119,7 +120,7 @@ public class StoreSlotController : MonoBehaviour
                 int randomIndex = Random.Range(0, chosenList.Count);
                 chosenTile = chosenList[randomIndex];
                 //선택된 타일이 상점에 등장해도 되는지 조건검사를 합니다.
-                chosenTile = CheckTileCondition(chosenTile, chosenList, appeardTileList);
+                chosenTile = CheckTileCondition(chosenTile, chosenList, appeardTileList, appeardTileNameList);
             }
             
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
@@ -128,6 +129,7 @@ public class StoreSlotController : MonoBehaviour
                 storeSlots[i].SetColor(Color.red);
             }
             appeardTileList.Add(chosenTile);
+            appeardTileNameList.Add(chosenTile.GetComponent<TileObject>().GetTileData().TileName);
             
             //이미지 비율을 맞추기 위한 코드입니다.
             //storeSlots[i].GetComponent<Image>().preserveAspect = true;
@@ -196,7 +198,8 @@ public class StoreSlotController : MonoBehaviour
     /// <param name="tile">조건을 판단할 타일입니다</param>
     /// <param name="list">내가 조건을 판단할 타일을 뽑은 리스트입니다.</param>
     /// <returns></returns>
-    private GameObject CheckTileCondition(GameObject tile, List<GameObject> list,List<GameObject> alreadyPlacedList)
+    private GameObject CheckTileCondition(GameObject tile, List<GameObject> list,List<GameObject> alreadyPlacedList,
+        List<string>placedNameList)
     {
         _safeInt++;
         if (_safeInt > 20)
@@ -222,10 +225,11 @@ public class StoreSlotController : MonoBehaviour
         {
             foreach(TileData tileData in tileObject.GetTileData().RejectTileList)
             {
-                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName))
+                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName) || placedNameList.Contains(tileData.tileName))
                 {
                     isAvailable = false;
                 }
+
             }    
             
         }
@@ -260,7 +264,7 @@ public class StoreSlotController : MonoBehaviour
             }
             int randomIndex = Random.Range(0, newList.Count);
             GameObject chosenTile = newList[randomIndex];
-            return CheckTileCondition(chosenTile, newList,alreadyPlacedList);
+            return CheckTileCondition(chosenTile, newList,alreadyPlacedList,placedNameList);
         }
 
     }
