@@ -116,7 +116,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -138,7 +138,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -151,72 +151,6 @@ TextureImporter:
       bones: []
       spriteID: 6390b084fef175930800000000000000
       internalID: 4131806295702047030
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uC790\uBB3C\uC1E0-Sheet_2"
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8be1f435eb95836a0800000000000000
-      internalID: -6469322190741365064
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uC790\uBB3C\uC1E0-Sheet_3"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e318ae2c63767650800000000000000
-      internalID: 6230294042990089184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uC790\uBB3C\uC1E0-Sheet_4"
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7732a17b40e96a750800000000000000
-      internalID: 6315909270522700663
       vertices: []
       indices: 
       edges: []
@@ -237,9 +171,6 @@ TextureImporter:
     nameFileIdTable:
       "\uC790\uBB3C\uC1E0-Sheet_0": 2916265594479216004
       "\uC790\uBB3C\uC1E0-Sheet_1": 4131806295702047030
-      "\uC790\uBB3C\uC1E0-Sheet_2": -6469322190741365064
-      "\uC790\uBB3C\uC1E0-Sheet_3": 6230294042990089184
-      "\uC790\uBB3C\uC1E0-Sheet_4": 6315909270522700663
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
