@@ -8,12 +8,14 @@ using UnityEngine;
 public class OrcMagePatternChainExplosion : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
+    private int _damage;
 
     public string PatternName => "OrcMagePattern_ChainExplosion";
 
-    public OrcMagePatternChainExplosion(GameObject groundSpikePrefab)
+    public OrcMagePatternChainExplosion(GameObject groundSpikePrefab, int damage)
     {
         _groundSpikePrefab = groundSpikePrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -40,7 +42,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
 
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             boss.BombHandler.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 18, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             yield return new WaitForSeconds(0.25f); // 빠른 연쇄
         }

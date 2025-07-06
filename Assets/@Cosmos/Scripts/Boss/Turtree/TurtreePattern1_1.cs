@@ -6,12 +6,14 @@ public class TurtreePattern1_1 : IBossAttackPattern
 {
     private GameObject _treeAttackPrefeb;
     private Vector3Int _startPoint;
+    private int _damage;
 
     public string PatternName => "TurtreePattern1_1";
-    public TurtreePattern1_1(GameObject TreeAttackPrefeb, Vector3Int StartPoint)
+    public TurtreePattern1_1(GameObject TreeAttackPrefeb, Vector3Int StartPoint, int Damage)
     {
         _treeAttackPrefeb = TreeAttackPrefeb;
         _startPoint = StartPoint;
+        _damage = Damage;
     }
 
     public IEnumerator Execute(BaseBoss boss)
@@ -97,7 +99,7 @@ public class TurtreePattern1_1 : IBossAttackPattern
                 boss.StartCoroutine(TurtreeAttackSound());
 
                 boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
-                                      warningDuration: 0.8f, explosionDuration: 2, damage: 20);
+                                      warningDuration: 0.8f, explosionDuration: 2, damage: _damage);
             }
 
             if (!added || visited.Count >= gridSize * gridSize)

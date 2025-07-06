@@ -6,14 +6,16 @@ public class GuardianGolemPattern2 : IBossAttackPattern
 {
     private GameObject _guardianGolemRook;
     public string PatternName => "GuardianGolemPattern1";
+    private int _damage;
 
     /// <summary>
     /// 가디언 골렘 패턴1 생성자
     /// </summary>
     /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
-    public GuardianGolemPattern2(GameObject guardianGolemRook)
+    public GuardianGolemPattern2(GameObject guardianGolemRook, int damage)
     {
         _guardianGolemRook = guardianGolemRook;
+        _damage = damage;
     }
 
     /// <summary>
@@ -74,7 +76,7 @@ public class GuardianGolemPattern2 : IBossAttackPattern
 
         Vector3Int centerPos = new Vector3Int(4, 4, 0); // 중심은 원하는 기준으로 설정
         boss.BombHandler.ExecuteFixedBomb(positions, centerPos, _guardianGolemRook,
-                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         boss.AttackAnimation();
 

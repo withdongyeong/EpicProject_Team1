@@ -8,12 +8,14 @@ using UnityEngine;
 public class LastBossPattern_Staff : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
+    private int _damage;
 
     public string PatternName => "StaffPattern";
 
-    public LastBossPattern_Staff(GameObject explosionPrefab)
+    public LastBossPattern_Staff(GameObject explosionPrefab, int damage)
     {
         _explosionPrefab = explosionPrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -51,7 +53,7 @@ public class LastBossPattern_Staff : IBossAttackPattern
                 _explosionPrefab,
                 warningDuration: 0.8f,
                 explosionDuration: 1f,
-                damage: 25,
+                damage: _damage,
                 WarningType.Type1
             );
         }

@@ -8,8 +8,15 @@ using UnityEngine;
 public class LastBossPattern_Staff3 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
+    private int _damage;
     public string PatternName => "StaffPattern3";
-    public LastBossPattern_Staff3(GameObject explosionPrefab) => _explosionPrefab = explosionPrefab;
+
+    public LastBossPattern_Staff3(GameObject explosionPrefab, int damage)
+    {
+        _explosionPrefab = explosionPrefab;
+        _damage = damage;
+    }
+
     public bool CanExecute(BaseBoss boss) => boss != null && _explosionPrefab != null;
 
     public IEnumerator Execute(BaseBoss boss)
@@ -26,8 +33,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         for (int i = 0; i < 9; i++)
         {
             if (i == 4) continue;
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 0.8f, 1f, 20, WarningType.Type1);
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 0.8f, 1f, 20, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
         }
 
         yield return new WaitForSeconds(2f);
@@ -54,7 +61,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
             {
                 int gx = gridX[cx, cy];
                 int gy = gridY[cx, cy];
-                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, 18, WarningType.Type1);
+                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
                 visited[cx, cy] = true;
                 count++;
                 yield return new WaitForSeconds(0.12f);

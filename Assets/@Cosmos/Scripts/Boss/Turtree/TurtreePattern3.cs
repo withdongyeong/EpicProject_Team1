@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public class TurtreePattern3 : IBossAttackPattern
 {
     private GameObject _treeAttackPrefeb;
+    private int _damage;
 
     public string PatternName => "TurtreePattern3";
 
-    public TurtreePattern3(GameObject TreeAttackPrefeb)
+    public TurtreePattern3(GameObject TreeAttackPrefeb, int Damage)
     {
         _treeAttackPrefeb = TreeAttackPrefeb;
+        _damage = Damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -64,7 +66,7 @@ public class TurtreePattern3 : IBossAttackPattern
                 _treeAttackPrefeb,
                 warningDuration: 0.8f,
                 explosionDuration: 2f,
-                damage: 20,
+                damage: _damage,
                 warningType: WarningType.Type1
             );
 

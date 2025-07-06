@@ -10,7 +10,9 @@ public class Slime : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 200;
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(1).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(1).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(1).strongDamage;
     }
 
     /// <summary>
@@ -25,15 +27,15 @@ public class Slime : BaseBoss
 
 
         AddGroup()
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), 0.8f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), 0.8f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), 1f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle), 0.8f)
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle), 1f)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), 0.8f)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), 0.8f)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), 1f)
             .SetGroupInterval(1f);
     }
 

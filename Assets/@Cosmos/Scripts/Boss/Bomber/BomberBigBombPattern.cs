@@ -7,16 +7,18 @@ public class BomberBigBombPattern : IBossAttackPattern
 {
     private GameObject _bombActtck;
     private GameObject _Bigbombball;
+    private int _damage;
 
     public string PatternName => "LightningKnightSpeardAttack";
 
     /// <summary>
     /// 보스 생성자
     /// </summary>
-    public BomberBigBombPattern(GameObject BombActtck, GameObject Bigbombball)
+    public BomberBigBombPattern(GameObject BombActtck, GameObject Bigbombball, int damage)
     {
         _bombActtck = BombActtck;
         _Bigbombball = Bigbombball;
+        _damage = damage;
     }
 
     /// <summary>
@@ -73,8 +75,9 @@ public class BomberBigBombPattern : IBossAttackPattern
         
         }
         boss.BombHandler.ExecuteFixedBomb(result, new Vector3Int(4, 4, 0), _bombActtck,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
         boss.StartCoroutine(BoomSound());
+        
 
         yield return new WaitForSeconds(0.1f);
     }

@@ -9,7 +9,10 @@ public class TutorialBoss : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 50;
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(0).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(0).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(0).strongDamage;
+
     }
 
     /// <summary>
@@ -18,8 +21,8 @@ public class TutorialBoss : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new TutorialBossPattern(TutorialBossAttack, true), 0.8f)
-            .AddPattern(new TutorialBossPattern(TutorialBossAttack, false), 0.8f)
+            .AddPattern(new TutorialBossPattern(TutorialBossAttack, true, WeakDamage), 0.8f)
+            .AddPattern(new TutorialBossPattern(TutorialBossAttack, false, WeakDamage), 0.8f)
             .SetGroupInterval(1f);
     }
 

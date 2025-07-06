@@ -6,12 +6,14 @@ public class TurtreePattern4 : IBossAttackPattern
 {
     private GameObject _treeAttackPrefeb;
     private bool _isDownUP;
+    private int _damage;
     public string PatternName => "TurtreePattern4";
 
-    public TurtreePattern4(GameObject TreeAttackPrefeb, bool isDownUP)
+    public TurtreePattern4(GameObject TreeAttackPrefeb, bool isDownUP, int Damage)
     {
         _treeAttackPrefeb = TreeAttackPrefeb;
         _isDownUP = isDownUP;
+        _damage = Damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -43,7 +45,7 @@ public class TurtreePattern4 : IBossAttackPattern
         for (int i = 0; i < 9; i++)
         {
             boss.BombHandler.ExecuteFixedBomb(points, BombCenter[i], _treeAttackPrefeb,
-                    warningDuration: 0.8f, explosionDuration: 2f, damage: 20);
+                    warningDuration: 0.8f, explosionDuration: 2f, damage: _damage);
 
             if (i == 0 || i == 3)
             {
