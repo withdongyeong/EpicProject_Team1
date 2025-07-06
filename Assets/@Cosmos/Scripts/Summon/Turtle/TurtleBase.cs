@@ -12,7 +12,7 @@ public class TurtleBase : MonoBehaviour
     /// <summary>
     /// 차지할때마다 사용하는 보호막 양입니다.
     /// </summary>
-    private int _consumeProtection = 2;
+    private int _consumeProtection = 3;
 
     /// <summary>
     /// 차지된 횟수입니다.
@@ -39,13 +39,15 @@ public class TurtleBase : MonoBehaviour
     /// </summary>
     private float _cycleDuration = 1f;
 
-    private void Start()
+    private void Awake()
     {
         _lastUsedTime = Time.time;
         _protectionScript = FindAnyObjectByType<PlayerProtection>();
         _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/TurtleProjectile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        EventBus.SubscribeProtectionConsume(OnProtectionConsume);
     }
+
 
     private void Update()
     {
@@ -54,22 +56,23 @@ public class TurtleBase : MonoBehaviour
             Charge();
             _lastUsedTime = Time.time;
         }
-        if(_chargedProtection >= 5)
+        if(_chargedProtection >= 15)
         {
             float hue = Mathf.Repeat(Time.time / _cycleDuration, 1f);
             Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
             _spriteRenderer.color = rainbowColor;
         }
+        else
+        {
+            _spriteRenderer.color = Color.white;
+        }
     }
 
     private void Charge()
     {
-        if(_chargedProtection < 5)
+        if(_chargedProtection < 15)
         {
-            if (_protectionScript.TryProtectionBlock(_consumeProtection))
-            {
-                _chargedProtection ++;
-            }
+            _protectionScript.TryProtectionBlock(_consumeProtection, true);
         }
     }
 
@@ -83,12 +86,20 @@ public class TurtleBase : MonoBehaviour
             Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
             projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 5);
-            Destroy(gameObject);
+            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3);
+            _chargedProtection = 0;
         }
     }
 
+    private void OnProtectionConsume(int num)
+    {
+        _chargedProtection = Mathf.Min(15, _chargedProtection + num);
+    }
 
+    private void OnDestroy()
+    {
+        EventBus.UnSubscribeProtectionConsume(OnProtectionConsume);
+    }
 
 
 }

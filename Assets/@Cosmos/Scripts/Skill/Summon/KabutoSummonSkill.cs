@@ -27,7 +27,9 @@ public class KabutoSummonSkill : SkillBase
 
     private void SpawnKabuto()
     {
-        _currentKabuto = Instantiate(_kabutoPrefab, transform.position + Vector3.up + Vector3.right, Quaternion.identity).GetComponent<Kabuto>();
+        Quaternion rotate = transform.parent.rotation;
+        Vector3 spawnPos = transform.TransformPoint(Vector3.up + Vector3.right);
+        _currentKabuto = Instantiate(_kabutoPrefab, spawnPos, rotate).GetComponent<Kabuto>();
         _currentKabuto.Init(this);
 
     }
