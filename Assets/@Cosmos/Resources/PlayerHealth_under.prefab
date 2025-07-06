@@ -250,18 +250,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088779449669718431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6493761768580048487}
   - {fileID: 2568043099059354012}
-  m_Father: {fileID: 7919106722767137442}
+  m_Father: {fileID: 8522518389672563498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -193, y: 2}
+  m_AnchoredPosition: {x: -222, y: 4}
   m_SizeDelta: {x: 150, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5166729038778653231
@@ -480,7 +480,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5763183123583547299}
   - {fileID: 8522518389672563498}
   - {fileID: 3396690702548359673}
   - {fileID: 6301155705834524448}
@@ -524,6 +523,7 @@ RectTransform:
   m_Children:
   - {fileID: 3174989492119640425}
   - {fileID: 3221591935317563367}
+  - {fileID: 5763183123583547299}
   m_Father: {fileID: 7919106722767137442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -584,6 +584,14 @@ MonoBehaviour:
   isMinimal: 0
   offsetPosition: {x: 0, y: 2, z: 0}
   uiScale: 0.005
+  damageDelayTime: 0.5
+  damageAnimationSpeed: 3
+  damageFeedbackColor: {r: 1, g: 0, b: 0, a: 1}
+  shakeIntensity: 10
+  shakeDuration: 0.2
+  dangerHealthThreshold: 0.3
+  blinkSpeed: 2
+  dangerColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &6049118297312046206
 GameObject:
   m_ObjectHideFlags: 0

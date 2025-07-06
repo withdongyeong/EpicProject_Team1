@@ -69,7 +69,6 @@ public class LastBoss : BaseBoss
     protected override void DamageFeedback()
     {
         SetAnimationTrigger("Damaged");
-        base.DamageFeedback();
     }
     
     public void SetWeaponPrefab(GameObject prefab, float offset, bool isOribit)
