@@ -135,7 +135,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2090354882797781555}
   - component: {fileID: 3161353759713332784}
-  - component: {fileID: 1201795143264774760}
   m_Layer: 0
   m_Name: Tiles
   m_TagString: Untagged
@@ -170,15 +169,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73779f9ca57aae04f99e681090d5d0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!210 &1201795143264774760
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327570488002374194}
-  m_Enabled: 1
-  m_SortingLayerID: 1178303333
-  m_SortingLayer: -1
-  m_SortingOrder: 2
-  m_SortAtRoot: 0

@@ -30,6 +30,8 @@ public abstract class SkillBase : MonoBehaviour
 
     //타일 오브젝트입니다.
     protected TileObject tileObject;
+    
+    private CombineCell combineCell;
 
     /// <summary>
     /// 스킬의 타일 오브젝트입니다.
@@ -63,6 +65,8 @@ public abstract class SkillBase : MonoBehaviour
         EventBus.SubscribeGameStart(InitPassiveStarList);
         //'상점 진입시' 타이밍입니다.
         EventBus.SubscribeSceneLoaded(ResetCoolDown);
+
+        combineCell = GetComponent<CombineCell>();
     }
 
     protected virtual void Start()
@@ -121,6 +125,8 @@ public abstract class SkillBase : MonoBehaviour
     {
         SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
 
+        combineCell.CoolDownEffectActivate(finalCooldown);
+        
         // 펄스 애니메이션 실행
         StartCoroutine(PulseAnimation());
 
