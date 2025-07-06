@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +31,8 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
         {
             if (IsValid(pos))
             {
+                boss.StartCoroutine(SoundPlay());
+
                 boss.BombHandler.ExecuteFixedBomb(
                     new() { Vector3Int.zero },
                     pos,
@@ -55,6 +57,8 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
             {
                 if (IsValid(pos))
                 {
+                    boss.StartCoroutine(SoundPlay());
+
                     boss.BombHandler.ExecuteFixedBomb(
                         new() { Vector3Int.zero },
                         pos,
@@ -149,4 +153,10 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
 
     private bool IsValid(Vector3Int pos) =>
         pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9;
+
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.LastBossSoundClip("LastBossSwordAttackActivate");
+    }
 }

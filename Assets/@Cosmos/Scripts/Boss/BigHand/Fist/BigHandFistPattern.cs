@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,6 +74,8 @@ public class BigHandFistPattern : IBossAttackPattern
         List<Vector3Int> singlePointShape = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
         foreach (Vector3Int pos in fistArea)
         {
+            boss.StartCoroutine(PlayAttackSound("BigHandFistActivate", 0.8f));
+
             boss.BombHandler.ExecuteWarningThenDamage(
                 singlePointShape, 
                 pos, 
@@ -183,6 +185,8 @@ public class BigHandFistPattern : IBossAttackPattern
                 // 해당 거리의 모든 위치에 동시 공격
                 foreach (Vector3Int pos in wavePositions)
                 {
+                    boss.StartCoroutine(PlayAttackSound("BigHandAttackActiavte", 0.8f));
+
                     boss.BombHandler.ExecuteFixedBomb(
                         new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                         pos,
@@ -238,4 +242,11 @@ public class BigHandFistPattern : IBossAttackPattern
         
         Debug.Log("주먹 공격 패턴 정리 완료");
     }
+
+    public IEnumerator PlayAttackSound(string SoundName, float BombTime)
+    {
+        yield return new WaitForSeconds(BombTime); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip(SoundName);
+    }
+
 }

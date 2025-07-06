@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,6 +47,8 @@ public class LastBossPattern_Staff : IBossAttackPattern
     {
         foreach (var pos in positions)
         {
+            boss.StartCoroutine(PlayAttackSound());
+
             boss.BombHandler.ExecuteFixedBomb(
                 new List<Vector3Int> { Vector3Int.zero },
                 pos,
@@ -80,5 +82,11 @@ public class LastBossPattern_Staff : IBossAttackPattern
     private bool IsValidGridPosition(Vector3Int pos)
     {
         return pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9;
+    }
+
+    private IEnumerator PlayAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActiavte");
     }
 }

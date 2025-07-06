@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -23,6 +23,8 @@ public class LastBossPattern_SwordEquip : IBossAttackPattern
             lastBoss.SetWeaponPrefab(_weaponVisualPrefab, 3f, true);
             if (lastBoss.CurrentWeapon != null)
             {
+                boss.StartCoroutine(SoundPlay());
+
                 var rotator = lastBoss.CurrentWeapon.GetComponent<RotateOverHead>();
                 if (rotator == null)
                     rotator = lastBoss.CurrentWeapon.AddComponent<RotateOverHead>();
@@ -31,5 +33,11 @@ public class LastBossPattern_SwordEquip : IBossAttackPattern
         }
 
         yield return new WaitForSeconds(1f);
+    }
+
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(0f);
+        SoundManager.Instance.LastBossSoundClip("LastBossSwordModeActivate");
     }
 }

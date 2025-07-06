@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -180,7 +180,9 @@ public class BigHandFistPrepPattern : IBossAttackPattern
         
         // 해당 열의 중심점 (Y=4)을 기준으로 세로선 폭발
         Vector3Int centerOfColumn = new Vector3Int(columnX, 4, 0);
-        
+
+        boss.StartCoroutine(PlayAttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(
             verticalLine,
             centerOfColumn,
@@ -251,7 +253,9 @@ public class BigHandFistPrepPattern : IBossAttackPattern
         
         // 해당 행의 중심점을 기준으로 가로선 폭발
         Vector3Int centerOfRow = new Vector3Int(centerX, rowY, 0);
-        
+
+        boss.StartCoroutine(PlayAttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(
             horizontalLine,
             centerOfRow,
@@ -277,4 +281,17 @@ public class BigHandFistPrepPattern : IBossAttackPattern
     {
         Debug.Log("주먹 유도 패턴 정리 완료");
     }
+
+    public IEnumerator PlayAttackSound(string SoundName, float BombTime)
+    {
+        yield return new WaitForSeconds(BombTime); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip(SoundName);
+    }
+
+    public IEnumerator PlayAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
+    }
+
 }

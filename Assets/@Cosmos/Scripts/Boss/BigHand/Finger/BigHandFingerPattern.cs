@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,7 +83,9 @@ public class BigHandFingerPattern : IBossAttackPattern
         Vector3 startTipPos = CalculateStartPosition(fingerTipWorld, targetPos);
         
         _fingerObject = Object.Instantiate(selectedPrefab, startTipPos, Quaternion.identity);
-        
+
+        boss.StartCoroutine(PlayAttackSound("BigHandFingerActivate", 0.8f));
+
         // 손가락 본체 전조
         foreach (Vector3Int pos in fingerPositions)
         {
@@ -161,6 +163,8 @@ public class BigHandFingerPattern : IBossAttackPattern
             yield return new WaitForSeconds(explosionDelay);
         }
         
+        boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
+
         boss.BombHandler.ExecuteFixedBomb(
             crossPositions, 
             fingerTip, 
@@ -360,4 +364,10 @@ public class BigHandFingerPattern : IBossAttackPattern
             _fingerObject = null;
         }
     }
+    public IEnumerator PlayAttackSound(string SoundName, float BombTime)
+    {
+        yield return new WaitForSeconds(BombTime); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip(SoundName);
+    }
+
 }

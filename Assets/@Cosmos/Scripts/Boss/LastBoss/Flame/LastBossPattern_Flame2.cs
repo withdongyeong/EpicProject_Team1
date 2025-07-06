@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,8 @@ public class LastBossPattern_Flame2 : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         boss.SetAnimationTrigger("Attack");
+
+        boss.StartCoroutine(SoundPlay());
 
         // Step 0: 중심 한 칸만 공격
         Vector3Int center = new Vector3Int(4, 4, 0);
@@ -44,6 +46,8 @@ public class LastBossPattern_Flame2 : IBossAttackPattern
                 {
                     if (IsValid(pos))
                     {
+                        boss.StartCoroutine(SoundPlay());
+
                         boss.BombHandler.ExecuteFixedBomb(
                             new() { Vector3Int.zero },
                             pos,
@@ -83,4 +87,10 @@ public class LastBossPattern_Flame2 : IBossAttackPattern
 
     private bool IsValid(Vector3Int pos) =>
         pos.x >= 1 && pos.x <= 7 && pos.y >= 1 && pos.y <= 7;
+
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.LastBossSoundClip("LastBossFlameAttackActivate");
+    }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,6 +57,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         int cx = 0, cy = 0, dir = 0;
         for (int count = 0; count < 16;)
         {
+            boss.StartCoroutine(SoundPlay());
+
             if (!visited[cx, cy])
             {
                 int gx = gridX[cx, cy];
@@ -81,4 +83,10 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
             }
         }
     }
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
+    }
+
 }
