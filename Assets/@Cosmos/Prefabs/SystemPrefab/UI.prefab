@@ -546,7 +546,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -823,8 +823,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a8a98ecf3ee160d4dbf8c5ff06a0f3da, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -852,7 +852,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -863,9 +863,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 71029e0a661740a4da8e5e5fa5e04be8, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 419d579cbb7efaa4e99b928f9fb52079, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: c7adcea64d372dc4681f7b127f12e30d, type: 3}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1826,8 +1826,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a8a98ecf3ee160d4dbf8c5ff06a0f3da, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1855,7 +1855,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1866,9 +1866,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 71029e0a661740a4da8e5e5fa5e04be8, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 419d579cbb7efaa4e99b928f9fb52079, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: c7adcea64d372dc4681f7b127f12e30d, type: 3}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -2611,13 +2611,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5559226869667213670}
     m_Modifications:
-    - target: {fileID: 2288682207225663645, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
     - target: {fileID: 3438928150381501211, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
       propertyPath: m_Name
       value: PlayerHealth_under
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763183123583547299, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7919106722767137442, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
       propertyPath: m_Pivot.x
@@ -2702,8 +2702,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1023777367376878172, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5319415516139682888}
   m_SourcePrefab: {fileID: 100100000, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
+--- !u!1 &3854461371397898870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1023777367376878172, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
+  m_PrefabInstance: {fileID: 4271941484237183018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5319415516139682888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3854461371397898870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a63bf0299a47f5b46d3e266c67fba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleSprite: {fileID: 4512633070264445626, guid: 1345d613b61d994479bacba67c57c340, type: 3}
+  damagedSprite: {fileID: 312755232878970565, guid: 2104a3949f82fff4f8269f9583816785, type: 3}
+  deathSprite: {fileID: 6241340011936549680, guid: cb879403ea013f6448375b4bccaf4cde, type: 3}
 --- !u!224 &6246120764794679944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7919106722767137442, guid: 00d58457aa86c154fa91c6a9368f29b2, type: 3}
