@@ -24,12 +24,12 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
         {
             for (int r = 4; r >= radius; r--)
             {
+                boss.StartCoroutine(SoundPlay());
+
                 foreach (var pos in GetRingLayer(r))
                 {
                     if (IsValid(pos))
                     {
-                        boss.StartCoroutine(SoundPlay());
-
                         boss.BombHandler.ExecuteFixedBomb(
                             new() { Vector3Int.zero },
                             pos,

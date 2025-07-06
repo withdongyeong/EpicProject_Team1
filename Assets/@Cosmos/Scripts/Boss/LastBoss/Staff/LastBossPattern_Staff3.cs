@@ -57,10 +57,10 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         int cx = 0, cy = 0, dir = 0;
         for (int count = 0; count < 16;)
         {
-            boss.StartCoroutine(SoundPlay());
-
             if (!visited[cx, cy])
             {
+                boss.StartCoroutine(SoundPlay());
+
                 int gx = gridX[cx, cy];
                 int gy = gridY[cx, cy];
                 boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
@@ -88,5 +88,4 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         yield return new WaitForSeconds(0.8f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
-
 }

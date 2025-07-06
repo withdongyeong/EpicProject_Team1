@@ -87,6 +87,6 @@ public class LastBossPattern_Staff : IBossAttackPattern
     private IEnumerator PlayAttackSound()
     {
         yield return new WaitForSeconds(0.8f);
-        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActiavte");
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

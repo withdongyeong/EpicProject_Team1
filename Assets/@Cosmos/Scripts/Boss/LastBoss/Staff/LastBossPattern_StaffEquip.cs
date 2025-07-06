@@ -24,12 +24,12 @@ public class LastBossPattern_StaffEquip : IBossAttackPattern
     {
         if (boss is LastBoss lastBoss)
         {
+            boss.StartCoroutine(SoundPlay());
+
             lastBoss.SetWeaponPrefab(_weaponVisualPrefab, 4f, true);
 
             if (lastBoss.CurrentWeapon != null)
             {
-               boss.StartCoroutine(SoundPlay());
-
                 // 회전 컴포넌트 부여
                 var rotator = lastBoss.CurrentWeapon.GetComponent<RotateOverHead>();
                 if (rotator == null)

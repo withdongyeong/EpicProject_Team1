@@ -46,7 +46,6 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
         foreach (var pos in targets)
         {
             boss.StartCoroutine(PlayAttackSound());
-
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
         }
 
@@ -63,6 +62,6 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
     private IEnumerator PlayAttackSound()
     {
         yield return new WaitForSeconds(0.8f);
-        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActiavte");
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

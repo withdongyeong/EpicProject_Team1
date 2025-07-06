@@ -42,12 +42,11 @@ public class LastBossPattern_Flame2 : IBossAttackPattern
             // 0~radius까지 누적 범위
             for (int r = 0; r <= radius; r++)
             {
+                boss.StartCoroutine(SoundPlay());
                 foreach (var pos in GetRingLayer(r))
                 {
                     if (IsValid(pos))
                     {
-                        boss.StartCoroutine(SoundPlay());
-
                         boss.BombHandler.ExecuteFixedBomb(
                             new() { Vector3Int.zero },
                             pos,
