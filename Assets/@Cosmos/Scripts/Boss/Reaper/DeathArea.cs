@@ -4,15 +4,17 @@ public class DeathArea : MonoBehaviour
 {
     bool IsStayPlayer;
     PlayerHp playerHp;
+    private int _damage;
 
     private void Start()
     {
         playerHp = FindAnyObjectByType<PlayerHp>();
+        _damage = GlobalSetting.Instance.GetBossBalance(7).weakDamage;
     }
 
     private void Update()
     {
-        if(IsStayPlayer && playerHp.CurrentHealth > 0) playerHp.TakeDamage(20);
+        if(IsStayPlayer && playerHp.CurrentHealth > 0) playerHp.TakeDamage(_damage);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

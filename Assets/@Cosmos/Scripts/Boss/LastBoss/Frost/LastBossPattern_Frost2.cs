@@ -8,9 +8,15 @@ using UnityEngine;
 public class LastBossPattern_Frost2 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
+    private int _damage;
     public string PatternName => "Frost2";
 
-    public LastBossPattern_Frost2(GameObject explosionPrefab) => _explosionPrefab = explosionPrefab;
+    public LastBossPattern_Frost2(GameObject explosionPrefab, int damage)
+    {
+        _explosionPrefab = explosionPrefab;
+        _damage = damage;
+    }
+
     public bool CanExecute(BaseBoss boss) => boss != null && _explosionPrefab != null;
 
     public IEnumerator Execute(BaseBoss boss)
@@ -32,7 +38,7 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
                         _explosionPrefab,
                         0.8f,
                         0.8f,
-                        20,
+                        _damage,
                         WarningType.Type1
                     );
                 }

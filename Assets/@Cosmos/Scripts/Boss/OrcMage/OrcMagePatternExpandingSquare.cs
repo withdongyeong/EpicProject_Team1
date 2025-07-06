@@ -8,10 +8,11 @@ using UnityEngine;
 public class OrcMagePatternExpandingSquare : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
+    private int _damage;
 
     public string PatternName => "OrcMagePattern_ExpandingSquare";
 
-    public OrcMagePatternExpandingSquare(GameObject groundSpikePrefab)
+    public OrcMagePatternExpandingSquare(GameObject groundSpikePrefab, int damage)
     {
         _groundSpikePrefab = groundSpikePrefab;
     }
@@ -40,7 +41,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
             
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
             
             if (size == 1 || size == 2)
             {

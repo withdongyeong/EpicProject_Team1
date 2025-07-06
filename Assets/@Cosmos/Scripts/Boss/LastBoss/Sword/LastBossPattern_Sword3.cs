@@ -8,9 +8,15 @@ using UnityEngine;
 public class LastBossPattern_Sword3 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
+    private int _damage;
     public string PatternName => "Sword3";
 
-    public LastBossPattern_Sword3(GameObject explosionPrefab) => _explosionPrefab = explosionPrefab;
+    public LastBossPattern_Sword3(GameObject explosionPrefab, int damage)
+    {
+        _explosionPrefab = explosionPrefab;
+        _damage = damage;
+    }
+
     public bool CanExecute(BaseBoss boss) => boss != null && _explosionPrefab != null;
 
     public IEnumerator Execute(BaseBoss boss)
@@ -33,7 +39,7 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
                         _explosionPrefab,
                         0.8f,
                         1f,
-                        25,
+                        _damage,
                         WarningType.Type1
                     );
                 }
@@ -65,7 +71,7 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
                                 _explosionPrefab,
                                 0.8f,
                                 1f,
-                                18,
+                                _damage,
                                 WarningType.Type1
                             );
                         }

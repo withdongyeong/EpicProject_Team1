@@ -8,10 +8,11 @@ using UnityEngine;
 public class OrcMagePatternSpiral : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
+    private int _damage;
 
     public string PatternName => "OrcMagePattern_Spiral";
 
-    public OrcMagePatternSpiral(GameObject groundSpikePrefab)
+    public OrcMagePatternSpiral(GameObject groundSpikePrefab, int damage)
     {
         _groundSpikePrefab = groundSpikePrefab;
     }
@@ -41,7 +42,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
                 boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _groundSpikePrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
+                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
             }
 
             // 첫 번째 그룹만 0.3초, 나머지는 0.15초로 빠르게

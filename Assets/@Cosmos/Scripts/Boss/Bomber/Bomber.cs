@@ -10,7 +10,9 @@ public class Bomber : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 1000;
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(3).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(3).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(3).strongDamage;
     }
 
     /// <summary>
@@ -19,45 +21,45 @@ public class Bomber : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 2, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 2, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 6, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 6, 0)), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 2, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 2, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 6, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 6, 0), WeakDamage), 0.3f)
             .SetGroupInterval(2.5f);
 
         AddGroup()
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 2, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 4, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 6, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 4, 0)), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 2, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 4, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 6, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 4, 0), WeakDamage), 0.3f)
             .SetGroupInterval(2.5f);
 
         AddGroup()
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(8, 0, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(7, 1, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 2, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(5, 3, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 4, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(3, 5, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 6, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(1, 7, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(0, 8, 0)), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(8, 0, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(7, 1, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 2, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(5, 3, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 4, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(3, 5, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 6, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(1, 7, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(0, 8, 0), WeakDamage), 0.3f)
             .SetGroupInterval(2.5f);
 
         AddGroup()
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(0, 0, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(1, 1, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 2, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(3, 3, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 4, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(5, 5, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 6, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(7, 7, 0)), 0.3f)
-            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(8, 8, 0)), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(0, 0, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(1, 1, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(2, 2, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(3, 3, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 4, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(5, 5, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(6, 6, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(7, 7, 0), WeakDamage), 0.3f)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(8, 8, 0), WeakDamage), 0.3f)
             .SetGroupInterval(2.5f);
 
         AddGroup()
-            .AddPattern(new BomberBigBombPattern(BombActtck, Bombball), 0.3f)
+            .AddPattern(new BomberBigBombPattern(BombActtck, Bombball, StrongDamage), 0.3f)
             .SetGroupInterval(2.5f);
     }
 
