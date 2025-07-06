@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,7 +15,9 @@ public class StageUIHandler : MonoBehaviour
     [Header("버튼")]
     public Button victoryReturnButton; // 승리 패널의 돌아가기 버튼
     public Button defeatReturnButton;  // 패배 패널의 돌아가기 버튼
+    public Button menuButton;          // 메인 메뉴 버튼
     public Button retryButton;         // 재시도 버튼
+
     
     private GameStateManager _gameStateManager;
 
@@ -34,12 +37,26 @@ public class StageUIHandler : MonoBehaviour
         // 버튼 이벤트 연결
         if (victoryReturnButton != null)
             victoryReturnButton.onClick.AddListener(ReturnToBuilding);
-            
+
         if (defeatReturnButton != null)
-            defeatReturnButton.onClick.AddListener(ReturnToBuilding);
-            
-        if (retryButton != null)
-            retryButton.onClick.AddListener(RetryGame);
+        {
+            if(LifeManager.Instance.Life > 0)
+            {
+                defeatReturnButton.onClick.AddListener(ReturnToBuilding);
+            }
+            else
+            {
+                defeatReturnButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(0x44 / 255f, 0x44 / 255f, 0x44 / 255f);
+                defeatReturnButton.interactable = false;
+            }
+                
+        }
+
+        if (menuButton != null)
+            menuButton.onClick.AddListener(ReturnToMainMenu);
+
+
+
     }
 
     /// <summary>
@@ -75,6 +92,7 @@ public class StageUIHandler : MonoBehaviour
     /// </summary>
     private void ShowDefeatPanel()
     {
+        LifeManager.Instance.RemoveLife(1);
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(true);
     }
@@ -96,6 +114,15 @@ public class StageUIHandler : MonoBehaviour
         TimeScaleManager.Instance.ResetTimeScale();
         SceneLoader.LoadBuilding();
         
+        // 게임 격자 다시 상점 자리로 원위치
+        GridManager.Instance.transform.position = new Vector3(0, 0, 0);
+    }
+
+    private void ReturnToMainMenu()
+    {
+        TimeScaleManager.Instance.ResetTimeScale();
+        GameManager.Instance.LoadTitle();
+
         // 게임 격자 다시 상점 자리로 원위치
         GridManager.Instance.transform.position = new Vector3(0, 0, 0);
     }

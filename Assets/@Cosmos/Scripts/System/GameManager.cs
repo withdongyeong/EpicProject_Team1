@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private bool isInTutorial = false; // 튜토리얼 진행 중 ?
     public bool IsInTutorial => isInTutorial;
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,10 +17,10 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F10))
-        {
-            ResetGame();
-        }
+        //if(Input.GetKeyDown(KeyCode.F10))
+        //{
+        //    ResetGame();
+        //}
 
         ShowSetting();
         
@@ -70,6 +71,8 @@ public class GameManager : Singleton<GameManager>
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
         GoldManager.Instance.SetCurrentGold(16);
+        LifeManager.Instance.ResetLifeManager();
+        StageSelectManager.Instance.ResetManager();
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);
