@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class StoreSlot : MonoBehaviour
     private Image backgroundImage;
 
     private TextMeshProUGUI priceText;
+    public Action _onPurchase;
 
 
     private void Awake()
@@ -77,7 +79,8 @@ public class StoreSlot : MonoBehaviour
         {
             isPurchased = true; // 구매 상태로 변경
             image.color = Color.gray; // 색상 변경
-            priceText.color = Color.gray;
+            priceText.color = Color.gray; //가격 텍스트 색상 변경
+            _onPurchase?.Invoke();
             if ((StoreLockManager.Instance.GetStoreLocks(SlotNum) != null))
             {
                 StoreLockManager.Instance.RemoveStoreLock(SlotNum);
@@ -110,10 +113,6 @@ public class StoreSlot : MonoBehaviour
         
     }
 
-    public void SetColor(Color color)
-    {
-        image.color = color;
-    }
 
     private void SetPriceTextColor(int gold)
     {
