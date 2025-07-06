@@ -14,6 +14,10 @@ public abstract class SkillBase : MonoBehaviour
     [Header("Animation Settings")]
     private float pulseScale = 1.3f; // 펄스 시 확대 배율
     private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
+    
+    [Header("발동 이펙트")]
+    private GameObject activateEffectPrefab;
+    private float effectDuration = 0.5f;
 
     //쿨다운 계수입니다.
     private float cooldownFactor;
@@ -72,6 +76,9 @@ public abstract class SkillBase : MonoBehaviour
             tileObject = combineCell.GetTileObject();
             cooldown = tileObject.GetTileData().TileCoolTime;
         }
+        
+        // 발동 프리팹 할당
+        activateEffectPrefab = Resources.Load<GameObject>("Prefabs/Effects/ActivateEffect");
 
     }
 
@@ -117,14 +124,11 @@ public abstract class SkillBase : MonoBehaviour
         // 펄스 애니메이션 실행
         StartCoroutine(PulseAnimation());
 
-        if(onActivateAction == null)
-        {
-
-        }
+        // 발동 이펙트 0.1초 지연 소환
+        StartCoroutine(SpawnEffectDelayed());
+        
         // 타일 발동시 발동시킬 인접 효과의 액션 리스트를 발동시킵니다.
         onActivateAction?.Invoke(this);
-        
-        
     }
 
     /// <summary>
@@ -173,6 +177,26 @@ public abstract class SkillBase : MonoBehaviour
         tileTransform.localScale = originalScale;
     }
 
+    /// <summary>
+    /// 발동 이펙트
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SpawnEffectDelayed()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (activateEffectPrefab != null)
+        {
+            var playerPosition = FindAnyObjectByType<PlayerMarker>();
+            if (playerPosition != null)
+            {
+                GameObject effect = Instantiate(activateEffectPrefab, playerPosition.transform.position, Quaternion.identity);
+                Destroy(effect, effectDuration);
+            }
+        }
+    }
+
+    
     /// <summary>
     /// 남은 쿨타임 반환
     /// </summary>
