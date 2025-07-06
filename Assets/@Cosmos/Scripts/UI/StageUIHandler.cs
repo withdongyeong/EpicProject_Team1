@@ -21,6 +21,7 @@ public class StageUIHandler : MonoBehaviour
     
     private GameStateManager _gameStateManager;
 
+
     /// <summary>
     /// 초기화 및 이벤트 연결
     /// </summary>
@@ -92,7 +93,6 @@ public class StageUIHandler : MonoBehaviour
     /// </summary>
     private void ShowDefeatPanel()
     {
-        LifeManager.Instance.RemoveLife(1);
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(true);
     }
@@ -116,6 +116,12 @@ public class StageUIHandler : MonoBehaviour
         
         // 게임 격자 다시 상점 자리로 원위치
         GridManager.Instance.transform.position = new Vector3(0, 0, 0);
+
+        if(GameStateManager.Instance.CurrentState == GameState.Defeat)
+        {
+            LifeManager.Instance.RemoveLife(1);
+        }
+
     }
 
     private void ReturnToMainMenu()
