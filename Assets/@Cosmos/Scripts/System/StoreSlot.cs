@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class StoreSlot : MonoBehaviour
@@ -14,6 +16,9 @@ public class StoreSlot : MonoBehaviour
     [SerializeField]
     private Image backgroundImage;
 
+    private TextMeshProUGUI priceText;
+    public Action _onPurchase;
+
 
     private void Awake()
     {
@@ -21,6 +26,8 @@ public class StoreSlot : MonoBehaviour
         backgroundImage = transform.parent.GetComponent<Image>();
         hoverTileInfo = GetComponent<HoverTileInfo>();
         slotNum = transform.parent.parent.GetSiblingIndex();
+        priceText = transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        EventBus.SubscribeGoldChanged(SetPriceTextColor);
     }
 
     public GameObject GetObject()
@@ -72,7 +79,9 @@ public class StoreSlot : MonoBehaviour
         {
             isPurchased = true; // 구매 상태로 변경
             image.color = Color.gray; // 색상 변경
-            if((StoreLockManager.Instance.GetStoreLocks(SlotNum) != null))
+            priceText.color = Color.gray; //가격 텍스트 색상 변경
+            _onPurchase?.Invoke();
+            if ((StoreLockManager.Instance.GetStoreLocks(SlotNum) != null))
             {
                 StoreLockManager.Instance.RemoveStoreLock(SlotNum);
             }
@@ -99,11 +108,30 @@ public class StoreSlot : MonoBehaviour
         hoverTileInfo.SetTileObject(prefab.GetComponent<TileObject>());
         image.SetNativeSize();
         backgroundImage.GetComponent<RectTransform>().sizeDelta = image.rectTransform.sizeDelta; // 배경 이미지 크기 조정
+        priceText.text = $"{cost}G";
+        SetPriceTextColor(GoldManager.Instance.CurrentGold);
         
     }
 
-    public void SetColor(Color color)
+
+    private void SetPriceTextColor(int gold)
     {
-        image.color = color;
+        if(objectCost > gold)
+        {
+            priceText.color = Color.red;
+        }
+        else
+        {
+            priceText.color = Color.white;
+        }
+        if(isPurchased)
+        {
+            priceText.color = Color.gray;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGoldChanged(SetPriceTextColor);
     }
 }

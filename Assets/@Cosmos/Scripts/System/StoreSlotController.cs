@@ -124,10 +124,6 @@ public class StoreSlotController : MonoBehaviour
             }
             
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
-            if(isLocked)
-            {
-                storeSlots[i].SetColor(Color.red);
-            }
             appeardTileList.Add(chosenTile);
             appeardTileNameList.Add(chosenTile.GetComponent<TileObject>().GetTileData().TileName);
             

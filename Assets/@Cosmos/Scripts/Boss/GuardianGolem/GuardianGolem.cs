@@ -50,6 +50,7 @@ public class GuardianGolem : BaseBoss
     {
         SoundManager.Instance.GolemSoundClip("GolemDeadActivate");
         SetAnimationTrigger("DeathTrigger");
+        LifeManager.Instance.AddLife(1);
         // 기본 사망 처리 호출
         base.Die();
     }
