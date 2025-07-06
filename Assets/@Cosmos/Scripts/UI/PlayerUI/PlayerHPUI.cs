@@ -146,19 +146,23 @@ public class PlayerHPUI : MonoBehaviour
         _isDamageAnimating = true;
         _targetHP = toHP;
 
-        // 1. 즉시 HP UI 줄이기
         currenthP = toHP;
         hPUI.fillAmount = CalculateHPFillAmount(toHP);
-
-        // 2. 데미지 미리보기 UI 설정
         ShowDamagePreview(fromHP);
-
-        // 3. 흔들기 효과
         StartCoroutine(ShakeUI());
-
-        // 4. 미리보기 → 애니메이션
         StartCoroutine(DamagePreviewAnimate(fromHP, toHP));
+
+        // 피격 이미지로 전환
+        var spriteController = GetComponentInChildren<PlayerSpriteStateController>();
+        if (spriteController != null)
+        {
+            if (toHP <= 0)
+                spriteController.SetDeath();
+            else
+                spriteController.SetDamaged();
+        }
     }
+
 
     /// <summary>
     /// 데미지 미리보기 설정
@@ -188,11 +192,21 @@ public class PlayerHPUI : MonoBehaviour
 
         damagePreviewUI.fillAmount = toFill;
         _isDamageAnimating = false;
+
+        // 체력이 0이 아니면 idle로 복귀
+        if (_playerHp != null && _playerHp.CurrentHealth > 0)
+        {
+            var spriteController = GetComponentInChildren<PlayerSpriteStateController>();
+            if (spriteController != null)
+                spriteController.SetIdle();
+        }
     }
+
 
     /// <summary>
     /// UI 흔들기 효과
     /// </summary>
+// 흔들기 효과 후에 사망 상태 확인
     private IEnumerator ShakeUI()
     {
         float elapsed = 0f;
@@ -208,7 +222,16 @@ public class PlayerHPUI : MonoBehaviour
         }
 
         transform.localPosition = _originalPosition;
+
+        // 체력 0이면 사망 이미지로 교체
+        if (_playerHp != null && _playerHp.CurrentHealth <= 0)
+        {
+            var spriteController = GetComponentInChildren<PlayerSpriteStateController>();
+            if (spriteController != null)
+                spriteController.SetDeath();
+        }
     }
+
 
     /// <summary>
     /// 위험 상태 깜박임 확인
