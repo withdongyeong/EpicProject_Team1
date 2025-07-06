@@ -337,11 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
   _healAmount: 7
   _enchantedHealAmount: 10
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!4 &9127531905601906501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -466,11 +463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
   _healAmount: 7
   _enchantedHealAmount: 10
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!1001 &4984459444230833439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1154,11 +1148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 5
   _healAmount: 7
   _enchantedHealAmount: 10
-  _healEffectPrefab: {fileID: 2655093744207988788, guid: 0be261ee0d3a50845b91408743d8e619, type: 3}
 --- !u!1 &7281041991409893499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474259868635149644, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
@@ -1440,6 +1431,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3216912568386489077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6750033715232265413, guid: 76b17cec3ea3a87479eb34307f4d9a37, type: 3}
+    - target: {fileID: 3216912568386489077, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6047810487379297033, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -1460,6 +1459,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7533092426206871370, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6750033715232265413, guid: 76b17cec3ea3a87479eb34307f4d9a37, type: 3}
     - target: {fileID: 7951068133944047977, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Name
       value: BigHeartTile
