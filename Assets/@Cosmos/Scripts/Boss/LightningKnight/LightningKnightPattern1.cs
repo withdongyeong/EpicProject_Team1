@@ -39,7 +39,7 @@ public class LightningKnightPattern1 : IBossAttackPattern
         {
             List<Vector3Int> squareShape = CreateHollowSquare(size, randomDirection);
 
-            boss.StartCoroutine(ReaperKnightAttackSound());
+            boss.StartCoroutine(KnightAttackSound());
 
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _lightningActtck,
                                               warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
@@ -158,10 +158,10 @@ public class LightningKnightPattern1 : IBossAttackPattern
         return x == safePos.x && y == safePos.y;
     }
 
-    private IEnumerator ReaperKnightAttackSound()
+    private IEnumerator KnightAttackSound()
     {
         yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
-        SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
+        SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
     }
 
 }
