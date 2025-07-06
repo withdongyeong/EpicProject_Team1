@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -24,6 +24,8 @@ public class LastBossPattern_StaffEquip : IBossAttackPattern
     {
         if (boss is LastBoss lastBoss)
         {
+            boss.StartCoroutine(SoundPlay());
+
             lastBoss.SetWeaponPrefab(_weaponVisualPrefab, 4f, true);
 
             if (lastBoss.CurrentWeapon != null)
@@ -38,5 +40,11 @@ public class LastBossPattern_StaffEquip : IBossAttackPattern
         }
 
         yield return new WaitForSeconds(1f);
+    }
+
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(0f);
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffModeActivate");
     }
 }

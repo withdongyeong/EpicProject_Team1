@@ -37,39 +37,41 @@ public class LastBoss : BaseBoss
         AddGroup().
             AddPattern(new LastBossPattern_StaffEquip(staff), 0f).
             AddPattern(new LastBossPattern_Staff(explosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Staff2(explosionPrefab, WeakDamage),0f).
-            AddPattern(new LastBossPattern_Staff3(explosionPrefab, WeakDamage),0.5f).
-            AddPattern(new LastBossPattern_Staff4(explosionPrefab, WeakDamage),0f).
-            AddPattern(new LastBossPattern_Staff5(explosionPrefab, StrongDamage),0f).
+            AddPattern(new LastBossPattern_Staff2(explosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Staff3(explosionPrefab, WeakDamage), 0.5f).
+            AddPattern(new LastBossPattern_Staff4(explosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Staff5(explosionPrefab, StrongDamage), 0f).
             SetGroupInterval(1f);
-        
-        AddGroup().
-            AddPattern(new LastBossPattern_SwordEquip(sword), 0f).
-            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Sword2(swordExplosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Sword3(swordExplosionPrefab, StrongDamage), 0f).
-            SetGroupInterval(1f);
-        
-        AddGroup().
-            AddPattern(new LastBossPattern_FrostEquip(frost), 0f).
-            AddPattern(new LastBossPattern_Frost1(frostExplosionPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab, WeakDamage), 0f).
-            SetGroupInterval(1f);
-        
-        AddGroup().
-            AddPattern(new LastBossPattern_FlameEquip(flame), 0f).
-            AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), 0.5f).
-            AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), 0.5f).
-            AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), 0.5f).
-            AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), 0.5f).
-            SetGroupInterval(1f);
+
+        //AddGroup().
+        //    AddPattern(new LastBossPattern_SwordEquip(sword), 0f).
+        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+        //    AddPattern(new LastBossPattern_Sword2(swordExplosionPrefab, WeakDamage), 0f).
+        //    AddPattern(new LastBossPattern_Sword3(swordExplosionPrefab, StrongDamage), 0f).
+        //    SetGroupInterval(1f);
+
+        //AddGroup().
+        //    AddPattern(new LastBossPattern_FrostEquip(frost), 0f).
+        //    AddPattern(new LastBossPattern_Frost1(frostExplosionPrefab, WeakDamage), 0f).
+        //    AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab, WeakDamage), 0f).
+        //    SetGroupInterval(1f);
+
+        //AddGroup().
+        //    AddPattern(new LastBossPattern_FlameEquip(flame), 0f).
+        //    AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), 0.5f).
+        //    AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), 0.5f).
+        //    AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), 0.5f).
+        //    AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), 0.5f).
+        //    SetGroupInterval(1f);
     }
 
     protected override void DamageFeedback()
     {
+        SoundManager.Instance.LastBossSoundClip("LastBossDamageActivate");
+
         SetAnimationTrigger("Damaged");
     }
     
@@ -120,6 +122,8 @@ public class LastBoss : BaseBoss
     /// </summary>
     protected override void Die()
     {
+        SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
+
         SetAnimationTrigger("Death");
         // 기본 사망 처리 호출
         base.Die();

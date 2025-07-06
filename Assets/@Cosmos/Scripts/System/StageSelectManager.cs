@@ -35,6 +35,11 @@ public class StageSelectManager : Singleton<StageSelectManager>
         EventBus.SubscribeBossDeath(TestStageNumPlus);
     }
 
+    public void ResetManager()
+    {
+        stageNum = 1;
+    }
+
     
     public void TestStageNumPlus() // 테스트용 스테이지 번호 증가
     {

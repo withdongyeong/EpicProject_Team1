@@ -78,7 +78,7 @@ public class SoundManager : Singleton<SoundManager>
     };
 
     private Dictionary<string, AudioClip> BomberSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
+    //복탄 볼륨 딕셔너리
     private Dictionary<string, float> BomberSoundVolumeDictionary = new Dictionary<string, float>
     {
         {"BomberAttackActivate", 0.05f},
@@ -127,14 +127,27 @@ public class SoundManager : Singleton<SoundManager>
     //손 볼륨 딕셔너리
     private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"BigHandAttackActivate", 0.03f},
+        {"BigHandFistActivate", 0.01f},
+        {"BigHandFingerActivate", 0.7f},
+        {"BigHandDamageActivate", 0.3f },
+        {"BigHandDeadActivate", 0.3f },
     };
 
     private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
     //최종보스 볼륨 딕셔너리
     private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
     {
-
+        {"LastBossDamageActivate", 1f },
+        {"LastBossDeadActivate", 1f },
+        {"LastBossFlameAttackActivate", 0.1f },
+        {"LastBossFrostAttackActivate", 0.1f },
+        {"LastBossStaffAttackActivate", 0.1f },
+        {"LastBossSwordAttackActivate", 0.1f },
+        {"LastBossFlameModeActivate", 0.1f },
+        {"LastBossFrostModeActivate", 0.1f },
+        {"LastBossStaffModeActivate", 0.1f },
+        {"LastBossSwordModeActivate", 1f }
     };
 
     //UI 사운드 딕셔너리
@@ -144,7 +157,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         {"DeploymentActivate", 0.05f},
         {"RerollActivate", 0.5f },
-        {"ButtonActivate", 0.3f },
+        {"ButtonActivate", 0.1f },
         {"BlackHoleStartActivate", 0.8f }
     };
 
@@ -153,10 +166,11 @@ public class SoundManager : Singleton<SoundManager>
     //BGM 사운드 볼륨
     private Dictionary<string, float> BGMSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"ShopSceneBGM", 0.1f},
+        {"ShopBGM", 0.1f},
         {"OrcMageBGM", 0.15f },
         {"ArachneBGM", 0.1f },
-        {"SlimeBGM", 0.05f }
+        {"SlimeBGM", 0.05f },
+        {"TitleBGM", 0.1f }
     };
 
 
@@ -167,7 +181,6 @@ public class SoundManager : Singleton<SoundManager>
 
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
-        BlackHoleAudioSource = transform.GetChild(2).GetComponent<AudioSource>();
 
         // 플레이어 사운드 초기화
         AudioClip[] playeraudioClips = Resources.LoadAll<AudioClip>("Sounds/Player");
@@ -602,13 +615,14 @@ public class SoundManager : Singleton<SoundManager>
         switch (scene.name)
         {
             case "BuildingScene":
-                BGMSoundClip("ShopSceneBGM");
+                BGMSoundClip("ShopBGM");
                 break;
             case "StageScene":
                 break;
             case "LogoScene":
                 break;
             case "TitleScene":
+                BGMSoundClip("TitleBGM");
                 break;
             default:
                 //bgmAudioSource.Stop(); // 기본은 정지

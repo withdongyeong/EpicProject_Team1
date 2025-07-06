@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +44,11 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
         }
 
         foreach (var pos in targets)
+        {
+            boss.StartCoroutine(PlayAttackSound());
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+        }
+
 
         yield return new WaitForSeconds(1f);
     }
@@ -53,5 +57,11 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
     {
         if (pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9)
             list.Add(pos);
+    }
+
+    private IEnumerator PlayAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

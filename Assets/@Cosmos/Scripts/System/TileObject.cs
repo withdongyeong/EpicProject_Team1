@@ -23,7 +23,6 @@ public class TileObject : MonoBehaviour
 
     private List<StarBase> starList = new();
 
-
     private void Awake()
     {
         InitializeTile();
@@ -102,7 +101,7 @@ public class TileObject : MonoBehaviour
             }
            
             // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
-            List<SkillBase> skills = new List<SkillBase>();
+            List<TileObject> skills = new List<TileObject>();
 
             // 스타셀의 색상을 초기화하고, 해당 스타셀의 스킬이 조건을 만족하면 색을 바꿉니다.
             foreach (StarCell starCell in CombinedStarCell.GetComponentsInChildren<StarCell>())
@@ -121,13 +120,22 @@ public class TileObject : MonoBehaviour
 
                 // 스타셀의 스킬을 가져오고, 해당 스킬이 조건을 만족하는지 확인합니다.
                 SkillBase[] skillBases = GridManager.Instance.GetCellData(gridPos)?.GetCombineCell()?.Skills;
+
+                // 만약 스킬이 없다면, 해당 스타셀의 타일 오브젝트에서 스킬을 가져옵니다.
+                if (skillBases == null || skillBases.Length == 0)
+                {
+                    skillBases = new SkillBase[1];
+                    skillBases[0] = GridManager.Instance.GetCellData(gridPos).GetCombineCell().GetTileObject().GetComponentInChildren<SkillBase>();
+                }
+
+
                 foreach (SkillBase skill in skillBases)
                 {
-                    if (starCell.GetStarSkill() != null && starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill))
+                    if (starCell.GetStarSkill() != null && starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill.TileObject))
                     {
                         Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
                         sr.sprite = sprite; // 조건을 만족하면 색상을 흰색으로 변경
-                        skills.Add(skill);
+                        skills.Add(skill.TileObject);
                     }
                 }
             }

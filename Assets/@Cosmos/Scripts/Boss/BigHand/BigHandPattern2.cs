@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,6 +64,8 @@ public class BigHandPattern2 : IBossAttackPattern
                 }
             }
             
+            boss.StartCoroutine(PlayAttackSound());
+
             boss.BombHandler.ExecuteFixedBomb(
                 spokesPattern, 
                 centerPos, 
@@ -92,5 +94,11 @@ public class BigHandPattern2 : IBossAttackPattern
     public void Cleanup()
     {
         Debug.Log("패턴2 정리 완료");
+    }
+
+    public IEnumerator PlayAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
     }
 }

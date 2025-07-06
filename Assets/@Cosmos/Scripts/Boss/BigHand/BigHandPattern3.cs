@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,6 +58,8 @@ public class BigHandPattern3 : IBossAttackPattern
                 
                 if (IsWithin7x7Grid(absolutePos))
                 {
+                    boss.StartCoroutine(PlayAttackSound());
+
                     boss.BombHandler.ExecuteFixedBomb(
                         new List<Vector3Int> { targetPos }, 
                         centerPos, 
@@ -85,4 +87,11 @@ public class BigHandPattern3 : IBossAttackPattern
     {
         Debug.Log("패턴3 정리 완료");
     }
+
+    public IEnumerator PlayAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
+    }
+
 }
