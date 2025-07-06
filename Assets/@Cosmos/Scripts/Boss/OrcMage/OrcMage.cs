@@ -18,7 +18,9 @@ public class OrcMage : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 2000;
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(6).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(6).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(6).strongDamage;
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
@@ -30,17 +32,17 @@ public class OrcMage : BaseBoss
         Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");
         
         // AddIndividualPattern(new OrcMagePattern1(frogPrefab), 2f);
-        AddIndividualPattern(new OrcMagePatternWave(groundSpikePrefab), 2f);
-        AddIndividualPattern(new OrcMagePatternExpandingSquare(groundSpikePrefab), 2f);
-        AddIndividualPattern(new OrcMagePatternChainExplosion(groundSpikePrefab), 2f);
+        AddIndividualPattern(new OrcMagePatternWave(groundSpikePrefab, WeakDamage), 2f);
+        AddIndividualPattern(new OrcMagePatternExpandingSquare(groundSpikePrefab, WeakDamage), 2f);
+        AddIndividualPattern(new OrcMagePatternChainExplosion(groundSpikePrefab, WeakDamage), 2f);
         // 기본기
-        AddIndividualPattern(new OrcMagePatternSpiral(groundSpikePrefab), 2f);
+        AddIndividualPattern(new OrcMagePatternSpiral(groundSpikePrefab, WeakDamage), 2f);
         // 돌진 패턴은 항상 시작 - 끝 매칭
         AddGroup()
-            .AddPattern(new OrcMagePatternBossChargeLeft(groundSpikePrefab), 2f)
-            .AddPattern(new OrcMagePatternWave(groundSpikePrefab), 2f)
-            .AddPattern(new OrcMagePatternExpandingSquare(groundSpikePrefab), 2f)
-            .AddPattern(new OrcMagePatternBossChargeRight(groundSpikePrefab), 2f)
+            .AddPattern(new OrcMagePatternBossChargeLeft(groundSpikePrefab, StrongDamage), 2f)
+            .AddPattern(new OrcMagePatternWave(groundSpikePrefab, WeakDamage), 2f)
+            .AddPattern(new OrcMagePatternExpandingSquare(groundSpikePrefab, WeakDamage), 2f)
+            .AddPattern(new OrcMagePatternBossChargeRight(groundSpikePrefab, StrongDamage), 2f)
             .SetGroupInterval(2f);
             
         Debug.Log($"OrcMage: Pattern system initialized successfully");

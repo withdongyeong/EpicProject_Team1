@@ -107,30 +107,6 @@ public class InfoTextRenderer : MonoBehaviour
         return result;
     }
 
-    /// <summary>
-    /// GimmickText들을 load해서 dictonary에 넣는 메서드입니다
-    /// </summary>
-    //private void LoadToDict()
-    //{
-    //    GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/UI/InfoUI/GimmickText");
-    //    foreach(GameObject prefab in prefabs)
-    //    {
-    //        if(prefab.name.EndsWith("GimmickText"))
-    //        {
-    //            string tag = prefab.name.Substring(0, prefab.name.Length - "GimmickText".Length);
-    //            if(!_textDict.ContainsKey(tag))
-    //            {
-    //                _textDict.Add(tag, prefab);
-    //            }
-                
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError(prefab.name + "이자식 끝이 GimmickText가 아닌데예");
-    //        }
-    //    }
-    //}
-
     Dictionary<string, string> tagDescription = new Dictionary<string, string>
     {
         { "Fire", "화염<sprite name=\"Fire\">: 1초마다 스택만큼 피해를 주고 스택이 1 감소합니다." },

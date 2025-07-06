@@ -80,13 +80,13 @@ public class InfoPanel : MonoBehaviour
                 nameText.color = Color.white;
                 break;
             case TileGrade.Rare:
-                nameText.color = Color.blue;
+                nameText.color = new Color(0.7f, 0.9f, 1f);
                 break;
             case TileGrade.Epic:
-                nameText.color = new Color(0.5f, 0f, 1f); // 보라
+                nameText.color = new Color(0.9f, 0.7f, 1f); // 보라
                 break;
             case TileGrade.Legendary:
-                nameText.color = Color.yellow;
+                nameText.color = new Color(1f, 0.7f, 0.6f);
                 break;
             case TileGrade.Mythic:
                 nameText.color = new Color(0.65f, 0.9f, 0.85f);
@@ -106,16 +106,8 @@ public class InfoPanel : MonoBehaviour
         {
             coolTimeText.gameObject.transform.parent.gameObject.SetActive(false);
         }
-
-
-
-
-            // 설명 텍스트 설정
-            //TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-            //descriptionText.SetText(currentTileObject.GetTileData().Description);
-
-            //이제 이거 대신 이거 쓰면 됩니다
-            textRenderer.InstantiateDescriptionText(currentTileObject);
+        
+        textRenderer.InstantiateDescriptionText(currentTileObject);
 
         // 비용 텍스트 설정 (textObject 하위에 생성)
         TextMeshProUGUI costText = Instantiate(costTextPrefab, textObject.transform).GetComponent<TextMeshProUGUI>();
@@ -144,7 +136,7 @@ public class InfoPanel : MonoBehaviour
             case TileGrade.Legendary:
                 borderImage.sprite = legendaryGradeBorder;
                 break;
-            case TileGrade.Mythic: // ★ 신화 등급 처리
+            case TileGrade.Mythic: //신화 등급 처리
                 borderImage.sprite = mythicGradeBorder;
                 break;
             default:

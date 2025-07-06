@@ -11,8 +11,9 @@ public class GuardianGolem : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 1300;
-        Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(4).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(4).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(4).strongDamage;
     }
 
     /// <summary>
@@ -21,16 +22,16 @@ public class GuardianGolem : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, true), 0.8f)
-            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, false), 0.8f)
+            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, true, WeakDamage), 0.8f)
+            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, false, WeakDamage), 0.8f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new GuardianGolemPattern2(GuardianGolemRook), 0.8f)
+            .AddPattern(new GuardianGolemPattern2(GuardianGolemRook, WeakDamage), 0.8f)
             .SetGroupInterval(1f);
 
         AddGroup()
-            .AddPattern(new GuardianGolemVerticalWavePattern(GuardianGolemRook), 0.8f)
+            .AddPattern(new GuardianGolemVerticalWavePattern(GuardianGolemRook, StrongDamage), 0.8f)
             .SetGroupInterval(1f);
 
         Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");

@@ -9,6 +9,7 @@ public class ArachnePattern1 : IBossAttackPattern
 {
     private GameObject _lToRspiderLegPrefab;
     private GameObject _rToLspiderLegPrefab;
+    private int _damage;
 
     public string PatternName => "ArachnePattern1";
 
@@ -16,10 +17,11 @@ public class ArachnePattern1 : IBossAttackPattern
     /// 아라크네 패턴1 생성자
     /// </summary>
     /// <param name="spiderLegPrefab">거미 다리 이펙트 프리팹</param>
-    public ArachnePattern1(GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab)
+    public ArachnePattern1(GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab, int Damage)
     {
         _lToRspiderLegPrefab = LToRspiderLegPrefab;
         _rToLspiderLegPrefab = RToLspiderLegPrefab;
+        _damage = Damage;
     }
 
     /// <summary>
@@ -91,13 +93,13 @@ public class ArachnePattern1 : IBossAttackPattern
 
             //이펙트 데미지
             boss.BombHandler.ExecuteFixedBomb(EffectslashShape, centerPos, _rToLspiderLegPrefab,
-                                  warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+                                  warningDuration: 0.8f, explosionDuration: 0.3f, damage: _damage);
 
             yield return new WaitForSeconds(0.05f);
 
             // 데미지만
             boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
-                                              warningDuration: 0.8f, damage: 20);
+                                              warningDuration: 0.8f, damage: _damage);
 
             // 사운드 재생
             boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));
@@ -136,13 +138,13 @@ public class ArachnePattern1 : IBossAttackPattern
 
             //이펙트
             boss.BombHandler.ExecuteFixedBomb(EffectslashShape, centerPos, _lToRspiderLegPrefab,
-                                  warningDuration: 0.8f, explosionDuration: 0.3f, damage: 20);
+                                  warningDuration: 0.8f, explosionDuration: 0.3f, damage: _damage);
 
             yield return new WaitForSeconds(0.05f);
 
             // 데미지만
             boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
-                                              warningDuration: 0.8f, damage: 20);
+                                              warningDuration: 0.8f, damage: _damage);
 
             // 사운드 재생 - 하나만 재생
             if(!isTorsion) boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 0.8f));

@@ -8,12 +8,13 @@ using UnityEngine;
 public class BigHandPattern5 : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
-
+    private int _damage;
     public string PatternName => "패턴5_회전Y자";
 
-    public BigHandPattern5(GameObject attackEffectPrefab)
+    public BigHandPattern5(GameObject attackEffectPrefab, int damage)
     {
         _attackEffectPrefab = attackEffectPrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -61,7 +62,7 @@ public class BigHandPattern5 : IBossAttackPattern
                 _attackEffectPrefab,
                 warningDuration: 0.8f,
                 explosionDuration: 0.8f,
-                damage: 18,
+                damage: _damage,
                 warningType: WarningType.Type1
             );
 
