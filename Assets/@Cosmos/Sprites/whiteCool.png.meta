@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f15f72dfe3cfdea48b0a0ae31369e973
+guid: e2c6b5fc4687ae143acb29b1003899c3
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -113,15 +113,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: white_0
+      name: whiteCool
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      white_0: 4966732595609684114
+      whiteCool: 4966732595609684114
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

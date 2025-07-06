@@ -24,6 +24,7 @@ public class CombineCell : MonoBehaviour
         }
         skills = GetComponents<SkillBase>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        sr.sortingLayerName = "Tile";
         tileObject = GetComponentInParent<TileObject>();
 
         //밑에 두개는 인접효과가 변경될때 호출되는 액션과 함수의 이름입니다.
