@@ -136,6 +136,8 @@ public class BigHand : BaseBoss
 
     protected override void DamageFeedback()
     {
+        SoundManager.Instance.BigHandSoundClip("BigHandDamageActivate");
+
         // SoundManager.Instance.OrcMageSoundClip("OrcMage_DamageActivate");
         base.DamageFeedback();
     }
@@ -146,7 +148,8 @@ public class BigHand : BaseBoss
     protected override void Die()
     {
         SetAnimationTrigger("Death");
-        // SoundManager.Instance.OrcMageSoundClip("OrcMage_DieActivate");
+        SoundManager.Instance.BigHandSoundClip("BigHandDeadActivate");
+
         // 기본 사망 처리 호출
         base.Die();
     }
