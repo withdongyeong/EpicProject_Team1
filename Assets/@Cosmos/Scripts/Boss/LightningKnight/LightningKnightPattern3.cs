@@ -6,12 +6,14 @@ public class LightningKnightPattern3 : IBossAttackPattern
 {
     private GameObject _lightningActtck;
     private Vector3Int _startPoint;
+    private int _damage;
     public string PatternName => "LightningKnightPattern3";
 
-    public LightningKnightPattern3(GameObject lightningActtck, Vector3Int StartPoint)
+    public LightningKnightPattern3(GameObject lightningActtck, Vector3Int StartPoint, int Damage)
     {
         _lightningActtck = lightningActtck;
         _startPoint = StartPoint;
+        _damage = Damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -19,22 +21,24 @@ public class LightningKnightPattern3 : IBossAttackPattern
         return boss != null && _lightningActtck != null && boss.BombHandler != null;
     }
 
-/// <summary>
-/// 전기 흐르기 패턴
-/// </summary>
-/// <param name="boss"></param>
-/// <returns></returns>
+    /// <summary>
+    /// 전기 흐르기 패턴
+    /// </summary>
+    /// <param name="boss"></param>
+    /// <returns></returns>
     public IEnumerator Execute(BaseBoss boss)
     {
         boss.AttackAnimation();
 
         foreach (var ElectroArea in ElectroAreas())
         {
-            List <Vector3Int> DamageArea = new List<Vector3Int>();
+            List<Vector3Int> DamageArea = new List<Vector3Int>();
             DamageArea.Add(ElectroArea);
 
+            boss.StartCoroutine(LightningKnightAttackSound());
+
             boss.BombHandler.ExecuteFixedBomb(DamageArea, new Vector3Int(4, 4, 0), _lightningActtck,
-                                      warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                                      warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             yield return new WaitForSeconds(0.02f);
         }
@@ -52,7 +56,7 @@ public class LightningKnightPattern3 : IBossAttackPattern
         {
             Vector3Int current = queue.Dequeue();
 
-            int pattern = Random.Range(0, 2); 
+            int pattern = Random.Range(0, 2);
 
             if (pattern == 0)
             {
@@ -87,4 +91,11 @@ public class LightningKnightPattern3 : IBossAttackPattern
 
         return AttackPoints;
     }
+
+    private IEnumerator LightningKnightAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
+    }
+
 }

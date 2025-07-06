@@ -18,8 +18,9 @@ public class Arachne : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 700;
-        Debug.Log($"Arachne.Awake: MaxHealth set to {MaxHealth}");
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(2).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(2).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(2).strongDamage;
     }
 
     /// <summary>
@@ -30,18 +31,18 @@ public class Arachne : BaseBoss
         //그룹 A: 거미줄 -> 슬래쉬
         AddGroup()
             .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), 1.5f)
-            .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg), 1f)
+            .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg, StrongDamage), 1f)
             .SetGroupInterval(1f);
 
         //개별 패턴: Pattern2(중간 패턴)
         AddGroup()
           .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 5), 1.5f)
-          .AddPattern(new ArachnePattern2(poisionAriaPrefeb), 1f)
+          .AddPattern(new ArachnePattern2(poisionAriaPrefeb, WeakDamage), 1f)
           .SetGroupInterval(1f);
 
         //그룹 C: 
         AddGroup()
-            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg), 1f)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg, WeakDamage), 1f)
             .SetGroupInterval(1f);
     }
 

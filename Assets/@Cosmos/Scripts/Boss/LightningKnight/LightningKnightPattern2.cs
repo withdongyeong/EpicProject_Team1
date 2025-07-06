@@ -6,12 +6,14 @@ public class LightningKnightPattern2 : IBossAttackPattern
 {
     private GameObject _lightningActtck;
     private HashSet<Vector2Int> bannedArea = new HashSet<Vector2Int>();
+    private int _damage;
 
     public string PatternName => "LightningKnightPattern2";
 
-    public LightningKnightPattern2(GameObject lightningActtck)
+    public LightningKnightPattern2(GameObject lightningActtck, int damage)
     {
         _lightningActtck = lightningActtck;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -67,13 +69,15 @@ public class LightningKnightPattern2 : IBossAttackPattern
             }
         }
 
+        boss.StartCoroutine(LightningKnightAttackSound());
+
         boss.BombHandler.ExecuteFixedBomb(
             AttackPoints,
             new Vector3Int(selectedPos.x, selectedPos.y, 0),
             _lightningActtck,
             warningDuration: 0.8f,
             explosionDuration: 0.7f,
-            damage: 20
+            damage: _damage
         );
 
         yield return new WaitForSeconds(1f);
@@ -94,5 +98,10 @@ public class LightningKnightPattern2 : IBossAttackPattern
                 bannedArea.Add(banPos);
             }
         }
+    }
+    private IEnumerator LightningKnightAttackSound()
+    {
+        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
     }
 }

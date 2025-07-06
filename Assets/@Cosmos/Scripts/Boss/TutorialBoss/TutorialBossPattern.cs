@@ -6,12 +6,14 @@ public class TutorialBossPattern : IBossAttackPattern
 {
     private GameObject _tutorialBossAttack;
     private bool _isOddNumber;
+    private int _damage;
 
     public string PatternName => "TutorialBossPattern";
-    public TutorialBossPattern(GameObject TutorialBossAttack, bool IsOddNumber)
+    public TutorialBossPattern(GameObject TutorialBossAttack, bool IsOddNumber, int damage)
     {
         _tutorialBossAttack = TutorialBossAttack;
         _isOddNumber = IsOddNumber;
+        _damage = damage;
     }
 
     public IEnumerator Execute(BaseBoss boss)
@@ -64,7 +66,7 @@ public class TutorialBossPattern : IBossAttackPattern
             _tutorialBossAttack,
             warningDuration: 0.8f,
             explosionDuration: 0.4f,
-            damage: 2
+            damage: _damage
         );
 
         yield return null;

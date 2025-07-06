@@ -5,10 +5,11 @@ using System.Collections.Generic;
 public class ReaperPattern2 : IBossAttackPattern
 {
     private GameObject _deathAriaPrefeb;
+    private int _damage;
 
     public string PatternName => "ReaperPattern2";
 
-    public ReaperPattern2(GameObject DeathAriaPrefeb)
+    public ReaperPattern2(GameObject DeathAriaPrefeb, int damage)
     {
         _deathAriaPrefeb = DeathAriaPrefeb;
     }
@@ -38,11 +39,20 @@ public class ReaperPattern2 : IBossAttackPattern
             }
         }
 
+        boss.StartCoroutine(AttackSoundSound());
+
         boss.BombHandler.ExecuteFixedBomb(PointList, new Vector3Int(4, 4, 0), _deathAriaPrefeb,
-                                  warningDuration: 0.8f, explosionDuration: 1.0f, damage: 20, warningType: WarningType.Type1);
+                                  warningDuration: 0.8f, explosionDuration: 1.0f, damage: _damage, warningType: WarningType.Type1);
 
         boss.AttackAnimation();
 
         yield return 0;
     }
+
+    private IEnumerator AttackSoundSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
+    }
+
 }

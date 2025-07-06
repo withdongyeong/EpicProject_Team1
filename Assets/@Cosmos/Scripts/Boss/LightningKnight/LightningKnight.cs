@@ -16,7 +16,9 @@ public class LightningKnight : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = 2800;
+        MaxHealth = GlobalSetting.Instance.GetBossBalance(8).maxHP;
+        WeakDamage = GlobalSetting.Instance.GetBossBalance(8).weakDamage;
+        StrongDamage = GlobalSetting.Instance.GetBossBalance(8).strongDamage;
 
         startPosition = this.transform.position;
     }
@@ -27,17 +29,17 @@ public class LightningKnight : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-          .AddPattern(new LightningKnightDashPattern(startPosition, PatternA, LightningActtck), 1f)
-          .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(2, 0, 0)), 0f)
-          .AddPattern(new LightningKnightPattern1(LightningActtck), 1f)
-          .AddPattern(new LightningKnightPattern2(LightningActtck), 0f)
+          .AddPattern(new LightningKnightDashPattern(startPosition, PatternA, LightningActtck, WeakDamage, StrongDamage), 1f)
+          .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(2, 0, 0), WeakDamage), 0f)
+          .AddPattern(new LightningKnightPattern1(LightningActtck, WeakDamage), 1f)
+          .AddPattern(new LightningKnightPattern2(LightningActtck, WeakDamage), 0f)
           .SetGroupInterval(1.0f);
 
         AddGroup()
-           .AddPattern(new LightningKnightDash2Pattern(startPosition, PatternB, LightningActtck), 1f)
-           .AddPattern(new LightningKnightPattern2(LightningActtck), 1f)
-           .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(7, 0, 0)), 0f)
-           .AddPattern(new LightningKnightPattern1(LightningActtck), 0f)
+           .AddPattern(new LightningKnightDash2Pattern(startPosition, PatternB, LightningActtck, WeakDamage, StrongDamage), 1f)
+           .AddPattern(new LightningKnightPattern2(LightningActtck, WeakDamage), 1f)
+           .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(7, 0, 0), WeakDamage), 0f)
+           .AddPattern(new LightningKnightPattern1(LightningActtck, WeakDamage), 0f)
            .SetGroupInterval(1.0f);
 
         //AddGroup()
@@ -53,19 +55,19 @@ public class LightningKnight : BaseBoss
     /// </summary>
     protected override void DamageFeedback()
     {
-        SoundManager.Instance.SlimeSoundClip("SlimeDamageActivate");
+        SoundManager.Instance.SlimeSoundClip("KnightDamageActivate");
 
         base.DamageFeedback();
     }
 
-    ///// <summary>
-    ///// 보스 전용 사망 처리 (오버라이드 가능)
-    ///// </summary>
-    //protected override void Die()
-    //{
-    //    SetAnimationTrigger("DeadTrigger");
-    //    SoundManager.Instance.SlimeSoundClip("SlimeDeadActivate");
-    //    // 기본 사망 처리 호출
-    //    base.Die();
-    //}
+    /// <summary>
+    /// 보스 전용 사망 처리 (오버라이드 가능)
+    /// </summary>
+    protected override void Die()
+    {
+        SetAnimationTrigger("DeadTrigger");
+        SoundManager.Instance.KnightSoundClip("KnightDeadActivate");
+        // 기본 사망 처리 호출
+        base.Die();
+    }
 }

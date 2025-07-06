@@ -12,14 +12,16 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
     private GameObject _attackEffectPrefab;
     private GameObject _palmObject;
     private bool _isLeftToRight;
-
+    private int _damage;
+    
     public string PatternName => "손바닥_쓸어내기";
 
-    public BigHandPalmSweepPattern(GameObject palmFromLeftPrefab, GameObject palmFromRightPrefab, GameObject attackEffectPrefab)
+    public BigHandPalmSweepPattern(GameObject palmFromLeftPrefab, GameObject palmFromRightPrefab, GameObject attackEffectPrefab, int damage)
     {
         _palmFromLeftPrefab = palmFromLeftPrefab;
         _palmFromRightPrefab = palmFromRightPrefab;
         _attackEffectPrefab = attackEffectPrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -86,7 +88,7 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
                 _attackEffectPrefab,
                 warningDuration: 0.8f,
                 explosionDuration: 0.4f,
-                damage: 20
+                damage: _damage
             );
         }
 

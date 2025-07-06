@@ -5,12 +5,14 @@ using System.Collections;
 public class ReaperPattern1 : IBossAttackPattern
 {
     private GameObject _deathAriaPrefeb;
+    private int _damage;
 
     public string PatternName => "ReaperPattern1";
 
-    public ReaperPattern1(GameObject DeathAriaPrefeb)
+    public ReaperPattern1(GameObject DeathAriaPrefeb, int damage)
     {
         _deathAriaPrefeb = DeathAriaPrefeb;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -81,10 +83,10 @@ public class ReaperPattern1 : IBossAttackPattern
                     break;
             }
 
-            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+            boss.StartCoroutine(AttackSoundSound());
 
             boss.BombHandler.ExecuteFixedBomb(lineShape1, center, _deathAriaPrefeb,
-                warningDuration: 0.8f, explosionDuration: 1f, damage: 25, WarningType.Type1);
+                warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속
             if (step == 0)
@@ -186,5 +188,11 @@ public class ReaperPattern1 : IBossAttackPattern
         BottomToTop, // 아래→위
         LeftToRight, // 왼쪽→오른쪽
         RightToLeft // 오른쪽→왼쪽
+    }
+
+    private IEnumerator AttackSoundSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
     }
 }
