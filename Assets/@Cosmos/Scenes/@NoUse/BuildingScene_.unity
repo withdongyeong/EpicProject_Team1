@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
 --- !u!114 &197433523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,8 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b2365fc5683924cbc988aac6ece9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testList: []
-  isTest: 0
+  guideList: []
+  isGuide: 0
 --- !u!224 &491743851
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1027,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
 --- !u!114 &814578971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,7 +1494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2936627703930910875, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  m_Sprite: {fileID: -5564752774255026670, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1852,6 +1854,7 @@ MonoBehaviour:
   rareGradeBorder: {fileID: -5543670047920101812, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   epicGradeBorder: {fileID: -5248528119860549934, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
   legendaryGradeBorder: {fileID: 1378275472504835762, guid: dc0e813af88082f49aa00ace787388d5, type: 3}
+  mythicGradeBorder: {fileID: 0}
   commonBackgroundSprite: {fileID: 21300000, guid: f447f2799b245bb429b5f27c540722c5, type: 3}
   borderImage: {fileID: 393078573}
   backgroundImage: {fileID: 0}
@@ -2155,6 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
 --- !u!114 &1358573842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2402,6 +2406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
 --- !u!114 &1637943755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2516,6 +2521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23128dcc3926eb54dae4348c1ff63e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
 --- !u!114 &1832827719
 MonoBehaviour:
   m_ObjectHideFlags: 0
