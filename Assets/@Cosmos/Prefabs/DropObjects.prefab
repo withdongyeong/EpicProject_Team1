@@ -77,9 +77,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f0cc2e1977e491b42bbfa71f71f3ffa0, type: 3}
   - {fileID: 21300000, guid: 5fa27b57f8c233e4bb4f90f5d1d58196, type: 3}
   - {fileID: 21300000, guid: 1891765b840b646468989c1b81e97046, type: 3}
+  dropPrefab: {fileID: 2969415491547676326, guid: f6041b9c9568b734fb1e821aef6bfac6, type: 3}
   spawnCount: 20
   spawnInterval: 0.1
   spawnRangeX: 10
+  excludeCenterWidth: 4
   spawnHeight: 6
   fallSpeed: 2
   rotationSpeed: 90
@@ -88,6 +90,11 @@ MonoBehaviour:
   rotationSpeedVariation: 30
   scaleVariation: 0.3
   scaleRange: {x: 0.5, y: 1.2}
+  enableLight: 1
+  lightIntensity: 0.3
+  lightRadius: 2
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
+  lightIntensityVariation: 0.1
   autoStart: 1
   loop: 1
   loopInterval: 3

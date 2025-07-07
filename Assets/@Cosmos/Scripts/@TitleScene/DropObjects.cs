@@ -6,6 +6,8 @@ public class DropObjects : MonoBehaviour
 {
     [Header("드롭할 스프라이트들")]
     [SerializeField] private Sprite[] dropSprites;
+    [SerializeField] private GameObject dropPrefab; 
+
     
     [Header("소환 설정")]
     [SerializeField] private int spawnCount = 20;           // 한 번에 소환할 개수
@@ -106,38 +108,39 @@ public class DropObjects : MonoBehaviour
     {
         // 랜덤 스프라이트 선택
         Sprite randomSprite = dropSprites[Random.Range(0, dropSprites.Length)];
-        
-        // 게임 오브젝트 생성
-        GameObject dropObj = new GameObject($"DropObject_{randomSprite.name}");
-        
-        // SpriteRenderer 추가
-        SpriteRenderer sr = dropObj.AddComponent<SpriteRenderer>();
-        sr.sprite = randomSprite;
-        sr.sortingOrder = 10; // 다른 오브젝트 위에 표시
-        
-        // 랜덤 위치 설정 (천장)
-        Vector3 spawnPos = GetRandomSpawnPosition();
-        dropObj.transform.position = spawnPos;
-        
-        // 랜덤 크기 설정
+
+        // 프리팹 복제
+        GameObject dropObj = Instantiate(dropPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+        dropObj.name = $"DropObject_{randomSprite.name}";
+
+        // SpriteRenderer 교체
+        SpriteRenderer sr = dropObj.GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.sprite = randomSprite;
+
+        // 랜덤 크기
         float randomScale = Random.Range(scaleRange.x, scaleRange.y);
         dropObj.transform.localScale = Vector3.one * randomScale;
-        
-        // 랜덤 회전 설정
+
+        // 랜덤 회전
         dropObj.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-        
-        // 드롭 컴포넌트 추가
-        DropItem dropComponent = dropObj.AddComponent<DropItem>();
-        dropComponent.Initialize(
-            fallSpeed + Random.Range(-fallSpeedVariation, fallSpeedVariation),
-            rotationSpeed + Random.Range(-rotationSpeedVariation, rotationSpeedVariation),
-            lifeTime,
-            enableLight,
-            lightIntensity + Random.Range(-lightIntensityVariation, lightIntensityVariation),
-            lightRadius,
-            lightColor
-        );
+
+        // DropItem 초기화
+        DropItem dropComponent = dropObj.GetComponent<DropItem>();
+        if (dropComponent != null)
+        {
+            dropComponent.Initialize(
+                fallSpeed + Random.Range(-fallSpeedVariation, fallSpeedVariation),
+                rotationSpeed + Random.Range(-rotationSpeedVariation, rotationSpeedVariation),
+                lifeTime,
+                enableLight,
+                lightIntensity + Random.Range(-lightIntensityVariation, lightIntensityVariation),
+                lightRadius,
+                lightColor
+            );
+        }
     }
+
 
     /// <summary>
     /// 랜덤 소환 위치 계산 (중앙 제외)

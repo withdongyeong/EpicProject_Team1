@@ -15,28 +15,35 @@ public class DropItem : MonoBehaviour
     private Light2D light2D;
     private float originalLightIntensity;
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        light2D = GetComponentInChildren<Light2D>(); // 프리팹 자식에 있다면
+    }
+
+    
     public void Initialize(float fall, float rotation, float life, bool enableLight = false, 
-                          float lightIntensity = 0.3f, float lightRadius = 2f, Color lightColor = default)
+        float lightIntensity = 0.3f, float lightRadius = 2f, Color lightColor = default)
     {
         fallSpeed = fall;
         rotationSpeed = rotation;
         lifeTime = life;
         currentLifeTime = 0f;
-        
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        // Light2D 설정
-        if (enableLight)
+
+        if (light2D != null)
         {
-            light2D = gameObject.AddComponent<Light2D>();
-            light2D.lightType = Light2D.LightType.Point;
-            light2D.intensity = lightIntensity;
-            light2D.pointLightOuterRadius = lightRadius;
-            light2D.color = lightColor == default ? Color.white : lightColor;
-            light2D.falloffIntensity = 0.5f;
-            originalLightIntensity = lightIntensity;
+            light2D.enabled = enableLight;
+            if (enableLight)
+            {
+                light2D.intensity = lightIntensity;
+                light2D.pointLightOuterRadius = lightRadius;
+                light2D.color = lightColor == default ? Color.white : lightColor;
+                light2D.falloffIntensity = 0.5f;
+                originalLightIntensity = lightIntensity;
+            }
         }
     }
+
 
     private void Update()
     {
