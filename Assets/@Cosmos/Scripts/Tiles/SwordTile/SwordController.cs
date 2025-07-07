@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor.Animations;
-using System;
 
 public class SwordController : MonoBehaviour
 {
@@ -143,8 +141,8 @@ public class SwordController : MonoBehaviour
     /// </summary>
     private float bladeStormOffsetAngle;
 
-    private AnimatorController swordAnimator;
-    private AnimatorController flamingSwordAnimator;
+    private RuntimeAnimatorController swordAnimator;
+    private RuntimeAnimatorController flamingSwordAnimator;
 
     /// <summary>
     /// 검 상태 열거형
@@ -172,8 +170,8 @@ public class SwordController : MonoBehaviour
         turnSpeed = UnityEngine.Random.Range(120f, 540f);
 
         // 애니메이터 컨트롤러 로드
-        swordAnimator = Resources.Load<AnimatorController>("Prefabs/Swords/SwordAnim");
-        flamingSwordAnimator = Resources.Load<AnimatorController>("Prefabs/Swords/FlamingSwordAnim");
+        swordAnimator = Resources.Load<RuntimeAnimatorController>("Prefabs/Swords/SwordAnim");
+        flamingSwordAnimator = Resources.Load<RuntimeAnimatorController>("Prefabs/Swords/FlamingSwordAnim");
     }
 
     /// <summary>
