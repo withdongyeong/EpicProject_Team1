@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: ClockTile
   m_EditorClassIdentifier: 
   tileName: "\uC2DC\uACC4"
-  description: "\uBCC4<sprite name=\"Star>\uC5D0 \uC704\uCE58\uD55C \uD0C0\uC77C\uC758
-    \uCFE8\uD0C0\uC784\uC774 25% \uAC10\uC18C\uD569\uB2C8\uB2E4"
+  description: "<color=yellow>\uBCC4<sprite name=\"Star>\uC5D0 \uC704\uCE58\uD55C</color>
+    \uD0C0\uC77C\uC758 \uCFE8\uD0C0\uC784\uC774 25% \uAC10\uC18C\uD569\uB2C8\uB2E4"
   tileCategory: 4
   tileSprite: {fileID: 6177856681799310721, guid: 3733fc2299affb641a3f015e8864c18f, type: 3}
   tileGrade: 2
   tileCost: 6
   tileCoolTime: 0
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: "\uB0C9\uAE30 \uC9C0\uD321\uC774"
   description: "\uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
-    <color=red>15</color>)\n<color=yellow>\uC801\uC911\uC2DC:</color> \uB3D9\uC0C1<sprite
+    <color=red>15</color>)\n<color=yellow>\uC801\uC911\uC2DC</color>: \uB3D9\uC0C1<sprite
     name=\"Ice\">\uC744 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   tileCategory: 0
   tileSprite: {fileID: 21300000, guid: 7de970115e586a042976f253f5085e53, type: 3}
@@ -22,4 +22,4 @@ MonoBehaviour:
   tileCost: 4
   tileCoolTime: 5
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
