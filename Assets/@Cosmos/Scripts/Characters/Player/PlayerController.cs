@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     
     // 방향 기억용
-    private bool _facingRight = false; // 기본은 왼쪽
+    private bool _facingRight = true;
     
     // 입력 버퍼링 시스템
     private float _inputBufferTime = 0.05f; // 입력을 수집할 시간
@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
 
         SoundManager.Instance.PlayPlayerSound("StickRoll");
 
+        // 초기 오른쪽 방향 바라보기
+        _spriteRenderer.flipX = true;
+        
         // 초기 애니메이션 상태 설정
         if (_animator != null)
         {

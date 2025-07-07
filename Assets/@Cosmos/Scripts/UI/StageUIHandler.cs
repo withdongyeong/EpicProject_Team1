@@ -14,8 +14,10 @@ public class StageUIHandler : MonoBehaviour
 
     [Header("버튼")]
     public Button victoryReturnButton; // 승리 패널의 돌아가기 버튼
+    public Button endingReturnButton; // 엔딩 패널의 돌아가기 버튼
     public Button defeatReturnButton;  // 패배 패널의 돌아가기 버튼
-    public Button menuButton;          // 메인 메뉴 버튼
+    public Button menuButton;
+    public Button endingMenuButton;// 메인 메뉴 버튼
     public Button retryButton;         // 재시도 버튼
 
     
@@ -38,6 +40,10 @@ public class StageUIHandler : MonoBehaviour
         // 버튼 이벤트 연결
         if (victoryReturnButton != null)
             victoryReturnButton.onClick.AddListener(ReturnToBuilding);
+        
+        if (endingReturnButton != null)
+            endingReturnButton.onClick.AddListener(ReturnToBuilding);
+        
 
         if (defeatReturnButton != null)
         {
@@ -56,6 +62,8 @@ public class StageUIHandler : MonoBehaviour
         if (menuButton != null)
             menuButton.onClick.AddListener(ReturnToMainMenu);
 
+        if (endingMenuButton != null)
+            endingMenuButton.onClick.AddListener(ReturnToMainMenu);
 
 
     }
