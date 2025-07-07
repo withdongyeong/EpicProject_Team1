@@ -29,7 +29,13 @@ Transform:
   m_LocalPosition: {x: 1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7423705534274519307}
+  - {fileID: 2556761441358044032}
+  - {fileID: 8266541906899928031}
+  - {fileID: 2999510306290259934}
+  - {fileID: 6719539468635368845}
+  - {fileID: 578644327603365888}
   m_Father: {fileID: 49633034848281239}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1425151993494965052
@@ -75,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1891765b840b646468989c1b81e97046, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,6 +171,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7081882274101751613, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
   m_PrefabInstance: {fileID: 160157662617476491}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &269784249940870557
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2477432376712634342}
+    m_Modifications:
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062071794672608276, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_Name
+      value: StarLightMythic (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+--- !u!4 &2556761441358044032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+  m_PrefabInstance: {fileID: 269784249940870557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &589313891881327259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,6 +310,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7081882274101751613, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
   m_PrefabInstance: {fileID: 589313891881327259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &677054108028012995
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2477432376712634342}
+    m_Modifications:
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062071794672608276, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_Name
+      value: StarLightMythic (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+--- !u!4 &2999510306290259934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+  m_PrefabInstance: {fileID: 677054108028012995}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &924878782039334744
 PrefabInstance:
@@ -444,6 +574,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7081882274101751613, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
   m_PrefabInstance: {fileID: 2329088649603048224}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2937127987153253917
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2477432376712634342}
+    m_Modifications:
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.289
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.263
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062071794672608276, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_Name
+      value: StarLightMythic (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+--- !u!4 &578644327603365888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+  m_PrefabInstance: {fileID: 2937127987153253917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4278544810547450685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -600,6 +792,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
   m_PrefabInstance: {fileID: 4682556186907806154}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5171059798866632470
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2477432376712634342}
+    m_Modifications:
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.319
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.279
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062071794672608276, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_Name
+      value: StarLightMythic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+--- !u!4 &7423705534274519307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+  m_PrefabInstance: {fileID: 5171059798866632470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5306569618011195009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -677,6 +931,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7081882274101751613, guid: f467bebec4fb4ab4eacae8091161bd26, type: 3}
   m_PrefabInstance: {fileID: 5306569618011195009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5944100272867499458
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2477432376712634342}
+    m_Modifications:
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.592
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062071794672608276, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_Name
+      value: StarLightMythic (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+--- !u!4 &8266541906899928031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+  m_PrefabInstance: {fileID: 5944100272867499458}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6233992707376072457
 PrefabInstance:
@@ -1332,6 +1648,68 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 952072043331698490, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
   m_PrefabInstance: {fileID: 8664842753980697619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9044809351512798096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2477432376712634342}
+    m_Modifications:
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.977
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.051
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062071794672608276, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+      propertyPath: m_Name
+      value: StarLightMythic (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+--- !u!4 &6719539468635368845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361301982732836381, guid: 3374b667cda96d342b572b4edd10d5c4, type: 3}
+  m_PrefabInstance: {fileID: 9044809351512798096}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9063981049534709726
 PrefabInstance:
