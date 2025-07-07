@@ -25,8 +25,6 @@ public class InfoPanel : MonoBehaviour
     private Camera mainCamera;
     private GameObject nameTextPrefab; // 이름 텍스트
     //private GameObject descriptionTextPrefab; // 설명 텍스트
-    private GameObject costTextPrefab; // 비용 텍스트
-    private GameObject categoryTextPrefab; // 종류 텍스트
     private InfoTextRenderer textRenderer; //곽민준이 짠 설명 텍스트 및 밑의 구분선 보여주는 스크립트입니다
 
     private void Start()
@@ -37,8 +35,6 @@ public class InfoPanel : MonoBehaviour
         gameObject.SetActive(false); // 초기 비활성화
         nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/HeadText");
         //descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
-        costTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CostText");
-        categoryTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CategoryText");
         
         // textObject에서 InfoTextRenderer 컴포넌트 가져오기
         if (textObject != null)
@@ -108,11 +104,6 @@ public class InfoPanel : MonoBehaviour
         }
         
         textRenderer.InstantiateDescriptionText(currentTileObject);
-
-        // 비용 텍스트 설정 (textObject 하위에 생성)
-        TextMeshProUGUI costText = Instantiate(costTextPrefab, textObject.transform).GetComponent<TextMeshProUGUI>();
-        costText.text = $"{currentTileObject.GetTileData().TileCost} Gold";
-        costText.color = Color.yellow; // 비용 텍스트 색상 설정
 
         // 위치 업데이트
         //transform.position = position;

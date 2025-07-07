@@ -14,10 +14,12 @@ public abstract class SkillBase : MonoBehaviour
     [Header("Animation Settings")]
     private float pulseScale = 1.3f; // 펄스 시 확대 배율
     private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
-    
+    private Vector3 originalScale;
+
     [Header("발동 이펙트")]
     private GameObject activateEffectPrefab;
     private float effectDuration = 0.5f;
+
 
     //쿨다운 계수입니다.
     private float cooldownFactor;
@@ -79,6 +81,7 @@ public abstract class SkillBase : MonoBehaviour
             _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
             tileObject = combineCell.GetTileObject();
             cooldown = tileObject.GetTileData().TileCoolTime;
+            originalScale = combineCell.GetSprite().transform.localScale;
         }
         
         // 발동 프리팹 할당
@@ -145,7 +148,6 @@ public abstract class SkillBase : MonoBehaviour
         if (tileObject == null) yield break;
 
         Transform tileTransform = combineCell.GetSprite().transform;
-        Vector3 originalScale = tileTransform.localScale;
         Vector3 targetScale = originalScale * pulseScale;
 
         float elapsedTime = 0f;

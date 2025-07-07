@@ -65,4 +65,6 @@ public class GlobalSetting : Singleton<GlobalSetting>
         }
         return _instance.bossBalanceList[stageIndex];
     }
+
+    public static List<TileData> Shop_FirstTileDataList => _instance.shop_FirstTileDataList;
 }

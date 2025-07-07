@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     private bool isInTutorial = false; // 튜토리얼 진행 중 ?
     public bool IsInTutorial => isInTutorial;
 
+
     protected override void Awake()
     {
         base.Awake();

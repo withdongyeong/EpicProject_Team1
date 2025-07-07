@@ -19,6 +19,8 @@ public class StoreSlotController : MonoBehaviour
     private List<GameObject> _epicStoreTiles = new();
     private List<GameObject> _legendaryStoreTiles = new();
     private List<GameObject> _mythicStoreTiles = new();
+
+    private List<GameObject> _firstStoreTiles = new();
     //가이드용
     public List<GameObject> guideList = new List<GameObject>();
     public bool isGuide = false;
@@ -33,7 +35,14 @@ public class StoreSlotController : MonoBehaviour
 
     private void Start()
     {
-        SetupStoreSlots();
+        if(StageSelectManager.Instance.StageNum == 1)
+        {
+            SetUpFirstStoreSlots();
+        }
+        else
+        {
+            SetupStoreSlots();
+        }    
     }
 
     private void Update()
@@ -54,12 +63,10 @@ public class StoreSlotController : MonoBehaviour
         for (int i = 0; i < storeSlots.Length; i++)
         {
             GameObject chosenTile;
-            bool isLocked = false;
 
             if (StoreLockManager.Instance.GetStoreLocks(i) != null)
             {
                 chosenTile = StoreLockManager.Instance.GetStoreLocks(i);
-                isLocked = true;
             }
             else
             {
@@ -133,6 +140,19 @@ public class StoreSlotController : MonoBehaviour
         }
     }
 
+    private void SetUpFirstStoreSlots()
+    {
+        for(int i = 0; i < storeSlots.Length; i++)
+        {
+            GameObject chosenTile = _firstStoreTiles[i];
+            storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+
+            //이미지 비율을 맞추기 위한 코드입니다.
+            //storeSlots[i].GetComponent<Image>().preserveAspect = true;
+            storeSlots[i].GetComponent<Image>().SetNativeSize();
+        }
+    }
+
     public void ResetSlotBtn()
     {
         SoundManager.Instance.UISoundClip("RerollActivate");
@@ -149,11 +169,11 @@ public class StoreSlotController : MonoBehaviour
     {
         List<GameObject> allTilePrefabs = new();
 
+        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/BookTile"));
+        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/EquipTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
         _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
 
@@ -166,11 +186,25 @@ public class StoreSlotController : MonoBehaviour
                 if(tileInfo.TileName != "초심자의 지팡이")
                 {
                     _normalStoreTiles.Add(tilePrefab);
-                }      
+                }   
+                foreach(TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+                {
+                    if(tileData.tileName == tileInfo.TileName)
+                    {
+                        _firstStoreTiles.Add(tilePrefab);
+                    }
+                }
             }
             else if (grade == TileGrade.Rare)
             {
                 _rareStoreTiles.Add(tilePrefab);
+                foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+                {
+                    if (tileData.tileName == tileInfo.TileName)
+                    {
+                        _firstStoreTiles.Add(tilePrefab);
+                    }
+                }
             }
             else if (grade == TileGrade.Epic)
             {
