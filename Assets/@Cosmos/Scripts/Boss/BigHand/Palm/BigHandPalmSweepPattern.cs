@@ -79,11 +79,11 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
         // 공격할 셀들 계산
         List<Vector3Int> attackCells = GetAttackCells(columnX, step);
 
+        boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
+
         // 각 셀에 대해 FixedBomb으로 공격
         foreach (Vector3Int cell in attackCells)
         {
-            boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
-
             boss.BombHandler.ExecuteFixedBomb(
                 new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                 cell,
