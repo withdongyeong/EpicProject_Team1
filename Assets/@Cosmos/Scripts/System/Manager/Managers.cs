@@ -21,6 +21,8 @@ public class Managers : MonoBehaviour
     private GameObject storeLockManager;
     private GameObject globalSetting;
     private GameObject lifeManager;
+    private GameObject cursorManager;
+
     
     
 
@@ -40,6 +42,7 @@ public class Managers : MonoBehaviour
         globalSetting = Resources.Load<GameObject>("GlobalSetting");
         storeLockManager = Resources.Load<GameObject>("StoreLockManager");
         lifeManager = Resources.Load<GameObject>("LifeManager");
+        cursorManager = Resources.Load<GameObject>("CursorManager");
         //Instantiate the managers
         MakeManager(gameManager);
         MakeManager(soundManager);
@@ -53,6 +56,7 @@ public class Managers : MonoBehaviour
         MakeManager(globalSetting);
         MakeManager(storeLockManager);
         MakeManager(lifeManager);
+        MakeManager(cursorManager);
     }
 
     private void MakeManager(GameObject manager)
