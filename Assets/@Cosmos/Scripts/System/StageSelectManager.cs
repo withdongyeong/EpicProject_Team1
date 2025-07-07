@@ -27,10 +27,15 @@ public class StageSelectManager : Singleton<StageSelectManager>
     public StageDataSO currentStageData;
 
     public int StageNum => stageNum;
+
+
+    private Sprite[] stageUISprites;
+    public Sprite[] StageUISprites => stageUISprites;
     protected override void Awake()
     {
         base.Awake();
         stageDataList = Resources.LoadAll<StageDataSO>("StageDataSO");
+        stageUISprites = Resources.LoadAll<Sprite>("Arts/Stage/스테이지이동-Sheet");
         stageNum = 1; // 0은 튜토리얼 스테이지 입니다.
         EventBus.SubscribeBossDeath(TestStageNumPlus);
     }
