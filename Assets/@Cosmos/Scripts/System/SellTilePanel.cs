@@ -44,11 +44,13 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
             }
         }
         //까지입니다 ..
+
+        SoundManager.Instance.UISoundClip("TileSellActivate");
+
         _dm.TryStopRotate();
         GoldManager.Instance.ModifyCurrentGold((tileObject.GetTileData().TileCost + 1) / 2);
         EventBus.PublishTileSell(tileObject);
         DragManager.Instance.DestroyObject();
-        SoundManager.Instance.UISoundClip("DeploymentActivate");
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

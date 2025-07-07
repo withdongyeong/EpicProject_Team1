@@ -56,6 +56,7 @@ public class GameStateManager : Singleton<GameStateManager>
     /// </summary>
     public void WinGame()
     {
+        SoundManager.Instance.UISoundClip("GameClearActivate");
         SetGameState(GameState.Victory);
         // 격자에 남아있는 이동불가 제거
         GridManager.Instance.ClearAllUnmovableGridPositions();
@@ -66,6 +67,9 @@ public class GameStateManager : Singleton<GameStateManager>
     /// </summary>
     public void LoseGame()
     {
+        SoundManager.Instance.StopBGMSound();
+        SoundManager.Instance.UISoundClip("LoseActivate");
+
         SetGameState(GameState.Defeat);
         // 격자에 남아있는 이동불가 제거
         GridManager.Instance.ClearAllUnmovableGridPositions();

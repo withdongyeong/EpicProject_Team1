@@ -173,7 +173,10 @@ public class SoundManager : Singleton<SoundManager>
         {"DeploymentActivate", 0.2f},
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.1f },
-        {"BlackHoleStartActivate", 0.8f }
+        {"BlackHoleStartActivate", 0.8f },
+        {"TileOpenActivate", 0.2f },
+        {"TileLockActivate", 0.2f },
+        {"TileSellActivate", 1f }
     };
 
     //BGM 사운드 딕셔너리
@@ -617,6 +620,14 @@ public class SoundManager : Singleton<SoundManager>
             bgmAudioSource.clip = clip;
             bgmAudioSource.volume = volume;
             bgmAudioSource.Play();
+        }
+    }
+
+    public void StopBGMSound()
+    {
+        if (bgmAudioSource != null && bgmAudioSource.isPlaying)
+        {
+            bgmAudioSource.Stop();
         }
     }
 
