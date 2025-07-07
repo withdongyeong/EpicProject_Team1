@@ -45,8 +45,7 @@ public class SoundManager : Singleton<SoundManager>
         { "SwordSkillActivate", 1f},
         { "WarFlagSkillActivate", 1f },
         {"FrostHammerSkillActivate", 1f },
-        { "HauntedDollSkillActivate", 0.3f},
-        {"HauntedDollSkillActivate", 0.8f },
+        {"HauntedDollSkillActivate", 0.3f},
         {"CloudSkillActivate", 0.5f },
         {"PhantomSkillActivate", 0.5f },
         {"NecronomiconSkillActivate", 0.3f }
