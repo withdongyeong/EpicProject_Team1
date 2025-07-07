@@ -11,7 +11,6 @@ public class ManaAIStarSkill : StarBase
         EventBus.SubscribeGameStart(HandleGameStart);
         EventBus.SubscribeSceneLoaded(HandleSceneLoaded);
         skill = transform.parent.GetComponentInChildren<ManaAISkill>();
-        conditionCount = 1;
     }
 
     /// <summary>
