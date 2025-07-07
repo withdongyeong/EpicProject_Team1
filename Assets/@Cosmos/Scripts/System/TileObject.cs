@@ -143,8 +143,37 @@ public class TileObject : MonoBehaviour
                     }
                 }
             }
+
+            SetStarEffect();
+
         }
         isStarDisplayEnabled = true;
+    }
+
+
+    public void SetStarEffect()
+    {
+        //배치 씬 인접효과 비주얼을 위한 코드
+        if (combinedStarCell.GetComponent<CombinedStarCell>() == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
+        int conditionCount = combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill().GetConditionCount();
+        int activeStarCount = 0;
+        foreach (var star in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (star.sprite.name == "Star")
+            {
+                activeStarCount++;
+            }
+        }
+        
+        
+        if (activeStarCount >= conditionCount)
+        {
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+        }
+        else
+        {
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
+        }
     }
 
     public void HideStarCell()
