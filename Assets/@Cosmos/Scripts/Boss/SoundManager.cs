@@ -140,18 +140,19 @@ public class SoundManager : Singleton<SoundManager>
     //손 볼륨 딕셔너리
     private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"BigHandAttackActivate", 0.03f},
+        {"BigHandAttackActivate", 0.3f},
         {"BigHandFistActivate", 0.01f},
         {"BigHandFingerActivate", 0.7f},
         {"BigHandDamageActivate", 0.3f },
         {"BigHandDeadActivate", 0.3f },
+        {"BigHandSlideActivate", 0.5f}
     };
 
     private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
     //최종보스 볼륨 딕셔너리
     private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"LastBossDamageActivate", 1f },
+        {"LastBossDamageActivate", 0.3f },
         {"LastBossDeadActivate", 1f },
         {"LastBossFlameAttackActivate", 0.1f },
         {"LastBossFrostAttackActivate", 0.1f },
