@@ -598,22 +598,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473630441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &999573266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1885556141880719944, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
-  m_PrefabInstance: {fileID: 9157210812325101102}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1092640976 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1764412171146742330, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
-  m_PrefabInstance: {fileID: 9157210812325101102}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1296153501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1112,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+--- !u!114 &9157210812325101103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7888287533281822465, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+  m_PrefabInstance: {fileID: 9157210812325101102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9157210812325101104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8251077034251220742, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+  m_PrefabInstance: {fileID: 9157210812325101102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9157210812325101105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7777023801949244324, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+  m_PrefabInstance: {fileID: 9157210812325101102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9203434980783147328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1181,9 +1192,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5092282344972502887, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
+      propertyPath: menuButton
+      value: 
+      objectReference: {fileID: 9157210812325101103}
+    - target: {fileID: 5092282344972502887, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: defeatPanel
       value: 
-      objectReference: {fileID: 999573266}
+      objectReference: {fileID: 9157210812325101105}
+    - target: {fileID: 5092282344972502887, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
+      propertyPath: retryButton
+      value: 
+      objectReference: {fileID: 9157210812325101104}
     - target: {fileID: 5092282344972502887, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: victoryPanel
       value: 
@@ -1191,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 5092282344972502887, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: defeatReturnButton
       value: 
-      objectReference: {fileID: 1092640976}
+      objectReference: {fileID: 9157210812325101104}
     - target: {fileID: 5092282344972502887, guid: 5595cef9e2ed94546913f65f558206f1, type: 3}
       propertyPath: victoryReturnButton
       value: 
