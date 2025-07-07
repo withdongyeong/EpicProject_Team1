@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerShield : MonoBehaviour
 {
-    [SerializeField] private GameObject _shieldEffectPrefab;
+    private GameObject _shieldEffectPrefab;
+    private float _shieldOffsetDistance = 0.5f; // 플레이어 머리 위로의 오프셋 거리
+    private float _updateInterval = 0.02f; // 코루틴 위치 갱신 간격 (초)
 
     // 방어 상태 변수
     private bool _isShielded = false;
     private int _shieldAmount = 0;
     private GameObject _activeShieldEffect;
-    private Vector3 _shieldOffset = new Vector3(0, 0.5f, 0); 
 
     /// <summary>
     /// 현재 방어막 수치입니다.
@@ -17,6 +19,16 @@ public class PlayerShield : MonoBehaviour
     public int ShieldAmount => _shieldAmount;
 
     public event Action<bool> OnShieldChanged;
+
+    private void Awake()
+    {
+        // 방어막 이펙트 프리팹 로드
+        _shieldEffectPrefab = Resources.Load<GameObject>("Effect/ShieldEffect");
+        if (_shieldEffectPrefab == null)
+        {
+            Debug.LogError("ShieldEffectPrefab not found in Resources folder.");
+        }
+    }
 
     /// <summary>
     /// 방어 상태 설정
@@ -65,14 +77,19 @@ public class PlayerShield : MonoBehaviour
             {
                 Destroy(_activeShieldEffect);
             }
-        
-            // 플레이어 위치에 실드 이펙트 생성
+
+            // 월드 좌표계의 up 방향으로 오프셋 설정
+            Vector3 shieldOffset = Vector3.up * _shieldOffsetDistance;
+
+            // 플레이어 위치에 실드 이펙트 생성 (부모 없음)
             _activeShieldEffect = Instantiate(
                 _shieldEffectPrefab,
-                transform.position + _shieldOffset, // 위치 오프셋 적용
-                Quaternion.identity,
-                transform
+                transform.position + shieldOffset, // 월드 up 방향 오프셋 적용
+                Quaternion.identity // 회전 고정
             );
+
+            // 코루틴 시작
+            StartCoroutine(FollowPlayerCoroutine());
         }
     }
 
@@ -83,6 +100,7 @@ public class PlayerShield : MonoBehaviour
     {
         if (_activeShieldEffect != null)
         {
+            StopAllCoroutines(); // 코루틴 중지
             Destroy(_activeShieldEffect);
             _activeShieldEffect = null;
         }
@@ -106,4 +124,15 @@ public class PlayerShield : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 실드 이펙트가 플레이어를 따라가도록 위치 갱신
+    /// </summary>
+    private IEnumerator FollowPlayerCoroutine()
+    {
+        while (_activeShieldEffect != null)
+        {
+            _activeShieldEffect.transform.position = transform.position + Vector3.up * _shieldOffsetDistance;
+            yield return new WaitForSeconds(_updateInterval); // 주기적으로 갱신
+        }
+    }
 }
