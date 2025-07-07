@@ -54,12 +54,10 @@ public class StoreSlotController : MonoBehaviour
         for (int i = 0; i < storeSlots.Length; i++)
         {
             GameObject chosenTile;
-            bool isLocked = false;
 
             if (StoreLockManager.Instance.GetStoreLocks(i) != null)
             {
                 chosenTile = StoreLockManager.Instance.GetStoreLocks(i);
-                isLocked = true;
             }
             else
             {
