@@ -421,7 +421,7 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void SlimeSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+        //Debug.Log($"PlayTileSoundClip called with clip: {clip}");
 
         if (clip != null && interactionAudioSource != null)
         {

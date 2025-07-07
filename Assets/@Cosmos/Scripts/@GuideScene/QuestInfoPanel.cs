@@ -52,6 +52,7 @@ public class QuestInfoPanel : MonoBehaviour
     
     public void ShowPanel(GuideQuest quest)
     {
+        TimeScaleManager.Instance.StopTimeScale();
         isOnPanel = true;
         OnCanvas();
         titleText.text = quest.titleText;
@@ -81,6 +82,7 @@ public class QuestInfoPanel : MonoBehaviour
     
     public void HidePanel()
     {
+        TimeScaleManager.Instance.ResetTimeScale();
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
         if (!isOnPanel) return;
