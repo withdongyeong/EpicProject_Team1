@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombineCell : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class CombineCell : MonoBehaviour
         tileObject.OnStarListChanged += UpdateStarList;
         tileObject.OnStarListUpdateCompleted += GiveSkillStarList;
         EventBus.SubscribeGameStart(InitCoolDownGroup);
+        EventBus.SubscribeSceneLoaded(StopAllCouroutines);
     }
 
     public SpriteRenderer GetSprite()
@@ -103,7 +105,7 @@ public class CombineCell : MonoBehaviour
     private IEnumerator CoolDownActivateCoroutine(float coolDownTime)
     {
         
-        sr.color = Color.white;
+        //sr.color = new Color(1, 1, 1, 1f);
         foreach (var effect in coolDownEffects)
         {
             effect.Init();
@@ -124,11 +126,12 @@ public class CombineCell : MonoBehaviour
         
         foreach (var effect in coolDownEffects)
         {
-            effect.Init();
+            effect.CompleteEffect();
         }
-        sr.color = Color.yellow;
+        
     }
 
+    
     public void InitCoolDownGroup()
     {
         grouped.Clear(); // 기존 그룹화된 데이터를 초기화
@@ -147,6 +150,11 @@ public class CombineCell : MonoBehaviour
         sortedKeys = grouped.Keys.OrderBy(y => y).ToList(); // Y 레벨을 기준으로 정렬
     }
 
+    private void StopAllCouroutines(Scene scene = default, LoadSceneMode mode = default)
+    {
+        // 씬이 변경될 때 모든 코루틴을 중지합니다.
+        StopAllCoroutines();
+    }
     private void OnDestroy()
     {
         if(tileObject!=null)
@@ -154,6 +162,7 @@ public class CombineCell : MonoBehaviour
             tileObject.OnStarListChanged -= UpdateStarList;
         }       
         EventBus.UnsubscribeGameStart(InitCoolDownGroup);
+        EventBus.UnsubscribeSceneLoaded(StopAllCouroutines);
     }
 
 }

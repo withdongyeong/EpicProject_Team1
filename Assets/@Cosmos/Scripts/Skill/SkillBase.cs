@@ -144,7 +144,7 @@ public abstract class SkillBase : MonoBehaviour
     {
         if (tileObject == null) yield break;
 
-        Transform tileTransform = tileObject.transform;
+        Transform tileTransform = combineCell.GetSprite().transform;
         Vector3 originalScale = tileTransform.localScale;
         Vector3 targetScale = originalScale * pulseScale;
 

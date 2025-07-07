@@ -24,16 +24,15 @@ public class BossHPUI : MonoBehaviour
     private Image damagePreviewUI;
 
     private int _previousHP;
-    private bool _isDamageAnimating = false;
-    private float _currentDisplayHP;
-    private int _targetHP;
+    private float _currentPreviewHP; // 프리뷰 UI의 현재 표시 체력
+    private float _targetPreviewHP;  // 프리뷰 UI가 도달해야 할 목표 체력
 
     private Coroutine _currentShakeCoroutine;
-    private Coroutine _currentDamageCoroutine;
+    private Coroutine _previewUpdateCoroutine;
 
     [Header("데미지 미리보기 설정")]
     private Color damagePreviewColor = new Color(0.7f, 0.4f, 0.5f, 1f);
-    private float damageAnimationDuration = 0.4f;
+    private float previewDuration = 1f;
 
     [Header("흔들림 설정 - 3단계")]
     private float smallShakeThreshold = 30f;
@@ -78,7 +77,8 @@ public class BossHPUI : MonoBehaviour
         {
             maxHP = _enemy.MaxHealth;
             _previousHP = _enemy.CurrentHealth;
-            _currentDisplayHP = _previousHP;
+            _currentPreviewHP = _previousHP;
+            _targetPreviewHP = _previousHP;
             CreateDamagePreviewUI();
         }
     }
@@ -113,7 +113,7 @@ public class BossHPUI : MonoBehaviour
 
         damagePreviewUI.raycastTarget = false;
         damagePreviewUI.enabled = true;
-        damagePreviewUI.fillAmount = 0;
+        damagePreviewUI.fillAmount = CalculateHPFillAmount(_previousHP);
     }
 
     /// <summary>
@@ -122,68 +122,45 @@ public class BossHPUI : MonoBehaviour
     private void CheckForDamage()
     {
         int newHP = _enemy.CurrentHealth;
-        if (!_isDamageAnimating && newHP < _previousHP)
+        if (newHP < _previousHP)
         {
-            StartDamageSequence(_previousHP, newHP);
+            // 데미지를 받았을 때
+            float damage = _previousHP - newHP;
+            StartShakeEffect(damage);
+
+            // 목표 체력 업데이트 (프리뷰가 향해야 할 체력)
+            _targetPreviewHP = newHP;
+
+            // 코루틴 중지 및 재시작 (새 속도 기준으로)
+            if (_previewUpdateCoroutine != null)
+                StopCoroutine(_previewUpdateCoroutine);
+
+            _previewUpdateCoroutine = StartCoroutine(AnimatePreviewHP(_currentPreviewHP, _targetPreviewHP, previewDuration));
         }
 
-        if (newHP != _previousHP)
-        {
-            _previousHP = newHP;
-        }
+        _previousHP = newHP;
     }
 
     /// <summary>
-    /// 데미지 시퀀스 시작
+    /// 프리뷰 UI 애니메이션 코루틴
     /// </summary>
-    private void StartDamageSequence(int fromHP, int toHP)
-    {
-        _isDamageAnimating = true;
-        _targetHP = toHP;
-
-        // 1. 즉시 실 체력 UI 줄이기
-        currentHP = toHP;
-        hpUI.fillAmount = CalculateHPFillAmount(toHP);
-
-        // 2. preview는 이전 fill 기준으로 설정
-        float fromFill = CalculateHPFillAmount(fromHP);
-        damagePreviewUI.fillAmount = fromFill;
-        _currentDisplayHP = fromHP;
-
-        // 3. 흔들기 효과
-        StartShakeEffect(fromHP - toHP);
-
-        // 4. 미리보기 애니메이션
-        _currentDamageCoroutine = StartCoroutine(DamagePreviewAnimate(fromFill, CalculateHPFillAmount(toHP)));
-    }
-
-    /// <summary>
-    /// 데미지 미리보기 설정
-    /// </summary>
-    private void ShowDamagePreview(int fromHP)
-    {
-        damagePreviewUI.fillAmount = CalculateHPFillAmount(fromHP);
-        _currentDisplayHP = fromHP;
-    }
-
-    /// <summary>
-    /// 미리보기 UI 애니메이션
-    /// </summary>
-    private IEnumerator DamagePreviewAnimate(float fromFill, float toFill)
+    private IEnumerator AnimatePreviewHP(float from, float to, float duration)
     {
         float elapsed = 0f;
+        float diff = to - from;
 
-        while (elapsed < damageAnimationDuration)
+        while (elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
-            float t = elapsed / damageAnimationDuration;
-            damagePreviewUI.fillAmount = Mathf.Lerp(fromFill, toFill, t);
+            float t = Mathf.Clamp01(elapsed / duration);
+            _currentPreviewHP = from + diff * t;
+
+            damagePreviewUI.fillAmount = CalculateHPFillAmount(Mathf.RoundToInt(_currentPreviewHP));
             yield return null;
         }
 
-        damagePreviewUI.fillAmount = toFill;
-        _isDamageAnimating = false;
-        _currentDamageCoroutine = null;
+        _currentPreviewHP = to;
+        damagePreviewUI.fillAmount = CalculateHPFillAmount(Mathf.RoundToInt(_currentPreviewHP));
     }
 
     /// <summary>
@@ -192,10 +169,8 @@ public class BossHPUI : MonoBehaviour
     private void UpdateBar()
     {
         currentHP = _enemy.CurrentHealth;
-        if (!_isDamageAnimating)
-        {
-            hpUI.fillAmount = CalculateHPFillAmount(currentHP);
-        }
+        // 실제 HP바는 즉시 업데이트
+        hpUI.fillAmount = CalculateHPFillAmount(currentHP);
     }
 
     /// <summary>
@@ -340,7 +315,7 @@ public class BossHPUI : MonoBehaviour
     private void OnDestroy()
     {
         if (_currentShakeCoroutine != null) StopCoroutine(_currentShakeCoroutine);
-        if (_currentDamageCoroutine != null) StopCoroutine(_currentDamageCoroutine);
+        if (_previewUpdateCoroutine != null) StopCoroutine(_previewUpdateCoroutine);
         EventBus.UnsubscribeGameStart(Init);
     }
 }

@@ -120,7 +120,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
             
             if (repeat < 2) // 마지막이 아니면 간격 추가
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.6f);
             }
         }
     }
@@ -162,7 +162,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
                 boss.StartCoroutine(ExecuteVerticalLineExplosion(boss, columnStart.x));
             }
             
-            yield return new WaitForSeconds(0.15f); // 확장 간격
+            yield return new WaitForSeconds(0.25f); // 확장 간격
         }
     }
     
