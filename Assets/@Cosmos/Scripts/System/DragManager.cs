@@ -108,6 +108,7 @@ public class DragManager : Singleton<DragManager>
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
 
+        SoundManager.Instance.UISoundClip("DeploymentActivate");
         SetGridSprite();
         
         
