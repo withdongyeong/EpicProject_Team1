@@ -34,18 +34,18 @@ MonoBehaviour:
     shop_RareChance: 40
     shop_EpicChance: 20
     shop_LegendaryChance: 0
-  - shop_NormalChance: 25
+  - shop_NormalChance: 30
     shop_RareChance: 35
     shop_EpicChance: 25
     shop_LegendaryChance: 10
   - shop_NormalChance: 20
     shop_RareChance: 30
-    shop_EpicChance: 30
+    shop_EpicChance: 35
     shop_LegendaryChance: 15
   - shop_NormalChance: 20
     shop_RareChance: 20
     shop_EpicChance: 30
-    shop_LegendaryChance: 20
+    shop_LegendaryChance: 25
   - shop_NormalChance: 15
     shop_RareChance: 20
     shop_EpicChance: 30
@@ -92,6 +92,9 @@ MonoBehaviour:
     weakDamage: 30
     strongDamage: 50
   - maxHP: 3500
+    weakDamage: 40
+    strongDamage: 50
+  - maxHP: 4500
     weakDamage: 40
     strongDamage: 50
   - maxHP: 4500

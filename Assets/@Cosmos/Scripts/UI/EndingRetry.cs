@@ -1,11 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class EndingRetry : MonoBehaviour
 {
+    private bool init = false;
+
     private void Start()
     {
-        if (StageSelectManager.Instance != null && StageSelectManager.Instance.StageNum == 10)
+        if (!init)
+        {
+            EventBus.SubscribeStageChange(OnStageChange);
+        }
+        Debug.Log("시작");
+        OnStageChange();
+    }
+
+    private void OnStageChange()
+    {
+        if (StageSelectManager.Instance != null && StageSelectManager.Instance.StageNum >= 11)
         {
             Button childButton = GetComponentInChildren<Button>(true); // 비활성 자식 포함해서 탐색
             if (childButton != null)
@@ -18,4 +30,10 @@ public class EndingRetry : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeStageChange(OnStageChange);
+    }
+
 }
