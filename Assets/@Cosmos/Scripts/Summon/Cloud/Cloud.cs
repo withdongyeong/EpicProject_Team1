@@ -55,6 +55,7 @@ public class Cloud : MonoBehaviour
             if (_boss != null)
             {
                 _boss.AddDebuff(BossDebuff.Mark); // 낙인 상태 이상 추가
+                SoundManager.Instance.PlayTileSoundClip("비구름");
             }
             else
             {

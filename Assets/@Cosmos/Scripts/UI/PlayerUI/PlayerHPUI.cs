@@ -128,9 +128,10 @@ public class PlayerHPUI : MonoBehaviour
         if (!_isDamageAnimating && currentHP < _previousHP)
         {
             StartDamageSequence(_previousHP, currentHP);
+            Debug.Log($"Player took damage: {_previousHP} -> {currentHP}");
         }
 
-        // 단순히 감소했을 때만 이전값을 갱신
+        // 체력이 변경된 경우에만 업데이트
         if (currentHP != _previousHP)
         {
             _previousHP = currentHP;
@@ -305,6 +306,7 @@ public class PlayerHPUI : MonoBehaviour
         {
             currenthP = _playerHp.CurrentHealth;
             hPUI.fillAmount = hpRatio * currenthP / maxHP;
+            damagePreviewUI.fillAmount = hPUI.fillAmount;
         }
 
         protectUI.fillAmount = (1 - hpRatio) + hPUI.fillAmount;
