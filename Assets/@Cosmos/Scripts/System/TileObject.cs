@@ -23,6 +23,10 @@ public class TileObject : MonoBehaviour
 
     private List<StarBase> starList = new();
 
+    //놓였는지 안놓였는지 확인하는 bool입니다.
+    private bool isPlaced;
+    public bool IsPlaced => isPlaced;
+
     private void Awake()
     {
         InitializeTile();
