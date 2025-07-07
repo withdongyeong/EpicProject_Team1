@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 /// <summary>
 /// 모든 보스의 기본 클래스 (새로운 패턴 시스템 적용)
@@ -31,6 +32,9 @@ public abstract class BaseBoss : MonoBehaviour
 
     private Animator _animator;
     private DamageTextHandler _damageTextHandler;
+
+    // 피격음 코루틴
+    private Coroutine hitSoundCoroutine;
 
     // Properties
     /// <summary>
@@ -209,7 +213,10 @@ public abstract class BaseBoss : MonoBehaviour
         float randomX = UnityEngine.Random.Range(-0.5f, 0.5f);
         float randomY = UnityEngine.Random.Range(-0.5f, 0.5f);
         Vector3 hitPosition = transform.position + new Vector3(randomX, randomY, 0);
-        Instantiate(hitObject, hitPosition, Quaternion.identity);
+        if (hitSoundCoroutine == null)
+        {
+            hitSoundCoroutine = StartCoroutine(HitSoundCoroutine(hitObject));
+        }
         damage = _bossDebuff.ApplyMarkEffect(damage);
         damage = _bossDebuff.ApplyPainEffect(damage);
         if (_isStopped)
@@ -227,6 +234,18 @@ public abstract class BaseBoss : MonoBehaviour
         {
             DamageFeedback();
         }
+    }
+
+    /// <summary>
+    /// 피격음 코루틴(소리 중첩 방지)
+    /// </summary>
+    /// <param name="hitObject"></param>
+    /// <returns></returns>
+    private IEnumerator HitSoundCoroutine(GameObject hitObject)
+    {
+        Instantiate(hitObject, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.05f);
+        hitSoundCoroutine = null;
     }
 
     protected virtual void DamageFeedback()
