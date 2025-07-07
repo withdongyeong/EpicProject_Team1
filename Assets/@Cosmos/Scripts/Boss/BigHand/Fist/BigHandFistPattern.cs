@@ -181,12 +181,11 @@ public class BigHandFistPattern : IBossAttackPattern
             if (wavePositions.Count > 0)
             {
                 Debug.Log($"충격파 거리 {distance}: {wavePositions.Count}칸");
-                
+                boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
+
                 // 해당 거리의 모든 위치에 동시 공격
                 foreach (Vector3Int pos in wavePositions)
                 {
-                    boss.StartCoroutine(PlayAttackSound("BigHandAttackActiavte", 0.8f));
-
                     boss.BombHandler.ExecuteFixedBomb(
                         new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                         pos,

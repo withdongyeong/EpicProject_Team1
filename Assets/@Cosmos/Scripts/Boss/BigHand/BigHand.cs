@@ -61,14 +61,14 @@ public class BigHand : BaseBoss
     {
         Debug.Log("InitializeAttackPatterns: Starting pattern initialization");
 
-        //AddGroup()
-        //.AddPattern(new BigHandPattern1A(leftHandPrefab, rightHandPrefab, wallPrefab), 0f)
-        //.AddPattern(new BigHandPattern2(attackPrefab, WeakDamage), 0f)
-        //.AddPattern(new BigHandPattern3(attackPrefab, WeakDamage), 0f)
-        //.AddPattern(new BigHandPattern4(attackPrefab, WeakDamage), 0f)
-        //.AddPattern(new BigHandPattern5(attackPrefab, WeakDamage), 0f)
-        //.AddPattern(new BigHandPattern1B(), 0f)
-        //.SetGroupInterval(1f);
+        AddGroup()
+        .AddPattern(new BigHandPattern1A(leftHandPrefab, rightHandPrefab, wallPrefab), 0f)
+        .AddPattern(new BigHandPattern2(attackPrefab, WeakDamage), 0f)
+        .AddPattern(new BigHandPattern3(attackPrefab, WeakDamage), 0f)
+        .AddPattern(new BigHandPattern4(attackPrefab, WeakDamage), 0f)
+        .AddPattern(new BigHandPattern5(attackPrefab, WeakDamage), 0f)
+        .AddPattern(new BigHandPattern1B(), 0f)
+        .SetGroupInterval(1f);
 
         AddGroup()
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab, WeakDamage), 0f)
@@ -91,7 +91,7 @@ public class BigHand : BaseBoss
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab, WeakDamage), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab, WeakDamage), 0f)
             .AddPattern(new BigHandFingerReturnPattern(), 0f)
-            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab, WeakDamage), 0f) 
+            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab, WeakDamage), 0f)
             .AddPattern(new BigHandFingerPattern(fingerBottomPrefab, fingerTopPrefab, fingerLeftPrefab, fingerRightPrefab, attackPrefab, WeakDamage), 0f)
             .AddPattern(new BigHandRadialWavePattern(attackPrefab, WeakDamage), 0f)
             .AddPattern(new BigHandFingerReturnPattern(), 0f)

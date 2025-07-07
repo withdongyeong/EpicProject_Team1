@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -49,7 +50,10 @@ public class StoreSlotController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.D) && !SceneLoader.IsInGuide())
         {
-            ResetSlotBtn();
+            if(!DragManager.Instance.IsDragging)
+            {
+                ResetSlotBtn();
+            }            
         }
     }
 
@@ -72,9 +76,19 @@ public class StoreSlotController : MonoBehaviour
             {
                 float roll = Random.value * 100f;
                 TileGrade chosenGrade;
+                int stageNum;
+                if(StageSelectManager.Instance.StageNum > 10)
+                {
+                    stageNum = 10;
+                }
+                else
+                {
+                    stageNum = StageSelectManager.Instance.StageNum;
+                }
+
                 //현재 확률
-                ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum];
-                //TODO: 이거 줄 줄이기
+                ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[stageNum];
+                
                 if (roll < chanceList.shop_NormalChance)
                 {
                     chosenGrade = TileGrade.Normal;
