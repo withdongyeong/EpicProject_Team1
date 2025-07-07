@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: "\uC5EC\uC2E0\uC0C1"
   description: "<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color>
-    \uBB34\uAE30<sprite name=\"Weapon\">\uC758 \uB370\uBBF8\uC9C0\uAC00  3 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    \uBB34\uAE30<sprite name=\"Weapon\">\uC758 \uB370\uBBF8\uC9C0\uAC00 <color=green>3</color>
+    \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
   tileCategory: 4
   tileSprite: {fileID: -104807025640587069, guid: 146c1c1fc4659a94db8d86c434066b1e, type: 3}
   tileGrade: 0
   tileCost: 2
   tileCoolTime: 0
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []

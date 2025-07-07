@@ -29,9 +29,9 @@ public class HauntedDollSkill : SkillBase
             // 저주 개수에 따라 추가 효과를 주는 로직
             if (targetEnemy.GetDebuffCount(BossDebuff.Curse) >= 20)
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 1; i++)
                 {
-                    targetEnemy.AddDebuff(BossDebuff.Frostbite); // 동상을 2 부여
+                    targetEnemy.AddDebuff(BossDebuff.Frostbite); // 동상을 1 부여
                 }
             }
             if (targetEnemy.GetDebuffCount(BossDebuff.Curse) >= 30)
