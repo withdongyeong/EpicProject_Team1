@@ -52,6 +52,7 @@ public class StageSelectManager : Singleton<StageSelectManager>
         if (stageNum >= stageDataList.Length)
             stageNum = stageDataList.Length - 1;
         Debug.Log($"현재 스테이지 번호: {stageNum}");
+        EventBus.PublishStageChange();
     }
     
     public void StageSet(string bossName) // 보스 이름으로 스테이지 설정
