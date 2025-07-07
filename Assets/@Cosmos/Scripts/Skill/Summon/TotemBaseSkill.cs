@@ -5,7 +5,7 @@ public class TotemBaseSkill : NonActivateSkill
 {
     protected override void InitClearStarList(Scene scene, LoadSceneMode mode)
     {
-        if (SceneLoader.IsInStage())
+        if (SceneLoader.IsInStage() && tileObject.IsPlaced)
         {
             // 전투씬 시작시 인접 효과를 초기화합니다.
             ClearStarBuff();
