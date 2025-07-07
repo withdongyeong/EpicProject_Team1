@@ -1,17 +1,18 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Animations;
+using UnityEngine;
 
 public class SwordSkill : SkillBase
 {
     public int damage = 10; // 기본 공격력
 
     protected BaseBoss targetEnemy;
-    private GameObject[] swordPrefabs;
+    private GameObject swordPrefab;
     private GameObject summonedSword;
 
     protected override void Awake()
     {
         base.Awake();
-        swordPrefabs = Resources.LoadAll<GameObject>("Prefabs/Swords");
+        swordPrefab = Resources.Load<GameObject>("Prefabs/Swords/Sword");
     }
 
     protected override void Activate()
@@ -33,17 +34,9 @@ public class SwordSkill : SkillBase
     {
         if (targetEnemy != null)
         {
-            if (swordPrefabs == null || swordPrefabs.Length == 0) return;
+            if (swordPrefab == null) return;
 
-            // 랜덤하게 검 종류 선택
-            int randomIndex = Random.Range(0, swordPrefabs.Length);
-            GameObject selectedSwordPrefab = swordPrefabs[randomIndex];
-
-            if (selectedSwordPrefab == null)
-            {
-                Debug.LogWarning($"Sword prefab at index {randomIndex} is null!");
-                return;
-            }
+            GameObject selectedSwordPrefab = swordPrefab;
 
             // 검 소환
             summonedSword = Instantiate(selectedSwordPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
@@ -54,6 +47,7 @@ public class SwordSkill : SkillBase
                 if (swordHandler.IsBurning)
                 {
                     swordController.IsBurning = true; // 불타는 상태 설정
+                    swordController.ChangeAnimatorController(true); // 불타는 검 애니메이션 설정
                 }
                 swordController.Damage = damage; // 공격력 설정
             }
