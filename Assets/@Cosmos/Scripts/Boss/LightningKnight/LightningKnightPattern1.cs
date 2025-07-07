@@ -92,9 +92,17 @@ public class LightningKnightPattern1 : IBossAttackPattern
         if (size <= 2)
         {
             return GetFixedSafeZone(x, y, size, baseDirection);
+        
         }
+
         // 큰 사이즈(3-5)는 랜덤성 추가
         bool isFixedSafe = GetFixedSafeZone(x, y, size, baseDirection);
+
+        // 기본 안전지대가 아닌 경우, 25% 확률로 추가 안전지대
+        if (!isFixedSafe && Random.Range(0f, 1f) < 0.25f)
+        {
+            return true;
+        }
 
         return isFixedSafe;
     }

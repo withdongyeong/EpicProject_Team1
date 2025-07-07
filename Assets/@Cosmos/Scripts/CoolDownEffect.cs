@@ -14,18 +14,18 @@ public class CoolDownEffect : MonoBehaviour
     public void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        string hexColor = "#FFF32F";
+        string hexColor = "#DDDAFF";
         ColorUtility.TryParseHtmlString(hexColor, out Color color);
-        color.a = 0.1f;
+        color.a = 0.2f;
         yellowColor = color;
         sr.color = yellowColor;
         EventBus.SubscribeGameStart(SetPosition);
-        EventBus.SubscribeBossDeath(Init);
+        EventBus.SubscribeSceneLoaded(Init);
     }
 
     
     //초기화
-    public void Init()
+    public void Init(Scene scene = default , LoadSceneMode mode = default)
     {
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
@@ -41,7 +41,7 @@ public class CoolDownEffect : MonoBehaviour
     private IEnumerator CompleteEffectCoroutine()
     {
         //노란색이 됐다가 빠르게 흰색으로 변함
-        float duration = 0.2f;
+        float duration = 0.1f;
         Color originalColor = yellowColor;
         Color targetColor = new Color(1f, 1f, 0f, 0.4f);
         float elapsedTime = 0f;
@@ -54,7 +54,7 @@ public class CoolDownEffect : MonoBehaviour
             yield return null;
         }
 
-        duration = 0.1f;
+        duration = 0.2f;
         originalColor = new Color(1f, 1f, 0f, 0.1f);
         targetColor = new Color(1f, 1f, 0f, 0.0f);
         elapsedTime = 0f;
@@ -92,6 +92,7 @@ public class CoolDownEffect : MonoBehaviour
     public void SetPosition()
     {
         if (!SceneLoader.IsInStage()) return;
+        Debug.Log("[쿨타임] SetPosition 호출됨");
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
         if (transform.rotation.eulerAngles.z == 0)
@@ -120,6 +121,6 @@ public class CoolDownEffect : MonoBehaviour
     public void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(SetPosition);
-        EventBus.UnsubscribeBossDeath(Init);
+        EventBus.UnsubscribeSceneLoaded(Init);
     }
 }
