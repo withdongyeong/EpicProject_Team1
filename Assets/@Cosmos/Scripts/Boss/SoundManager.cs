@@ -170,7 +170,7 @@ public class SoundManager : Singleton<SoundManager>
     //UI 사운드볼륨
     private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"DeploymentActivate", 0.05f},
+        {"DeploymentActivate", 0.2f},
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.1f },
         {"BlackHoleStartActivate", 0.8f }
