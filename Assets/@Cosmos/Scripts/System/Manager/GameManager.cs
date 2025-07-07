@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
-        Screen.SetResolution(1600, 900, FullScreenMode.Windowed); // 혹은 FullScreen
+        Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow); // 혹은 FullScreen
     }
 
     private void Update()
