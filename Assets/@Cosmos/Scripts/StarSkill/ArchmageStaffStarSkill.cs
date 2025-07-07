@@ -9,7 +9,7 @@ public class ArchmageStaffStarSkill : StarBase
     {
         base.Awake();
         starBuff.RegisterGameStartAction(GatherAxodia);
-        conditionCount = 2;
+        conditionCount = 200;
         // ProjectileSkill 컴포넌트를 가져옵니다.
         skill = transform.parent.GetComponentInChildren<ArchmageStaffSkill>();
     }
