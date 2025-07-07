@@ -40,12 +40,16 @@ public class StoreLocker : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             if (StoreLockManager.Instance.GetStoreLocks(storeSlot.SlotNum) == null)
             {
+                SoundManager.Instance.UISoundClip("TileLockActivate");
+
                 StoreLockManager.Instance.AssignStoreLock(storeSlot.SlotNum, storeSlot.GetObject());
                 image.sprite = sprites[1];
                 
             }
             else
             {
+                SoundManager.Instance.UISoundClip("TileOpenActivate");
+
                 StoreLockManager.Instance.RemoveStoreLock(storeSlot.SlotNum);
                 image.sprite = sprites[0];
             }
