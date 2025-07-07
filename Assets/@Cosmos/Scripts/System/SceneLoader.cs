@@ -1,3 +1,4 @@
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public static class SceneLoader
     public const string StageScene = "StageScene";
     public const string GuideBuildingScene = "GuideBuildingScene";
     public const string GuideStageScene = "GuideStageScene"; //튜토리얼 씬
+    public const string CreditsScene = "CreditsScene";
     
     //셋팅 씬
     public const string SettingScene = "SettingScene";
@@ -21,6 +23,8 @@ public static class SceneLoader
     
     public static void LoadGuideBuilding() => FadeManager.Instance.LoadSceneWithFade(GuideBuildingScene);
     public static void LoadGuideStage() => FadeManager.Instance.LoadSceneWithFade(GuideStageScene);
+
+    public static void LoadCredits() => FadeManager.Instance.LoadSceneWithFade(CreditsScene);
     
     public static void ReloadCurrentScene() => FadeManager.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
     public static void LoadSceneWithName(string sceneName) => FadeManager.Instance.LoadSceneWithFade(sceneName);
