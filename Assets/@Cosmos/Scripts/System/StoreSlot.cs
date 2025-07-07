@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,14 +8,26 @@ public class StoreSlot : MonoBehaviour
     private int objectCost;
     private GameObject objectPrefab;
     private bool isPurchased = false;
+    public bool IsPurchased => isPurchased;
     private Image image;
     private HoverTileInfo hoverTileInfo;
+    private int slotNum;
+    public int SlotNum => slotNum;
+    [SerializeField]
+    private Image backgroundImage;
+
+    private TextMeshProUGUI priceText;
+    public Action _onPurchase;
 
 
     private void Awake()
     {
         image = GetComponent<Image>();
+        backgroundImage = transform.parent.GetComponent<Image>();
         hoverTileInfo = GetComponent<HoverTileInfo>();
+        slotNum = transform.parent.parent.GetSiblingIndex();
+        priceText = transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        EventBus.SubscribeGoldChanged(SetPriceTextColor);
     }
 
     public GameObject GetObject()
@@ -66,6 +79,12 @@ public class StoreSlot : MonoBehaviour
         {
             isPurchased = true; // 구매 상태로 변경
             image.color = Color.gray; // 색상 변경
+            priceText.color = Color.gray; //가격 텍스트 색상 변경
+            _onPurchase?.Invoke();
+            if ((StoreLockManager.Instance.GetStoreLocks(SlotNum) != null))
+            {
+                StoreLockManager.Instance.RemoveStoreLock(SlotNum);
+            }
             //Debug.Log($"오브젝트 구매 완료: {objectPrefab.name} (가격: {objectCost})");
             return true;
         }
@@ -87,6 +106,32 @@ public class StoreSlot : MonoBehaviour
         image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
         //infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
         hoverTileInfo.SetTileObject(prefab.GetComponent<TileObject>());
+        image.SetNativeSize();
+        backgroundImage.GetComponent<RectTransform>().sizeDelta = image.rectTransform.sizeDelta; // 배경 이미지 크기 조정
+        priceText.text = $"{cost}G";
+        SetPriceTextColor(GoldManager.Instance.CurrentGold);
         
+    }
+
+
+    private void SetPriceTextColor(int gold)
+    {
+        if(objectCost > gold)
+        {
+            priceText.color = Color.red;
+        }
+        else
+        {
+            priceText.color = Color.white;
+        }
+        if(isPurchased)
+        {
+            priceText.color = Color.gray;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeGoldChanged(SetPriceTextColor);
     }
 }

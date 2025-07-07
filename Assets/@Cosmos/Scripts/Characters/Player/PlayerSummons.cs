@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,6 +10,7 @@ public class PlayerSummons : MonoBehaviour
     private List<ISummon> _summonList = new();
 
     [SerializeField] private GameObject _totemManager;
+    [SerializeField] private GameObject _cloudManager;
 
     private bool isGameStarted;
 
@@ -18,14 +18,8 @@ public class PlayerSummons : MonoBehaviour
     private void Awake()
     {
         EventBus.SubscribeGameStateChanged(GameStart);
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        //TODO: 나중에 기믹 매니저 생기면 토템 매니저 자동 생성 하지 말것
-        var totemManager = Instantiate(_totemManager, transform);
-        AddToList(totemManager.GetComponent<ISummon>());
+        //구름 매니저 자동 생성
+        Instantiate(_cloudManager, transform);
     }
 
     // Update is called once per frame
@@ -59,6 +53,18 @@ public class PlayerSummons : MonoBehaviour
                 summon.SetPosition(transform.parent,i);
                 i++;
             }    
+        }
+    }
+
+    public void RemoveFromList(ISummon summon)
+    {
+        if(!_summonList.Contains(summon))
+        {
+            Debug.Log("소환물 리스트에 등록 안된 소환물을 리스트에서 제거하려고 했습니다.");
+        }
+        else
+        {
+            _summonList.Remove(summon);
         }
     }
 

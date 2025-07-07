@@ -4,7 +4,7 @@ public class ProjectileSkill : SkillBase
 {
     [SerializeField] protected int firstDamage;
     protected int damage = 10;
-    [SerializeField] protected GameObject projectilePrefab;
+    protected GameObject projectilePrefab;
     protected BaseBoss targetEnemy;
 
     public int Damage { get => damage; set => damage = value; }
@@ -37,7 +37,7 @@ public class ProjectileSkill : SkillBase
     /// </summary>
     protected virtual void FireProjectile()
     {
-        if (projectilePrefab != null)
+        if (projectilePrefab != null && targetEnemy != null && targetEnemy.gameObject.activeInHierarchy)
         {
             Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             Vector3 direction = (targetEnemy.transform.position - spawnPos).normalized;

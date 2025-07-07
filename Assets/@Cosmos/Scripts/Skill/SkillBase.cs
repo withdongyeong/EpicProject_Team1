@@ -8,13 +8,18 @@ public abstract class SkillBase : MonoBehaviour
 {
 
     //private SkillUseManager sm;
-    [Header("Skill Info")] 
-    public string skillName;
-    public float cooldown = 5f;
+    [Header("Skill Info")]
+    protected float cooldown = 5f;
 
     [Header("Animation Settings")]
-    private float pulseScale = 1.3f; // 펄스 시 확대 배율
+    private float pulseScale = 1.5f; // 펄스 시 확대 배율
     private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
+    private Vector3 originalScale;
+
+    [Header("발동 이펙트")]
+    private GameObject activateEffectPrefab;
+    private float effectDuration = 0.5f;
+
 
     //쿨다운 계수입니다.
     private float cooldownFactor;
@@ -23,10 +28,12 @@ public abstract class SkillBase : MonoBehaviour
 
     private float lastUsedTime = -Mathf.Infinity;
 
-    private Material _coolTimeMaterial;
+    protected Material _coolTimeMaterial;
 
     //타일 오브젝트입니다.
     protected TileObject tileObject;
+    
+    private CombineCell combineCell;
 
     /// <summary>
     /// 스킬의 타일 오브젝트입니다.
@@ -58,6 +65,10 @@ public abstract class SkillBase : MonoBehaviour
         EventBus.SubscribeSceneLoaded(InitClearStarList);
         //'전투가 시작될때' 타이밍입니다.
         EventBus.SubscribeGameStart(InitPassiveStarList);
+        //'상점 진입시' 타이밍입니다.
+        EventBus.SubscribeSceneLoaded(ResetCoolDown);
+
+        combineCell = GetComponent<CombineCell>();
     }
 
     protected virtual void Start()
@@ -69,11 +80,16 @@ public abstract class SkillBase : MonoBehaviour
             _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
             _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
             tileObject = combineCell.GetTileObject();
+            cooldown = tileObject.GetTileData().TileCoolTime;
+            originalScale = combineCell.GetSprite().transform.localScale;
         }
+        
+        // 발동 프리팹 할당
+        activateEffectPrefab = Resources.Load<GameObject>("Prefabs/Effects/ActivateEffect");
 
     }
 
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
         _coolTimeMaterial.SetFloat("_FillAmount", 1 - (GetCooldownRemaining() / finalCooldown));
     }
@@ -112,17 +128,16 @@ public abstract class SkillBase : MonoBehaviour
     {
         SoundManager.Instance.PlayTileSoundClip(GetType().Name + "Activate");
 
+        combineCell.CoolDownEffectActivate(finalCooldown);
+        
         // 펄스 애니메이션 실행
         StartCoroutine(PulseAnimation());
 
-        if(onActivateAction == null)
-        {
-
-        }
+        // 발동 이펙트 0.1초 지연 소환
+        StartCoroutine(SpawnEffectDelayed());
+        
         // 타일 발동시 발동시킬 인접 효과의 액션 리스트를 발동시킵니다.
         onActivateAction?.Invoke(this);
-        
-        
     }
 
     /// <summary>
@@ -132,8 +147,7 @@ public abstract class SkillBase : MonoBehaviour
     {
         if (tileObject == null) yield break;
 
-        Transform tileTransform = tileObject.transform;
-        Vector3 originalScale = tileTransform.localScale;
+        Transform tileTransform = combineCell.GetSprite().transform;
         Vector3 targetScale = originalScale * pulseScale;
 
         float elapsedTime = 0f;
@@ -172,9 +186,29 @@ public abstract class SkillBase : MonoBehaviour
     }
 
     /// <summary>
+    /// 발동 이펙트
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SpawnEffectDelayed()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (activateEffectPrefab != null)
+        {
+            var playerPosition = FindAnyObjectByType<PlayerMarker>();
+            if (playerPosition != null)
+            {
+                GameObject effect = Instantiate(activateEffectPrefab, playerPosition.transform.position, Quaternion.identity);
+                Destroy(effect, effectDuration);
+            }
+        }
+    }
+
+    
+    /// <summary>
     /// 남은 쿨타임 반환
     /// </summary>
-    public float GetCooldownRemaining()
+    public virtual float GetCooldownRemaining()
     {
         return Mathf.Max(0f, (lastUsedTime + finalCooldown) - Time.time);
     }
@@ -196,11 +230,13 @@ public abstract class SkillBase : MonoBehaviour
     /// <param name="mode"></param>
     protected virtual void InitClearStarList(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "StageScene")
+        if (SceneLoader.IsInStage())
         {
             // 전투씬 시작시 인접 효과를 초기화합니다.
             ClearStarBuff();
         }
+        
+        
     }
 
     /// <summary>
@@ -241,9 +277,19 @@ public abstract class SkillBase : MonoBehaviour
         onActivateAction = null;
     }
 
+    protected virtual void ResetCoolDown(Scene scene, LoadSceneMode mode)
+    {
+        if(SceneLoader.IsInBuilding())
+        {
+            lastUsedTime = -Mathf.Infinity;
+        }   
+    }
+
     protected virtual void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(InitClearStarList);
         EventBus.UnsubscribeGameStart(InitPassiveStarList);
+        EventBus.UnsubscribeSceneLoaded(ResetCoolDown);
     }
+
 }

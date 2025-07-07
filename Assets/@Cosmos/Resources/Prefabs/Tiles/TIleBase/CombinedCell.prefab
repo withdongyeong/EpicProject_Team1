@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d79cece922da4d4a972b502ca6eb61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coreCell: {fileID: 474259868635149644}
   skills:
   - {fileID: 0}
+  coolDownEffects: []
 --- !u!1 &6925715973196014046
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1178303333
+  m_SortingLayerID: -1235916957
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
@@ -134,7 +134,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &105532416193078978
 PrefabInstance:
@@ -193,11 +193,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
---- !u!1 &474259868635149644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 568023074742637454, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}
-  m_PrefabInstance: {fileID: 105532416193078978}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7147506471566199295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7081882274101751613, guid: 33d87ae7b206b6f448d03ba0f6b49e89, type: 3}

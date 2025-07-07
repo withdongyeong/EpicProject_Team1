@@ -8,7 +8,7 @@ public class FireBoltSkill : ProjectileSkill
     protected override void Awake()
     {
         base.Awake();
-        damage = 5;
+        projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/Firebolt"); // 화염 화살 프리팹 로드
     }
 
     protected override void Activate()
@@ -22,7 +22,7 @@ public class FireBoltSkill : ProjectileSkill
 
     protected override void FireProjectile()
     {
-        if (projectilePrefab != null)
+        if (projectilePrefab != null && targetEnemy != null && targetEnemy.gameObject.activeInHierarchy)
         {
             Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);

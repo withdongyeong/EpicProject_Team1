@@ -10,9 +10,9 @@ public class MagicCircleStarSkill : StarBase
     protected override void Awake()
     {
         base.Awake();
+        conditionCount = 3;
         starBuff.RegisterGameStartAction(CheckMagicCircle);
         EventBus.SubscribeSceneLoaded(InitClear);
-
         // 자식 오브젝트에서 모든 SkillBase 컴포넌트를 가져옵니다.
         skills = transform.parent.GetComponentsInChildren<SkillBase>();
     }
@@ -29,12 +29,21 @@ public class MagicCircleStarSkill : StarBase
         }
     }
 
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.GetTileData().TileCategory == TileCategory.MagicCircle)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void AddMagicCircleCount()
     {
         if (!isActivated)
         {
             magicCircleCount++;
-            if (magicCircleCount >= 3)
+            if (magicCircleCount >= conditionCount)
             {
                 // 모든 스킬에 Magic Circle 버프를 적용합니다.
                 foreach (var skill in skills)
@@ -48,7 +57,7 @@ public class MagicCircleStarSkill : StarBase
 
     private void InitClear(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "StageScene")
+        if (SceneLoader.IsInStage())
         {
             isActivated = false; // 씬이 변경될 때마다 초기화
             magicCircleCount = 0; // Magic Circle 개수 초기화

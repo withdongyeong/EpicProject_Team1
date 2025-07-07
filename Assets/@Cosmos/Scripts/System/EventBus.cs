@@ -75,10 +75,17 @@ public static class EventBus
     public static void UnSubscribeTileSell(Action<TileObject> handler) => _onTileSell -= handler;
     public static void PublishTileSell(TileObject tileObject) => _onTileSell?.Invoke(tileObject);
 
+    //보호막이 적의 공격 이외로 소모되었을때 호출되는 이벤트입니다
+    private static Action<int> _onProtectionConsume;
+    public static void SubscribeProtectionConsume(Action<int> handler) => _onProtectionConsume += handler;
+    public static void UnSubscribeProtectionConsume(Action<int> handler) => _onProtectionConsume -= handler;
+    public static void PublishProtectionConsume(int num) => _onProtectionConsume?.Invoke(num);
+
+
     public static void Reset() => _isInitialized = false;
+
     
-   
-    
+     
 
     
     

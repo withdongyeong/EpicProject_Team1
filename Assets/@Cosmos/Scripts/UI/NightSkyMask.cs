@@ -8,7 +8,7 @@ public class NightSkyMask : MonoBehaviour
 
     private void Awake()
     {
-        targetRenderer = GetComponent<SpriteRenderer>();
+        targetRenderer = GetComponentInParent<SpriteRenderer>();
         spriteMask = GetComponent<SpriteMask>();
     }
 

@@ -13,7 +13,7 @@ public class GlobalSetting : Singleton<GlobalSetting>
     protected override void Awake()
     {
         base.Awake();
-        _instance = Resources.Load<GlobalSettingSO>("TestSetting");
+        _instance = Resources.Load<GlobalSettingSO>("Setting3");
     }
     public static Vector2 Summon_Offset => _instance.summon_Offset;
 
@@ -52,4 +52,19 @@ public class GlobalSetting : Singleton<GlobalSetting>
     /// 시너지(#화염)의 언어를 결정하는 SO입니다
     /// </summary>
     public static SynergyTranslationSO Language_SynergyTranslationSO => _instance.language_SynergyTranslationSO;
+    
+    /// <summary>
+    /// 튜토리얼(0) 및 스테이지 1~10 (1~10)에 대한 보스 밸런스 데이터
+    /// </summary>
+    public BossBalance GetBossBalance(int stageIndex)
+    {
+        if (stageIndex < 0 || stageIndex >= _instance.bossBalanceList.Count)
+        {
+            Debug.LogWarning($"[GlobalSetting] BossBalance 인덱스 {stageIndex} 범위 초과");
+            return null;
+        }
+        return _instance.bossBalanceList[stageIndex];
+    }
+
+    public static List<TileData> Shop_FirstTileDataList => _instance.shop_FirstTileDataList;
 }

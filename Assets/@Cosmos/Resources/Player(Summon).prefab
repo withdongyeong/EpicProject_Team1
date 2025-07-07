@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 8832922001530299585}
   - component: {fileID: 7232355454447548535}
   - component: {fileID: 3004238364497677759}
+  - component: {fileID: 9129501053533725753}
   m_Layer: 0
   m_Name: Player(Summon)
   m_TagString: Player
@@ -518,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7477b90b90839458cf3b46315389d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentHealth: 0
   invincibilityDuration: 0.5
   blinkCount: 5
 --- !u!114 &1725828651089743520
@@ -698,6 +700,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9129501053533725753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249486552240177032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1489f3946e5f422cad97de5da193e527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4924547627108980569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,3 +1033,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totemManager: {fileID: 233568901697347898, guid: af8efee9d0e51c24d8976a4ce6b2e4eb, type: 3}
+  _cloudManager: {fileID: 233568901697347898, guid: 664e63504319c01498a8d9d83457f2ed, type: 3}

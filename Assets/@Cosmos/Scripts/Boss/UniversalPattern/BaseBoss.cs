@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 /// <summary>
 /// 모든 보스의 기본 클래스 (새로운 패턴 시스템 적용)
@@ -10,6 +11,8 @@ public abstract class BaseBoss : MonoBehaviour
 {
     [Header("기본 스탯")]
     private int _maxHealth = 100;
+    private int _weakDamage = 0;
+    private int _strongDamage = 0;
     [SerializeField]
     private int _currentHealth;
     private bool _isDead = false;
@@ -17,6 +20,8 @@ public abstract class BaseBoss : MonoBehaviour
     [Header("상태 이상 클래스")]
     private BossDebuffs _bossDebuff;
     private bool _isStopped = false; // 공격 중지 여부
+    private bool _unstoppable = false; // 공격 중지 가능 여부
+    private bool _isHandBoss = false; // 손 보스 여부 (손 보스는 공격 중지 불가능)
 
     // 컴포넌트 참조
     private GridManager _gridSystem;
@@ -28,11 +33,24 @@ public abstract class BaseBoss : MonoBehaviour
     private Animator _animator;
     private DamageTextHandler _damageTextHandler;
 
+    // 피격음 코루틴
+    private Coroutine hitSoundCoroutine;
+
     // Properties
     /// <summary>
     /// 최대 체력 프로퍼티
     /// </summary>
     public int MaxHealth { get => _maxHealth; protected set => _maxHealth = value; }
+    
+    /// <summary>
+    /// 약 데미지
+    /// </summary>
+    public int WeakDamage { get => _weakDamage; protected set => _weakDamage = value; }
+    
+    /// <summary>
+    /// 강데미지
+    /// </summary>
+    public int StrongDamage { get => _strongDamage; protected set => _strongDamage = value; }
     
     /// <summary>
     /// 현재 체력 프로퍼티
@@ -48,6 +66,16 @@ public abstract class BaseBoss : MonoBehaviour
     /// 공격 중지 여부 프로퍼티
     /// </summary>
     public bool IsStopped { get => _isStopped; set => _isStopped = value; }
+
+    /// <summary>
+    /// 공격 중지 가능 여부 프로퍼티
+    /// </summary>
+    public bool Unstoppable { get => _unstoppable; set => _unstoppable = value; }
+
+    /// <summary>
+    /// 손 보스 여부 프로퍼티
+    /// </summary>
+    public bool IsHandBoss { get => _isHandBoss; set => _isHandBoss = value; } // 손 보스 여부 프로퍼티
 
     /// <summary>
     /// 그리드 시스템 프로퍼티
@@ -80,7 +108,7 @@ public abstract class BaseBoss : MonoBehaviour
         // 컴포넌트 참조 설정
         _gridSystem = GridManager.Instance;
         _bossDebuff = GetComponent<BossDebuffs>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _bombHandler = FindAnyObjectByType<BombAvoidanceHandler>();
         
         // 패턴 리스트 초기화
@@ -100,8 +128,6 @@ public abstract class BaseBoss : MonoBehaviour
 
         // 상태이상 적용 루틴 시작  
         StartCoroutine(ApplyDebuffsRoutine());
-
-        Debug.Log($"{GetType().Name} spawned with {_maxHealth} HP and {_executableUnits.Count} executable units!");
         
         // BombHandler 할당 확인
         if (_bombHandler == null)
@@ -133,8 +159,6 @@ public abstract class BaseBoss : MonoBehaviour
         PatternElement patternElement = new PatternElement(pattern, intervalAfterExecution);
         ExecutableUnit executableUnit = new ExecutableUnit(patternElement);
         _executableUnits.Add(executableUnit);
-        
-        Debug.Log($"Individual pattern added with {intervalAfterExecution}s interval");
     }
     
     /// <summary>
@@ -143,7 +167,6 @@ public abstract class BaseBoss : MonoBehaviour
     /// <returns>패턴 그룹 빌더</returns>
     protected PatternGroupBuilder AddGroup()
     {
-        Debug.Log($"{GetType().Name}: Creating new PatternGroupBuilder");
         return new PatternGroupBuilder(OnGroupBuilt);
     }
 
@@ -169,7 +192,6 @@ public abstract class BaseBoss : MonoBehaviour
 
             _executableUnits.Add(executableUnit);
             int patternCount = executableUnit.PatternGroup.Patterns.Count;
-            Debug.Log($"{GetType().Name}: Pattern group added successfully with {patternCount} patterns. Total executable units: {_executableUnits.Count}");
         }
         catch (Exception ex)
         {
@@ -191,8 +213,16 @@ public abstract class BaseBoss : MonoBehaviour
         float randomX = UnityEngine.Random.Range(-0.5f, 0.5f);
         float randomY = UnityEngine.Random.Range(-0.5f, 0.5f);
         Vector3 hitPosition = transform.position + new Vector3(randomX, randomY, 0);
-        Instantiate(hitObject, hitPosition, Quaternion.identity);
-        Debug.Log(hitObject.name);
+        if (hitSoundCoroutine == null)
+        {
+            hitSoundCoroutine = StartCoroutine(HitSoundCoroutine(hitObject));
+        }
+        damage = _bossDebuff.ApplyMarkEffect(damage);
+        damage = _bossDebuff.ApplyPainEffect(damage);
+        if (_isStopped)
+        {
+            damage = Mathf.CeilToInt(damage * 1.5f); // 공격 중지 상태에서는 데미지 1.5배 증가
+        }
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
@@ -206,6 +236,18 @@ public abstract class BaseBoss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 피격음 코루틴(소리 중첩 방지)
+    /// </summary>
+    /// <param name="hitObject"></param>
+    /// <returns></returns>
+    private IEnumerator HitSoundCoroutine(GameObject hitObject)
+    {
+        Instantiate(hitObject, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.05f);
+        hitSoundCoroutine = null;
+    }
+
     protected virtual void DamageFeedback()
     {
         _animator.SetTrigger("DamageTrigger");
@@ -217,6 +259,8 @@ public abstract class BaseBoss : MonoBehaviour
     protected virtual void Die()
     {
         _isDead = true;
+        // 애니메이터 사망처리
+        _animator.SetBool("IsAlive", false);
         Debug.Log($"{GetType().Name} DEFEATED!");
         
         // 사망 이벤트 발생
@@ -344,14 +388,12 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     private IEnumerator AttackRoutine()
     {
-        Debug.Log($"{GetType().Name}: AttackRoutine started");
         yield return new WaitForSeconds(1f); // 초반 딜레이
     
         while (!_isDead && !_isStopped)
         {
             if (_executableUnits.Count > 0)
             {
-                Debug.Log($"{GetType().Name}: Executing random unit from {_executableUnits.Count} available units");
                 yield return StartCoroutine(ExecuteRandomUnit()); // 패턴 완료까지 대기 (인터벌 포함)
             }
             else
@@ -360,8 +402,6 @@ public abstract class BaseBoss : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
         }
-    
-        Debug.Log($"{GetType().Name}: AttackRoutine ended (isDead: {_isDead}, isStopped: {_isStopped})");
     }
 
 
@@ -372,17 +412,13 @@ public abstract class BaseBoss : MonoBehaviour
     {
         int randomIndex = UnityEngine.Random.Range(0, _executableUnits.Count);
         ExecutableUnit selectedUnit = _executableUnits[randomIndex];
-    
-        Debug.Log($"{GetType().Name}: Selected unit {randomIndex} (IsGroup: {selectedUnit.IsGroup})");
         
         if (selectedUnit.IsIndividualPattern)
         {
-            Debug.Log($"{GetType().Name}: Executing individual pattern: {selectedUnit.IndividualPattern.Pattern.PatternName}");
             yield return StartCoroutine(ExecuteIndividualPattern(selectedUnit.IndividualPattern));
         }
         else if (selectedUnit.IsGroup)
         {
-            Debug.Log($"{GetType().Name}: Executing pattern group with {selectedUnit.PatternGroup.Patterns.Count} patterns");
             yield return StartCoroutine(ExecutePatternGroup(selectedUnit.PatternGroup));
         }
         else
@@ -435,6 +471,11 @@ public abstract class BaseBoss : MonoBehaviour
         yield return new WaitForSeconds(patternGroup.IntervalAfterGroup);
     }
 
+    public void boolAnimation(string boolName, bool value)
+    {
+        _animator.SetBool(boolName, value);
+    }
+
     /// <summary>
     /// 공격 애니메이션 트리거
     /// </summary>
@@ -442,7 +483,7 @@ public abstract class BaseBoss : MonoBehaviour
     {
         _animator.SetTrigger("AttackTrigger");
     }
-    
+
     /// <summary>
     /// 애니메이션 트리거 설정
     /// </summary>

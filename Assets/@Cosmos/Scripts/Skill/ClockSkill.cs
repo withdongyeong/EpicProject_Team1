@@ -1,9 +1,6 @@
-﻿using UnityEngine;
+﻿
 
-public class ClockSkill : SkillBase
+public class ClockSkill : NonActivateSkill
 {
-    protected override void Activate()
-    {
-        
-    }
+  
 }

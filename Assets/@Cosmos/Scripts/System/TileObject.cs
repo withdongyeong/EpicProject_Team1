@@ -12,6 +12,8 @@ public class TileObject : MonoBehaviour
     public GameObject CombinedStarCell { get => combinedStarCell; }
 
     private bool isInitialized = false;
+    private bool isStarDisplayEnabled = false; // 스타 셀 표시 여부
+    public bool IsStarDisplayEnabled => isStarDisplayEnabled; // 외부에서 스타 셀 표시 여부를 확인할 수 있도록 공개
 
     //그리드의 스타 리스트가 변경되었을때의 액션입니다.
     public Action OnStarListChanged;
@@ -21,10 +23,14 @@ public class TileObject : MonoBehaviour
 
     private List<StarBase> starList = new();
 
+    //놓였는지 안놓였는지 확인하는 bool입니다.
+    private bool isPlaced = false;
+    public bool IsPlaced => isPlaced;
 
     private void Awake()
     {
         InitializeTile();
+        //GetComponentInChildren<CombinedStarCell>(true)?.gameObject.SetActive(true);
     }
     
     private void InitializeTile()
@@ -40,10 +46,10 @@ public class TileObject : MonoBehaviour
         {
             Debug.LogError("Tile sprite is not assigned in TileObject.");
         }
-        combinedStarCell = GetComponentInChildren<CombinedStarCell>() ? GetComponentInChildren<CombinedStarCell>().gameObject : null;
+        combinedStarCell = GetComponentInChildren<CombinedStarCell>(true) ? GetComponentInChildren<CombinedStarCell>(true).gameObject : null;
         if (combinedStarCell != null)
         {
-            //combinedStarCell.SetActive(false); // 스타셀의 부모 오브젝트 비활성화
+            //combinedStarCell.SetActive(true); // 스타셀의 부모 오브젝트 비활성화
         }
         isInitialized = true;
     }
@@ -53,11 +59,11 @@ public class TileObject : MonoBehaviour
     /// </summary>
     public void UpdateStarList()
     {
-        Debug.Log("재계산 시작합니다");
+        //Debug.Log("재계산 시작합니다");
         starList.Clear();
         OnStarListChanged?.Invoke();
         OnStarListUpdateCompleted?.Invoke(starList);
-        Debug.Log(starList);
+        //Debug.Log(starList);
     }
 
     /// <summary>
@@ -87,6 +93,109 @@ public class TileObject : MonoBehaviour
     public Sprite GetTileSprite()
     {
         return data.tileSprite;
+    }
+    
+    public void ShowStarCell()
+    {
+        if (combinedStarCell != null)
+        {
+            foreach (var sr in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = true;  
+            }
+           
+            // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
+            List<TileObject> skills = new List<TileObject>();
+
+            // 스타셀의 색상을 초기화하고, 해당 스타셀의 스킬이 조건을 만족하면 색을 바꿉니다.
+            foreach (StarCell starCell in CombinedStarCell.GetComponentsInChildren<StarCell>())
+            {
+                // 스타셀의 색상을 초기화합니다.
+                SpriteRenderer sr = starCell.GetComponent<SpriteRenderer>();
+                Sprite spriteDisable = Resources.Load<Sprite>("Arts/UI/StarDisable");
+                sr.sprite = spriteDisable;
+
+                // 스타셀의 위치를 가져오고, 해당 위치의 CellData가 존재하는지 확인합니다.
+                Vector3Int gridPos = starCell.GetStarCellPosition();
+                if (!GridManager.Instance.IsWithinGrid(gridPos) || GridManager.Instance.GetCellData(gridPos) == null)
+                {
+                    continue;
+                }
+
+                // 스타셀의 스킬을 가져오고, 해당 스킬이 조건을 만족하는지 확인합니다.
+                SkillBase[] skillBases = GridManager.Instance.GetCellData(gridPos)?.GetCombineCell()?.Skills;
+
+                // 만약 스킬이 없다면, 해당 스타셀의 타일 오브젝트에서 스킬을 가져옵니다.
+                if (skillBases == null || skillBases.Length == 0)
+                {
+                    skillBases = new SkillBase[1];
+                    skillBases[0] = GridManager.Instance.GetCellData(gridPos).GetCombineCell().GetTileObject().GetComponentInChildren<SkillBase>();
+                }
+
+
+                foreach (SkillBase skill in skillBases)
+                {
+                    if (starCell.GetStarSkill() != null && starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill.TileObject))
+                    {
+                        Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
+                        sr.sprite = sprite; // 조건을 만족하면 색상을 흰색으로 변경
+                        skills.Add(skill.TileObject);
+                    }
+                }
+            }
+
+            SetStarEffect();
+
+        }
+        isStarDisplayEnabled = true;
+    }
+
+
+    public void SetStarEffect()
+    {
+        //배치 씬 인접효과 비주얼을 위한 코드
+        if (combinedStarCell.GetComponent<CombinedStarCell>() == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
+        int conditionCount = combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill().GetConditionCount();
+        int activeStarCount = 0;
+        foreach (var star in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (star.sprite.name == "Star")
+            {
+                activeStarCount++;
+            }
+        }
+        
+        
+        if (activeStarCount >= conditionCount)
+        {
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+        }
+        else
+        {
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
+        }
+    }
+
+    public void HideStarCell()
+    {
+        if (combinedStarCell != null)
+        {
+            foreach (var sr in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = false;
+            }
+        }
+        isStarDisplayEnabled = false;
+    }
+
+    public void OnPlaced()
+    {
+        isPlaced = true;
+    }
+
+    public void OnDragged()
+    {
+        isPlaced = false;
     }
 }
 

@@ -26,7 +26,8 @@ public enum TileGrade
     Normal,   // 일반 타일
     Rare,     // 희귀 타일
     Epic,     // 에픽 타일
-    Legendary // 전설 타일
+    Legendary, // 전설 타일
+    Mythic //신화 타일
 }
 
 public enum TileCategory
@@ -74,17 +75,21 @@ public class TileInfo
     private Sprite tileSprite;
     private TileGrade tileGrade;
     private int tileCost;
+    private float tileCoolTime;
     private string tileData;
     private TileCategory tileCategory;
     private TileData requiredTile;
+    private List<TileData> rejectTileList;
 
     public string TileName => tileName;
     public string Description => description;
     public Sprite TileSprite => tileSprite;
     public TileGrade TileGrade => tileGrade;
     public int TileCost => tileCost;
+    public float TileCoolTime => tileCoolTime;
     public TileCategory TileCategory => tileCategory;
     public TileData RequiredTile => requiredTile;
+    public List<TileData> RejectTileList => rejectTileList;
 
     public TileInfo(TileData data)
     {
@@ -93,8 +98,10 @@ public class TileInfo
         tileSprite = data.tileSprite;
         tileGrade = data.tileGrade;
         tileCost = data.tileCost;
+        tileCoolTime = data.tileCoolTime;
         tileCategory = data.tileCategory;
         requiredTile = data.requiredTile;
+        rejectTileList = data.rejectTileList;
     }
 }
 
@@ -104,6 +111,11 @@ public class TileInfo
     public float shop_RareChance; //레어 등급의 확률입니다
     public float shop_EpicChance; //에픽 등급의 확률입니다
     public float shop_LegendaryChance; //레전더리 등급의 확률입니다
+
+    public float Shop_MythicChance()
+    {
+        return 100 - shop_NormalChance - shop_RareChance - shop_EpicChance - shop_LegendaryChance;
+    }
 }
 
 /// <summary>

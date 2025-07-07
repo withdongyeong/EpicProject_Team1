@@ -9,6 +9,7 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] private Sprite rareGradeBorder;
     [SerializeField] private Sprite epicGradeBorder;
     [SerializeField] private Sprite legendaryGradeBorder;
+    [SerializeField] private Sprite mythicGradeBorder;
     
     [Header("Common Background Image (Inner)")]
     [SerializeField] private Sprite commonBackgroundSprite;
@@ -24,8 +25,6 @@ public class InfoPanel : MonoBehaviour
     private Camera mainCamera;
     private GameObject nameTextPrefab; // 이름 텍스트
     //private GameObject descriptionTextPrefab; // 설명 텍스트
-    private GameObject costTextPrefab; // 비용 텍스트
-    private GameObject categoryTextPrefab; // 종류 텍스트
     private InfoTextRenderer textRenderer; //곽민준이 짠 설명 텍스트 및 밑의 구분선 보여주는 스크립트입니다
 
     private void Start()
@@ -34,10 +33,8 @@ public class InfoPanel : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         mainCamera = Camera.main;
         gameObject.SetActive(false); // 초기 비활성화
-        nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/NameText");
+        nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/HeadText");
         //descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
-        costTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CostText");
-        categoryTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CategoryText");
         
         // textObject에서 InfoTextRenderer 컴포넌트 가져오기
         if (textObject != null)
@@ -70,7 +67,8 @@ public class InfoPanel : MonoBehaviour
         SetBorderByGrade(currentTileObject.GetTileData().TileGrade);
 
         // 이름 텍스트 설정 (textObject 하위에 생성)
-        TextMeshProUGUI nameText = Instantiate(nameTextPrefab, textObject.transform).GetComponent<TextMeshProUGUI>();
+        Transform headText = Instantiate(nameTextPrefab, textObject.transform).transform;
+        TextMeshProUGUI nameText = headText.GetChild(0).GetComponent<TextMeshProUGUI>();
         nameText.text = currentTileObject.GetTileData().TileName;
         switch (currentTileObject.GetTileData().TileGrade)
         {
@@ -78,32 +76,37 @@ public class InfoPanel : MonoBehaviour
                 nameText.color = Color.white;
                 break;
             case TileGrade.Rare:
-                nameText.color = Color.blue;
+                nameText.color = new Color(0.7f, 0.9f, 1f);
                 break;
             case TileGrade.Epic:
-                nameText.color = new Color(0.5f, 0f, 1f); // 보라색
+                nameText.color = new Color(0.9f, 0.7f, 1f); // 보라
                 break;
             case TileGrade.Legendary:
-                nameText.color = Color.yellow;
+                nameText.color = new Color(1f, 0.7f, 0.6f);
+                break;
+            case TileGrade.Mythic:
+                nameText.color = new Color(0.65f, 0.9f, 0.85f);
                 break;
             default:
                 nameText.color = Color.white;
                 break;
         }
-        // 설명 텍스트 설정
-        //TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        //descriptionText.SetText(currentTileObject.GetTileData().Description);
 
-        //이제 이거 대신 이거 쓰면 됩니다
+
+        TextMeshProUGUI coolTimeText = headText.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
+        if(currentTileObject.GetTileData().TileCoolTime != 0)
+        {
+            coolTimeText.text = currentTileObject.GetTileData().TileCoolTime.ToString() + "s";
+        }
+        else
+        {
+            coolTimeText.gameObject.transform.parent.gameObject.SetActive(false);
+        }
+        
         textRenderer.InstantiateDescriptionText(currentTileObject);
 
-        // 비용 텍스트 설정 (textObject 하위에 생성)
-        TextMeshProUGUI costText = Instantiate(costTextPrefab, textObject.transform).GetComponent<TextMeshProUGUI>();
-        costText.text = $"{currentTileObject.GetTileData().TileCost} Gold";
-        costText.color = Color.yellow; // 비용 텍스트 색상 설정
-
         // 위치 업데이트
-        transform.position = position;
+        //transform.position = position;
     }
 
     private void SetBorderByGrade(TileGrade grade)
@@ -124,11 +127,15 @@ public class InfoPanel : MonoBehaviour
             case TileGrade.Legendary:
                 borderImage.sprite = legendaryGradeBorder;
                 break;
+            case TileGrade.Mythic: //신화 등급 처리
+                borderImage.sprite = mythicGradeBorder;
+                break;
             default:
                 borderImage.sprite = normalGradeBorder;
                 break;
         }
     }
+
 
     /// <summary>
     /// 패널 숨기기

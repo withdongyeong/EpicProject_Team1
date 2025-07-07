@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class ManaAISkill : SkillBase
+public class ManaAISkill : NonActivateSkill
 {
     private bool isInGameScene = false;
 
@@ -36,7 +36,7 @@ public class ManaAISkill : SkillBase
     /// <param name="mode"></param>
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "BuildingScene")
+        if(SceneLoader.IsInBuilding())
         {
             StopAllCoroutines();
             isInGameScene = false;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +8,14 @@ using UnityEngine;
 public class OrcMagePatternBossChargeRight : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
+    private int _damage;
 
     public string PatternName => "OrcMagePattern_BossChargeRight";
 
-    public OrcMagePatternBossChargeRight(GameObject groundSpikePrefab)
+    public OrcMagePatternBossChargeRight(GameObject groundSpikePrefab, int damage)
     {
         _groundSpikePrefab = groundSpikePrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -56,6 +58,9 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
 
         // 6. 오른쪽 돌진 완료 후 flip
         FlipBoss(boss);
+        
+        // 빙결 불가 해제
+        boss.Unstoppable = false;
     }
 
     /// <summary>
@@ -91,7 +96,7 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
         List<Vector3Int> bossArea = GetBossArea(position);
         
         // 전조 → 데미지 (이펙트 없음)
-        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 0.8f, 30, WarningType.Type2);
+        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 0.8f, _damage, WarningType.Type2);
         yield return new WaitForSeconds(0.8f);
     }
 
@@ -115,7 +120,7 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
             
             // 보스 위치 공격 (전조 + 피격 판정)
             List<Vector3Int> bossArea = GetBossArea(currentPos);
-            boss.BombHandler.ExecuteWarningThenDamage(bossArea, currentPos, 0.8f, 25, WarningType.Type2);
+            boss.BombHandler.ExecuteWarningThenDamage(bossArea, currentPos, 0.8f, _damage, WarningType.Type2);
             
             // 스파이크 공격 (번갈아가며)
             yield return ExecuteAlternatingSpike(boss, currentPos, stepCount);
@@ -152,14 +157,13 @@ public class OrcMagePatternBossChargeRight : IBossAttackPattern
             };
         }
 
-        boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
         foreach (Vector3Int direction in spikeDirections)
         {
             List<Vector3Int> spikeLine = CreateSpikeLine(centerPos, direction);
             if (spikeLine.Count > 0)
             {
                 boss.BombHandler.ExecuteFixedBomb(spikeLine, centerPos, _groundSpikePrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: 20, WarningType.Type1);
+                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
             }
         }
         

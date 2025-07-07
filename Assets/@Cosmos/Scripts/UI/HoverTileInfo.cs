@@ -7,6 +7,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private InfoPanel infoPanel;
     private TileObject tileObject; // TileObject 컴포넌트 참조
     private GameObject combinedStarCell; // 스타셀의 부모 오브젝트
+    private bool isInBuilding = true; // 초기화 여부
 
     private void Awake()
     {
@@ -20,13 +21,18 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "BuildingScene")
+        if(SceneLoader.IsInBuilding())
         {
             infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
             if (infoPanel == null)
             {
                 Debug.LogError("InfoPanel 없음.");
             }
+            isInBuilding = true;
+        }
+        else if (SceneLoader.IsInStage())
+        {
+            isInBuilding = false;
         }
     }
 
@@ -38,15 +44,16 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(DragManager.Instance.IsDragging) return;
         Vector3 position;
         // 배치된 타일인지 확인
         if (GetComponent<Cell>() != null)
         {
-            position = new Vector3(1230f, 600f, 0);
+            position = new Vector3(1750f, 700f, 0); // RectPosition을 이렇게 하면 좀 불안하긴 한데 ..
         }
         else
         {
-            position = new Vector3(880f, 700f, 0);
+            position = new Vector3(1750f, 700f, 0);
         }
         ////현재 마우스 포인터 위치
         //Vector3 mousePosition = Input.mousePosition;
@@ -55,10 +62,10 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (tileObject != null)
                 infoPanel.Show(tileObject, position, true);
         }
-        // 콤바인드스타셀 활성화
-        if (tileObject.CombinedStarCell != null)
+        if (isInBuilding)
         {
-            tileObject.CombinedStarCell.SetActive(true);
+            // 콤바인드스타셀 활성화
+            tileObject.ShowStarCell();
         }
     }
 
@@ -69,10 +76,7 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             infoPanel.Hide();
         }
         // 콤바인드스타셀 비활성화
-        if (tileObject.CombinedStarCell != null)
-        {
-            tileObject.CombinedStarCell.SetActive(false);
-        }
+        tileObject.HideStarCell();
     }
 
     private void OnDestroy()

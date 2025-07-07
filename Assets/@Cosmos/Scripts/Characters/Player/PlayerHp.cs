@@ -180,6 +180,9 @@ public class PlayerHp : MonoBehaviour
         // 무적 시간 강제 종료 (죽었으니까)
         EndInvincibility();
         
+        // 격자에 남아있는 이동불가 제거
+        GridManager.Instance.ClearAllUnmovableGridPositions();
+        
         FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Death");
         EventBus.PublishPlayerDeath();
     }

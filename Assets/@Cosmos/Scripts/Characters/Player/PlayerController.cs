@@ -20,7 +20,20 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     
     // 방향 기억용
-    private bool _facingRight = false; // 기본은 왼쪽
+    private bool _facingRight = true;
+    
+    // 입력 버퍼링 시스템
+    private float _inputBufferTime = 0.05f; // 입력을 수집할 시간
+    private float _inputBufferTimer = 0f;
+    private Vector2 _bufferedInput = Vector2.zero;
+    private bool _hasBufferedInput = false;
+    
+    // 갸우뚱 효과 관련
+    [Header("Wobble Effect")]
+    private float _wobbleAmount = 15f; // 갸우뚱 각도 (도 단위)
+
+    private bool _wobbleLeft = true;
+    private bool _enableWobble = true; // 갸우뚱 효과 활성화 여부
     
     // Getters & Setters
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
@@ -29,6 +42,9 @@ public class PlayerController : MonoBehaviour
     public int CurrentY { get => _currentY; set => _currentY = value; }
     public Animator Animator { get => _animator; set => _animator = value; }
     public PlayerDebuff PlayerDebuff => _playerDebuff;
+
+    //스킬을 발동할 수 있는지 여부입니다. 
+    private bool _canInteractionTile = false;
 
     private void Start()
     {
@@ -40,6 +56,9 @@ public class PlayerController : MonoBehaviour
 
         SoundManager.Instance.PlayPlayerSound("StickRoll");
 
+        // 초기 오른쪽 방향 바라보기
+        _spriteRenderer.flipX = true;
+        
         // 초기 애니메이션 상태 설정
         if (_animator != null)
         {
@@ -54,7 +73,11 @@ public class PlayerController : MonoBehaviour
         {
             if (!_isMoving && !_playerDebuff.IsBind)
             {
-                HandleMovement();
+                HandleMovementWithBuffer();
+            }
+            if(_canInteractionTile)
+            {
+                CheckTileInteraction();
             }
             
         }
@@ -68,21 +91,78 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void HandleMovement()
+    /// <summary>
+    /// 입력 버퍼링을 사용한 이동 처리
+    /// </summary>
+    private void HandleMovementWithBuffer()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-    
-        if (horizontal != 0 || vertical != 0)
+        
+        Vector2 currentInput = new Vector2(horizontal, vertical);
+        
+        // 새로운 입력이 들어왔을 때
+        if (currentInput.magnitude > 0)
         {
-            int dx = Mathf.RoundToInt(horizontal);
-            int dy = Mathf.RoundToInt(vertical);
+            if (!_hasBufferedInput)
+            {
+                // 첫 번째 입력 - 버퍼링 시작
+                _bufferedInput = currentInput;
+                _hasBufferedInput = true;
+                _inputBufferTimer = _inputBufferTime;
+            }
+            else
+            {
+                // 추가 입력 - 기존 입력과 합성
+                _bufferedInput = CombineInputs(_bufferedInput, currentInput);
+            }
+        }
+        
+        // 버퍼 타이머 처리
+        if (_hasBufferedInput)
+        {
+            _inputBufferTimer -= Time.deltaTime;
+            
+            // 버퍼 시간이 끝났거나, 입력이 없어졌을 때 이동 실행
+            if (_inputBufferTimer <= 0 || currentInput.magnitude == 0)
+            {
+                ExecuteBufferedMovement();
+            }
+        }
+    }
+    
+    /// <summary>
+    /// 두 입력을 합성하여 최종 이동 방향 결정
+    /// </summary>
+    private Vector2 CombineInputs(Vector2 input1, Vector2 input2)
+    {
+        // 각 축에서 가장 최근의 0이 아닌 입력을 사용
+        float finalX = Mathf.Abs(input2.x) > 0 ? input2.x : input1.x;
+        float finalY = Mathf.Abs(input2.y) > 0 ? input2.y : input1.y;
+        
+        return new Vector2(finalX, finalY);
+    }
+    
+    /// <summary>
+    /// 버퍼된 입력을 실행
+    /// </summary>
+    private void ExecuteBufferedMovement()
+    {
+        if (_bufferedInput.magnitude > 0)
+        {
+            int dx = Mathf.RoundToInt(_bufferedInput.x);
+            int dy = Mathf.RoundToInt(_bufferedInput.y);
             
             // 방향 전환 처리
             HandleFlip(dx);
             
             TryMove(dx, dy);
         }
+        
+        // 버퍼 리셋
+        _bufferedInput = Vector2.zero;
+        _hasBufferedInput = false;
+        _inputBufferTimer = 0f;
     }
     
     /// <summary>
@@ -122,16 +202,20 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
-    /// 점프 효과가 있는 이동 애니메이션
+    /// 점프 효과가 있는 이동 애니메이션 (갸우뚱 효과 포함)
     /// 이동 중간에 논리적 위치를 옮김
     /// </summary>
     private IEnumerator MoveAnimation(Vector3Int newPos)
     {
         _isMoving = true;
         _animator.SetBool("IsMoving", true);
+        _canInteractionTile = false;
     
         Vector3 startPos = transform.position;
         Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
+        
+        // 이동 방향 계산
+        Vector3 moveDirection = targetPos - startPos;
         
         // 이동 전에 논리적 위치를 미리 옮김
         // 따라서, 공격 판정이 오기 전에 아슬아슬하게 피했을 때, 이미 점프를 시작했으면 안 맞게 되면서 피하는 느낌이 들 것
@@ -150,22 +234,52 @@ public class PlayerController : MonoBehaviour
             float x = Mathf.Lerp(startPos.x, targetPos.x, t);
             float y = Mathf.Lerp(startPos.y, targetPos.y, t);
         
+            //점프의 반이 지났을때부터 타일과의 상호작용을 가능하게 합니다.
+            if(t > 0.5f)
+            {
+                _canInteractionTile = true;
+            }
+            
             // 점프 높이 계산
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
+            
+            // 갸우뚱 효과 계산 (점프 중에만 적용)
+            float wobbleRotation = 0f;
+            if (_enableWobble)
+            {
+                // 점프 궤도와 같은 사인파를 사용하여 갸우뚱 효과
+                // 점프 시작과 끝에서는 0도, 중간에서 최대 각도
+                float wobbleAmount = Mathf.Sin(t * Mathf.PI) * _wobbleAmount;
+                
+                // 번갈아가며 갸우뚱 방향 결정
+                wobbleRotation = _wobbleLeft ? -wobbleAmount : wobbleAmount;
+            }
+            
+            // 위치 설정
             transform.position = new Vector3(x, y + extraHeight, 0);
+            
+            // 회전 설정 (갸우뚱 효과)
+            transform.rotation = Quaternion.Euler(0, 0, wobbleRotation);
+            
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // 최종 위치 설정 (물리적 위치만)
         transform.position = targetPos;
-        CheckTileInteraction();
         
+        // 회전 초기화
+        transform.rotation = Quaternion.identity;
+
+        // 다음 이동을 위해 갸우뚱 방향 토글
+        _wobbleLeft = !_wobbleLeft;
+
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 
         SoundManager.Instance.PlayPlayerSound("PlayerMove");
     }
+    
     /// <summary>
     /// 현재 그리드 위치 업데이트
     /// </summary>
@@ -206,5 +320,32 @@ public class PlayerController : MonoBehaviour
     public void Bind(float time)
     {
         StartCoroutine(_playerDebuff.Bind(time));
+    }
+    
+    /// <summary>
+    /// 갸우뚱 효과 활성화/비활성화
+    /// </summary>
+    /// <param name="enable">활성화 여부</param>
+    public void SetWobbleEffect(bool enable)
+    {
+        _enableWobble = enable;
+    }
+    
+    /// <summary>
+    /// 갸우뚱 효과 강도 조정
+    /// </summary>
+    /// <param name="amount">갸우뚱 각도 (도 단위)</param>
+    public void SetWobbleAmount(float amount)
+    {
+        _wobbleAmount = amount;
+    }
+    
+    /// <summary>
+    /// 갸우뚱 효과 속도 조정 (사용 안 함 - 점프와 동일한 속도)
+    /// </summary>
+    /// <param name="speed">갸우뚱 속도</param>
+    public void SetWobbleSpeed(float speed)
+    {
+        // 점프와 동일한 속도로 갸우뚱하므로 사용하지 않음
     }
 }

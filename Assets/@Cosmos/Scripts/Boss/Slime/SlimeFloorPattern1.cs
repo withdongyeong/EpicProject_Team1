@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 
 public class SlimeFloorPattern1 : IBossAttackPattern
 {
     private GameObject _slimeFloorPrefeb;
+    private int _damage;
 
     public string PatternName => "SlimeFloorPattern1";
-    public SlimeFloorPattern1(GameObject SlimeFloorPrefeb)
+    public SlimeFloorPattern1(GameObject SlimeFloorPrefeb, int damage)
     {
         _slimeFloorPrefeb = SlimeFloorPrefeb;
+        _damage = damage;
     }
 
     public IEnumerator Execute(BaseBoss boss)
@@ -61,7 +61,7 @@ public class SlimeFloorPattern1 : IBossAttackPattern
 
 
         boss.BombHandler.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
-                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: 20);
+                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         yield return new WaitForSeconds(0.6f);
         SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");

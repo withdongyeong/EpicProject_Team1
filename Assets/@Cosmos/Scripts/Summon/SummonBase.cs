@@ -31,9 +31,9 @@ public abstract class SummonBase : MonoBehaviour, ISummon
         WhenStart();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        FindAnyObjectByType<PlayerSummons>()?.RemoveFromList(this);
     }
+
 }

@@ -8,14 +8,26 @@ public class SwordHandler : MonoBehaviour
     /// 모든 검 컨트롤러 리스트
     /// </summary>
     private List<SwordController> swords = new List<SwordController>();
+    private bool isBurning = false;
 
     /// <summary>
-    /// 초기화
+    /// 불타는 상태 여부
     /// </summary>
-    private void Start()
+    public bool IsBurning
     {
-        //RefreshSwordList();
-        Debug.Log("SkillManager initialized");
+        get { return isBurning; }
+        set
+        {
+            isBurning = value;
+            // 불타는 상태가 변경될 때 모든 검에 적용
+            foreach (SwordController sword in swords)
+            {
+                if (sword != null)
+                {
+                    sword.IsBurning = value;
+                }
+            }
+        }
     }
 
     #region 칼날폭풍 관련
@@ -87,8 +99,6 @@ public class SwordHandler : MonoBehaviour
                 sword.ActivateSkill(targetPosition);
             }
         }
-
-        Debug.Log($"Skill activated at position: {targetPosition}");
     }
 
     /// <summary>

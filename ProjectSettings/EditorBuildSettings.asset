@@ -6,20 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/@Cosmos/Scenes/InitializeScene.unity
-    guid: 6126caa8626a44e4b851a7d76c13bf18
-  - enabled: 1
-    path: Assets/@Cosmos/Scenes/LogoScene.unity
+    path: Assets/@Cosmos/Scenes/InitScene.unity
     guid: 315f375c81c4bb04d84209c0a52c78b3
   - enabled: 1
     path: Assets/@Cosmos/Scenes/TitleScene.unity
     guid: bd74ca1cd7f9eba40a6d15cdb10fe91f
   - enabled: 1
     path: Assets/@Cosmos/Scenes/BuildingScene.unity
-    guid: 21a55baf8e4800c4a9736716f5c5f8a7
+    guid: ff991f6a43d20944087386c7c5fcd6da
   - enabled: 1
     path: Assets/@Cosmos/Scenes/StageScene.unity
     guid: 80a83f0715d1d2344b827fc7d5e3e15e
+  - enabled: 1
+    path: Assets/@Cosmos/Scenes/SettingScene.unity
+    guid: bf374d4d3306ef64dab8623d9f1e2400
+  - enabled: 1
+    path: Assets/@Cosmos/Scenes/GuideBuildingScene.unity
+    guid: 08a1c85f68d56df438378bbbc176330e
+  - enabled: 1
+    path: Assets/@Cosmos/Scenes/GuideStageScene.unity
+    guid: 86c2caf4881f95746a723cb91b999627
+  - enabled: 1
+    path: Assets/@Cosmos/Scenes/CreditsScene.unity
+    guid: 1ead6778302ac8b4394f53640001de90
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 38e4b2541a8dc86428b0313b1cb6f015, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

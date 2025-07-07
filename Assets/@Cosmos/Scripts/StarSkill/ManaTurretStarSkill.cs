@@ -16,7 +16,7 @@ public class ManaTurretStarSkill : StarBase
         starBuff.RegisterActivateAction(ActivateManaTurret);
         EventBus.SubscribeGameStart(HandleGameStart);
         EventBus.SubscribeSceneLoaded(HandleSceneLoaded);
-
+        conditionCount = 1;
         skill = transform.parent.GetComponentInChildren<ManaTurretSkill>();
     }
 
@@ -35,19 +35,27 @@ public class ManaTurretStarSkill : StarBase
     /// <param name="mode"></param>
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "BuildingScene")
+        if (SceneLoader.IsInBuilding())
         {
             GridManager.Instance.RemoveUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
         }
     }
 
-    private void ActivateManaTurret(SkillBase skillbase)
+    private void ActivateManaTurret(SkillBase skillBase)
     {
-        if(skillbase.TileObject.GetTileData().TileCategory != TileCategory.Weapon || skillbase.TileObject.name.Contains("ManaAI"))
+        if(CheckCondition(skillBase))
         {
-            return;
+            skill.ActivateManaTurret();
         }
-        skill.ActivateManaTurret();
+    }
+
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.GetTileData().TileCategory == TileCategory.Weapon && !skillBase.TileObject.name.Contains("ManaAI"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnDestroy()

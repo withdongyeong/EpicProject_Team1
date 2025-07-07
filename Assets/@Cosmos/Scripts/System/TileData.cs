@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Tile Data", menuName = "Game/TileData")]
 public class TileData : ScriptableObject
@@ -15,6 +16,8 @@ public class TileData : ScriptableObject
     [Header("Gameplay Values")]
     public TileGrade tileGrade = TileGrade.Normal;
     public int tileCost = 1;
+    public float tileCoolTime = 1;
     public TileData requiredTile;
+    public List<TileData> rejectTileList;
     
 }

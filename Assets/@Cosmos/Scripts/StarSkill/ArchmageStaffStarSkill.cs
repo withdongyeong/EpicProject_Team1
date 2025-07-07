@@ -9,7 +9,7 @@ public class ArchmageStaffStarSkill : StarBase
     {
         base.Awake();
         starBuff.RegisterGameStartAction(GatherAxodia);
-
+        conditionCount = 2;
         // ProjectileSkill 컴포넌트를 가져옵니다.
         skill = transform.parent.GetComponentInChildren<ArchmageStaffSkill>();
     }
@@ -20,10 +20,19 @@ public class ArchmageStaffStarSkill : StarBase
     /// <param name="skillBase"></param>
     private void GatherAxodia(SkillBase skillBase)
     {
-        if (skillBase.TileObject.name.Contains("Goddess") || skillBase.TileObject.name.Contains("Clock"))
+        if (CheckCondition(skillBase))
         {
             skill.AddAdjacentTile(skillBase.TileObject.name);
         }
+    }
+
+    public override bool CheckCondition(SkillBase skillBase)
+    {
+        if (skillBase.TileObject.name.Contains("Goddess") || skillBase.TileObject.name.Contains("Clock"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnDestroy()

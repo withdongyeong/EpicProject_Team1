@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 /// <summary>
@@ -57,6 +57,8 @@ public class GameStateManager : Singleton<GameStateManager>
     public void WinGame()
     {
         SetGameState(GameState.Victory);
+        // 격자에 남아있는 이동불가 제거
+        GridManager.Instance.ClearAllUnmovableGridPositions();
     }
 
     /// <summary>
@@ -65,6 +67,8 @@ public class GameStateManager : Singleton<GameStateManager>
     public void LoseGame()
     {
         SetGameState(GameState.Defeat);
+        // 격자에 남아있는 이동불가 제거
+        GridManager.Instance.ClearAllUnmovableGridPositions();
     }
 
     /// <summary>

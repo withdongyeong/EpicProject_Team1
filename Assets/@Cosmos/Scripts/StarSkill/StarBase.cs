@@ -6,7 +6,7 @@ public class StarBase : MonoBehaviour
     protected CombinedStarCell combinedStarCell;
     protected TileObject tileObject;
     protected TileInfo tileInfo;
-
+    protected int conditionCount = 100;
 
     [SerializeField] protected StarBuff starBuff = new();
 
@@ -30,4 +30,15 @@ public class StarBase : MonoBehaviour
         tileObject = tile;
         tileInfo = tileObject.GetTileData();
     }
+
+    public virtual int GetConditionCount()
+    {
+        return conditionCount;
+    }
+    /// <summary>
+    /// 별 칸의 조건을 만족하는지 여부를 반환합니다.
+    /// </summary>
+    /// <param name="skillBase"></param>
+    /// <returns></returns>
+    public virtual bool CheckCondition(SkillBase skillBase) => true; // 기본 구현
 }
