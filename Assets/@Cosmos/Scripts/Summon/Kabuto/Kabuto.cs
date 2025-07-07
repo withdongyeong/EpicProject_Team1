@@ -45,6 +45,11 @@ public class Kabuto : MonoBehaviour
 
     private void OnProtectionConsume(int protection)
     {
+        if(_isCharging)
+        {
+            SoundManager.Instance.PlayTileSoundClip("KabutoConsume");
+        }
+        
         _currentConsume += protection;
         if(_currentConsume >= 20 && !_isCastOff)
         {
@@ -82,6 +87,7 @@ public class Kabuto : MonoBehaviour
 
     private void Fire()
     {
+        SoundManager.Instance.PlayTileSoundClip("KabutoFire");
         Vector3 dir = _target.transform.position - transform.position;
         GameObject projectileObj = Instantiate(_projectile, transform.position, Quaternion.identity);
         Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, dir);
