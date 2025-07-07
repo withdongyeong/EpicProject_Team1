@@ -35,6 +35,8 @@ public abstract class BaseBoss : MonoBehaviour
 
     // 피격음 코루틴
     private Coroutine hitSoundCoroutine;
+    
+    private TotalDamageManager _totalDamageManager;
 
     // Properties
     /// <summary>
@@ -110,6 +112,7 @@ public abstract class BaseBoss : MonoBehaviour
         _bossDebuff = GetComponent<BossDebuffs>();
         _animator = GetComponentInChildren<Animator>();
         _bombHandler = FindAnyObjectByType<BombAvoidanceHandler>();
+        _totalDamageManager = TotalDamageManager.Instance;
         
         // 패턴 리스트 초기화
         _executableUnits = new List<ExecutableUnit>();
@@ -226,6 +229,8 @@ public abstract class BaseBoss : MonoBehaviour
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
+        _totalDamageManager.AddDamage(damage);
+        
         if (_currentHealth <= 0)
         {
             Die();

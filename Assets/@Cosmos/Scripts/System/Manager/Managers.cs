@@ -21,6 +21,7 @@ public class Managers : MonoBehaviour
     private GameObject storeLockManager;
     private GameObject globalSetting;
     private GameObject lifeManager;
+    private GameObject totalDamageManager;
     
     
 
@@ -37,9 +38,10 @@ public class Managers : MonoBehaviour
         goldManager = Resources.Load<GameObject>("GoldManager");
         StageSelectManager = Resources.Load<GameObject>("StageSelectManager");
         FadeManager = Resources.Load<GameObject>("FadeManager");
-        globalSetting = Resources.Load<GameObject>("GlobalSetting");
         storeLockManager = Resources.Load<GameObject>("StoreLockManager");
+        globalSetting = Resources.Load<GameObject>("GlobalSetting");
         lifeManager = Resources.Load<GameObject>("LifeManager");
+        totalDamageManager = Resources.Load<GameObject>("TotalDamageManager");
         //Instantiate the managers
         MakeManager(gameManager);
         MakeManager(soundManager);
@@ -50,9 +52,10 @@ public class Managers : MonoBehaviour
         MakeManager(goldManager);
         MakeManager(StageSelectManager);
         MakeManager(FadeManager);
-        MakeManager(globalSetting);
         MakeManager(storeLockManager);
+        MakeManager(globalSetting);
         MakeManager(lifeManager);
+        MakeManager(totalDamageManager);
     }
 
     private void MakeManager(GameObject manager)
