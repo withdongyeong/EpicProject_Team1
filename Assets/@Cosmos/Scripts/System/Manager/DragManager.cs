@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 
 /// <summary>
@@ -228,12 +229,27 @@ public class DragManager : Singleton<DragManager>
         
         if (activeStarCount >= conditionCount)
         {
-            currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+            currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0.5f, 1f);
         }
         else
         {
             currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
         }
+        
+        /*if (activeStarCount >= conditionCount)
+        {
+            foreach (var star in currentDragObject.GetComponentsInChildren<Light2D>())
+            {
+                star.color = Color.yellow;
+            }
+        }
+        else
+        {
+            foreach (var star in currentDragObject.GetComponentsInChildren<Light2D>())
+            {
+                star.color = Color.white;
+            }
+        }*/
     }
 
     private void SetGridSprite(bool isPreview = false)

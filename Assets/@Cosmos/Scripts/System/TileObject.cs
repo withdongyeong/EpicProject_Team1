@@ -168,12 +168,28 @@ public class TileObject : MonoBehaviour
         
         if (activeStarCount >= conditionCount)
         {
-            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0.5f, 1f);
         }
         else
         {
             GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
         }
+        
+        
+        /*if (activeStarCount >= conditionCount)
+        {
+            foreach (var star in GetComponentsInChildren<Light2D>())
+            {
+                star.color = Color.yellow;
+            }
+        }
+        else
+        {
+            foreach (var star in GetComponentsInChildren<Light2D>())
+            {
+                star.color = Color.white;
+            }
+        }*/
     }
 
     public void HideStarCell()
