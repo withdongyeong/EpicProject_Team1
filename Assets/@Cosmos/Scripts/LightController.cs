@@ -11,7 +11,6 @@ public class LightController : MonoBehaviour
     [SerializeField] private float duration = 1.0f;
     [SerializeField] private float innerRadius = 0.3f;
     [SerializeField] private float outerRadius = 0.5f;
-
     private float velocity = 0f;
     private float randomOffset; // 시작 시 랜덤 오프셋
     private float timer;
@@ -59,5 +58,19 @@ public class LightController : MonoBehaviour
 
         // 부드럽게 전환
         starLight.intensity = Mathf.SmoothDamp(starLight.intensity, targetIntensity, ref velocity, duration * 0.5f);
+    }
+    
+    public void SetLightProperties(float maxIntensity, float minIntensity, float duration, float innerRadius, float outerRadius)
+    {
+        this.maxIntensity = maxIntensity;
+        this.minIntensity = minIntensity;
+        this.duration = duration;
+        this.innerRadius = innerRadius;
+        this.outerRadius = outerRadius;
+
+        // 초기화
+        starLight.intensity = minIntensity;
+        starLight.pointLightInnerRadius = innerRadius;
+        starLight.pointLightOuterRadius = outerRadius;
     }
 }

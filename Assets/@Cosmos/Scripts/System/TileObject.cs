@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class TileObject : MonoBehaviour
 {
@@ -166,30 +167,30 @@ public class TileObject : MonoBehaviour
         }
         
         
-        if (activeStarCount >= conditionCount)
+        /*if (activeStarCount >= conditionCount)
         {
             GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0.5f, 1f);
         }
         else
         {
             GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
-        }
+        }*/
         
         
-        /*if (activeStarCount >= conditionCount)
+        if (activeStarCount >= conditionCount)
         {
-            foreach (var star in GetComponentsInChildren<Light2D>())
+            foreach (var star in GetComponentsInChildren<LightController>())
             {
-                star.color = Color.yellow;
+                star.SetLightProperties(6,3,0.8f,0.1f,0.4f);
             }
         }
         else
         {
-            foreach (var star in GetComponentsInChildren<Light2D>())
+            foreach (var star in GetComponentsInChildren<LightController>())
             {
-                star.color = Color.white;
+                star.SetLightProperties(2,0,1f,0.1f,0.2f);
             }
-        }*/
+        }
     }
 
     public void HideStarCell()
