@@ -197,6 +197,7 @@ public class SoundManager : Singleton<SoundManager>
         base.Awake();
         EventBus.Init();
 
+
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
 
@@ -340,8 +341,20 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
+        EventBus.SubscribePlayerDeath(PlayerDeadSound);
+        EventBus.SubscribeBossDeath(BossDeadSound);
+    }
+
+    private void PlayerDeadSound()
+    {
+        StopBGMSound();
+        UISoundClip("LoseActivate");
+    }
+
+    private void BossDeadSound()
+    {
+        UISoundClip("GameClearActivate");
     }
 
     /// <summary>
@@ -677,5 +690,7 @@ public class SoundManager : Singleton<SoundManager>
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
+        EventBus.UnsubscribePlayerDeath(PlayerDeadSound);
+        EventBus.UnsubscribeBossDeath(BossDeadSound);
     }
 }
