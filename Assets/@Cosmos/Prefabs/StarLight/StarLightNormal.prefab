@@ -96,9 +96,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05f524d090ac11f479d0cbadf29a9264, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  maxIntensity: 5
-  minIntensity: 2
+  m_EditorClassIdentifier:  
+  maxIntensity: 2
+  minIntensity: 0
   duration: 1
   innerRadius: 0.1
-  outerRadius: 0.3
+  outerRadius: 0.2
