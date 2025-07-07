@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 7
+  _healAmount: 5
   _enchantedHealAmount: 10
 --- !u!4 &9127531905601906501 stripped
 Transform:
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 7
+  _healAmount: 5
   _enchantedHealAmount: 10
 --- !u!1001 &3397260721526755766
 PrefabInstance:
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89fb033cc212b546aea5efa9e1c17ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 7
+  _healAmount: 5
   _enchantedHealAmount: 10
 --- !u!1 &7281041991409893499 stripped
 GameObject:
