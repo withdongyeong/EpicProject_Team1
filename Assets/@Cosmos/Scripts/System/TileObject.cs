@@ -154,7 +154,7 @@ public class TileObject : MonoBehaviour
     public void SetStarEffect()
     {
         //배치 씬 인접효과 비주얼을 위한 코드
-        if (combinedStarCell.GetComponent<CombinedStarCell>() == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
+        if (combinedStarCell == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
         int conditionCount = combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill().GetConditionCount();
         int activeStarCount = 0;
         foreach (var star in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
