@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class ManaAISkill : NonActivateSkill
+public class ManaAISkill : SkillBase
 {
     private bool isInGameScene = false;
 
@@ -27,6 +27,11 @@ public class ManaAISkill : NonActivateSkill
             yield return new WaitForSeconds(1f);
             skillBase.TryActivate();
         }
+    }
+
+    protected override void Activate()
+    {
+
     }
 
     /// <summary>

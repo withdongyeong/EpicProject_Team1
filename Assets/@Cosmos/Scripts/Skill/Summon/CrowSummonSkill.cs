@@ -24,8 +24,8 @@ public class CrowSummonSkill : NonActivateSkill
     {
         if (SceneLoader.IsInStage() && tileObject.IsPlaced)
         {
-            Vector3 spawnPos = transform.position + new Vector3(0.5f, 0.5f);
-            _currentCrow = Instantiate(_crowPrefab, spawnPos, Quaternion.identity).GetComponent<Crow>();
+            Vector3 spawnPos = transform.TransformPoint((Vector3.up + Vector3.right)/2);
+            _currentCrow = Instantiate(_crowPrefab, spawnPos, transform.parent.rotation).GetComponent<Crow>();
             _currentCrow.Init(this);
         }
     }

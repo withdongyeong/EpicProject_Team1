@@ -154,7 +154,7 @@ public class TileObject : MonoBehaviour
     public void SetStarEffect()
     {
         //배치 씬 인접효과 비주얼을 위한 코드
-        if (combinedStarCell.GetComponent<CombinedStarCell>() == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
+        if (combinedStarCell == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
         int conditionCount = combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill().GetConditionCount();
         int activeStarCount = 0;
         foreach (var star in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
@@ -168,12 +168,28 @@ public class TileObject : MonoBehaviour
         
         if (activeStarCount >= conditionCount)
         {
-            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0.5f, 1f);
         }
         else
         {
             GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
         }
+        
+        
+        /*if (activeStarCount >= conditionCount)
+        {
+            foreach (var star in GetComponentsInChildren<Light2D>())
+            {
+                star.color = Color.yellow;
+            }
+        }
+        else
+        {
+            foreach (var star in GetComponentsInChildren<Light2D>())
+            {
+                star.color = Color.white;
+            }
+        }*/
     }
 
     public void HideStarCell()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor.Animations;
 using System;
 
 public class SwordController : MonoBehaviour
@@ -141,7 +142,10 @@ public class SwordController : MonoBehaviour
     /// 각 검의 고유 오프셋 각도
     /// </summary>
     private float bladeStormOffsetAngle;
-    
+
+    private AnimatorController swordAnimator;
+    private AnimatorController flamingSwordAnimator;
+
     /// <summary>
     /// 검 상태 열거형
     /// </summary>
@@ -166,6 +170,10 @@ public class SwordController : MonoBehaviour
         // 각 검마다 다른 속도 설정
         flySpeed = UnityEngine.Random.Range(6f, 12f);
         turnSpeed = UnityEngine.Random.Range(120f, 540f);
+
+        // 애니메이터 컨트롤러 로드
+        swordAnimator = Resources.Load<AnimatorController>("Prefabs/Swords/SwordAnim");
+        flamingSwordAnimator = Resources.Load<AnimatorController>("Prefabs/Swords/FlamingSwordAnim");
     }
 
     /// <summary>
@@ -185,28 +193,6 @@ public class SwordController : MonoBehaviour
         // 5초 후에 오브젝트 파괴
         Destroy(gameObject, 7f);
     }
-
-    ///// <summary>
-    ///// 자식 스프라이트 렌더러들에 랜덤 색상 적용
-    ///// </summary>
-    //private void ApplyRandomColor()
-    //{
-    //    // 랜덤 색상 생성
-    //    Color randomColor = new Color(
-    //        UnityEngine.Random.Range(0.3f, 1f), // R
-    //        UnityEngine.Random.Range(0.3f, 1f), // G
-    //        UnityEngine.Random.Range(0.3f, 1f), // B
-    //        1f // A (완전 불투명)
-    //    );
-    
-    //    // 모든 자식의 SpriteRenderer 찾아서 같은 색 적용
-    //    SpriteRenderer[] childRenderers = GetComponentsInChildren<SpriteRenderer>();
-    
-    //    foreach (SpriteRenderer renderer in childRenderers)
-    //    {
-    //        renderer.color = randomColor;
-    //    }
-    //}
 
     /// <summary>
     /// 매 프레임 업데이트
@@ -502,6 +488,23 @@ public class SwordController : MonoBehaviour
             #if UNITY_EDITOR
             UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f, $"Speed: {flySpeed:F1}");
             #endif
+        }
+    }
+
+    /// <summary>
+    /// 애니메이터 컨트롤러 변경
+    /// </summary>
+    /// <param name="isburning">불타고 있는지 체크하는 변수</param>
+    public void ChangeAnimatorController(bool isburning)
+    {
+        Animator animator = GetComponentInChildren<Animator>();
+        if (isburning && flamingSwordAnimator != null)
+        {
+            animator.runtimeAnimatorController = flamingSwordAnimator; // 불타는 검 애니메이션 설정
+        }
+        else if (swordAnimator != null)
+        {
+            animator.runtimeAnimatorController = swordAnimator; // 기본 검 애니메이션 설정
         }
     }
 }

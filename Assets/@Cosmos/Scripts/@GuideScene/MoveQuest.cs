@@ -46,7 +46,7 @@ public class MoveQuest : GuideQuest
             
             moveCount++;
         }
-        instructionText = $"가이드 1\n ㄴ 캐릭터를 움직이세요\n ({moveCount}/5)";
+        instructionText = $"가이드 1\n ㄴ 캐릭터를 움직이세요\n ({Mathf.Min(moveCount,5)}/5)";
         GuideHandler.instance.questText.text = instructionText;
         return moveCount >= 5;
     }
