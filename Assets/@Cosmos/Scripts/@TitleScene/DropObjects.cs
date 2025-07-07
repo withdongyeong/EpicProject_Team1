@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -22,7 +22,6 @@ public class DropObjects : MonoBehaviour
     [Header("랜덤 변수")]
     [SerializeField] private float fallSpeedVariation = 0.5f;     // 떨어지는 속도 변동
     [SerializeField] private float rotationSpeedVariation = 30f;  // 회전 속도 변동
-    [SerializeField] private float scaleVariation = 0.3f;         // 크기 변동
     [SerializeField] private Vector2 scaleRange = new Vector2(0.5f, 1.2f); // 크기 범위
     
     [Header("라이트 설정")]
@@ -44,8 +43,8 @@ public class DropObjects : MonoBehaviour
     {
         mainCamera = Camera.main;
         if (mainCamera == null)
-            mainCamera = FindObjectOfType<Camera>();
-            
+            mainCamera = FindAnyObjectByType<Camera>(); 
+        
         if (autoStart)
             StartDrop();
     }

@@ -56,7 +56,7 @@ public class DragManager : Singleton<DragManager>
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
         worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
         LocalPos = currentDragObject.transform.position - worldPosition; //현재 마우스 위치 기준으로 현재 드래그되는 타일의 로컬 포지션.
-        
+        draggableObject.GetComponent<TileObject>().OnDragged();
     }
     
     public void Drag()
@@ -113,6 +113,8 @@ public class DragManager : Singleton<DragManager>
         
         
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
+
+        tileObject.OnPlaced();
         //배치된 타일이 인접효과를 계산하게 합니다
         tileObject.UpdateStarList();
         //타일이 배치되었음을 알립니다. 현재 사용하는애가 없습니다.

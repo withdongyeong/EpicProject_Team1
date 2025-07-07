@@ -29,9 +29,9 @@ public class Crow : MonoBehaviour
 
     private void Activate()
     {
+        SoundManager.Instance.PlayTileSoundClip("CrowHowling");
         _currentConsume = 0;
         BaseBoss boss = FindAnyObjectByType<BaseBoss>();
-        //TODO: 이거 화상말고 낙인으로 바꿀것
         boss.AddDebuff(BossDebuff.Mark);
     }
 
