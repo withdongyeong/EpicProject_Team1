@@ -48,6 +48,7 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
         GoldManager.Instance.ModifyCurrentGold((tileObject.GetTileData().TileCost + 1) / 2);
         EventBus.PublishTileSell(tileObject);
         DragManager.Instance.DestroyObject();
+        SoundManager.Instance.UISoundClip("DeploymentActivate");
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

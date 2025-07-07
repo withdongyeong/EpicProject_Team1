@@ -253,7 +253,6 @@ public class GridManager : Singleton<GridManager>
     {
         if (IsCellAvailable(gridPos))
         {
-            SoundManager.Instance.UISoundClip("DeploymentActivate");
             grid[gridPos.x, gridPos.y].IsOccupied = true;
             grid[gridPos.x, gridPos.y].SetCellData(cellData);
 

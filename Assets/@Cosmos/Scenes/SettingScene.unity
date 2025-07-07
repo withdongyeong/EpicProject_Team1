@@ -730,8 +730,8 @@ RectTransform:
   - {fileID: 853172747}
   m_Father: {fileID: 889945965}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1203,7 +1203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 889945965}
   - component: {fileID: 889945967}
-  - component: {fileID: 889945966}
   m_Layer: 5
   m_Name: SoundVolumeSlider
   m_TagString: Untagged
@@ -1233,19 +1232,6 @@ RectTransform:
   m_AnchoredPosition: {x: 153, y: -60}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &889945966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889945964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90417eda05bdd564ab7feb25ba5bb034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: f002a70f7682660459c995a106281145, type: 2}
 --- !u!114 &889945967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,6 +2175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: f002a70f7682660459c995a106281145, type: 2}
+  bgmSlider: {fileID: 1287798416}
+  sfxSlider: {fileID: 889945967}
 --- !u!114 &1287798416
 MonoBehaviour:
   m_ObjectHideFlags: 0
