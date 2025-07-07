@@ -103,7 +103,7 @@ public class CombineCell : MonoBehaviour
     private IEnumerator CoolDownActivateCoroutine(float coolDownTime)
     {
         
-        sr.color = Color.white;
+        sr.color = new Color(1, 1, 1, 1f);
         foreach (var effect in coolDownEffects)
         {
             effect.Init();
@@ -124,11 +124,12 @@ public class CombineCell : MonoBehaviour
         
         foreach (var effect in coolDownEffects)
         {
-            effect.Init();
+            effect.CompleteEffect();
         }
-        sr.color = Color.yellow;
+        
     }
 
+    
     public void InitCoolDownGroup()
     {
         grouped.Clear(); // 기존 그룹화된 데이터를 초기화

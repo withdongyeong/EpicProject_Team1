@@ -8,17 +8,64 @@ public class CoolDownEffect : MonoBehaviour
     [SerializeField]
     private float coolDownPoint = 0;
     private SpriteRenderer sr;
+
+    [SerializeField]
+    private Color yellowColor;
     public void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        string hexColor = "#FFF32F";
+        ColorUtility.TryParseHtmlString(hexColor, out Color color);
+        color.a = 0.1f;
+        yellowColor = color;
+        sr.color = yellowColor;
         EventBus.SubscribeGameStart(SetPosition);
         EventBus.SubscribeBossDeath(Init);
     }
 
+    
+    //초기화
     public void Init()
     {
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
+    }
+
+
+    public void CompleteEffect()
+    {
+        StopAllCoroutines();
+        StartCoroutine(CompleteEffectCoroutine());
+    }
+
+    private IEnumerator CompleteEffectCoroutine()
+    {
+        //노란색이 됐다가 빠르게 흰색으로 변함
+        float duration = 0.2f;
+        Color originalColor = yellowColor;
+        Color targetColor = new Color(1f, 1f, 0f, 0.4f);
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            sr.color = Color.Lerp(originalColor, targetColor, t);
+            yield return null;
+        }
+
+        duration = 0.1f;
+        originalColor = new Color(1f, 1f, 0f, 0.1f);
+        targetColor = new Color(1f, 1f, 0f, 0.0f);
+        elapsedTime = 0f;
+        
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            sr.color = Color.Lerp(originalColor, targetColor, t);
+            yield return null;
+        }
     }
     public void StartCoolDown(float coolDownTime)
     {
@@ -28,6 +75,7 @@ public class CoolDownEffect : MonoBehaviour
     }
     private IEnumerator CoolDownCoroutine(float coolDownTime)
     {
+        sr.color = yellowColor;
         while (coolDownPoint < 1)
         {
             coolDownPoint += Time.deltaTime / coolDownTime;
