@@ -11,7 +11,7 @@ public class RotateQuest : GuideQuest
         titleText = "- 가이드 4 -";
         subTitleText = "별자리를 회전하기";
         contentText = "별자리를 회전시켜보세요\n" +
-                      "별자리를 회전시키는 방법은\n별자리를 클릭한 후,\nR을 누르거나, \n마우스 오른쪽 버튼을 클릭하면 됩니다";
+                      "별자리를 회전시키는 방법은\n별자리를 드래그 한 후,\nR을 누르거나, \n마우스 오른쪽 버튼을 클릭하면 됩니다";
         goalText = "- 완료 조건 -\n" +
                    "별자리 회전시키기 (0/5)\n";
     }
