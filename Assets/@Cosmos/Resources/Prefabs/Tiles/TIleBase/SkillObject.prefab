@@ -46,12 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  tileInfo:
-    tileName: 
-    description: 
-    tileSprite: {fileID: 0}
-    tileGrade: 0
-    tileCost: 0
 --- !u!1001 &1364691630411670707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60,10 +54,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 952072043331698490}
     m_Modifications:
-    - target: {fileID: 4692320175943509946, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 60798664f4198a3448a4171e18f1f1cc, type: 2}
     - target: {fileID: 5542817667962082574, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_Name
       value: CombinedCell

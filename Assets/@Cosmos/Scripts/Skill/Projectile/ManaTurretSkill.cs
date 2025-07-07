@@ -39,5 +39,6 @@ public class ManaTurretSkill : ProjectileSkill
     public void ActivateManaTurret()
     {
         FireProjectile();
+        SoundManager.Instance.UISoundClip("ManaTurretSkillActivate");
     }
 }
