@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 
 public class InfoTextRenderer : MonoBehaviour
@@ -12,12 +13,12 @@ public class InfoTextRenderer : MonoBehaviour
 
     Dictionary<TileCategory, string> _categotyDict = new Dictionary<TileCategory, string>
     {
-        { TileCategory.Weapon, "<color=#D5F1FF>#무기<sprite name=\"Weapon\"></color>" },
-        { TileCategory.MagicCircle, "<color=#D5F1FF>#마법진<sprite name=\"MagicCircle\"></color>" },
-        { TileCategory.Armor, "<color=#D5F1FF>#방어구<sprite name=\"Armor\"></color>" },
-        { TileCategory.Consumable, "<color=#D5F1FF>#소모품<sprite name=\"Potion\"></color>" },
-        { TileCategory.Trinket, "<color=#D5F1FF>#장신구<sprite name=\"Trinket\"></color>" },
-        { TileCategory.Summon, "<color=#D5F1FF>#소환수<sprite name=\"Summon\"></color>" }
+        { TileCategory.Weapon, "<color=#D5F1FF>무기<sprite name=\"Weapon\"></color>" },
+        { TileCategory.MagicCircle, "<color=#D5F1FF>마법진<sprite name=\"MagicCircle\"></color>" },
+        { TileCategory.Armor, "<color=#D5F1FF>방어구<sprite name=\"Armor\"></color>" },
+        { TileCategory.Consumable, "<color=#D5F1FF>소모품<sprite name=\"Potion\"></color>" },
+        { TileCategory.Trinket, "<color=#D5F1FF>장신구<sprite name=\"Trinket\"></color>" },
+        { TileCategory.Summon, "<color=#D5F1FF>소환수<sprite name=\"Summon\"></color>" }
     };
 
     Dictionary<string, string> _synergyDict = new Dictionary<string, string>
@@ -34,6 +35,7 @@ public class InfoTextRenderer : MonoBehaviour
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
     private GameObject synergyTextPrefab; // 시너지 텍스트
+    private GameObject categoryTextPrefab; // 종류 텍스트
     private GameObject linePrefab; // 구분선 프리팹
 
     private void Awake()
@@ -42,6 +44,7 @@ public class InfoTextRenderer : MonoBehaviour
         descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
         synergyTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/SynergyText");
         linePrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/Line");
+        categoryTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/CategoryText");
     }
 
     /// <summary>
@@ -50,9 +53,9 @@ public class InfoTextRenderer : MonoBehaviour
     /// <param name="tileInfo">tiledata.description 넣어주시면 됩니다</param>
     public void InstantiateDescriptionText(TileObject tileInfo)
     {
+        bool hasTag = false;
         //태그 프리팹 추가
         List<string> tags = Parse(tileInfo.GetTileData().Description);
-        TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
         string synergy = "";
         if (tags.Count > 0)
         {
@@ -61,16 +64,20 @@ public class InfoTextRenderer : MonoBehaviour
                 if(_synergyDict.ContainsKey(tag))
                 {
                     synergy = synergy + _synergyDict[tag] + " ";
+                    hasTag = true;
                 }
             }
         }
-        synergy += _categotyDict[tileInfo.GetTileData().TileCategory] + " "; // 카테고리 태그 추가
-        synergyText.SetText(synergy);
+        if(hasTag)
+        {
+            TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
+            synergyText.SetText(synergy);
+        }
+        
 
         //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
         descriptionText.SetText(tileInfo.GetTileData().Description);
-
 
         //태그 설명 추가
         foreach (string tag in tags)
@@ -81,6 +88,13 @@ public class InfoTextRenderer : MonoBehaviour
                 TextUIResizer tagText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
                 tagText.SetTagText(tagDescription[tag]);
             }
+        }
+
+        //카테고리 텍스트 추가
+        TextMeshProUGUI categoryText = Instantiate(categoryTextPrefab, transform).GetComponent<TextMeshProUGUI>();
+        if (_categotyDict.TryGetValue(tileInfo.GetTileData().TileCategory, out string categoryTextValue))
+        {
+            categoryText.text = categoryTextValue;
         }
     }
 

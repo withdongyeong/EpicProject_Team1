@@ -73,6 +73,7 @@ public class DragManager : Singleton<DragManager>
         
         isDragging = false;
         currentDragObject = null;
+        GridManager.Instance.TilesOnGrid.SetTileObjectStarEffect();
         UpdatePreviewCell();
     }
 
@@ -108,6 +109,7 @@ public class DragManager : Singleton<DragManager>
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
 
+        SoundManager.Instance.UISoundClip("DeploymentActivate");
         SetGridSprite();
         
         
@@ -169,7 +171,6 @@ public class DragManager : Singleton<DragManager>
         }
         
         SetGridSprite(true);
-        
 
         // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
         List<TileObject> skills = new List<TileObject>();
@@ -205,6 +206,31 @@ public class DragManager : Singleton<DragManager>
                     skills.Add(skill.TileObject);
                 }
             }
+            
+            SetStarEffect();
+        }
+    }
+
+    private void SetStarEffect()
+    {
+        //배치 씬 인접효과 비주얼을 위한 코드
+        int conditionCount = currentDragObject.GetComponentInChildren<CombinedStarCell>().GetStarSkill().GetConditionCount();
+        int activeStarCount = 0;
+        foreach (var star in currentDragObject.GetComponentInChildren<CombinedStarCell>().GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (star.sprite.name == "Star")
+            {
+                activeStarCount++;
+            }
+        }
+        
+        if (activeStarCount >= conditionCount)
+        {
+            currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+        }
+        else
+        {
+            currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
         }
     }
 

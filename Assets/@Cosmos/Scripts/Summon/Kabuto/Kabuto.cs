@@ -56,6 +56,7 @@ public class Kabuto : MonoBehaviour
     {
         _isCastOff = true;
         _sr.sprite = _imago;
+        SoundManager.Instance.PlayTileSoundClip("KabutoCastOff");
     }
 
     private void PutOn()

@@ -22,6 +22,18 @@ public class StoreLocker : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         storeSlot._onPurchase += OnPurchase;
     }
 
+    private void Start()
+    {
+        if (StoreLockManager.Instance.GetStoreLocks(storeSlot.SlotNum) != null)
+        {
+            image.sprite = sprites[1];
+        }
+        else
+        {
+            image.sprite = sprites[0];
+        }
+    }
+
     private void OnClick()
     {
         if (storeSlot.GetObject() != null && !storeSlot.IsPurchased)

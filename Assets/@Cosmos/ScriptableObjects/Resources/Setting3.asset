@@ -58,6 +58,10 @@ MonoBehaviour:
     shop_RareChance: 20
     shop_EpicChance: 30
     shop_LegendaryChance: 25
+  - shop_NormalChance: 15
+    shop_RareChance: 20
+    shop_EpicChance: 30
+    shop_LegendaryChance: 25
   language_SynergyTranslationSO: {fileID: 0}
   bossBalanceList:
   - maxHP: 50
@@ -93,3 +97,9 @@ MonoBehaviour:
   - maxHP: 4500
     weakDamage: 40
     strongDamage: 50
+  shop_FirstTileDataList:
+  - {fileID: 11400000, guid: cb45518412b307546a0f2f84ab715147, type: 2}
+  - {fileID: 11400000, guid: 64710644465c105419065e236e6274e5, type: 2}
+  - {fileID: 11400000, guid: 493ccd259775cc442841e8acc06b4c82, type: 2}
+  - {fileID: 11400000, guid: 6ace4b892c8c84048878db1c2292abf1, type: 2}
+  - {fileID: 11400000, guid: 74b8ff4b6f44b4c4a87b6d50cc70acf7, type: 2}

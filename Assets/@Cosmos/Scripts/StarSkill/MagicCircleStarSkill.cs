@@ -10,9 +10,9 @@ public class MagicCircleStarSkill : StarBase
     protected override void Awake()
     {
         base.Awake();
+        conditionCount = 3;
         starBuff.RegisterGameStartAction(CheckMagicCircle);
         EventBus.SubscribeSceneLoaded(InitClear);
-
         // 자식 오브젝트에서 모든 SkillBase 컴포넌트를 가져옵니다.
         skills = transform.parent.GetComponentsInChildren<SkillBase>();
     }
@@ -43,7 +43,7 @@ public class MagicCircleStarSkill : StarBase
         if (!isActivated)
         {
             magicCircleCount++;
-            if (magicCircleCount >= 3)
+            if (magicCircleCount >= conditionCount)
             {
                 // 모든 스킬에 Magic Circle 버프를 적용합니다.
                 foreach (var skill in skills)
