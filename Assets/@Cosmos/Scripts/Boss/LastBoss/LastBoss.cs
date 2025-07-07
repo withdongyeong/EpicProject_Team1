@@ -123,8 +123,7 @@ public class LastBoss : BaseBoss
     protected override void Die()
     {
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
-
-        SetAnimationTrigger("Death");
+        
         // 기본 사망 처리 호출
         base.Die();
     }

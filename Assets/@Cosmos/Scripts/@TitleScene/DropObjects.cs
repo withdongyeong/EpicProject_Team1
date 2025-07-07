@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -22,7 +22,6 @@ public class DropObjects : MonoBehaviour
     [Header("랜덤 변수")]
     [SerializeField] private float fallSpeedVariation = 0.5f;     // 떨어지는 속도 변동
     [SerializeField] private float rotationSpeedVariation = 30f;  // 회전 속도 변동
-    [SerializeField] private float scaleVariation = 0.3f;         // 크기 변동
     [SerializeField] private Vector2 scaleRange = new Vector2(0.5f, 1.2f); // 크기 범위
     
     [Header("라이트 설정")]
@@ -44,8 +43,8 @@ public class DropObjects : MonoBehaviour
     {
         mainCamera = Camera.main;
         if (mainCamera == null)
-            mainCamera = FindObjectOfType<Camera>();
-            
+            mainCamera = FindAnyObjectByType<Camera>(); 
+        
         if (autoStart)
             StartDrop();
     }
@@ -164,36 +163,34 @@ public class DropObjects : MonoBehaviour
         return new Vector3(basePos.x + randomX, basePos.y + spawnHeight, basePos.z);
     }
 
-    /// <summary>
-    /// 기즈모 그리기 (에디터에서 소환 범위 확인)
-    /// </summary>
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Vector3 center = transform.position + Vector3.up * spawnHeight;
         float halfRange = spawnRangeX / 2f;
         float halfExclude = excludeCenterWidth / 2f;
-        
+
         // 전체 소환 범위 (회색)
         Gizmos.color = Color.gray;
         Gizmos.DrawWireCube(center, new Vector3(spawnRangeX, 0.1f, 0.1f));
-        
+
         // 실제 소환 구간 (노란색)
         Gizmos.color = Color.yellow;
-        // 왼쪽 구간
         Vector3 leftCenter = center + Vector3.left * (halfExclude + (halfRange - halfExclude) / 2f);
         Gizmos.DrawWireCube(leftCenter, new Vector3(halfRange - halfExclude, 0.1f, 0.1f));
-        // 오른쪽 구간
         Vector3 rightCenter = center + Vector3.right * (halfExclude + (halfRange - halfExclude) / 2f);
         Gizmos.DrawWireCube(rightCenter, new Vector3(halfRange - halfExclude, 0.1f, 0.1f));
-        
+
         // 중앙 제외 구간 (빨간색)
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(center, new Vector3(excludeCenterWidth, 0.1f, 0.1f));
-        
+
         // 중심점
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 0.2f);
     }
+    #endif
+
 }
 
 /// <summary>

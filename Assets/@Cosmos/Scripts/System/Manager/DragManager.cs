@@ -56,7 +56,7 @@ public class DragManager : Singleton<DragManager>
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
         worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
         LocalPos = currentDragObject.transform.position - worldPosition; //현재 마우스 위치 기준으로 현재 드래그되는 타일의 로컬 포지션.
-        
+        draggableObject.GetComponent<TileObject>().OnDragged();
     }
     
     public void Drag()
@@ -73,6 +73,7 @@ public class DragManager : Singleton<DragManager>
         
         isDragging = false;
         currentDragObject = null;
+        GridManager.Instance.TilesOnGrid.SetTileObjectStarEffect();
         UpdatePreviewCell();
     }
 
@@ -113,6 +114,8 @@ public class DragManager : Singleton<DragManager>
         
         
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
+
+        tileObject.OnPlaced();
         //배치된 타일이 인접효과를 계산하게 합니다
         tileObject.UpdateStarList();
         //타일이 배치되었음을 알립니다. 현재 사용하는애가 없습니다.
@@ -170,7 +173,6 @@ public class DragManager : Singleton<DragManager>
         }
         
         SetGridSprite(true);
-        
 
         // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
         List<TileObject> skills = new List<TileObject>();
@@ -206,6 +208,31 @@ public class DragManager : Singleton<DragManager>
                     skills.Add(skill.TileObject);
                 }
             }
+            
+            SetStarEffect();
+        }
+    }
+
+    private void SetStarEffect()
+    {
+        //배치 씬 인접효과 비주얼을 위한 코드
+        int conditionCount = currentDragObject.GetComponentInChildren<CombinedStarCell>().GetStarSkill().GetConditionCount();
+        int activeStarCount = 0;
+        foreach (var star in currentDragObject.GetComponentInChildren<CombinedStarCell>().GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (star.sprite.name == "Star")
+            {
+                activeStarCount++;
+            }
+        }
+        
+        if (activeStarCount >= conditionCount)
+        {
+            currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0, 1f);
+        }
+        else
+        {
+            currentDragObject.GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
         }
     }
 

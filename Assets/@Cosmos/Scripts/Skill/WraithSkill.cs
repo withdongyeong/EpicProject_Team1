@@ -14,16 +14,20 @@ public class WraithSkill : SkillBase
 
     private void OnGameStart()
     {
-        targetEnemy = FindAnyObjectByType<BaseBoss>();
-        bossDebuffs = targetEnemy.GetComponent<BossDebuffs>();
-        if (targetEnemy == null)
+        if(tileObject.IsPlaced)
         {
-            Debug.LogError("WraithSkill: Target enemy (BaseBoss) not found in the scene.");
+            targetEnemy = FindAnyObjectByType<BaseBoss>();
+            bossDebuffs = targetEnemy.GetComponent<BossDebuffs>();
+            if (targetEnemy == null)
+            {
+                Debug.LogError("WraithSkill: Target enemy (BaseBoss) not found in the scene.");
+            }
+            if (bossDebuffs.MaxCurseCount < 40)
+            {
+                bossDebuffs.MaxCurseCount = 40; // 저주 상태 이상 최대치 설정
+            }
         }
-        if (bossDebuffs.MaxCurseCount < 40)
-        {
-            bossDebuffs.MaxCurseCount = 40; // 저주 상태 이상 최대치 설정
-        }
+        
     }
 
     protected override void Activate()
