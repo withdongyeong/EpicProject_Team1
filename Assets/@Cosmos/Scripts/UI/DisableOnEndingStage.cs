@@ -1,12 +1,29 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DisableOnEndingStage : MonoBehaviour
 {
+    private bool init = false;
+
     private void Start()
     {
-        if (StageSelectManager.Instance != null && StageSelectManager.Instance.StageNum == 10)
+        if (!init)
+        {
+            EventBus.SubscribeStageChange(OnStageChange);
+        }
+        Debug.Log("시작");
+        OnStageChange();
+    }
+
+    private void OnStageChange()
+    {
+        if (StageSelectManager.Instance != null && StageSelectManager.Instance.StageNum >= 11)
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeStageChange(OnStageChange);
     }
 }

@@ -83,7 +83,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
         List<Coroutine> growthCoroutines = new List<Coroutine>();
         foreach (WavyLine line in wavyLines)
         {
-            growthCoroutines.Add(boss.StartCoroutine(GrowWavyLine(boss, line)));
+           growthCoroutines.Add(boss.StartCoroutine(GrowWavyLine(boss, line)));
         }
 
         // 모든 성장 완료까지 대기

@@ -141,18 +141,19 @@ public class SoundManager : Singleton<SoundManager>
     //손 볼륨 딕셔너리
     private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"BigHandAttackActivate", 0.03f},
+        {"BigHandAttackActivate", 0.3f},
         {"BigHandFistActivate", 0.01f},
         {"BigHandFingerActivate", 0.7f},
         {"BigHandDamageActivate", 0.3f },
         {"BigHandDeadActivate", 0.3f },
+        {"BigHandSlideActivate", 0.5f}
     };
 
     private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
     //최종보스 볼륨 딕셔너리
     private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"LastBossDamageActivate", 1f },
+        {"LastBossDamageActivate", 0.3f },
         {"LastBossDeadActivate", 1f },
         {"LastBossFlameAttackActivate", 0.1f },
         {"LastBossFrostAttackActivate", 0.1f },
@@ -169,10 +170,13 @@ public class SoundManager : Singleton<SoundManager>
     //UI 사운드볼륨
     private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"DeploymentActivate", 0.05f},
+        {"DeploymentActivate", 0.2f},
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.1f },
-        {"BlackHoleStartActivate", 0.8f }
+        {"BlackHoleStartActivate", 0.8f },
+        {"TileOpenActivate", 0.2f },
+        {"TileLockActivate", 0.2f },
+        {"TileSellActivate", 1f }
     };
 
     //BGM 사운드 딕셔너리
@@ -616,6 +620,14 @@ public class SoundManager : Singleton<SoundManager>
             bgmAudioSource.clip = clip;
             bgmAudioSource.volume = volume;
             bgmAudioSource.Play();
+        }
+    }
+
+    public void StopBGMSound()
+    {
+        if (bgmAudioSource != null && bgmAudioSource.isPlaying)
+        {
+            bgmAudioSource.Stop();
         }
     }
 
