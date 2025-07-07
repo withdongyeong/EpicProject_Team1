@@ -25,6 +25,7 @@ public class SwordHandler : MonoBehaviour
                 if (sword != null)
                 {
                     sword.IsBurning = value;
+                    sword.ChangeAnimatorController(value);
                 }
             }
         }

@@ -4,11 +4,13 @@ public class PhantomSkill : SkillBase
 {
     private BaseBoss targetEnemy; // 보스 인스턴스 참조
     private BossDebuffs bossDebuffs; // 보스의 상태 이상 관리 클래스 참조
+    private GameObject phantomAnim;
 
     protected override void Awake()
     {
         base.Awake();
         EventBus.SubscribeGameStart(OnGameStart);
+        phantomAnim = Resources.Load<GameObject>("Prefabs/Anim/Phantom"); // 리소스에서 애니메이션 프리팹 로드
     }
 
     private void OnGameStart()
@@ -33,6 +35,10 @@ public class PhantomSkill : SkillBase
     {
         base.Activate();
         LoseAllCurse(); // 모든 저주 상태 이상을 제거
+        if (phantomAnim != null)
+        {
+            Instantiate(phantomAnim, tileObject.transform.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity); // 애니메이션 생성
+        }
     }
 
     /// <summary>
