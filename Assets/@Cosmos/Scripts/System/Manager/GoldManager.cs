@@ -85,14 +85,18 @@ public class GoldManager : Singleton<GoldManager>
 
     private void GetGoldPerStage()
     {
-        if(StageSelectManager.Instance.StageNum < 2)
+        if(GameStateManager.Instance.CurrentState != GameState.Defeat)
         {
-            ModifyCurrentGold(16);
+            if (StageSelectManager.Instance.StageNum < 2)
+            {
+                ModifyCurrentGold(16);
+            }
+            else
+            {
+                ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
+            }
         }
-        else
-        {
-            ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
-        }
+        
     }
 
 
