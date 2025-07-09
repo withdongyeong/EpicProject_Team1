@@ -1,58 +1,45 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
 
 public class MoveQuest : GuideQuest
 {
-    
+    public LocalizedString instructionTextLocalized;
+    public LocalizedString titleTextLocalized;
+    public LocalizedString subTitleTextLocalized;
+    public LocalizedString contentTextLocalized;
+    public LocalizedString goalTextLocalized;
+
+    public LocalizedString Test;
+
     private int moveCount = 0;
-    
+
+
     public override void SetTexts()
     {
-        instructionText = "가이드 1\n ㄴ 캐릭터를 움직이세요\n (0/5)";
-        titleText = "- 가이드 1 -";
-        subTitleText = "이동하기";
-        contentText = "캐릭터는\n" +
-                      "WASD 또는 ↑↓←→ \n" +
-                      "로 움직일 수 있습니다 \n 캐릭터를 이동시켜보세요";
-        goalText = "- 완료 조건 -\n" +
-                   "캐릭터 이동하기 (0/5)\n";
-    }
-    public override void OnStart()
-    {
-        
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", "0");
+        };
+
+        titleTextLocalized.StringChanged += (text) => titleText = text;
+        subTitleTextLocalized.StringChanged += (text) => subTitleText = text;
+        contentTextLocalized.StringChanged += (text) => contentText = text;
+        goalTextLocalized.StringChanged += (text) => goalText = text;
     }
 
     public override bool IsCompleted()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-        {
-            
-            moveCount++;
-        }
-        if(Input.GetKeyDown(KeyCode.LeftArrow) ||Input.GetKeyDown(KeyCode.A))
-        {
-            
-            moveCount++;
-        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) moveCount++;
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) moveCount++;
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) moveCount++;
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) moveCount++;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        instructionTextLocalized.StringChanged += (text) =>
         {
+            instructionText = text.Replace("{0}", moveCount.ToString());
+        };
 
-            moveCount++;
-        }
-
-        if(Input.GetKeyDown(KeyCode.RightArrow) ||Input.GetKeyDown(KeyCode.D))
-        {
-            
-            moveCount++;
-        }
-        instructionText = $"가이드 1\n ㄴ 캐릭터를 움직이세요\n ({Mathf.Min(moveCount,5)}/5)";
         GuideHandler.instance.questText.text = instructionText;
         return moveCount >= 5;
-    }
-
-    public override void OnComplete()
-    {
-        
     }
 }

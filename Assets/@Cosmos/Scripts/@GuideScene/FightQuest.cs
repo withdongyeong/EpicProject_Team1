@@ -1,10 +1,17 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class FightQuest : GuideQuest
 {
     [SerializeField]
     public int count = 0;
+
+    public LocalizedString instructionTextLocalized;
+    public LocalizedString titleTextLocalized;
+    public LocalizedString subTitleTextLocalized;
+    public LocalizedString contentTextLocalized;
+    public LocalizedString goalTextLocalized;
 
     public override void Awake()
     {
@@ -14,12 +21,15 @@ public class FightQuest : GuideQuest
     
     public override void SetTexts()
     {
-        instructionText = "가이드 7\n ㄴ 타일을 밟아 적과 싸우세요\n (0/1)";
-        titleText = "- 가이드 7 -";
-        subTitleText = "승리하기";
-        contentText = "전투 준비를 마치고\n우측하단 [전투시작]을 \n눌러 전투를 시작하세요\n\n그리고 별자리를 밟아 \n적을 공격해 승리하세요";
-        goalText = "- 완료 조건 -\n" +
-                   "전투 승리 (0/1)\n";
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", "0");
+        };
+
+        titleTextLocalized.StringChanged += (text) => titleText = text;
+        subTitleTextLocalized.StringChanged += (text) => subTitleText = text;
+        contentTextLocalized.StringChanged += (text) => contentText = text;
+        goalTextLocalized.StringChanged += (text) => goalText = text;
     }
 
     public override void OnStart()
@@ -30,7 +40,9 @@ public class FightQuest : GuideQuest
     
     public override bool IsCompleted()
     {
-        instructionText = $"가이드 7\n ㄴ 타일을 밟아 적과 싸우세요\n ({count}/1)";
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", count.ToString());
+        };
         GuideHandler.instance.questText.text = instructionText;
         return count >= 1;
     }

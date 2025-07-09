@@ -1,18 +1,28 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
 
 public class PlaceQuest : GuideQuest
 {
     [SerializeField]
-    public int tilesPlaced = 0;
-    
+    public int tilesPlaced = 4;
+
+    public LocalizedString instructionTextLocalized;
+    public LocalizedString titleTextLocalized;
+    public LocalizedString subTitleTextLocalized;
+    public LocalizedString contentTextLocalized;
+    public LocalizedString goalTextLocalized;
+
     public override void SetTexts()
     {
-        instructionText = "가이드 3\n ㄴ 별자리를 설치하세요\n (0/5개)";
-        titleText = "- 가이드 3 -";
-        subTitleText = "별자리 설치하기";
-        contentText = "별자리는 하단 상점에서 \n골드를 지불해 \n구매할 수 있습니다\n상점에서 별자리를 \n드래그 하여 영역에 설치하세요";
-        goalText = "- 완료 조건 -\n" +
-                   "별자리 5개 설치하기 (0/5개)\n";
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", "0");
+        };
+
+        titleTextLocalized.StringChanged += (text) => titleText = text;
+        subTitleTextLocalized.StringChanged += (text) => subTitleText = text;
+        contentTextLocalized.StringChanged += (text) => contentText = text;
+        goalTextLocalized.StringChanged += (text) => goalText = text;
     }
     public override void OnStart()
     {
@@ -21,7 +31,10 @@ public class PlaceQuest : GuideQuest
 
     public override bool IsCompleted()
     {
-        instructionText = $"가이드 3\n ㄴ 별자리를 설치하세요\n ({tilesPlaced}/5개)";
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.Arguments = new object[] { tilesPlaced };
+        instructionTextLocalized.RefreshString();
+
         GuideHandler.instance.questText.text = instructionText;
         return tilesPlaced >= 5;
     }
