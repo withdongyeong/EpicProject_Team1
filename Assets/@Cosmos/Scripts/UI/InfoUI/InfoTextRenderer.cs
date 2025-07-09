@@ -78,10 +78,8 @@ public class InfoTextRenderer : MonoBehaviour
 
         //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        LocalizedString localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" +  tileInfo.name);
+        LocalizedString localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" + tileInfo.GetTileData().TileName);
         localized_description.StringChanged += (text) => descriptionText.SetText(text);
-
-        //descriptionText.SetText(tileInfo.GetTileData().Description);
 
         //태그 설명 추가
         foreach (string tag in tags)

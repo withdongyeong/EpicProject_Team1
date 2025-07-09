@@ -72,7 +72,7 @@ public class InfoPanel : MonoBehaviour
         // 이름 텍스트 설정 (textObject 하위에 생성)
         Transform headText = Instantiate(nameTextPrefab, textObject.transform).transform;
         TextMeshProUGUI nameText = headText.GetChild(0).GetComponent<TextMeshProUGUI>();
-        LocalizedString localizedString_Name = new LocalizedString("EpicProject_Table", "Tile_TileName_" + currentTileObject.name);
+        LocalizedString localizedString_Name = new LocalizedString("EpicProject_Table", "Tile_TileName_" + currentTileObject.GetTileData().TileName);
         localizedString_Name.StringChanged += (text) => nameText.text = text;
         switch (currentTileObject.GetTileData().TileGrade)
         {
