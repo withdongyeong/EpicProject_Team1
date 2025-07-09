@@ -20,4 +20,5 @@ MonoBehaviour:
   tileCost: 5
   tileCoolTime: 10
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
+  unlockInt: 0
