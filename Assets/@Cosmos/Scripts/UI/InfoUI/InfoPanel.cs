@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
 
 public class InfoPanel : MonoBehaviour
 {
@@ -71,7 +72,8 @@ public class InfoPanel : MonoBehaviour
         // 이름 텍스트 설정 (textObject 하위에 생성)
         Transform headText = Instantiate(nameTextPrefab, textObject.transform).transform;
         TextMeshProUGUI nameText = headText.GetChild(0).GetComponent<TextMeshProUGUI>();
-        nameText.text = currentTileObject.GetTileData().TileName;
+        LocalizedString localizedString_Name = new LocalizedString("EpicProject_Table", "Tile_TileName_" + currentTileObject.name);
+        localizedString_Name.StringChanged += (text) => nameText.text = text;
         switch (currentTileObject.GetTileData().TileGrade)
         {
             case TileGrade.Normal:
