@@ -465,103 +465,102 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
-    m_Localized: '#<color=#D5F1FF>Weapon<sprite name=\"Weapon\"></color>'
+    m_Localized: '#<color=#D5F1FF>Weapon<sprite name="Weapon"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133735
-    m_Localized: '#<color=#D5F1FF>Magic Circle<sprite name=\"MagicCircle\"></color>'
+    m_Localized: '#<color=#D5F1FF>Magic Circle<sprite name="MagicCircle"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133736
-    m_Localized: '#<color=#D5F1FF>Armor<sprite name=\"Armor\"></color>'
+    m_Localized: '#<color=#D5F1FF>Armor<sprite name="Armor"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328000
-    m_Localized: '#<color=#D5F1FF>Consumables<sprite name=\"Potion\"></color>'
+    m_Localized: '#<color=#D5F1FF>Consumables<sprite name="Potion"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328001
-    m_Localized: '#<color=#D5F1FF>Trinket<sprite name=\"Trinket\"></color>'
+    m_Localized: '#<color=#D5F1FF>Trinket<sprite name="Trinket"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328002
-    m_Localized: '#<color=#D5F1FF>Summon<sprite name=\"Summon\"></color>'
+    m_Localized: '#<color=#D5F1FF>Summon<sprite name="Summon"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328004
-    m_Localized: <color=#ECA03E>#Totem<sprite name=\"Totem\"></color>
+    m_Localized: <color=#ECA03E>#Totem<sprite name="Totem"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328005
-    m_Localized: <color=#D1DBE5>#Sword<sprite name=\"Sword\"></color>
+    m_Localized: <color=#D1DBE5>#Sword<sprite name="Sword"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328006
-    m_Localized: <color=#DB444C>#Fire<sprite name=\"Fire\"></color>
+    m_Localized: <color=#DB444C>#Fire<sprite name="Fire"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328007
-    m_Localized: <color=#0F88C1>#Statue<sprite name=\"Ice\"></color>
+    m_Localized: <color=#0F88C1>#Statue<sprite name="Ice"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328008
-    m_Localized: <color=white>#Shield<sprite name=\"Shield\"></color>
+    m_Localized: <color=white>#Shield<sprite name="Shield"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328009
-    m_Localized: <color=white>#Protection Shield<sprite name=\"Barrier\"></color>
+    m_Localized: <color=white>#Protection Shield<sprite name="Barrier"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328010
-    m_Localized: <color=#AE3FF3>#Curse<sprite name=\"Curse\"></color>
+    m_Localized: <color=#AE3FF3>#Curse<sprite name="Curse"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328011
-    m_Localized: <color=white>#Cloud<sprite name=\"Cloud\"></color>
+    m_Localized: <color=white>#Cloud<sprite name="Cloud"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328013
-    m_Localized: 'Fire<sprite name=\"Fire\">: Deals damage equal to the stack per
-      second and reduces the stack by 1.'
+    m_Localized: 'Fire<sprite name="Fire">: Deals damage equal to the stack per second
+      and reduces the stack by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328014
-    m_Localized: '<sprite name=\"Ice\">: When stacked 10 times, freezes enemies for
+    m_Localized: '<sprite name="Ice">: When stacked 10 times, freezes enemies for
       2 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328015
-    m_Localized: 'Sword<sprite name=\"Sword\">: A summoned creature that lasts for
+    m_Localized: 'Sword<sprite name="Sword">: A summoned creature that lasts for
       a certain period of time. When you give a command to a sword, all swords will
       carry out the same command.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328016
-    m_Localized: 'Totem<sprite name=\"Totem\">: When 3 totems are stacked, their
-      effect is activated and they disappear. The effect of the 3rd totem stacked
-      is strengthened.'
+    m_Localized: 'Totem<sprite name="Totem">: When 3 totems are stacked, their effect
+      is activated and they disappear. The effect of the 3rd totem stacked is strengthened.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328017
-    m_Localized: 'Shield<sprite name=\"Shield\">: Blocks 1 round of damage.'
+    m_Localized: 'Shield<sprite name="Shield">: Blocks 1 round of damage.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328018
-    m_Localized: 'Barrier<sprite name=\"Barrier\">: Blocks a certain amount of damage.
+    m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
       Decrease every second.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328019
-    m_Localized: 'Pain<sprite name=\"Pain\">: Damage taken increases by 10%.'
+    m_Localized: 'Pain<sprite name="Pain">: Damage taken increases by 10%.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328020
-    m_Localized: '<sprite name=\"Mark\">: Increases the damage taken from your next
+    m_Localized: '<sprite name="Mark">: Increases the damage taken from your next
       attack by 50%.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328021
-    m_Localized: 'Curse<sprite name=\"Curse\">: A resource used by Curse items. The
+    m_Localized: 'Curse<sprite name="Curse">: A resource used by Curse items. The
       default limit is 30.'
     m_Metadata:
       m_Items: []

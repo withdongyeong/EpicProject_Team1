@@ -9,7 +9,10 @@ public class MoveQuest : GuideQuest
     public LocalizedString contentTextLocalized;
     public LocalizedString goalTextLocalized;
 
+    public LocalizedString Test;
+
     private int moveCount = 0;
+
 
     public override void SetTexts()
     {
