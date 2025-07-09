@@ -1,0 +1,700 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: EpicProject_Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: EpicProject_Table
+  m_TableCollectionNameGuidString: acbd475831ad36a4dbe7ab499a00530a
+  m_Entries:
+  - m_Id: 43552219136
+    m_Key: Tile_TileName_ArchmageStaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43606745088
+    m_Key: Tile_TileName_ArmorTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939392
+    m_Key: Tile_TileName_BigHeartTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939393
+    m_Key: Tile_TileName_DamageTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939394
+    m_Key: Tile_TileName_FireBallTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939395
+    m_Key: Tile_TileName_FireBoltTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939396
+    m_Key: Tile_TileName_FrostStaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939397
+    m_Key: Tile_TileName_HatTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939398
+    m_Key: Tile_TileName_HealTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939399
+    m_Key: Tile_TileName_HeartTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939400
+    m_Key: Tile_TileName_IcicleTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939401
+    m_Key: Tile_TileName_KoreaTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939402
+    m_Key: Tile_TileName_RobeTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939403
+    m_Key: Tile_TileName_SwordTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939404
+    m_Key: Tile_TileName_WarFlagTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939405
+    m_Key: Tile_TileName_ClockTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939406
+    m_Key: Tile_TileName_CloudTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939407
+    m_Key: Tile_TileName_CrowTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939408
+    m_Key: Tile_TileName_FlamingSwordTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939409
+    m_Key: Tile_TileName_FrostHammerTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939410
+    m_Key: Tile_TileName_GoddessTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939411
+    m_Key: Tile_TileName_GuideStaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939412
+    m_Key: Tile_TileName_HauntedDollTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939413
+    m_Key: Tile_TileName_KabutoTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939414
+    m_Key: Tile_TileName_ManaAITile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939415
+    m_Key: Tile_TileName_ManaTurretTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939416
+    m_Key: Tile_TileName_NecronomiconTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939417
+    m_Key: Tile_TileName_PhantomTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939418
+    m_Key: Tile_TileName_RainbowTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939419
+    m_Key: Tile_TileName_RainCloudTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939420
+    m_Key: Tile_TileName_StaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939421
+    m_Key: Tile_TileName_TotemBaseTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939422
+    m_Key: Tile_TileName_ThunderStormCloudTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939423
+    m_Key: Tile_TileName_TurtleTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939424
+    m_Key: Tile_TileName_WraithTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939425
+    m_Key: Tile_TileName_HellFIreTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43610939426
+    m_Key: Tile_TileName_WandTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316371374080
+    m_Key: New Entry 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133696
+    m_Key: Tile_TileDescription_ArchmageStaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133697
+    m_Key: Tile_TileDescription_ArmorTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133698
+    m_Key: Tile_TileDescription_BigHeartTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133699
+    m_Key: Tile_TileDescription_DamageTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133700
+    m_Key: Tile_TileDescription_FireBallTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133701
+    m_Key: Tile_TileDescription_FireBoltTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133702
+    m_Key: Tile_TileDescription_FrostStaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133703
+    m_Key: Tile_TileDescription_HatTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133704
+    m_Key: Tile_TileDescription_HealTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133705
+    m_Key: Tile_TileDescription_HeartTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133706
+    m_Key: Tile_TileDescription_IcicleTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133707
+    m_Key: Tile_TileDescription_KoreaTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133708
+    m_Key: Tile_TileDescription_RobeTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133709
+    m_Key: Tile_TileDescription_SwordTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133710
+    m_Key: Tile_TileDescription_WarFlagTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133711
+    m_Key: Tile_TileDescription_ClockTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133712
+    m_Key: Tile_TileDescription_CloudTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133713
+    m_Key: Tile_TileDescription_CrowTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133714
+    m_Key: Tile_TileDescription_FlamingSwordTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133715
+    m_Key: Tile_TileDescription_FrostHammerTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133716
+    m_Key: Tile_TileDescription_GoddessTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133717
+    m_Key: Tile_TileDescription_GuideStaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133718
+    m_Key: Tile_TileDescription_HauntedDollTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133719
+    m_Key: Tile_TileDescription_KabutoTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133720
+    m_Key: Tile_TileDescription_ManaAITile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133721
+    m_Key: Tile_TileDescription_ManaTurretTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133722
+    m_Key: Tile_TileDescription_NecronomiconTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133723
+    m_Key: Tile_TileDescription_PhantomTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133724
+    m_Key: Tile_TileDescription_RainbowTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133725
+    m_Key: Tile_TileDescription_RainCloudTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133726
+    m_Key: Tile_TileDescription_StaffTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133727
+    m_Key: Tile_TileDescription_TotemBaseTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133728
+    m_Key: Tile_TileDescription_ThunderStormCloudTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133729
+    m_Key: Tile_TileDescription_TurtleTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133730
+    m_Key: Tile_TileDescription_WraithTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133731
+    m_Key: Tile_TileDescription_HellFIreTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133732
+    m_Key: Tile_TileDescription_WandTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316371374081
+    m_Key: New Entry 12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133734
+    m_Key: Tile_TileCategoty_Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133735
+    m_Key: Tile_TileCategoty_MagicCircle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43615133736
+    m_Key: Tile_TileCategoty_Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328000
+    m_Key: Tile_TileCategoty_Consumable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328001
+    m_Key: Tile_TileCategoty_Trinket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328002
+    m_Key: Tile_TileCategoty_Summon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316371374082
+    m_Key: New Entry 13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328004
+    m_Key: Tile_TileSynergy_Totem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328005
+    m_Key: Tile_TileSynergy_Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328006
+    m_Key: Tile_TileSynergy_Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328007
+    m_Key: Tile_TileSynergy_Ice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328008
+    m_Key: Tile_TileSynergy_Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328009
+    m_Key: Tile_TileSynergy_Barrier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328010
+    m_Key: Tile_TileSynergy_Curse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328011
+    m_Key: Tile_TileSynergy_Cloud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316371374083
+    m_Key: New Entry 14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328013
+    m_Key: Tile_TileTagDescription_Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328014
+    m_Key: Tile_TileTagDescription_Ice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328015
+    m_Key: Tile_TileTagDescription_Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328016
+    m_Key: Tile_TileTagDescription_Totem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328017
+    m_Key: Tile_TileTagDescription_Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328018
+    m_Key: Tile_TileTagDescription_Barrier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328019
+    m_Key: Tile_TileTagDescription_Pain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328020
+    m_Key: Tile_TileTagDescription_Mark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328021
+    m_Key: Tile_TileTagDescription_Curse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568384
+    m_Key: New Entry 15
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328023
+    m_Key: UI_Quest_Instruction1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328024
+    m_Key: UI_Quest_Instruction2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328025
+    m_Key: UI_Quest_Instruction3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328026
+    m_Key: UI_Quest_Instruction4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328027
+    m_Key: UI_Quest_Instruction5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328028
+    m_Key: UI_Quest_Instruction6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328029
+    m_Key: UI_Quest_Instruction7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568385
+    m_Key: New Entry 16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328031
+    m_Key: UI_Quest_Title1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328032
+    m_Key: UI_Quest_Title2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328033
+    m_Key: UI_Quest_Title3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328034
+    m_Key: UI_Quest_Title4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328035
+    m_Key: UI_Quest_Title5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328036
+    m_Key: UI_Quest_Title6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328037
+    m_Key: UI_Quest_Title7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568386
+    m_Key: New Entry 17
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328039
+    m_Key: UI_Quest_SubTitle1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328040
+    m_Key: UI_Quest_SubTitle2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328041
+    m_Key: UI_Quest_SubTitle3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328042
+    m_Key: UI_Quest_SubTitle4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328043
+    m_Key: UI_Quest_SubTitle5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328044
+    m_Key: UI_Quest_SubTitle6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328045
+    m_Key: UI_Quest_SubTitle7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568387
+    m_Key: New Entry 18
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328047
+    m_Key: UI_Quest_Content1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328048
+    m_Key: UI_Quest_Content2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328049
+    m_Key: UI_Quest_Content3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328050
+    m_Key: UI_Quest_Content4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328051
+    m_Key: UI_Quest_Content5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328052
+    m_Key: UI_Quest_Content6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328053
+    m_Key: UI_Quest_Content7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568388
+    m_Key: New Entry 19
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328055
+    m_Key: UI_Quest_Goal1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328056
+    m_Key: UI_Quest_Goal2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328057
+    m_Key: UI_Quest_Goal3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328058
+    m_Key: UI_Quest_Goal4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328059
+    m_Key: UI_Quest_Goal5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328060
+    m_Key: UI_Quest_Goal6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328061
+    m_Key: UI_Quest_Goal7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568389
+    m_Key: UI_Button_FinalBossRetry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568390
+    m_Key: New Entry 20
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328063
+    m_Key: UI_Button_Reroll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328064
+    m_Key: UI_Button_ButtleStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328065
+    m_Key: UI_Button_Sell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328066
+    m_Key: UI_Button_Check
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328067
+    m_Key: UI_Button_GameExit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328068
+    m_Key: UI_Button_ReStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328069
+    m_Key: UI_Button_Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328070
+    m_Key: UI_Button_Try
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568391
+    m_Key: New Entry 21
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328072
+    m_Key: UI_Text_ProbabilityTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328073
+    m_Key: UI_Text_Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328074
+    m_Key: UI_Text_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328075
+    m_Key: UI_Text_FullScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328076
+    m_Key: UI_Text_Lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328077
+    m_Key: UI_Text_Vectory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328078
+    m_Key: UI_Text_Lose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328079
+    m_Key: UI_Text_NomalProbability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328080
+    m_Key: UI_Text_RareProbability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328081
+    m_Key: UI_Text_EpicProbability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328082
+    m_Key: UI_Text_LegendaryProbability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328083
+    m_Key: UI_Text_MythicProbability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12751517392901
+    m_Key: UI_Text_BGMVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12751517392902
+    m_Key: UI_Text_SoundEffectVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15235124174859
+    m_Key: UI_Text_OpportunityLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17316375568392
+    m_Key: UI_Text_GameClear
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3702999192253759934
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702999192253759934
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1752014523212
