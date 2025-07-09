@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Reaper : BaseBoss
 {
@@ -19,8 +20,9 @@ public class Reaper : BaseBoss
         StrongDamage = GlobalSetting.Instance.GetBossBalance(7).strongDamage;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if ((CurrentHealth) < 1700 && !IsPase2)
         {
             this.GetComponent<ReaperDeathArea>().DeathAreaCreationStart();

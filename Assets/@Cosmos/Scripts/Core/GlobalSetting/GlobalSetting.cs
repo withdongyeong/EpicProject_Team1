@@ -67,4 +67,5 @@ public class GlobalSetting : Singleton<GlobalSetting>
     }
 
     public static List<TileData> Shop_FirstTileDataList => _instance.shop_FirstTileDataList;
+
 }

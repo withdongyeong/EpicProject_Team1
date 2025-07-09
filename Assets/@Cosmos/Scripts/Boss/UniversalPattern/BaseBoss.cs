@@ -241,6 +241,14 @@ public abstract class BaseBoss : MonoBehaviour
         }
     }
 
+    protected virtual void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F7))
+        {
+            _currentHealth = 1;
+        }
+    }
+
     /// <summary>
     /// 피격음 코루틴(소리 중첩 방지)
     /// </summary>

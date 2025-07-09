@@ -80,6 +80,7 @@ public class TileInfo
     private TileCategory tileCategory;
     private TileData requiredTile;
     private List<TileData> rejectTileList;
+    private int unlockInt;
 
     public string TileName => tileName;
     public string Description => description;
@@ -90,6 +91,7 @@ public class TileInfo
     public TileCategory TileCategory => tileCategory;
     public TileData RequiredTile => requiredTile;
     public List<TileData> RejectTileList => rejectTileList;
+    public int UnlockInt => unlockInt;
 
     public TileInfo(TileData data)
     {
@@ -102,6 +104,7 @@ public class TileInfo
         tileCategory = data.tileCategory;
         requiredTile = data.requiredTile;
         rejectTileList = data.rejectTileList;
+        unlockInt = data.unlockInt;
     }
 }
 

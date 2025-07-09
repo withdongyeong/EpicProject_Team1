@@ -34,4 +34,5 @@ public class GlobalSettingSO : ScriptableObject
 
     [Header("처음에 등장시킬 타일5개의 데이터")]
     public List<TileData> shop_FirstTileDataList;
+
 }

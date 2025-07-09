@@ -48,7 +48,8 @@ public class StageSelectManager : Singleton<StageSelectManager>
     
     public void TestStageNumPlus() // 테스트용 스테이지 번호 증가
     {
-        stageNum++;
+        GameManager.Instance.UpdateUnlockSaveFIle(stageNum);
+        stageNum++;     
         if (stageNum >= stageDataList.Length)
             stageNum = stageDataList.Length - 1;
         Debug.Log($"현재 스테이지 번호: {stageNum}");
