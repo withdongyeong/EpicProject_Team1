@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -158,12 +157,23 @@ public class StoreSlotController : MonoBehaviour
     {
         for(int i = 0; i < storeSlots.Length; i++)
         {
-            GameObject chosenTile = _firstStoreTiles[i];
-            storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            if(i >= _firstStoreTiles.Count)
+            {
+                storeSlots[i].SetSlot(_safePrefab.GetComponent<TileObject>().GetTileData().TileCost, _safePrefab);
 
-            //이미지 비율을 맞추기 위한 코드입니다.
-            //storeSlots[i].GetComponent<Image>().preserveAspect = true;
-            storeSlots[i].GetComponent<Image>().SetNativeSize();
+                //이미지 비율을 맞추기 위한 코드입니다.
+                //storeSlots[i].GetComponent<Image>().preserveAspect = true;
+                storeSlots[i].GetComponent<Image>().SetNativeSize();
+            }
+            else
+            {
+                GameObject chosenTile = _firstStoreTiles[i];
+                storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+
+                //이미지 비율을 맞추기 위한 코드입니다.
+                //storeSlots[i].GetComponent<Image>().preserveAspect = true;
+                storeSlots[i].GetComponent<Image>().SetNativeSize();
+            }            
         }
     }
 
@@ -181,6 +191,9 @@ public class StoreSlotController : MonoBehaviour
     /// </summary>
     private void SetStoreTileList()
     {
+        //현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
+        int unlockedNum = GameManager.Instance.UnlockedInt;
+
         List<GameObject> allTilePrefabs = new();
 
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
@@ -194,44 +207,48 @@ public class StoreSlotController : MonoBehaviour
         foreach (GameObject tilePrefab in allTilePrefabs)
         {
             TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
-            TileGrade grade = tileInfo.TileGrade;
-            if (grade == TileGrade.Normal)
+            if(tileInfo.UnlockInt <= unlockedNum)
             {
-                if(tileInfo.TileName != "초심자의 지팡이")
+                TileGrade grade = tileInfo.TileGrade;
+                if (grade == TileGrade.Normal)
                 {
-                    _normalStoreTiles.Add(tilePrefab);
-                }   
-                foreach(TileData tileData in GlobalSetting.Shop_FirstTileDataList)
-                {
-                    if(tileData.tileName == tileInfo.TileName)
+                    if (tileInfo.TileName != "초심자의 지팡이")
                     {
-                        _firstStoreTiles.Add(tilePrefab);
+                        _normalStoreTiles.Add(tilePrefab);
+                    }
+                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+                    {
+                        if (tileData.tileName == tileInfo.TileName)
+                        {
+                            _firstStoreTiles.Add(tilePrefab);
+                        }
                     }
                 }
-            }
-            else if (grade == TileGrade.Rare)
-            {
-                _rareStoreTiles.Add(tilePrefab);
-                foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+                else if (grade == TileGrade.Rare)
                 {
-                    if (tileData.tileName == tileInfo.TileName)
+                    _rareStoreTiles.Add(tilePrefab);
+                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
                     {
-                        _firstStoreTiles.Add(tilePrefab);
+                        if (tileData.tileName == tileInfo.TileName)
+                        {
+                            _firstStoreTiles.Add(tilePrefab);
+                        }
                     }
                 }
+                else if (grade == TileGrade.Epic)
+                {
+                    _epicStoreTiles.Add(tilePrefab);
+                }
+                else if (grade == TileGrade.Legendary)
+                {
+                    _legendaryStoreTiles.Add(tilePrefab);
+                }
+                else
+                {
+                    _mythicStoreTiles.Add(tilePrefab);
+                }
             }
-            else if (grade == TileGrade.Epic)
-            {
-                _epicStoreTiles.Add(tilePrefab);
-            }
-            else if (grade == TileGrade.Legendary)
-            {
-                _legendaryStoreTiles.Add(tilePrefab);
-            }
-            else
-            {
-                _mythicStoreTiles.Add(tilePrefab);
-            }
+            
 
         }
     }

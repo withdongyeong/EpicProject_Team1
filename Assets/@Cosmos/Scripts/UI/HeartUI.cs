@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +11,10 @@ public class HeartUIManager : MonoBehaviour
     [SerializeField] private Vector2 heartSize = new Vector2(50f, 50f);
 
     [Header("연출 설정")]
-    [SerializeField] private float fadeInDuration = 0.5f;
-    [SerializeField] private float scaleUpDuration = 0.3f;
-    [SerializeField] private float maxScale = 1.3f;
-    [SerializeField] private float delayBeforeAnimation = 0.2f;
+    //[SerializeField] private float fadeInDuration = 0.5f;
+    //[SerializeField] private float scaleUpDuration = 0.3f;
+    //[SerializeField] private float maxScale = 1.3f;
+    //[SerializeField] private float delayBeforeAnimation = 0.2f;
 
     private List<GameObject> heartObjects = new();
     private int currentLifeCount = 0;

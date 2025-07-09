@@ -71,7 +71,6 @@ public class DragManager : Singleton<DragManager>
     
     public void EndDrag()
     {
-        
         isDragging = false;
         currentDragObject = null;
         GridManager.Instance.TilesOnGrid.SetTileObjectStarEffect();
