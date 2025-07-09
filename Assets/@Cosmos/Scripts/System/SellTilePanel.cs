@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
 
 public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler, IDropHandler
 {
@@ -13,6 +14,7 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
     private TextMeshProUGUI _sellText;
     private bool _isCanSell = false; // 판매 가능 여부
     public bool IsCanSell => _isCanSell;
+    public LocalizedString localizedString;
 
     private void Awake()
     {
@@ -75,9 +77,10 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
     {
         gameObject.SetActive(true);
         _rectTransform.anchoredPosition = Vector2.down * 300f;;
-        
-        
-        _sellText.text = "판매 골드 : " + ((tileCost + 1) / 2) + "G";
+
+        localizedString.StringChanged += (text) => {
+            _sellText.text = text.Replace("{0}", ((tileCost + 1) / 2).ToString());
+        };
         
         _rectTransform.DOAnchorPos(Vector2.zero,0.25f).SetEase(Ease.OutSine).OnComplete(() =>
         {

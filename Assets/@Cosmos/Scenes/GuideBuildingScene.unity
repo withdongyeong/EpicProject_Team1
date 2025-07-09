@@ -985,7 +985,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.375
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3685,8 +3685,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC804\uD22C \uC2DC\uC791"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3888,6 +3888,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca9edef15cef5f41bd9a1e694b8a9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localizedString:
+    m_TableReference:
+      m_TableCollectionName: GUID:acbd475831ad36a4dbe7ab499a00530a
+    m_TableEntryReference:
+      m_KeyId: 43619328065
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1052491709
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,8 +4428,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC0C8\uB85C\uACE0\uCE68 \n1G\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5511,6 +5523,7 @@ GameObject:
   - component: {fileID: 1743798418}
   - component: {fileID: 1743798422}
   - component: {fileID: 1743798421}
+  - component: {fileID: 1743798423}
   m_Layer: 5
   m_Name: SellText
   m_TagString: Untagged
@@ -5636,6 +5649,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743798417}
   m_CullTransparentMesh: 1
+--- !u!114 &1743798423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743798417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c7407d9ce799248b0af3f470ddf688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LocalizedAssetReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  m_UpdateAsset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1743798421}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_font
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1854521330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6433,8 +6481,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 30 G
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
