@@ -62,7 +62,9 @@ public class InfoPanel : MonoBehaviour
     {
         currentTileObject = tileObject;
         gameObject.SetActive(true);
-
+        
+        
+        
         // 등급에 따른 테두리 이미지 설정
         SetBorderByGrade(currentTileObject.GetTileData().TileGrade);
 
@@ -106,7 +108,19 @@ public class InfoPanel : MonoBehaviour
         textRenderer.InstantiateDescriptionText(currentTileObject);
 
         // 위치 업데이트
-        //transform.position = position;
+        //마우스 포인터 위치에 따른 패널위치 설정 코드
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 offset = new Vector2(300f, textObject.GetComponent<RectTransform>().sizeDelta.y*0.5f + 100f);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            mousePosition,
+            canvas.worldCamera,
+            out Vector2 localPoint
+        );
+        rectTransform.anchoredPosition = localPoint +new Vector2(
+            (Input.mousePosition.x > Screen.width * 0.5f ? -1 : 1) * offset.x,
+            (Input.mousePosition.y > Screen.height * 0.5f ? -1 : 1) * offset.y
+        );
     }
 
     private void SetBorderByGrade(TileGrade grade)
