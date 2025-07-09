@@ -33,6 +33,7 @@ public class DraggableObject : MonoBehaviour ,IBeginDragHandler, IDragHandler, I
     {
         if(!SceneLoader.IsInBuilding()) return;
         if (eventData.button != PointerEventData.InputButton.Left) return; // 왼쪽 버튼이 아닐 경우 드래그 시작하지 않음
+        DragManager.Instance.TryStopRotate();
         EndDrag();
         DragManager.Instance.EndDrag();
         
