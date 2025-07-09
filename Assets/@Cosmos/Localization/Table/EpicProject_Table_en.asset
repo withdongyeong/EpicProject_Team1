@@ -566,7 +566,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328023
-    m_Localized: "Guide 1\n\n\u3134 Move the character\n\n({0}/5)"
+    m_Localized: "Guide 1\n\u3134 Move the character\n({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328024
@@ -574,11 +574,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328025
-    m_Localized: 'Guide 3
-
-      n Install the constellation
-
-      ({0}/5)'
+    m_Localized: "Guide 3\n\u3134 Install the constellation\n({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328026
@@ -654,7 +650,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328047
-    m_Localized: "The character can be moved with\nWASD or \u2191\u2193\u2190\u2192\n\nTry
+    m_Localized: "The character can be moved with\nWASD or \u2191\u2193\u2190\u2192\nTry
       moving the character"
     m_Metadata:
       m_Items: []
@@ -667,10 +663,8 @@ MonoBehaviour:
   - m_Id: 43619328049
     m_Localized: 'Constellations can be purchased from the bottom shop
 
-
       by
       paying gold
-
 
       Drag the constellation from the shop to place it in the
       area'
@@ -709,16 +703,13 @@ MonoBehaviour:
   - m_Id: 43619328053
     m_Localized: 'After you''re ready for battle,
 
-
       press [Start Battle] at
       the bottom right
-
 
       to start the battle
 
 
       and step on the constellations
-
 
       to
       attack the enemy and win'
@@ -858,6 +849,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17316375568392
     m_Localized: Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106024537825284
+    m_Localized: '- Guide Complete -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106024537825285
+    m_Localized: 'You have completed all the guides
+
+      Very powerful enemies
+      await you
+
+      Place numerous constellations
+
+      Fight the enemies and
+      win'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118802749202442
+    m_Localized: '- Defeat -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118802753396736
+    m_Localized: Place more constellations and try again
     m_Metadata:
       m_Items: []
   references:
