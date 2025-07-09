@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Steamworks;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
@@ -18,10 +19,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.F10))
-        //{
-        //    ResetGame();
-        //}
+        //테스트 코드 업적 초기화
+        if (Input.GetKeyDown(KeyCode.P)) {
+            SteamUserStats.ResetAllStats(true);
+            SteamUserStats.StoreStats();
+        }
 
         ShowSetting();
         
