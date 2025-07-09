@@ -372,13 +372,13 @@ UI_Quest_Instruction5,"指南 5
 ({0}/4개)"
 UI_Quest_Instruction6,"指南6
 ㄴ出售星座
-(0/4)","Guide 6
+({0}/4)","Guide 6
 ㄴ Sell the constellation
-(0/4)","ガイド6
+({0}/4)","ガイド6
 ㄴ星座を販売してください
-（0/4個）","가이드 6
+（{0}/4個）","가이드 6
 ㄴ 별자리를 판매해보세요
-(0/4개)"
+({0}/4개)"
 UI_Quest_Instruction7,"指南 7
 ㄴ 与敌人战斗并取得胜利
 ({0}/1)","Guide 7
@@ -494,8 +494,8 @@ to attack the enemy and win","戦闘準備を終えて
 그리고 별자리를 밟아 
 적을 공격해 승리하세요"
 ,,,,
-UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),- Completion Conditions - Move Character (0/5),"- 完了条件 -
-キャラクターを移動する（0/5）","- 완료 조건 -
+UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),- Completion Conditions - Move Character (0/5),"""- 完了条件 -
+キャラクターを移動する(0/5)""","- 완료 조건 -
 캐릭터 이동하기 (0/5)"
 UI_Quest_Goal2,- 完成条件 - 存活 10 秒 (0/10 秒),- Completion Conditions - Survive for 10 seconds (0/10 seconds),"- 完了条件 -
 10秒間生き残る（0/10秒）","- 완료 조건 -
@@ -503,20 +503,20 @@ UI_Quest_Goal2,- 完成条件 - 存活 10 秒 (0/10 秒),- Completion Conditions
 UI_Quest_Goal3,- 完成条件 - 安装 5 个星座 (0/5),- Completion Conditions - Install 5 constellations (0/5),"- 完了条件 -
 星座5個を設置する（0/5個）","- 완료 조건 -
 별자리 5개 설치하기 (0/5개)"
-UI_Quest_Goal4,- 完成条件 - 旋转星座 (0/5),- Completion Conditions - Rotate the Constellation (0/5),"- 完了条件 -
-星座を回転させる（0/5）","- 완료 조건 -
+UI_Quest_Goal4,- 完成条件 - 旋转星座 (0/5),- Completion Conditions - Rotate the Constellation (0/5),""" - 完了条件 -
+星座を回転させる(0/5)v","- 완료 조건 -
 별자리 회전시키기 (0/5)"
 UI_Quest_Goal5,- 完成条件 - 储存 4 个星座 (0/4),"- Completion Conditions -
 Store 4 constellations (0/4)","- 完了条件 -
 星座を4個保管する（0/4個）","- 완료 조건 -
 별자리 4개 보관하기 (0/4개)"
-UI_Quest_Goal6,- 完成条件 - 出售 4 个星座 (0/4),"- Completion Conditions -
-Sell 4 constellations (0/4)","- 完了条件 -
-星座を4個販売する（0/4個）","- 완료 조건 -
-별자리 4개 판매하기 (0/4개)"
+UI_Quest_Goal6,- 完成条件 - 出售 4 个星座 ({0}/4),"- Completion Conditions -
+Sell 4 constellations ({0}/4)","""- 完了条件 -
+星座を4個販売する（{0}/4個）""","""- 완료 조건 -
+별자리 4개 판매하기 ({0}/4개)"""
 UI_Quest_Goal7,- 完成条件 - 赢得战斗 (0/1),"- Completion Conditions -
-Win the Battle (0/1)","- 完了条件 -
-戦闘勝利(0/1)","- 완료 조건 -
+Win the Battle (0/1)","""- 完了条件 -
+戦闘勝利(0/1)""","- 완료 조건 -
 전투 승리 (0/1)"
 ,,,,
 UI_Button_FinalBossRetry,最终 Boss 再次挑战,Final Boss Re-challenge,最後のボス再挑戦,마지막 보스 재도전
