@@ -21,7 +21,7 @@ public class LogoSkipSystem : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
+        if(Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.Return))
         {
             timer += Time.deltaTime;
         }

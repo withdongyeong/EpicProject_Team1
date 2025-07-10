@@ -10,6 +10,7 @@ public class StoreSlotController : MonoBehaviour
     
 
     private int _safeInt = 0;
+    private int _unlockLevel;
 
     private GameObject _safePrefab;
 
@@ -55,8 +56,7 @@ public class StoreSlotController : MonoBehaviour
             }            
         }
     }
-
-
+    
     private void SetupStoreSlots()
     {
         List<GameObject> appeardTileList = new();
@@ -192,7 +192,7 @@ public class StoreSlotController : MonoBehaviour
     private void SetStoreTileList()
     {
         //현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
-        int unlockedNum = GameManager.Instance.UnlockedInt;
+        _unlockLevel = SaveManager.UnlockLevel;
 
         List<GameObject> allTilePrefabs = new();
 
@@ -207,7 +207,7 @@ public class StoreSlotController : MonoBehaviour
         foreach (GameObject tilePrefab in allTilePrefabs)
         {
             TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
-            if(tileInfo.UnlockInt <= unlockedNum)
+            if(tileInfo.UnlockInt <= _unlockLevel)
             {
                 TileGrade grade = tileInfo.TileGrade;
                 if (grade == TileGrade.Normal)
