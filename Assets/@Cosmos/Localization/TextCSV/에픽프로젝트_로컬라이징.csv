@@ -286,7 +286,7 @@ Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>：召唤�
 Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">的最大数量提升至40。<color=yellow>触发</color>时：消耗<color=red>40个诅咒</color>并造成1点痛苦<sprite name=""Pain"">。将当前施加于敌人的所有火焰<sprite name=""fire"">和冰霜<sprite name=""ice"">转换为诅咒<sprite name=""Curse"">。如果<color=yellow>星星</color>上有3个或更多魔法阵<sprite name=""MagicCircle"">，则消耗<color=red>20个诅咒</color>。","<color=yellow>At the start of combat</color>: Increase the maximum number of Curses <sprite name=""Curse""> to 40. <color=yellow>When triggered</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=""Pain"">. Convert all Fire <sprite name=""fire""> and Frost <sprite name=""ice""> currently applied to enemies to Curses <sprite name=""Curse"">. If there are 3 or more Magic Circles <sprite name=""MagicCircle""> located on a <color=yellow>Star</color>, Consume <color=red>20 Curses</color>.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を40に上げます。現在、敵に適用されているすべての炎 <sprite name=""fire""> と像 <sprite name=""ice""> を呪い<sprite name=""Curse""> に置き換えます。
 <color=yellow>星<sprite name=""Star"">にある</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、呪い<sprite name=""Curse"">を<color=red>20消費</color>します。","<color=yellow>전투 시작 시</color>: 저주<sprite name=""Curse""> 개수의 최대치를 40으로 올립니다.<color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 <color=red>40 소모</color>하고 고통<sprite name=""Pain""> 을 1 부여합니다. 현재 적에게 적용된 모든 화염<sprite name=""fire""> 과 동상<sprite name=""ice""> 을 저주<sprite name=""Curse""> 로 바꿉니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 <color=red>20 소모</color>합니다."
-Tile_TileDescription_HellFIreTile,"一次性造成 5 点火焰伤害，并消除所有火焰 <sprite name=""Fire"">。
+Tile_TileDescription_HellFireTile,"一次性造成 5 点火焰伤害，并消除所有火焰 <sprite name=""Fire"">。
 （伤害：<color=red>0~255</color>）
 如果 <color=yellow>星星</color> 上有 3 个或更多魔法阵 <sprite name=""MagicCircles"">，则造成 10 点火焰伤害。","Deals 5 Fire damage at once and removes all Fire <sprite name=""Fire"">s.
 (Damage: <color=red>0~255</color>)
@@ -299,40 +299,36 @@ Tile_TileDescription_WandTile,<color=yellow>单个方块 (2)</color>：发射一
 (ダメージ: <color=red>6</color>)","<color=yellow>개별칸(2)</color>: 투사체를 발사합니다.
 (피해량: <color=red>6</color>)"
 ,,,,
-Tile_TileCategoty_Weapon,"#<color=#D5F1FF>武器<sprite name=\""武器\""></color>","#<color=#D5F1FF>Weapon<sprite name=\""Weapon\""></color>","#<color=#D5F1FF>武器<sprite name=\""Weapon\""></color>","#<color=#D5F1FF>무기<sprite name=\""Weapon\""></color>"
-Tile_TileCategoty_MagicCircle,"#<color=#D5F1FF>魔法阵<sprite name=\""MagicCircle\""></color>","#<color=#D5F1FF>Magic Circle<sprite name=\""MagicCircle\""></color>","#<color=#D5F1FF>魔法陣<sprite name=\""MagicCircle\""></color>","#<color=#D5F1FF>마법진<sprite name=\""MagicCircle\""></color>"
-Tile_TileCategoty_Armor,"#<color=#D5F1FF>盔甲<sprite name=\""盔甲\""></color>","#<color=#D5F1FF>Armor<sprite name=\""Armor\""></color>","#<color=#D5F1FF>防具<sprite name=\""Armor\""></color>","#<color=#D5F1FF>방어구<sprite name=\""Armor\""></color>"
-Tile_TileCategoty_Consumable,"#<color=#D5F1FF>消耗品<sprite name=\""药水\""></color>","#<color=#D5F1FF>Consumables<sprite name=\""Potion\""></color>","#<color=#D5F1FF>消耗品<sprite name=\""Potion\""></color>","#<color=#D5F1FF>소모품<sprite name=\""Potion\""></color>"
-Tile_TileCategoty_Trinket,"#<color=#D5F1FF>Trinket<sprite name=\""Trinket\""></color>","#<color=#D5F1FF>Trinket<sprite name=\""Trinket\""></color>","#<color=#D5F1FF>装飾品<sprite name=\""Trinket\""></color>","#<color=#D5F1FF>장신구<sprite name=\""Trinket\""></color>"
-Tile_TileCategoty_Summon,"#<color=#D5F1FF>召唤<sprite name=\""Summon\""></color>","#<color=#D5F1FF>Summon<sprite name=\""Summon\""></color>","#<color=#D5F1FF>召喚獣<sprite name=\""Summon\""></color>","#<color=#D5F1FF>소환수<sprite name=\""Summon\""></color>"
+Tile_TileCategoty_Weapon,"#<color=#D5F1FF>武器<sprite name=""武器""></color>","#<color=#D5F1FF>Weapon<sprite name=""Weapon""></color>","#<color=#D5F1FF>武器<sprite name=""Weapon""></color>","#<color=#D5F1FF>무기<sprite name=""Weapon""></color>"
+Tile_TileCategoty_MagicCircle,"#<color=#D5F1FF>魔法阵<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>Magic Circle<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>魔法陣<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>마법진<sprite name=""MagicCircle""></color>"
+Tile_TileCategoty_Armor,"#<color=#D5F1FF>盔甲<sprite name=""盔甲""></color>","#<color=#D5F1FF>Armor<sprite name=""Armor""></color>","#<color=#D5F1FF>防具<sprite name=""Armor""></color>","#<color=#D5F1FF>방어구<sprite name=""Armor""></color>"
+Tile_TileCategoty_Consumable,"#<color=#D5F1FF>消耗品<sprite name=""药水""></color>","#<color=#D5F1FF>Consumables<sprite name=""Potion""></color>","#<color=#D5F1FF>消耗品<sprite name=""Potion""></color>","#<color=#D5F1FF>소모품<sprite name=""Potion""></color>"
+Tile_TileCategoty_Trinket,"#<color=#D5F1FF>Trinket<sprite name=""Trinket""></color>","#<color=#D5F1FF>Trinket<sprite name=""Trinket""></color>","#<color=#D5F1FF>装飾品<sprite name=""Trinket""></color>","#<color=#D5F1FF>장신구<sprite name=""Trinket""></color>"
+Tile_TileCategoty_Summon,"#<color=#D5F1FF>召唤<sprite name=""Summon""></color>","#<color=#D5F1FF>Summon<sprite name=""Summon""></color>","#<color=#D5F1FF>召喚獣<sprite name=""Summon""></color>","#<color=#D5F1FF>소환수<sprite name=""Summon""></color>"
 ,,,,
-Tile_TileSynergy_Totem,"<color=#ECA03E>#Totem<sprite name=\""Totem\""></color>","<color=#ECA03E>#Totem<sprite name=\""Totem\""></color>","<color=#ECA03E>#トーテム<sprite name=\""Totem\""></color>","<color=#ECA03E>#토템<sprite name=\""Totem\""></color>"
-Tile_TileSynergy_Sword,"<color=#D1DBE5>#Sword<sprite name=\""Sword\""></color>","<color=#D1DBE5>#Sword<sprite name=\""Sword\""></color>","<color=#D1DBE5>#剣<sprite name=\""Sword\""></color>","<color=#D1DBE5>#검<sprite name=\""Sword\""></color>"
-Tile_TileSynergy_Fire,"<color=#DB444C>#Fire<sprite name=\""Fire\""></color>","<color=#DB444C>#Fire<sprite name=\""Fire\""></color>","<color=#DB444C>#炎<sprite name=\""Fire\""></color>","<color=#DB444C>#화염<sprite name=\""Fire\""></color>"
-Tile_TileSynergy_Ice,"<color=#0F88C1>#Statue<sprite name=\""Ice\""></color>","<color=#0F88C1>#Statue<sprite name=\""Ice\""></color>","<color=#0F88C1>#像<sprite name=\""Ice\""></color>","<color=#0F88C1>#동상<sprite name=\""Ice\""></color>"
-Tile_TileSynergy_Shield,"<color=white>#Shield<sprite name=\""Shield\""></color>","<color=white>#Shield<sprite name=\""Shield\""></color>","<color=white>#防御幕<sprite name=\""Shield\""></color>","<color=white>#방어막<sprite name=\""Shield\""></color>"
-Tile_TileSynergy_Barrier,"<color=white>#保护盾<sprite name=\""屏障\""></color>","<color=white>#Protection Shield<sprite name=\""Barrier\""></color>","<color=white>#保護<sprite name=\""Barrier\""></color>","<color=white>#보호막<sprite name=\""Barrier\""></color>"
-Tile_TileSynergy_Curse,"<color=#AE3FF3>#Curse<sprite name=\""Curse\""></color>","<color=#AE3FF3>#Curse<sprite name=\""Curse\""></color>","<color=#AE3FF3>#呪い<sprite name=\""Curse\""></color>","<color=#AE3FF3>#저주<sprite name=\""Curse\""></color>"
-Tile_TileSynergy_Cloud,"<color=white>#Cloud<sprite name=\""Cloud\""></color>","<color=white>#Cloud<sprite name=\""Cloud\""></color>","<color=white>#クラウド<sprite name=\""Cloud\""></color>","<color=white>#구름<sprite name=\""Cloud\""></color>"
+Tile_TileSynergy_Totem,"<color=#ECA03E>#Totem<sprite name=""Totem""></color>","<color=#ECA03E>#Totem<sprite name=""Totem""></color>","<color=#ECA03E>#トーテム<sprite name=""Totem""></color>","<color=#ECA03E>#토템<sprite name=""Totem""></color>"
+Tile_TileSynergy_Sword,"<color=#D1DBE5>#Sword<sprite name=""Sword""></color>","<color=#D1DBE5>#Sword<sprite name=""Sword""></color>","<color=#D1DBE5>#剣<sprite name=""Sword""></color>","<color=#D1DBE5>#검<sprite name=""Sword""></color>"
+Tile_TileSynergy_Fire,"<color=#DB444C>#Fire<sprite name=""Fire""></color>","<color=#DB444C>#Fire<sprite name=""Fire""></color>","<color=#DB444C>#炎<sprite name=""Fire""></color>","<color=#DB444C>#화염<sprite name=""Fire""></color>"
+Tile_TileSynergy_Ice,"<color=#0F88C1>#Statue<sprite name=""Ice""></color>","<color=#0F88C1>#Statue<sprite name=""Ice""></color>","<color=#0F88C1>#像<sprite name=""Ice""></color>","<color=#0F88C1>#동상<sprite name=""Ice""></color>"
+Tile_TileSynergy_Shield,"<color=white>#Shield<sprite name=""Shield""></color>","<color=white>#Shield<sprite name=""Shield""></color>","<color=white>#防御幕<sprite name=""Shield""></color>","<color=white>#방어막<sprite name=""Shield""></color>"
+Tile_TileSynergy_Barrier,"<color=white>#保护盾<sprite name=""屏障""></color>","<color=white>#Protection Shield<sprite name=""Barrier""></color>","<color=white>#保護<sprite name=""Barrier""></color>","<color=white>#보호막<sprite name=""Barrier""></color>"
+Tile_TileSynergy_Curse,"<color=#AE3FF3>#Curse<sprite name=""Curse""></color>","<color=#AE3FF3>#Curse<sprite name=""Curse""></color>","<color=#AE3FF3>#呪い<sprite name=""Curse""></color>","<color=#AE3FF3>#저주<sprite name=""Curse""></color>"
+Tile_TileSynergy_Cloud,"<color=white>#Cloud<sprite name=""Cloud""></color>","<color=white>#Cloud<sprite name=""Cloud""></color>","<color=white>#クラウド<sprite name=""Cloud""></color>","<color=white>#구름<sprite name=""Cloud""></color>"
 ,,,,
-Tile_TileTagDescription_Fire,"火焰<sprite name=\""Fire\"">：每秒造成相当于堆叠数量的伤害，并将堆叠数量减少 1。","Fire<sprite name=\""Fire\"">: Deals damage equal to the stack per second and reduces the stack by 1.","炎 <sprite name=\""Fire\"">: 毎秒スタックと同じダメージを与え、スタックが 1 減少します。","화염<sprite name=\""Fire\"">: 매초 스택만큼 피해를 주고 스택이 1 감소합니다."
-Tile_TileTagDescription_Ice,"<sprite name=\""Ice\"">: 堆叠 10 次后，冻结敌人 2 秒。","<sprite name=\""Ice\"">: When stacked 10 times, freezes enemies for 2 seconds.","像 <sprite name=\""Ice\"">: 10回重複すると、敵を2秒間氷結させます。","동상<sprite name=\""Ice\"">: 10번 중첩되면,적을 2초동안 빙결시킵니다."
-Tile_TileTagDescription_Sword,"剑<sprite name=\""Sword\"">：召唤生物，持续一定时间。当你向一把剑发出命令时，所有剑都会执行相同的命令。","Sword<sprite name=\""Sword\"">: A summoned creature that lasts for a certain period of time. When you give a command to a sword, all swords will carry out the same command.","剣<sprite name=\""Sword\"">: 一定時間維持される召喚獣。剣にコマンドを発行すると、すべての剣が同じコマンドを実行します。","검<sprite name=\""Sword\"">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다."
-Tile_TileTagDescription_Totem,"图腾<sprite name=\""Totem\"">：当3个图腾叠加时，触发效果并消失。叠加的第3个图腾的效果会增强。","Totem<sprite name=\""Totem\"">: When 3 totems are stacked, their effect is activated and they disappear. The effect of the 3rd totem stacked is strengthened.","トーテム <sprite name=\""Totem\"">: トーテムが3つ積み重なると効果を発動して消えます。","토템<sprite name=\""Totem\"">: 토템이 3개 쌓이면 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다."
-Tile_TileTagDescription_Shield,"盾牌<sprite name=\""Shield\"">：阻挡 1 轮伤害。","Shield<sprite name=\""Shield\"">: Blocks 1 round of damage.","防御 <sprite name=\""Shield\"">: 1 回のダメージを防ぎます。","방어막<sprite name=\""Shield\"">: 1회의 피해를 막아줍니다."
-Tile_TileTagDescription_Barrier,"屏障<sprite name=\""Barrier\"">：阻挡一定量的伤害。每秒减少。","Barrier<sprite name=\""Barrier\"">: Blocks a certain amount of damage. Decrease every second.","保護フィルム<sprite name=\""Barrier\"">: 一定量のダメージを防ぎます。毎秒減少します。","보호막<sprite name=\""Barrier\"">: 일정량의 피해를 막아줍니다. 매초 감소합니다."
-Tile_TileTagDescription_Pain,"痛苦<sprite name=\""Pain\"">：受到的伤害增加 10%。","Pain<sprite name=\""Pain\"">: Damage taken increases by 10%.","痛み<sprite name=\""Pain\"">: 受けるダメージが10%増加します。","고통<sprite name=\""Pain\"">: 받는 피해가 10% 증가합니다."
-Tile_TileTagDescription_Mark,"<sprite name=\""Mark\"">: 使你下次攻击受到的伤害提高 50%。","<sprite name=\""Mark\"">: Increases the damage taken from your next attack by 50%.","烙印 <sprite name=\""Mark\"">: 次の攻撃 1 回のダメージを 50% 増加して受けます。","낙인<sprite name=\""Mark\"">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다."
-Tile_TileTagDescription_Curse,"Curse<sprite name=\""Curse\"">：诅咒物品使用的资源。默认限制为 30。","Curse<sprite name=\""Curse\"">: A resource used by Curse items. The default limit is 30.","呪い<sprite name=\""Curse\"">: 呪いアイテムが使用するリソースです。","저주<sprite name=\""Curse\"">: 저주 아이템들이 사용하는 자원입니다. 기본적인 한도는 30입니다."
+Tile_TileTagDescription_Fire,"火焰<sprite name=""Fire"">：每秒造成相当于堆叠数量的伤害，并将堆叠数量减少 1。","Fire<sprite name=""Fire"">: Deals damage equal to the stack per second and reduces the stack by 1.","炎 <sprite name=""Fire"">: 毎秒スタックと同じダメージを与え、スタックが 1 減少します。","화염<sprite name=""Fire"">: 매초 스택만큼 피해를 주고 스택이 1 감소합니다."
+Tile_TileTagDescription_Ice,"<sprite name=""Ice"">: 堆叠 10 次后，冻结敌人 2 秒。","<sprite name=""Ice"">: When stacked 10 times, freezes enemies for 2 seconds.","像 <sprite name=""Ice"">: 10回重複すると、敵を2秒間氷結させます。","동상<sprite name=""Ice"">: 10번 중첩되면,적을 2초동안 빙결시킵니다."
+Tile_TileTagDescription_Sword,"剑<sprite name=""Sword"">：召唤生物，持续一定时间。当你向一把剑发出命令时，所有剑都会执行相同的命令。","Sword<sprite name=""Sword"">: A summoned creature that lasts for a certain period of time. When you give a command to a sword, all swords will carry out the same command.","剣<sprite name=""Sword"">: 一定時間維持される召喚獣。剣にコマンドを発行すると、すべての剣が同じコマンドを実行します。","검<sprite name=""Sword"">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다."
+Tile_TileTagDescription_Totem,"图腾<sprite name=""Totem"">：当3个图腾叠加时，触发效果并消失。叠加的第3个图腾的效果会增强。","Totem<sprite name=""Totem"">: When 3 totems are stacked, their effect is activated and they disappear. The effect of the 3rd totem stacked is strengthened.","トーテム <sprite name=""Totem"">: トーテムが3つ積み重なると効果を発動して消えます。","토템<sprite name=""Totem"">: 토템이 3개 쌓이면 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다."
+Tile_TileTagDescription_Shield,"盾牌<sprite name=""Shield"">：阻挡 1 轮伤害。","Shield<sprite name=""Shield"">: Blocks 1 round of damage.","防御 <sprite name=""Shield"">: 1 回のダメージを防ぎます。","방어막<sprite name=""Shield"">: 1회의 피해를 막아줍니다."
+Tile_TileTagDescription_Barrier,"屏障<sprite name=""Barrier"">：阻挡一定量的伤害。每秒减少。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Decrease every second.","保護フィルム<sprite name=""Barrier"">: 一定量のダメージを防ぎます。毎秒減少します。","보호막<sprite name=""Barrier"">: 일정량의 피해를 막아줍니다. 매초 감소합니다."
+Tile_TileTagDescription_Pain,"痛苦<sprite name=""Pain"">：受到的伤害增加 10%。","Pain<sprite name=""Pain"">: Damage taken increases by 10%.","痛み<sprite name=""Pain"">: 受けるダメージが10%増加します。","고통<sprite name=""Pain"">: 받는 피해가 10% 증가합니다."
+Tile_TileTagDescription_Mark,"<sprite name=""Mark"">: 使你下次攻击受到的伤害提高 50%。","<sprite name=""Mark"">: Increases the damage taken from your next attack by 50%.","烙印 <sprite name=""Mark"">: 次の攻撃 1 回のダメージを 50% 増加して受けます。","낙인<sprite name=""Mark"">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다."
+Tile_TileTagDescription_Curse,"Curse<sprite name=""Curse"">：诅咒物品使用的资源。默认限制为 30。","Curse<sprite name=""Curse"">: A resource used by Curse items. The default limit is 30.","呪い<sprite name=""Curse"">: 呪いアイテムが使用するリソースです。","저주<sprite name=""Curse"">: 저주 아이템들이 사용하는 자원입니다. 기본적인 한도는 30입니다."
 ,,,,
 UI_Quest_Instruction1,"指南 1
-
 ㄴ 移动角色
-
 ({0}/5)","Guide 1
-
 ㄴ Move the character
-
 ({0}/5)","ガイド1 
 ㄴキャラクターを動かす 
 ({0}/5)","가이드 1 
@@ -348,9 +344,9 @@ UI_Quest_Instruction2,"指南 2
 ㄴ 10초간 생존하세요
 ({0}/10초)"
 UI_Quest_Instruction3,"指南 3
-n 安装星座
+ㄴ 安装星座
 ({0}/5)","Guide 3
-n Install the constellation
+ㄴ Install the constellation
 ({0}/5)","ガイド3
 ㄴ星座を設置する
 ({0}/5個)","가이드 3
@@ -376,13 +372,13 @@ UI_Quest_Instruction5,"指南 5
 ({0}/4개)"
 UI_Quest_Instruction6,"指南6
 ㄴ出售星座
-(0/4)","Guide 6
+({0}/4)","Guide 6
 ㄴ Sell the constellation
-(0/4)","ガイド6
+({0}/4)","ガイド6
 ㄴ星座を販売してください
-（0/4個）","가이드 6
+（{0}/4個）","가이드 6
 ㄴ 별자리를 판매해보세요
-(0/4개)"
+({0}/4개)"
 UI_Quest_Instruction7,"指南 7
 ㄴ 与敌人战斗并取得胜利
 ({0}/1)","Guide 7
@@ -411,10 +407,8 @@ UI_Quest_SubTitle7,赢得,To win,勝つ,승리하기
 ,,,,
 UI_Quest_Content1,"角色可以通过
 WASD 或 ↑↓←→ 移动
-
 尝试移动角色","The character can be moved with
 WASD or ↑↓←→
-
 Try moving the character","キャラクターは
 WASDまたは↑↓←→
 で動くことができます 
@@ -428,11 +422,8 @@ Avoid enemy attacks and survive","敵はあなたを攻撃します
 敵の攻撃を避けて生き残る","적은 당신을 공격합니다
 적의 공격을 피해 살아남으세요"
 UI_Quest_Content3,"星座可以通过支付金币从底部商店购买
-
 将星座从商店拖放到该区域","Constellations can be purchased from the bottom shop
-
 by paying gold
-
 Drag the constellation from the shop to place it in the area","星座は下の店で 
 ゴールドを支払う 
 購入できます
@@ -482,21 +473,15 @@ the constellation is sold and you can earn gold.","星座ドラッグ中
 별자리가 판매되고 
 골드를 획득할 수 있습니다"
 UI_Quest_Content7,"准备战斗后，
-
 点击右下角的[开始战斗]
-
 开始战斗
 
 并踩上星座
-
 攻击敌人并获胜","After you're ready for battle,
-
 press [Start Battle] at the bottom right
-
 to start the battle
 
 and step on the constellations
-
 to attack the enemy and win","戦闘準備を終えて
 右下の[戦闘開始]
 タップして戦闘を始める
@@ -509,7 +494,8 @@ to attack the enemy and win","戦闘準備を終えて
 그리고 별자리를 밟아 
 적을 공격해 승리하세요"
 ,,,,
-UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),- Completion Conditions - Move Character (0/5),#NAME?,"- 완료 조건 -
+UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),- Completion Conditions - Move Character (0/5),"""- 完了条件 -
+キャラクターを移動する(0/5)""","- 완료 조건 -
 캐릭터 이동하기 (0/5)"
 UI_Quest_Goal2,- 完成条件 - 存活 10 秒 (0/10 秒),- Completion Conditions - Survive for 10 seconds (0/10 seconds),"- 完了条件 -
 10秒間生き残る（0/10秒）","- 완료 조건 -
@@ -517,21 +503,23 @@ UI_Quest_Goal2,- 完成条件 - 存活 10 秒 (0/10 秒),- Completion Conditions
 UI_Quest_Goal3,- 完成条件 - 安装 5 个星座 (0/5),- Completion Conditions - Install 5 constellations (0/5),"- 完了条件 -
 星座5個を設置する（0/5個）","- 완료 조건 -
 별자리 5개 설치하기 (0/5개)"
-UI_Quest_Goal4,- 完成条件 - 旋转星座 (0/5),- Completion Conditions - Rotate the Constellation (0/5),#NAME?,"- 완료 조건 -
+UI_Quest_Goal4,- 完成条件 - 旋转星座 (0/5),- Completion Conditions - Rotate the Constellation (0/5),""" - 完了条件 -
+星座を回転させる(0/5)v","- 완료 조건 -
 별자리 회전시키기 (0/5)"
 UI_Quest_Goal5,- 完成条件 - 储存 4 个星座 (0/4),"- Completion Conditions -
 Store 4 constellations (0/4)","- 完了条件 -
 星座を4個保管する（0/4個）","- 완료 조건 -
 별자리 4개 보관하기 (0/4개)"
-UI_Quest_Goal6,- 完成条件 - 出售 4 个星座 (0/4),"- Completion Conditions -
-Sell 4 constellations (0/4)","- 完了条件 -
-星座を4個販売する（0/4個）","- 완료 조건 -
-별자리 4개 판매하기 (0/4개)"
+UI_Quest_Goal6,- 完成条件 - 出售 4 个星座 ({0}/4),"- Completion Conditions -
+Sell 4 constellations ({0}/4)","""- 完了条件 -
+星座を4個販売する（{0}/4個）""","""- 완료 조건 -
+별자리 4개 판매하기 ({0}/4개)"""
 UI_Quest_Goal7,- 完成条件 - 赢得战斗 (0/1),"- Completion Conditions -
-Win the Battle (0/1)",#NAME?,"- 완료 조건 -
+Win the Battle (0/1)","""- 完了条件 -
+戦闘勝利(0/1)""","- 완료 조건 -
 전투 승리 (0/1)"
-UI_Button_FinalBossRetry,最终 Boss 再次挑战,Final Boss Re-challenge,最後のボス再挑戦,마지막 보스 재도전
 ,,,,
+UI_Button_FinalBossRetry,最终 Boss 再次挑战,Final Boss Re-challenge,最後のボス再挑戦,마지막 보스 재도전
 UI_Button_Reroll,"刷新 (1G)
 快捷键：D","Refresh (1G)
 Shortcut: D","リフレッシュ(1G)
@@ -561,3 +549,21 @@ UI_Text_BGMVolume,音乐音量,music volume,音楽ボリューム,음악 볼륨
 UI_Text_SoundEffectVolume,音效音量,Sound effect volume,エフェクト音量,효과음 볼륨
 UI_Text_OpportunityLeft,剩余机会,remaining opportunities,残りのチャンス,남은 기회
 UI_Text_GameClear,清除,Clear,クリア,클리어
+UI_Text_QuestEnd_Title,- 指南完成 -,- Guide Complete -,- ガイド完了 -,- 가이드 완료 -
+UI_Text_QuestEnd_Content,"您已完成所有指南
+强大的敌人正在等着您
+放置众多星座
+与敌人战斗并取得胜利","You have completed all the guides
+Very powerful enemies await you
+Place numerous constellations
+Fight the enemies and win","すべてのガイドを進めました
+非常に強力な敵があなたを待っています
+多数の星座を配置し、 
+敵と戦って勝つ","모든 가이드를 진행했습니다
+매우 강력한 적들이 당신을 기다립니다
+수많은 별자리를 배치하고 
+적들과 싸워 승리하세요"
+UI_Text_QuestEnd_Lose,- 失败 -,- Defeat -,-敗北-,- 패배 -
+UI_Text_QuestEnd_Restart,放置更多星座并重试,Place more constellations and try again,"もっと星座を配置する
+再挑戦してみてください","더 많은 별자리를 배치해
+재도전 해보세요"

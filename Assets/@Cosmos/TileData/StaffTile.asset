@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: StaffTile
   m_EditorClassIdentifier: 
-  tileName: "\uC9C0\uD321\uC774"
+  tileName: StaffTile
   description: "\uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
     <color=red>15</color>)"
   tileCategory: 0
@@ -21,4 +21,5 @@ MonoBehaviour:
   tileCost: 3
   tileCoolTime: 5
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
+  unlockInt: 0

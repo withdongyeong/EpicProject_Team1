@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class InfoTextRenderer : MonoBehaviour
 {
@@ -9,28 +10,28 @@ public class InfoTextRenderer : MonoBehaviour
     /// <summary>
     /// 안에 들어있는 게임 오브젝트들은 구분선과 설명 텍스트를 가지고 있습니다. FireGimmickText면 앞의 Fire가 키가 됩니다.
     /// </summary>
-   // Dictionary<string, GameObject> _textDict = new();
+    // Dictionary<string, GameObject> _textDict = new();
 
-    Dictionary<TileCategory, string> _categotyDict = new Dictionary<TileCategory, string>
+    private Dictionary<TileCategory, LocalizedString> _categoryDict = new()
     {
-        { TileCategory.Weapon, "<color=#D5F1FF>무기<sprite name=\"Weapon\"></color>" },
-        { TileCategory.MagicCircle, "<color=#D5F1FF>마법진<sprite name=\"MagicCircle\"></color>" },
-        { TileCategory.Armor, "<color=#D5F1FF>방어구<sprite name=\"Armor\"></color>" },
-        { TileCategory.Consumable, "<color=#D5F1FF>소모품<sprite name=\"Potion\"></color>" },
-        { TileCategory.Trinket, "<color=#D5F1FF>장신구<sprite name=\"Trinket\"></color>" },
-        { TileCategory.Summon, "<color=#D5F1FF>소환수<sprite name=\"Summon\"></color>" }
+        { TileCategory.Weapon, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Weapon") },
+        { TileCategory.MagicCircle, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_MagicCircle") },
+        { TileCategory.Armor, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Armor") },
+        { TileCategory.Consumable, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Consumable") },
+        { TileCategory.Trinket, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Trinket") },
+        { TileCategory.Summon, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Summon") }
     };
 
-    Dictionary<string, string> _synergyDict = new Dictionary<string, string>
+    Dictionary<string, LocalizedString> _synergyDict = new Dictionary<string, LocalizedString>
     {
-        { "Totem", "<color=#ECA03E>#토템<sprite name=\"Totem\"></color>" },
-        { "Sword", "<color=#D1DBE5>#검<sprite name=\"Sword\"></color>" },
-        { "Fire", "<color=#DB444C>#화염<sprite name=\"Fire\"></color>" },
-        { "Ice", "<color=#0F88C1>#동상<sprite name=\"Ice\"></color>" },
-        { "Shield", "<color=white>#방어막<sprite name=\"Shield\"></color>" },
-        { "Barrier", "<color=white>#보호막<sprite name=\"Barrier\"></color>" },
-        {"Curse", "<color=#AE3FF3>#저주<sprite name=\"Curse\"></color>" },
-        {"Cloud","<color=white>#구름<sprite name=\"Cloud\"></color>" }
+        { "Totem", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Totem") },
+        { "Sword", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Sword") },
+        { "Fire", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Fire") },
+        { "Ice", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Ice") },
+        { "Shield", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Shield") },
+        { "Barrier", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Barrier") },
+        {"Curse", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Curse") },
+        {"Cloud",new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Cloud") }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -63,7 +64,7 @@ public class InfoTextRenderer : MonoBehaviour
             {
                 if(_synergyDict.ContainsKey(tag))
                 {
-                    synergy = synergy + _synergyDict[tag] + " ";
+                    _synergyDict[tag].StringChanged += (text) => synergy = synergy + text + " ";
                     hasTag = true;
                 }
             }
@@ -77,7 +78,8 @@ public class InfoTextRenderer : MonoBehaviour
 
         //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        descriptionText.SetText(tileInfo.GetTileData().Description);
+        LocalizedString localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" + tileInfo.GetTileData().TileName);
+        localized_description.StringChanged += (text) => descriptionText.SetText(text);
 
         //태그 설명 추가
         foreach (string tag in tags)
@@ -86,15 +88,16 @@ public class InfoTextRenderer : MonoBehaviour
             {
                 Instantiate(linePrefab, transform); // 구분선 추가
                 TextUIResizer tagText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-                tagText.SetTagText(tagDescription[tag]);
+                tagDescription[tag].StringChanged += (text) => tagText.SetText(text);
             }
         }
 
         //카테고리 텍스트 추가
         TextMeshProUGUI categoryText = Instantiate(categoryTextPrefab, transform).GetComponent<TextMeshProUGUI>();
-        if (_categotyDict.TryGetValue(tileInfo.GetTileData().TileCategory, out string categoryTextValue))
+
+        if (_categoryDict.TryGetValue(tileInfo.GetTileData().TileCategory, out LocalizedString categoryTextValue))
         {
-            categoryText.text = categoryTextValue;
+            categoryTextValue.StringChanged += (text) => categoryText.text = text;
         }
     }
 
@@ -121,16 +124,16 @@ public class InfoTextRenderer : MonoBehaviour
         return result;
     }
 
-    Dictionary<string, string> tagDescription = new Dictionary<string, string>
+    Dictionary<string, LocalizedString> tagDescription = new Dictionary<string, LocalizedString>
     {
-        { "Fire", "화염<sprite name=\"Fire\">: 매초 스택만큼 피해를 주고 스택이 1 감소합니다." },
-        { "Ice", "동상<sprite name=\"Ice\">: 10번 중첩되면,적을 2초동안 빙결시킵니다." },
-        { "Sword", "검<sprite name=\"Sword\">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다." },
-        { "Totem", "토템<sprite name=\"Totem\">: 토템이 3개 쌓이면 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다." },
-        { "Shield", "방어막<sprite name=\"Shield\">: 1회의 피해를 막아줍니다." },
-        { "Barrier", "보호막<sprite name=\"Barrier\">: 일정량의 피해를 막아줍니다. 매초 감소합니다." },
-        {"Pain", "고통<sprite name=\"Pain\">: 받는 피해가 10% 증가합니다." },
-        {"Mark", "낙인<sprite name=\"Mark\">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다." },
-        {"Curse", "저주<sprite name=\"Curse\">: 저주 아이템들이 사용하는 자원입니다. 기본적인 한도는 30입니다." },
+        { "Fire", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Fire") },
+        { "Ice", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Ice")},
+        { "Sword", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Sword") },
+        { "Totem", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Totem") },
+        { "Shield", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Shield") },
+        { "Barrier", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Barrier") },
+        {"Pain", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Pain")},
+        {"Mark", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Mark") },
+        {"Curse", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Curse") },
     };
 }

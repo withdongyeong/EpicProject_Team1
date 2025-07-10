@@ -448,125 +448,113 @@ MonoBehaviour:
       Consume <color=red>20 Curses</color>.'
     m_Metadata:
       m_Items: []
-  - m_Id: 43615133731
-    m_Localized: 'Deals 5 Fire damage at once and removes all Fire <sprite name="Fire">s.
-
-      (Damage:
-      <color=red>0~255</color>)
-
-      If there are 3 or more Magic Circles <sprite
-      name="MagicCircles"> located on the <color=yellow>Star</color>, deal 10 Fire
-      damage.'
-    m_Metadata:
-      m_Items: []
   - m_Id: 43615133732
     m_Localized: '<color=yellow>Individual Square (2)</color>: Fires a projectile.
       (Damage: <color=red>6</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
-    m_Localized: '#<color=#D5F1FF>Weapon<sprite name=\"Weapon\"></color>'
+    m_Localized: '#<color=#D5F1FF>Weapon<sprite name="Weapon"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133735
-    m_Localized: '#<color=#D5F1FF>Magic Circle<sprite name=\"MagicCircle\"></color>'
+    m_Localized: '#<color=#D5F1FF>Magic Circle<sprite name="MagicCircle"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133736
-    m_Localized: '#<color=#D5F1FF>Armor<sprite name=\"Armor\"></color>'
+    m_Localized: '#<color=#D5F1FF>Armor<sprite name="Armor"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328000
-    m_Localized: '#<color=#D5F1FF>Consumables<sprite name=\"Potion\"></color>'
+    m_Localized: '#<color=#D5F1FF>Consumables<sprite name="Potion"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328001
-    m_Localized: '#<color=#D5F1FF>Trinket<sprite name=\"Trinket\"></color>'
+    m_Localized: '#<color=#D5F1FF>Trinket<sprite name="Trinket"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328002
-    m_Localized: '#<color=#D5F1FF>Summon<sprite name=\"Summon\"></color>'
+    m_Localized: '#<color=#D5F1FF>Summon<sprite name="Summon"></color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328004
-    m_Localized: <color=#ECA03E>#Totem<sprite name=\"Totem\"></color>
+    m_Localized: <color=#ECA03E>#Totem<sprite name="Totem"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328005
-    m_Localized: <color=#D1DBE5>#Sword<sprite name=\"Sword\"></color>
+    m_Localized: <color=#D1DBE5>#Sword<sprite name="Sword"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328006
-    m_Localized: <color=#DB444C>#Fire<sprite name=\"Fire\"></color>
+    m_Localized: <color=#DB444C>#Fire<sprite name="Fire"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328007
-    m_Localized: <color=#0F88C1>#Statue<sprite name=\"Ice\"></color>
+    m_Localized: <color=#0F88C1>#Statue<sprite name="Ice"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328008
-    m_Localized: <color=white>#Shield<sprite name=\"Shield\"></color>
+    m_Localized: <color=white>#Shield<sprite name="Shield"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328009
-    m_Localized: <color=white>#Protection Shield<sprite name=\"Barrier\"></color>
+    m_Localized: <color=white>#Protection Shield<sprite name="Barrier"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328010
-    m_Localized: <color=#AE3FF3>#Curse<sprite name=\"Curse\"></color>
+    m_Localized: <color=#AE3FF3>#Curse<sprite name="Curse"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328011
-    m_Localized: <color=white>#Cloud<sprite name=\"Cloud\"></color>
+    m_Localized: <color=white>#Cloud<sprite name="Cloud"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328013
-    m_Localized: 'Fire<sprite name=\"Fire\">: Deals damage equal to the stack per
-      second and reduces the stack by 1.'
+    m_Localized: 'Fire<sprite name="Fire">: Deals damage equal to the stack per second
+      and reduces the stack by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328014
-    m_Localized: '<sprite name=\"Ice\">: When stacked 10 times, freezes enemies for
+    m_Localized: '<sprite name="Ice">: When stacked 10 times, freezes enemies for
       2 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328015
-    m_Localized: 'Sword<sprite name=\"Sword\">: A summoned creature that lasts for
+    m_Localized: 'Sword<sprite name="Sword">: A summoned creature that lasts for
       a certain period of time. When you give a command to a sword, all swords will
       carry out the same command.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328016
-    m_Localized: 'Totem<sprite name=\"Totem\">: When 3 totems are stacked, their
-      effect is activated and they disappear. The effect of the 3rd totem stacked
-      is strengthened.'
+    m_Localized: 'Totem<sprite name="Totem">: When 3 totems are stacked, their effect
+      is activated and they disappear. The effect of the 3rd totem stacked is strengthened.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328017
-    m_Localized: 'Shield<sprite name=\"Shield\">: Blocks 1 round of damage.'
+    m_Localized: 'Shield<sprite name="Shield">: Blocks 1 round of damage.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328018
-    m_Localized: 'Barrier<sprite name=\"Barrier\">: Blocks a certain amount of damage.
+    m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
       Decrease every second.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328019
-    m_Localized: 'Pain<sprite name=\"Pain\">: Damage taken increases by 10%.'
+    m_Localized: 'Pain<sprite name="Pain">: Damage taken increases by 10%.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328020
-    m_Localized: '<sprite name=\"Mark\">: Increases the damage taken from your next
+    m_Localized: '<sprite name="Mark">: Increases the damage taken from your next
       attack by 50%.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328021
-    m_Localized: 'Curse<sprite name=\"Curse\">: A resource used by Curse items. The
+    m_Localized: 'Curse<sprite name="Curse">: A resource used by Curse items. The
       default limit is 30.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328023
-    m_Localized: "Guide 1\n\n\u3134 Move the character\n\n({0}/5)"
+    m_Localized: "Guide 1\n\u3134 Move the character\n({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328024
@@ -574,11 +562,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328025
-    m_Localized: 'Guide 3
-
-      n Install the constellation
-
-      ({0}/5)'
+    m_Localized: "Guide 3\n\u3134 Install the constellation\n({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328026
@@ -590,7 +574,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328028
-    m_Localized: "Guide 6\n\u3134 Sell the constellation\n(0/4)"
+    m_Localized: "Guide 6\n\u3134 Sell the constellation\n({0}/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328029
@@ -654,7 +638,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328047
-    m_Localized: "The character can be moved with\nWASD or \u2191\u2193\u2190\u2192\n\nTry
+    m_Localized: "The character can be moved with\nWASD or \u2191\u2193\u2190\u2192\nTry
       moving the character"
     m_Metadata:
       m_Items: []
@@ -667,10 +651,8 @@ MonoBehaviour:
   - m_Id: 43619328049
     m_Localized: 'Constellations can be purchased from the bottom shop
 
-
       by
       paying gold
-
 
       Drag the constellation from the shop to place it in the
       area'
@@ -709,16 +691,13 @@ MonoBehaviour:
   - m_Id: 43619328053
     m_Localized: 'After you''re ready for battle,
 
-
       press [Start Battle] at
       the bottom right
-
 
       to start the battle
 
 
       and step on the constellations
-
 
       to
       attack the enemy and win'
@@ -749,7 +728,7 @@ MonoBehaviour:
   - m_Id: 43619328060
     m_Localized: '- Completion Conditions -
 
-      Sell 4 constellations (0/4)'
+      Sell 4 constellations ({0}/4)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328061
@@ -858,6 +837,41 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17316375568392
     m_Localized: Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106024537825284
+    m_Localized: '- Guide Complete -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106024537825285
+    m_Localized: 'You have completed all the guides
+
+      Very powerful enemies
+      await you
+
+      Place numerous constellations
+
+      Fight the enemies and
+      win'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118802749202442
+    m_Localized: '- Defeat -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118802753396736
+    m_Localized: Place more constellations and try again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 456771884425216
+    m_Localized: 'Deals 5 Fire damage at once and removes all Fire <sprite name="Fire">s.
+
+      (Damage:
+      <color=red>0~255</color>)
+
+      If there are 3 or more Magic Circles <sprite
+      name="MagicCircles"> located on the <color=yellow>Star</color>, deal 10 Fire
+      damage.'
     m_Metadata:
       m_Items: []
   references:

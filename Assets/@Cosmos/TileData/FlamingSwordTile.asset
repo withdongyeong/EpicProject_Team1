@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: FlamingSwordTile
   m_EditorClassIdentifier: 
-  tileName: "\uBD99\uD0C0\uB294 \uAC80"
+  tileName: FlamingSwordTile
   description: "5\uCD08\uAC04 \uBAA8\uB4E0 \uAC80<sprite name=\"Sword\">\uC774 \uD654\uC5FC<sprite
     name=\"Fire\">\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uAC80<sprite name=\"Sword\">\uC744
     \uD55C \uAC1C \uC18C\uD658\uD558\uACE0 \uBAA8\uB4E0 \uAC80\uC774 \uACF5\uACA9\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
@@ -27,3 +27,4 @@ MonoBehaviour:
   requiredTile: {fileID: 0}
   rejectTileList:
   - {fileID: 11400000}
+  unlockInt: 0

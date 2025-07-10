@@ -67,6 +67,11 @@ public class PlayerHp : MonoBehaviour
         
         if (_currentHealth <= 0)
         {
+            if (GameManager.Instance.IsInTutorial)
+            {
+                _currentHealth = 2;
+                return;
+            }
             // 죽었으면 죽음 처리
             Die();
             SoundManager.Instance.PlayPlayerSound("PlayerDead");

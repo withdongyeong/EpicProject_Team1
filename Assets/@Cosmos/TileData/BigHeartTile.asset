@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: BigHeartTile
   m_EditorClassIdentifier: 
-  tileName: "\uD070 \uD558\uD2B8"
+  tileName: BigHeartTile
   description: "<color=yellow>\uAC1C\uBCC4\uCE78(3)</color>: \uCCB4\uB825\uC744 <color=green>5</color>
     \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0
     \uC704\uCE58\uD55C</color> \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC774
@@ -24,3 +24,4 @@ MonoBehaviour:
   tileCoolTime: 8
   requiredTile: {fileID: 0}
   rejectTileList: []
+  unlockInt: 0

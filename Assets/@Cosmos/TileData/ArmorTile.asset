@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: ArmorTile
   m_EditorClassIdentifier: 
-  tileName: "\uAC11\uC637"
+  tileName: ArmorTile
   description: "\uBC29\uC5B4\uB9C9<sprite name=\"Shield\">\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
   tileCategory: 2
   tileSprite: {fileID: 21300000, guid: ec79ff860d7376c488be87cfdec8d3c6, type: 3}
@@ -20,4 +20,5 @@ MonoBehaviour:
   tileCost: 8
   tileCoolTime: 5
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
+  unlockInt: 0
