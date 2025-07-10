@@ -378,13 +378,6 @@ MonoBehaviour:
       name=\"Curse\">\u3092<color=red>20\u6D88\u8CBB</color>\u3057\u307E\u3059\u3002"
     m_Metadata:
       m_Items: []
-  - m_Id: 43615133731
-    m_Localized: "\u6B21\u306E5\u3064\u306E\u708E<sprite name=\"Fire\">\u30C0\u30E1\u30FC\u30B8\u3092\u4E00\u5EA6\u306B\u4E0E\u3048\u3001\u708E<sprite
-      name=\"Fire\">\u3092\u3059\u3079\u3066\u524A\u9664\u3057\u307E\u3059\u3002\n\uFF08\u30C0\u30E1\u30FC\u30B8\uFF1A<color=red>0\u301C255</color>\uFF09\n<color=yellow>\u661F<sprite
-      name=\"Star\">\u306B\u3042\u308B</color>\u9B54\u6CD5\u9663<sprite name=\"MagicCircle\">\u304C3\u3064\u4EE5\u4E0A\u306E\u5834\u5408\u3001\u6B21\u306E10\u56DE\u306E\u708E<sprite
-      name=\"Fire\">\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u307E\u3059\u3002"
-    m_Metadata:
-      m_Items: []
   - m_Id: 43615133732
     m_Localized: "<color=yellow>\u500B\u3005\u306E\u533A\u753B\uFF082\uFF09</color>\uFF1A\u6295\u5199\u4F53\u3092\u767A\u5C04\u3057\u307E\u3059\u3002\n(\u30C0\u30E1\u30FC\u30B8:
       <color=red>6</color>)"
@@ -603,7 +596,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328055
-    m_Localized: "\"- \u5B8C\u4E86\u6761\u4EF6 -\n\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u3092\u79FB\u52D5\u3059\u308B(0/5)\""
+    m_Localized: "- \u5B8C\u4E86\u6761\u4EF6 -\n\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u3092\u79FB\u52D5\u3059\u308B(0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328056
@@ -615,7 +608,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328058
-    m_Localized: "\" - \u5B8C\u4E86\u6761\u4EF6 -\n\u661F\u5EA7\u3092\u56DE\u8EE2\u3055\u305B\u308B(0/5)v"
+    m_Localized: "- \u5B8C\u4E86\u6761\u4EF6 -\n\u661F\u5EA7\u3092\u56DE\u8EE2\u3055\u305B\u308B(0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328059
@@ -623,11 +616,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328060
-    m_Localized: "\"- \u5B8C\u4E86\u6761\u4EF6 -\n\u661F\u5EA7\u30924\u500B\u8CA9\u58F2\u3059\u308B\uFF08{0}/4\u500B\uFF09\""
+    m_Localized: "- \u5B8C\u4E86\u6761\u4EF6 -\n\u661F\u5EA7\u30924\u500B\u8CA9\u58F2\u3059\u308B\uFF08{0}/4\u500B\uFF09"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328061
-    m_Localized: "\"- \u5B8C\u4E86\u6761\u4EF6 -\n\u6226\u95D8\u52DD\u5229(0/1)\""
+    m_Localized: "- \u5B8C\u4E86\u6761\u4EF6 -\n\u6226\u95D8\u52DD\u5229(0/1)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328063
@@ -745,6 +738,13 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 118802753396736
     m_Localized: "\u3082\u3063\u3068\u661F\u5EA7\u3092\u914D\u7F6E\u3059\u308B\n\u518D\u6311\u6226\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 456771884425216
+    m_Localized: "\u6B21\u306E5\u3064\u306E\u708E<sprite name=\"Fire\">\u30C0\u30E1\u30FC\u30B8\u3092\u4E00\u5EA6\u306B\u4E0E\u3048\u3001\u708E<sprite
+      name=\"Fire\">\u3092\u3059\u3079\u3066\u524A\u9664\u3057\u307E\u3059\u3002\n\uFF08\u30C0\u30E1\u30FC\u30B8\uFF1A<color=red>0\u301C255</color>\uFF09\n<color=yellow>\u661F<sprite
+      name=\"Star\">\u306B\u3042\u308B</color>\u9B54\u6CD5\u9663<sprite name=\"MagicCircle\">\u304C3\u3064\u4EE5\u4E0A\u306E\u5834\u5408\u3001\u6B21\u306E10\u56DE\u306E\u708E<sprite
+      name=\"Fire\">\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u307E\u3059\u3002"
     m_Metadata:
       m_Items: []
   references:
