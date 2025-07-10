@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: WarFlagTile
   m_EditorClassIdentifier: 
-  tileName: "\uC804\uC7C1 \uAE43\uBC1C"
+  tileName: WarFlagTile
   description: "\uAC80<sprite name=\"Sword\">\uC744 3\uAC1C \uC18C\uD658\uD558\uACE0
     \uC18C\uD658\uD560 \uB54C\uB9C8\uB2E4 \uBAA8\uB4E0 \uAC80<sprite name=\"Sword\">\uC774
     \uACF5\uACA9\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9: <color=red>5</color>)\n<color=yellow>\uBCC4<sprite
@@ -25,3 +25,4 @@ MonoBehaviour:
   tileCoolTime: 10
   requiredTile: {fileID: 0}
   rejectTileList: []
+  unlockInt: 0
