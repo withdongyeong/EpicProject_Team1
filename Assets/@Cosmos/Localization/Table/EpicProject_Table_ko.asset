@@ -275,7 +275,7 @@ MonoBehaviour:
   - m_Id: 43615133712
     m_Localized: "<color=yellow>\uAD6C\uB9E4\uC2DC</color>: \uAD6C\uB984<sprite name=\"Cloud\">\uC774
       \uC0C1\uC810\uC5D0 \uB4F1\uC7A5\uD569\uB2C8\uB2E4.\n\uB3D9\uC0C1<sprite name=\"Ice\">\uC744
-      \uBD80\uC5EC\uD560 \uB54C 20% \uD655\uB960\uB85C \uD55C\uBC88 \uB354 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n\uD654\uC0C1<sprite
+      \uBD80\uC5EC\uD560 \uB54C 20% \uD655\uB960\uB85C \uD55C\uBC88 \uB354 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n\uD654\uC5FC<sprite
       name=\"fire\">\uC744 \uBD80\uC5EC\uD560 \uB54C 20% \uD655\uB960\uB85C \uBD80\uC5EC\uD558\uC9C0
       \uC54A\uC2B5\uB2C8\uB2E4."
     m_Metadata:
@@ -295,7 +295,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133715
-    m_Localized: "\uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uB300\uC0C1\uC774
+    m_Localized: "\uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uC801\uC774
       \uBE59\uACB0<sprite name=\"Freeze\"> \uC0C1\uD0DC\uBA74 \uD53C\uD574\uB7C9\uC774
       <color=green>10</color>\uBC30\uAC00 \uB429\uB2C8\uB2E4. <color=red>\uBE59\uACB0
       \uC0C1\uD0DC\uB97C \uD574\uC81C\uD569\uB2C8\uB2E4.</color>\n(\uD53C\uD574\uB7C9:<color=red>30</color>)"
@@ -413,9 +413,9 @@ MonoBehaviour:
       \uC2DC</color>: \uAC70\uBD81\uC774\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uAC70\uBD81\uC774\uB294
       \uD761\uC218\uD55C \uBCF4\uD638\uB9C9\uB7C9\uC5D0 \uBE44\uB840\uD574 \uD53C\uD574\uB97C
       \uC785\uD799\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9: <color=red>3 X \uD761\uC218\uD55C
-      \uC591</color>)\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color>
-      \uC18C\uD658\uC218<sprite name=\"Summon\">\uB9C8\uB2E4 \uCFE8\uD0C0\uC784\uC774
-      10% \uAC10\uC18C\uD569\uB2C8\uB2E4."
+      \uBCF4\uD638\uB9C9</color>)\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0
+      \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uB9C8\uB2E4
+      \uCFE8\uD0C0\uC784\uC774 10% \uAC10\uC18C\uD569\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
@@ -659,7 +659,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328052
-    m_Localized: "\uBCC4\uC790\uB9AC \uB4DC\uB798\uADF8 \uC911\uC5D0\n\uD558\uB2E8\uC5D0
+    m_Localized: "\uBCC4\uC790\uB9AC\uB97C \uB4DC\uB798\uADF8 \uD558\uB294 \uC911\uC5D0\uB294\n\uD558\uB2E8\uC5D0
       \uD310\uB9E4 \uC601\uC5ED\uC774 \uD65C\uC131\uD654 \uB429\uB2C8\uB2E4\n\uBCC4\uC790\uB9AC\uB97C
       \uB04C\uC5B4\uB2E4 \uD310\uB9E4 \uC601\uC5ED\uC5D0 \uB450\uBA74\n\uBCC4\uC790\uB9AC\uAC00
       \uD310\uB9E4\uB418\uACE0 \n\uACE8\uB4DC\uB97C \uD68D\uB4DD\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4"
@@ -766,23 +766,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328079
-    m_Localized: "\uC77C\uBC18 \uD655\uB960: {0}"
+    m_Localized: "\uC77C\uBC18 \uD655\uB960: {0}%"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328080
-    m_Localized: "<color=#B6E6FE>\uD76C\uADC0 \uD655\uB960</color>: {0}"
+    m_Localized: "<color=#B6E6FE>\uD76C\uADC0 \uD655\uB960</color>: {0}%"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328081
-    m_Localized: "<color=#E2ACFE>\uC601\uC6C5 \uD655\uB960</color>: {0}"
+    m_Localized: "<color=#E2ACFE>\uC601\uC6C5 \uD655\uB960</color>: {0}%"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328082
-    m_Localized: "<color=#FEB996>\uC804\uC124 \uD655\uB960</color>: {0}"
+    m_Localized: "<color=#FEB996>\uC804\uC124 \uD655\uB960</color>: {0}%"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328083
-    m_Localized: "<color=#A6E6D9>\uC2E0\uD654 \uD655\uB960</color>: {0}"
+    m_Localized: "<color=#A6E6D9>\uC2E0\uD654 \uD655\uB960</color>: {0}%"
     m_Metadata:
       m_Items: []
   - m_Id: 12751517392901
@@ -834,12 +834,16 @@ MonoBehaviour:
       name=\"Fire\"> \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
-  - m_Id: 497987669860362
-    m_Localized: "\uB9C8\uC2A4\uD130 \uBCFC\uB968"
-    m_Metadata:
-      m_Items: []
   - m_Id: 498343233593344
     m_Localized: "\uC9C0\uC625\uBD88"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693015742652418
+    m_Localized: "\uD0C0\uC774\uD2C0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693015742652420
+    m_Localized: "\uB9C8\uC2A4\uD130 \uBCFC\uB968"
     m_Metadata:
       m_Items: []
   references:

@@ -804,7 +804,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328074
-    m_Localized: language
+    m_Localized: Language
     m_Metadata:
       m_Items: []
   - m_Id: 43619328075
@@ -824,23 +824,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328079
-    m_Localized: 'Normal probability: {0}'
+    m_Localized: 'Normal probability: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328080
-    m_Localized: '<color=#B6E6FE>Rarity probability</color>: {0}'
+    m_Localized: '<color=#B6E6FE>Rarity probability</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328081
-    m_Localized: '<color=#E2ACFE>Hero Chance</color>: {0}'
+    m_Localized: '<color=#E2ACFE>Hero Chance</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328082
-    m_Localized: '<color=#FEB996>Legend Chance</color>: {0}'
+    m_Localized: '<color=#FEB996>Legend Chance</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328083
-    m_Localized: '<color=#A6E6D9>Mythic Chance</color>: {0}'
+    m_Localized: '<color=#A6E6D9>Mythic Chance</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 12751517392901
@@ -898,12 +898,16 @@ MonoBehaviour:
       damage.'
     m_Metadata:
       m_Items: []
-  - m_Id: 497987669860362
-    m_Localized: Master volume
-    m_Metadata:
-      m_Items: []
   - m_Id: 498343233593344
     m_Localized: Hellfire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693015742652418
+    m_Localized: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693015742652420
+    m_Localized: Master volume
     m_Metadata:
       m_Items: []
   references:
