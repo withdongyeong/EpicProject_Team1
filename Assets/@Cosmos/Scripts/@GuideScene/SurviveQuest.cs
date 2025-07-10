@@ -1,20 +1,28 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
 
 public class SurviveQuest : GuideQuest
 {
     [SerializeField]
     private float secondsSurvived = 0;
-    
-    
+
+    public LocalizedString instructionTextLocalized;
+    public LocalizedString titleTextLocalized;
+    public LocalizedString subTitleTextLocalized;
+    public LocalizedString contentTextLocalized;
+    public LocalizedString goalTextLocalized;
+
     public override void SetTexts()
     {
-        instructionText = "가이드 2\n ㄴ 10초간 생존하세요\n (0/10초)";
-        titleText = "- 가이드 2 -";
-        subTitleText = "살아남기";
-        contentText = "적은 당신을 공격합니다\n" +
-                      "적의 공격을 피해 살아남으세요";
-        goalText = "- 완료 조건 -\n" +
-                   "10초간 생존하기 (0/10초)\n";
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", "0");
+        };
+
+        titleTextLocalized.StringChanged += (text) => titleText = text;
+        subTitleTextLocalized.StringChanged += (text) => subTitleText = text;
+        contentTextLocalized.StringChanged += (text) => contentText = text;
+        goalTextLocalized.StringChanged += (text) => goalText = text;
     }
     
     public override void OnStart()
@@ -27,7 +35,13 @@ public class SurviveQuest : GuideQuest
         
         secondsSurvived += Time.deltaTime;
         secondsSurvived = Mathf.Clamp(secondsSurvived, 0, 10); // 10초 이상은 안되게
-        instructionText = $"가이드 2\n ㄴ 10초간 생존하세요\n ({(int)secondsSurvived}/10초)";
+
+        int Int_secondsSurvived = (int)secondsSurvived;
+
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", Int_secondsSurvived.ToString());
+        };
+
         GuideHandler.instance.questText.text = instructionText;
         return secondsSurvived >= 10;
     }
