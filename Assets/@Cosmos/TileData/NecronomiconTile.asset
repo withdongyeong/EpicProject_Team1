@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: NecronomiconTile
   m_EditorClassIdentifier: 
-  tileName: "\uB124\uD06C\uB85C\uB178\uBBF8\uCF58"
+  tileName: NecronomiconTile
   description: "\uC801\uC5D0\uAC8C \uBD80\uC5EC\uB41C \uC800\uC8FC<sprite name=\"Curse\">
     \uAC1C\uC218\uC5D0 \uBE44\uB840\uD574 \uD53C\uD574\uAC00 \uC99D\uAC00\uD558\uB294
     \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9:
@@ -27,3 +27,4 @@ MonoBehaviour:
   tileCoolTime: 5
   requiredTile: {fileID: 0}
   rejectTileList: []
+  unlockInt: 0

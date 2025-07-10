@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: ManaAITile
   m_EditorClassIdentifier: 
-  tileName: "\uB9C8\uB098 AI"
+  tileName: ManaAITile
   description: "<color=red>\uBC1F\uC544\uC11C \uBC1C\uB3D9\uC2DC\uD0AC \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.
     \uD1B5\uACFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.</color>\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uB9C8\uB098 \uD3EC\uD0D1\uC774
@@ -25,3 +25,4 @@ MonoBehaviour:
   requiredTile: {fileID: 11400000, guid: 4a1d74747be347844af7e38898ace8e2, type: 2}
   rejectTileList:
   - {fileID: 11400000}
+  unlockInt: 0

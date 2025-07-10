@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: ManaPotionTile
   m_EditorClassIdentifier: 
-  tileName: "\uB9C8\uB098\uD3EC\uC158"
+  tileName: ManaPotionTile
   description: "\uB9C8\uB098()\uB97C ()\uC5BB\uC2B5\uB2C8\uB2E4."
   tileCategory: 3
   tileSprite: {fileID: 21300000, guid: 4457e2e88c7d0bc4f9772295983a3ca7, type: 3}
@@ -20,4 +20,5 @@ MonoBehaviour:
   tileCost: 3
   tileCoolTime: 0
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
+  unlockInt: 0

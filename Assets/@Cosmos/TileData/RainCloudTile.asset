@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: RainCloudTile
   m_EditorClassIdentifier: 
-  tileName: "\uBE44\uAD6C\uB984"
+  tileName: RainCloudTile
   description: "5\uCD08\uB9C8\uB2E4 \uC801\uC5D0\uAC8C \uB099\uC778<sprite name=\"Mark\">\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   tileCategory: 5
@@ -23,3 +23,4 @@ MonoBehaviour:
   requiredTile: {fileID: 11400000, guid: a0586d3f9ad033c4da2838254f9012bc, type: 2}
   rejectTileList:
   - {fileID: 11400000}
+  unlockInt: 0
