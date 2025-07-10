@@ -243,10 +243,7 @@ public abstract class BaseBoss : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F7))
-        {
-            _currentHealth = 1;
-        }
+        
     }
 
     /// <summary>
@@ -516,5 +513,12 @@ public abstract class BaseBoss : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(Init);
+    }
+    
+    
+    
+    public void TestBossHpSet(int hp)
+    {
+        _currentHealth = hp;
     }
 }

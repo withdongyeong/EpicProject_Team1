@@ -199,4 +199,9 @@ public class PlayerHp : MonoBehaviour
     {
         EndInvincibility();
     }
+
+    public void TestHpSetting(int hp) // 테스트용
+    {
+        _currentHealth = hp;
+    }
 }
