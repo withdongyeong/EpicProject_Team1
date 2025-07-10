@@ -49,7 +49,7 @@ public class FightQuest : GuideQuest
 
     public override void OnComplete()
     {
-        
+        SaveManager.SaveIsTutorialCompleted(1);
     }
 
     private void Win()
