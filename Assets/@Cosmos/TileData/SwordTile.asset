@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: SwordTile
   m_EditorClassIdentifier: 
-  tileName: "\uAC80 \uC18C\uD658"
+  tileName: SwordTile
   description: "\uAC80<sprite name=\"Sword\">\uC744 \uC18C\uD658\uD558\uACE0 \uBAA8\uB4E0
     \uAC80\uC774 \uACF5\uACA9\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9: <color=red>5</color>)\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uB9C8\uB2E4
@@ -24,3 +24,4 @@ MonoBehaviour:
   tileCoolTime: 5
   requiredTile: {fileID: 0}
   rejectTileList: []
+  unlockInt: 0

@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: TestTile
   m_EditorClassIdentifier: 
-  tileName: "\uD14C\uC2A4\uD2B8\uC785\uB2C8\uB2E4"
+  tileName: TestTile
   description: "\uD14C\uC2A4\uD2B8 \uD0C0\uC77C\uC785\uB2C8\uB2E4."
+  tileCategory: 0
   tileSprite: {fileID: 21300000, guid: af2ff6b5e7c1bee4ca398ef858715220, type: 3}
   tileGrade: 3
+  tileCost: 1
+  tileCoolTime: 1
+  requiredTile: {fileID: 0}
+  rejectTileList: []
+  unlockInt: 0
