@@ -158,10 +158,6 @@ MonoBehaviour:
     m_Localized: shade
     m_Metadata:
       m_Items: []
-  - m_Id: 43610939425
-    m_Localized: Hellfire
-    m_Metadata:
-      m_Items: []
   - m_Id: 43610939426
     m_Localized: Wand
     m_Metadata:
@@ -515,8 +511,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328014
-    m_Localized: '<sprite name="Ice">: When stacked 10 times, freezes enemies for
-      2 seconds.'
+    m_Localized: 'Statue<sprite name="Ice">: When stacked 10 times, freezes enemies
+      for 2 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328015
@@ -544,8 +540,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328020
-    m_Localized: '<sprite name="Mark">: Increases the damage taken from your next
-      attack by 50%.'
+    m_Localized: 'Mark<sprite name="Mark">: Increases the damage taken from your
+      next attack by 50%.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328021
@@ -554,31 +550,59 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328023
-    m_Localized: "Guide 1\n\u3134 Move the character\n({0}/5)"
+    m_Localized: 'Guide 1
+
+      - Move the character
+
+      ({0}/5)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328024
-    m_Localized: "Guide 2\n\u3134 Survive for 10 seconds\n({0}/10 seconds)"
+    m_Localized: 'Guide 2
+
+      - Survive for 10 seconds
+
+      ({0}/10 seconds)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328025
-    m_Localized: "Guide 3\n\u3134 Install the constellation\n({0}/5)"
+    m_Localized: 'Guide 3
+
+      - Install the constellation
+
+      ({0}/5)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328026
-    m_Localized: "Guide 4\n\u3134 Rotate the constellations\n({0}/5)"
+    m_Localized: 'Guide 4
+
+      - Rotate the constellations
+
+      ({0}/5)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328027
-    m_Localized: "Guide 5\n\u3134 Keep the constellations\n({0}/4)"
+    m_Localized: 'Guide 5
+
+      - Keep the constellations
+
+      ({0}/4)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328028
-    m_Localized: "Guide 6\n\u3134 Sell the constellation\n({0}/4)"
+    m_Localized: 'Guide 6
+
+      - Sell the constellation
+
+      ({0}/4)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328029
-    m_Localized: "Guide 7\n\u3134 Fight the enemy and win\n({0}/1)"
+    m_Localized: 'Guide 7
+
+      - Fight the enemy and win
+
+      ({0}/1)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328031
@@ -780,7 +804,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328074
-    m_Localized: language
+    m_Localized: Language
     m_Metadata:
       m_Items: []
   - m_Id: 43619328075
@@ -800,23 +824,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328079
-    m_Localized: 'Normal probability: {0}'
+    m_Localized: 'Normal probability: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328080
-    m_Localized: '<color=#B6E6FE>Rarity probability</color>: {0}'
+    m_Localized: '<color=#B6E6FE>Rarity probability</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328081
-    m_Localized: '<color=#E2ACFE>Hero Chance</color>: {0}'
+    m_Localized: '<color=#E2ACFE>Hero Chance</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328082
-    m_Localized: '<color=#FEB996>Legend Chance</color>: {0}'
+    m_Localized: '<color=#FEB996>Legend Chance</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328083
-    m_Localized: '<color=#A6E6D9>Mythic Chance</color>: {0}'
+    m_Localized: '<color=#A6E6D9>Mythic Chance</color>: {0}%'
     m_Metadata:
       m_Items: []
   - m_Id: 12751517392901
@@ -872,6 +896,18 @@ MonoBehaviour:
       If there are 3 or more Magic Circles <sprite
       name="MagicCircles"> located on the <color=yellow>Star</color>, deal 10 Fire
       damage.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 498343233593344
+    m_Localized: Hellfire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693015742652418
+    m_Localized: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693015742652420
+    m_Localized: Master volume
     m_Metadata:
       m_Items: []
   references:

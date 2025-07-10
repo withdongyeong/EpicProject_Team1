@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Japanese (ja)
   m_GUID: 276b3eacda0ec4446898f88611981f0b
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: f7e8ca32a64e57f479b7b106d9246ed9
+    m_Address: KaiseiDecol-Bold SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: d97ad773042266f429aa5ac654aedd88, type: 2}
   m_SchemaSet:
