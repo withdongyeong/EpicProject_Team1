@@ -45,14 +45,23 @@ public class StageSelectManager : Singleton<StageSelectManager>
         stageNum = 1;
     }
 
+    public void SetStageNum(int num) //테스트용
+    {
+        if (num < 0 || num >= stageDataList.Length)
+        {
+            Debug.LogWarning("[StageSelectManager] 잘못된 스테이지 번호입니다. 범위를 벗어났습니다.");
+            return;
+        }
+        stageNum = num;
+    }
     
     public void TestStageNumPlus() // 테스트용 스테이지 번호 증가
     {
-        GameManager.Instance.UpdateUnlockSaveFIle(stageNum);
         stageNum++;     
         if (stageNum >= stageDataList.Length)
             stageNum = stageDataList.Length - 1;
         Debug.Log($"현재 스테이지 번호: {stageNum}");
+        SaveManager.SaveUnlockLevel(StageNum);
         EventBus.PublishStageChange();
     }
     

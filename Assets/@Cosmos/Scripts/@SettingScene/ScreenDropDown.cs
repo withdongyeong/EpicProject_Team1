@@ -5,8 +5,6 @@ using TMPro;
 public class ScreenDropDown : MonoBehaviour
 {
     
-    private const string ResolutionKey = "ResolutionIndex";
-    
     [System.Serializable]
     public struct ResolutionOption
     {
@@ -15,13 +13,15 @@ public class ScreenDropDown : MonoBehaviour
         public string Label => $"{width}x{height}";
     }
 
-    private TMP_Dropdown _resolutionDropDown;
-    private List<ResolutionOption> allowedResolutions = new List<ResolutionOption>()
+    [SerializeField]
+    private List<ResolutionOption> allowedResolutions = new List<ResolutionOption>
     {
         new ResolutionOption { width = 1600, height = 900 },
         new ResolutionOption { width = 1280, height = 720 },
         new ResolutionOption { width = 1920, height = 1080 }
     };
+
+    private TMP_Dropdown _resolutionDropDown;
     
 
     private void Start()
@@ -29,47 +29,35 @@ public class ScreenDropDown : MonoBehaviour
         _resolutionDropDown = GetComponent<TMP_Dropdown>();
         _resolutionDropDown.ClearOptions();
         
+        // 1. 옵션 구성
         List<string> options = new List<string>();
-        int currentIndex = 0;
-
-        for (int i = 0; i < allowedResolutions.Count; i++)
+        foreach (var res in allowedResolutions)
         {
-            var res = allowedResolutions[i];
-            string label = res.Label;
-
-            // 현재 해상도라면 인덱스 저장
-            if (res.width == Screen.width &&
-                res.height == Screen.height)
-            {
-                label += " *";
-                currentIndex = i;
-            }
-
-            options.Add(label);
+            options.Add(res.Label);
         }
 
         _resolutionDropDown.AddOptions(options);
-        
-        int savedIndex = PlayerPrefs.GetInt(ResolutionKey, currentIndex);
-        savedIndex = Mathf.Clamp(savedIndex, 0, allowedResolutions.Count - 1);
 
-        
-        
-        _resolutionDropDown.value = savedIndex;
+        // 2. 저장된 해상도 (예: "1920x1080")
+        string savedResolution = SaveManager.Resolution;
+
+        // 3. 문자열 비교를 통해 인덱스 탐색
+        int defaultIndex = allowedResolutions.FindIndex(r => r.Label == savedResolution);
+        if (defaultIndex < 0) defaultIndex = 0;
+
+        // 4. 드롭다운 UI 설정
+        _resolutionDropDown.value = defaultIndex;
         _resolutionDropDown.RefreshShownValue();
 
-        OnResolutionChanged(savedIndex);
+        // 5. 리스너 연결 (GameManager의 해상도 설정 함수 호출)
         _resolutionDropDown.onValueChanged.AddListener(OnResolutionChanged);
     }
-
-    public void OnResolutionChanged(int index)
+    
+    private void OnResolutionChanged(int index)
     {
-        var selected = allowedResolutions[index];
-        Screen.SetResolution(selected.width, selected.height, FullScreenMode.Windowed);
-        _resolutionDropDown.value = index;
-        _resolutionDropDown.RefreshShownValue();
-        PlayerPrefs.SetInt(ResolutionKey, index);
-        PlayerPrefs.Save();
-        Debug.Log($"Resolution set to: {selected.Label}");
+        if (index < 0 || index >= allowedResolutions.Count) return;
+
+        string selectedResolution = allowedResolutions[index].Label;
+        GameManager.Instance.SetResolution(selectedResolution);
     }
 }

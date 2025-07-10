@@ -12,6 +12,7 @@ public enum BossDebuff
     Curse,
     Pain,
     Freeze, // 동결 상태 이상
+    TemporaryCurse,
 }
 
 /// <summary>
@@ -103,6 +104,10 @@ public class BossDebuffs : MonoBehaviour
                 debuffs[(int)BossDebuff.Pain]++; // Pain 상태 이상 카운트 증가
                 PlayDebuffAnim(BossDebuff.Pain);
                 break;
+            case BossDebuff.TemporaryCurse:
+                debuffs[(int)BossDebuff.TemporaryCurse]++; //TemporaryCurse 상태 이상 카운트 증가
+                StartCoroutine(RemoveTemporaryCurse(1));
+                break;
             default:
                 break; // 다른 상태 이상은 처리하지 않음
         }
@@ -172,6 +177,19 @@ public class BossDebuffs : MonoBehaviour
             }
         }
     }
+
+
+    private IEnumerator RemoveTemporaryCurse(int num)
+    {
+        yield return new WaitForSeconds(4f);
+        debuffs[(int)BossDebuff.TemporaryCurse]--;
+        if(debuffs[(int)BossDebuff.TemporaryCurse] < 0)
+        {
+            debuffs[(int)BossDebuff.TemporaryCurse] = 0;
+        }
+    }
+
+
 
     /// <summary>
     /// 모든 상태 이상을 보스에게 적용합니다.

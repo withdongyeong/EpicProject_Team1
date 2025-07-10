@@ -243,10 +243,7 @@ public abstract class BaseBoss : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F7))
-        {
-            _currentHealth = 1;
-        }
+        
     }
 
     /// <summary>
@@ -377,6 +374,7 @@ public abstract class BaseBoss : MonoBehaviour
         _bossDebuff.AddDebuff(debuff);
     }
 
+
     /// <summary>
     /// 상태이상 개수 조회
     /// </summary>
@@ -384,6 +382,10 @@ public abstract class BaseBoss : MonoBehaviour
     /// <returns>상태이상 개수</returns>
     public int GetDebuffCount(BossDebuff debuff)
     {
+        if(debuff == BossDebuff.Curse)
+        {
+            return _bossDebuff.Debuffs[(int)debuff] + _bossDebuff.Debuffs[(int)BossDebuff.TemporaryCurse];
+        }
         return _bossDebuff.Debuffs[(int)debuff];
     }
 
@@ -516,5 +518,12 @@ public abstract class BaseBoss : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(Init);
+    }
+    
+    
+    
+    public void TestBossHpSet(int hp)
+    {
+        _currentHealth = hp;
     }
 }
