@@ -1,5 +1,4 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TestManager : MonoBehaviour
@@ -29,8 +28,9 @@ public class TestManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F6)) SetStageNum();
         if(Input.GetKeyDown(KeyCode.F7)) DeleteTutorialData();
         if(Input.GetKeyDown(KeyCode.F8)) DeleteSaveData();
-        
-        
+        if (Input.GetKeyDown(KeyCode.F9)) AddPlayerLife();
+
+
     }
 
     private void TestModeToggle()
@@ -109,6 +109,11 @@ public class TestManager : MonoBehaviour
         if (stageNum > 10) stageNum = 1; // Assuming there are 10 stages, loop back to 1
         StageSelectManager.Instance.SetStageNum(stageNum);
         stageNumText.text = "다음에 만나는 보스번호 : " + stageNum;
+    }
+
+    private void AddPlayerLife()
+    {
+        LifeManager.Instance.AddLife(1);
     }
 
     

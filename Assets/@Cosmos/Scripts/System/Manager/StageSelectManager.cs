@@ -61,6 +61,7 @@ public class StageSelectManager : Singleton<StageSelectManager>
         if (stageNum >= stageDataList.Length)
             stageNum = stageDataList.Length - 1;
         Debug.Log($"현재 스테이지 번호: {stageNum}");
+        SaveManager.SaveUnlockLevel(StageNum);
         EventBus.PublishStageChange();
     }
     
