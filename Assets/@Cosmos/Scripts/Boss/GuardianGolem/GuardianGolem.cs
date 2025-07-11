@@ -14,7 +14,7 @@ public class GuardianGolem : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(4).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(4).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(4).strongDamage;
-        bpm = GlobalSetting.Instance.GetBossBpm(4);
+        BPM = GlobalSetting.Instance.GetBossBpm(4);
     }
 
     /// <summary>
