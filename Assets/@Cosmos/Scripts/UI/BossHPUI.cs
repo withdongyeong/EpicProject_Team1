@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// 보스 HP UI - 체력 감소시 데미지 미리보기, 애니메이션, 흔들림 적용
@@ -228,16 +229,22 @@ public class BossHPUI : MonoBehaviour
     /// </summary>
     public void UpdateDebuffUI(BossDebuff debuff, int count)
     {
-        if (count <= 0)
+        if(activeDebuffUIs.ContainsKey(debuff) || debuff == BossDebuff.TemporaryCurse)
         {
-            RemoveDebuffUI(debuff);
-            return;
+            if(count<=0)
+            {
+                RemoveDebuffUI(debuff);
+            }
+            else
+            {
+                UpdateDebuffText(debuff, count);
+            }
         }
-
-        if (activeDebuffUIs.ContainsKey(debuff))
-            UpdateDebuffText(debuff, count);
         else
+        {
             CreateDebuffUI(debuff, count);
+        }
+        
     }
 
     /// <summary>
@@ -284,10 +291,29 @@ public class BossHPUI : MonoBehaviour
     /// </summary>
     private void UpdateDebuffText(BossDebuff debuff, int count)
     {
+        //만약 들어온 디버프가 동상 화염 저주 낙인 고통 이런거면
         if (activeDebuffUIs.TryGetValue(debuff, out var ui) && ui.text != null)
         {
             TextMeshProUGUI tmpText = ui.text.GetComponent<TextMeshProUGUI>();
-            if (tmpText != null) tmpText.text = count.ToString();
+            if (tmpText != null)
+            {
+                if(debuff == BossDebuff.Curse)
+                {
+                    tmpText.text = count.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
+                }
+                else
+                {
+                    tmpText.text = count.ToString();
+                }
+            }
+        }
+        else if(debuff == BossDebuff.TemporaryCurse) //얘는 별개 아이콘이 없어용
+        {
+            if(!activeDebuffUIs.TryGetValue(BossDebuff.Curse, out var result))
+            {
+                UpdateDebuffUI(BossDebuff.Curse, _enemy.GetDebuffCount(BossDebuff.Curse));
+            }
+            UpdateDebuffText(BossDebuff.Curse, _enemy.GetDebuffCount(BossDebuff.Curse)); //저주 아이콘을 반영하게 하면 자동으로 임시저주도 적용
         }
     }
 
@@ -301,6 +327,10 @@ public class BossHPUI : MonoBehaviour
             if (ui.icon != null) Destroy(ui.icon);
             if (ui.text != null) Destroy(ui.text);
             activeDebuffUIs.Remove(debuff);
+        }
+        else if(debuff == BossDebuff.TemporaryCurse)
+        {
+            RemoveDebuffUI(BossDebuff.Curse);
         }
     }
 

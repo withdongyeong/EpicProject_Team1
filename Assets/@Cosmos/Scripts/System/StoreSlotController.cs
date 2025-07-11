@@ -212,7 +212,7 @@ public class StoreSlotController : MonoBehaviour
                 TileGrade grade = tileInfo.TileGrade;
                 if (grade == TileGrade.Normal)
                 {
-                    if (tileInfo.TileName != "초심자의 지팡이")
+                    if (tileInfo.TileName != "GuideStaffTile")
                     {
                         _normalStoreTiles.Add(tilePrefab);
                     }
