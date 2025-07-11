@@ -10,8 +10,8 @@ public class BomberBigBombPattern : IBossAttackPattern
     private float beat;
     private float halfBeat;
     private float quarterBeat;
-    private float _lastSoundTime = -10f; // 클래스 멤버 필드에 추가
-    
+    private float _lastSoundTime = -10f;
+
     public string PatternName => "BomberBigBombPattern";
 
     private readonly List<Vector3Int> bombPositions = new()
@@ -33,6 +33,7 @@ public class BomberBigBombPattern : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         beat = boss.Beat;
+        halfBeat = boss.HalfBeat;
         quarterBeat = boss.QuarterBeat;
 
         Vector3Int basePos = new Vector3Int(4, 4, 0);
@@ -50,12 +51,14 @@ public class BomberBigBombPattern : IBossAttackPattern
         );
 
         boss.AttackAnimation();
-        yield return new WaitForSeconds(beat); // 중앙 폭탄 경고 시간
+        yield return new WaitForSeconds(beat);
 
-        // 2. 중앙 확산 - 사운드는 여기서 한 번만
+        // 2. 중앙 확산
         Vector3Int center = basePos + bombPositions[0];
-        boss.StartCoroutine(BombSound()); // ✅ 폭발 사운드 예약 (1번만)
-        yield return boss.StartCoroutine(LightningAttack(boss, center)); // 동기 실행
+        boss.StartCoroutine(BombSound());
+        yield return boss.StartCoroutine(LightningAttack(boss, center));
+
+        yield return new WaitForSeconds(beat);
 
         // 3. 나머지 4개 폭탄 배치
         List<Vector3Int> others = bombPositions.GetRange(1, 4);
@@ -69,42 +72,25 @@ public class BomberBigBombPattern : IBossAttackPattern
             warningType: WarningType.Type3
         );
 
-        yield return new WaitForSeconds(beat); // 나머지 폭탄 경고 시간
+        yield return new WaitForSeconds(beat);
 
-        // 4. 나머지 4개 확산 - 동시에 실행
+        // 4. 나머지 4개 확산 병렬 실행
         foreach (var offset in others)
         {
             Vector3Int pos = basePos + offset;
-            boss.StartCoroutine(LightningAttack(boss, pos)); // 병렬 실행
+            boss.StartCoroutine(LightningAttack(boss, pos));
         }
 
-        // 5. 고정된 확산 시간 만큼 대기 (beat 정렬)
-        float othersDuration = quarterBeat * 9;
+        // 5. 확산 길이 보정 대기
+        float othersDuration = halfBeat * 3;
         float rounded = Mathf.Ceil(othersDuration / beat) * beat;
         float remainder = rounded - othersDuration;
         yield return new WaitForSeconds(othersDuration + remainder);
     }
 
-
     public bool CanExecute(BaseBoss boss)
     {
         return boss.BombHandler.PlayerController != null && _bombActtck != null && boss.BombHandler != null;
-    }
-
-    public IEnumerator BombCreate(BaseBoss boss)
-    {
-        boss.BombHandler.ExecuteFixedBomb(
-            bombPositions,
-            new Vector3Int(4, 4, 0),
-            _Bigbombball,
-            warningDuration: 1f,
-            explosionDuration: 0.8f,
-            damage: 0,
-            warningType: WarningType.Type3
-        );
-
-        boss.AttackAnimation();
-        yield return new WaitForSeconds(beat);
     }
 
     private IEnumerator LightningAttack(BaseBoss boss, Vector3Int centerPos)
@@ -121,11 +107,19 @@ public class BomberBigBombPattern : IBossAttackPattern
             new Vector3Int(1, -1, 0)
         };
 
-        for (int dist = 0; dist < 3; dist++) // ✅ 확산 길이 3 (0,1,2)
+        for (int dist = 0; dist < 3; dist++)
         {
             List<Vector3Int> result = new();
-            foreach (var dir in directions)
-                result.Add(dir * dist);
+
+            if (dist == 0)
+            {
+                result.Add(Vector3Int.zero); // 중복 없이 자기 자리는 1회만 추가
+            }
+            else
+            {
+                foreach (var dir in directions)
+                    result.Add(dir * dist);
+            }
 
             boss.BombHandler.ExecuteFixedBomb(
                 result,
@@ -137,25 +131,22 @@ public class BomberBigBombPattern : IBossAttackPattern
                 warningType: WarningType.Type1
             );
 
-            boss.StartCoroutine(BombSound()); // ✅ 웨이브마다 정확히 1번 사운드
-            yield return new WaitForSeconds(quarterBeat);
+            boss.StartCoroutine(BombSound());
+            yield return new WaitForSeconds(halfBeat);
         }
 
-        float total = quarterBeat * 3;
+        float total = halfBeat * 3;
         float rounded = Mathf.Ceil(total / beat) * beat;
         float remainder = rounded - total;
-
         yield return new WaitForSeconds(remainder);
     }
 
-
-
     public IEnumerator BombSound()
     {
-        yield return new WaitForSeconds(quarterBeat * 7);
+        yield return new WaitForSeconds(halfBeat * 3);
 
         float now = Time.unscaledTime;
-        float minInterval = 0.05f; // 최소 간격 (초 단위)
+        float minInterval = 0.05f;
 
         if (now - _lastSoundTime >= minInterval)
         {
