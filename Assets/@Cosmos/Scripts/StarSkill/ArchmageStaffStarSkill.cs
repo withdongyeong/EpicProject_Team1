@@ -1,7 +1,4 @@
-﻿using UnityEngine.SceneManagement;
-using UnityEngine;
-
-public class ArchmageStaffStarSkill : StarBase
+﻿public class ArchmageStaffStarSkill : StarBase
 {
     private ArchmageStaffSkill skill;
 
