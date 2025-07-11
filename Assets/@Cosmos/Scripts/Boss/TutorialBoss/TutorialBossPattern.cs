@@ -69,6 +69,6 @@ public class TutorialBossPattern : IBossAttackPattern
             damage: _damage
         );
 
-        yield return null;
+        yield return new WaitForSeconds(boss.Beat);
     }
 }
