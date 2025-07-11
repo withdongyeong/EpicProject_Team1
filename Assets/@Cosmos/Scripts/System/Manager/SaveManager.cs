@@ -100,8 +100,9 @@ public static class SaveManager
         PlayerPrefs.DeleteKey(SaveKeys.MasterVolume);
         PlayerPrefs.DeleteKey(SaveKeys.BgmVolume);
         PlayerPrefs.DeleteKey(SaveKeys.SfxVolume);
-        
+        LoadAll();
         PlayerPrefs.Save(); // 변경 사항 저장
+        
     }
 }
 
