@@ -5,33 +5,20 @@ using System.Collections;
 public class GuardianGolemPattern2 : IBossAttackPattern
 {
     private GameObject _guardianGolemRook;
-    public string PatternName => "GuardianGolemPattern1";
+    public string PatternName => "GuardianGolemPattern2";
     private int _damage;
 
-    /// <summary>
-    /// 가디언 골렘 패턴1 생성자
-    /// </summary>
-    /// <param name="poisionAriaPrefab">독 이펙트 프리팹</param>
     public GuardianGolemPattern2(GameObject guardianGolemRook, int damage)
     {
         _guardianGolemRook = guardianGolemRook;
         _damage = damage;
     }
 
-    /// <summary>
-    /// 패턴 실행
-    /// </summary>
-    /// <param name="boss">보스 객체</param>
     public IEnumerator Execute(BaseBoss boss)
     {
         yield return boss.StartCoroutine(GuardianGolemPattern(boss));
     }
 
-    /// <summary>
-    /// 패턴 실행 가능 여부 확인
-    /// </summary>
-    /// <param name="boss">보스 객체</param>
-    /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
         return boss.BombHandler != null &&
@@ -41,51 +28,73 @@ public class GuardianGolemPattern2 : IBossAttackPattern
 
     private IEnumerator GuardianGolemPattern(BaseBoss boss)
     {
-        int deleteCount = boss.gameObject.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+        float beat = boss.Beat;
+        float halfBeat = boss.HalfBeat;
+        int deleteCount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+        Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
-        List<Vector3Int> positions = new List<Vector3Int>();
+        // 웨이브 단위로 분리
+        List<List<Vector3Int>> waves = new();
 
+        // 대각선 (↘ / ↙)
         for (int y = deleteCount; y <= 8 - deleteCount; y++)
         {
+            List<Vector3Int> wave = new();
             for (int x = 0; x < 9; x++)
             {
-                // ↘ or ↙ 대각선 조건
                 if (x == y || x + y == 8)
-                {
-                    positions.Add(new Vector3Int(4 - x, 4 - y, 0));
-                }
+                    wave.Add(new Vector3Int(4 - x, 4 - y, 0));
             }
+            if (wave.Count > 0)
+                waves.Add(wave);
         }
 
+        // 상단 바깥쪽
         for (int y = 0; y < deleteCount; y++)
         {
+            List<Vector3Int> wave = new();
             for (int x = deleteCount; x <= 8 - deleteCount; x++)
-            {
-                positions.Add(new Vector3Int(4 - x, 4 - y, 0));
-            }
+                wave.Add(new Vector3Int(4 - x, 4 - y, 0));
+            if (wave.Count > 0)
+                waves.Add(wave);
         }
+
+        // 하단 바깥쪽
         for (int y = 8; y > 8 - deleteCount; y--)
         {
+            List<Vector3Int> wave = new();
             for (int x = deleteCount; x <= 8 - deleteCount; x++)
-            {
-                positions.Add(new Vector3Int(4 - x, 4 - y, 0));
-            }
+                wave.Add(new Vector3Int(4 - x, 4 - y, 0));
+            if (wave.Count > 0)
+                waves.Add(wave);
         }
-
-        boss.StartCoroutine(AttackSound());
-
-        Vector3Int centerPos = new Vector3Int(4, 4, 0); // 중심은 원하는 기준으로 설정
-        boss.BombHandler.ExecuteFixedBomb(positions, centerPos, _guardianGolemRook,
-                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
 
         boss.AttackAnimation();
 
-        yield return new WaitForSeconds(0.3f);
+        foreach (var wave in waves)
+        {
+            boss.BombHandler.ExecuteFixedBomb(
+                wave,
+                centerPos,
+                _guardianGolemRook,
+                warningDuration: 1f,
+                explosionDuration: 0.7f,
+                damage: _damage
+            );
+
+            boss.StartCoroutine(DelayedSound());
+            yield return new WaitForSeconds(halfBeat);
+        }
+
+        float total = halfBeat * waves.Count;
+        float rounded = Mathf.Ceil(total / beat) * beat;
+        float remainder = rounded - total;
+        yield return new WaitForSeconds(remainder);
     }
 
-    private IEnumerator AttackSound()
+    private IEnumerator DelayedSound()
     {
-        yield return new WaitForSeconds(0.8f); // 소리 재생 후 대기
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.GolemSoundClip("GolemAttackActivate");
     }
 }
