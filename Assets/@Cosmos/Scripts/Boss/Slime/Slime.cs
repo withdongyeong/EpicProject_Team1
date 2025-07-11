@@ -23,10 +23,10 @@ public class Slime : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        // //찌르기 촉수 패턴
-        // AddGroup()
-        //     .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 3), Beat)
-        //     .SetGroupInterval(Beat);
+        //찌르기 촉수 패턴
+        AddGroup()
+            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 3), Beat)
+            .SetGroupInterval(Beat);
 
 
         AddGroup()
@@ -34,7 +34,7 @@ public class Slime : BaseBoss
             .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), Beat)
             .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), Beat)
             .SetGroupInterval(Beat);
-
+        
         AddGroup()
             .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), Beat)
             .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), Beat)

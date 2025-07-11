@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SlimeActtckTentacle : MonoBehaviour
+public class SlimeAttackTentacle : MonoBehaviour
 {
     private int damage = 20;
 
