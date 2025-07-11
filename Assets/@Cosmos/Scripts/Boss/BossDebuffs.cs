@@ -187,6 +187,7 @@ public class BossDebuffs : MonoBehaviour
         {
             debuffs[(int)BossDebuff.TemporaryCurse] = 0;
         }
+        bossHPUI.UpdateDebuffUI(BossDebuff.TemporaryCurse, debuffs[(int)BossDebuff.TemporaryCurse]);
     }
 
 

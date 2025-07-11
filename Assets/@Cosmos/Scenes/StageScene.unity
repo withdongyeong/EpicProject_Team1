@@ -446,7 +446,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.375
+  orthographic size: 8.453125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -690,6 +690,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473630441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &718665356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4410611080104143884, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+  m_PrefabInstance: {fileID: 9157210812325101102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &718665357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718665356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!114 &858724542 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 316027019479011343, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
@@ -1225,6 +1256,10 @@ PrefabInstance:
       propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
       value: GUID:acbd475831ad36a4dbe7ab499a00530a
       objectReference: {fileID: 0}
+    - target: {fileID: 849244462996917583, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_CellSize.x
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1597678899421769641, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
       value: 43619328077
@@ -1439,9 +1474,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3659055426989253134, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+    - {fileID: 849244462996917583, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4410611080104143884, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 718665357}
     - targetCorrespondingSourceObject: {fileID: 6306091390060462166, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       insertIndex: -1
       addedObject: {fileID: 279357993}

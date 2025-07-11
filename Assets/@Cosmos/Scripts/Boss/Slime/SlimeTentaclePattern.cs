@@ -7,9 +7,9 @@ public class SlimeTentaclePattern : IBossAttackPattern
     private int _tentatacleCount;
 
     private float waitDuration = 0.2f;
-    private float tentacleLength = 15f;
-    private float tentacleGrowTime = 1.3f;
-    private float tentacleLifetime = 0.6f;
+    private float tentacleLength = 5f;
+    private float beat;
+    private float halfBeat;
 
     public string PatternName => "SlimeTentaclePattern";
 
@@ -31,43 +31,37 @@ public class SlimeTentaclePattern : IBossAttackPattern
 
     public IEnumerator SlimeTentacle(BaseBoss boss)
     {
-        Vector3 Startposition = boss.transform.position;
+        boss.Unstoppable = true;
+        beat = boss.Beat;
+        halfBeat = boss.HalfBeat;
+        Vector3 startPos = boss.transform.position;
 
         for (int i = 0; i < _tentatacleCount; i++)
         {
-            // 1. 위치 선택 (0~9)
             int randomY = boss.BombHandler.PlayerController.CurrentY;
 
-            // 2. 위험 알림
-            for(int j = 8; j >= 0; j--)
+            for (int j = 8; j >= 0; j--)
             {
-                Vector3Int WarningPosision = new Vector3Int(j, randomY, 0);
-                boss.BombHandler.ShowWarningOnly(WarningPosision, 0.8f, WarningType.Type2);
-                yield return new WaitForSeconds(0.05f);
+                Vector3Int warn = new Vector3Int(j, randomY, 0);
+                boss.BombHandler.ShowWarningOnly(warn, 1f, WarningType.Type2);
             }
+            yield return new WaitForSeconds(1-beat);
+            
+            Vector3Int endPos = new Vector3Int(11, randomY, 0);
+            yield return MoveBossToPosition(boss, endPos);
 
-            Vector3Int endPosition = new Vector3Int(11, randomY, 0);
+            GameObject tentacle = GameObject.Instantiate(_slimeTentacle, boss.transform.position, Quaternion.identity);
+            boss.StartCoroutine(GrowTentacle(tentacle, halfBeat)); // 성장 시간도 beat에 맞춤
 
-            // 3. 천천히 이동
-            yield return MoveBossToPosition(boss, endPosition);
-
-            // 4. 0.2초 대기
-            yield return new WaitForSeconds(waitDuration);
-
-            // 5. 촉수 생성
-            GameObject tentacle = GameObject.Instantiate(_slimeTentacle, boss.gameObject.transform.position, Quaternion.identity);
-            boss.StartCoroutine(GrowTentacle(tentacle));
-
-            // 6. 일정 시간 후 삭제
-            GameObject.Destroy(tentacle, tentacleLifetime);
-
-            yield return new WaitForSeconds(1f);
+            GameObject.Destroy(tentacle, halfBeat);
+            yield return new WaitForSeconds(beat); // 다음 패턴 전 대기
         }
 
-        yield return MoveBossToWorldPosition(boss, Startposition);
+        yield return MoveBossToWorldPosition(boss, startPos); // beat 맞춤 이동
     }
 
-    IEnumerator GrowTentacle(GameObject tentacle)
+
+    IEnumerator GrowTentacle(GameObject tentacle, float duration)
     {
         Vector3 originalScale = tentacle.transform.localScale;
         Vector3 targetScale = new Vector3(tentacleLength, originalScale.y, originalScale.z);
@@ -79,18 +73,15 @@ public class SlimeTentaclePattern : IBossAttackPattern
         float elapsed = 0;
         SoundManager.Instance.SlimeSoundClip("SlimeTentacleActivate");
 
-        while (elapsed < tentacleGrowTime && tentacle != null)
+        while (elapsed < duration && tentacle != null)
         {
-            float t = elapsed / tentacleGrowTime;
+            float t = elapsed / duration;
 
-            // 스프라이트 길이 (정상 속도)
             float currentLength = Mathf.Lerp(originalScale.x, targetScale.x, t);
             tentacle.transform.localScale = new Vector3(currentLength, originalScale.y, originalScale.z);
 
-            // ✅ 콜라이더 길이
-            float colliderT = Mathf.Clamp01(t/2);
+            float colliderT = Mathf.Clamp01(t / 2);
             float colliderLength = Mathf.Lerp(originalScale.x, targetScale.x, colliderT);
-
             collider.size = new Vector2(colliderLength, originalSize.y);
             collider.offset = new Vector2(-colliderLength * 0.5f, originalOffset.y);
 
@@ -98,6 +89,7 @@ public class SlimeTentaclePattern : IBossAttackPattern
             yield return null;
         }
     }
+
 
     /// <summary>
     /// 보스를 특정 위치로 이동 (그리드 좌표)
@@ -113,14 +105,20 @@ public class SlimeTentaclePattern : IBossAttackPattern
     /// </summary>
     private IEnumerator MoveBossToWorldPosition(BaseBoss boss, Vector3 targetWorldPos)
     {
-        float moveSpeed = 15f; // 이동 속도
+        float elapsed = 0f;
 
-        while (Vector3.Distance(boss.transform.position, targetWorldPos) > 0.1f)
+        Vector3 startPos = boss.transform.position;
+
+        while (elapsed < halfBeat)
         {
-            boss.transform.position = Vector3.MoveTowards(boss.transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
+            float t = elapsed / halfBeat;
+            boss.transform.position = Vector3.Lerp(startPos, targetWorldPos, t);
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
         boss.transform.position = targetWorldPos;
+        boss.Unstoppable = false;
     }
+
 }
