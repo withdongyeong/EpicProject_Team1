@@ -107,6 +107,7 @@ public class TileObject : MonoBehaviour
            
             // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
             List<TileObject> skills = new List<TileObject>();
+            List<string> archmagestaff = new List<string>();
 
             // 스타셀의 색상을 초기화하고, 해당 스타셀의 스킬이 조건을 만족하면 색을 바꿉니다.
             foreach (StarCell starCell in CombinedStarCell.GetComponentsInChildren<StarCell>())
@@ -138,6 +139,14 @@ public class TileObject : MonoBehaviour
                 {
                     if (starCell.GetStarSkill() != null && starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill.TileObject))
                     {
+                        if (starCell.GetStarSkill().GetType().Name.Contains("ArchmageStaffStarSkill"))
+                        {
+                            if (archmagestaff.Contains(skill.TileObject.name))
+                            {
+                                continue; // 이미 추가된 스킬이면 건너뜀
+                            }
+                            archmagestaff.Add(skill.TileObject.name); // ArchmageStaffStarSkill이 중복되지 않도록 관리
+                        }
                         Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
                         sr.sprite = sprite; // 조건을 만족하면 색상을 흰색으로 변경
                         skills.Add(skill.TileObject);

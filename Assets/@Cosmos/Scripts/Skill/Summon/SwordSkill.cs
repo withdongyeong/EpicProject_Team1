@@ -44,11 +44,6 @@ public class SwordSkill : SkillBase
             SwordHandler swordHandler = FindAnyObjectByType<SwordHandler>();
             if (swordController != null)
             {
-                if (swordHandler.IsBurning)
-                {
-                    swordController.IsBurning = true; // 불타는 상태 설정
-                    swordController.ChangeAnimatorController(true); // 불타는 검 애니메이션 설정
-                }
                 swordController.Damage = damage; // 공격력 설정
             }
             else
