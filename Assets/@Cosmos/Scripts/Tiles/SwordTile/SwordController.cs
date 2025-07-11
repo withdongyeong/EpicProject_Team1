@@ -31,6 +31,16 @@ public class SwordController : MonoBehaviour
     private bool _isBurning = false;
 
     /// <summary>
+    /// 불타는 횟수 (디버프 적용 횟수)
+    /// </summary>
+    private int _burnCount = 0;
+
+    /// <summary>
+    /// 검이 강화된 정도
+    /// </summary>
+    private int _enchantAmount = 0;
+
+    /// <summary>
     /// 비행 속도
     /// </summary>
     private float flySpeed = 8f;
@@ -95,6 +105,11 @@ public class SwordController : MonoBehaviour
     /// 불타는 상태 여부 프로퍼티  
     /// </summary>
     public bool IsBurning { get => _isBurning; set => _isBurning = value; }
+
+    /// <summary>
+    /// 불타는 횟수 프로퍼티
+    /// </summary>
+    public int BurnCount { get => _burnCount; set => _burnCount = value; }
 
     /// <summary>
     /// 비행 속도 프로퍼티
@@ -453,6 +468,17 @@ public class SwordController : MonoBehaviour
                 if(_isBurning)
                 {
                     monster.AddDebuff(BossDebuff.Burning);
+                    _burnCount--;
+                    if (_burnCount <= 0)
+                    {
+                        _isBurning = false; // 불타는 상태 해제
+                        ChangeAnimatorController(false); // 애니메이터 컨트롤러 변경
+                    }
+                }
+                if (_enchantAmount > 0)
+                {
+                    _damage -= _enchantAmount; // 강화된 공격력 감소
+                    _enchantAmount = 0; // 강화 상태 초기화
                 }
                 skillDashTimer = 0.02f;
             }
@@ -504,5 +530,15 @@ public class SwordController : MonoBehaviour
         {
             animator.runtimeAnimatorController = swordAnimator; // 기본 검 애니메이션 설정
         }
+    }
+
+    /// <summary>
+    /// 검을 강화하는 메소드
+    /// </summary>
+    /// <param name="amount"></param>
+    public void EnchantSword(int amount)
+    {
+        Damage += amount; // 검의 공격력 증가
+        _enchantAmount += amount;
     }
 }
