@@ -334,10 +334,20 @@ MonoBehaviour:
       based on the amount of Curse<sprite name="Curse"> accumulated.
 
       <color=yellow>20</color>:
-      Grants 1 Frostbite<sprite name="ice">.
+      Grants 2 Frostbite<sprite name="Ice">.
 
       <color=yellow>30</color>: Grants
-      5 Fire<sprite name="fire">.'
+      5 Fire<sprite name="Fire">.
+
+      <color=yellow>40</color>: Grants Mark<sprite
+      name="Mark">.
+
+      <color=yellow>50</color>: Restores 5 Health.
+
+      <color=yellow>60</color>:
+      Grants 1 Pain<sprite name="Pain">. If there are 3 or more Magic Circles <sprite
+      name="MagicCircle"> located on a <color=yellow>star<sprite name="Star">, inflict
+      2 Curses <sprite name="Curse">.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133719
