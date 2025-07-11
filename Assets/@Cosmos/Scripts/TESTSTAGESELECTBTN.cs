@@ -4,8 +4,6 @@ using System.IO;
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
-    
-
     //빌딩씬에서 쓰는 스테이지 선택 버튼
     public void OnClick()
     {
@@ -58,6 +56,6 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
             return;
         }
         gameObject.SetActive(true);
-        SaveManager.SaveIsTutorialCompleted(1);
+        SaveManager.SaveIsTutorialCompleted(1); // 튜토리얼 완료 상태로 저장
     }
 }
