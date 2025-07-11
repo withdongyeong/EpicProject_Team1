@@ -47,17 +47,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3053d19b6194c77afaa43609b8cfb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalDuration: 0.8
-  image1CompleteTime: 0.4
+  totalDuration: 1
+  image1CompleteTime: 0.8
   image2StartTime: 0
   baseShowTime: 0.2
   startScale: 1.2
   image2StartScale: 0.2
   finalScale: 1
   image1StartAlpha: 0.6
-  image1EndAlpha: 0.8
+  image1EndAlpha: 1
   image2StartAlpha: 0.1
-  image2EndAlpha: 0.8
+  image2EndAlpha: 1
+  startColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 1}
+  endColor: {r: 0.8156863, g: 0.20392157, b: 0.20392157, a: 1}
   scaleCurve:
     serializedVersion: 2
     m_Curve: []
