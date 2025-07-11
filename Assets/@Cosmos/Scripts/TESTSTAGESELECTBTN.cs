@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
 using System.IO;
 
-[System.Serializable]
-public class TutorialData
-{
-    public bool isCompleted;
-}
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
@@ -43,7 +38,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         SceneLoader.LoadGuideStage();
     }
 
-    //가이드 전투씬으로 갑니다.
+    
     public void GoCreditsScene()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");

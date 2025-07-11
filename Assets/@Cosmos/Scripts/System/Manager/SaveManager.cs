@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class SaveManager
 {
@@ -8,7 +8,7 @@ public static class SaveManager
     public static int IsTutorialCompleted { get; private set; }
     public static bool IsFullScreen { get; private set; }
     public static string Resolution { get; private set; }
-    public static float MasterVolume { get; private set; } // 마스터 볼륨은 따로 저장하지 않음, BgmVolume과 SfxVolume으로 대체
+    public static float MasterVolume { get; private set; } 
     public static float BgmVolume { get; private set; }
     public static float SfxVolume { get; private set; }
 
@@ -40,9 +40,14 @@ public static class SaveManager
     // ✅ 저장시엔 PlayerPrefs 와 변수 둘 다 갱신
     public static void SaveUnlockLevel(int level)
     {
-        UnlockLevel = level;
-        PlayerPrefs.SetInt(SaveKeys.UnlockLevel, level);
-        PlayerPrefs.Save();
+        //해금 레벨은 낮아지지 않습니다.
+        if(level > UnlockLevel)
+        {
+            UnlockLevel = level;
+            PlayerPrefs.SetInt(SaveKeys.UnlockLevel, level);
+            PlayerPrefs.Save();
+        }
+        
     }
 
     public static void SaveIsTutorialCompleted(int isCompleted)

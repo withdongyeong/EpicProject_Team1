@@ -8,12 +8,21 @@ public class GameManager : Singleton<GameManager>
     private bool isInTutorial = false; // 튜토리얼 진행 중 ?
     public bool IsInTutorial => isInTutorial;
 
+    //현재 적용되고 있는 해금된 별자리들의 레벨입니다.
+    private int currentUnlockLevel;
+
+    /// <summary>
+    /// 현재 적용되고 있는 해금된 별자리들의 레벨입니다. 
+    /// </summary>
+    public int CurrentUnlockLevel => currentUnlockLevel;
+
     protected override void Awake()
     {
         base.Awake();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
         LoadGameData();
+        currentUnlockLevel = SaveManager.UnlockLevel;
         SetResolution(SaveManager.Resolution);
     }
     
@@ -75,6 +84,7 @@ public class GameManager : Singleton<GameManager>
         GoldManager.Instance.SetCurrentGold(16);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
+        currentUnlockLevel = SaveManager.UnlockLevel;
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);

@@ -192,7 +192,7 @@ public class StoreSlotController : MonoBehaviour
     private void SetStoreTileList()
     {
         //현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
-        _unlockLevel = SaveManager.UnlockLevel;
+        _unlockLevel = GameManager.Instance.CurrentUnlockLevel;
 
         List<GameObject> allTilePrefabs = new();
 
