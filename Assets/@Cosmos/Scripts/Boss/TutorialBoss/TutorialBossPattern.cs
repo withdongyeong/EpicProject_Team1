@@ -75,7 +75,7 @@ public class TutorialBossPattern : IBossAttackPattern
                 explosionDuration: 0.3f,
                 damage: _damage
             );
-
+            boss.StartCoroutine(SlimeSoundEffect());
             yield return new WaitForSeconds(boss.Beat);
         }
     }
@@ -83,5 +83,13 @@ public class TutorialBossPattern : IBossAttackPattern
     private bool Match(int gridValue)
     {
         return (_isOddNumber && gridValue == 1) || (!_isOddNumber && gridValue == 0);
+    }
+    
+    public IEnumerator SlimeSoundEffect()
+    {
+        yield return new WaitForSeconds(1f);
+        SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
+        yield return new WaitForSeconds(0.1f);
+        SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
     }
 }

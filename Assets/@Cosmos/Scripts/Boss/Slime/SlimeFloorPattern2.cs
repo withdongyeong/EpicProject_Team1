@@ -80,11 +80,16 @@ public class SlimeFloorPattern2 : IBossAttackPattern
         foreach (var kv in layers.OrderBy(p => p.Key))
         {
             boss.BombHandler.ExecuteFixedBomb(kv.Value, centerPos, _slimeFloorPrefeb, 1f, 0.7f, _damage);
+            boss.StartCoroutine(SlimeSoundEffect());
             yield return new WaitForSeconds(beat);
         }
-
+    }
+    
+    public IEnumerator SlimeSoundEffect()
+    {
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(0.1f);
         SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
     }
 }

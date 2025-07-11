@@ -72,12 +72,16 @@ public class SlimeFloorPattern1 : IBossAttackPattern
                 explosionDuration: 0.7f,
                 damage: _damage
             );
-
+            boss.StartCoroutine(SlimeSoundEffect());
             yield return new WaitForSeconds(beat);
         }
+    }
 
+    public IEnumerator SlimeSoundEffect()
+    {
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(0.1f);
         SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
     }
 }
