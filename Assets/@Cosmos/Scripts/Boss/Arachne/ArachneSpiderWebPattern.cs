@@ -55,6 +55,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     /// </summary>
     private IEnumerator ExecuteSpiderWebAttack(BaseBoss boss)
     {
+        float beat = boss.Beat;
         List<Vector3Int> webPositions = new List<Vector3Int>();
 
         // 방법 1: 순차적으로 거미줄 설치 (기존 방식과 유사)
@@ -71,7 +72,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
                 boss.BombHandler.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab,
-                                              warningDuration: 0.5f, explosionDuration: 5.0f, damage: 0, warningType: WarningType.Type3);
+                                              warningDuration: 1f, explosionDuration: 5*beat, damage: 0, warningType: WarningType.Type3);
             }
         }    
 
