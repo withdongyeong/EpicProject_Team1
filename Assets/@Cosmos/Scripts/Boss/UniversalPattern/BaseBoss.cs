@@ -48,6 +48,8 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     public float Beat => 60f / bpm;
     public float HalfBeat => Beat / 2f;
+    public float QuarterBeat => Beat / 4f;  
+    
     
     /// <summary>
     /// 최대 체력 프로퍼티
