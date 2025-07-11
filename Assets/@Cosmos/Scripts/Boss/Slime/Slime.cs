@@ -5,10 +5,6 @@ public class Slime : BaseBoss
     [Header("슬라임 전용 프리팹들")]
     public GameObject SlimeActtckTentacle;
     public GameObject SlimeTrapTentacle;
-
-    [Header("슬라임 BPM")]
-    public int customBpm = 80;
-    
     
     protected override void Awake()
     {
@@ -19,7 +15,7 @@ public class Slime : BaseBoss
         StrongDamage = GlobalSetting.Instance.GetBossBalance(1).strongDamage;
         
         // bpm 설정
-        bpm = customBpm;
+        bpm = GlobalSetting.Instance.GetBossBpm(1);
     }
 
     /// <summary>
