@@ -3038,6 +3038,7 @@ MonoBehaviour:
           items:
           - rid: 3702999284862419247
           - rid: 3702999284862419248
+          - rid: 3702999291538964480
         m_UpdateType: 0
     - rid: 3702999284862419247
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
@@ -3049,7 +3050,7 @@ MonoBehaviour:
           value: 20
         - localeIdentifier:
             m_Code: en
-          value: 17
+          value: 15
     - rid: 3702999284862419248
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -3060,7 +3061,18 @@ MonoBehaviour:
           value: 20
         - localeIdentifier:
             m_Code: en
-          value: 17
+          value: 15
+    - rid: 3702999291538964480
+      type: {class: BoolTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_enableAutoSizing
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 0
+        - localeIdentifier:
+            m_Code: en
+          value: 0
 --- !u!1 &1627919367
 GameObject:
   m_ObjectHideFlags: 0

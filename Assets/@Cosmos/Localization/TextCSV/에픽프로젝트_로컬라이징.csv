@@ -187,15 +187,29 @@ Tile_TileDescription_GoddessTile,"位于<color=yellow>星星<sprite name=""Star"
 Tile_TileDescription_GuideStaffTile,发射一颗充满新手运气的射弹。​​（伤害：<color=red>10</color>）,Fires a projectile filled with beginner's luck. (Damage: <color=red>10</color>),"初心者の幸運を込めた弾を発射します。
 （ダメージ：<color=red>10</color>）","초심자의 행운을 담은 투사체를 발사합니다.
 (피해량: <color=red>10</color>)"
-Tile_TileDescription_HauntedDollTile,"获得诅咒<sprite name=""Curse"">。根据累积的诅咒<sprite name=""Curse"">数量，会触发额外效果。
-<color=yellow>20</color>：获得 1 点冻伤<sprite name=""ice"">。
-<color=yellow>30</color>：获得 5 点火焰<sprite name=""fire"">。","Grants Curse<sprite name=""Curse"">. Additional effects are triggered based on the amount of Curse<sprite name=""Curse""> accumulated.
-<color=yellow>20</color>: Grants 1 Frostbite<sprite name=""ice"">.
-<color=yellow>30</color>: Grants 5 Fire<sprite name=""fire"">.","呪い<sprite name=""Curse"">を付与します。呪い<sprite name=""Curse"">がたまった量に応じて追加効果を発動します。
-<color=yellow>20</color>:　凍傷  <sprite name=""ice""> を 1 付与します。
-<color=yellow>30</color>:　炎 <sprite name=""fire""> を 5 付与します。","저주<sprite name=""Curse"">를 부여합니다. 저주<sprite name=""Curse"">가 쌓인 양에 따라 추가 효과를 발동합니다.
-<color=yellow>20</color>: 동상<sprite name=""ice"">을 1 부여합니다.
-<color=yellow>30</color>: 화염<sprite name=""fire"">을 5 부여합니다."
+Tile_TileDescription_HauntedDollTile,"赋予诅咒<sprite name=""Curse"">。根据累积的诅咒<sprite name=""Curse"">数量，会触发额外效果。
+<color=yellow>20</color>：赋予 2 点冻伤<sprite name=""Ice"">。
+<color=yellow>30</color>：赋予 5 点火焰<sprite name=""Fire"">。
+<color=yellow>40</color>：赋予标记<sprite name=""Mark"">。
+<color=yellow>50</color>：恢复 5 点生命值。
+<color=yellow>60</color>：赋予 1 点痛苦<sprite name=""Pain"">。如果一颗<color=yellow>星星<sprite name=""Star"">上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则施加 2 点诅咒<sprite name=""Curse"">。","Grants Curse<sprite name=""Curse"">. Additional effects are triggered based on the amount of Curse<sprite name=""Curse""> accumulated.
+<color=yellow>20</color>: Grants 2 Frostbite<sprite name=""Ice"">.
+<color=yellow>30</color>: Grants 5 Fire<sprite name=""Fire"">.
+<color=yellow>40</color>: Grants Mark<sprite name=""Mark"">.
+<color=yellow>50</color>: Restores 5 Health.
+<color=yellow>60</color>: Grants 1 Pain<sprite name=""Pain"">. If there are 3 or more Magic Circles <sprite name=""MagicCircle""> located on a <color=yellow>star<sprite name=""Star"">, inflict 2 Curses <sprite name=""Curse"">.","呪い<sprite name=""Curse"">を付与します。呪い<sprite name=""Curse"">がたまった量に応じて追加効果を発動します。
+<color=yellow>20</color>: 凍傷 <sprite name=""Ice""> を 2 付与します。
+<color=yellow>30</color>: 炎 <sprite name=""Fire""> を 5 付与します。
+<color=yellow>40</color>: 烙印<sprite name=""Mark"">を付与します。
+<color=yellow>50</color>: 体力を5回復します。
+<color=yellow>60</color>: 痛み<sprite name=""Pain"">を1付与します。
+<color=yellow>星<sprite name=""Star"">にある</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、呪い<sprite name=""Curse"">を2付与します。","저주<sprite name=""Curse"">를 부여합니다. 저주<sprite name=""Curse"">가 쌓인 양에 따라 추가 효과를 발동합니다.
+<color=yellow>20</color>: 동상<sprite name=""Ice"">을 2 부여합니다.
+<color=yellow>30</color>: 화염<sprite name=""Fire"">을 5 부여합니다.
+<color=yellow>40</color>: 낙인<sprite name=""Mark"">을 부여합니다.
+<color=yellow>50</color>: 체력을 5 회복합니다.
+<color=yellow>60</color>: 고통<sprite name=""Pain"">을 1 부여합니다.
+<color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 2 부여합니다."
 Tile_TileDescription_KabutoTile,"<color=yellow>战斗开始时</color>：召唤一只蛹。
 <color=yellow>蛹</color>：消耗20点护盾<sprite name=""Barrier"">变为成虫。
 <color=yellow>成虫</color>：消耗所有获得的护盾<sprite name=""Barrier"">，持续4秒。4秒后，发射一枚威力强大的投射物，然后返回蛹体内。
@@ -494,7 +508,8 @@ to attack the enemy and win","戦闘準備を終えて
 그리고 별자리를 밟아 
 적을 공격해 승리하세요"
 ,,,,
-UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),- Completion Conditions - Move Character (0/5),#NAME?,"- 완료 조건 -
+UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),- Completion Conditions - Move Character (0/5),"- クリア条件 -
+キャラクターを移動する（0/5）","- 완료 조건 -
 캐릭터 이동하기 (0/5)"
 UI_Quest_Goal2,- 完成条件 - 存活 10 秒 (0/10 秒),- Completion Conditions - Survive for 10 seconds (0/10 seconds),"- クリア条件 -
 10秒間生き残る（0/10秒）","- 완료 조건 -
@@ -514,7 +529,8 @@ Sell 4 constellations ({0}/4)","- クリア条件 -
 星座を4個販売する（{0}/4個）","- 완료 조건 -
 별자리 4개 판매하기 (0/4개)"
 UI_Quest_Goal7,- 完成条件 - 赢得战斗 (0/1),"- Completion Conditions -
-Win the Battle (0/1)",#NAME?,"- 완료 조건 -
+Win the Battle (0/1)","- クリア条件 -
+戦いに勝つ（{0}/１）","- 완료 조건 -
 전투 승리 (0/1)"
 ,,,,
 UI_Button_FinalBossRetry,最终 Boss 再次挑战,Final Boss Re-challenge,最後のボス再挑戦,마지막 보스 재도전
