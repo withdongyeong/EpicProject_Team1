@@ -27,28 +27,25 @@ public class TurtreePattern1 : IBossAttackPattern
     }
 
     private readonly Vector3Int[] directions = {
-        new Vector3Int(-1, 0, 0), // Left
-        new Vector3Int(0, 1, 0),  // Up
-        new Vector3Int(1, 0, 0),  // Right
-        new Vector3Int(0, -1, 0), // Down
+        new Vector3Int(-1, 0, 0),
+        new Vector3Int(0, 1, 0),
+        new Vector3Int(1, 0, 0),
+        new Vector3Int(0, -1, 0),
     };
 
     private const int gridSize = 9;
-
     private HashSet<Vector3Int> visited = new HashSet<Vector3Int>();
 
-    /// <summary>
-    /// 탐색 공격
-    /// </summary>
-    /// <param name="boss"></param>
-    /// <param name="startPos"></param>
-    /// <returns></returns>
     private IEnumerator BFSExplore(BaseBoss boss, Vector3Int startPos)
     {
         boss.AttackAnimation();
 
         visited = new HashSet<Vector3Int>();
-        Queue<(Vector3Int pos, int dir)> queue = new Queue<(Vector3Int, int)>();
+        Queue<(Vector3Int pos, int dir)> queue = new();
+        float beat = boss.HalfBeat;
+
+        float lastSoundTime = -999f;
+        float soundCooldown = beat;
 
         int initialDirection = 0;
         queue.Enqueue((startPos, initialDirection));
@@ -56,63 +53,71 @@ public class TurtreePattern1 : IBossAttackPattern
 
         while (queue.Count > 0)
         {
-            List<Vector3Int> BombPoints = new List<Vector3Int>();
+            List<Vector3Int> bombPoints = new();
 
-            var (currentPos, currentDir) = queue.Dequeue();
-
-            yield return new WaitForSeconds(0.03f);
-
-            Vector3Int nextPos = currentPos + directions[currentDir];
-
-            bool added = false;
-
-            if (IsInBounds(nextPos) && !visited.Contains(nextPos))
+            for (int i = 0; i < 6 && queue.Count > 0; i++)
             {
-                visited.Add(nextPos);
-                BombPoints.Add(new Vector3Int(nextPos.x - 4, nextPos.y - 4, 0));
-                queue.Enqueue((nextPos, currentDir));
-                added = true;
-            }
-            else
-            {
-                int leftDir = (currentDir + 3) % 4;
-                int rightDir = (currentDir + 1) % 4;
+                var (currentPos, currentDir) = queue.Dequeue();
+                Vector3Int nextPos = currentPos + directions[currentDir];
 
-                Vector3Int leftPos = currentPos + directions[leftDir];
-                Vector3Int rightPos = currentPos + directions[rightDir];
+                bool added = false;
 
-                if (IsInBounds(leftPos) && !visited.Contains(leftPos))
+                if (IsInBounds(nextPos) && !visited.Contains(nextPos))
                 {
-                    visited.Add(leftPos);
-                    BombPoints.Add(new Vector3Int(leftPos.x - 4, leftPos.y - 4, 0));
-                    queue.Enqueue((leftPos, leftDir));
+                    visited.Add(nextPos);
+                    bombPoints.Add(new Vector3Int(nextPos.x - 4, nextPos.y - 4, 0));
+                    queue.Enqueue((nextPos, currentDir));
                     added = true;
                 }
-
-                if (IsInBounds(rightPos) && !visited.Contains(rightPos))
+                else
                 {
-                    visited.Add(rightPos);
-                    BombPoints.Add(new Vector3Int(rightPos.x - 4, rightPos.y - 4, 0));
-                    queue.Enqueue((rightPos, rightDir));
-                    added = true;
+                    int leftDir = (currentDir + 3) % 4;
+                    int rightDir = (currentDir + 1) % 4;
+
+                    Vector3Int leftPos = currentPos + directions[leftDir];
+                    Vector3Int rightPos = currentPos + directions[rightDir];
+
+                    if (IsInBounds(leftPos) && !visited.Contains(leftPos))
+                    {
+                        visited.Add(leftPos);
+                        bombPoints.Add(new Vector3Int(leftPos.x - 4, leftPos.y - 4, 0));
+                        queue.Enqueue((leftPos, leftDir));
+                        added = true;
+                    }
+
+                    if (IsInBounds(rightPos) && !visited.Contains(rightPos))
+                    {
+                        visited.Add(rightPos);
+                        bombPoints.Add(new Vector3Int(rightPos.x - 4, rightPos.y - 4, 0));
+                        queue.Enqueue((rightPos, rightDir));
+                        added = true;
+                    }
+                }
+
+                // 종료 조건
+                if (!added || visited.Count >= gridSize * gridSize)
+                    break;
+            }
+
+            if (bombPoints.Count > 0)
+            {
+                boss.BombHandler.ExecuteFixedBomb(
+                    bombPoints,
+                    new Vector3Int(4, 4, 0),
+                    _treeAttackPrefeb,
+                    warningDuration: 1f,
+                    explosionDuration: 2f,
+                    damage: _damage
+                );
+
+                if (Time.time - lastSoundTime >= soundCooldown)
+                {
+                    boss.StartCoroutine(PlaySoundDelayed(1f));
+                    lastSoundTime = Time.time;
                 }
             }
 
-            if (BombPoints.Count > 0)
-            {
-               boss.StartCoroutine(TurtreeAttackSound());
-
-                boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
-                                      warningDuration: 0.8f, explosionDuration: 2f, damage: _damage);
-            }
-
-            // 💡 루프 중단 조건: 더 이상 유효한 탐색 대상이 없으면 탈출
-            if (!added || visited.Count >= gridSize * gridSize)
-            {
-                break;
-            }
-
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(beat);
         }
     }
 
@@ -121,9 +126,9 @@ public class TurtreePattern1 : IBossAttackPattern
         return pos.x >= 0 && pos.x < gridSize && pos.y >= 0 && pos.y < gridSize;
     }
 
-    private IEnumerator TurtreeAttackSound()
+    private IEnumerator PlaySoundDelayed(float delay)
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(delay);
         SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

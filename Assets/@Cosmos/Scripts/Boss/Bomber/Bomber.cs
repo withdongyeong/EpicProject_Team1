@@ -13,7 +13,7 @@ public class Bomber : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(3).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(3).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(3).strongDamage;
-        bpm = GlobalSetting.Instance.GetBossBpm(3);
+        BPM = GlobalSetting.Instance.GetBossBpm(3);
     }
 
     /// <summary>

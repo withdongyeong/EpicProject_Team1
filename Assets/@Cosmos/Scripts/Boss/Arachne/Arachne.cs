@@ -21,7 +21,7 @@ public class Arachne : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(2).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(2).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(2).strongDamage;
-        bpm = GlobalSetting.Instance.GetBossBpm(2);
+        BPM = GlobalSetting.Instance.GetBossBpm(2);
     }
 
     /// <summary>

@@ -39,7 +39,7 @@ public class GuardianGolemTemporaryWallSummonPattern : IBossAttackPattern
 
     /// <summary>
     /// 패턴 실행 가능 여부 확인
-    /// </summary>
+    /// </summary> 
     /// <param name="boss">보스 객체</param>
     /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
@@ -72,7 +72,7 @@ public class GuardianGolemTemporaryWallSummonPattern : IBossAttackPattern
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
                 boss.BombHandler.ExecuteFixedBomb(_singlePointShape, randomPosition, _temporaryWall,
-                                              warningDuration: 0.8f, explosionDuration: 3.0f, damage: 0, warningType: WarningType.Type3);
+                                              warningDuration: 1f, explosionDuration: 3.0f, damage: 0, warningType: WarningType.Type3);
 
             }
         }

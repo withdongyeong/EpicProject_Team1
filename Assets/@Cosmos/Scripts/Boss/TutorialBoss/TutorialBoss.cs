@@ -13,7 +13,7 @@ public class TutorialBoss : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(0).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(0).strongDamage;
         
-        bpm = GlobalSetting.Instance.GetBossBpm(0);
+        BPM = GlobalSetting.Instance.GetBossBpm(0);
 
     }
 

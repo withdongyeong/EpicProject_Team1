@@ -15,7 +15,7 @@ public class Slime : BaseBoss
         StrongDamage = GlobalSetting.Instance.GetBossBalance(1).strongDamage;
         
         // bpm 설정
-        bpm = GlobalSetting.Instance.GetBossBpm(1);
+        BPM = GlobalSetting.Instance.GetBossBpm(1);
     }
 
     /// <summary>
