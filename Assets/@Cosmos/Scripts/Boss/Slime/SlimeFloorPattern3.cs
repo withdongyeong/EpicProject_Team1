@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Mathematics;
 
 public class SlimeFloorPattern3 : IBossAttackPattern
 {
@@ -8,6 +10,7 @@ public class SlimeFloorPattern3 : IBossAttackPattern
     private int _damage;
 
     public string PatternName => "SlimeFloorPattern3";
+
     public SlimeFloorPattern3(GameObject SlimeFloorPrefeb, int damage)
     {
         _slimeFloorPrefeb = SlimeFloorPrefeb;
@@ -20,83 +23,69 @@ public class SlimeFloorPattern3 : IBossAttackPattern
         yield return SlimeFloorPattern(boss);
     }
 
-    public bool CanExecute(BaseBoss boss)
-    {
-        return _slimeFloorPrefeb != null;
-    }
+    public bool CanExecute(BaseBoss boss) => _slimeFloorPrefeb != null;
 
     public IEnumerator SlimeFloorPattern(BaseBoss boss)
     {
-        List<Vector3Int> gridWithoutWindmill = new List<Vector3Int>();
-
-        for (int x = -4; x <= 0; x++)
-        {
-            for (int y = -4; y <= 0; y++)
-            {
-                if ((x == 0 && y == 0) || (Mathf.Abs(x) == Mathf.Abs(y)))
-                    continue;
-
-                if (Mathf.Abs(y) <= Mathf.Abs(x)) // 삼각형 조건
-                {
-                    gridWithoutWindmill.Add(new Vector3Int(x, y, 0));
-                }
-            }
-        }
-
-        for (int x = 0; x <= 4; x++)
-        {
-            for (int y = -4; y <= 0; y++)
-            {
-                if ((x == 0 && y == 0) || (Mathf.Abs(x) == Mathf.Abs(y)))
-                    continue;
-
-                if (Mathf.Abs(y) >= Mathf.Abs(x)) // 삼각형 조건
-                {
-                    gridWithoutWindmill.Add(new Vector3Int(x, y, 0));
-                }
-            }
-        }
-
-        for (int x = 0; x <= 4; x++)
-        {
-            for (int y = 0; y <= 4; y++)
-            {
-                if ((x == 0 && y == 0) || (Mathf.Abs(x) == Mathf.Abs(y)))
-                    continue;
-
-                if (Mathf.Abs(y) <= Mathf.Abs(x)) // 삼각형 조건
-                {
-                    gridWithoutWindmill.Add(new Vector3Int(x, y, 0));
-                }
-            }
-        }
-
-        for (int x = -4; x <= 0; x++)
-        {
-            for (int y = 0; y <= 4; y++)
-            {
-                if ((x == 0 && y == 0) || (Mathf.Abs(x) == Mathf.Abs(y)))
-                    continue;
-
-                if (Mathf.Abs(y) >= Mathf.Abs(x)) // 삼각형 조건
-                {
-                    gridWithoutWindmill.Add(new Vector3Int(x, y, 0));
-                }
-            }
-        }
-
-        gridWithoutWindmill.Add(new Vector3Int(0, 0, 0));
-
+        float beat = boss.Beat;
+        float halfBeat = boss.HalfBeat;
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
+        List<Vector3Int> cells = new();
 
-        boss.BombHandler.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
-                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
+        for (int x = -4; x <= 0; x++)
+        {
+            for (int y = -4; y <= 0; y++)
+            {
+                if ((x == 0 && y == 0) || Mathf.Abs(x) == Mathf.Abs(y)) continue;
+                if (Mathf.Abs(y) <= Mathf.Abs(x)) cells.Add(new Vector3Int(x, y, 0));
+            }
+        }
 
-        yield return new WaitForSeconds(0.6f);
+        for (int x = 0; x <= 4; x++)
+        {
+            for (int y = -4; y <= 0; y++)
+            {
+                if ((x == 0 && y == 0) || Mathf.Abs(x) == Mathf.Abs(y)) continue;
+                if (Mathf.Abs(y) >= Mathf.Abs(x)) cells.Add(new Vector3Int(x, y, 0));
+            }
+        }
+
+        for (int x = 0; x <= 4; x++)
+        {
+            for (int y = 0; y <= 4; y++)
+            {
+                if ((x == 0 && y == 0) || Mathf.Abs(x) == Mathf.Abs(y)) continue;
+                if (Mathf.Abs(y) <= Mathf.Abs(x)) cells.Add(new Vector3Int(x, y, 0));
+            }
+        }
+
+        for (int x = -4; x <= 0; x++)
+        {
+            for (int y = 0; y <= 4; y++)
+            {
+                if ((x == 0 && y == 0) || Mathf.Abs(x) == Mathf.Abs(y)) continue;
+                if (Mathf.Abs(y) >= Mathf.Abs(x)) cells.Add(new Vector3Int(x, y, 0));
+            }
+        }
+
+        cells.Add(Vector3Int.zero);
+
+        Dictionary<int, List<Vector3Int>> layers = new();
+        foreach (var cell in cells)
+        {
+            int d = Mathf.Max(Mathf.Abs(cell.x), Mathf.Abs(cell.y));
+            if (!layers.ContainsKey(d)) layers[d] = new();
+            layers[d].Add(cell);
+        }
+
+        foreach (var kv in layers.OrderBy(p => p.Key))
+        {
+            boss.BombHandler.ExecuteFixedBomb(kv.Value, centerPos, _slimeFloorPrefeb, 1f, 0.7f, _damage);
+            yield return new WaitForSeconds(beat);
+        }
+
         SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(beat);
         SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
-
-        yield return 0;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SlimeFloorPattern1 : IBossAttackPattern
 {
@@ -8,6 +9,7 @@ public class SlimeFloorPattern1 : IBossAttackPattern
     private int _damage;
 
     public string PatternName => "SlimeFloorPattern1";
+
     public SlimeFloorPattern1(GameObject SlimeFloorPrefeb, int damage)
     {
         _slimeFloorPrefeb = SlimeFloorPrefeb;
@@ -20,54 +22,62 @@ public class SlimeFloorPattern1 : IBossAttackPattern
         yield return SlimeFloorPattern(boss);
     }
 
-    public bool CanExecute(BaseBoss boss)
-    {
-        return _slimeFloorPrefeb != null;
-    }
+    public bool CanExecute(BaseBoss boss) => _slimeFloorPrefeb != null;
 
-    //대각선
     public IEnumerator SlimeFloorPattern(BaseBoss boss)
     {
-        List<Vector3Int> gridWithoutWindmill = new List<Vector3Int>();
+        float beat = boss.Beat;
+        float halfBeat = boss.HalfBeat;
+        Vector3Int centerPos = new Vector3Int(4, 4, 0);
+
+        // 기존 모양을 그대로 구성
+        List<Vector3Int> originalPattern = new();
 
         for (int i = -4; i <= 4; i++)
         {
-            if (i == 0)
-            {
-                continue;
-            }
-            else
-            {
-                gridWithoutWindmill.Add(new Vector3Int(i, i, 0));
-                gridWithoutWindmill.Add(new Vector3Int(i, -i, 0));
-            }
+            if (i == 0) continue;
+            originalPattern.Add(new Vector3Int(i, i, 0));
+            originalPattern.Add(new Vector3Int(i, -i, 0));
         }
-
 
         for (int i = -2; i <= 2; i++)
         {
             for (int j = -2; j <= 2; j++)
             {
-                if ((Mathf.Abs(i) != Mathf.Abs(j)))
-                {
-                    gridWithoutWindmill.Add(new Vector3Int(i, j, 0));
-                }
+                if (Mathf.Abs(i) != Mathf.Abs(j))
+                    originalPattern.Add(new Vector3Int(i, j, 0));
             }
-
         }
 
-        Vector3Int centerPos = new Vector3Int(4, 4, 0);
+        // 중심으로부터 거리(정확히는 Manhattan 거리) 기준으로 그룹핑
+        Dictionary<int, List<Vector3Int>> layered = new();
+        foreach (var cell in originalPattern)
+        {
+            int dist = Mathf.Max(Mathf.Abs(cell.x), Mathf.Abs(cell.y)); // Chebyshev 거리
+            if (!layered.ContainsKey(dist))
+                layered[dist] = new List<Vector3Int>();
+            layered[dist].Add(cell);
+        }
 
+        // 중심 (0,0) 포함 (옵션)
+        layered[0] = new() { new Vector3Int(0, 0, 0) };
 
+        foreach (var layer in layered.OrderBy(k => k.Key))
+        {
+            boss.BombHandler.ExecuteFixedBomb(
+                layer.Value,
+                centerPos,
+                _slimeFloorPrefeb,
+                warningDuration: 1f,
+                explosionDuration: 0.7f,
+                damage: _damage
+            );
 
-        boss.BombHandler.ExecuteFixedBomb(gridWithoutWindmill, centerPos, _slimeFloorPrefeb,
-                                        warningDuration: 0.8f, explosionDuration: 0.7f, damage: _damage);
+            yield return new WaitForSeconds(beat);
+        }
 
-        yield return new WaitForSeconds(0.6f);
         SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(beat);
         SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
-
-        yield return 0;
     }
 }

@@ -6,6 +6,10 @@ public class Slime : BaseBoss
     public GameObject SlimeActtckTentacle;
     public GameObject SlimeTrapTentacle;
 
+    [Header("슬라임 BPM")]
+    public int customBpm = 80;
+    
+    
     protected override void Awake()
     {
         base.Awake();
@@ -13,6 +17,9 @@ public class Slime : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(1).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(1).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(1).strongDamage;
+        
+        // bpm 설정
+        bpm = customBpm;
     }
 
     /// <summary>
@@ -20,23 +27,23 @@ public class Slime : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
-        //찌르기 촉수 패턴
-        AddGroup()
-            .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 3), 0.0f)
-            .SetGroupInterval(1f);
+        // //찌르기 촉수 패턴
+        // AddGroup()
+        //     .AddPattern(new SlimeTentaclePattern(SlimeActtckTentacle, 3), Beat)
+        //     .SetGroupInterval(Beat);
 
 
         AddGroup()
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), 0.8f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), 0.8f)
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), 1f)
-            .SetGroupInterval(1f);
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), Beat)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), Beat)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), 0.8f)
-            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), 0.8f)
-            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), 1f)
-            .SetGroupInterval(1f);
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), Beat)
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), Beat)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
     }
 
     /// <summary>
