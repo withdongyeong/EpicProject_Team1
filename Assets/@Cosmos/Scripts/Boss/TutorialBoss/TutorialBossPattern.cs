@@ -64,7 +64,7 @@ public class TutorialBossPattern : IBossAttackPattern
             AttackPoint,
             new Vector3Int(4, 4, 0),
             _tutorialBossAttack,
-            warningDuration: 0.8f,
+            warningDuration: 1f,
             explosionDuration: 0.4f,
             damage: _damage
         );
