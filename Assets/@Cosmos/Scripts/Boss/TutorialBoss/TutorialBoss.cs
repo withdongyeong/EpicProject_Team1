@@ -12,6 +12,8 @@ public class TutorialBoss : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(0).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(0).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(0).strongDamage;
+        
+        bpm = GlobalSetting.Instance.GetBossBpm(0);
 
     }
 
@@ -21,9 +23,9 @@ public class TutorialBoss : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new TutorialBossPattern(TutorialBossAttack, true, WeakDamage), 0.8f)
-            .AddPattern(new TutorialBossPattern(TutorialBossAttack, false, WeakDamage), 0.8f)
-            .SetGroupInterval(1f);
+            .AddPattern(new TutorialBossPattern(TutorialBossAttack, true, WeakDamage), Beat)
+            .AddPattern(new TutorialBossPattern(TutorialBossAttack, false, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
     }
 
     /// <summary>
