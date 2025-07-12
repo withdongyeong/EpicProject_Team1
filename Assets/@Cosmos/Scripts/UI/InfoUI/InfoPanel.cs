@@ -110,19 +110,42 @@ public class InfoPanel : MonoBehaviour
         textRenderer.InstantiateDescriptionText(currentTileObject);
 
         // 위치 업데이트
-        //마우스 포인터 위치에 따른 패널위치 설정 코드
-        Vector2 mousePosition = Input.mousePosition;
-        Vector2 offset = new Vector2(300f, textObject.GetComponent<RectTransform>().sizeDelta.y*0.5f + 100f);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
-            mousePosition,
-            canvas.worldCamera,
-            out Vector2 localPoint
-        );
-        rectTransform.anchoredPosition = localPoint +new Vector2(
-            (Input.mousePosition.x > Screen.width * 0.5f ? -1 : 1) * offset.x,
-            (Input.mousePosition.y > Screen.height * 0.5f ? -1 : 1) * offset.y
-        );
+        if (isUIElement)
+        {
+            // 오프셋 설정
+            float offsetY = textObject.GetComponent<RectTransform>().sizeDelta.y * 0.5f + 200f;
+            Vector2 offset = new Vector2(400f, offsetY);
+
+            // 패널 위치 설정 (anchoredPosition 사용)
+            rectTransform.position = (Vector2)position + new Vector2(
+                (Input.mousePosition.x > Screen.width * 0.6f ? -1 : 1) * offset.x,
+                (Input.mousePosition.y > Screen.height * 0.5f ? -1 : 1) * offset.y
+            );
+        }
+        else
+        {
+            //// 월드 좌표를 화면 좌표로 변환
+            //Vector3 tileObjectPosition = tileObject.transform.position;
+            //Vector2 screenPoint = Camera.main.WorldToScreenPoint(tileObjectPosition);
+
+            // 오프셋 설정
+            Vector2 offset = new Vector2(650f, 150f);
+
+            //// 화면 좌표를 캔버스 로컬 좌표로 변환
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            //    canvas.transform as RectTransform,
+            //    screenPoint,
+            //    canvas.worldCamera,
+            //    out Vector2 localPoint
+            //);
+
+            // 패널 위치 설정 (anchoredPosition 사용)
+            rectTransform.anchoredPosition = new Vector2(
+                (Input.mousePosition.x > Screen.width * 0.65f ? -1 : 1) * offset.x,
+                offset.y // Y 좌표는 고정 (수평으로만 이동하도록 설정)
+            );
+        }
+        
     }
 
     private void SetBorderByGrade(TileGrade grade)
