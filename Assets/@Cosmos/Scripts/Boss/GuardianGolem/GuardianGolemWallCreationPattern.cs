@@ -55,13 +55,13 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
             LeftPointList.Add(new Vector3Int(8 - DeleteCount, y, 0));
 
             GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(DeleteCount, y, 0), WallObject,
-                                              warningDuration: 0.8f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3);
+                                              warningDuration: 1f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3);
 
             GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(8 - DeleteCount, y, 0), WallObject,
-                                  warningDuration: 0.8f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3);
+                                  warningDuration: 1f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3);
         }
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
 
         foreach(var rightpoint in RightPointList)
         {

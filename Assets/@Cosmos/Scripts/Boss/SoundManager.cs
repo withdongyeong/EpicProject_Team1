@@ -50,7 +50,7 @@ public class SoundManager : Singleton<SoundManager>
         {"PhantomSkillActivate", 0.5f },
         {"NecronomiconSkillActivate", 1f },
         {"WraithSkillActivate", 0.8f },
-        {"비구름", 0.5f },
+        {"비구름", 0.3f },
     };
 
     //아라크네 사운드 딕셔너리
@@ -174,8 +174,8 @@ public class SoundManager : Singleton<SoundManager>
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.1f },
         {"BlackHoleStartActivate", 0.8f },
-        {"TileOpenActivate", 0.2f },
-        {"TileLockActivate", 0.2f },
+        {"TileOpenActivate", 0.3f },
+        {"TileLockActivate", 0.3f },
         {"TileSellActivate", 1f }
     };
 

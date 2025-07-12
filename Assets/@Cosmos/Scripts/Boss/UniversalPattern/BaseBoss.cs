@@ -17,6 +17,9 @@ public abstract class BaseBoss : MonoBehaviour
     private int _currentHealth;
     private bool _isDead = false;
     
+    [Header("공통 리듬 설정")]
+    private float bpm = 80f;
+    
     [Header("상태 이상 클래스")]
     private BossDebuffs _bossDebuff;
     private bool _isStopped = false; // 공격 중지 여부
@@ -39,6 +42,16 @@ public abstract class BaseBoss : MonoBehaviour
     private TotalDamageManager _totalDamageManager;
 
     // Properties
+
+    /// <summary>
+    /// BPM 기반의 박자 간격 반환 (초 단위)
+    /// </summary>
+    public float BPM { get => bpm; protected set => bpm = value; }
+    public float Beat => 60f / bpm;
+    public float HalfBeat => Beat / 2f;
+    public float QuarterBeat => Beat / 4f;  
+    
+    
     /// <summary>
     /// 최대 체력 프로퍼티
     /// </summary>

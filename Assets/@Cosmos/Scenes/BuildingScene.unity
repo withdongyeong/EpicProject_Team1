@@ -1443,8 +1443,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD655\uB960\uD45C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2055,8 +2055,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC804\uD22C \uC2DC\uC791"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2553,8 +2553,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC0C8\uB85C\uACE0\uCE68 \n1G\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2851,6 +2851,7 @@ GameObject:
   - component: {fileID: 1625136985}
   - component: {fileID: 1625136984}
   - component: {fileID: 1625136986}
+  - component: {fileID: 1625136987}
   m_Layer: 5
   m_Name: ChanceText
   m_TagString: Untagged
@@ -3012,6 +3013,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1625136987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625136982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3702999284862419246
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702999284862419246
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1625136984}
+        m_TrackedProperties:
+          items:
+          - rid: 3702999284862419247
+          - rid: 3702999284862419248
+          - rid: 3702999291538964480
+        m_UpdateType: 0
+    - rid: 3702999284862419247
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 20
+        - localeIdentifier:
+            m_Code: en
+          value: 15
+    - rid: 3702999284862419248
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSizeBase
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 20
+        - localeIdentifier:
+            m_Code: en
+          value: 15
+    - rid: 3702999291538964480
+      type: {class: BoolTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_enableAutoSizing
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 0
+        - localeIdentifier:
+            m_Code: en
+          value: 0
 --- !u!1 &1627919367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3147,8 +3208,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD310\uB9E4 \uAC00\uACA9: 10G"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3456,8 +3517,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 30 G
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
-  m_sharedMaterial: {fileID: -4207010155491884698, guid: f7e8ca32a64e57f479b7b106d9246ed9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

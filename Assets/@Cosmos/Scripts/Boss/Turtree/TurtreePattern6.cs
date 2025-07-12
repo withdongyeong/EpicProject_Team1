@@ -22,19 +22,22 @@ public class TurtreePattern6 : IBossAttackPattern
 
     public IEnumerator Execute(BaseBoss boss)
     {
-        for(int i = 0; i < 5; i++)
+        float quarterBeat = boss.QuarterBeat;
+
+        for (int i = 0; i < 5; i++)
         {
-            yield return outskirtBomb(boss, i);
+            yield return boss.StartCoroutine(OutskirtBomb(boss, i));
         }
     }
 
-    public IEnumerator outskirtBomb(BaseBoss boss, int distance)
+
+    private IEnumerator OutskirtBomb(BaseBoss boss, int distance)
     {
         boss.AttackAnimation();
 
         List<Vector3Int> bombPoint = new List<Vector3Int>();
 
-        for (int x = -4; x <=4; x++)
+        for (int x = -4; x <= 4; x++)
         {
             for (int y = -4; y <= 4; y++)
             {
@@ -47,16 +50,26 @@ public class TurtreePattern6 : IBossAttackPattern
 
         boss.StartCoroutine(TurtreeAttackSound());
 
-        boss.BombHandler.ExecuteFixedBomb(bombPoint, new Vector3Int(4, 4, 0), _attackPrefab,
-                                             warningDuration: 0.8f, explosionDuration: 2f, damage: _damage, WarningType.Type1);
+        boss.BombHandler.ExecuteFixedBomb(
+            bombPoint,
+            new Vector3Int(4, 4, 0),
+            _attackPrefab,
+            warningDuration: 1f,
+            explosionDuration: 2f,
+            damage: _damage,
+            warningType: WarningType.Type1
+        );
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(boss.Beat * 2);
     }
+
+
+
 
 
     private IEnumerator TurtreeAttackSound()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

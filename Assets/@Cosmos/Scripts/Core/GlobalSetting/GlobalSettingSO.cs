@@ -31,6 +31,10 @@ public class GlobalSettingSO : ScriptableObject
 
     [Header("보스 밸런스 (튜토리얼 + 스테이지 1~10)")]
     public List<BossBalance> bossBalanceList = new(); // 인덱스 0 = 튜토리얼, 1~10 = 스테이지 1~10
+    
+    [Header("보스 BPM")]
+    [Header("보스 밸런스 (튜토리얼 + 스테이지 1~10)")]
+    public List<int> bossBpmList = new(); // 인덱스 0 = 튜토리얼, 1~10 = 스테이지 1~10
 
     [Header("처음에 등장시킬 타일5개의 데이터")]
     public List<TileData> shop_FirstTileDataList;
