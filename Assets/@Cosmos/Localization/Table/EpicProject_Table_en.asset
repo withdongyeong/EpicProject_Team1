@@ -398,7 +398,7 @@ MonoBehaviour:
     m_Localized: "Gives 1 Burn<sprite name=\"Fire\">, 1 Statue<sprite name=\"Ice\">,
       1 Curse<sprite name=\"Curse\"> to the enemy. \nIf there are 3 or more </color>Magic
       Circles<sprite name=\"MagicCircle\"> located on the <color=yellow>Star</color>,
-      give 1 additional Burn<sprite name=\"Fire\">\u3001Curse<sprite name=\"Curse\">."
+      give 1 additional Burn<sprite name=\"Fire\">, Curse<sprite name=\"Curse\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133725
@@ -785,7 +785,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328067
-    m_Localized: Game Over
+    m_Localized: Game Exit
     m_Metadata:
       m_Items: []
   - m_Id: 43619328068

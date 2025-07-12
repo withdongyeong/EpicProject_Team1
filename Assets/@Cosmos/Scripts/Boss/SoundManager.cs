@@ -50,7 +50,7 @@ public class SoundManager : Singleton<SoundManager>
         {"PhantomSkillActivate", 0.5f },
         {"NecronomiconSkillActivate", 1f },
         {"WraithSkillActivate", 0.8f },
-        {"비구름", 0.5f },
+        {"비구름", 0.3f },
     };
 
     //아라크네 사운드 딕셔너리
