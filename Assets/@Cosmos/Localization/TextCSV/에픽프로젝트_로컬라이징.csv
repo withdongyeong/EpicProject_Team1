@@ -223,7 +223,7 @@ Tile_TileDescription_KabutoTile,"<color=yellow>战斗开始时</color>：召唤�
 <color=yellow>Cooldown is reduced by 10% for each summoned<sprite name=""Summon""> located on a star<sprite name=""Star"">.","<color=yellow>戦闘開始時</color>: 蛹を召喚します。
 <color=yellow>蛹の状態</color>: 20のバリア<sprite name=""Barrier"">を消費すると成虫になります。
 <color=yellow>成虫状態</color>: 4秒間獲得したバリア<sprite name=""Barrier"">をすべて消費します。 4秒後に強力な投射体を発射した後、蛹に戻ります。
-（ダメージ：<color = red> 60 +消耗したバリアX 3 </color>）
+（ダメージ：<color=red> 60 +消耗したバリアX 3</color>）
 <color=yellow>星<sprite name=""Star"">にある</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","<color=yellow>전투 시작 시</color>: 번데기를 소환합니다.
 <color=yellow>번데기 상태</color>: 20의 보호막<sprite name=""Barrier"">을 소모하면 성충이 됩니다.
 <color=yellow>성충 상태</color>: 4초간 획득한 보호막<sprite name=""Barrier"">을 모두 소모합니다. 4초 뒤 강력한 투사체를 발사한 뒤, 번데기로 돌아갑니다.
@@ -262,8 +262,8 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""> located on a <
 <color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 모두 잃습니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse""> 개수의 최대치를 60으로 올립니다."
 Tile_TileDescription_RainbowTile,使敌人获得 1 点火焰、1 点冰霜和 1 点诅咒效果。如果<color=yellow>星星</color>上有 3 个或更多魔法阵，则额外获得 1 点火焰和 1 点诅咒效果。,"Gives 1 Burn<sprite name=""Fire"">, 1 Statue<sprite name=""Ice"">, 1 Curse<sprite name=""Curse""> to the enemy. 
-If there are 3 or more </color>Magic Circles<sprite name=""MagicCircle""> located on the <color=yellow>Star</color>, give 1 additional Burn<sprite name=""Fire"">、Curse<sprite name=""Curse"">.","敵に炎<sprite name=""Fire"">、凍傷<sprite name=""Ice"">、呪い<sprite name=""Curse"">を1ずつ付与します。
-<color=yellow>星<sprite name=""Star"">にある</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、炎<sprite name=""Fire"">、呪い<sprite name=""Curse"">を1追加で付与します。","적에게 화염<sprite name=""Fire"">, 동상<sprite name=""Ice"">, 저주<sprite name=""Curse"">를 1씩 부여합니다.
+If there are 3 or more </color>Magic Circles<sprite name=""MagicCircle""> located on the <color=yellow>Star</color>, give 1 additional Burn<sprite name=""Fire"">、Curse<sprite name=""Curse"">.","Gives 1 Burn<sprite name=""Fire"">, 1 Statue<sprite name=""Ice"">, 1 Curse<sprite name=""Curse""> to the enemy. 
+If there are 3 or more </color>Magic Circles<sprite name=""MagicCircle""> located on the <color=yellow>Star</color>, give 1 additional Burn<sprite name=""Fire"">, Curse<sprite name=""Curse"">.","적에게 화염<sprite name=""Fire"">, 동상<sprite name=""Ice"">, 저주<sprite name=""Curse"">를 1씩 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 화염<sprite name=""Fire"">, 저주<sprite name=""Curse"">를 1 추가로 부여합니다."
 Tile_TileDescription_RainCloudTile,"每 5 秒用 <sprite name=""Mark""> 标记敌人。","Marks enemies with a Mark<sprite name=""Mark""> every 5 seconds.","5秒ごとに敵に烙印<sprite name=""Mark"">を付与します。","5초마다 적에게 낙인<sprite name=""Mark"">을 부여합니다."
 Tile_TileDescription_StaffTile,发射一枚射弹。（伤害：<color=red>15</color>）,Fires a projectile. (Damage: <color=red>15</color>),"弾を発射します。
@@ -553,7 +553,7 @@ Shortcut: D","リロール(1G)
 UI_Button_ButtleStart,战斗开始,Battle Start,戦闘開始,전투 시작
 UI_Button_Sell,售价：{0}G,Selling Price: {0}G,販売価格：{0} G,판매 가격: {0}G
 UI_Button_Check,查看,Check,確認,확인
-UI_Button_GameExit,游戏结束,Game Over,ゲーム終了,게임종료
+UI_Button_GameExit,游戏结束,Game Exit,ゲーム終了,게임종료
 UI_Button_ReStart,返回菜单,Back To Menu,メニューに戻る,메뉴로 돌아가기
 UI_Button_Retry,重试,Retry,再試行,재시도
 UI_Button_Title,标题,Title,タイトル,타이틀
