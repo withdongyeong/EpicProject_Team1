@@ -128,6 +128,19 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         }
     }
 
-   
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseJournal();
+        }
+    }
+
+
+    public void CloseJournal()
+    {
+        gameObject.SetActive(false);
+    }
+
 
 }

@@ -38,6 +38,19 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         SceneLoader.LoadGuideStage();
     }
 
+    public void OpenJournal()
+    {
+        if(JournalSlotManager.Instance.gameObject.activeSelf)
+        {
+            JournalSlotManager.Instance.gameObject.SetActive(false);
+        }
+        else
+        {
+            JournalSlotManager.Instance.gameObject.SetActive(true);
+        }
+        
+    }
+
     
     public void GoCreditsScene()
     {
