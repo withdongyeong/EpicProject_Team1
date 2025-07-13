@@ -9,6 +9,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
     private int _damage;
+    private float beat;
 
     public string PatternName => "OrcMagePattern_BossChargeLeft";
 
@@ -28,6 +29,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
+        beat = boss.Beat;
         // 빙결 불가 설정
         boss.Unstoppable = true;
         
@@ -44,23 +46,8 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         // 3. 도착지에 전조 + 피격 판정
         yield return ExecuteArrivalAttack(boss, startPosition);
 
-        // 4. 행을 따라 왼쪽으로 이동하며 스파이크 공격
-        yield return ExecuteChargeAttack(boss, startPosition, endPosition);
-
-        // 5. EnemySpawnPosition2로 이동 (Walk 애니메이션)
-        GameObject enemySpawn2 = GameObject.Find("EnemySpawnPosition2");
-        if (enemySpawn2 != null)
-        {
-            boss.SetAnimationTrigger("Walk");
-            yield return MoveBossToWorldPosition(boss, enemySpawn2.transform.position);
-        }
-        else
-        {
-            Debug.LogWarning("EnemySpawnPosition2 not found!");
-        }
-
-        // 6. 왼쪽 돌진 완료 후 flip
-        FlipBoss(boss);
+        // 4. 행을 따라 왼쪽으로 돌진하며 웨이브 공격 (이동과 후폭풍 스파이크 포함)
+        yield return ExecuteChargeAttackWithWave(boss, startPosition, endPosition);
     }
 
     /// <summary>
@@ -77,14 +64,20 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
     /// </summary>
     private IEnumerator MoveBossToWorldPosition(BaseBoss boss, Vector3 targetWorldPos)
     {
-        float moveSpeed = 8f; // 이동 속도
+        float duration = 1f;
+        float elapsed = 0f;
 
-        while (Vector3.Distance(boss.transform.position, targetWorldPos) > 0.1f)
+        Vector3 startPos = boss.transform.position;
+
+        while (elapsed < duration)
         {
-            boss.transform.position = Vector3.MoveTowards(boss.transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
+            float t = elapsed / duration; // 0~1
+            boss.transform.position = Vector3.Lerp(startPos, targetWorldPos, t);
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
+        // 마지막에 정확히 위치 고정
         boss.transform.position = targetWorldPos;
     }
 
@@ -96,44 +89,134 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         List<Vector3Int> bossArea = GetBossArea(position);
         
         // 전조 → 데미지 (이펙트 없음)
-        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 0.8f, _damage, WarningType.Type2);
-        yield return new WaitForSeconds(0.8f);
+        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 1f, _damage, WarningType.Type2);
+        yield return new WaitForSeconds(1f);
     }
 
     /// <summary>
-    /// 돌진 공격 실행 - 왼쪽으로 이동하며 스파이크
+    /// 돌진 공격 실행 - 슈욱 지나가면서 웨이브 전조 + 후폭풍 스파이크
     /// </summary>
-    private IEnumerator ExecuteChargeAttack(BaseBoss boss, Vector3Int start, Vector3Int end)
+    private IEnumerator ExecuteChargeAttackWithWave(BaseBoss boss, Vector3Int start, Vector3Int end)
     {
-        // 돌진 애니메이션 시작
         boss.SetAnimationTrigger("Attack1Hand");
+
+        // 1단계: 보스 이동과 웨이브 전조를 동시에 시작
+        Coroutine chargeMovement = boss.StartCoroutine(ExecuteChargeMovementWithWave(boss, start, end));
         
-        int stepCount = 0; // 스텝 카운터
+        // 2단계: 돌진 중간에 후폭풍 스파이크 시작
+        yield return new WaitForSeconds(beat);
+        boss.StartCoroutine(ExecuteAfterShockSpikes(boss, start, end));
         
+        // 돌진 이동이 완료될 때까지 대기
+        yield return chargeMovement;
+
+        // 보스는 바로 EnemySpawnPosition2로 이동
+        GameObject enemySpawn2 = GameObject.Find("EnemySpawnPosition2");
+        if (enemySpawn2 != null)
+        {
+            boss.SetAnimationTrigger("Walk");
+            yield return MoveBossToWorldPosition(boss, enemySpawn2.transform.position);
+        }
+        else
+        {
+            Debug.LogWarning("EnemySpawnPosition2 not found!");
+        }
+
+        // 좌우 반전
+        FlipBoss(boss);
+    }
+
+    /// <summary>
+    /// 보스 돌진 이동 + 웨이브 전조
+    /// </summary>
+    private IEnumerator ExecuteChargeMovementWithWave(BaseBoss boss, Vector3Int start, Vector3Int end)
+    {
+        SoundManager.Instance.OrcMageSoundClip("OrcMage_RunActivate");
+        
+        // 1비트 대기 후 시작
+        yield return new WaitForSeconds(beat);
+        
+        // 보스 이동 시작
+        Vector3 startWorldPos = boss.GridSystem.GridToWorldPosition(start);
+        Vector3 endWorldPos = boss.GridSystem.GridToWorldPosition(end);
+        
+        // 이동 경로의 모든 위치를 미리 계산
+        List<Vector3Int> chargePath = new List<Vector3Int>();
         for (int x = start.x; x >= end.x; x--)
         {
-            Vector3Int currentPos = new Vector3Int(x, start.y, 0);
+            chargePath.Add(new Vector3Int(x, start.y, 0));
+        }
+
+        // 웨이브 전조를 순차적으로 표시하면서 보스 이동
+        float moveDuration = beat * 2f; // 2비트 동안 이동
+        float waveInterval = beat / 4f; // 1/4 비트 간격으로 웨이브
+        
+        // 웨이브 전조 코루틴 시작
+        boss.StartCoroutine(ShowChargeWave(boss, chargePath, waveInterval));
+        
+        // 보스 이동 (동시에 진행)
+        yield return MoveBossToWorldPosition(boss, endWorldPos, moveDuration);
+    }
+
+    /// <summary>
+    /// 돌진 경로에 웨이브 전조 표시
+    /// </summary>
+    private IEnumerator ShowChargeWave(BaseBoss boss, List<Vector3Int> chargePath, float waveInterval)
+    {
+        for (int i = 0; i < chargePath.Count; i++)
+        {
+            Vector3Int pos = chargePath[i];
+            List<Vector3Int> bossArea = GetBossArea(pos);
             
-            // 보스 이동
-            SoundManager.Instance.OrcMageSoundClip("OrcMage_RunActivate");
-            yield return MoveBossToPosition(boss, currentPos);
+            // 웨이브 전조 + 데미지
+            boss.BombHandler.ExecuteWarningThenDamage(bossArea, pos, beat, _damage, WarningType.Type2);
             
-            // 보스 위치 공격 (전조 + 피격 판정)
-            List<Vector3Int> bossArea = GetBossArea(currentPos);
-            boss.BombHandler.ExecuteWarningThenDamage(bossArea, currentPos, 0.8f, _damage, WarningType.Type2);
-            
-            // 스파이크 공격 (번갈아가며)
-            yield return ExecuteAlternatingSpike(boss, currentPos, stepCount);
-            
-            stepCount++;
-            yield return new WaitForSeconds(0.1f); // 빠른 이동
+            yield return new WaitForSeconds(waveInterval);
         }
     }
 
     /// <summary>
-    /// 번갈아가는 스파이크 공격 - | -> \/ -> | -> \/
+    /// 보스를 월드 좌표로 이동 (시간 지정)
     /// </summary>
-    private IEnumerator ExecuteAlternatingSpike(BaseBoss boss, Vector3Int centerPos, int stepCount)
+    private IEnumerator MoveBossToWorldPosition(BaseBoss boss, Vector3 targetWorldPos, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 startPos = boss.transform.position;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            boss.transform.position = Vector3.Lerp(startPos, targetWorldPos, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        boss.transform.position = targetWorldPos;
+    }
+
+    /// <summary>
+    /// 후폭풍 스파이크 공격 - 1비트 단위로 순차 시작
+    /// </summary>
+    private IEnumerator ExecuteAfterShockSpikes(BaseBoss boss, Vector3Int start, Vector3Int end)
+    {
+        // 돌진 경로의 각 위치에서 스파이크 공격 시작
+        for (int x = start.x; x >= end.x; x--)
+        {
+            Vector3Int currentPos = new Vector3Int(x, start.y, 0);
+            int stepCount = start.x - x; // 스텝 카운트 계산
+            
+            // 각 위치에서 스파이크 공격을 백그라운드에서 시작
+            boss.StartCoroutine(ExecuteWaveSpikeAttack(boss, currentPos, stepCount));
+            
+            //
+            yield return new WaitForSeconds(beat / 2);
+        }
+    }
+
+    /// <summary>
+    /// 웨이브 스파이크 공격 - 1줄씩 순차적으로 뻗어나감
+    /// </summary>
+    private IEnumerator ExecuteWaveSpikeAttack(BaseBoss boss, Vector3Int centerPos, int stepCount)
     {
         Vector3Int[] spikeDirections;
         
@@ -157,18 +240,46 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             };
         }
 
-        boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+        // 가운데(보스 위치)에 스파이크 공격 먼저 실행
+        List<Vector3Int> centerSpike = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
+        boss.BombHandler.ExecuteFixedBomb(centerSpike, centerPos, _groundSpikePrefab,
+                                          warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+        
+        boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
+
+        // 각 방향으로 웨이브 스파이크 발사
         foreach (Vector3Int direction in spikeDirections)
         {
-            List<Vector3Int> spikeLine = CreateSpikeLine(centerPos, direction);
-            if (spikeLine.Count > 0)
-            {
-                boss.BombHandler.ExecuteFixedBomb(spikeLine, centerPos, _groundSpikePrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
-            }
+            boss.StartCoroutine(ExecuteDirectionalWaveSpike(boss, centerPos, direction));
         }
         
-        yield return new WaitForSeconds(0.1f); // 스파이크 발동 대기
+        yield return null;
+    }
+
+    /// <summary>
+    /// 특정 방향으로 웨이브 스파이크 발사
+    /// </summary>
+    private IEnumerator ExecuteDirectionalWaveSpike(BaseBoss boss, Vector3Int centerPos, Vector3Int direction)
+    {
+        // 해당 방향의 모든 스파이크 위치 계산
+        List<Vector3Int> spikeLine = CreateSpikeLine(centerPos, direction);
+        
+        if (spikeLine.Count == 0) 
+        {
+            yield break;
+        }
+
+        // 1줄씩 웨이브로 뻗어나가기
+        for (int wave = 0; wave < spikeLine.Count; wave++)
+        {
+            List<Vector3Int> currentWave = new List<Vector3Int> { spikeLine[wave] };
+            
+            boss.BombHandler.ExecuteFixedBomb(currentWave, centerPos, _groundSpikePrefab,
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+            
+            // 1/4 비트 간격으로 다음 웨이브
+            yield return new WaitForSeconds(beat / 4f);
+        }
     }
 
     /// <summary>
