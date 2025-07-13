@@ -64,16 +64,16 @@ public class BigHandPattern3 : IBossAttackPattern
                         new List<Vector3Int> { targetPos }, 
                         centerPos, 
                         _attackEffectPrefab,
-                        warningDuration: 0.8f, 
+                        warningDuration: 1f, 
                         explosionDuration: 0.6f, 
                         damage: _damage, 
                         warningType: WarningType.Type1
                     );
                 }
                 
-                yield return new WaitForSeconds(0.04f);
+                yield return new WaitForSeconds(boss.Beat / 8 );
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(boss.Beat / 4);
         }
     }
 
@@ -90,7 +90,7 @@ public class BigHandPattern3 : IBossAttackPattern
 
     public IEnumerator PlayAttackSound()
     {
-        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        yield return new WaitForSeconds(1); // 예시로 빈 코루틴 반환
         SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
     }
 

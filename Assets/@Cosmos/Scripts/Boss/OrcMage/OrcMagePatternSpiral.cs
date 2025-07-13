@@ -28,6 +28,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         boss.SetAnimationTrigger("Attack1");
+        float beat = boss.Beat;
 
         Vector3Int center = new Vector3Int(4, 4, 0);
         List<Vector3Int> spiralPositions = GenerateSpiralPositions(center);
@@ -37,22 +38,22 @@ public class OrcMagePatternSpiral : IBossAttackPattern
         {
             List<Vector3Int> singlePoint = new List<Vector3Int> { Vector3Int.zero };
             
-            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             // 4개씩 그룹 동시 실행
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
                 boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _groundSpikePrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                                  warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
             }
 
-            // 첫 번째 그룹만 0.3초, 나머지는 0.15초로 빠르게
-            if (i == 0)
+            int groupIndex = i / 4;
+            if (groupIndex <= 3)
             {
-                yield return new WaitForSeconds(0.3f); // 첫 번째만 여유
+                yield return new WaitForSeconds(beat);
             }
             else
             {
-                yield return new WaitForSeconds(0.15f); // 나머지는 빠르게
+                yield return new WaitForSeconds(beat/4); // 나머지는 빠르게
             }
         }
     }

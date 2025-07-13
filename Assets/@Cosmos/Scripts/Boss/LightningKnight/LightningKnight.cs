@@ -20,6 +20,7 @@ public class LightningKnight : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(8).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(8).strongDamage;
 
+        BPM = GlobalSetting.Instance.GetBossBpm(8);
         startPosition = this.transform.position;
     }
 
@@ -29,18 +30,18 @@ public class LightningKnight : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-          .AddPattern(new LightningKnightDashPattern(startPosition, PatternA, LightningActtck, WeakDamage, StrongDamage), 1f)
+          .AddPattern(new LightningKnightDashPattern(startPosition, PatternA, LightningActtck, WeakDamage, StrongDamage), Beat)
           .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(2, 0, 0), WeakDamage), 0f)
-          .AddPattern(new LightningKnightPattern1(LightningActtck, WeakDamage), 1f)
+          .AddPattern(new LightningKnightPattern1(LightningActtck, WeakDamage), Beat)
           .AddPattern(new LightningKnightPattern2(LightningActtck, WeakDamage), 0f)
-          .SetGroupInterval(1.0f);
+          .SetGroupInterval(Beat);
 
         AddGroup()
-           .AddPattern(new LightningKnightDash2Pattern(startPosition, PatternB, LightningActtck, WeakDamage, StrongDamage), 1f)
-           .AddPattern(new LightningKnightPattern2(LightningActtck, WeakDamage), 1f)
+           .AddPattern(new LightningKnightDash2Pattern(startPosition, PatternB, LightningActtck, WeakDamage, StrongDamage), Beat)
+           .AddPattern(new LightningKnightPattern2(LightningActtck, WeakDamage), Beat)
            .AddPattern(new LightningKnightPattern3(LightningActtck, new Vector3Int(7, 0, 0), WeakDamage), 0f)
            .AddPattern(new LightningKnightPattern1(LightningActtck, WeakDamage), 0f)
-           .SetGroupInterval(1.0f);
+           .SetGroupInterval(Beat);
 
         //AddGroup()
         //    .AddPattern(new LightningKnightDashPattern(startPosition, PatternC), 1f)

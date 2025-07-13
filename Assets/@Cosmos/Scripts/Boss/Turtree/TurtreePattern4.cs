@@ -30,7 +30,7 @@ public class TurtreePattern4 : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         yield return boss.StartCoroutine(RotatingBombAttack(boss, _isDownUP));
-        yield return new WaitForSeconds(boss.HalfBeat);
+        yield return new WaitForSeconds(boss.HalfBeat / 2);
     }
 
     private IEnumerator RotatingBombAttack(BaseBoss boss, bool K)

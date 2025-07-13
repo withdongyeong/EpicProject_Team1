@@ -28,28 +28,28 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         boss.SetAnimationTrigger("Attack2Hand");
-
+        float beat = boss.Beat;
         Vector3Int center = new Vector3Int(4, 4, 0); // 그리드 중앙
 
         // 패턴 시작 시 랜덤 안전지대 방향 결정
         int randomDirection = Random.Range(0, 4); // 0:오른쪽, 1:아래, 2:왼쪽, 3:위
 
-        // 5단계로 점점 넓어지는 사각형
-        for (int size = 1; size <= 5; size++)
+        // 점점 넓어지는 사각형
+        for (int size = 1; size <= 4; size++)
         {
             List<Vector3Int> squareShape = CreateHollowSquare(size, randomDirection);
             
-            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
             
             if (size == 1 || size == 2)
             {
-                yield return new WaitForSeconds(0.3f); // 처음에 여유주고
+                yield return new WaitForSeconds(beat); // 처음에 여유주고
             }
             else
             {
-                yield return new WaitForSeconds(0.15f); // 나머지는 빠르게
+                yield return new WaitForSeconds(beat/2); // 나머지는 빠르게
             }
         }
     }

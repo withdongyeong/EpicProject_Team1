@@ -33,15 +33,15 @@ public class LastBossPattern_Staff4 : IBossAttackPattern
         {
             boss.StartCoroutine(SoundPlay());
 
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

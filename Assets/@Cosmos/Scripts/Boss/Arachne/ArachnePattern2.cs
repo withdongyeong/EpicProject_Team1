@@ -61,7 +61,7 @@ public class ArachnePattern2 : IBossAttackPattern
         boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab, 1f, 0.7f, _damage);
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 1f));
         boss.AttackAnimation();
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(beat / 2);
     }
 
     private IEnumerator PoisonBigAttack_LShape(BaseBoss boss, float beat)
@@ -80,7 +80,7 @@ public class ArachnePattern2 : IBossAttackPattern
 
         boss.BombHandler.ExecuteFixedBomb(attackShape.ToList(), new Vector3Int(4, 4, 0), _poisionAriaPrefab, 1f, 0.7f, _damage);
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 1f));
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(beat / 2);
     }
 
     private IEnumerator PlayDelayedSound(string soundName, float delay)

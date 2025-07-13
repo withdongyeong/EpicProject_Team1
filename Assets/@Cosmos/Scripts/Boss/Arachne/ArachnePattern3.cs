@@ -39,16 +39,16 @@ public class ArachnePattern3 : IBossAttackPattern
         for (int i = 0; i < 4; i++)
         {
             boss.StartCoroutine(ExecuteAreaAttack(boss));
-            yield return new WaitForSeconds(beat);
+            yield return new WaitForSeconds(beat / 2);
         }
 
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(beat / 2);
 
         boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(beat / 2);
 
         boss.StartCoroutine(SpiderLeg_DiagonalSlash2(boss));
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(beat / 2);
     }
 
     private IEnumerator ExecuteAreaAttack(BaseBoss boss)

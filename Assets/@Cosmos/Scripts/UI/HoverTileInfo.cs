@@ -60,7 +60,19 @@ public class HoverTileInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (infoPanel != null)
         {
             if (tileObject != null)
-                infoPanel.Show(tileObject, position, true);
+            {
+                if (GetComponent<Cell>() != null)
+                {
+                    // Cell 컴포넌트가 있는 경우
+                    infoPanel.Show(tileObject, position, false);
+                }
+                else
+                {
+                    // Cell 컴포넌트가 없는 경우
+                    position = transform.position;
+                    infoPanel.Show(tileObject, position, true);
+                }
+            }
         }
         if (isInBuilding)
         {

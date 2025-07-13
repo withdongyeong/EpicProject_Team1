@@ -95,7 +95,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));
-            yield return new WaitForSeconds(halfBeat);
+            yield return new WaitForSeconds(halfBeat / 2);
         }
     }
 

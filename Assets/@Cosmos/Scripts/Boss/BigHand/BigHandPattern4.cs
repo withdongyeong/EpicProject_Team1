@@ -52,13 +52,13 @@ public class BigHandPattern4 : IBossAttackPattern
             blackSquares, 
             new Vector3Int(4, 4, 0), 
             _attackEffectPrefab,
-            warningDuration: 0.8f, 
+            warningDuration: 1f, 
             explosionDuration: 0.8f, 
             damage: _damage, 
             warningType: WarningType.Type1
         );
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(boss.Beat * 2);
         
         // 2단계: 흰 칸들 (x+y가 홀수)
         List<Vector3Int> whiteSquares = new List<Vector3Int>();
@@ -79,13 +79,13 @@ public class BigHandPattern4 : IBossAttackPattern
             whiteSquares, 
             new Vector3Int(4, 4, 0), 
             _attackEffectPrefab,
-            warningDuration: 0.8f, 
+            warningDuration: 1f, 
             explosionDuration: 0.8f, 
             damage: _damage, 
             warningType: WarningType.Type1
         );
         
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(boss.Beat * 2);
     }
 
     public void Cleanup()
@@ -95,7 +95,7 @@ public class BigHandPattern4 : IBossAttackPattern
 
     public IEnumerator PlayAttackSound()
     {
-        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
         SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
     }
 
