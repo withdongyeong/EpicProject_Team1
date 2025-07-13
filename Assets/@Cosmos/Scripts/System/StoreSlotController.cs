@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -189,66 +190,74 @@ public class StoreSlotController : MonoBehaviour
     /// </summary>
     private void SetStoreTileList()
     {
-        //현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
-        _unlockLevel = GameManager.Instance.CurrentUnlockLevel;
+        ////현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
+        //_unlockLevel = GameManager.Instance.CurrentUnlockLevel;
 
-        List<GameObject> allTilePrefabs = new();
+        //List<GameObject> allTilePrefabs = new();
 
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/BookTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/EquipTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
-        allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
+        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
+        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/BookTile"));
+        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
+        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/EquipTile"));
+        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
+        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
+        //_safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
+
+        //foreach (GameObject tilePrefab in allTilePrefabs)
+        //{
+        //    TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
+        //    if(tileInfo.UnlockInt <= _unlockLevel)
+        //    {
+        //        TileGrade grade = tileInfo.TileGrade;
+        //        if (grade == TileGrade.Normal)
+        //        {
+        //            if (tileInfo.TileName != "GuideStaffTile")
+        //            {
+        //                _normalStoreTiles.Add(tilePrefab);
+        //            }
+        //            foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+        //            {
+        //                if (tileData.tileName == tileInfo.TileName)
+        //                {
+        //                    _firstStoreTiles.Add(tilePrefab);
+        //                }
+        //            }
+        //        }
+        //        else if (grade == TileGrade.Rare)
+        //        {
+        //            _rareStoreTiles.Add(tilePrefab);
+        //            foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+        //            {
+        //                if (tileData.tileName == tileInfo.TileName)
+        //                {
+        //                    _firstStoreTiles.Add(tilePrefab);
+        //                }
+        //            }
+        //        }
+        //        else if (grade == TileGrade.Epic)
+        //        {
+        //            _epicStoreTiles.Add(tilePrefab);
+        //        }
+        //        else if (grade == TileGrade.Legendary)
+        //        {
+        //            _legendaryStoreTiles.Add(tilePrefab);
+        //        }
+        //        else
+        //        {
+        //            _mythicStoreTiles.Add(tilePrefab);
+        //        }
+        //    }
+
+
+        //}
+        _normalStoreTiles = JournalSlotManager.Instance.NormalStoreTiles.ToList();
+        _rareStoreTiles = JournalSlotManager.Instance.RareStoreTiles.ToList();
+        _epicStoreTiles = JournalSlotManager.Instance.EpicStoreTiles.ToList();
+        _legendaryStoreTiles = JournalSlotManager.Instance.LegendaryStoreTiles.ToList();
+        _mythicStoreTiles = JournalSlotManager.Instance.MythicStoreTiles.ToList();
+        _firstStoreTiles = JournalSlotManager.Instance.FirstStoreTiles.ToList();
         _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
 
-        foreach (GameObject tilePrefab in allTilePrefabs)
-        {
-            TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
-            if(tileInfo.UnlockInt <= _unlockLevel)
-            {
-                TileGrade grade = tileInfo.TileGrade;
-                if (grade == TileGrade.Normal)
-                {
-                    if (tileInfo.TileName != "GuideStaffTile")
-                    {
-                        _normalStoreTiles.Add(tilePrefab);
-                    }
-                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
-                    {
-                        if (tileData.tileName == tileInfo.TileName)
-                        {
-                            _firstStoreTiles.Add(tilePrefab);
-                        }
-                    }
-                }
-                else if (grade == TileGrade.Rare)
-                {
-                    _rareStoreTiles.Add(tilePrefab);
-                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
-                    {
-                        if (tileData.tileName == tileInfo.TileName)
-                        {
-                            _firstStoreTiles.Add(tilePrefab);
-                        }
-                    }
-                }
-                else if (grade == TileGrade.Epic)
-                {
-                    _epicStoreTiles.Add(tilePrefab);
-                }
-                else if (grade == TileGrade.Legendary)
-                {
-                    _legendaryStoreTiles.Add(tilePrefab);
-                }
-                else
-                {
-                    _mythicStoreTiles.Add(tilePrefab);
-                }
-            }
-            
-
-        }
     }
 
     /// <summary>

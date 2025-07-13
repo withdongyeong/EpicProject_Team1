@@ -84,6 +84,7 @@ public class GameManager : Singleton<GameManager>
         GoldManager.Instance.SetCurrentGold(16);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
+        JournalSlotManager.Instance.SetStoreTileList();
         currentUnlockLevel = SaveManager.UnlockLevel;
         for(int i =0; i<5; i++)
         {

@@ -11,8 +11,13 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     private GameObject _safePrefab;
 
+    private GameObject _tileInfoPanel;
+
+    private bool _isInit;
+
 
     private Transform _slotParent; //슬롯의 부모, 그러니까 StoreSlotController가 붙은 쯤의 위치입니다.
+    private GameObject _scrollView; //이거 끄면 저널이 안보이게됩니다.
 
     //이 밑은 희귀도에 따라서 분류된 리스트입니다
     private List<GameObject> _normalStoreTiles = new();
@@ -22,12 +27,18 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private List<GameObject> _mythicStoreTiles = new();
     private List<GameObject> _lockedStoreTiles = new();
 
+    //첫상점에 무조건 뜨는 리스트입니다
+    private List<GameObject> _firstStoreTiles = new();
+
     //리스트에 접근하는 프로퍼티입니다
     public List<GameObject> NormalStoreTiles => _normalStoreTiles;
     public List<GameObject> RareStoreTiles => _rareStoreTiles;
     public List<GameObject> EpicStoreTiles => _epicStoreTiles;
     public List<GameObject> LegendaryStoreTiles => _legendaryStoreTiles;
     public List<GameObject> MythicStoreTiles => _mythicStoreTiles;
+    public List<GameObject> FirstStoreTiles => _firstStoreTiles;
+
+    private bool _isJournalSlotUpdated = true;
 
 
 
@@ -35,8 +46,11 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     {
         base.Awake();
         _journalSlotPrefab = Resources.Load<GameObject>("Prefabs/UI/Journal/JournalSlot");
-        _slotParent = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        _scrollView = transform.GetChild(0).GetChild(0).gameObject;
+        _slotParent = _scrollView.transform.GetChild(0).GetChild(0);
         EventBus.SubscribeSceneLoaded(CloseJournalOnSceneChange);
+        _isJournalSlotUpdated = true;
+        _isInit = false;
     }
 
 
@@ -47,7 +61,8 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         //DontDestroyOnLoad(Instantiate(_eventSystem));
         SetStoreTileList();
         InstantiateAllJournalSlots();
-        gameObject.SetActive(false);
+        _isInit = true;
+        ToggleJournal();
     }
 
     public void SetStoreTileList()
@@ -65,6 +80,13 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
         _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
 
+        _normalStoreTiles.Clear();
+        _rareStoreTiles.Clear();
+        _epicStoreTiles.Clear();
+        _legendaryStoreTiles.Clear();
+        _mythicStoreTiles.Clear();
+        _lockedStoreTiles.Clear();
+
         foreach (GameObject tilePrefab in allTilePrefabs)
         {
             TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
@@ -77,11 +99,25 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
                     {
                         _normalStoreTiles.Add(tilePrefab);
                     }
+                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+                    {
+                        if (tileData.tileName == tileInfo.TileName)
+                        {
+                            _firstStoreTiles.Add(tilePrefab);
+                        }
+                    }
 
                 }
                 else if (grade == TileGrade.Rare)
                 {
                     _rareStoreTiles.Add(tilePrefab);
+                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
+                    {
+                        if (tileData.tileName == tileInfo.TileName)
+                        {
+                            _firstStoreTiles.Add(tilePrefab);
+                        }
+                    }
                 }
                 else if (grade == TileGrade.Epic)
                 {
@@ -102,6 +138,16 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             }
 
         }
+        _isJournalSlotUpdated = false;
+    }
+
+    private void OnEnable()
+    {
+        if(!_isJournalSlotUpdated && _isInit)
+        {
+            Debug.Log("이거 발동되면 안되잇");
+            InstantiateAllJournalSlots();
+        }
     }
 
     private void InstantiateAllJournalSlots()
@@ -117,6 +163,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         InstantiateJournalSlotList(_epicStoreTiles);
         InstantiateJournalSlotList(_legendaryStoreTiles);
         InstantiateJournalSlotList(_mythicStoreTiles);
+        _isJournalSlotUpdated = true;
     }
 
     private void InstantiateJournalSlotList(List<GameObject> objects)
@@ -139,15 +186,31 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     }
 
 
-    public void CloseJournal()
+    private void CloseJournal()
     {
         if (DragManager.Instance.GetCurrentDragObject() == null)
-            gameObject.SetActive(false);    
+            _scrollView.SetActive(false);    
     }
 
     public void CloseJournalOnSceneChange(Scene scene, LoadSceneMode mode)
     {
-        gameObject.SetActive(false);
+        if(_isInit)
+        {
+            _scrollView.SetActive(false);
+        }
+        
+    }
+
+    public void ToggleJournal()
+    {
+        if(_scrollView.activeSelf)
+        {
+            _scrollView.SetActive(false);
+        }
+        else
+        {
+            _scrollView.SetActive(true);
+        }
     }
 
     private void OnDestroy()

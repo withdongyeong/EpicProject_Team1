@@ -40,14 +40,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenJournal()
     {
-        if(JournalSlotManager.Instance.gameObject.activeSelf)
-        {
-            JournalSlotManager.Instance.gameObject.SetActive(false);
-        }
-        else
-        {
-            JournalSlotManager.Instance.gameObject.SetActive(true);
-        }
+        JournalSlotManager.Instance.ToggleJournal();
         
     }
 
