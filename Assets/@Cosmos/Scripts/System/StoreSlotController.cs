@@ -7,8 +7,6 @@ public class StoreSlotController : MonoBehaviour
 {
     private StoreSlot[] storeSlots;
     
-    
-
     private int _safeInt = 0;
     private int _unlockLevel;
 

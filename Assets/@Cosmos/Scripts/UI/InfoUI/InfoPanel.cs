@@ -23,7 +23,6 @@ public class InfoPanel : MonoBehaviour
     private TileObject currentTileObject; // 현재 표시 중인 TileObject
     private RectTransform rectTransform;
     private Canvas canvas;
-    private Camera mainCamera;
     private GameObject nameTextPrefab; // 이름 텍스트
     //private GameObject descriptionTextPrefab; // 설명 텍스트
     private InfoTextRenderer textRenderer; //곽민준이 짠 설명 텍스트 및 밑의 구분선 보여주는 스크립트입니다
@@ -32,7 +31,6 @@ public class InfoPanel : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
-        mainCamera = Camera.main;
         gameObject.SetActive(false); // 초기 비활성화
         nameTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/HeadText");
         //descriptionTextPrefab = Resources.Load<GameObject>("Prefabs/UI/InfoUI/DescriptionText");
