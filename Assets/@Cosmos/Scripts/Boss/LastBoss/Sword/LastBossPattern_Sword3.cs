@@ -39,7 +39,7 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
                         new() { Vector3Int.zero },
                         pos,
                         _explosionPrefab,
-                        0.8f,
+                        1f,
                         1f,
                         _damage,
                         WarningType.Type1
@@ -48,7 +48,7 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
             }
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(boss.Beat/2);
 
         // 2. 선택된 대각선들을 동시에 공격
         int maxLength = GetMaxDiagonalLength();
@@ -73,7 +73,7 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
                                 new() { Vector3Int.zero },
                                 pos,
                                 _explosionPrefab,
-                                0.8f,
+                                1f,
                                 1f,
                                 _damage,
                                 WarningType.Type1
@@ -83,10 +83,10 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(0.025f);
+            yield return new WaitForSeconds(boss.Beat/8);
         }
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(boss.Beat/2);
     }
 
     private List<(Vector3Int startPos, Vector3Int direction)> GetRandomNonOverlappingLines()
@@ -201,7 +201,7 @@ public class LastBossPattern_Sword3 : IBossAttackPattern
         pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9;
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossSwordAttackActivate");
     }
 

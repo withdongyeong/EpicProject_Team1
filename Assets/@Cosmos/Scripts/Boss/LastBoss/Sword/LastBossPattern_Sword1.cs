@@ -37,7 +37,7 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
                     new() { Vector3Int.zero },
                     pos,
                     _explosionPrefab,
-                    0.8f,
+                    1f,
                     1f,
                     _damage,
                     WarningType.Type1
@@ -45,7 +45,7 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
             }
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(boss.Beat/2);
 
         // 2. 직선 연속 공격 (굵기 3)
         for (int i = 1; i < 9; i++)
@@ -63,7 +63,7 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
                         new() { Vector3Int.zero },
                         pos,
                         _explosionPrefab,
-                        0.8f,
+                        1f,
                         1f,
                         _damage,
                         WarningType.Type1
@@ -71,10 +71,10 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(0.025f);
+            yield return new WaitForSeconds(boss.Beat/8);
         }
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(boss.Beat/2);
     }
 
     private (Vector3Int dir, Vector3Int tip) GetRandomDirectionAndTip()
@@ -156,7 +156,7 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
 
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossSwordAttackActivate");
     }
 }

@@ -23,6 +23,10 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
     {
         boss.SetAnimationTrigger("Attack");
 
+        // 중심 (4, 4) 먼저 공격
+        boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+        boss.StartCoroutine(SoundPlay());
+
         // 병렬 실행
         boss.StartCoroutine(SpiralInArea(boss, 0, 5)); // 좌상
         boss.StartCoroutine(SpiralInArea(boss, 5, 5)); // 우상
@@ -33,11 +37,11 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         for (int i = 0; i < 9; i++)
         {
             if (i == 4) continue;
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private IEnumerator SpiralInArea(BaseBoss boss, int startX, int startY)
@@ -66,7 +70,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
                 boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
                 visited[cx, cy] = true;
                 count++;
-                yield return new WaitForSeconds(0.12f);
+                yield return new WaitForSeconds(boss.Beat/4);
             }
 
             int nx = cx + dirs[dir].x;
@@ -85,7 +89,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
     }
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }
