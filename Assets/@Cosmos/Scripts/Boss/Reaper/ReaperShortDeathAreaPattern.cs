@@ -68,9 +68,9 @@ public class ReaperShortDeathAreaPattern : IBossAttackPattern
             }
 
            boss.BombHandler.ExecuteFixedBomb(webPositions, new Vector3Int(0, 0, 0), _shortDeathAria,
-                                                  warningDuration: 0.5f, explosionDuration: _deathAriaTime, damage: 0, warningType: WarningType.Type3);
+                                                  warningDuration: 1f, explosionDuration: _deathAriaTime, damage: 0, warningType: WarningType.Type3);
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(boss.Beat / 2);
         }
 
         yield return 0;
