@@ -7,19 +7,7 @@ public class BuildingSceneButtonUIHandler : MonoBehaviour
     void Start()
     {
         transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => SceneLoader.ToggleSetting());
-        transform.GetChild(1).GetComponent<Button>().onClick.AddListener(ToggleJournal);
-    }
-
-    private void ToggleJournal()
-    {
-        if(JournalSlotManager.Instance.gameObject.activeSelf)
-        {
-            JournalSlotManager.Instance.gameObject.SetActive(false);
-        }
-        else
-        {
-            JournalSlotManager.Instance.gameObject.SetActive(true);
-        }
+        transform.GetChild(1).GetComponent<Button>().onClick.AddListener(()=> JournalSlotManager.Instance.ToggleJournal());
     }
 
 
