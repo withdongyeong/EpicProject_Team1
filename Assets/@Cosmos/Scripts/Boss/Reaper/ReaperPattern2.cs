@@ -42,7 +42,7 @@ public class ReaperPattern2 : IBossAttackPattern
         boss.StartCoroutine(AttackSoundSound());
 
         boss.BombHandler.ExecuteFixedBomb(PointList, new Vector3Int(4, 4, 0), _deathAriaPrefeb,
-                                  warningDuration: 0.8f, explosionDuration: 1.0f, damage: _damage, warningType: WarningType.Type1);
+                                  warningDuration: 1f, explosionDuration: 1.0f, damage: _damage, warningType: WarningType.Type1);
 
         boss.AttackAnimation();
 
@@ -51,7 +51,7 @@ public class ReaperPattern2 : IBossAttackPattern
 
     private IEnumerator AttackSoundSound()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
     }
 

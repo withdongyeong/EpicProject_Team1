@@ -8,15 +8,9 @@ using UnityEngine;
 public class BigHandRadialWavePattern : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
-    private float _growthSpeed = 0.1f; // 성장 속도 (조절 가능)
     private int _damage;
 
     public string PatternName => "방사형_확산";
-    
-    /// <summary>
-    /// 성장 속도 프로퍼티 (외부에서 조절 가능)
-    /// </summary>
-    public float GrowthSpeed { get => _growthSpeed; set => _growthSpeed = value; }
     
     public BigHandRadialWavePattern(GameObject attackEffectPrefab, int damage)
     {
@@ -112,7 +106,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
                         new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                         nextPos,
                         _attackEffectPrefab,
-                        warningDuration: 0.8f,
+                        warningDuration: 1f,
                         explosionDuration: 0.4f,
                         damage: _damage
                     );
@@ -124,7 +118,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
                 line.IsComplete = true;
             }
             
-            yield return new WaitForSeconds(_growthSpeed);
+            yield return new WaitForSeconds(boss.Beat / 4);
         }
     }
 

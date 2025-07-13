@@ -93,7 +93,7 @@ public class BigHandPattern1A : IBossAttackPattern
         foreach (Vector3Int gridPos in positions)
         {
             boss.BombHandler.ExecuteFixedBomb(singlePointShape, gridPos, _wallPrefab,
-                warningDuration: 0.8f, explosionDuration: 18f, damage: 0, warningType: WarningType.Type3);
+                warningDuration: 1f, explosionDuration: boss.Beat * 40, damage: 0, warningType: WarningType.Type3);
             GridManager.Instance.AddUnmovableGridPosition(gridPos);
             bigHand.BlockedPositions.Add(gridPos);
         }

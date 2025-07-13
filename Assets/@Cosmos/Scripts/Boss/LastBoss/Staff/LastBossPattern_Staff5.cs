@@ -43,13 +43,13 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
             {
                 boss.StartCoroutine(SoundPlay());
 
-                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
             }
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(boss.Beat/4);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private bool IsCenterX(Vector3Int pos)
@@ -64,7 +64,7 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
 
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

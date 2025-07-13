@@ -34,7 +34,7 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
                             new() { Vector3Int.zero },
                             pos,
                             _explosionPrefab,
-                            0.8f,
+                            1f,
                             0.8f,
                             _damage,
                             WarningType.Type1
@@ -43,10 +43,10 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(radius >= 2 ? 0.4f : 0.15f);
+            yield return new WaitForSeconds(radius >= 2 ? 0.4f : boss.Beat/4);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private List<Vector3Int> GetRingLayer(int radius)
@@ -72,7 +72,7 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
 
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossFlameAttackActivate");
     }
 }

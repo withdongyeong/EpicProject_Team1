@@ -38,7 +38,7 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
                         new() { Vector3Int.zero },
                         pos,
                         _explosionPrefab,
-                        0.8f,
+                        1f,
                         0.8f,
                         _damage,
                         WarningType.Type1
@@ -46,10 +46,10 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(boss.Beat/4);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private Vector3Int GetRandomPosition()
@@ -97,7 +97,7 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
 
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossFrostAttackActivate");
     }
 }

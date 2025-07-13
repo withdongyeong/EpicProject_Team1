@@ -50,7 +50,7 @@ public class TurtreePattern5 : IBossAttackPattern
 
             boss.StartCoroutine(TurtreeAttackSound());
 
-            yield return new WaitForSeconds(halfBeat);
+            yield return new WaitForSeconds(halfBeat / 2);
         }
     }
 
