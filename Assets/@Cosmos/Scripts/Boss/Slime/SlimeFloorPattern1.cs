@@ -27,7 +27,6 @@ public class SlimeFloorPattern1 : IBossAttackPattern
     public IEnumerator SlimeFloorPattern(BaseBoss boss)
     {
         float beat = boss.Beat;
-        float halfBeat = boss.HalfBeat;
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
         // 기존 모양을 그대로 구성
@@ -73,7 +72,7 @@ public class SlimeFloorPattern1 : IBossAttackPattern
                 damage: _damage
             );
             boss.StartCoroutine(SlimeSoundEffect());
-            yield return new WaitForSeconds(beat);
+            yield return new WaitForSeconds(beat/2);
         }
     }
 
