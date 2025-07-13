@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -30,26 +31,33 @@ public class DragManager : Singleton<DragManager>
         smoothRotator = gameObject.AddComponent<SmoothRotator>();
     }
     
-    
+    private void Start()
+    {
+        InputManager.Instance.OnRotate += RotateObject; // InputManager에서 회전 이벤트를 구독합니다.
+    }
+
+
     private void Update()
     {
         if (isDragging)
         {
-            if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
-            {
-                RotateObject();
-            }
             Vector3 mousePosition = Input.mousePosition;
             mainCamera = Camera.main;
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
             worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
                                   // 드래그 오브젝트 위치 업데이트
             currentDragObject.transform.position = worldPosition + LocalPos;
+            
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
+            {
+                RotateObject();
+            }
         }
     }
     
     public void BeginDrag(GameObject draggableObject)
     {
+        Debug.Log("Begin drag");
         isDragging = true;
         currentDragObject = draggableObject;
         Vector3 mousePosition = Input.mousePosition;
@@ -71,6 +79,7 @@ public class DragManager : Singleton<DragManager>
     
     public void EndDrag()
     {
+        Debug.Log("End drag");
         isDragging = false;
         currentDragObject = null;
         GridManager.Instance.TilesOnGrid.SetTileObjectStarEffect();
@@ -285,6 +294,7 @@ public class DragManager : Singleton<DragManager>
 
     private void RotateObject()
     {
+        Debug.Log("RotateObject called");
         if (currentDragObject == null) return;
         
         smoothRotator.RotateZ(currentDragObject.transform,UpdatePreviewCell);
@@ -301,4 +311,13 @@ public class DragManager : Singleton<DragManager>
         UpdatePreviewCell();
     }
 
+    private void OnDestroy()
+    {
+        // InputManager의 이벤트 구독 해제
+        InputManager.Instance.OnRotate -= RotateObject;
+        if (smoothRotator != null)
+        {
+            Destroy(smoothRotator); // SmoothRotator 컴포넌트 제거
+        }
+    }
 }

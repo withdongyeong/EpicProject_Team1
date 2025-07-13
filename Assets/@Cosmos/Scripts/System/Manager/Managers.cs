@@ -23,6 +23,7 @@ public class Managers : MonoBehaviour
     private GameObject lifeManager;
     private GameObject totalDamageManager;
     private GameObject cursorManager;
+    private GameObject inputManager;
 
     
     
@@ -31,6 +32,7 @@ public class Managers : MonoBehaviour
 
     private void Awake()
     {
+        inputManager = Resources.Load<GameObject>("InputManager");
         gameManager = Resources.Load<GameObject>("GameManager");
         soundManager = Resources.Load<GameObject>("SoundManager");
         dragManager = Resources.Load<GameObject>("DragManager");
@@ -45,6 +47,8 @@ public class Managers : MonoBehaviour
         lifeManager = Resources.Load<GameObject>("LifeManager");
         totalDamageManager = Resources.Load<GameObject>("TotalDamageManager");
         cursorManager = Resources.Load<GameObject>("CursorManager");
+        
+        MakeManager(inputManager);
         //Instantiate the managers
         MakeManager(gameManager);
         MakeManager(soundManager);
@@ -60,6 +64,7 @@ public class Managers : MonoBehaviour
         MakeManager(lifeManager);
         MakeManager(totalDamageManager);
         MakeManager(cursorManager);
+        
     }
 
     private void MakeManager(GameObject manager)

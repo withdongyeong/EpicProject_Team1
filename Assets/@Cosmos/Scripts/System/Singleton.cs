@@ -13,6 +13,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 instance = FindAnyObjectByType<T>();
                 if (instance == null)
                 {
+                    Debug.Log("Singleton instance of " + typeof(T).Name + " not found. Creating a new instance.");
                     GameObject singletonObject = new GameObject(typeof(T).Name);
                     instance = singletonObject.AddComponent<T>();
                 }
@@ -25,6 +26,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
+            Debug.LogWarning("Singleton instance already exists. Destroying duplicate: " + gameObject.name);
             Destroy(gameObject);
         }
         else

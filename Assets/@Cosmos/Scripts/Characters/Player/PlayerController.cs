@@ -1,236 +1,210 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System; // InputManager 이벤트를 위해 추가
 
 /// <summary>
-/// 플레이어 이동 및 타일 상호작용 관리
+/// 최종 정리된 플레이어 이동 및 상호작용 관리 스크립트
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    private float _moveSpeed = 5f;
-    private GridManager _gridManager;
+    // --- 이동 관련 설정 ---
+    [Header("Movement Settings")]
+    [SerializeField] private float _moveTime = 0.2f;
+
+    // --- 입력 처리 관련 설정 ---
+    [Header("Input Settings")]
+    [Tooltip("키보드 대각선 입력을 위한 유예 시간 (초)")]
+    [SerializeField] private float _inputGraceTime = 0.05f;
+    [Tooltip("첫 이동 후, 반복 이동이 시작되기까지의 대기 시간 (초)")]
+    [SerializeField] private float _initialMoveDelay = 0.3f;
+    [Tooltip("반복 이동 시의 각 이동 사이의 대기 시간 (초)")]
+    [SerializeField] private float _repeatMoveDelay = 0.15f;
+
+    // --- 내부 상태 변수 ---
+    private Vector2Int _heldDirection;
+    private bool _isHolding = false;
+    private bool _hasMovedOnceInSequence = false; // 한 시퀀스에서 첫 이동을 했는지 체크
+    [SerializeField]
+    private float _moveTimer = 0f;
+    [SerializeField]
+    private bool _isMoving = false;
+    private bool _facingRight = true;
     private int _currentX, _currentY;
-    private bool _isMoving;
-    private float _moveTime = 0.2f;
 
-    // 상태이상 처리용
+    // --- 컴포넌트 및 매니저 참조 ---
+    private GridManager _gridManager;
     private PlayerDebuff _playerDebuff;
-
-    // 애니메이션 관련
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    
-    // 방향 기억용
-    private bool _facingRight = true;
-    
-    // 입력 버퍼링 시스템
-    private float _inputBufferTime = 0.05f; // 입력을 수집할 시간
-    private float _inputBufferTimer = 0f;
-    private Vector2 _bufferedInput = Vector2.zero;
-    private bool _hasBufferedInput = false;
-    
-    // 갸우뚱 효과 관련
-    [Header("Wobble Effect")]
-    private float _wobbleAmount = 15f; // 갸우뚱 각도 (도 단위)
 
+    // --- 갸우뚱 효과 관련 ---
+    [Header("Wobble Effect")]
+    [SerializeField] private float _wobbleAmount = 15f;
     private bool _wobbleLeft = true;
-    private bool _enableWobble = true; // 갸우뚱 효과 활성화 여부
-    
+    [SerializeField] private bool _enableWobble = true;
+
     // Getters & Setters
-    public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
-    public bool IsMoving { get => _isMoving; }
+    public bool IsMoving => _isMoving;
     public int CurrentX { get => _currentX; set => _currentX = value; }
     public int CurrentY { get => _currentY; set => _currentY = value; }
-    public Animator Animator { get => _animator; set => _animator = value; }
+    public Animator Animator => _animator;
     public PlayerDebuff PlayerDebuff => _playerDebuff;
 
-    //스킬을 발동할 수 있는지 여부입니다. 
-    private bool _canInteractionTile = false;
+    //======================================================================
+    // Unity 생명주기 및 이벤트 연결
+    //======================================================================
 
-    private void Start()
+    private void Awake()
     {
         _gridManager = GridManager.Instance;
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerDebuff = GetComponent<PlayerDebuff>();
+    }
+
+    private void Start()
+    {
         UpdateCurrentPosition();
-
-        SoundManager.Instance.PlayPlayerSound("StickRoll");
-
-        // 초기 오른쪽 방향 바라보기
-        _spriteRenderer.flipX = true;
-        
-        // 초기 애니메이션 상태 설정
-        if (_animator != null)
+        if (_spriteRenderer != null) _spriteRenderer.flipX = true;
+        if (_animator != null) _animator.SetBool("IsMoving", false);
+        // SoundManager.Instance.PlayPlayerSound("StickRoll"); // 필요 시 주석 해제
+        if (InputManager.Instance != null)
         {
-            _animator.SetBool("IsMoving", false);
+            InputManager.Instance.OnMove += HandleMoveInput;
         }
     }
-    
+
+
+
+    // ★★★ 추가된 부분 (2) ★★★
+    // 메모리 누수 방지를 위해 이벤트를 해제합니다.
+    private void OnDestroy()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.OnMove -= HandleMoveInput;
+        }
+    }
+
     private void Update()
     {
-        // 게임이 Playing 상태일 때만 입력 처리
-        if (GameStateManager.Instance.CurrentState == GameState.Playing)
+        if (GameStateManager.Instance.CurrentState != GameState.Playing)
         {
-            if (!_isMoving && !_playerDebuff.IsBind)
-            {
-                HandleMovementWithBuffer();
-            }
+            if (_animator != null) _animator.SetBool("IsMoving", false);
+            return;
         }
-        else
+
+        // --- 최종 입력 로직 ---
+        if (_heldDirection == Vector2Int.zero)
         {
-            // 게임이 Playing 상태가 아닐 때는 IsMoving을 false로 고정
-            if (_animator != null)
-            {
-                _animator.SetBool("IsMoving", false);
-            }
+            _isHolding = false;
+            _hasMovedOnceInSequence = false;
+            return;
         }
-    }
-    
-    /// <summary>
-    /// 입력 버퍼링을 사용한 이동 처리
-    /// </summary>
-    private void HandleMovementWithBuffer()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        
-        Vector2 currentInput = new Vector2(horizontal, vertical);
-        
-        // 새로운 입력이 들어왔을 때
-        if (currentInput.magnitude > 0)
+
+        if (!_isHolding)
         {
-            if (!_hasBufferedInput)
+            _isHolding = true;
+            _moveTimer = _inputGraceTime; // '입력 유예' 타이머 시작
+        }
+
+        if (_moveTimer > 0)
+        {
+            _moveTimer -= Time.deltaTime;
+        }
+
+        if (!_isMoving && !_playerDebuff.IsBind && _moveTimer <= 0)
+        {
+            ExecuteMovement(_heldDirection);
+
+            if (!_hasMovedOnceInSequence)
             {
-                // 첫 번째 입력 - 버퍼링 시작
-                _bufferedInput = currentInput;
-                _hasBufferedInput = true;
-                _inputBufferTimer = _inputBufferTime;
+                _hasMovedOnceInSequence = true;
+                _moveTimer = _initialMoveDelay; // 첫 이동 후, 긴 딜레이 설정
             }
             else
             {
-                // 추가 입력 - 기존 입력과 합성
-                _bufferedInput = CombineInputs(_bufferedInput, currentInput);
-            }
-        }
-        
-        // 버퍼 타이머 처리
-        if (_hasBufferedInput)
-        {
-            _inputBufferTimer -= Time.deltaTime;
-            
-            // 버퍼 시간이 끝났거나, 입력이 없어졌을 때 이동 실행
-            if (_inputBufferTimer <= 0 || currentInput.magnitude == 0)
-            {
-                ExecuteBufferedMovement();
+                _moveTimer = _repeatMoveDelay; // 반복 이동 시, 짧은 딜레이 설정
             }
         }
     }
+
+    //======================================================================
+    // 입력 및 이동 실행
+    //======================================================================
     
-    /// <summary>
-    /// 두 입력을 합성하여 최종 이동 방향 결정
-    /// </summary>
-    private Vector2 CombineInputs(Vector2 input1, Vector2 input2)
+    // InputManager로부터 입력이 들어올 때마다 호출됩니다.
+    private void HandleMoveInput(Vector2 direction)
     {
-        // 각 축에서 가장 최근의 0이 아닌 입력을 사용
-        float finalX = Mathf.Abs(input2.x) > 0 ? input2.x : input1.x;
-        float finalY = Mathf.Abs(input2.y) > 0 ? input2.y : input1.y;
-        
-        return new Vector2(finalX, finalY);
+        _heldDirection = new Vector2Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y));
     }
-    
-    /// <summary>
-    /// 버퍼된 입력을 실행
-    /// </summary>
-    private void ExecuteBufferedMovement()
+
+    private void ExecuteMovement(Vector2Int direction)
     {
-        if (_bufferedInput.magnitude > 0)
-        {
-            int dx = Mathf.RoundToInt(_bufferedInput.x);
-            int dy = Mathf.RoundToInt(_bufferedInput.y);
-            
-            // 방향 전환 처리
-            HandleFlip(dx);
-            
-            TryMove(dx, dy);
-        }
-        
-        // 버퍼 리셋
-        _bufferedInput = Vector2.zero;
-        _hasBufferedInput = false;
-        _inputBufferTimer = 0f;
+        HandleFlip(direction.x);
+        TryMove(direction.x, direction.y);
     }
-    
-    /// <summary>
-    /// 캐릭터 방향 전환 처리
-    /// </summary>
+
     private void HandleFlip(int horizontalInput)
     {
-        if (horizontalInput > 0 && !_facingRight) // 오른쪽 이동 + 현재 왼쪽 보고 있을 때
+        if (horizontalInput > 0 && !_facingRight)
         {
             _facingRight = true;
             _spriteRenderer.flipX = true;
         }
-        else if (horizontalInput < 0 && _facingRight) // 왼쪽 이동 + 현재 오른쪽 보고 있을 때
+        else if (horizontalInput < 0 && _facingRight)
         {
             _facingRight = false;
             _spriteRenderer.flipX = false;
         }
-        // 수직 이동이나 같은 방향 이동시에는 방향 유지
     }
     
-    /// <summary>
-    /// 이동 시도 - 유효한 위치인지 확인 후 애니메이션
-    /// </summary>
     private bool TryMove(int dx, int dy)
     {
         int newX = _currentX + dx;
         int newY = _currentY + dy;
-        Vector3Int pos = new Vector3Int(newX, newY, 0);
-        
-        bool isMovable = _gridManager.UnmovableGridPositions.Contains(pos) == false; // 이동 불가능한 위치인지 확인
-        if (_gridManager.IsWithinGrid(pos) && isMovable)
+        Vector3Int newGridPos = new Vector3Int(newX, newY, 0);
+
+        if (_gridManager.IsWithinGrid(newGridPos) && !_gridManager.UnmovableGridPositions.Contains(newGridPos))
         {
-            StartCoroutine(MoveAnimation(pos));
+            StartCoroutine(MoveAnimation(newGridPos));
             return true;
         }
         return false;
     }
-    
-    /// <summary>
-    /// 점프 효과가 있는 이동 애니메이션 (갸우뚱 효과 포함)
-    /// </summary>
+
+    //======================================================================
+    // 이동 애니메이션 및 기타 로직
+    //======================================================================
+
     private IEnumerator MoveAnimation(Vector3Int newPos)
     {
         _isMoving = true;
         _animator.SetBool("IsMoving", true);
-        _canInteractionTile = false;
-
+        
         Vector3 startPos = transform.position;
-        Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
+        Vector3 targetPos = _gridManager.GridToWorldPosition(newPos);
 
-        // 논리적 위치는 미리 갱신
         _currentX = newPos.x;
         _currentY = newPos.y;
 
         float jumpHeight = 0.3f;
         float elapsedTime = 0;
         
-        SoundManager.Instance.PlayPlayerSound("PlayerMove");
-        
+        // SoundManager.Instance.PlayPlayerSound("PlayerMove"); // 필요 시 주석 해제
+
         while (elapsedTime < _moveTime)
         {
             float t = elapsedTime / _moveTime;
             float x = Mathf.Lerp(startPos.x, targetPos.x, t);
             float y = Mathf.Lerp(startPos.y, targetPos.y, t);
-
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
 
-            // 갸우뚱 효과
             float wobbleRotation = 0f;
             if (_enableWobble)
             {
                 float wobbleAmount = Mathf.Sin(t * Mathf.PI) * _wobbleAmount;
-                wobbleRotation = _wobbleLeft ? -wobbleAmount : wobbleAmount;
+                wobbleRotation = _wobbleLeft ? -wobbleAmount : wobbleRotation;
             }
 
             transform.position = new Vector3(x, y + extraHeight, 0);
@@ -240,87 +214,41 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // 최종 위치 정리
         transform.position = targetPos;
         transform.rotation = Quaternion.identity;
         _wobbleLeft = !_wobbleLeft;
 
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
-
-        // 여기서 상호작용 허용
-        _canInteractionTile = true;
-        CheckTileInteraction(); // 여기서 1회만 호출
-        _canInteractionTile = false; // 다시 차단
+        
+        CheckTileInteraction();
     }
-
     
-    /// <summary>
-    /// 현재 그리드 위치 업데이트
-    /// </summary>
     private void UpdateCurrentPosition()
     {
         Vector3Int pos = _gridManager.WorldToGridPosition(transform.position);
-
         _currentX = pos.x;
         _currentY = pos.y;
     }
     
-    /// <summary>
-    /// 애니메이션 이벤트에서 호출 - 지팡이가 땅을 찍는 순간
-    /// </summary>
-    public void OnStaffHitGround()
-    {
-        SoundManager.Instance.PlayPlayerSound("AriaActive");
-
-        FindAnyObjectByType<StageHandler>().SpawnGroundEffect();
-    }
-    
-    /// <summary>
-    /// 현재 위치 타일과 상호작용 확인
-    /// </summary>
     private void CheckTileInteraction()
     {
-        Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0); // 1. 현재 위치 가져오기 (_currentX, _currentY) 는 이미 grid 좌표로 설정되어 있음
+        Vector3Int currentPos = new Vector3Int(_currentX, _currentY, 0);
         Cell currentCell = _gridManager.GetCellData(currentPos);
-        CombineCell comCell = currentCell?.GetCombineCell();
-        comCell?.ExecuteSkill();
-
+        currentCell?.GetCombineCell()?.ExecuteSkill();
     }
 
-    /// <summary>
-    /// 플레이어 속박
-    /// </summary>
-    /// <param name="time"></param>
+    public void OnStaffHitGround()
+    {
+        // SoundManager.Instance.PlayPlayerSound("AriaActive"); // 필요 시 주석 해제
+        FindAnyObjectByType<StageHandler>().SpawnGroundEffect();
+    }
+
     public void Bind(float time)
     {
         StartCoroutine(_playerDebuff.Bind(time));
     }
     
-    /// <summary>
-    /// 갸우뚱 효과 활성화/비활성화
-    /// </summary>
-    /// <param name="enable">활성화 여부</param>
-    public void SetWobbleEffect(bool enable)
-    {
-        _enableWobble = enable;
-    }
-    
-    /// <summary>
-    /// 갸우뚱 효과 강도 조정
-    /// </summary>
-    /// <param name="amount">갸우뚱 각도 (도 단위)</param>
-    public void SetWobbleAmount(float amount)
-    {
-        _wobbleAmount = amount;
-    }
-    
-    /// <summary>
-    /// 갸우뚱 효과 속도 조정 (사용 안 함 - 점프와 동일한 속도)
-    /// </summary>
-    /// <param name="speed">갸우뚱 속도</param>
-    public void SetWobbleSpeed(float speed)
-    {
-        // 점프와 동일한 속도로 갸우뚱하므로 사용하지 않음
-    }
+    public void SetWobbleEffect(bool enable) => _enableWobble = enable;
+    public void SetWobbleAmount(float amount) => _wobbleAmount = amount;
 }
