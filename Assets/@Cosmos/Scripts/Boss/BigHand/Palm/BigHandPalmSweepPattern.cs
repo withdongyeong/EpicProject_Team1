@@ -88,13 +88,13 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
                 new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                 cell,
                 _attackEffectPrefab,
-                warningDuration: 0.8f,
+                warningDuration: 1f,
                 explosionDuration: 0.4f,
                 damage: _damage
             );
         }
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(boss.Beat/2);
     }
 
     /// <summary>

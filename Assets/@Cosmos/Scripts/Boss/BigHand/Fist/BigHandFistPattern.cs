@@ -74,18 +74,17 @@ public class BigHandFistPattern : IBossAttackPattern
         List<Vector3Int> singlePointShape = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
         foreach (Vector3Int pos in fistArea)
         {
-            boss.StartCoroutine(PlayAttackSound("BigHandFistActivate", 0.8f));
+            boss.StartCoroutine(PlayAttackSound("BigHandFistActivate", 1f));
 
             boss.BombHandler.ExecuteWarningThenDamage(
                 singlePointShape, 
                 pos, 
-                warningDuration: 0.8f, 
+                warningDuration: 1f, 
                 damage: _damage, 
                 warningType: WarningType.Type2);
         }
         
-        // 주먹 이동 (0.8초 - 전조와 타이밍 맞춤)
-        float duration = 0.8f;
+        float duration = 1f;
         float elapsedTime = 0f;
         
         while (elapsedTime < duration)
@@ -174,14 +173,14 @@ public class BigHandFistPattern : IBossAttackPattern
         Debug.Log($"충격파 시작: 중심 {fistCenter}");
         
         // 거리별로 웨이브 확산
-        for (int distance = 1; distance <= 8; distance++)
+        for (int distance = 1; distance <= 6; distance++)
         {
             List<Vector3Int> wavePositions = GetPositionsAtDistance(fistCenter, distance);
             
             if (wavePositions.Count > 0)
             {
                 Debug.Log($"충격파 거리 {distance}: {wavePositions.Count}칸");
-                boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
+                boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 1f));
 
                 // 해당 거리의 모든 위치에 동시 공격
                 foreach (Vector3Int pos in wavePositions)
@@ -190,13 +189,13 @@ public class BigHandFistPattern : IBossAttackPattern
                         new List<Vector3Int> { new Vector3Int(0, 0, 0) },
                         pos,
                         _attackEffectPrefab,
-                        warningDuration: 0.8f,
+                        warningDuration: 1f,
                         explosionDuration: 0.5f,
                         damage: _damage
                     );
                 }
                 
-                yield return new WaitForSeconds(0.1f); // 웨이브 간격
+                yield return new WaitForSeconds(boss.Beat/4); // 웨이브 간격
             }
         }
         

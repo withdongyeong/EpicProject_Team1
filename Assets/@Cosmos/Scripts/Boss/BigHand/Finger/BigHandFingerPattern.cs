@@ -84,7 +84,7 @@ public class BigHandFingerPattern : IBossAttackPattern
         
         _fingerObject = Object.Instantiate(selectedPrefab, startTipPos, Quaternion.identity);
 
-        boss.StartCoroutine(PlayAttackSound("BigHandFingerActivate", 0.8f));
+        boss.StartCoroutine(PlayAttackSound("BigHandFingerActivate", 1f));
 
         // 손가락 본체 전조
         foreach (Vector3Int pos in fingerPositions)
@@ -93,7 +93,7 @@ public class BigHandFingerPattern : IBossAttackPattern
                 new List<Vector3Int> { new Vector3Int(0, 0, 0) }, 
                 pos, 
                 _attackEffectPrefab,
-                warningDuration: 0.8f, 
+                warningDuration: 1f, 
                 explosionDuration: 5f,
                 damage: 0, 
                 warningType: WarningType.Type2
@@ -155,7 +155,7 @@ public class BigHandFingerPattern : IBossAttackPattern
             new Vector3Int(-1, 0, 0)
         };
         
-        float warningDuration = 0.8f;
+        float warningDuration = 1f;
         float explosionDelay = fingerMoveTime - warningDuration;
         
         if (explosionDelay > 0)
@@ -163,7 +163,7 @@ public class BigHandFingerPattern : IBossAttackPattern
             yield return new WaitForSeconds(explosionDelay);
         }
         
-        boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 0.8f));
+        boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 1f));
 
         boss.BombHandler.ExecuteFixedBomb(
             crossPositions, 
