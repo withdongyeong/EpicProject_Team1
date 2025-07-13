@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class JournalSlotManager : Singleton<JournalSlotManager>
@@ -35,6 +36,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         base.Awake();
         _journalSlotPrefab = Resources.Load<GameObject>("Prefabs/UI/Journal/JournalSlot");
         _slotParent = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        EventBus.SubscribeSceneLoaded(CloseJournalOnSceneChange);
     }
 
 
@@ -139,8 +141,18 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     public void CloseJournal()
     {
+        if (DragManager.Instance.GetCurrentDragObject() == null)
+            gameObject.SetActive(false);    
+    }
+
+    public void CloseJournalOnSceneChange(Scene scene, LoadSceneMode mode)
+    {
         gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribeSceneLoaded(CloseJournalOnSceneChange);
+    }
 
 }
