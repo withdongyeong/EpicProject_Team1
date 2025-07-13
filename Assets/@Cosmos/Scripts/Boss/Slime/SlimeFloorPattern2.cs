@@ -27,7 +27,6 @@ public class SlimeFloorPattern2 : IBossAttackPattern
     public IEnumerator SlimeFloorPattern(BaseBoss boss)
     {
         float beat = boss.Beat;
-        float halfBeat = boss.HalfBeat;
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
         List<Vector3Int> cells = new();
 
@@ -81,7 +80,7 @@ public class SlimeFloorPattern2 : IBossAttackPattern
         {
             boss.BombHandler.ExecuteFixedBomb(kv.Value, centerPos, _slimeFloorPrefeb, 1f, 0.7f, _damage);
             boss.StartCoroutine(SlimeSoundEffect());
-            yield return new WaitForSeconds(beat);
+            yield return new WaitForSeconds(beat / 2);
         }
     }
     
