@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-public class SoundVolemClass : MonoBehaviour
-{
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SoundVolumeSettings : MonoBehaviour
 {
