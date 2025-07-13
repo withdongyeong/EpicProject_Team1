@@ -38,9 +38,9 @@ public class LightningKnightPattern3 : IBossAttackPattern
             boss.StartCoroutine(LightningKnightAttackSound());
 
             boss.BombHandler.ExecuteFixedBomb(DamageArea, new Vector3Int(4, 4, 0), _lightningActtck,
-                                      warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                      warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(boss.Beat / 8);
         }
     }
 
@@ -94,7 +94,7 @@ public class LightningKnightPattern3 : IBossAttackPattern
 
     private IEnumerator LightningKnightAttackSound()
     {
-        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        yield return new WaitForSeconds(1f); // 사운드 재생을 위한 대기
         SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
     }
 
