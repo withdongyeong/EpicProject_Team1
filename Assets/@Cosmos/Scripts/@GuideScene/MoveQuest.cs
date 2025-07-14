@@ -42,4 +42,9 @@ public class MoveQuest : GuideQuest
         GuideHandler.instance.questText.text = instructionText;
         return moveCount >= 5;
     }
+
+    public override void OnComplete()
+    {
+        SteamAchievement.Achieve("TEST_ACHV_01");
+    }
 }
