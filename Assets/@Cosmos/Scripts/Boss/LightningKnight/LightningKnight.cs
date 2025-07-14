@@ -21,7 +21,6 @@ public class LightningKnight : BaseBoss
         StrongDamage = GlobalSetting.Instance.GetBossBalance(8).strongDamage;
 
         BPM = GlobalSetting.Instance.GetBossBpm(8);
-        SetDifficulty();
         startPosition = this.transform.position;
     }
 

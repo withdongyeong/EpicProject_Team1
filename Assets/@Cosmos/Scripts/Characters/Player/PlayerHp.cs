@@ -43,11 +43,6 @@ public class PlayerHp : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
-        // 매우 어려움
-        if (GameManager.Instance.DifficultyLevel == 3)
-        {
-            _currentHealth = 1;
-        }
     }
     
     /// <summary>

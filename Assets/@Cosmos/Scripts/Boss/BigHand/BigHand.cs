@@ -50,7 +50,6 @@ public class BigHand : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(9).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(9).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(9);
-        SetDifficulty();
         // 빙결 불가 설정
         IsHandBoss = true;
         Debug.Log($"BigHand.Awake: MaxHealth set to {MaxHealth}");

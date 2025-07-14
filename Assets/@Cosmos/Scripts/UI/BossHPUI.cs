@@ -299,18 +299,7 @@ public class BossHPUI : MonoBehaviour
             {
                 if(debuff == BossDebuff.Curse)
                 {
-                    //임시 저주가 0이면 뒤에 (+0)이게 안생기게 합니다.
-                    int tempCurse = _enemy.GetDebuffCount(BossDebuff.TemporaryCurse);
-                    int curse = _enemy.GetDebuffCount(BossDebuff.Curse);
-                    if (tempCurse != 0)
-                    {
-                        tmpText.text = curse.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
-                    }
-                    else
-                    {
-                        tmpText.text = curse.ToString();
-                    }
-                    
+                    tmpText.text = count.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
                 }
                 else
                 {
@@ -341,7 +330,7 @@ public class BossHPUI : MonoBehaviour
         }
         else if(debuff == BossDebuff.TemporaryCurse)
         {
-            UpdateDebuffUI(BossDebuff.Curse, _enemy.GetDebuffCount(BossDebuff.Curse));
+            RemoveDebuffUI(BossDebuff.Curse);
         }
     }
 

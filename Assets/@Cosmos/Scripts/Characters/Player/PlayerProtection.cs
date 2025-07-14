@@ -15,8 +15,6 @@ public class PlayerProtection : MonoBehaviour
     //만약 장수풍뎅이 차지중이라면 보호막을 얻지 않습니다
     private bool _isCharging = false;
 
-    public bool IsProtected => _isProtected;
-
     private void Awake()
     {
         // 보호막 이펙트 프리팹 로드
@@ -154,12 +152,14 @@ public class PlayerProtection : MonoBehaviour
         if (_isProtected && _protectionAmount > 0)
         {
             _protectionAmount -= damage;
+            Debug.Log($"보호막으로 {damage} 데미지 차단, 남은 보호막량: {_protectionAmount}");
             if (_protectionAmount <= 0)
             { 
                 SetProtection(false);
                 //못막은 분 만큼 데미지를 받습니다.
                 GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
                 _protectionAmount = 0;
+                Debug.Log("보호막 소멸로 보호 상태 종료");
             }
             if(isCounsumed)
             {

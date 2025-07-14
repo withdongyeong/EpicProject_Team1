@@ -16,7 +16,6 @@ public class Slime : BaseBoss
         
         // bpm 설정
         BPM = GlobalSetting.Instance.GetBossBpm(1);
-        SetDifficulty();
     }
 
     /// <summary>

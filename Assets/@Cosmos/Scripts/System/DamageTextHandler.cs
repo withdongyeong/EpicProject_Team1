@@ -26,7 +26,6 @@ public class DamageTextHandler : MonoBehaviour
         Vector2 screenPos = Camera.main.WorldToScreenPoint(target.transform.position + Vector3.up * 3f);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, null,
             out Vector2 localPoint);
-        numberPrefab.unscaledTime = true;
         DamageNumber damageNumber = numberPrefab.SpawnGUI(rectParent, localPoint, damage);
         damageNumber.followedTarget = target.transform;
         // You can customize the damage number here if needed

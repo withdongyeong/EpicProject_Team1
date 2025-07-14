@@ -40,7 +40,6 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenJournal()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
         JournalSlotManager.Instance.ToggleJournal();
         
     }
@@ -59,16 +58,10 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         if(SaveManager.IsTutorialCompleted == 1)
         {
             // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
-            OpenDifficultySelectPannel();
+            GOBUILDSCENE();
             return;
         }
         gameObject.SetActive(true);
         SaveManager.SaveIsTutorialCompleted(1); // 튜토리얼 완료 상태로 저장
     }
-
-    public void OpenDifficultySelectPannel()
-    {
-        FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
-    }
-
 }
