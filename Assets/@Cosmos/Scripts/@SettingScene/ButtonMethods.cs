@@ -18,12 +18,7 @@ public class ButtonMethods : MonoBehaviour
     public void OnExitButton()
     {
         ButtonClickSound();
-        SaveManager.SaveAll(); // 게임 저장
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                        Application.Quit();
-        #endif
+        GameManager.Instance.GameQuit();
     }
 
     private void ButtonClickSound()
