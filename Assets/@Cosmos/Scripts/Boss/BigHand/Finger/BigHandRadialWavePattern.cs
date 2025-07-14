@@ -94,11 +94,11 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     {
         while (!line.IsComplete)
         {
+            boss.StartCoroutine(PlayAttackSound());
+
             Vector3Int nextPos = line.GetNextPosition();
             if (nextPos != Vector3Int.zero)
             {
-                boss.StartCoroutine(PlayAttackSound());
-
                 // 블록된 위치가 아닌 경우에만 공격
                 if (!line.BlockedPositions.Contains(nextPos))
                 {
@@ -129,7 +129,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     public IEnumerator PlayAttackSound()
     {
         yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
-        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
+        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate_Small");
     }
 }
 

@@ -95,11 +95,13 @@ public class SoundVolumeSettings : MonoBehaviour
     // ---------------- Big Hand ----------------
     [Header("✋ Big Hand")]
     public float BigHandAttackActivate = 0.3f;
+    public float BigHandAttackActivate_Small = 0.1f;
     public float BigHandFistActivate = 0.01f;
     public float BigHandFingerActivate = 0.7f;
     public float BigHandDamageActivate = 0.3f;
     public float BigHandDeadActivate = 0.3f;
     public float BigHandSlideActivate = 0.5f;
+
 
     // ---------------- Last Boss ----------------
     [Header("🔥❄️⚔️ Last Boss")]
@@ -123,12 +125,8 @@ public class SoundVolumeSettings : MonoBehaviour
     public float TileOpenActivate = 0.3f;
     public float TileLockActivate = 0.3f;
     public float TileSellActivate = 1f;
+    public float GameClearActivate = 0.5f;
+    public float LoseActivate = 0.5f;
 
     // ---------------- BGM ----------------
-    [Header("🎼 BGM")]
-    public float ShopBGM = 0.1f;
-    public float OrcMageBGM = 0.15f;
-    public float ArachneBGM = 0.1f;
-    public float SlimeBGM = 0.05f;
-    public float TitleBGM = 0.1f;
 }

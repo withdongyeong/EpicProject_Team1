@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3680741919607081846}
   - component: {fileID: 3388639264008697600}
-  - component: {fileID: -3322658201935585458}
+  - component: {fileID: 7634589412706860741}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88eca11a6f49cc343bdc3cfc44995b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3322658201935585458
+--- !u!114 &7634589412706860741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,13 +119,14 @@ MonoBehaviour:
   KnightDashActivate: 1
   KnightDamageActivate: 1
   KnightDeadActivate: 1
-  BigHandAttackActivate: 0.3
+  BigHandAttackActivate: 0.6
+  BigHandAttackActivate_Small: 0.1
   BigHandFistActivate: 0.01
   BigHandFingerActivate: 0.7
   BigHandDamageActivate: 0.3
   BigHandDeadActivate: 0.3
   BigHandSlideActivate: 0.5
-  LastBossDamageActivate: 0.3
+  LastBossDamageActivate: 0.1
   LastBossDeadActivate: 1
   LastBossFlameAttackActivate: 0.1
   LastBossFrostAttackActivate: 0.1
@@ -142,11 +143,8 @@ MonoBehaviour:
   TileOpenActivate: 0.3
   TileLockActivate: 0.3
   TileSellActivate: 1
-  ShopBGM: 0.1
-  OrcMageBGM: 0.15
-  ArachneBGM: 0.1
-  SlimeBGM: 0.05
-  TitleBGM: 0.1
+  GameClearActivate: 0.5
+  LoseActivate: 0.5
 --- !u!1 &6314046654881224318
 GameObject:
   m_ObjectHideFlags: 0
