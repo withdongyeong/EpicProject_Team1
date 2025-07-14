@@ -49,10 +49,12 @@ public class LastBossPattern_Staff : IBossAttackPattern
 
     private IEnumerator ExecuteRing(BaseBoss boss, List<Vector3Int> positions)
     {
+        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound());
+
         foreach (var pos in positions)
         {
-            boss.StartCoroutine(PlayAttackSound());
-
             boss.BombHandler.ExecuteFixedBomb(
                 new List<Vector3Int> { Vector3Int.zero },
                 pos,

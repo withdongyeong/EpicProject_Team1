@@ -29,10 +29,10 @@ public class LastBossPattern_Staff4 : IBossAttackPattern
                 positions.Add(new Vector3Int(x, y, 0));
         }
 
+        boss.StartCoroutine(SoundPlay());
+
         foreach (var pos in positions)
         {
-            boss.StartCoroutine(SoundPlay());
-
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 

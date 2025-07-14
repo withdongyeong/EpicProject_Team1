@@ -39,10 +39,11 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
                     ringPositions.Add(pos);
             }
 
+            boss.StartCoroutine(SoundPlay());
+            boss.StartCoroutine(SoundPlay());
+
             foreach (var pos in ringPositions)
             {
-                boss.StartCoroutine(SoundPlay());
-
                 boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
             }
 
