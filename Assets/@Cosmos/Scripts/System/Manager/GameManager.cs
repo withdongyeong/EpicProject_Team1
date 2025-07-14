@@ -29,12 +29,6 @@ public class GameManager : Singleton<GameManager>
     
     private void Update()
     {
-        //테스트 코드 업적 초기화
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SteamUserStats.ResetAllStats(true);
-            SteamUserStats.StoreStats();
-        }
         ShowSetting();
         
         // Alt + Enter 감지 → 비율 깨짐 방지
