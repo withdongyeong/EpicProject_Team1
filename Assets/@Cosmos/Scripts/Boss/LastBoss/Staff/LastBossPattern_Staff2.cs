@@ -47,9 +47,11 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
             AddIfValid(new Vector3Int(x, y, 0), targets);
         }
 
+        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound());
+
         foreach (var pos in targets)
         {
-            boss.StartCoroutine(PlayAttackSound());
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 
