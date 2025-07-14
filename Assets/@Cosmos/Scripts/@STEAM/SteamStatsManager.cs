@@ -26,11 +26,6 @@ public class SteamStatsManager : Singleton<SteamStatsManager>
             playtimeTracker -= 60f;
             UpdateTotalPlayTime(60);
         }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            UploadStatsToServer();
-        }
     }
     
     
