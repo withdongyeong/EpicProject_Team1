@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Steamworks;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class TestManager : MonoBehaviour
@@ -29,6 +30,7 @@ public class TestManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F7)) DeleteTutorialData();
         if(Input.GetKeyDown(KeyCode.F8)) DeleteSaveData();
         if (Input.GetKeyDown(KeyCode.F9)) AddPlayerLife();
+        if (Input.GetKeyDown(KeyCode.F10)) SteamAchievementReset();
 
 
     }
@@ -115,6 +117,10 @@ public class TestManager : MonoBehaviour
     {
         LifeManager.Instance.AddLife(1);
     }
-
     
+    private void SteamAchievementReset()
+    {
+        SteamUserStats.ResetAllStats(true);
+        SteamUserStats.StoreStats();
+    }
 }
