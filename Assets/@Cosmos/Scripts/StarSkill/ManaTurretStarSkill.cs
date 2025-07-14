@@ -16,7 +16,6 @@ public class ManaTurretStarSkill : StarBase
         starBuff.RegisterActivateAction(ActivateManaTurret);
         EventBus.SubscribeGameStart(HandleGameStart);
         EventBus.SubscribeSceneLoaded(HandleSceneLoaded);
-
         skill = transform.parent.GetComponentInChildren<ManaTurretSkill>();
     }
 

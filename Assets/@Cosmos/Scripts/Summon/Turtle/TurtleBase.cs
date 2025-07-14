@@ -87,7 +87,16 @@ public class TurtleBase : MonoBehaviour
             projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3);
+            if (_chargedProtection < 15)
+            {
+                SoundManager.Instance.PlayTileSoundClip("TurtleAttack");
+            }
+            else
+            {
+                SoundManager.Instance.PlayTileSoundClip("TurtleRainbowAttack");
+            }
             _chargedProtection = 0;
+
         }
     }
 

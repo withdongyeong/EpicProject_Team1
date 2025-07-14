@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     
     // 방향 기억용
-    private bool _facingRight = false; // 기본은 왼쪽
+    private bool _facingRight = true;
     
     // 입력 버퍼링 시스템
     private float _inputBufferTime = 0.05f; // 입력을 수집할 시간
@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
 
         SoundManager.Instance.PlayPlayerSound("StickRoll");
 
+        // 초기 오른쪽 방향 바라보기
+        _spriteRenderer.flipX = true;
+        
         // 초기 애니메이션 상태 설정
         if (_animator != null)
         {
@@ -72,11 +75,6 @@ public class PlayerController : MonoBehaviour
             {
                 HandleMovementWithBuffer();
             }
-            if(_canInteractionTile)
-            {
-                CheckTileInteraction();
-            }
-            
         }
         else
         {
@@ -200,82 +198,62 @@ public class PlayerController : MonoBehaviour
     
     /// <summary>
     /// 점프 효과가 있는 이동 애니메이션 (갸우뚱 효과 포함)
-    /// 이동 중간에 논리적 위치를 옮김
     /// </summary>
     private IEnumerator MoveAnimation(Vector3Int newPos)
     {
         _isMoving = true;
         _animator.SetBool("IsMoving", true);
         _canInteractionTile = false;
-    
+
         Vector3 startPos = transform.position;
         Vector3 targetPos = GridManager.Instance.GridToWorldPosition(newPos);
-        
-        // 이동 방향 계산
-        Vector3 moveDirection = targetPos - startPos;
-        
-        // 이동 전에 논리적 위치를 미리 옮김
-        // 따라서, 공격 판정이 오기 전에 아슬아슬하게 피했을 때, 이미 점프를 시작했으면 안 맞게 되면서 피하는 느낌이 들 것
+
+        // 논리적 위치는 미리 갱신
         _currentX = newPos.x;
         _currentY = newPos.y;
-        
+
         float jumpHeight = 0.3f;
-    
         float elapsedTime = 0;
-    
+        
+        SoundManager.Instance.PlayPlayerSound("PlayerMove");
+        
         while (elapsedTime < _moveTime)
         {
             float t = elapsedTime / _moveTime;
-        
-            // XY 평면에서 이동 (Z는 항상 0)
             float x = Mathf.Lerp(startPos.x, targetPos.x, t);
             float y = Mathf.Lerp(startPos.y, targetPos.y, t);
-        
-            //점프의 반이 지났을때부터 타일과의 상호작용을 가능하게 합니다.
-            if(t > 0.5f)
-            {
-                _canInteractionTile = true;
-            }
-            
-            // 점프 높이 계산
+
             float extraHeight = Mathf.Sin(t * Mathf.PI) * jumpHeight;
-            
-            // 갸우뚱 효과 계산 (점프 중에만 적용)
+
+            // 갸우뚱 효과
             float wobbleRotation = 0f;
             if (_enableWobble)
             {
-                // 점프 궤도와 같은 사인파를 사용하여 갸우뚱 효과
-                // 점프 시작과 끝에서는 0도, 중간에서 최대 각도
                 float wobbleAmount = Mathf.Sin(t * Mathf.PI) * _wobbleAmount;
-                
-                // 번갈아가며 갸우뚱 방향 결정
                 wobbleRotation = _wobbleLeft ? -wobbleAmount : wobbleAmount;
             }
-            
-            // 위치 설정
+
             transform.position = new Vector3(x, y + extraHeight, 0);
-            
-            // 회전 설정 (갸우뚱 효과)
             transform.rotation = Quaternion.Euler(0, 0, wobbleRotation);
-            
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // 최종 위치 설정 (물리적 위치만)
+        // 최종 위치 정리
         transform.position = targetPos;
-        
-        // 회전 초기화
         transform.rotation = Quaternion.identity;
-
-        // 다음 이동을 위해 갸우뚱 방향 토글
         _wobbleLeft = !_wobbleLeft;
 
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 
-        SoundManager.Instance.PlayPlayerSound("PlayerMove");
+        // 여기서 상호작용 허용
+        _canInteractionTile = true;
+        CheckTileInteraction(); // 여기서 1회만 호출
+        _canInteractionTile = false; // 다시 차단
     }
+
     
     /// <summary>
     /// 현재 그리드 위치 업데이트

@@ -1,16 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TilesOnGrid : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    public void SetTileObjectStarEffect()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (TileObject tile in GetComponentsInChildren<TileObject>())
+        {
+            tile.ShowStarCell();
+            tile.SetStarEffect();
+            tile.HideStarCell();
+        }
     }
 }

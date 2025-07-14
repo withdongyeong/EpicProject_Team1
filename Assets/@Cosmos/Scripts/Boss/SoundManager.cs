@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
 {
+
+
     [Tooltip("오디오 스코어")]
     private AudioSource interactionAudioSource;
     private AudioSource bgmAudioSource;
     private AudioSource BlackHoleAudioSource;
+    private SoundVolumeSettings soundVolumeSettings;
 
     // 플레이어 사운드 딕셔너리
     private Dictionary<string, AudioClip> playerSoundDictionary = new Dictionary<string, AudioClip>();
@@ -27,28 +30,30 @@ public class SoundManager : Singleton<SoundManager>
     // 타일 볼륨 딕셔너리
     private Dictionary<string, float> tileSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"HealSkillActivate", 0.1f},
+        {"HealSkillActivate", 0.2f},
         {"FireBallSkillActivate", 0.5f},
         {"FireBoltSkillActivate", 0.2f},
         {"ShieldSkillActivate", 0.3f },
         {"IcicleSkillActivate", 0.2f },
         {"FlamingSwordSkillActivate", 0.5f},
         {"FrostStaffSkillActivate", 0.2f },
-        {"TotemSummonSkillActivate", 0.1f },
+        {"TotemSummonSkillActivate", 0.5f },
         {"ManaTurretSkillActivate", 0.3f },
         {"ProjectileSkillActivate", 0.3f},
         {"ArchmageStaffSkillActivate", 0.7f},
-        {"RainbowSkillActivate", 0.1f},
+        {"RainbowSkillActivate", 0.2f},
         {"StaffSkillActivate", 0.3f},
         {"ProtectionSkillActivate", 1f },
         {"ShieldSkillRemove", 0.3f },
-        { "SwordSkillActivate", 1f},
-        { "WarFlagSkillActivate", 1f },
+        {"SwordSkillActivate", 1f},
+        {"WarFlagSkillActivate", 1f },
         {"FrostHammerSkillActivate", 1f },
         {"HauntedDollSkillActivate", 0.3f},
         {"CloudSkillActivate", 0.5f },
         {"PhantomSkillActivate", 0.5f },
-        {"NecronomiconSkillActivate", 0.3f }
+        {"NecronomiconSkillActivate", 1f },
+        {"WraithSkillActivate", 0.8f },
+        {"비구름", 0.3f },
     };
 
     //아라크네 사운드 딕셔너리
@@ -139,18 +144,19 @@ public class SoundManager : Singleton<SoundManager>
     //손 볼륨 딕셔너리
     private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"BigHandAttackActivate", 0.03f},
+        {"BigHandAttackActivate", 0.3f},
         {"BigHandFistActivate", 0.01f},
         {"BigHandFingerActivate", 0.7f},
         {"BigHandDamageActivate", 0.3f },
         {"BigHandDeadActivate", 0.3f },
+        {"BigHandSlideActivate", 0.5f}
     };
 
     private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
     //최종보스 볼륨 딕셔너리
     private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"LastBossDamageActivate", 1f },
+        {"LastBossDamageActivate", 0.3f },
         {"LastBossDeadActivate", 1f },
         {"LastBossFlameAttackActivate", 0.1f },
         {"LastBossFrostAttackActivate", 0.1f },
@@ -167,10 +173,13 @@ public class SoundManager : Singleton<SoundManager>
     //UI 사운드볼륨
     private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>
     {
-        {"DeploymentActivate", 0.05f},
+        {"DeploymentActivate", 0.2f},
         {"RerollActivate", 0.5f },
         {"ButtonActivate", 0.1f },
-        {"BlackHoleStartActivate", 0.8f }
+        {"BlackHoleStartActivate", 0.8f },
+        {"TileOpenActivate", 0.3f },
+        {"TileLockActivate", 0.3f },
+        {"TileSellActivate", 1f }
     };
 
     //BGM 사운드 딕셔너리
@@ -190,6 +199,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Awake();
         EventBus.Init();
+        soundVolumeSettings = GetComponent<SoundVolumeSettings>();
 
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
@@ -334,8 +344,20 @@ public class SoundManager : Singleton<SoundManager>
             }
         }
 
-
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
+        EventBus.SubscribePlayerDeath(PlayerDeadSound);
+        EventBus.SubscribeBossDeath(BossDeadSound);
+    }
+
+    private void PlayerDeadSound()
+    {
+        StopBGMSound();
+        UISoundClip("LoseActivate");
+    }
+
+    private void BossDeadSound()
+    {
+        UISoundClip("GameClearActivate");
     }
 
     /// <summary>
@@ -351,7 +373,7 @@ public class SoundManager : Singleton<SoundManager>
             if (playerClip != null)
             {
                 // 플레이어 사운드 볼륨 딕셔너리에서 볼륨을 찾습니다.
-                float volume = playerSoundVolumeDictionary.ContainsKey(clip) ? playerSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(playerClip, volume);
             }
         }
@@ -369,7 +391,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = tileSoundDictionary.ContainsKey(clip) ? tileSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = tileSoundVolumeDictionary.ContainsKey(clip) ? tileSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -389,8 +411,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = ArachneSoundDictionary.ContainsKey(clip) ? ArachneSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                    float volume = ArachneSoundVolumeDictionary.ContainsKey(clip) ? ArachneSoundVolumeDictionary[clip] : 1f;
-                    interactionAudioSource.PlayOneShot(tileClip, volume);
+                float volume = GetVolumeFromSettings(clip);
+                interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -409,8 +431,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = OrcMageSoundDictionary.ContainsKey(clip) ? OrcMageSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                    float volume = OrcMageSoundVolumeDictionary.ContainsKey(clip) ? OrcMageSoundVolumeDictionary[clip] : 1f;
-                    interactionAudioSource.PlayOneShot(tileClip, volume);
+                float volume = GetVolumeFromSettings(clip);
+                interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -421,7 +443,7 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void SlimeSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
+        //Debug.Log($"PlayTileSoundClip called with clip: {clip}");
 
         if (clip != null && interactionAudioSource != null)
         {
@@ -429,8 +451,8 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = SlimeSoundDictionary.ContainsKey(clip) ? SlimeSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                    float volume = SlimeSoundVolumeDictionary.ContainsKey(clip) ? SlimeSoundVolumeDictionary[clip] : 1f;
-                    interactionAudioSource.PlayOneShot(tileClip, volume);
+                float volume = GetVolumeFromSettings(clip);
+                interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
     }
@@ -449,7 +471,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = BomberSoundDictionary.ContainsKey(clip) ? BomberSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = BomberSoundVolumeDictionary.ContainsKey(clip) ? BomberSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -469,7 +491,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = GolemSoundDictionary.ContainsKey(clip) ? GolemSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = GolemSoundVolumeDictionary.ContainsKey(clip) ? GolemSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -489,7 +511,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = TurtreeSoundDictionary.ContainsKey(clip) ? TurtreeSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = TurtreeSoundVolumeDictionary.ContainsKey(clip) ? TurtreeSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -509,7 +531,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = ReaperSoundDictionary.ContainsKey(clip) ? ReaperSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = ReaperSoundVolumeDictionary.ContainsKey(clip) ? ReaperSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -529,7 +551,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = KnightSoundDictionary.ContainsKey(clip) ? KnightSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = KnightSoundVolumeDictionary.ContainsKey(clip) ? KnightSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -549,7 +571,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = BigHandSoundDictionary.ContainsKey(clip) ? BigHandSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = BigHandSoundVolumeDictionary.ContainsKey(clip) ? BigHandSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -569,7 +591,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = LastBossSoundDictionary.ContainsKey(clip) ? LastBossSoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = LastBossSoundVolumeDictionary.ContainsKey(clip) ? LastBossSoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -585,7 +607,7 @@ public class SoundManager : Singleton<SoundManager>
             AudioClip tileClip = UISoundDictionary.ContainsKey(clip) ? UISoundDictionary[clip] : null;
             if (tileClip != null)
             {
-                float volume = UISoundVolumeDictionary.ContainsKey(clip) ? UISoundVolumeDictionary[clip] : 1f;
+                float volume = GetVolumeFromSettings(clip);
                 interactionAudioSource.PlayOneShot(tileClip, volume);
             }
         }
@@ -614,6 +636,14 @@ public class SoundManager : Singleton<SoundManager>
             bgmAudioSource.clip = clip;
             bgmAudioSource.volume = volume;
             bgmAudioSource.Play();
+        }
+    }
+
+    public void StopBGMSound()
+    {
+        if (bgmAudioSource != null && bgmAudioSource.isPlaying)
+        {
+            bgmAudioSource.Stop();
         }
     }
 
@@ -663,5 +693,21 @@ public class SoundManager : Singleton<SoundManager>
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
+        EventBus.UnsubscribePlayerDeath(PlayerDeadSound);
+        EventBus.UnsubscribeBossDeath(BossDeadSound);
+    }
+
+    private float GetVolumeFromSettings(string clipName)
+    {
+        var field = soundVolumeSettings.GetType().GetField(clipName);
+        if (field != null && field.FieldType == typeof(float))
+        {
+            return (float)field.GetValue(soundVolumeSettings);
+        }
+        else
+        {
+            Debug.LogWarning($"[SoundManager] Volume field not found for: {clipName}");
+            return 1f;
+        }
     }
 }

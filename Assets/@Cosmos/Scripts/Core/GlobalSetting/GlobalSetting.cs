@@ -65,4 +65,20 @@ public class GlobalSetting : Singleton<GlobalSetting>
         }
         return _instance.bossBalanceList[stageIndex];
     }
+    
+    /// <summary>
+    /// 튜토리얼(0) 및 스테이지 1~10 (1~10)에 대한 보스 BPM 데이터
+    /// </summary>
+    public int GetBossBpm(int stageIndex)
+    {
+        if (stageIndex < 0 || stageIndex >= _instance.bossBalanceList.Count)
+        {
+            Debug.LogWarning($"[GlobalSetting] BossBalance 인덱스 {stageIndex} 범위 초과");
+            return 0;
+        }
+        return _instance.bossBpmList[stageIndex];
+    }
+
+    public static List<TileData> Shop_FirstTileDataList => _instance.shop_FirstTileDataList;
+
 }

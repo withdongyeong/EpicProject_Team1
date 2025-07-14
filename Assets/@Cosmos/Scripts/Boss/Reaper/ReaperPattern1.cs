@@ -35,7 +35,7 @@ public class ReaperPattern1 : IBossAttackPattern
             boss.AttackAnimation();
 
             yield return ExecuteWave(boss, playerPos, wave);
-            if (wave < 2) yield return new WaitForSeconds(0.8f);
+            if (wave < 2) yield return new WaitForSeconds(boss.Beat);
 
 
         }
@@ -86,16 +86,15 @@ public class ReaperPattern1 : IBossAttackPattern
             boss.StartCoroutine(AttackSoundSound());
 
             boss.BombHandler.ExecuteFixedBomb(lineShape1, center, _deathAriaPrefeb,
-                warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
-
-            // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속
+                warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+            
             if (step == 0)
             {
-                yield return new WaitForSeconds(0.3f); // 첫 번째만 여유
+                yield return new WaitForSeconds(boss.Beat);
             }
             else
             {
-                yield return new WaitForSeconds(0.15f); // 나머지는 빠르게
+                yield return new WaitForSeconds(boss.Beat / 4); // 나머지는 빠르게
             }
         }
     }
@@ -192,7 +191,7 @@ public class ReaperPattern1 : IBossAttackPattern
 
     private IEnumerator AttackSoundSound()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.ReaperSoundClip("ReaperAttackActivate");
     }
 }

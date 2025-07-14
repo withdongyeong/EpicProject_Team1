@@ -39,7 +39,7 @@ public class LastBossPattern_StaffEquip : IBossAttackPattern
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private IEnumerator SoundPlay()

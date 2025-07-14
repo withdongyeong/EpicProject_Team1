@@ -9,7 +9,7 @@ public class PlayerSummons : MonoBehaviour
     //플레이어를 따라다니는 소환물들의 리스트입니다.
     private List<ISummon> _summonList = new();
 
-    [SerializeField] private GameObject _totemManager;
+    [SerializeField] private GameObject _totemHandler;
     [SerializeField] private GameObject _cloudManager;
 
     private bool isGameStarted;
@@ -20,6 +20,8 @@ public class PlayerSummons : MonoBehaviour
         EventBus.SubscribeGameStateChanged(GameStart);
         //구름 매니저 자동 생성
         Instantiate(_cloudManager, transform);
+        _totemHandler = Resources.Load<GameObject>("Prefabs/Summons/Totem/TotemHandler");
+        Instantiate(_totemHandler, transform).transform.localPosition = new Vector3(-0.5f, 0.5f, 0);
     }
 
     // Update is called once per frame

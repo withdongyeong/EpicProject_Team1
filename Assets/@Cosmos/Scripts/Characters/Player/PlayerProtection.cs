@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerProtection : MonoBehaviour
 {
-    [SerializeField] private GameObject _protectionEffectPrefab;
+    private GameObject _protectionEffectPrefab;
 
     // 보호 상태 변수
     private bool _isProtected = false;
@@ -14,7 +14,16 @@ public class PlayerProtection : MonoBehaviour
 
     //만약 장수풍뎅이 차지중이라면 보호막을 얻지 않습니다
     private bool _isCharging = false;
-    
+
+    private void Awake()
+    {
+        // 보호막 이펙트 프리팹 로드
+        _protectionEffectPrefab = Resources.Load<GameObject>("Effect/ProtectionEffect");
+        if (_protectionEffectPrefab == null)
+        {
+            Debug.LogError("ProtectionEffectPrefab not found in Resources folder.");
+        }
+    }
 
     /// <summary>
     /// 보호 상태 설정

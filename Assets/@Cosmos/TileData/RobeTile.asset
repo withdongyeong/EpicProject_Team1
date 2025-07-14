@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: RobeTile
   m_EditorClassIdentifier: 
-  tileName: "\uB85C\uBE0C"
+  tileName: RobeTile
   description: "\uBCF4\uD638\uB9C9<sprite name=\"Barrier\">\uC744 30 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
   tileCategory: 2
   tileSprite: {fileID: 21300000, guid: d1ca13273e50b254aba77189b6a976fe, type: 3}
@@ -20,4 +20,5 @@ MonoBehaviour:
   tileCost: 10
   tileCoolTime: 12
   requiredTile: {fileID: 0}
-  rejectTile: {fileID: 0}
+  rejectTileList: []
+  unlockInt: 0

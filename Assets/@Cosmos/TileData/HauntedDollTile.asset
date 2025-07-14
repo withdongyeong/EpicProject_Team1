@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: HauntedDollTile
   m_EditorClassIdentifier: 
-  tileName: "\uC800\uC8FC \uC778\uD615"
+  tileName: HauntedDollTile
   description: "\uC800\uC8FC<sprite name=\"Curse\">\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4.
     \uC800\uC8FC<sprite name=\"Curse\">\uAC00 \uC313\uC778 \uC591\uC5D0 \uB530\uB77C
     \uCD94\uAC00 \uD6A8\uACFC\uB97C \uBC1C\uB3D9\uD569\uB2C8\uB2E4.\r\n<color=yellow>20</color>:
-    \uB3D9\uC0C1<sprite name=\"ice\">\uC744 2 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n<color=yellow>30</color>:
+    \uB3D9\uC0C1<sprite name=\"ice\">\uC744 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n<color=yellow>30</color>:
     \uD654\uC5FC<sprite name=\"fire\">\uC744 5 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n<color=yellow>40</color>:
     \uB099\uC778<sprite name=\"mark\">\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n<color=yellow>50</color>:
     \uCCB4\uB825\uC744 5 \uD68C\uBCF5\uD569\uB2C8\uB2E4.\r\n<color=yellow>60</color>:
@@ -31,3 +31,4 @@ MonoBehaviour:
   tileCoolTime: 8
   requiredTile: {fileID: 0}
   rejectTileList: []
+  unlockInt: 0

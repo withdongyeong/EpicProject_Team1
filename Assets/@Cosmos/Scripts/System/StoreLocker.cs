@@ -22,18 +22,34 @@ public class StoreLocker : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         storeSlot._onPurchase += OnPurchase;
     }
 
+    private void Start()
+    {
+        if (StoreLockManager.Instance.GetStoreLocks(storeSlot.SlotNum) != null)
+        {
+            image.sprite = sprites[1];
+        }
+        else
+        {
+            image.sprite = sprites[0];
+        }
+    }
+
     private void OnClick()
     {
         if (storeSlot.GetObject() != null && !storeSlot.IsPurchased)
         {
             if (StoreLockManager.Instance.GetStoreLocks(storeSlot.SlotNum) == null)
             {
+                SoundManager.Instance.UISoundClip("TileLockActivate");
+
                 StoreLockManager.Instance.AssignStoreLock(storeSlot.SlotNum, storeSlot.GetObject());
                 image.sprite = sprites[1];
                 
             }
             else
             {
+                SoundManager.Instance.UISoundClip("TileOpenActivate");
+
                 StoreLockManager.Instance.RemoveStoreLock(storeSlot.SlotNum);
                 image.sprite = sprites[0];
             }

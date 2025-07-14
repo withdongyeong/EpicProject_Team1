@@ -49,6 +49,12 @@ public static class EventBus
     public static void SubscribeBossDeath(Action handler) => _onBossDeath += handler;
     public static void UnsubscribeBossDeath(Action handler) => _onBossDeath -= handler;
     public static void PublishBossDeath() => _onBossDeath?.Invoke();
+
+    //스테이지 번호 증가 관련 이벤트
+    private static Action _onStageChange;
+    public static void SubscribeStageChange(Action handler) => _onStageChange += handler;
+    public static void UnsubscribeStageChange(Action handler) => _onStageChange -= handler;
+    public static void PublishStageChange() => _onStageChange?.Invoke();
     
     //gold 관련 이벤트
     private static Action<int> _onGoldChanged;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class TileObject : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class TileObject : MonoBehaviour
     public Action<List<StarBase>> OnStarListUpdateCompleted;
 
     private List<StarBase> starList = new();
+
+    //놓였는지 안놓였는지 확인하는 bool입니다.
+    private bool isPlaced = false;
+    public bool IsPlaced => isPlaced;
 
     private void Awake()
     {
@@ -102,6 +107,7 @@ public class TileObject : MonoBehaviour
            
             // 같은 타일을 중복으로 표시하지 않도록 하기 위해 List를 사용합니다.
             List<TileObject> skills = new List<TileObject>();
+            List<string> archmagestaff = new List<string>();
 
             // 스타셀의 색상을 초기화하고, 해당 스타셀의 스킬이 조건을 만족하면 색을 바꿉니다.
             foreach (StarCell starCell in CombinedStarCell.GetComponentsInChildren<StarCell>())
@@ -133,14 +139,67 @@ public class TileObject : MonoBehaviour
                 {
                     if (starCell.GetStarSkill() != null && starCell.GetStarSkill().CheckCondition(skill) && !skills.Contains(skill.TileObject))
                     {
+                        if (starCell.GetStarSkill().GetType().Name.Contains("ArchmageStaffStarSkill"))
+                        {
+                            if (archmagestaff.Contains(skill.TileObject.name))
+                            {
+                                continue; // 이미 추가된 스킬이면 건너뜀
+                            }
+                            archmagestaff.Add(skill.TileObject.name); // ArchmageStaffStarSkill이 중복되지 않도록 관리
+                        }
                         Sprite sprite = Resources.Load<Sprite>("Arts/UI/Star");
                         sr.sprite = sprite; // 조건을 만족하면 색상을 흰색으로 변경
                         skills.Add(skill.TileObject);
                     }
                 }
             }
+
+            SetStarEffect();
+
         }
         isStarDisplayEnabled = true;
+    }
+
+
+    public void SetStarEffect()
+    {
+        //배치 씬 인접효과 비주얼을 위한 코드
+        if (combinedStarCell == null ||combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill() == null) return;
+        int conditionCount = combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill().GetConditionCount();
+        int activeStarCount = 0;
+        foreach (var star in CombinedStarCell.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (star.sprite.name == "Star")
+            {
+                activeStarCount++;
+            }
+        }
+        
+        
+        /*if (activeStarCount >= conditionCount)
+        {
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0.5f, 1f);
+        }
+        else
+        {
+            GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 1, 1f);
+        }*/
+        
+        
+        if (activeStarCount >= conditionCount)
+        {
+            foreach (var star in GetComponentsInChildren<LightController>())
+            {
+                star.SetLightProperties(6,3,0.8f,0.1f,0.4f);
+            }
+        }
+        else
+        {
+            foreach (var star in GetComponentsInChildren<LightController>())
+            {
+                star.SetLightProperties(2,0,1f,0.1f,0.2f);
+            }
+        }
     }
 
     public void HideStarCell()
@@ -153,6 +212,16 @@ public class TileObject : MonoBehaviour
             }
         }
         isStarDisplayEnabled = false;
+    }
+
+    public void OnPlaced()
+    {
+        isPlaced = true;
+    }
+
+    public void OnDragged()
+    {
+        isPlaced = false;
     }
 }
 

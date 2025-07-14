@@ -12,6 +12,7 @@ public class Turtree : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(5).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(5).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(5).strongDamage;
+        BPM = GlobalSetting.Instance.GetBossBpm(5);
     }
 
     /// <summary>
@@ -20,24 +21,24 @@ public class Turtree : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 4, 0), WeakDamage), 1f)
-            .AddPattern(new TurtreePattern2(AttackPrefeb, WeakDamage), 1f)
-             .AddPattern(new TurtreePattern3(AttackPrefeb, WeakDamage), 1f)
-            .SetGroupInterval(1f);
+            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 4, 0), WeakDamage), Beat)
+            .AddPattern(new TurtreePattern2(AttackPrefeb, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern3(AttackPrefeb, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        AddGroup()
+            .AddPattern(new TurtreePattern4(AttackPrefeb, true, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(4, 8, 0), WeakDamage), Beat)
+            .AddPattern(new TurtreePattern4(AttackPrefeb, false, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern3(AttackPrefeb, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new TurtreePattern4(AttackPrefeb, true, WeakDamage), 0.3f)
-            .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(4, 8, 0), WeakDamage), 1f)
-            .AddPattern(new TurtreePattern4(AttackPrefeb, false, WeakDamage), 0.3f)
-             .AddPattern(new TurtreePattern3(AttackPrefeb, WeakDamage), 1f)
-            .SetGroupInterval(1f);
-
-        AddGroup()
-            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 8, 0), WeakDamage), 1f)
-            .AddPattern(new TurtreePattern6(AttackPrefeb, WeakDamage), 1f)
-            .AddPattern(new TurtreePattern5(AttackPrefeb, StrongDamage), 1f)
-            .AddPattern(new TurtreePattern2(AttackPrefeb, WeakDamage), 1f)
-            .SetGroupInterval(1f);
+            .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 8, 0), WeakDamage), Beat)
+            .AddPattern(new TurtreePattern6(AttackPrefeb, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern5(AttackPrefeb, StrongDamage), Beat)
+            .AddPattern(new TurtreePattern2(AttackPrefeb, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
     }
 
     protected override void DamageFeedback()

@@ -21,7 +21,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
 
     public IEnumerator Execute(BaseBoss boss)
     {
-        boss.SetAnimationTrigger("Attack");
+        // 중심 (4, 4) 먼저 공격
+        boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
 
         // 병렬 실행
         boss.StartCoroutine(SpiralInArea(boss, 0, 5)); // 좌상
@@ -33,11 +34,11 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         for (int i = 0; i < 9; i++)
         {
             if (i == 4) continue;
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private IEnumerator SpiralInArea(BaseBoss boss, int startX, int startY)
@@ -55,18 +56,17 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         }
 
         int cx = 0, cy = 0, dir = 0;
+
         for (int count = 0; count < 16;)
         {
             if (!visited[cx, cy])
             {
-                boss.StartCoroutine(SoundPlay());
-
                 int gx = gridX[cx, cy];
                 int gy = gridY[cx, cy];
                 boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
                 visited[cx, cy] = true;
                 count++;
-                yield return new WaitForSeconds(0.12f);
+                yield return new WaitForSeconds(boss.Beat/4);
             }
 
             int nx = cx + dirs[dir].x;
@@ -74,6 +74,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
 
             if (nx >= 0 && nx < 4 && ny >= 0 && ny < 4 && !visited[nx, ny])
             {
+                boss.StartCoroutine(SoundPlay());
+
                 cx = nx;
                 cy = ny;
             }
@@ -85,7 +87,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
     }
     private IEnumerator SoundPlay()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

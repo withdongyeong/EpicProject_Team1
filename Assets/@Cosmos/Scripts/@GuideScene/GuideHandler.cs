@@ -59,7 +59,7 @@ public class GuideHandler : MonoBehaviour
     private IEnumerator StartQuestInit() //최초 첫 가이드 용 
     {
         questText.rectTransform.anchoredPosition = new Vector2(-1000, 0);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         StartCurrentQuest();
     }
     

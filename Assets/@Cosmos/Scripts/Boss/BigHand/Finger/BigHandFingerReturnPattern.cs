@@ -46,13 +46,13 @@ public class BigHandFingerReturnPattern : IBossAttackPattern
         Debug.Log($"손가락 복귀: {currentPos} → {exitPos}");
         
         // 복귀 애니메이션
-        float duration = 0.8f;
+        float duration = 1f;
         float elapsedTime = 0f;
         
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float progress = Mathf.SmoothStep(0f, 0.8f, elapsedTime / duration);
+            float progress = Mathf.SmoothStep(0f, 1f, elapsedTime / duration);
             
             if (bigHand.FingerObject != null)
                 bigHand.FingerObject.transform.position = Vector3.Lerp(currentPos, exitPos, progress);

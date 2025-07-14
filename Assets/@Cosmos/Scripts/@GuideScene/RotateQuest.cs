@@ -1,21 +1,30 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
 
 public class RotateQuest : GuideQuest
 {
     [SerializeField]
     public int tilesRotated = 0;
 
+    public LocalizedString instructionTextLocalized;
+    public LocalizedString titleTextLocalized;
+    public LocalizedString subTitleTextLocalized;
+    public LocalizedString contentTextLocalized;
+    public LocalizedString goalTextLocalized;
+
     public override void SetTexts()
     {
-        instructionText = "가이드 4\n ㄴ 별자리를 회전시켜보세요\n (0/5개)";
-        titleText = "- 가이드 4 -";
-        subTitleText = "별자리를 회전하기";
-        contentText = "별자리를 회전시켜보세요\n" +
-                      "별자리를 회전시키는 방법은\n별자리를 클릭한 후,\nR을 누르거나, \n마우스 오른쪽 버튼을 클릭하면 됩니다";
-        goalText = "- 완료 조건 -\n" +
-                   "별자리 회전시키기 (0/5)\n";
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", "0");
+        };
+
+        titleTextLocalized.StringChanged += (text) => titleText = text;
+        subTitleTextLocalized.StringChanged += (text) => subTitleText = text;
+        contentTextLocalized.StringChanged += (text) => contentText = text;
+        goalTextLocalized.StringChanged += (text) => goalText = text;
     }
-    
+
     public override void OnStart()
     {
         
@@ -23,7 +32,10 @@ public class RotateQuest : GuideQuest
 
     public override bool IsCompleted()
     {
-        instructionText = $"가이드 4\n ㄴ 별자리를 회전시켜보세요\n ({Mathf.Min(tilesRotated,5)}/5개)";
+        // 언어 설정에 따라 번역된 문자열 가져오기
+        instructionTextLocalized.StringChanged += (text) => {
+            instructionText = text.Replace("{0}", tilesRotated.ToString());
+        };
         GuideHandler.instance.questText.text = instructionText;
         return tilesRotated >= 5 && !DragManager.Instance.IsDragging;
     }

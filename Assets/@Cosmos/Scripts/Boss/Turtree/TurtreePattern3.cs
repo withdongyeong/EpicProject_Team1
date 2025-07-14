@@ -29,52 +29,53 @@ public class TurtreePattern3 : IBossAttackPattern
 
         int totalRotationSteps = 5;
         float rotationOffset = 45f; // 각 회차당 회전량 (15도)
+        float halfBeat = boss.HalfBeat;
 
         for (int step = 0; step < totalRotationSteps; step++)
         {
             boss.AttackAnimation();
 
-            List<Vector3Int> spokesPattern = new List<Vector3Int>();
-            spokesPattern.Add(new Vector3Int(0, 0, 0)); // 중심 포함
-
             for (int spoke = 0; spoke < 5; spoke++)
             {
+                List<Vector3Int> singleSpoke = new List<Vector3Int>();
+                singleSpoke.Add(Vector3Int.zero); // 중심 포함
+
                 float baseAngle = spoke * 72f;
                 float angle = (baseAngle + step * rotationOffset) * Mathf.Deg2Rad;
-
                 Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
                 for (int length = 1; length <= 5; length++)
                 {
                     Vector2 pos = direction * length;
-                    int x = Mathf.FloorToInt(pos.x + 0.5f); // 오차 방지
+                    int x = Mathf.FloorToInt(pos.x + 0.5f);
                     int y = Mathf.FloorToInt(pos.y + 0.5f);
 
                     Vector3Int spokePos = new Vector3Int(x, y, 0);
                     Vector3Int absolutePos = centerPos + spokePos;
 
                     if (IsWithin9x9Grid(absolutePos))
-                        spokesPattern.Add(spokePos);
+                        singleSpoke.Add(spokePos);
                 }
+
+                boss.BombHandler.ExecuteFixedBomb(
+                    singleSpoke,
+                    centerPos,
+                    _treeAttackPrefeb,
+                    warningDuration: 1f,
+                    explosionDuration: 2f,
+                    damage: _damage,
+                    warningType: WarningType.Type1
+                );
+
+                boss.StartCoroutine(TurtreeAttackSound());
+
+                yield return new WaitForSeconds(halfBeat);
             }
-
-            boss.StartCoroutine(TurtreeAttackSound());
-
-            boss.BombHandler.ExecuteFixedBomb(
-                spokesPattern,
-                centerPos,
-                _treeAttackPrefeb,
-                warningDuration: 0.8f,
-                explosionDuration: 2f,
-                damage: _damage,
-                warningType: WarningType.Type1
-            );
-
-            yield return new WaitForSeconds(0.8f);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(halfBeat);
     }
+
 
     private bool IsWithin9x9Grid(Vector3Int pos)
     {
@@ -84,7 +85,7 @@ public class TurtreePattern3 : IBossAttackPattern
 
     private IEnumerator TurtreeAttackSound()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

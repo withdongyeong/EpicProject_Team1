@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f150ec962464b4ea408b7fcac96840, type: 3}
   m_Name: PhantomTile
   m_EditorClassIdentifier: 
-  tileName: "\uC545\uB839"
+  tileName: PhantomTile
   description: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uC800\uC8FC<sprite
     name=\"Curse\"> \uAC1C\uC218\uC758 \uCD5C\uB300\uCE58\uB97C 45\uB85C \uC62C\uB9BD\uB2C8\uB2E4.
     \uC62C\uB77C\uAC04 \uCD5C\uB300\uCE58\uC5D0 \uB530\uB77C \uC800\uC8FC \uC778\uD615\uC5D0
     \uCD94\uAC00 \uB2A5\uB825\uC774 \uC0DD\uAE41\uB2C8\uB2E4.\r\n<color=yellow>\uBC1C\uB3D9
     \uC2DC</color>: \uC800\uC8FC<sprite name=\"Curse\"> \uB97C \uBAA8\uB450 \uC783\uC2B5\uB2C8\uB2E4.\r\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC774
-    3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74, \uC800\uC8FC<sprite name=\"Curse\"> 
-    \uAC1C\uC218\uC758 \uCD5C\uB300\uCE58\uB97C 60\uC73C\uB85C \uC62C\uB9BD\uB2C8\uB2E4."
+    3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74, \uC800\uC8FC<sprite name=\"Curse\"> \uAC1C\uC218\uC758
+    \uCD5C\uB300\uCE58\uB97C 60\uC73C\uB85C \uC62C\uB9BD\uB2C8\uB2E4."
   tileCategory: 1
   tileSprite: {fileID: 21300000, guid: b0c9d00ede4afad409ce72dceb125a14, type: 3}
   tileGrade: 4
@@ -30,3 +30,4 @@ MonoBehaviour:
   rejectTileList:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: 76f12793632bd0645b2a3ae073b0c10d, type: 2}
+  unlockInt: 0

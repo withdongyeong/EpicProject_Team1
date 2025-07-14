@@ -120,7 +120,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
             
             if (repeat < 2) // 마지막이 아니면 간격 추가
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(boss.Beat);
             }
         }
     }
@@ -162,7 +162,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
                 boss.StartCoroutine(ExecuteVerticalLineExplosion(boss, columnStart.x));
             }
             
-            yield return new WaitForSeconds(0.15f); // 확장 간격
+            yield return new WaitForSeconds(boss.Beat / 2); // 확장 간격
         }
     }
     
@@ -187,7 +187,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
             verticalLine,
             centerOfColumn,
             _attackEffectPrefab,
-            warningDuration: 0.8f,
+            warningDuration: 1f,
             explosionDuration: 0.8f,
             damage: _damage
         );
@@ -232,7 +232,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
                 boss.StartCoroutine(ExecuteHorizontalLineExplosion(boss, centerX, rowY));
             }
             
-            yield return new WaitForSeconds(0.15f); // 확장 간격
+            yield return new WaitForSeconds(boss.Beat/4); // 확장 간격
         }
     }
     
@@ -260,7 +260,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
             horizontalLine,
             centerOfRow,
             _attackEffectPrefab,
-            warningDuration: 0.8f,
+            warningDuration: 1f,
             explosionDuration: 0.7f,
             damage: _damage
         );
@@ -290,7 +290,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
 
     public IEnumerator PlayAttackSound()
     {
-        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
+        yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
         SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
     }
 

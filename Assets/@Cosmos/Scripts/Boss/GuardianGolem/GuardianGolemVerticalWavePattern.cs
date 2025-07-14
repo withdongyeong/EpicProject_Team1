@@ -8,126 +8,108 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
     private int Wallcount;
     private int _damage;
 
+    private float _lastSoundTime = -10f; // ⬅️ 사운드 쿨다운 기준 시간
+
     public string PatternName => "GuardianGolemTemporaryWallSummonPattern";
 
-    /// <summary>
-    /// 임시벽 생성자
-    /// </summary>
     public GuardianGolemVerticalWavePattern(GameObject GuardianGolemRook, int damage)
     {
         _guardianGolemRook = GuardianGolemRook;
         _damage = damage;
     }
 
-    /// <summary>
-    /// 패턴 실행
-    /// </summary>
-    /// <param name="boss">보스 객체</param>
     public IEnumerator Execute(BaseBoss boss)
     {
         yield return boss.StartCoroutine(ExecuteRowWaveAttack(boss));
         yield return boss.StartCoroutine(ExecuteSpiderWebAttack(boss));
     }
 
-    /// <summary>
-    /// 패턴 실행 가능 여부 확인
-    /// </summary>
-    /// <param name="boss">보스 객체</param>
-    /// <returns>실행 가능 여부</returns>
     public bool CanExecute(BaseBoss boss)
     {
-        return boss.BombHandler.PlayerController != null && _guardianGolemRook != null && boss.BombHandler != null;
+        return boss.BombHandler.PlayerController != null &&
+               _guardianGolemRook != null &&
+               boss.BombHandler != null;
     }
 
-    /// <summary>
-    /// 세로 파도 공격
-    /// </summary>
     private IEnumerator ExecuteSpiderWebAttack(BaseBoss boss)
     {
         Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
-
         int RandomPoint = Random.Range(Wallcount, 4);
 
         for (int x = 8 - Wallcount; x >= Wallcount; x--)
         {
             if (RandomPoint == x) continue;
-
-            // 각 열(세로줄)을 병렬로 실행
             boss.StartCoroutine(ExecuteColumnAttack(boss, x));
-
-            yield return new WaitForSeconds(0.3f); // 공격 전체 딜레이 (적절히 조절)
+            yield return new WaitForSeconds(boss.Beat);
         }
     }
 
     private IEnumerator ExecuteColumnAttack(BaseBoss boss, int x)
     {
         boss.AttackAnimation();
+        float halfBeat = boss.HalfBeat;
 
         for (int y = 0; y < 9; y++)
         {
-            boss.StartCoroutine(AttackSound());
-
-            List<Vector3Int> positions = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
-
             boss.BombHandler.ExecuteFixedBomb(
-                positions,
+                new List<Vector3Int> { Vector3Int.zero },
                 new Vector3Int(x, y, 0),
                 _guardianGolemRook,
-                warningDuration: 0.8f,
+                warningDuration: 1f,
                 explosionDuration: 0.7f,
                 damage: _damage
             );
-            
-            yield return new WaitForSeconds(0.1f);
+
+            boss.StartCoroutine(DelayedAttackSound(1f));
+            yield return new WaitForSeconds(halfBeat);
         }
     }
 
     private IEnumerator ExecuteRowWaveAttack(BaseBoss boss)
     {
         Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
-
         int RandomPoint = Random.Range(5, 9);
 
         for (int y = 0; y < 9; y++)
         {
             if (y == RandomPoint) continue;
-
-            // 각 줄을 병렬적으로 실행
             boss.StartCoroutine(ExecuteRow(boss, y));
-
-
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(boss.Beat);
         }
     }
 
     private IEnumerator ExecuteRow(BaseBoss boss, int y)
     {
         boss.AttackAnimation();
+        float halfBeat = boss.HalfBeat;
 
         for (int x = Wallcount; x < 9 - Wallcount; x++)
         {
-            boss.StartCoroutine(AttackSound());
-
-            List<Vector3Int> positions = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
-
             boss.BombHandler.ExecuteFixedBomb(
-                positions,
+                new List<Vector3Int> { Vector3Int.zero },
                 new Vector3Int(x, y, 0),
                 _guardianGolemRook,
-                warningDuration: 0.8f,
+                warningDuration: 1f,
                 explosionDuration: 0.7f,
                 damage: _damage
             );
 
-            yield return new WaitForSeconds(0.1f); // 좌→우로 순차 폭발
+            boss.StartCoroutine(DelayedAttackSound(1f));
+            yield return new WaitForSeconds(halfBeat / 2);
         }
     }
 
-    private IEnumerator AttackSound()
+    private IEnumerator DelayedAttackSound(float delay)
     {
-        yield return new WaitForSeconds(0.8f); // 소리 재생 후 대기
-        SoundManager.Instance.GolemSoundClip("GolemAttackActivate");
+        yield return new WaitForSeconds(delay);
+
+        float now = Time.unscaledTime;
+        float minInterval = 0.15f; // 중복 방지용 최소 간격
+
+        if (now - _lastSoundTime >= minInterval)
+        {
+            _lastSoundTime = now;
+            SoundManager.Instance.GolemSoundClip("GolemAttackActivate");
+        }
     }
-
 }
-

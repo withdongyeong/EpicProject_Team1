@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SwordHandler : MonoBehaviour
 {
@@ -8,27 +9,6 @@ public class SwordHandler : MonoBehaviour
     /// 모든 검 컨트롤러 리스트
     /// </summary>
     private List<SwordController> swords = new List<SwordController>();
-    private bool isBurning = false;
-
-    /// <summary>
-    /// 불타는 상태 여부
-    /// </summary>
-    public bool IsBurning
-    {
-        get { return isBurning; }
-        set
-        {
-            isBurning = value;
-            // 불타는 상태가 변경될 때 모든 검에 적용
-            foreach (SwordController sword in swords)
-            {
-                if (sword != null)
-                {
-                    sword.IsBurning = value;
-                }
-            }
-        }
-    }
 
     #region 칼날폭풍 관련
     ///// <summary>
@@ -108,12 +88,8 @@ public class SwordHandler : MonoBehaviour
     {
         swords.Clear();
         SwordController foundSword = FindAnyObjectByType<SwordController>();
-        Debug.Log($"Found sword: {foundSword!= null}");
         SwordController[] foundSwords = GameObject.FindObjectsByType<SwordController>(0);
-        Debug.Log($"Found {foundSwords.Length} swords in the scene");
         swords.AddRange(foundSwords);
-
-        Debug.Log($"Found {swords.Count} swords");
     }
 
     /// <summary>
@@ -137,6 +113,35 @@ public class SwordHandler : MonoBehaviour
         if (swords.Contains(sword))
         {
             swords.Remove(sword);
+        }
+    }
+
+    public void BurnSword(int count)
+    {
+        foreach (SwordController sword in swords)
+        {
+            if (sword != null)
+            {
+                sword.IsBurning = true;
+                sword.BurnCount = count;
+                sword.ChangeAnimatorController(true);
+            }
+        }
+    }
+
+    public void EnchantSwordBySwordCount()
+    {
+        // 검의 개수에 따라 강화
+        int swordCount = swords.Count;
+        if (swordCount > 0)
+        {
+            foreach (SwordController sword in swords)
+            {
+                if (sword != null)
+                {
+                    sword.EnchantSword(swordCount);
+                }
+            }
         }
     }
 }

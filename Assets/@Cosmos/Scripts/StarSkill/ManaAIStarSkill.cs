@@ -10,7 +10,6 @@ public class ManaAIStarSkill : StarBase
         starBuff.RegisterGameStartAction(ActivateManaTurret);
         EventBus.SubscribeGameStart(HandleGameStart);
         EventBus.SubscribeSceneLoaded(HandleSceneLoaded);
-
         skill = transform.parent.GetComponentInChildren<ManaAISkill>();
     }
 

@@ -43,15 +43,15 @@ public class LightningKnightPattern1 : IBossAttackPattern
             boss.StartCoroutine(KnightAttackSound());
 
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _lightningActtck,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
             if (size == 5 || size == 4)
             {
-                yield return new WaitForSeconds(0.3f); // 처음은 여유
+                yield return new WaitForSeconds(boss.Beat); // 처음은 여유
             }
             else
             {
-                yield return new WaitForSeconds(0.15f); // 점점 빨라짐
+                yield return new WaitForSeconds(boss.Beat / 2); // 점점 빨라짐
             }
         }
     }
@@ -92,9 +92,17 @@ public class LightningKnightPattern1 : IBossAttackPattern
         if (size <= 2)
         {
             return GetFixedSafeZone(x, y, size, baseDirection);
+        
         }
+
         // 큰 사이즈(3-5)는 랜덤성 추가
         bool isFixedSafe = GetFixedSafeZone(x, y, size, baseDirection);
+
+        // 기본 안전지대가 아닌 경우, 25% 확률로 추가 안전지대
+        if (!isFixedSafe && Random.Range(0f, 1f) < 0.25f)
+        {
+            return true;
+        }
 
         return isFixedSafe;
     }
@@ -161,7 +169,7 @@ public class LightningKnightPattern1 : IBossAttackPattern
 
     private IEnumerator KnightAttackSound()
     {
-        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        yield return new WaitForSeconds(1f); // 사운드 재생을 위한 대기
         SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
     }
 

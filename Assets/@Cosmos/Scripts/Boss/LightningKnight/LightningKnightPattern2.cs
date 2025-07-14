@@ -30,7 +30,7 @@ public class LightningKnightPattern2 : IBossAttackPattern
         {
              boss.StartCoroutine(BombPattern(boss));
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(boss.Beat / 2);
         }
 
     }
@@ -75,12 +75,12 @@ public class LightningKnightPattern2 : IBossAttackPattern
             AttackPoints,
             new Vector3Int(selectedPos.x, selectedPos.y, 0),
             _lightningActtck,
-            warningDuration: 0.8f,
+            warningDuration: 1f,
             explosionDuration: 0.7f,
             damage: _damage
         );
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private bool IsInBannedArea(Vector2Int pos)
@@ -101,7 +101,7 @@ public class LightningKnightPattern2 : IBossAttackPattern
     }
     private IEnumerator LightningKnightAttackSound()
     {
-        yield return new WaitForSeconds(0.8f); // 사운드 재생을 위한 대기
+        yield return new WaitForSeconds(1f); // 사운드 재생을 위한 대기
         SoundManager.Instance.KnightSoundClip("KnightAttackActivate");
     }
 }

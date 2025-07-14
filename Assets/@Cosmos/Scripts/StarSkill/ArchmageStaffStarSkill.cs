@@ -1,7 +1,4 @@
-﻿using UnityEngine.SceneManagement;
-using UnityEngine;
-
-public class ArchmageStaffStarSkill : StarBase
+﻿public class ArchmageStaffStarSkill : StarBase
 {
     private ArchmageStaffSkill skill;
 
@@ -9,7 +6,7 @@ public class ArchmageStaffStarSkill : StarBase
     {
         base.Awake();
         starBuff.RegisterGameStartAction(GatherAxodia);
-
+        conditionCount = 200;
         // ProjectileSkill 컴포넌트를 가져옵니다.
         skill = transform.parent.GetComponentInChildren<ArchmageStaffSkill>();
     }

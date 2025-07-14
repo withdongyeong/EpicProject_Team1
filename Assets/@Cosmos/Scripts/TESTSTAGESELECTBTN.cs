@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using System.IO;
+
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
-
     //빌딩씬에서 쓰는 스테이지 선택 버튼
     public void OnClick()
     {
@@ -35,5 +36,32 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
         StageSelectManager.Instance.StageSet("Guide");
         SceneLoader.LoadGuideStage();
+    }
+
+    public void OpenJournal()
+    {
+        JournalSlotManager.Instance.ToggleJournal();
+        
+    }
+
+    
+    public void GoCreditsScene()
+    {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+
+        StageSelectManager.Instance.StageSet("Credits");
+        SceneLoader.LoadCredits();
+    }
+
+    public void OpenTutoChoicePanel(GameObject gameObject)
+    {
+        if(SaveManager.IsTutorialCompleted == 1)
+        {
+            // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
+            GOBUILDSCENE();
+            return;
+        }
+        gameObject.SetActive(true);
+        SaveManager.SaveIsTutorialCompleted(1); // 튜토리얼 완료 상태로 저장
     }
 }

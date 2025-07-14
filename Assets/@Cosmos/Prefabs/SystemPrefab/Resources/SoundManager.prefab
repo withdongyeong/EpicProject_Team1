@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3680741919607081846}
   - component: {fileID: 3388639264008697600}
+  - component: {fileID: 7634589412706860741}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -46,6 +47,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88eca11a6f49cc343bdc3cfc44995b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7634589412706860741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525037450235066444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f868a7d098d2d949b34b5ac7913c1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StickRoll: 1
+  AriaActive: 1
+  PlayerMove: 0.03
+  PlayerDamage: 1
+  PlayerDead: 1
+  HealSkillActivate: 0.2
+  FireBallSkillActivate: 0.5
+  FireBoltSkillActivate: 0.2
+  ShieldSkillActivate: 0.3
+  IcicleSkillActivate: 0.2
+  FlamingSwordSkillActivate: 0.5
+  FrostStaffSkillActivate: 0.2
+  TotemSummonSkillActivate: 0.5
+  ManaTurretSkillActivate: 0.3
+  ProjectileSkillActivate: 0.3
+  ArchmageStaffSkillActivate: 0.7
+  RainbowSkillActivate: 0.2
+  StaffSkillActivate: 0.3
+  ProtectionSkillActivate: 1
+  ShieldSkillRemove: 0.3
+  SwordSkillActivate: 1
+  WarFlagSkillActivate: 1
+  FrostHammerSkillActivate: 1
+  HauntedDollSkillActivate: 0.3
+  CloudSkillActivate: 0.5
+  PhantomSkillActivate: 0.5
+  NecronomiconSkillActivate: 1
+  WraithSkillActivate: 0.8
+  "\uBE44\uAD6C\uB984": 0.3
+  PoisionExplotionActivate: 0.7
+  PoisonBallActivate: 0.7
+  SpiderLegActivate: 0.3
+  SpiderSilkActivate: 0.8
+  ArachneDamageActivate: 0.3
+  ArachneDeadActivate: 1
+  OrcMage_DamageActivate: 0.6
+  OrcMage_DieActivate: 0.6
+  OrcMage_FrogActivate: 1
+  OrcMage_RunActivate: 0.3
+  OrcMage_ScreamActivate: 0.6
+  OrcMage_SpikeActivate: 0.2
+  SlimeTentacleActivate: 0.5
+  SlimeDamageActivate: 1
+  SlimeDeadActivate: 0.3
+  BomberAttackActivate: 0.05
+  BomberDamageActivate: 0.3
+  BomberDeadActivate: 0.7
+  GolemAttackActivate: 0.2
+  GolemDamageActivate: 1
+  GolemDeadActivate: 1
+  TurtreeAttackActivate: 0.05
+  TurtreeDamageActivate: 0.3
+  TurtreeDeadActivate: 0.3
+  ReaperAttackActivate: 0.3
+  ReaperDamageActivate: 1
+  ReaperDeadActivate: 1
+  KnightAttackActivate: 0.1
+  KnightDashActivate: 1
+  KnightDamageActivate: 1
+  KnightDeadActivate: 1
+  BigHandAttackActivate: 0.6
+  BigHandAttackActivate_Small: 0.1
+  BigHandFistActivate: 0.01
+  BigHandFingerActivate: 0.7
+  BigHandDamageActivate: 0.3
+  BigHandDeadActivate: 0.3
+  BigHandSlideActivate: 0.5
+  LastBossDamageActivate: 0.1
+  LastBossDeadActivate: 1
+  LastBossFlameAttackActivate: 0.1
+  LastBossFrostAttackActivate: 0.1
+  LastBossStaffAttackActivate: 0.1
+  LastBossSwordAttackActivate: 0.1
+  LastBossFlameModeActivate: 0.1
+  LastBossFrostModeActivate: 0.1
+  LastBossStaffModeActivate: 0.1
+  LastBossSwordModeActivate: 1
+  DeploymentActivate: 0.2
+  RerollActivate: 0.5
+  ButtonActivate: 0.1
+  BlackHoleStartActivate: 0.8
+  TileOpenActivate: 0.3
+  TileLockActivate: 0.3
+  TileSellActivate: 1
+  GameClearActivate: 0.5
+  LoseActivate: 0.5
 --- !u!1 &6314046654881224318
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +186,7 @@ AudioSource:
   m_GameObject: {fileID: 6314046654881224318}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f002a70f7682660459c995a106281145, type: 2}
+  OutputAudioMixerGroup: {fileID: 8588764276802114528, guid: f002a70f7682660459c995a106281145, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -98,9 +197,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 0
+  MaxDistance: 0.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -216,7 +315,7 @@ AudioSource:
   m_GameObject: {fileID: 7265617418881631515}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f002a70f7682660459c995a106281145, type: 2}
+  OutputAudioMixerGroup: {fileID: 4120876929336017441, guid: f002a70f7682660459c995a106281145, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -227,9 +326,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 0
+  MaxDistance: 0.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

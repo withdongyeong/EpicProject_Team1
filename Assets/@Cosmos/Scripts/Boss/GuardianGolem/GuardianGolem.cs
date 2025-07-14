@@ -14,6 +14,7 @@ public class GuardianGolem : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(4).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(4).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(4).strongDamage;
+        BPM = GlobalSetting.Instance.GetBossBpm(4);
     }
 
     /// <summary>
@@ -22,17 +23,17 @@ public class GuardianGolem : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, true, WeakDamage), 0.8f)
-            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, false, WeakDamage), 0.8f)
-            .SetGroupInterval(1f);
+            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, true, WeakDamage), Beat)
+            .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, false, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new GuardianGolemPattern2(GuardianGolemRook, WeakDamage), 0.8f)
-            .SetGroupInterval(1f);
+            .AddPattern(new GuardianGolemPattern2(GuardianGolemRook, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new GuardianGolemVerticalWavePattern(GuardianGolemRook, StrongDamage), 0.8f)
-            .SetGroupInterval(1f);
+            .AddPattern(new GuardianGolemVerticalWavePattern(GuardianGolemRook, StrongDamage), Beat)
+            .SetGroupInterval(Beat);
 
         Debug.Log("OrcMage.InitializeAttackPatterns: Starting pattern initialization");
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 /// <summary>
 /// 모든 보스의 기본 클래스 (새로운 패턴 시스템 적용)
@@ -15,6 +16,9 @@ public abstract class BaseBoss : MonoBehaviour
     [SerializeField]
     private int _currentHealth;
     private bool _isDead = false;
+    
+    [Header("공통 리듬 설정")]
+    private float bpm = 80f;
     
     [Header("상태 이상 클래스")]
     private BossDebuffs _bossDebuff;
@@ -32,7 +36,22 @@ public abstract class BaseBoss : MonoBehaviour
     private Animator _animator;
     private DamageTextHandler _damageTextHandler;
 
+    // 피격음 코루틴
+    private Coroutine hitSoundCoroutine;
+    
+    private TotalDamageManager _totalDamageManager;
+
     // Properties
+
+    /// <summary>
+    /// BPM 기반의 박자 간격 반환 (초 단위)
+    /// </summary>
+    public float BPM { get => bpm; protected set => bpm = value; }
+    public float Beat => 60f / bpm;
+    public float HalfBeat => Beat / 2f;
+    public float QuarterBeat => Beat / 4f;  
+    
+    
     /// <summary>
     /// 최대 체력 프로퍼티
     /// </summary>
@@ -106,6 +125,7 @@ public abstract class BaseBoss : MonoBehaviour
         _bossDebuff = GetComponent<BossDebuffs>();
         _animator = GetComponentInChildren<Animator>();
         _bombHandler = FindAnyObjectByType<BombAvoidanceHandler>();
+        _totalDamageManager = TotalDamageManager.Instance;
         
         // 패턴 리스트 초기화
         _executableUnits = new List<ExecutableUnit>();
@@ -209,7 +229,10 @@ public abstract class BaseBoss : MonoBehaviour
         float randomX = UnityEngine.Random.Range(-0.5f, 0.5f);
         float randomY = UnityEngine.Random.Range(-0.5f, 0.5f);
         Vector3 hitPosition = transform.position + new Vector3(randomX, randomY, 0);
-        Instantiate(hitObject, hitPosition, Quaternion.identity);
+        if (hitSoundCoroutine == null)
+        {
+            hitSoundCoroutine = StartCoroutine(HitSoundCoroutine(hitObject));
+        }
         damage = _bossDebuff.ApplyMarkEffect(damage);
         damage = _bossDebuff.ApplyPainEffect(damage);
         if (_isStopped)
@@ -219,6 +242,8 @@ public abstract class BaseBoss : MonoBehaviour
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
+        _totalDamageManager.AddDamage(damage);
+        
         if (_currentHealth <= 0)
         {
             Die();
@@ -227,6 +252,23 @@ public abstract class BaseBoss : MonoBehaviour
         {
             DamageFeedback();
         }
+    }
+
+    protected virtual void Update()
+    {
+        
+    }
+
+    /// <summary>
+    /// 피격음 코루틴(소리 중첩 방지)
+    /// </summary>
+    /// <param name="hitObject"></param>
+    /// <returns></returns>
+    private IEnumerator HitSoundCoroutine(GameObject hitObject)
+    {
+        Instantiate(hitObject, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.05f);
+        hitSoundCoroutine = null;
     }
 
     protected virtual void DamageFeedback()
@@ -345,6 +387,7 @@ public abstract class BaseBoss : MonoBehaviour
         _bossDebuff.AddDebuff(debuff);
     }
 
+
     /// <summary>
     /// 상태이상 개수 조회
     /// </summary>
@@ -352,6 +395,10 @@ public abstract class BaseBoss : MonoBehaviour
     /// <returns>상태이상 개수</returns>
     public int GetDebuffCount(BossDebuff debuff)
     {
+        if(debuff == BossDebuff.Curse)
+        {
+            return _bossDebuff.Debuffs[(int)debuff] + _bossDebuff.Debuffs[(int)BossDebuff.TemporaryCurse];
+        }
         return _bossDebuff.Debuffs[(int)debuff];
     }
 
@@ -484,5 +531,12 @@ public abstract class BaseBoss : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(Init);
+    }
+    
+    
+    
+    public void TestBossHpSet(int hp)
+    {
+        _currentHealth = hp;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Reaper : BaseBoss
 {
@@ -17,10 +18,12 @@ public class Reaper : BaseBoss
         MaxHealth = GlobalSetting.Instance.GetBossBalance(7).maxHP;
         WeakDamage = GlobalSetting.Instance.GetBossBalance(7).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(7).strongDamage;
+        BPM = GlobalSetting.Instance.GetBossBpm(7);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if ((CurrentHealth) < 1700 && !IsPase2)
         {
             this.GetComponent<ReaperDeathArea>().DeathAreaCreationStart();
@@ -37,19 +40,19 @@ public class Reaper : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 9), 1f)
-            .AddPattern(new ReaperPattern1(ReaperActtck, WeakDamage), 2f)
-            .SetGroupInterval(1f);
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 9), Beat)
+            .AddPattern(new ReaperPattern1(ReaperActtck, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 4), 1f)
-            .AddPattern(new ReaperPattern2(ReaperActtck, WeakDamage), 2f)
-            .SetGroupInterval(1f);
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 4), Beat)
+            .AddPattern(new ReaperPattern2(ReaperActtck, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 3), 1f)
-            .AddPattern(new ReaperPattern3(ReaperActtck, StrongDamage), 2f)
-            .SetGroupInterval(2f);
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 3), Beat)
+            .AddPattern(new ReaperPattern3(ReaperActtck, StrongDamage), Beat)
+            .SetGroupInterval(Beat);
     }
 
     protected override void Die()

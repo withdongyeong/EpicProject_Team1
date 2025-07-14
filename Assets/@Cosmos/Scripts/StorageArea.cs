@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -39,9 +39,6 @@ public class StorageArea : MonoBehaviour ,IPointerEnterHandler, IPointerExitHand
     
     public void StoreTileObject(TileObject tileObject)
     {
-        // 저장 로직 구현
-        // 예: GridManager.Instance.StoreTile(tileObject);
-        Debug.Log($"TileObject {tileObject.name} has been stored.");
-        
+        SoundManager.Instance.UISoundClip("DeploymentActivate");
     }
 }
