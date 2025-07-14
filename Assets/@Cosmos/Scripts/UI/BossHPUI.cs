@@ -301,13 +301,14 @@ public class BossHPUI : MonoBehaviour
                 {
                     //임시 저주가 0이면 뒤에 (+0)이게 안생기게 합니다.
                     int tempCurse = _enemy.GetDebuffCount(BossDebuff.TemporaryCurse);
-                    if(tempCurse != 0)
+                    int curse = _enemy.GetDebuffCount(BossDebuff.Curse);
+                    if (tempCurse != 0)
                     {
-                        tmpText.text = count.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
+                        tmpText.text = curse.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
                     }
                     else
                     {
-                        tmpText.text = count.ToString();
+                        tmpText.text = curse.ToString();
                     }
                     
                 }
