@@ -24,6 +24,7 @@ public class Managers : MonoBehaviour
     private GameObject totalDamageManager;
     private GameObject cursorManager;
     private GameObject steamManager;
+    private GameObject journalManager;
 
     
     
@@ -47,6 +48,7 @@ public class Managers : MonoBehaviour
         totalDamageManager = Resources.Load<GameObject>("TotalDamageManager");
         cursorManager = Resources.Load<GameObject>("CursorManager");
         steamManager = Resources.Load<GameObject>("SteamManager");
+        journalManager = Resources.Load<GameObject>("Prefabs/UI/Journal/Journal");
         //Instantiate the managers
         MakeManager(gameManager);
         MakeManager(soundManager);
@@ -64,6 +66,7 @@ public class Managers : MonoBehaviour
         MakeManager(cursorManager);
         MakeManager(steamManager);
         
+        MakeManager(journalManager);
     }
 
     private void MakeManager(GameObject manager)

@@ -9,7 +9,7 @@ public class OrcMagePatternWave : IBossAttackPattern
 {
     private GameObject _groundSpikePrefab;
     private int _damage;
-
+    private float beat;
     public string PatternName => "OrcMagePattern_Wave";
 
     public OrcMagePatternWave(GameObject groundSpikePrefab, int damage)
@@ -28,6 +28,8 @@ public class OrcMagePatternWave : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
+        beat = boss.Beat;
+        
         // 3번의 웨이브 실행 (각각 다른 방향)
         for (int wave = 0; wave < 3; wave++)
         {
@@ -37,7 +39,7 @@ public class OrcMagePatternWave : IBossAttackPattern
                 boss.GridSystem.WorldToGridPosition(boss.BombHandler.PlayerController.transform.position);
 
             yield return ExecuteWave(boss, playerPos, wave);
-            if (wave < 2) yield return new WaitForSeconds(0.8f);
+            if (wave < 2) yield return new WaitForSeconds(beat);
         }
     }
 
@@ -82,18 +84,18 @@ public class OrcMagePatternWave : IBossAttackPattern
                     break;
             }
             
-            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             boss.BombHandler.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
-                warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
-            // 첫 번째만 0.3초, 나머지는 0.1초로 빠르게 연속
-            if (step == 0)
+            // 두번쨰까지만 1비트 나머지는 반비트
+            if (step == 0 || step == 1)
             {
-                yield return new WaitForSeconds(0.3f); // 첫 번째만 여유
+                yield return new WaitForSeconds(beat); // 첫 번째만 여유
             }
             else
             {
-                yield return new WaitForSeconds(0.15f); // 나머지는 빠르게
+                yield return new WaitForSeconds(beat/4); // 나머지는 빠르게
             }
         }
     }

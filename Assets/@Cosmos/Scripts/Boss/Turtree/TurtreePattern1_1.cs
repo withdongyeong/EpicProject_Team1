@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 public class TurtreePattern1_1 : IBossAttackPattern
 {
@@ -9,15 +9,17 @@ public class TurtreePattern1_1 : IBossAttackPattern
     private int _damage;
 
     public string PatternName => "TurtreePattern1_1";
-    public TurtreePattern1_1(GameObject TreeAttackPrefeb, Vector3Int StartPoint, int Damage)
+
+    public TurtreePattern1_1(GameObject treeAttackPrefeb, Vector3Int startPoint, int damage)
     {
-        _treeAttackPrefeb = TreeAttackPrefeb;
-        _startPoint = StartPoint;
-        _damage = Damage;
+        _treeAttackPrefeb = treeAttackPrefeb;
+        _startPoint = startPoint;
+        _damage = damage;
     }
 
     public IEnumerator Execute(BaseBoss boss)
     {
+        boss.AttackAnimation();
         yield return BFSExplore(boss, _startPoint);
     }
 
@@ -34,80 +36,87 @@ public class TurtreePattern1_1 : IBossAttackPattern
     };
 
     private const int gridSize = 9;
-
-    private HashSet<Vector3Int> visited = new HashSet<Vector3Int>();
+    private HashSet<Vector3Int> visited = new();
 
     private IEnumerator BFSExplore(BaseBoss boss, Vector3Int startPos)
     {
-        visited = new HashSet<Vector3Int>();
-        Queue<(Vector3Int pos, int dir)> queue = new Queue<(Vector3Int, int)>();
+        visited = new();
+        Queue<(Vector3Int pos, int dir)> queue = new();
 
-        queue.Enqueue((startPos, 3)); // 시작 방향: 아래(↓)
+        float beat = boss.HalfBeat;
+        float lastSoundTime = -999f;
+        float soundCooldown = beat;
+
+        // ↓ 방향으로 시작
+        int initialDir = 3;
+        queue.Enqueue((startPos, initialDir));
         visited.Add(startPos);
 
         while (queue.Count > 0)
         {
-            List<Vector3Int> BombPoints = new List<Vector3Int>();
+            List<Vector3Int> bombPoints = new();
 
-            var (currentPos, currentDir) = queue.Dequeue();
-
-            yield return new WaitForSeconds(0.03f);
-
-            Vector3Int nextPos = currentPos + directions[currentDir];
-            bool added = false;
-
-            if (IsInBounds(nextPos) && !visited.Contains(nextPos))
+            for (int i = 0; i < 6 && queue.Count > 0; i++)
             {
-                visited.Add(nextPos);
-                BombPoints.Add(new Vector3Int(nextPos.x - 4, nextPos.y - 4, 0));
-                queue.Enqueue((nextPos, currentDir));
-                added = true;
-            }
-            else
-            {
-                // 🔁 방향에 따라 수직 or 수평으로 갈라짐
-                int[] splitDirs;
+                var (currentPos, currentDir) = queue.Dequeue();
+                Vector3Int nextPos = currentPos + directions[currentDir];
+                bool added = false;
 
-                if (currentDir % 2 == 0)
+                if (IsInBounds(nextPos) && !visited.Contains(nextPos))
                 {
-                    // 현재 방향이 좌/우 → 분기 방향: 위/아래
-                    splitDirs = new int[] { 1, 3 }; // Up, Down
+                    visited.Add(nextPos);
+                    bombPoints.Add(new Vector3Int(nextPos.x - 4, nextPos.y - 4, 0));
+                    queue.Enqueue((nextPos, currentDir));
+                    added = true;
                 }
                 else
                 {
-                    // 현재 방향이 위/아래 → 분기 방향: 좌/우
-                    splitDirs = new int[] { 0, 2 }; // Left, Right
-                }
+                    int leftDir = (currentDir + 3) % 4;
+                    int rightDir = (currentDir + 1) % 4;
 
-                foreach (int newDir in splitDirs)
-                {
-                    Vector3Int newPos = currentPos + directions[newDir];
+                    Vector3Int leftPos = currentPos + directions[leftDir];
+                    Vector3Int rightPos = currentPos + directions[rightDir];
 
-                    if (IsInBounds(newPos) && !visited.Contains(newPos))
+                    if (IsInBounds(leftPos) && !visited.Contains(leftPos))
                     {
-                        visited.Add(newPos);
-                        BombPoints.Add(new Vector3Int(newPos.x - 4, newPos.y - 4, 0));
-                        queue.Enqueue((newPos, newDir));
+                        visited.Add(leftPos);
+                        bombPoints.Add(new Vector3Int(leftPos.x - 4, leftPos.y - 4, 0));
+                        queue.Enqueue((leftPos, leftDir));
+                        added = true;
+                    }
+
+                    if (IsInBounds(rightPos) && !visited.Contains(rightPos))
+                    {
+                        visited.Add(rightPos);
+                        bombPoints.Add(new Vector3Int(rightPos.x - 4, rightPos.y - 4, 0));
+                        queue.Enqueue((rightPos, rightDir));
                         added = true;
                     }
                 }
+
+                if (!added || visited.Count >= gridSize * gridSize)
+                    break;
             }
 
-            if (BombPoints.Count > 0)
+            if (bombPoints.Count > 0)
             {
-                boss.AttackAnimation();
-                boss.StartCoroutine(TurtreeAttackSound());
+                boss.BombHandler.ExecuteFixedBomb(
+                    bombPoints,
+                    new Vector3Int(4, 4, 0),
+                    _treeAttackPrefeb,
+                    warningDuration: 1f,
+                    explosionDuration: 2f,
+                    damage: _damage
+                );
 
-                boss.BombHandler.ExecuteFixedBomb(BombPoints, new Vector3Int(4, 4, 0), _treeAttackPrefeb,
-                                      warningDuration: 0.8f, explosionDuration: 2, damage: _damage);
+                if (Time.time - lastSoundTime >= soundCooldown)
+                {
+                    boss.StartCoroutine(PlaySoundDelayed(1f));
+                    lastSoundTime = Time.time;
+                }
             }
 
-            if (!added || visited.Count >= gridSize * gridSize)
-            {
-                break;
-            }
-
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(beat);
         }
     }
 
@@ -116,11 +125,9 @@ public class TurtreePattern1_1 : IBossAttackPattern
         return pos.x >= 0 && pos.x < gridSize && pos.y >= 0 && pos.y < gridSize;
     }
 
-
-    private IEnumerator TurtreeAttackSound()
+    private IEnumerator PlaySoundDelayed(float delay)
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(delay);
         SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
-
 }

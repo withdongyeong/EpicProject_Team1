@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Chinese (Simplified) (zh)
   m_GUID: b438ed8e8c055d644b63c2eda04d390a
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 9958c24b2b6c2d440a7570912ec7200a
+    m_Address: ChironSungHK-Bold SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: d97ad773042266f429aa5ac654aedd88, type: 2}
   m_SchemaSet:

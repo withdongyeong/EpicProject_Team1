@@ -30,23 +30,30 @@ public class TurtreePattern5 : IBossAttackPattern
         Vector3Int center = new Vector3Int(4, 4, 0);
         List<Vector3Int> spiralPositions = GenerateSpiralPositions(center);
 
-        // 나선 순서대로 공격 (4개씩 묶어서)
+        float halfBeat = boss.HalfBeat;
+        List<Vector3Int> singlePoint = new List<Vector3Int> { Vector3Int.zero };
+
         for (int i = 0; i < spiralPositions.Count; i += 4)
         {
-            List<Vector3Int> singlePoint = new List<Vector3Int> { Vector3Int.zero };
-
-            // 4개씩 그룹 동시 실행
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
-                boss.StartCoroutine(TurtreeAttackSound());
-
-                boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _attackPrefab,
-                                                  warningDuration: 0.8f, explosionDuration: 2f, damage: _damage, WarningType.Type1);
+                boss.BombHandler.ExecuteFixedBomb(
+                    singlePoint,
+                    spiralPositions[i + j],
+                    _attackPrefab,
+                    warningDuration: 1f,
+                    explosionDuration: 2f,
+                    damage: _damage,
+                    warningType: WarningType.Type1
+                );
             }
 
-            yield return new WaitForSeconds(0.1f); 
+            boss.StartCoroutine(TurtreeAttackSound());
+
+            yield return new WaitForSeconds(halfBeat / 2);
         }
     }
+
 
     /// <summary>
     /// 나선형 위치 생성 - 전체 그리드 채우기
@@ -74,7 +81,7 @@ public class TurtreePattern5 : IBossAttackPattern
         // 전체 그리드를 채울 때까지 반복
         while (positions.Count < 81) // 9x9 = 81칸
         {
-            for (int repeat = 0; repeat < 2; repeat++) // 같은 방향으로 2번
+            for (int repeat = 0; repeat < 4; repeat++)
             {
                 for (int step = 0; step < steps; step++)
                 {
@@ -110,7 +117,7 @@ public class TurtreePattern5 : IBossAttackPattern
 
     private IEnumerator TurtreeAttackSound()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.TurtreeSoundClip("TurtreeAttackActivate");
     }
 }

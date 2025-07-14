@@ -155,16 +155,28 @@ MonoBehaviour:
     m_Key: Tile_TileName_WraithTile
     m_Metadata:
       m_Items: []
-  - m_Id: 43610939425
-    m_Key: Tile_TileName_HellFIreTile
+  - m_Id: 498343233593344
+    m_Key: Tile_TileName_HellFireTile
     m_Metadata:
       m_Items: []
   - m_Id: 43610939426
     m_Key: Tile_TileName_WandTile
     m_Metadata:
       m_Items: []
-  - m_Id: 313777134903296
-    m_Key: New Entry 11
+  - m_Id: 1528835248627712
+    m_Key: Tile_TileName_MoaiTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1528835340902400
+    m_Key: Tile_TileName_MagmaBladeTIle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1528835340902401
+    m_Key: Tile_TileName_CatTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1543531586527232
+    m_Key: New Entry
     m_Metadata:
       m_Items: []
   - m_Id: 43615133696
@@ -307,16 +319,28 @@ MonoBehaviour:
     m_Key: Tile_TileDescription_WraithTile
     m_Metadata:
       m_Items: []
-  - m_Id: 43615133731
-    m_Key: Tile_TileDescription_HellFIreTile
+  - m_Id: 456771884425216
+    m_Key: Tile_TileDescription_HellFireTile
     m_Metadata:
       m_Items: []
   - m_Id: 43615133732
     m_Key: Tile_TileDescription_WandTile
     m_Metadata:
       m_Items: []
-  - m_Id: 313777176846336
-    m_Key: New Entry 12
+  - m_Id: 1528835345096704
+    m_Key: Tile_TileDescription_MoaiTotemTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1528835345096705
+    m_Key: Tile_TileDescription_MagmaBladeTIle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1528835345096706
+    m_Key: Tile_TileDescription_CatTile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1543531590721536
+    m_Key: New Entry 1
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
@@ -343,8 +367,8 @@ MonoBehaviour:
     m_Key: Tile_TileCategoty_Summon
     m_Metadata:
       m_Items: []
-  - m_Id: 313777176846337
-    m_Key: New Entry 13
+  - m_Id: 1543531590721537
+    m_Key: New Entry 2
     m_Metadata:
       m_Items: []
   - m_Id: 43619328004
@@ -379,8 +403,8 @@ MonoBehaviour:
     m_Key: Tile_TileSynergy_Cloud
     m_Metadata:
       m_Items: []
-  - m_Id: 313777176846338
-    m_Key: New Entry 14
+  - m_Id: 1543531590721538
+    m_Key: New Entry 3
     m_Metadata:
       m_Items: []
   - m_Id: 43619328013
@@ -419,8 +443,8 @@ MonoBehaviour:
     m_Key: Tile_TileTagDescription_Curse
     m_Metadata:
       m_Items: []
-  - m_Id: 313777176846339
-    m_Key: New Entry 15
+  - m_Id: 1543531590721539
+    m_Key: New Entry 4
     m_Metadata:
       m_Items: []
   - m_Id: 43619328023
@@ -451,8 +475,8 @@ MonoBehaviour:
     m_Key: UI_Quest_Instruction7
     m_Metadata:
       m_Items: []
-  - m_Id: 313777176846340
-    m_Key: New Entry 16
+  - m_Id: 1543531594915840
+    m_Key: New Entry 5
     m_Metadata:
       m_Items: []
   - m_Id: 43619328031
@@ -483,8 +507,8 @@ MonoBehaviour:
     m_Key: UI_Quest_Title7
     m_Metadata:
       m_Items: []
-  - m_Id: 313777181040640
-    m_Key: New Entry 17
+  - m_Id: 1543531594915841
+    m_Key: New Entry 6
     m_Metadata:
       m_Items: []
   - m_Id: 43619328039
@@ -515,8 +539,8 @@ MonoBehaviour:
     m_Key: UI_Quest_SubTitle7
     m_Metadata:
       m_Items: []
-  - m_Id: 313777181040641
-    m_Key: New Entry 18
+  - m_Id: 1543531594915842
+    m_Key: New Entry 7
     m_Metadata:
       m_Items: []
   - m_Id: 43619328047
@@ -547,8 +571,8 @@ MonoBehaviour:
     m_Key: UI_Quest_Content7
     m_Metadata:
       m_Items: []
-  - m_Id: 313777181040642
-    m_Key: New Entry 19
+  - m_Id: 1543531594915843
+    m_Key: New Entry 8
     m_Metadata:
       m_Items: []
   - m_Id: 43619328055
@@ -579,8 +603,8 @@ MonoBehaviour:
     m_Key: UI_Quest_Goal7
     m_Metadata:
       m_Items: []
-  - m_Id: 313777181040643
-    m_Key: New Entry 20
+  - m_Id: 1543531594915844
+    m_Key: New Entry 9
     m_Metadata:
       m_Items: []
   - m_Id: 17316375568389
@@ -615,12 +639,24 @@ MonoBehaviour:
     m_Key: UI_Button_Retry
     m_Metadata:
       m_Items: []
+  - m_Id: 693015742652418
+    m_Key: UI_Button_Title
+    m_Metadata:
+      m_Items: []
   - m_Id: 43619328070
     m_Key: UI_Button_Try
     m_Metadata:
       m_Items: []
-  - m_Id: 313777181040644
-    m_Key: New Entry 21
+  - m_Id: 815751466983433
+    m_Key: UI_Button_Yas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 815751466983434
+    m_Key: UI_Button_No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1543531594915845
+    m_Key: New Entry 10
     m_Metadata:
       m_Items: []
   - m_Id: 43619328072
@@ -671,6 +707,10 @@ MonoBehaviour:
     m_Key: UI_Text_MythicProbability
     m_Metadata:
       m_Items: []
+  - m_Id: 693015742652420
+    m_Key: UI_Text_MasterVolume
+    m_Metadata:
+      m_Items: []
   - m_Id: 12751517392901
     m_Key: UI_Text_BGMVolume
     m_Metadata:
@@ -701,6 +741,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 118802753396736
     m_Key: UI_Text_QuestEnd_Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43619328074
+    m_Key: UI_Text_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 815751471177729
+    m_Key: UI_Text_Playtutorial
     m_Metadata:
       m_Items: []
   m_Metadata:

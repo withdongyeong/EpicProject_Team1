@@ -23,14 +23,6 @@ public class GoldManager : Singleton<GoldManager>
         EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-         if(Input.GetKeyDown(KeyCode.F12))
-        {
-            ModifyCurrentGold(100);
-        }
-    }
 
     /// <summary>
     /// 현재 소유한 골드를 넣어준 값'으로' 변경하는 메서드입니다

@@ -6,6 +6,7 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
     private int _damage;
+
     public string PatternName => "StaffPattern2";
 
     public LastBossPattern_Staff2(GameObject explosionPrefab, int damage)
@@ -21,6 +22,9 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
         boss.SetAnimationTrigger("Attack");
         Vector3Int center = new Vector3Int(4, 4, 0);
         List<Vector3Int> targets = new();
+
+        // 중앙 공격 먼저 추가
+        targets.Add(center);
 
         // 마름모 (맨해튼 거리 1~2)
         for (int dx = -2; dx <= 2; dx++)
@@ -43,12 +47,13 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
             AddIfValid(new Vector3Int(x, y, 0), targets);
         }
 
+        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound());
+
         foreach (var pos in targets)
         {
-            boss.StartCoroutine(PlayAttackSound());
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
-
 
         yield return new WaitForSeconds(1f);
     }
@@ -61,7 +66,7 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
 
     private IEnumerator PlayAttackSound()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
     }
 }

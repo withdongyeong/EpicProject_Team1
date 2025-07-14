@@ -29,7 +29,6 @@ public class TutorialBossPattern : IBossAttackPattern
 
     public IEnumerator TutorialBossAttack(BaseBoss boss)
     {
-        List<Vector3Int> AttackPoint = new List<Vector3Int>();
         int size = 9;
         int[,] grid = new int[size, size];
 
@@ -37,38 +36,60 @@ public class TutorialBossPattern : IBossAttackPattern
         for (int layer = 0; layer <= size / 2; layer++)
         {
             int value = (layer % 2 == 0) ? 1 : 0;
+            for (int i = layer; i < size - layer; i++)
+            {
+                grid[layer, i] = value;                    // 상단
+                grid[size - 1 - layer, i] = value;         // 하단
+                grid[i, layer] = value;                    // 좌측
+                grid[i, size - 1 - layer] = value;         // 우측
+            }
+        }
+
+        // ▶ 레이어별 공격 좌표 그룹화
+        List<List<Vector3Int>> groupedPoints = new List<List<Vector3Int>>();
+
+        for (int layer = 0; layer <= size / 2; layer++)
+        {
+            List<Vector3Int> layerPoints = new List<Vector3Int>();
 
             for (int i = layer; i < size - layer; i++)
             {
-                grid[layer, i] = value;                      // 상단
-                grid[size - 1 - layer, i] = value;           // 하단
-                grid[i, layer] = value;                      // 좌측
-                grid[i, size - 1 - layer] = value;           // 우측
+                if (Match(grid[layer, i])) layerPoints.Add(new Vector3Int(layer - 4, i - 4, 0));          // 상단
+                if (Match(grid[size - 1 - layer, i])) layerPoints.Add(new Vector3Int(size - 1 - layer - 4, i - 4, 0)); // 하단
+                if (Match(grid[i, layer])) layerPoints.Add(new Vector3Int(i - 4, layer - 4, 0));          // 좌측
+                if (Match(grid[i, size - 1 - layer])) layerPoints.Add(new Vector3Int(i - 4, size - 1 - layer - 4, 0)); // 우측
             }
+
+            if (layerPoints.Count > 0)
+                groupedPoints.Add(layerPoints);
         }
 
-        // 패턴을 기준으로 공격 좌표 결정
-        for (int x = 0; x < size; x++)
+        // ▶ 각 레이어를 순차적으로 공격
+        foreach (var group in groupedPoints)
         {
-            for (int y = 0; y < size; y++)
-            {
-                if ((_isOddNumber && grid[x, y] == 1) || (!_isOddNumber && grid[x, y] == 0))
-                {
-                    // 중심을 (4,4)로 맞추기 위해 -4
-                    AttackPoint.Add(new Vector3Int(x - 4, y - 4, 0));
-                }
-            }
+            boss.BombHandler.ExecuteFixedBomb(
+                group,
+                new Vector3Int(4, 4, 0),
+                _tutorialBossAttack,
+                warningDuration: 1f,
+                explosionDuration: 0.3f,
+                damage: _damage
+            );
+            boss.StartCoroutine(SlimeSoundEffect());
+            yield return new WaitForSeconds(boss.Beat);
         }
+    }
 
-        boss.BombHandler.ExecuteFixedBomb(
-            AttackPoint,
-            new Vector3Int(4, 4, 0),
-            _tutorialBossAttack,
-            warningDuration: 0.8f,
-            explosionDuration: 0.4f,
-            damage: _damage
-        );
-
-        yield return null;
+    private bool Match(int gridValue)
+    {
+        return (_isOddNumber && gridValue == 1) || (!_isOddNumber && gridValue == 0);
+    }
+    
+    public IEnumerator SlimeSoundEffect()
+    {
+        yield return new WaitForSeconds(1f);
+        SoundManager.Instance.SlimeSoundClip("PoisonBallActivate");
+        yield return new WaitForSeconds(0.1f);
+        SoundManager.Instance.SlimeSoundClip("PoisionExplotionActivate");
     }
 }

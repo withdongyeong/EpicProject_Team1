@@ -28,6 +28,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
     /// </summary>
     public IEnumerator Execute(BaseBoss boss)
     {
+        float beat = boss.Beat;
         boss.SetAnimationTrigger("Attack2");
 
         // 12개의 랜덤 폭발을 연쇄적으로
@@ -40,15 +41,14 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
 
             List<Vector3Int> explosionShape = CreateExplosionShape();
 
-            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
+            boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             boss.BombHandler.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
 
-            yield return new WaitForSeconds(0.25f); // 빠른 연쇄
+            yield return new WaitForSeconds(beat/2);
         }
-
-        // 마지막에 모든 폭발이 끝날 때까지 대기
-        yield return new WaitForSeconds(0.8f);
+        
+        yield return new WaitForSeconds(beat);
     }
 
     /// <summary>
