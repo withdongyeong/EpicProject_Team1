@@ -22,6 +22,7 @@ public class Arachne : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(2).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(2).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(2);
+        SetDifficulty();
     }
 
     /// <summary>

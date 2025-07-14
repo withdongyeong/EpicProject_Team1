@@ -28,6 +28,7 @@ public class LastBoss : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(10).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(10);
+        SetDifficulty();
     }
 
     /// <summary>
