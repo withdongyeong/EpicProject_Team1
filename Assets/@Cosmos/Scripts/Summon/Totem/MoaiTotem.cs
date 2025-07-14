@@ -18,7 +18,7 @@ public class NewMonoBehaviourScript : BaseTotem
     protected override void ActivateTotem(TotemContext context)
     {
         base.ActivateTotem(context);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             _targetEnemy.AddDebuff(BossDebuff.TemporaryCurse);
         }
@@ -27,7 +27,7 @@ public class NewMonoBehaviourScript : BaseTotem
 
     protected override void ActivateTotemBetter(TotemContext context)
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             _targetEnemy.AddDebuff(BossDebuff.TemporaryCurse);
         }
