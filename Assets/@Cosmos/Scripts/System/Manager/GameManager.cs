@@ -17,6 +17,10 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public int CurrentUnlockLevel => currentUnlockLevel;
 
+    private int difficultyLevel = 0;
+
+    public int DifficultyLevel => difficultyLevel;
+
     protected override void Awake()
     {
         base.Awake();
@@ -105,6 +109,12 @@ public class GameManager : Singleton<GameManager>
             isInTutorial = false;
         }
     }
+
+    public void SetDifficultyLevel(int level)
+    {
+        difficultyLevel = level;
+    }
+
 
     public void GameQuit()
     {
