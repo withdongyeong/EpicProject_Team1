@@ -105,7 +105,17 @@ public class GameManager : Singleton<GameManager>
             isInTutorial = false;
         }
     }
-    
+
+    public void GameQuit()
+    {
+        SaveManager.SaveAll(); // 게임 저장
+        SteamStatsManager.Instance.UploadStatsToServer();
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                        Application.Quit();
+        #endif
+    }
     
     private void OnDestroy()
     {
