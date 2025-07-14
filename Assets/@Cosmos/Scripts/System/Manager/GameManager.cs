@@ -17,6 +17,10 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public int CurrentUnlockLevel => currentUnlockLevel;
 
+    private int difficultyLevel = 0;
+
+    public int DifficultyLevel => difficultyLevel;
+
     protected override void Awake()
     {
         base.Awake();
@@ -105,7 +109,23 @@ public class GameManager : Singleton<GameManager>
             isInTutorial = false;
         }
     }
-    
+
+    public void SetDifficultyLevel(int level)
+    {
+        difficultyLevel = level;
+    }
+
+
+    public void GameQuit()
+    {
+        SaveManager.SaveAll(); // 게임 저장
+        SteamStatsManager.Instance.UploadStatsToServer();
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                        Application.Quit();
+        #endif
+    }
     
     private void OnDestroy()
     {

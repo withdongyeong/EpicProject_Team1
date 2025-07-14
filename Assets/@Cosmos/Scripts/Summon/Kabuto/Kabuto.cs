@@ -10,6 +10,8 @@ public class Kabuto : MonoBehaviour
     private float _chargeStartedTime;
     private bool _isCharging = false;
     private PlayerProtection _protection;
+    private ProtectionEffect _protectionEffect;
+    private int _effectId = -1;
     private GameObject _projectile;
     private KabutoSummonSkill _summoner;
 
@@ -37,6 +39,7 @@ public class Kabuto : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         EventBus.SubscribeProtectionConsume(OnProtectionConsume);
         _protection = FindAnyObjectByType<PlayerProtection>();
+        _protectionEffect = FindAnyObjectByType<ProtectionEffect>();
         _projectile = Resources.Load<GameObject>("Prefabs/Projectiles/Kabuto");
         _pupa = Resources.Load<Sprite>("Arts/Objects/plus/장수풍뎅이 번데기");
         _imago = Resources.Load<Sprite>("Arts/Objects/plus/장수풍뎅이 강림");
@@ -81,6 +84,7 @@ public class Kabuto : MonoBehaviour
             _currentConsume = 20;
             _isCharging = true;
             _protection.SetChargeBool(true);
+            _effectId = _protectionEffect.StartProtectionEffect(_protection.gameObject, transform.position);
         }
         
     }
@@ -98,6 +102,11 @@ public class Kabuto : MonoBehaviour
         _protection.SetChargeBool(false);
         _isCharging = false;
         PutOn();
+        if (_effectId != -1)
+        {
+            _protectionEffect.StopProtectionEffect(_effectId);
+            _effectId = -1;
+        }
     }
 
     

@@ -19,6 +19,7 @@ public class Reaper : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(7).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(7).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(7);
+        SetDifficulty();
     }
 
     protected override void Update()

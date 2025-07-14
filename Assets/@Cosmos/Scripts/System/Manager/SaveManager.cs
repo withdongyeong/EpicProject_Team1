@@ -4,13 +4,14 @@ public static class SaveManager
 {
     
     // 🔒 캐싱 변수들
-    public static int UnlockLevel { get; private set; }
+    public static int UnlockLevel { get; private set; } //타일이 해금 된 정도입니다
     public static int IsTutorialCompleted { get; private set; }
     public static bool IsFullScreen { get; private set; }
     public static string Resolution { get; private set; }
     public static float MasterVolume { get; private set; } 
     public static float BgmVolume { get; private set; }
     public static float SfxVolume { get; private set; }
+    public static int GameModeLevel { get; private set; } //게임모드가 해금 된 정도입니다 (ex:하드모드, 베리 하드모드)
 
     // ✅ 처음 로드시 호출
     public static void LoadAll()
@@ -22,6 +23,7 @@ public static class SaveManager
         MasterVolume = PlayerPrefs.GetFloat(SaveKeys.MasterVolume, 1.0f);
         BgmVolume = PlayerPrefs.GetFloat(SaveKeys.BgmVolume, 1.0f);
         SfxVolume = PlayerPrefs.GetFloat(SaveKeys.SfxVolume, 1.0f);
+        GameModeLevel = PlayerPrefs.GetInt(SaveKeys.GameModeLevel, 1);
     }
 
     public static void SaveAll()
@@ -33,6 +35,7 @@ public static class SaveManager
         PlayerPrefs.SetFloat(SaveKeys.MasterVolume, MasterVolume);
         PlayerPrefs.SetFloat(SaveKeys.BgmVolume, BgmVolume);
         PlayerPrefs.SetFloat(SaveKeys.SfxVolume, SfxVolume);
+        PlayerPrefs.SetInt(SaveKeys.GameModeLevel, GameModeLevel);
         
         PlayerPrefs.Save(); // 변경 사항 저장
     }
@@ -91,6 +94,13 @@ public static class SaveManager
         PlayerPrefs.SetFloat(SaveKeys.SfxVolume, volume);
         PlayerPrefs.Save();
     }
+
+    public static void SaveGameModeLevel(int level)
+    {
+        GameModeLevel = level;
+        PlayerPrefs.SetInt(SaveKeys.GameModeLevel, level);
+        PlayerPrefs.Save();
+    }
     public static void DeleteAllSaves()
     {
         PlayerPrefs.DeleteKey(SaveKeys.UnlockLevel);
@@ -100,6 +110,7 @@ public static class SaveManager
         PlayerPrefs.DeleteKey(SaveKeys.MasterVolume);
         PlayerPrefs.DeleteKey(SaveKeys.BgmVolume);
         PlayerPrefs.DeleteKey(SaveKeys.SfxVolume);
+        PlayerPrefs.DeleteKey(SaveKeys.GameModeLevel);
         LoadAll();
         PlayerPrefs.Save(); // 변경 사항 저장
         
@@ -121,5 +132,8 @@ public static class SaveKeys
     public const string MasterVolume = "Master_Volume";
     public const string BgmVolume = "Bgm_Volume";
     public const string SfxVolume = "Sfx_Volume";
+
+    //게임 모드가 해금된 정도를 저장하는 키입니다. (ex: 2이면 하드 모드만 해금되어있다)
+    public const string GameModeLevel = "Game_Mode_Level";
     
 }

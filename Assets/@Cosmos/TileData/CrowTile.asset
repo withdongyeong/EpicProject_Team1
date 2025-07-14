@@ -16,9 +16,7 @@ MonoBehaviour:
   description: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uAE4C\uB9C8\uADC0\uB97C
     \uC18C\uD658\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCF4\uD638\uB9C9<sprite name=\"Barrier\">
     15 \uC18C\uBAA8 \uC2DC</color>: \uC801\uC5D0\uAC8C \uB099\uC778<sprite name=\"Mark\">\uC744
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0
-    \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uB9C8\uB2E4
-    \uCFE8\uD0C0\uC784\uC774 10% \uAC10\uC18C\uD569\uB2C8\uB2E4."
+    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   tileCategory: 5
   tileSprite: {fileID: 21300000, guid: 542c034629f758041ba148d5b9a5f185, type: 3}
   tileGrade: 2
@@ -26,4 +24,4 @@ MonoBehaviour:
   tileCoolTime: 0
   requiredTile: {fileID: 0}
   rejectTileList: []
-  unlockInt: 0
+  unlockInt: 4

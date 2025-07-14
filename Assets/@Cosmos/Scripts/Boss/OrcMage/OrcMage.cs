@@ -22,6 +22,7 @@ public class OrcMage : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(6).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(6).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(6);
+        SetDifficulty();
         Debug.Log($"OrcMage.Awake: MaxHealth set to {MaxHealth}");
     }
 
