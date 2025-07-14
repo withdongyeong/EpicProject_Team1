@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 7232355454447548535}
   - component: {fileID: 3004238364497677759}
   - component: {fileID: 9129501053533725753}
+  - component: {fileID: 4528535183161270822}
   m_Layer: 0
   m_Name: Player(Summon)
   m_TagString: Player
@@ -534,7 +535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081aa4a40aebc2149a7ff71286e69d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldEffectPrefab: {fileID: 6624461110895506490, guid: a872503ad0b51794f9d65988add76d69, type: 3}
 --- !u!114 &-332185138013614057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186cfd257bf2e7147868347aa13f207c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _protectionEffectPrefab: {fileID: 6624461110895506490, guid: b00624a9e8e86494ea59dd15f6153f76, type: 3}
 --- !u!212 &8204458606227087175
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -712,6 +711,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1489f3946e5f422cad97de5da193e527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4528535183161270822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249486552240177032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53f541fc9c636e448a4b0a041a45e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  protectionImagePrefab: {fileID: 603461643113537889, guid: 310dd52b216708a4a80938bc9054490d, type: 3}
+  defaultMoveDuration: 1
+  minCurveHeight: 0.5
+  maxCurveHeight: 2
+  minCurveOffset: -0.5
+  maxCurveOffset: 0.5
+  minScale: 0.5
+  maxScale: 1.5
 --- !u!1 &4924547627108980569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,5 +1051,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd70ad944a59f7740a6a4a12c1b65d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totemManager: {fileID: 233568901697347898, guid: af8efee9d0e51c24d8976a4ce6b2e4eb, type: 3}
+  _totemHandler: {fileID: 0}
   _cloudManager: {fileID: 233568901697347898, guid: 664e63504319c01498a8d9d83457f2ed, type: 3}
