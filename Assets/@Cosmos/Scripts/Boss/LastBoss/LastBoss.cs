@@ -124,6 +124,10 @@ public class LastBoss : BaseBoss
     protected override void Die()
     {
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
+        if(GameManager.Instance.DifficultyLevel + 1 > SaveManager.GameModeLevel)
+        {
+            SaveManager.SaveGameModeLevel(GameManager.Instance.DifficultyLevel + 1);
+        }
         
         // 기본 사망 처리 호출
         base.Die();

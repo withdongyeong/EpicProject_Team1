@@ -17,6 +17,14 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public int CurrentUnlockLevel => currentUnlockLevel;
 
+    //현재 선택된 난이도입니다
+    private int difficultyLevel = 0;
+
+    /// <summary>
+    /// 현재 선택된 난이도입니다 0이 이지 1이 노말 2가 하드 3이 베리 하드입니다.
+    /// </summary>
+    public int DifficultyLevel => difficultyLevel;
+
     protected override void Awake()
     {
         base.Awake();
@@ -104,6 +112,11 @@ public class GameManager : Singleton<GameManager>
         {
             isInTutorial = false;
         }
+    }
+
+    public void SetDifficultyLevel(int level)
+    {
+        difficultyLevel = level;
     }
     
     
