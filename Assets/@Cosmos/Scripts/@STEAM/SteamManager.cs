@@ -35,17 +35,7 @@ public class SteamManager : Singleton<SteamManager> {
 
 	[AOT.MonoPInvokeCallback(typeof(SteamAPIWarningMessageHook_t))]
 	protected static void SteamAPIDebugTextHook(int nSeverity, System.Text.StringBuilder pchDebugText) {
-		
-		// nSeverity가 1이면 경고, 0이면 일반 정보 메시지입니다.
-		if (nSeverity == 1) {
-			// 경고 메시지는 LogWarning으로 출력 (노란색)
-			Debug.LogWarning("[Steamworks] " + pchDebugText);
-		}
-		else {
-			// 일반 정보는 Log로 출력 (흰색)
-			Debug.Log("[Steamworks] " + pchDebugText);
-		}
-		
+		Debug.LogWarning(pchDebugText);
 	}
 
 #if UNITY_2019_3_OR_NEWER
@@ -116,7 +106,7 @@ public class SteamManager : Singleton<SteamManager> {
 		// https://partner.steamgames.com/doc/sdk/api#initialization_and_shutdown
 		m_bInitialized = SteamAPI.Init();
 		if (!m_bInitialized) {
-			Debug.LogWarning("[Steamworks.NET] SteamAPI_Init() failed. 스팀 연결 실패 !", this);
+			Debug.LogError("[Steamworks.NET] SteamAPI_Init() failed. Refer to Valve's documentation or the comment above this line for more information.", this);
 
 			return;
 		}

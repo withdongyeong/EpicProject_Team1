@@ -15,7 +15,6 @@ public class GuardianGolem : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(4).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(4).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(4);
-        SetDifficulty();
     }
 
     /// <summary>

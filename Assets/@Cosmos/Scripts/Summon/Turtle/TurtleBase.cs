@@ -25,16 +25,6 @@ public class TurtleBase : MonoBehaviour
     private PlayerProtection _protectionScript;
 
     /// <summary>
-    /// 보호막 효과 스크립트입니다. 보호막이 차지되면 보호막 효과를 보여줍니다.
-    /// </summary>
-    private ProtectionEffect _protectionEffect;
-
-    /// <summary>
-    /// 보호막 효과 Id입니다.
-    /// </summary>
-    private int _effectId = -1;
-
-    /// <summary>
     /// 발사체 프리팹입니다. 여기에 회전하는 거북이 넣으면 회전하면서 날아갑니다.
     /// </summary>
     private GameObject _projectilePrefab;
@@ -53,7 +43,6 @@ public class TurtleBase : MonoBehaviour
     {
         _lastUsedTime = Time.time;
         _protectionScript = FindAnyObjectByType<PlayerProtection>();
-        _protectionEffect = FindAnyObjectByType<ProtectionEffect>();
         _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/TurtleProjectile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
         EventBus.SubscribeProtectionConsume(OnProtectionConsume);
@@ -66,29 +55,12 @@ public class TurtleBase : MonoBehaviour
         {
             Charge();
             _lastUsedTime = Time.time;
-            // 보호막이 차지 중이고 보호막이 있다면 이펙트를 재생합니다.
-            if (_protectionScript.IsProtected && _effectId == -1)
-            {
-                _effectId = _protectionEffect.StartProtectionEffect(_protectionScript.gameObject, transform.position);
-            }
-            // 보호막이 없으면 이펙트를 중지합니다.
-            else if (!_protectionScript.IsProtected && _effectId != -1)
-            {
-                _protectionEffect.StopProtectionEffect(_effectId);
-                _effectId = -1;
-            }
         }
-        if (_chargedProtection >= 15)
+        if(_chargedProtection >= 15)
         {
             float hue = Mathf.Repeat(Time.time / _cycleDuration, 1f);
             Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
             _spriteRenderer.color = rainbowColor;
-            // 보호막이 차지 완료되면 이펙트를 중지합니다.
-            if (_effectId != -1)
-            {
-                _protectionEffect.StopProtectionEffect(_effectId);
-                _effectId = -1;
-            }
         }
         else
         {

@@ -23,10 +23,10 @@ MonoBehaviour:
     \uCFE8\uD0C0\uC784\uC774 10% \uAC10\uC18C\uD569\uB2C8\uB2E4."
   tileCategory: 5
   tileSprite: {fileID: 21300000, guid: e7f88762ac7ecab4288d71421173f3b3, type: 3}
-  tileGrade: 2
-  tileCost: 8
+  tileGrade: 4
+  tileCost: 12
   tileCoolTime: 5
   requiredTile: {fileID: 0}
   rejectTileList:
   - {fileID: 11400000}
-  unlockInt: 1
+  unlockInt: 0

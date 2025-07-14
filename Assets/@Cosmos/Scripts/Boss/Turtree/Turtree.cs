@@ -13,7 +13,6 @@ public class Turtree : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(5).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(5).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(5);
-        SetDifficulty();
     }
 
     /// <summary>

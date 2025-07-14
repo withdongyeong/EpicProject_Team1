@@ -14,7 +14,6 @@ public class Bomber : BaseBoss
         WeakDamage = GlobalSetting.Instance.GetBossBalance(3).weakDamage;
         StrongDamage = GlobalSetting.Instance.GetBossBalance(3).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(3);
-        SetDifficulty();
     }
 
     /// <summary>
