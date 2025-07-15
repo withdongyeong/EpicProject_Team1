@@ -9,6 +9,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
     private int _damage;
+    private bool _isSoundCoolTime = false; 
     public string PatternName => "StaffPattern3";
 
     public LastBossPattern_Staff3(GameObject explosionPrefab, int damage)
@@ -33,6 +34,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
         // 중심 십자 고정 공격 (중심 x=4 또는 y=4)
         for (int i = 0; i < 9; i++)
         {
+            boss.StartCoroutine(PlayAttackSound(boss, boss.Beat/4));
+
             if (i == 4) continue;
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
@@ -74,7 +77,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
 
             if (nx >= 0 && nx < 4 && ny >= 0 && ny < 4 && !visited[nx, ny])
             {
-                boss.StartCoroutine(SoundPlay());
+                boss.StartCoroutine(PlayAttackSound(boss ,boss.Beat / 4));
 
                 cx = nx;
                 cy = ny;
@@ -85,9 +88,26 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
             }
         }
     }
-    private IEnumerator SoundPlay()
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
     {
-        yield return new WaitForSeconds(0.5f);
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
+    }
+
+    public IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
     }
 }

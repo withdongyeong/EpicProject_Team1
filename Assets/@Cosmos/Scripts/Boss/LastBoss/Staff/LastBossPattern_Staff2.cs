@@ -6,7 +6,7 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
     private int _damage;
-
+    private bool _isSoundCoolTime = false;
     public string PatternName => "StaffPattern2";
 
     public LastBossPattern_Staff2(GameObject explosionPrefab, int damage)
@@ -47,8 +47,7 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
             AddIfValid(new Vector3Int(x, y, 0), targets);
         }
 
-        boss.StartCoroutine(PlayAttackSound());
-        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound(boss, 0));
 
         foreach (var pos in targets)
         {
@@ -64,9 +63,26 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
             list.Add(pos);
     }
 
-    private IEnumerator PlayAttackSound()
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
+    {
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
+    }
+
+    public IEnumerator SoundPlay()
     {
         yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
     }
 }
