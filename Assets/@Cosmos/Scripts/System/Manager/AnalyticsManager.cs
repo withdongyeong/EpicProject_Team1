@@ -6,6 +6,8 @@ using Unity.Services.Authentication; // 🔑 인증을 위해 필수!
 using Unity.Services.Analytics;
 using Newtonsoft.Json; // 🔑 JSON 직렬화를 위해 필요합니다.
 using System.Collections.Generic;
+using Unity.Services.Core.Environments;
+
 // ✅ 이 스크립트는 Unity Analytics를 사용하여 게임 이벤트를 기록하는 매니저입니다.
 // ✅ 이 스크립트는 싱글턴 패턴을 사용하여 게임 전역에서 접근할 수 있는 AnalyticsManager를 구현합니다.
 
@@ -18,7 +20,12 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         Debug.Log("--- UGS 테스트 시작 ---");
         try
         {
-            await UnityServices.InitializeAsync();
+            
+            // 1. 초기화 옵션 객체를 생성합니다.
+            var options = new InitializationOptions();
+            options.SetEnvironmentName("test"); 
+            
+            await UnityServices.InitializeAsync(options);
             Debug.Log("✅ [1/2] UGS 초기화 성공!");
             
             if (!AuthenticationService.Instance.IsSignedIn)
