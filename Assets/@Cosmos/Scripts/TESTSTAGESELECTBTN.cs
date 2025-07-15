@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.IO;
+using Unity.Services.Analytics;
 
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
@@ -10,6 +11,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
         StageSelectManager.Instance.StageSelect();
+        AnalyticsManager.Instance.NextLevel(StageSelectManager.Instance.StageNum);
     }
 
 

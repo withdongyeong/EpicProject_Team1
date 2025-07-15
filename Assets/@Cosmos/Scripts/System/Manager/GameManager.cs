@@ -9,6 +9,9 @@ public class GameManager : Singleton<GameManager>
     private bool isInTutorial = false; // 튜토리얼 진행 중 ?
     public bool IsInTutorial => isInTutorial;
 
+    private bool isInStage = false; // 스테이지 진행 중 ?
+    private float stageClearTimer = 0f; // 스테이지 클리어 타이머
+    public float StageClearTimer => stageClearTimer;
     //현재 적용되고 있는 해금된 별자리들의 레벨입니다.
     private int currentUnlockLevel;
 
@@ -26,6 +29,8 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
+        EventBus.SubscribeGameStart(SetTimer);
+        EventBus.SubscribeBossDeath(StopTimer);
         LoadGameData();
         currentUnlockLevel = SaveManager.UnlockLevel;
         SetResolution(SaveManager.Resolution);
@@ -34,6 +39,7 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         ShowSetting();
+        UpdateTimer();
         
         // Alt + Enter 감지 → 비율 깨짐 방지
         if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
@@ -42,6 +48,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    
 
     private void LoadGameData()
     {
@@ -116,6 +123,31 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+    private void SetTimer()
+    {
+        stageClearTimer = 0f; // 타이머 초기화
+        isInStage = true; // 스테이지 진행 중으로 설정
+    }
+    private void UpdateTimer()
+    {
+        if (!isInStage) return; // 스테이지가 진행 중이 아닐 때는 타이머 업데이트 안 함
+        if (stageClearTimer >= 0f)
+        {
+            stageClearTimer += Time.deltaTime; // 타이머 업데이트
+        }
+    }
+
+    private void StopTimer()
+    {
+        isInStage = false;
+    }
+    
+    public float GetStageClearTime()
+    {
+        return stageClearTimer; // 현재 스테이지 클리어 타이머 반환
+    }
+    
+    
     public void GameQuit()
     {
         SaveManager.SaveAll(); // 게임 저장
@@ -130,7 +162,10 @@ public class GameManager : Singleton<GameManager>
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
+        EventBus.UnsubscribeGameStart(SetTimer);
+        EventBus.UnsubscribeBossDeath(StopTimer);
         SceneLoader.LoadSceneWithName("InitializeScene");
+        
     }
 
 }

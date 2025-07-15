@@ -91,8 +91,7 @@ public class CoolDownEffect : MonoBehaviour
     /// </summary>
     public void SetPosition()
     {
-        if (!SceneLoader.IsInStage()) return;
-        Debug.Log("[쿨타임] SetPosition 호출됨");
+        if (!SceneLoader.IsInStage() && !SceneLoader.IsInBuilding()) return;
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
         if (transform.rotation.eulerAngles.z == 0)

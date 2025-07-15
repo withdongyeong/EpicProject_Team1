@@ -424,7 +424,7 @@ public class GridManager : Singleton<GridManager>
         _placedTileList.Add(tileObject.GetTileData().TileName);
     }
 
-    private void RemovePlacedTileList(TileObject tileObject)
+    public void RemovePlacedTileList(TileObject tileObject)
     {
         _placedTileList.Remove(tileObject.GetTileData().TileName);
     }    
@@ -468,7 +468,25 @@ public class GridManager : Singleton<GridManager>
         
         
     }
-    
+
+
+    //AnalyticsManager에서 타일 배치 수를 가져오는 메서드입니다.
+    public Dictionary<string, int> GetPlacedTileCount()
+    {
+        Dictionary<string, int> tileCount = new Dictionary<string, int>();
+        foreach (string tileName in _placedTileList)
+        {
+            if (tileCount.ContainsKey(tileName))
+            {
+                tileCount[tileName]++;
+            }
+            else
+            {
+                tileCount[tileName] = 1;
+            }
+        }
+        return tileCount;
+    }
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(GridPosChange);

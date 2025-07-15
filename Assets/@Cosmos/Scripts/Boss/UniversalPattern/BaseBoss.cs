@@ -281,6 +281,12 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
+        AnalyticsManager.Instance.SendStageClearEvent(
+            StageSelectManager.Instance.StageNum,
+            GameManager.Instance.GetStageClearTime(),
+            GridManager.Instance.GetPlacedTileCount());
+        
+        
         _isDead = true;
         // 애니메이터 사망처리
         _animator.SetBool("IsAlive", false);
@@ -296,6 +302,8 @@ public abstract class BaseBoss : MonoBehaviour
         {
             StartCoroutine(BossDeath(stageHandler));
         }
+
+        
     }
 
     /// <summary>
