@@ -11,7 +11,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
         StageSelectManager.Instance.StageSelect();
-        AnalyticsManager.Instance.NextLevel(StageSelectManager.Instance.StageNum);
+        
     }
 
 

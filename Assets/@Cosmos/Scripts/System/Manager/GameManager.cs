@@ -5,11 +5,17 @@ using System.IO;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField]
-    private bool isInTutorial = false; // 튜토리얼 진행 중 ?
-    public bool IsInTutorial => isInTutorial;
-
+  
+    
+    [Header("Game State")]
     private bool isInStage = false; // 스테이지 진행 중 ?
+    private bool isInBuilding = false; // 빌딩 모드 ?
+    private bool isInTutorial = false; // 튜토리얼 진행 중 ?
+    
+    
+    public bool IsInTutorial => isInTutorial;
+    
+    private float totalPlayTime = 0f; // 총 플레이 시간
     private float stageClearTimer = 0f; // 스테이지 클리어 타이머
     public float StageClearTimer => stageClearTimer;
     //현재 적용되고 있는 해금된 별자리들의 레벨입니다.
@@ -34,12 +40,14 @@ public class GameManager : Singleton<GameManager>
         LoadGameData();
         currentUnlockLevel = SaveManager.UnlockLevel;
         SetResolution(SaveManager.Resolution);
+        SetTotalPlaytime();
     }
     
     private void Update()
     {
         ShowSetting();
         UpdateTimer();
+        UpdateTotalPlaytime();
         
         // Alt + Enter 감지 → 비율 깨짐 방지
         if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
@@ -87,6 +95,17 @@ public class GameManager : Singleton<GameManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SetTutorial();
+        if (SceneLoader.IsInBuilding())
+        {
+            isInBuilding = true;
+            isInStage = false;
+        }
+
+        if (SceneLoader.IsInStage())
+        {
+            isInStage = true;
+            isInBuilding = false;
+        }
     }
     // 타이틀로 돌아갈 때 벌어지는 일들
     public void LoadTitle()
@@ -141,7 +160,21 @@ public class GameManager : Singleton<GameManager>
     {
         isInStage = false;
     }
+
     
+    private void SetTotalPlaytime()
+    {
+        totalPlayTime = 0; // 총 플레이 시간 설정
+    }
+
+    private void UpdateTotalPlaytime()
+    {
+        if (isInStage || isInBuilding)
+        {
+            totalPlayTime += Time.deltaTime; // 스테이지가 진행 중일 때만 총 플레이 시간 업데이트
+        }
+    }
+
     public float GetStageClearTime()
     {
         return stageClearTimer; // 현재 스테이지 클리어 타이머 반환

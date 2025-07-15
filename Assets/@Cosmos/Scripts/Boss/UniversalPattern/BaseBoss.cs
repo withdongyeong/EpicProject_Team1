@@ -281,10 +281,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
-        AnalyticsManager.Instance.SendStageClearEvent(
-            StageSelectManager.Instance.StageNum,
-            GameManager.Instance.GetStageClearTime(),
-            GridManager.Instance.GetPlacedTileCount());
+        AnalyticsManager.Instance.SendStageClearEvent();
         
         
         _isDead = true;
