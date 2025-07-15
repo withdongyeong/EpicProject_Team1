@@ -14,10 +14,14 @@ public class StageSelectManager : Singleton<StageSelectManager>
         Guide = 0, // 튜토리얼 스테이지
         Slime = 1,
         Arachne = 2,
-        OrcMage = 3,
-        Bomber = 4,
-        GuardianGolem = 5,
-        Reaper = 6
+        Bomber = 3,
+        GuardianGolem = 4,
+        Turtree = 5,
+        OrcMage = 6,
+        Reaper = 7,
+        LightningKnight = 8,
+        BigHand = 9,
+        LastBoss = 10,
     }
     
     public StageDataSO[] stageDataList; // 스테이지 데이터 리스트
