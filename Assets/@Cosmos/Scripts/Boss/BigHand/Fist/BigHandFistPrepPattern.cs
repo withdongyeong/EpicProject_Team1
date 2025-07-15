@@ -9,7 +9,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
     private int _damage;
-
+    private bool _isSoundCoolTime = false; // 사운드 쿨타임 관리
     public string PatternName => "주먹_유도";
     
     public BigHandFistPrepPattern(GameObject attackEffectPrefab, int damage)
@@ -181,7 +181,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
         // 해당 열의 중심점 (Y=4)을 기준으로 세로선 폭발
         Vector3Int centerOfColumn = new Vector3Int(columnX, 4, 0);
 
-        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound(boss, 0));
 
         boss.BombHandler.ExecuteFixedBomb(
             verticalLine,
@@ -254,7 +254,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
         // 해당 행의 중심점을 기준으로 가로선 폭발
         Vector3Int centerOfRow = new Vector3Int(centerX, rowY, 0);
 
-        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound(boss, 0));
 
         boss.BombHandler.ExecuteFixedBomb(
             horizontalLine,
@@ -281,17 +281,27 @@ public class BigHandFistPrepPattern : IBossAttackPattern
     {
         Debug.Log("주먹 유도 패턴 정리 완료");
     }
-
-    public IEnumerator PlayAttackSound(string SoundName, float BombTime)
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
     {
-        yield return new WaitForSeconds(BombTime); // 예시로 빈 코루틴 반환
-        SoundManager.Instance.BigHandSoundClip(SoundName);
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
     }
 
-    public IEnumerator PlayAttackSound()
+    public IEnumerator SoundPlay()
     {
         yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
         SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
     }
 
 }
