@@ -1,14 +1,25 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class DifficultyText : MonoBehaviour
 {
     private int _difficulty = 1;
     private TextMeshProUGUI _text;
 
+    private LocalizedString _easydescription;
+    private LocalizedString _nomaldescription;
+    private LocalizedString _harddescription;
+    private LocalizedString _helldescription;
+
     private void Awake()
     {
         _text = GetComponent<TextMeshProUGUI>();
+        _easydescription = new LocalizedString("EpicProject_Table", "UI_Text_EasyDescription");
+        _nomaldescription = new LocalizedString("EpicProject_Table", "UI_Text_NomalDescription");
+        _harddescription = new LocalizedString("EpicProject_Table", "UI_Text_HardDescription");
+        _helldescription = new LocalizedString("EpicProject_Table", "UI_Text_HellDescription");
+
         UpdateText();
     }
 
@@ -23,21 +34,24 @@ public class DifficultyText : MonoBehaviour
         switch(_difficulty)
         {
             case 0:
-                _text.text = "<color=green>보스 공격 속도 30% 감소</color>";
+                _easydescription.StringChanged += (text) => {
+                    _text.text = text;
+                };
                 break;
             case 1:
-                _text.text = "기준 난이도";
+                _nomaldescription.StringChanged += (text) => {
+                    _text.text = text;
+                };
                 break;
             case 2:
-                _text.text = "<color=red>보통 난이도 클리어 시 해금\r\n" +
-                    "보스 공격 속도 30% 증가\r\n" +
-                    "보스 체력 30% 증가";
+                _harddescription.StringChanged += (text) => {
+                    _text.text = text;
+                };
                 break;
             case 3:
-                _text.text = "<color=red>보통 난이도 클리어 시 해금\r\n" +
-                    "보스 공격 속도 30% 증가\r\n" +
-                    "보스 체력 50% 증가\r\n" +
-                    "플레이어 시작 체력 1 (최대 체력은 100)</color>";
+                _helldescription.StringChanged += (text) => {
+                    _text.text = text;
+                };
                 break;
             default:
                 _text.text = "Unknown";

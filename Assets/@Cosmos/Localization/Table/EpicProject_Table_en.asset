@@ -889,6 +889,35 @@ MonoBehaviour:
     m_Localized: START
     m_Metadata:
       m_Items: []
+  - m_Id: 2446700361424906
+    m_Localized: <color=green>Boss attack speed reduced by 30%</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2446700369813504
+    m_Localized: Standard Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2446700369813505
+    m_Localized: '<color=red>Unlocked when clearing Normal Difficulty
+
+      Boss
+      attack speed increased by 30%
+
+      Boss health increased by 30%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2446700369813506
+    m_Localized: '<color=red>Unlocked when cleared on Normal difficulty
+
+      Boss
+      attack speed increased by 30%
+
+      Boss health increased by 50%
+
+      Player
+      starts with 1 health (max health is 100)</color>'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
