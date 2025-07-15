@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.IO;
-using Steamworks;
-
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
@@ -76,6 +73,18 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
         SceneLoader.ToggleSetting();
+    }
+
+    //게임 시작, 별자리 도감등의 버튼을 눌렀을때 떠있는 다른 패널들을 끄는 역할을 합니다
+    public void DisAbleSelf(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+    }
+
+    //이건 위의 DisAbleSelf로도 못끄는 도감을 끄기 위한 함수입니다
+    public void DisAbleJournal()
+    {
+        JournalSlotManager.Instance.CloseJournal();
     }
 
     public void ExitGameButton()

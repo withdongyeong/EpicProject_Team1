@@ -7,7 +7,9 @@ using Random = UnityEngine.Random;
 public class StoreSlotController : MonoBehaviour
 {
     private StoreSlot[] storeSlots;
-    
+
+    private int _rerollNum = 0; //도전과제용 리롤한 횟수입니다.
+
     private int _safeInt = 0;
     private int _unlockLevel;
 
@@ -52,6 +54,7 @@ public class StoreSlotController : MonoBehaviour
             if(!DragManager.Instance.IsDragging)
             {
                 ResetSlotBtn();
+              
             }            
         }
     }
@@ -182,6 +185,11 @@ public class StoreSlotController : MonoBehaviour
         if(GoldManager.Instance.UseCurrentGold(1))
         {
             SetupStoreSlots();
+            _rerollNum++;
+            if (_rerollNum >= 10)
+            {
+                SteamAchievement.Achieve("ACH_BLD_REROLL");
+            }
         }
     }
 
