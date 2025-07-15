@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +12,13 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     private GameObject _safePrefab;
 
+    private List<GameObject> _showOnUnlock = new();
+    private int[] _unlockedTileNumList = new int[5];
+
     private GameObject _tileInfoPanel;
+
+    private Transform _showUnlockedTilePanel;
+    private JournalSlot _unlockedTileSlot;
 
     private bool _isInit;
     private bool _isJournalOpen = false;
@@ -49,7 +56,13 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         _scrollView = transform.GetChild(0).GetChild(0).gameObject;
         _slotParent = _scrollView.transform.GetChild(0).GetChild(0);
         _infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
+        _showUnlockedTilePanel = transform.GetChild(0).GetChild(2);
+        _unlockedTileSlot = _showUnlockedTilePanel.GetComponentInChildren<JournalSlot>();
         EventBus.SubscribeSceneLoaded(CloseJournalOnSceneChange);
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/SwordTile"));
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/DamageTotemTile"));
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/CloudTile"));
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/TurtleTile"));
         _isInit = false;
     }
 
@@ -126,6 +139,11 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
                 else
                 {
                     _mythicStoreTiles.Add(tilePrefab);
+                }
+
+                if(tileInfo.UnlockInt != 0)
+                {
+                    _unlockedTileNumList[tileInfo.UnlockInt]++;
                 }
             }
             else
@@ -215,6 +233,26 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             _scrollView.SetActive(true);
             _isJournalOpen = true;
         }
+    }
+
+    public void ShowUnlockTiles()
+    {
+        if(SaveManager.ShownUnlockLevel < SaveManager.UnlockLevel)
+        {
+            SaveManager.SaveShownUnlockLevel(SaveManager.ShownUnlockLevel + 1);
+            _showUnlockedTilePanel.gameObject.SetActive(true);
+            _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
+            _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
+                $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
+
+
+        }
+    }
+
+    public void HideUnlockTiles()
+    {
+        _showUnlockedTilePanel.gameObject.SetActive(false);
+        ShowUnlockTiles();
     }
 
     private void OnDestroy()
