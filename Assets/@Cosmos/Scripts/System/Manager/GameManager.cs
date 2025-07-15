@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void ShowSetting(){
         
-        if(Input.GetKeyDown(KeyCode.Escape) && (SceneLoader.IsInBuilding() || SceneLoader.IsInTitle() || SceneLoader.IsInStage()))
+        if(Input.GetKeyDown(KeyCode.Escape) && (SceneLoader.IsInBuilding() || SceneLoader.IsInTitle() || SceneLoader.IsInStage()) && !JournalSlotManager.Instance.IsJournalOpen)
         {
             SceneLoader.ToggleSetting();
         }    

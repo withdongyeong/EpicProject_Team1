@@ -14,6 +14,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private GameObject _tileInfoPanel;
 
     private bool _isInit;
+    private bool _isJournalOpen = false;
 
 
     private Transform _slotParent; //슬롯의 부모, 그러니까 StoreSlotController가 붙은 쯤의 위치입니다.
@@ -37,6 +38,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     public List<GameObject> LegendaryStoreTiles => _legendaryStoreTiles;
     public List<GameObject> MythicStoreTiles => _mythicStoreTiles;
     public List<GameObject> FirstStoreTiles => _firstStoreTiles;
+    public bool IsJournalOpen => _isJournalOpen;
 
     private bool _isJournalSlotUpdated = true;
 
@@ -189,7 +191,10 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private void CloseJournal()
     {
         if (DragManager.Instance.GetCurrentDragObject() == null)
-            _scrollView.SetActive(false);    
+        {
+            _scrollView.SetActive(false);
+            _isJournalOpen = false;
+        }
     }
 
     public void CloseJournalOnSceneChange(Scene scene, LoadSceneMode mode)
@@ -197,6 +202,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(_isInit)
         {
             _scrollView.SetActive(false);
+            _isJournalOpen = false;
         }
         
     }
@@ -206,10 +212,12 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(_scrollView.activeSelf)
         {
             _scrollView.SetActive(false);
+            _isJournalOpen = false;
         }
         else
         {
             _scrollView.SetActive(true);
+            _isJournalOpen = true;
         }
     }
 
