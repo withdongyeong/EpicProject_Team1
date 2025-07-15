@@ -56,7 +56,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         _scrollView = transform.GetChild(0).GetChild(0).gameObject;
         _slotParent = _scrollView.transform.GetChild(0).GetChild(0);
         _infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
-        _showUnlockedTilePanel = transform.GetChild(0).GetChild(2);
+        _showUnlockedTilePanel = transform.GetChild(0).GetChild(1);
         _unlockedTileSlot = _showUnlockedTilePanel.GetComponentInChildren<JournalSlot>();
         EventBus.SubscribeSceneLoaded(CloseJournalOnSceneChange);
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/SwordTile"));
@@ -71,6 +71,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     {
         //DontDestroyOnLoad(Instantiate(_eventSystem));
         SetStoreTileList();
+        HideUnlockTiles();
         _isInit = true; 
     }
 
@@ -240,10 +241,17 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(SaveManager.ShownUnlockLevel < SaveManager.UnlockLevel)
         {
             SaveManager.SaveShownUnlockLevel(SaveManager.ShownUnlockLevel + 1);
-            _showUnlockedTilePanel.gameObject.SetActive(true);
-            _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
-            _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-                $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
+            if(SaveManager.ShownUnlockLevel - 1 < _showOnUnlock.Count)
+            {
+                if (_showOnUnlock[SaveManager.ShownUnlockLevel - 1] != null)
+                {
+                    _showUnlockedTilePanel.gameObject.SetActive(true);
+                    _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
+                    _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
+                        $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
+                }
+            }
+                       
         }
     }
 
