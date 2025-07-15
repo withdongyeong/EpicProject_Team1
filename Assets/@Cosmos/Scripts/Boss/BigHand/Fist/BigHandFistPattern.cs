@@ -72,10 +72,11 @@ public class BigHandFistPattern : IBossAttackPattern
         
         // 주먹 영역 전조 + 공격 (벽 생성 없이)
         List<Vector3Int> singlePointShape = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
+
+        boss.StartCoroutine(PlayAttackSound("BigHandFistActivate", 1f));
+
         foreach (Vector3Int pos in fistArea)
         {
-            boss.StartCoroutine(PlayAttackSound("BigHandFistActivate", 1f));
-
             boss.BombHandler.ExecuteWarningThenDamage(
                 singlePointShape, 
                 pos, 
