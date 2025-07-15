@@ -25,6 +25,8 @@ public abstract class BaseBoss : MonoBehaviour
     private bool _isStopped = false; // 공격 중지 여부
     private bool _unstoppable = false; // 공격 중지 가능 여부
     private bool _isHandBoss = false; // 손 보스 여부 (손 보스는 공격 중지 불가능)
+    
+    private int _lastExecutedUnitIndex = -1;
 
     // 컴포넌트 참조
     private GridManager _gridSystem;
@@ -463,11 +465,30 @@ public abstract class BaseBoss : MonoBehaviour
     /// <summary>
     /// 랜덤 실행 단위 실행
     /// </summary>
+    /// <summary>
+    /// 랜덤 실행 단위 실행 (바로 직전 패턴 제외)
+    /// </summary>
     private IEnumerator ExecuteRandomUnit()
     {
-        int randomIndex = UnityEngine.Random.Range(0, _executableUnits.Count);
+        int randomIndex;
+    
+        // 패턴이 1개뿐이면 그냥 실행
+        if (_executableUnits.Count <= 1)
+        {
+            randomIndex = 0;
+        }
+        else
+        {
+            // 바로 직전 패턴을 제외하고 랜덤 선택
+            do
+            {
+                randomIndex = UnityEngine.Random.Range(0, _executableUnits.Count);
+            } while (randomIndex == _lastExecutedUnitIndex);
+        }
+    
         ExecutableUnit selectedUnit = _executableUnits[randomIndex];
-        
+        _lastExecutedUnitIndex = randomIndex; // 현재 실행한 패턴 인덱스 저장
+    
         if (selectedUnit.IsIndividualPattern)
         {
             yield return StartCoroutine(ExecuteIndividualPattern(selectedUnit.IndividualPattern));

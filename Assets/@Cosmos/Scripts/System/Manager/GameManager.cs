@@ -107,13 +107,14 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("김요한 = 타이틀로 돌아갑니다.");
         AnalyticsManager.Instance.GoTitleEvent();
         LogHandler.SetTotalPlayTimer();
+        currentUnlockLevel = SaveManager.UnlockLevel;
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
         GoldManager.Instance.SetCurrentGold(16);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
-        currentUnlockLevel = SaveManager.UnlockLevel;
+        
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);

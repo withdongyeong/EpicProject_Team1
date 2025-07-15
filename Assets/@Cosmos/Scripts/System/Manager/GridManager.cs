@@ -167,6 +167,7 @@ public class GridManager : Singleton<GridManager>
         EventBus.SubscribeSceneLoaded(GridPosChange);
         EventBus.SubscribeTilePlaced(AddPlacedTileList);
         EventBus.SubscribeTileSell(RemovePlacedTileList);
+        EventBus.SubscribeGameStart(IsGridFull);
         cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
         Sprite[] cells = Resources.LoadAll<Sprite>("NewBoard/cellLine");
         //occupiedSprite = cells.FirstOrDefault(s => s.name == "cellLineOccupied"); // 점유 스프라이트 로드
@@ -487,10 +488,34 @@ public class GridManager : Singleton<GridManager>
         }
         return tileCount;
     }
+    //전부 배치 도전과제용 함수입니다
+    private void IsGridFull()
+    {
+        bool result = true;
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector3Int gridPos = new Vector3Int(x, y, 0);
+                if (IsCellAvailable(gridPos))
+                {
+                    result = false;
+
+                }
+            }
+        }
+
+        if(result)
+        {
+            SteamAchievement.Achieve("ACH_BLD_FULL");
+        }
+    }
+    
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(GridPosChange);
         EventBus.UnSubscribeTilePlaced(AddPlacedTileList);
         EventBus.UnSubscribeTileSell(RemovePlacedTileList);
+        EventBus.UnsubscribeGameStart(IsGridFull);
     }
 }
