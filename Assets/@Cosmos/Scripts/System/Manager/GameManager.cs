@@ -9,15 +9,14 @@ public class GameManager : Singleton<GameManager>
     
     [Header("Game State")]
     private bool isInStage = false; // 스테이지 진행 중 ?
+    public bool IsInStage => isInStage;
     private bool isInBuilding = false; // 빌딩 모드 ?
+    public bool IsInBuilding => isInBuilding;
     private bool isInTutorial = false; // 튜토리얼 진행 중 ?
-    
-    
     public bool IsInTutorial => isInTutorial;
-    
-    private float totalPlayTime = 0f; // 총 플레이 시간
-    private float stageClearTimer = 0f; // 스테이지 클리어 타이머
-    public float StageClearTimer => stageClearTimer;
+
+    private LogHandler logHandler;
+    public LogHandler LogHandler => logHandler;
     //현재 적용되고 있는 해금된 별자리들의 레벨입니다.
     private int currentUnlockLevel;
 
@@ -33,22 +32,17 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        logHandler = GetComponent<LogHandler>();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
-        EventBus.SubscribeGameStart(SetTimer);
-        EventBus.SubscribeBossDeath(StopTimer);
         LoadGameData();
         currentUnlockLevel = SaveManager.UnlockLevel;
         SetResolution(SaveManager.Resolution);
-        SetTotalPlaytime();
     }
     
     private void Update()
     {
         ShowSetting();
-        UpdateTimer();
-        UpdateTotalPlaytime();
-        
         // Alt + Enter 감지 → 비율 깨짐 방지
         if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
         {
@@ -110,6 +104,9 @@ public class GameManager : Singleton<GameManager>
     // 타이틀로 돌아갈 때 벌어지는 일들
     public void LoadTitle()
     {
+        Debug.Log("김요한 = 타이틀로 돌아갑니다.");
+        AnalyticsManager.Instance.GoTitleEvent();
+        LogHandler.SetTotalPlayTimer();
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
         GoldManager.Instance.SetCurrentGold(16);
@@ -141,44 +138,6 @@ public class GameManager : Singleton<GameManager>
         difficultyLevel = level;
     }
 
-
-    private void SetTimer()
-    {
-        stageClearTimer = 0f; // 타이머 초기화
-        isInStage = true; // 스테이지 진행 중으로 설정
-    }
-    private void UpdateTimer()
-    {
-        if (!isInStage) return; // 스테이지가 진행 중이 아닐 때는 타이머 업데이트 안 함
-        if (stageClearTimer >= 0f)
-        {
-            stageClearTimer += Time.deltaTime; // 타이머 업데이트
-        }
-    }
-
-    private void StopTimer()
-    {
-        isInStage = false;
-    }
-
-    
-    private void SetTotalPlaytime()
-    {
-        totalPlayTime = 0; // 총 플레이 시간 설정
-    }
-
-    private void UpdateTotalPlaytime()
-    {
-        if (isInStage || isInBuilding)
-        {
-            totalPlayTime += Time.deltaTime; // 스테이지가 진행 중일 때만 총 플레이 시간 업데이트
-        }
-    }
-
-    public float GetStageClearTime()
-    {
-        return stageClearTimer; // 현재 스테이지 클리어 타이머 반환
-    }
     
     
     public void GameQuit()
@@ -195,8 +154,7 @@ public class GameManager : Singleton<GameManager>
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
-        EventBus.UnsubscribeGameStart(SetTimer);
-        EventBus.UnsubscribeBossDeath(StopTimer);
+
         SceneLoader.LoadSceneWithName("InitializeScene");
         
     }

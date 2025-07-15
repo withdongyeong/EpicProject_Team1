@@ -12,7 +12,7 @@ public class BeetleSummonSkill : SkillBase
     protected override void Awake()
     {
         base.Awake();
-        _beetlePrefab = Resources.Load<GameObject>("Prefabs/Summons/Beetle/Beetle");
+        _beetlePrefab = Resources.Load<GameObject>("Prefabs/Summons/Beetle/Cat");
         EventBus.SubscribeGameStart(SpawnBeetle);
     }
 

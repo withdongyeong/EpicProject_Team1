@@ -283,7 +283,7 @@ public class GridManager : Singleton<GridManager>
             //if(grid[gridPos.x, gridPos.y].IsOccupied) Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
             return !grid[gridPos.x, gridPos.y].IsOccupied;
         }
-        Debug.Log("범위 밖 " + gridPos);
+        //Debug.Log("범위 밖 " + gridPos);
         return false;
     }
 

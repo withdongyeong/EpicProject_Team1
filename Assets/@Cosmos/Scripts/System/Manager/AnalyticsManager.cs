@@ -63,7 +63,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 1. 필요한 정보를 수집합니다.
         string itemsJson = JsonConvert.SerializeObject(GridManager.Instance.GetPlacedTileCount()); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
         int stageIndex =  StageSelectManager.Instance.StageNum;
-        float stageClearTime = GameManager.Instance.GetStageClearTime();
+        float stageClearTime = GameManager.Instance.LogHandler.GetStageClearTimer();
         
         
         // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
@@ -77,16 +77,27 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 3. 이벤트를 기록하고 전송합니다.
         AnalyticsService.Instance.RecordEvent(stageClearEvent);
         AnalyticsService.Instance.Flush();
-
+        
         Debug.Log($"'stage_clear' 이벤트 전송 성공 : StageClearEvent");
-        Debug.Log(itemsJson);
+       //Debug.Log(itemsJson);
     }
 
-    public void SendGameQuitEvent() // 게임 종료시 보낼 정보
+    public void GoTitleEvent() // 게임 종료시 보낼 정보
     {
         if(!IsInit()) return;
         
-        
+        int stageIndex = StageSelectManager.Instance.StageNum; // 현재 스테이지 인덱스
+        float totalPlayTime = GameManager.Instance.LogHandler.GetTotalPlayTimer();
+        string itemsJson = JsonConvert.SerializeObject(GridManager.Instance.GetPlacedTileCount()); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
+        // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
+        CustomEvent goTitle = new CustomEvent("go_title")
+        {
+            { "stage_index", stageIndex },
+            { "session_clear_time", totalPlayTime },
+            { "used_items",  itemsJson}
+        };
+        AnalyticsService.Instance.RecordEvent(goTitle);
+        AnalyticsService.Instance.Flush();
     }
     
     
