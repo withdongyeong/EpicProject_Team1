@@ -505,7 +505,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328018
-    m_Localized: 'Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage.
+    m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
       Consumes 2 per second.'
     m_Metadata:
       m_Items: []
@@ -883,17 +883,17 @@ MonoBehaviour:
     m_Localized: Select difficulty
     m_Metadata:
       m_Items: []
-  - m_Id: 2329920733323264
-    m_Localized: Lava Blade
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2329920741711872
+  - m_Id: 2333737138921472
     m_Localized: "On the next attack, all swords <sprite name=\"Sword\"> will inflict
       1 Burn <sprite name=\"Fire\"> and their attack power will be equal to the number
       of summoned swords. Summon a sword <sprite name=\"Sword\"> and all swords will
       attack.\r\n (Damage: <color=red>Number of summoned swords</color>)\r\n Cooldown
       is reduced by 10% for each summoned <sprite name=\"Summon\"> located on the
       <color=yellow>star <sprite name=\"Star\">."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333737105367040
+    m_Localized: Lava Blade
     m_Metadata:
       m_Items: []
   references:
