@@ -9,7 +9,7 @@ public class BigHandPattern3 : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
     private int _damage;
-
+    private bool _isSoundCoolTime = false;
     public string PatternName => "패턴3_나선확산";
     
     public BigHandPattern3(GameObject attackEffectPrefab, int damage)
@@ -58,7 +58,7 @@ public class BigHandPattern3 : IBossAttackPattern
                 
                 if (IsWithin7x7Grid(absolutePos))
                 {
-                    boss.StartCoroutine(PlayAttackSound());
+                    boss.StartCoroutine(PlayAttackSound(boss, boss.Beat / 8));
 
                     boss.BombHandler.ExecuteFixedBomb(
                         new List<Vector3Int> { targetPos }, 
@@ -88,10 +88,26 @@ public class BigHandPattern3 : IBossAttackPattern
         Debug.Log("패턴3 정리 완료");
     }
 
-    public IEnumerator PlayAttackSound()
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
     {
-        yield return new WaitForSeconds(1); // 예시로 빈 코루틴 반환
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
+    }
+
+    public IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
         SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
     }
 
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
+    }
 }
