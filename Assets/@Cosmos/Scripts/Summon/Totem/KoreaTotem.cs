@@ -6,8 +6,8 @@ public class KoreaTotem : BaseTotem
 {
     private BaseBoss _targetEnemy;
 
-    [SerializeField] GameObject _lesserProjectile;
-    [SerializeField] GameObject _betterProjectile;
+    GameObject _lesserProjectile;
+    GameObject _betterProjectile;
 
     private void Awake()
     {
