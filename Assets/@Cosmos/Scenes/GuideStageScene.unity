@@ -1513,7 +1513,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.375
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2151,6 +2151,7 @@ MonoBehaviour:
   contentText: 
   goalText: 
   tilesPlaced: 0
+  starActivated: 0
   instructionTextLocalized:
     m_TableReference:
       m_TableCollectionName: GUID:acbd475831ad36a4dbe7ab499a00530a
@@ -4844,6 +4845,15 @@ MonoBehaviour:
       m_TableCollectionName: GUID:acbd475831ad36a4dbe7ab499a00530a
     m_TableEntryReference:
       m_KeyId: 43619328055
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  Test:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

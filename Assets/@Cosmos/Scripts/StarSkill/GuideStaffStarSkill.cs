@@ -7,15 +7,14 @@ public class GuideStaffStarSkill : EnhancementStarSkill
     {
         if (!isQuestCompleted)
         {
-            Debug.Log("[튜토리얼] 가이드 스태프 스타 스킬 퀘스트 완료");
+            FindAnyObjectByType<PlaceQuest>().starActivated += 1;
             isQuestCompleted = true;
         }
     }
-    public void QuestReset()
-        {
+    public void QuestReset() {
         if (isQuestCompleted)
         {
-            Debug.Log("[튜토리얼] 가이드 스태프 스타 스킬 퀘스트 실패");
+            FindAnyObjectByType<PlaceQuest>().starActivated -= 1;
             isQuestCompleted = false;
         }
     }
