@@ -264,7 +264,7 @@ public class StoreSlotController : MonoBehaviour
         _legendaryStoreTiles = JournalSlotManager.Instance.LegendaryStoreTiles.ToList();
         _mythicStoreTiles = JournalSlotManager.Instance.MythicStoreTiles.ToList();
         _firstStoreTiles = JournalSlotManager.Instance.FirstStoreTiles.ToList();
-        _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
+        _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/StaffTile");
 
     }
 
