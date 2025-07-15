@@ -179,6 +179,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if (DragManager.Instance.GetCurrentDragObject() == null)
         {
             _scrollView.SetActive(false);
+
             if (_infoPanel != null)
             {
                 _infoPanel.Hide();
