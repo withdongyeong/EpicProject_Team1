@@ -241,14 +241,9 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         {
             SaveManager.SaveShownUnlockLevel(SaveManager.ShownUnlockLevel + 1);
             _showUnlockedTilePanel.gameObject.SetActive(true);
-            if(_showOnUnlock[SaveManager.ShownUnlockLevel - 1] != null)
-            {
-                _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
-                _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-                    $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
-
-            }
-
+            _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
+            _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
+                $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
         }
     }
 
