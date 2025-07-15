@@ -87,13 +87,15 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
     public void GoTitleEvent() // 게임 종료시 보낼 정보
     {
         if(!IsInit()) return;
-        
+        int difficultyLevel = GameManager.Instance.DifficultyLevel;
         int stageIndex = StageSelectManager.Instance.StageNum; // 현재 스테이지 인덱스
         float totalPlayTime = GameManager.Instance.LogHandler.GetTotalPlayTimer();
+        
         string itemsJson = JsonConvert.SerializeObject(GridManager.Instance.GetPlacedTileCount()); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
         // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent goTitle = new CustomEvent("go_title")
         {
+            { "difficulty_level", difficultyLevel },
             { "stage_index", stageIndex },
             { "session_clear_time", totalPlayTime },
             { "used_items",  itemsJson}
