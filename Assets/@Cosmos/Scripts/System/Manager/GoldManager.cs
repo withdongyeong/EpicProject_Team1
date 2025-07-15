@@ -34,8 +34,12 @@ public class GoldManager : Singleton<GoldManager>
         {
             _currentGold = gold;
         }
+        if(_currentGold >= 30)
+        {
+            SteamAchievement.Achieve("ACH_BLD_GOLD");
+            Debug.Log("30원모음");
+        }
         EventBus.PublishGoldChanged(_currentGold);
-        
     }
 
     /// <summary>
@@ -47,6 +51,11 @@ public class GoldManager : Singleton<GoldManager>
         int changedGold = Mathf.Max(_currentGold + gold, 0);
         deltaGold += changedGold - _currentGold;
         _currentGold = changedGold;
+        if (_currentGold >= 30)
+        {
+            SteamAchievement.Achieve("ACH_BLD_GOLD");
+            Debug.Log("30원모음");
+        }
         EventBus.PublishGoldChanged(_currentGold);
     }
 

@@ -125,6 +125,21 @@ public class LastBoss : BaseBoss
     protected override void Die()
     {
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
+
+        //클리어 도전과제를 달성합니다
+        int difficulty = GameManager.Instance.DifficultyLevel;
+        if (difficulty == 2)
+        {
+            SteamAchievement.Achieve("ACH_STG_HARD");
+            Debug.Log("하드클리어");
+        }
+
+        if(difficulty == 3)
+        {
+            SteamAchievement.Achieve("ACH_STG_HELL");
+            Debug.Log("헬클리어");
+        }
+
         if(GameManager.Instance.DifficultyLevel + 1 > SaveManager.GameModeLevel)
         {
             SaveManager.SaveGameModeLevel(GameManager.Instance.DifficultyLevel + 1);

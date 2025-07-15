@@ -243,6 +243,11 @@ public abstract class BaseBoss : MonoBehaviour
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
         _totalDamageManager.AddDamage(damage);
+
+        if(damage >= 200)
+        {
+            SteamAchievement.Achieve("ACH_BTL_DAMAGE");
+        }
         
         if (_currentHealth <= 0)
         {
@@ -379,6 +384,25 @@ public abstract class BaseBoss : MonoBehaviour
         _isStopped = false;
         StartCoroutine(AttackRoutine());
         StartCoroutine(ApplyDebuffsRoutine());
+    }
+
+    /// <summary>
+    /// 공격 중지 불가 보스용 데미지만 증가
+    /// </summary>
+    public void IncreasedDamageTaken(float time)
+    {
+        _isStopped = true;
+        StartCoroutine(IncreasedDamageTakenRoutine(time));
+    }
+
+    /// <summary>
+    /// 공격 중지 불가 보스용 데미지 증가 루틴
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator IncreasedDamageTakenRoutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _isStopped = false;
     }
 
     /// <summary>
@@ -529,7 +553,6 @@ public abstract class BaseBoss : MonoBehaviour
         yield return new WaitForSeconds(delay);
         SoundManager.Instance.OrcMageSoundClip(clipName);
     }
-
 
     private void OnDestroy()
     {
