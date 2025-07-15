@@ -78,7 +78,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
         // 3. 이벤트를 기록하고 전송합니다.
         AnalyticsService.Instance.RecordEvent(stageClearEvent);
-        AnalyticsService.Instance.Flush();
+        //AnalyticsService.Instance.Flush();
         
         Debug.Log($"'stage_clear' 이벤트 전송 성공 : StageClearEvent");
        //Debug.Log(itemsJson);
@@ -101,7 +101,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "used_items",  itemsJson}
         };
         AnalyticsService.Instance.RecordEvent(goTitle);
-        AnalyticsService.Instance.Flush();
+       //
     }
     
     

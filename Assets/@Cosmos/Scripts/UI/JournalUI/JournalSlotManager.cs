@@ -244,8 +244,6 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
             _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
                 $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
-
-
         }
     }
 
