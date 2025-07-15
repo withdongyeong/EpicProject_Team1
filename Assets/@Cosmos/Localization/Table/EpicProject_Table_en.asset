@@ -505,7 +505,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328018
-    m_Localized: 'Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage.
+    m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
       Consumes 2 per second.'
     m_Metadata:
       m_Items: []
@@ -823,10 +823,6 @@ MonoBehaviour:
     m_Localized: Ancient Totem
     m_Metadata:
       m_Items: []
-  - m_Id: 1528835340902400
-    m_Localized: Lava Blade
-    m_Metadata:
-      m_Items: []
   - m_Id: 1528835340902401
     m_Localized: cat wizard
     m_Metadata:
@@ -840,20 +836,14 @@ MonoBehaviour:
       name=\"Star\">."
     m_Metadata:
       m_Items: []
-  - m_Id: 1528835345096705
-    m_Localized: "On the next attack, all swords <sprite name=\"Sword\"> will inflict
-      1 Burn <sprite name=\"Fire\"> and their attack power will be equal to the number
-      of summoned swords. Summon a sword <sprite name=\"Sword\"> and all swords will
-      attack.\r\n (Damage: <color=red>Number of summoned swords</color>)\r\n Cooldown
-      is reduced by 10% for each summoned <sprite name=\"Summon\"> located on the
-      <color=yellow>star <sprite name=\"Star\">."
-    m_Metadata:
-      m_Items: []
   - m_Id: 1528835345096706
-    m_Localized: "<color=yellow>Start of battle</color>: Summon a cat wizard.\r\n
-      <color=yellow>When activated</color>: Gain 5 Barrier <sprite name=\"Barrier\">.\r\n
-      Gain an additional 5 Barrier <sprite name=\"Barrier\"> for each <sprite name=\"Summon\">
-      located on the <color=yellow>star</color>. (No duplicates)"
+    m_Localized: '<color=yellow>At the start of combat</color>: Summon a Cat Wizard.
+
+      <color=yellow>On
+      activation</color>: Gain 5 Barrier.
+
+      Gain an additional 5 Barrier for
+      each type of Summon <sprite name="Summon"> on the <color=yellow>Star</color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 2315244007989257
@@ -889,11 +879,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2315244012183559
-    m_Localized: Very hard
+    m_Localized: hell
     m_Metadata:
       m_Items: []
   - m_Id: 2315244012183561
     m_Localized: Select difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333737138921472
+    m_Localized: "On the next attack, all swords <sprite name=\"Sword\"> will inflict
+      1 Burn <sprite name=\"Fire\"> and their attack power will be equal to the number
+      of summoned swords. Summon a sword <sprite name=\"Sword\"> and all swords will
+      attack.\r\n (Damage: <color=red>Number of summoned swords</color>)\r\n Cooldown
+      is reduced by 10% for each summoned <sprite name=\"Summon\"> located on the
+      <color=yellow>star <sprite name=\"Star\">."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333737105367040
+    m_Localized: Lava Blade
     m_Metadata:
       m_Items: []
   references:
