@@ -96,8 +96,10 @@ public class TestManager : MonoBehaviour
     
     private void DeleteTutorialData()
     {
+        
         PlayerPrefs.DeleteKey(SaveKeys.IsTutorialCompleted);
         PlayerPrefs.Save();
+        SaveManager.LoadAll();
     }
     
     private void DeleteSaveData()

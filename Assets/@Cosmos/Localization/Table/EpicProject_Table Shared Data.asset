@@ -167,15 +167,15 @@ MonoBehaviour:
     m_Key: Tile_TileName_MoaiTotemTile
     m_Metadata:
       m_Items: []
-  - m_Id: 1528835340902400
-    m_Key: Tile_TileName_MagmaBladeTIle
+  - m_Id: 2333737105367040
+    m_Key: Tile_TileName_MagmaBladeTile
     m_Metadata:
       m_Items: []
   - m_Id: 1528835340902401
     m_Key: Tile_TileName_CatTile
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531586527232
+  - m_Id: 2411178289143808
     m_Key: New Entry
     m_Metadata:
       m_Items: []
@@ -331,15 +331,15 @@ MonoBehaviour:
     m_Key: Tile_TileDescription_MoaiTotemTile
     m_Metadata:
       m_Items: []
-  - m_Id: 1528835345096705
-    m_Key: Tile_TileDescription_MagmaBladeTIle
+  - m_Id: 2333737138921472
+    m_Key: Tile_TileDescription_MagmaBladeTile
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096706
     m_Key: Tile_TileDescription_CatTile
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531590721536
+  - m_Id: 2411178297532416
     m_Key: New Entry 1
     m_Metadata:
       m_Items: []
@@ -367,7 +367,7 @@ MonoBehaviour:
     m_Key: Tile_TileCategoty_Summon
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531590721537
+  - m_Id: 2411178297532417
     m_Key: New Entry 2
     m_Metadata:
       m_Items: []
@@ -403,7 +403,7 @@ MonoBehaviour:
     m_Key: Tile_TileSynergy_Cloud
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531590721538
+  - m_Id: 2411178297532418
     m_Key: New Entry 3
     m_Metadata:
       m_Items: []
@@ -443,7 +443,7 @@ MonoBehaviour:
     m_Key: Tile_TileTagDescription_Curse
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531590721539
+  - m_Id: 2411178297532419
     m_Key: New Entry 4
     m_Metadata:
       m_Items: []
@@ -475,7 +475,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Instruction7
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531594915840
+  - m_Id: 2411178297532420
     m_Key: New Entry 5
     m_Metadata:
       m_Items: []
@@ -507,7 +507,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Title7
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531594915841
+  - m_Id: 2411178297532421
     m_Key: New Entry 6
     m_Metadata:
       m_Items: []
@@ -539,7 +539,7 @@ MonoBehaviour:
     m_Key: UI_Quest_SubTitle7
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531594915842
+  - m_Id: 2411178297532422
     m_Key: New Entry 7
     m_Metadata:
       m_Items: []
@@ -571,7 +571,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Content7
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531594915843
+  - m_Id: 2411178297532423
     m_Key: New Entry 8
     m_Metadata:
       m_Items: []
@@ -603,7 +603,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Goal7
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531594915844
+  - m_Id: 2411178297532424
     m_Key: New Entry 9
     m_Metadata:
       m_Items: []
@@ -655,7 +655,51 @@ MonoBehaviour:
     m_Key: UI_Button_No
     m_Metadata:
       m_Items: []
-  - m_Id: 1543531594915845
+  - m_Id: 2369512836571136
+    m_Key: UI_Button_Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571137
+    m_Key: UI_Button_Guide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571138
+    m_Key: UI_Button_Book
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571139
+    m_Key: UI_Button_Credit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571140
+    m_Key: UI_Button_Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571141
+    m_Key: UI_Button_Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571142
+    m_Key: UI_Button_Nomal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571143
+    m_Key: UI_Button_Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571144
+    m_Key: UI_Button_VeryHard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571145
+    m_Key: UI_Button_Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571146
+    m_Key: UI_Button_Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2411178297532425
     m_Key: New Entry 10
     m_Metadata:
       m_Items: []
@@ -749,6 +793,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 815751471177729
     m_Key: UI_Text_Playtutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2315244012183561
+    m_Key: UI_Text_LevelSetting
     m_Metadata:
       m_Items: []
   m_Metadata:

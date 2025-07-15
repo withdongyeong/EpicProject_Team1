@@ -18,7 +18,7 @@ public abstract class SkillBase : MonoBehaviour
 
     [Header("발동 이펙트")]
     private GameObject activateEffectPrefab;
-    private float effectDuration = 0.5f;
+    private float effectDuration = 1.3f;
 
 
     //쿨다운 계수입니다.

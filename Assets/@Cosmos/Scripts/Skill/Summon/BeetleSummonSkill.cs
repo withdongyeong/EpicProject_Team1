@@ -21,7 +21,7 @@ public class BeetleSummonSkill : SkillBase
     {
         if (tileObject.IsPlaced)
         {
-            Vector3 spawnPos = transform.TransformPoint(new Vector3(0.5f, 0.5f));
+            Vector3 spawnPos = transform.TransformPoint(new Vector3(0, 1f));
             Quaternion rotate = transform.parent.rotation;
             Instantiate(_beetlePrefab, spawnPos, rotate);
             _playerProtection = FindAnyObjectByType<PlayerProtection>();
@@ -33,6 +33,11 @@ public class BeetleSummonSkill : SkillBase
     {
         base.Activate();
         _playerProtection.SetProtection(true, 5 + _adjacentSummonNameList.Count * 5);
+        // 인접 소환수 7개 이상이면 업적
+        if (_adjacentSummonNameList.Count >= 7)
+        {
+            SteamAchievement.Achieve("ACH_CON_BEETLE");
+        }
         
     }
     protected override void OnDestroy()

@@ -117,16 +117,21 @@ public class TurtleBase : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, dir);
             Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
             projectileObj.transform.rotation = lookRotation * clockwise90;
-            Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3);
+            bool isRainbow;
             if (_chargedProtection < 15)
             {
                 SoundManager.Instance.PlayTileSoundClip("TurtleAttack");
+                isRainbow = false;
             }
             else
             {
                 SoundManager.Instance.PlayTileSoundClip("TurtleRainbowAttack");
+                isRainbow = true;
             }
+
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3,isRainbow);
+            
             _chargedProtection = 0;
 
         }

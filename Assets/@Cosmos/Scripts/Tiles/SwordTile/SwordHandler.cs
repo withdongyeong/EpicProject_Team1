@@ -101,6 +101,10 @@ public class SwordHandler : MonoBehaviour
         if (sword != null && !swords.Contains(sword))
         {
             swords.Add(sword);
+            if (swords.Count >= 20)
+            {
+                SteamAchievement.Achieve("ACH_CON_SWORD");
+            }
         }
     }
 

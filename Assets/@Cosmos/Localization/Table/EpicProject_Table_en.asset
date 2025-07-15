@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43610939393
-    m_Localized: DamageTotem
+    m_Localized: AngerTotem
     m_Metadata:
       m_Items: []
   - m_Id: 43610939394
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43610939401
-    m_Localized: KoreaTotem
+    m_Localized: WarTotem
     m_Metadata:
       m_Items: []
   - m_Id: 43610939402
@@ -111,7 +111,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43610939413
-    m_Localized: Longicorn beetle
+    m_Localized: Rhinoceros beetle
     m_Metadata:
       m_Items: []
   - m_Id: 43610939414
@@ -163,11 +163,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133696
-    m_Localized: "Fires a powerful projectile. \n(Damage: <color=red>40</color>)\nThe
-      effect is based on the number of clocks and statues located on the <color=yellow>star
-      <sprite name=\"Star\">. (No duplicates)\n<color=yellow>1</color>: Damage increases
-      to <color=red>50</color>.\n<color=yellow>2</color>: Fires 3 projectiles with
-      <color=red>30</color> damage."
+    m_Localized: "Fires a powerful projectile. \n \n  (Damage: <color=red>40</color>)\n
+      \n  The effect is based on the number of clocks and statues located on the
+      <color=yellow>star <sprite name=\"Star\">. (No duplicates)\n \n  <color=yellow>1</color>:
+      Damage increases to <color=red>50</color>.\n \n  <color=yellow>2</color>: Fires
+      3 projectiles with <color=red>30</color> damage."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133697
@@ -176,60 +176,39 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133698
     m_Localized: "<color=yellow>Individual Square (3)</color>: Restores <color=green>5</color>
-      health. \nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
+      health. \n \n  If there are 3 or more magic circles <sprite name=\"MagicCircle\">
       located on the <color=yellow>star<sprite name=\"Star\">, restores <color=green>10</color>
       health."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133699
-    m_Localized: '<color=red>Does not activate if there is no totem space.</color>
-
-      Stacks
-      totems <sprite name="Totem">. Activates when 3 totems <sprite name="Totem">
-      are stacked.
-
-      <color=yellow>When activated</color>: Inflict 1 Curse <sprite
-      name="Curse">.
-
-      <color=yellow>When enhanced</color>: Inflict 1 Curse
-      <sprite name="Curse"> and fires a projectile that deals damage proportional
-      to the number of Curses <sprite name="Curse"> on the enemy.
-
-      (Damage:
-      <color=red>Curse <sprite name="Curse"> (Minimum 1)</color>)
-
-      <color=yellow>Cooldown
-      is reduced by 10% for each Summon <sprite name="Summon"> located on the Star
-      <sprite name="Star">.'
+    m_Localized: "Stacks totems <sprite name=\"Totem\">. Activates when 3 totems
+      <sprite name=\"Totem\"> are stacked.\n \n <color=yellow>When activated</color>:
+      Inflict 1 Curse <sprite name=\"Curse\">.\n \n <color=yellow>When enhanced</color>:
+      Inflict 1 Curse <sprite name=\"Curse\"> and fires a projectile that deals damage
+      proportional to the number of Curses <sprite name=\"Curse\"> on the enemy.\n
+      \n (Damage: <color=red>Curse <sprite name=\"Curse\"> (Minimum 1)</color>)\n
+      \n <color=yellow>Cooldown is reduced by 10% for each Summon <sprite name=\"Summon\">
+      located on the Star <sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133700
-    m_Localized: 'Fires 3 projectiles.
-
-      (Damage: <color=red>8</color>)
-
-      <color=yellow>On
-      Hit</color>: Inflict 1 Burn <sprite name="Fire">.
-
-      If there are 3 or
-      more <sprite name="MagicCircle">s located on the <color=yellow>Star</color>,
-      fires 1 additional projectile.'
+    m_Localized: "Fires 3 projectiles.\n \n  (Damage: <color=red>8</color>)\n \n 
+      <color=yellow>On Hit</color>: Inflict 1 Burn <sprite name=\"Fire\">.\n \n 
+      If there are 3 or more <sprite name=\"MagicCircle\">s located on the <color=yellow>Star</color>,
+      fires 1 additional projectile."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133701
-    m_Localized: "Fires a projectile. \n(Damage: <color=red>8</color>)\n<color=yellow>On
-      hit</color>: Inflict 1 Burn <sprite name=\"Fire\">.\nIf there are 3 or more
-      <sprite name=\"MagicCircle\">s located on the <color=yellow>star</color>, fires
-      1 additional projectile."
+    m_Localized: "Fires a projectile. \n \n  (Damage: <color=red>8</color>)\n \n 
+      <color=yellow>On hit</color>: Inflict 1 Burn <sprite name=\"Fire\">.\n \n 
+      If there are 3 or more <sprite name=\"MagicCircle\">s located on the <color=yellow>star</color>,
+      fires 1 additional projectile."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133702
-    m_Localized: 'Fires a projectile.
-
-      (Damage: <color=red>15</color>)
-
-      <color=yellow>On
-      hit</color>: Inflict 1 Frostbyte<sprite name="Ice">'
+    m_Localized: "Fires a projectile.\n \n  (Damage: <color=red>15</color>)\n \n 
+      <color=yellow>On hit</color>: Inflict 1 Frostbyte<sprite name=\"Ice\">"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133703
@@ -237,54 +216,34 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133704
-    m_Localized: '<color=red>Does not activate if there is no totem space.</color>
-
-      Stacks
-      totems <sprite name="Totem">. Activates when 3 totems <sprite name="Totem">
-      are stacked.
-
-      <color=yellow>On activate</color>: Restores <color=green>5</color>
-      health.
-
-      <color=yellow>When enhanced</color>: The amount recovered is
-      doubled.
-
-      <color=yellow>Cooldown is reduced by 10% for each summon <sprite
-      name="Summon"> located on The Star<sprite name="Star">.'
+    m_Localized: "Stacks totems <sprite name=\"Totem\">. Activates when 3 totems
+      <sprite name=\"Totem\"> are stacked.\n \n  <color=yellow>On activate</color>:
+      Restores <color=green>5</color> health.\n \n  <color=yellow>When enhanced</color>:
+      The amount recovered is doubled.\n \n  <color=yellow>Cooldown is reduced by
+      10% for each summon <sprite name=\"Summon\"> located on The Star<sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133705
-    m_Localized: "Restores <color=green>5</color> health. \nIf there are 3 or more
-      magic circles <sprite name=\"MagicCircle\"> located on the <color=yellow>Star<sprite
+    m_Localized: "Restores <color=green>5</color> health. \n \n  If there are 3 or
+      more magic circles <sprite name=\"MagicCircle\"> located on the <color=yellow>Star<sprite
       name=\"Star\">, restores <color=green>10</color> health."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133706
-    m_Localized: '<color=yellow>Individual Square (3)</color>: Fires a projectile.
-
-      (Damage:<color=red>7</color>)
-
-      <color=red>On
-      Hit:</color> Inflict 1 Frostbyte<sprite name="Ice">'
+    m_Localized: "<color=yellow>Individual Square (3)</color>: Fires a projectile.\n
+      \n  (Damage:<color=red>7</color>)\n \n  <color=red>On Hit:</color> Inflict
+      1 Frostbyte<sprite name=\"Ice\">"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133707
-    m_Localized: '<color=red>Does not activate if there is no totem space.</color>
-
-      Stacks
-      totems <sprite name="Totem">. Activates when 3 totems <sprite name="Totem">
-      are stacked.
-
-      <color=yellow>On activate</color>: Fires a projectile.
-
-      (Damage:
-      <color=red>15</color>)
-
-      <color=yellow>When enhanced</color>: Damage is
-      multiplied by 5.
-
-      <color=yellow>Cooldown is reduced by 10% for each summon
-      <sprite name="Summon"> located on The Star<sprite name="Star">.'
+    m_Localized: "Stacks totems <sprite name=\"Totem\">. Activates when 3 totems
+      <sprite name=\"Totem\"> are stacked.\n \n <color=yellow>On activate</color>:
+      Enemies' Curse<sprite name=\"Curse\"> values are considered 5 higher for 4
+      seconds. (The actual values are unchanged; this effect only applies to curse
+      value-based conditions and damage calculations.)\n \n <color=yellow>When enhanced</color>:
+      Enemies' curse<sprite name=\"Curse\"> values are considered 10 higher for 4
+      seconds.\n \n <color=yellow>Cooldown is reduced by 10% for each summoned <sprite
+      name=\"Summon\"> located on the Star<sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133708
@@ -292,16 +251,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133709
-    m_Localized: "Summon a Sword<sprite name=\"Sword\"> and all swords attack. \n(Damage:
-      <color=red>5</color>) \nCooldown is reduced by 10% for each Summon<sprite name=\"Summon\">
-      located on the <color=yellow>star</color>."
+    m_Localized: "Summon a Sword<sprite name=\"Sword\"> and all swords attack. \n
+      \n  (Damage: <color=red>5</color>) \n \n  Cooldown is reduced by 10% for each
+      Summon<sprite name=\"Summon\"> located on the <color=yellow>star</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133710
     m_Localized: "Summon 3 Swords <sprite name=\"Sword\"> and each time you summon
-      them, all Swords <sprite name=\"Sword\"> will attack. \n(Damage: <color=red>5</color>)
-      \nCooldown is reduced by 10% for each Summon <sprite name=\"Summon\"> located
-      on a <color=yellow>Star <sprite name=\"Star\">."
+      them, all Swords <sprite name=\"Sword\"> will attack. \n \n  (Damage: <color=red>5</color>)
+      \n \n  Cooldown is reduced by 10% for each Summon <sprite name=\"Summon\">
+      located on a <color=yellow>Star <sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133711
@@ -310,45 +269,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133712
-    m_Localized: '<color=yellow>When purchased</color>: Cloud<sprite name="Cloud">
-      appears in the shop.
-
-      When granting Statue<sprite name="Ice">, there
-      is a 20% chance to inflict it again.
-
-      When granting Burn<sprite name="fire">,
-      there is a 20% chance to not inflict it.'
+    m_Localized: "When granting Statue<sprite name=\"Ice\">, there is a 20% chance
+      to inflict it again.\n When granting Burn<sprite name=\"fire\">, there is a
+      20% chance to not inflict it."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133713
-    m_Localized: '<color=yellow>Start of battle</color>: Summon a crow.
-
-      <color=yellow>When
-      15 Barriers<sprite name="Barrier"> are consumed</color>: Mark enemies with
-      a <sprite name="Mark">.
-
-      Cooldown is reduced by 10% for each <sprite
-      name="Summon"> summoned on a <color=yellow>star</color>.'
+    m_Localized: "<color=yellow>Start of battle</color>: Summon a crow.\n \n  <color=yellow>When
+      15 Barriers<sprite name=\"Barrier\"> are consumed</color>: Mark enemies with
+      a <sprite name=\"Mark\">.\n \n  Cooldown is reduced by 10% for each <sprite
+      name=\"Summon\"> summoned on a <color=yellow>star</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133714
-    m_Localized: 'On the next attack, all swords <sprite name="Sword"> will inflict
-      1 Burn <sprite name="Fire">. Summon a sword <sprite name="Sword"> and all swords
-      will attack.
-
-      (Damage: <color=red>5</color>)
-
-      Cooldown is reduced
-      by 10% for each summon <sprite name="Summon"> located on the <color=yellow>star
-      <sprite name="Star">.'
+    m_Localized: "On the next attack, all swords <sprite name=\"Sword\"> will inflict
+      1 Burn <sprite name=\"Fire\">. Summon a sword <sprite name=\"Sword\"> and all
+      swords will attack.\n \n  (Damage: <color=red>5</color>)\n \n  Cooldown is
+      reduced by 10% for each summon <sprite name=\"Summon\"> located on the <color=yellow>star
+      <sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133715
-    m_Localized: 'Fires a projectile. If the target is frozen, the damage is multiplied
-      by <color=green>10</color>. <color=red>Removes the frozen state.</color>
-
-      (Damage:
-      <color=red>30</color>)'
+    m_Localized: "Fires a projectile. If the target is frozen, the damage is multiplied
+      by <color=green>10</color>. <color=red>Removes the frozen state.</color>\n
+      \n  (Damage: <color=red>30</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133716
@@ -361,58 +305,43 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133718
-    m_Localized: 'Grants Curse<sprite name="Curse">. Additional effects are triggered
-      based on the amount of Curse<sprite name="Curse"> accumulated.
-
-      <color=yellow>20</color>:
-      inflict 2 Frostbyte<sprite name="Ice">.
-
-      <color=yellow>30</color>: inflict
-      5 Burn<sprite name="Fire">.
-
-      <color=yellow>40</color>: inflict Mark<sprite
-      name="Mark">.
-
-      <color=yellow>50</color>: Restores 5 Health.
-
-      <color=yellow>60</color>:
-      inflict 1 Pain<sprite name="Pain">. If there are 3 or more Magic Circles <sprite
-      name="MagicCircle"> located on a <color=yellow>star<sprite name="Star">, inflict
-      2 Curses <sprite name="Curse">.'
+    m_Localized: "Grants Curse<sprite name=\"Curse\">. Additional effects are triggered
+      based on the amount of Curse<sprite name=\"Curse\"> accumulated.\n \n  <color=yellow>20</color>:
+      inflict 2 Frostbyte<sprite name=\"Ice\">.\n \n  <color=yellow>30</color>: inflict
+      5 Burn<sprite name=\"Fire\">.\n \n  <color=yellow>40</color>: inflict Mark<sprite
+      name=\"Mark\">.\n \n  <color=yellow>50</color>: Restores 5 Health.\n \n  <color=yellow>60</color>:
+      inflict 1 Pain<sprite name=\"Pain\">. If there are 3 or more Magic Circles
+      <sprite name=\"MagicCircle\"> located on a <color=yellow>star<sprite name=\"Star\">,
+      inflict 2 Curses <sprite name=\"Curse\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133719
-    m_Localized: "<color=yellow>Start of battle</color>: Summon a pupa.\n<color=yellow>Pupa</color>:
-      Consumes 20 Barrier<sprite name=\"Barrier\"> to become an adult.\n<color=yellow>Adult</color>:
+    m_Localized: "<color=yellow>Start of battle</color>: Summon a pupa.\n \n  <color=yellow>Pupa</color>:
+      Consumes 20 Barrier<sprite name=\"Barrier\"> to become an adult.\n \n  <color=yellow>Adult</color>:
       Consumes all Barrier<sprite name=\"Barrier\"> gained for 4 seconds. After 4
-      seconds, fires a powerful projectile, then returns to the pupa.\n(Damage: <color=red>60
-      + \u200B\u200BBarrier consumed X 3</color>)\n<color=yellow>Cooldown is reduced
-      by 10% for each summoned<sprite name=\"Summon\"> located on a star<sprite name=\"Star\">."
+      seconds, fires a powerful projectile, then returns to the pupa.\n \n  (Damage:
+      <color=red>60 + \u200B\u200BBarrier consumed X 3</color>)\n \n  <color=yellow>Cooldown
+      is reduced by 10% for each summoned<sprite name=\"Summon\"> located on a star<sprite
+      name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133720
-    m_Localized: '<color=red>Cannot be stepped on. Cannot pass through.</color>
-
-      <color=yellow>Mana
-      turrets located on Star<sprite name="Star">stars</color> perform an auto-attack
-      once every 3 seconds.'
+    m_Localized: "<color=red>Cannot be stepped on. Cannot pass through.</color>\n
+      \n  <color=yellow>Mana turrets located on Star<sprite name=\"Star\">stars</color>
+      perform an auto-attack once every 3 seconds."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133721
-    m_Localized: '<color=red>Cannot be activated by stepping on it. Cannot pass through
-      it.</color>
-
-      <color=yellow>Attacks together when activating a Weapon
-      <sprite name="Weapon"> located on the Star<sprite name="Star">.
-
-      (Damage:
-      <color=red>15</color>)'
+    m_Localized: "<color=red>Cannot be activated by stepping on it. Cannot pass through
+      it.</color>\n \n  <color=yellow>Attacks together when activating a Weapon <sprite
+      name=\"Weapon\"> located on the Star<sprite name=\"Star\">.\n \n  (Damage:
+      <color=red>15</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133722
     m_Localized: "Fires a projectile that deals damage proportional to the number
-      of Curses<sprite name=\"Curse\"> inflicted on the enemy. \n(Damage: <color=red>Curse<sprite
-      name=\"Curse\"> (Minimum 1)</color>) \nIf there are 3 or more Magic Circles<sprite
+      of Curses<sprite name=\"Curse\"> inflicted on the enemy. \n \n  (Damage: <color=red>Curse<sprite
+      name=\"Curse\"> (Minimum 1)</color>) \n \n  If there are 3 or more Magic Circles<sprite
       name=\"MagicCircle\"> located on the <color=yellow>Star<sprite name=\"Star\">,
       the damage increases by <color=red>Curse<sprite name=\"Curse\"> x 2</color>."
     m_Metadata:
@@ -420,16 +349,16 @@ MonoBehaviour:
   - m_Id: 43615133723
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
       of Curses<sprite name=\"Curse\"> to 45. The Cursed doll gains additional abilities
-      based on the increased maximum. \n<color=yellow>On activate</color>: Lose all
-      Curses<sprite name=\"Curse\">. \nIf there are 3 or more Magic Circles<sprite
+      based on the increased maximum. \n \n  <color=yellow>On activate</color>: Lose
+      all Curses<sprite name=\"Curse\">. \n \n  If there are 3 or more Magic Circles<sprite
       name=\"MagicCircle\"> located on the <color=yellow>Star<sprite name=\"Star\">,
       increase the maximum number of Curses<sprite name=\"Curse\"> to 60."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133724
     m_Localized: "Inflict 1 Burn<sprite name=\"Fire\">, 1 Frostbyte<sprite name=\"Ice\">,
-      1 Curse<sprite name=\"Curse\"> to the enemy. \nIf there are 3 or more </color>Magic
-      Circles<sprite name=\"MagicCircle\"> located on the <color=yellow>Star</color>,
+      1 Curse<sprite name=\"Curse\"> to the enemy. \n \n  If there are 3 or more
+      </color>Magic Circles<sprite name=\"MagicCircle\"> located on the <color=yellow>Star</color>,
       Inflict 1 additional Burn<sprite name=\"Fire\">\u3001Curse<sprite name=\"Curse\">."
     m_Metadata:
       m_Items: []
@@ -442,48 +371,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133727
-    m_Localized: '<color=yellow>When purchased:</color> Totem <sprite name="Totem">
-      will appear in the shop.
-
-      This is where Totems stack during battle.
-
-      Reduces
-      the cooldown of Summons<sprite name="Summon"> located on the <color=yellow>Stars</color>
-      by 10%.'
+    m_Localized: "<color=yellow>When purchased:</color> Totem <sprite name=\"Totem\">
+      will appear in the shop.\n \n  This is where Totems stack during battle.\n
+      \n  Reduces the cooldown of Summons<sprite name=\"Summon\"> located on the
+      <color=yellow>Stars</color> by 10%."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133728
-    m_Localized: '<color=yellow>On activate</color>: Strikes down lightning. If Marked<sprite
-      name="Mark">, Marks<sprite name="Mark"> again.
-
-      (Damage: <color=red>40</color>)
-
-      Reduces
-      the cooldown of Summons<sprite name="Summon"> located on the <color=yellow>Stars</color>
-      by 10%.'
+    m_Localized: "<color=yellow>On activate</color>: Strikes down lightning. If Marked<sprite
+      name=\"Mark\">, Marks<sprite name=\"Mark\"> again.\n \n  (Damage: <color=red>40</color>)\n
+      \n  Reduces the cooldown of Summons<sprite name=\"Summon\"> located on the
+      <color=yellow>Stars</color> by 10%."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that absorbs
-      Barrier<sprite name="Barrier">. The turtle absorbs 3 Barriers<sprite name="Barrier">
-      per second. (<color=red>Maximum 15</color>)
-
-      <color=yellow>On activation</color>:
-      Launch the turtle. The turtle deals damage based on the amount of Barrier<sprite
-      name="Barrier"> absorbed.
-
-      (Damage: <color=red>3 X Barrier absorbed</color>)
-
-      <color=yellow>Cooldown
-      is reduced by 10% for each <sprite name="Summon"> summoned on a <sprite name="Star">.'
+    m_Localized: "<color=yellow>\u5728<sprite name=\"\"Star\"\">\u4E0A\u53EC\u5524\u6BCF\u4E2A<sprite
+      name=\"\"Summon\"\">\uFF0C\u51B7\u5374\u65F6\u95F4\u51CF\u5C1110%\u3002\",\"<color=yellow>Start
+      of battle</color>: Summon a turtle that consumes Barrier<sprite name=\"\"Barrier\"\">.
+      The turtle consumes 3 Barriers<sprite name=\"\"Barrier\"\"> per second. (<color=red>Maximum
+      15</color>)\n \n <color=yellow>On activation</color>: Launch the turtle. The
+      turtle deals damage based on the amount of Barrier<sprite name=\"\"Barrier\"\">
+      consumed.\n \n (Damage: <color=red>3 X Barrier consumed</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
-      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>When triggered</color>:
+      of Curses <sprite name=\"Curse\"> to 40. \n \n  <color=yellow>When triggered</color>:
       Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \nConvert all Burn <sprite name=\"fire\"> and FrostByte <sprite name=\"ice\">
-      currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
+      \n \n  Convert all Burn <sprite name=\"fire\"> and FrostByte <sprite name=\"ice\">
+      currently applied to enemies to Curses <sprite name=\"Curse\">. \n \n  If there
       are 3 or more Magic Circles <sprite name=\"MagicCircle\"> located on the <color=yellow>Star</color>,
       Consume <color=red>20 Curses</color>."
     m_Metadata:
@@ -567,7 +483,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43619328016
     m_Localized: 'Totem<sprite name="Totem">: When 3 totems are stacked, their effect
-      is activated and they disappear. The effect of the 3rd totem stacked is strengthened.'
+      is activated and they disappear. The effect of the 3rd totem stacked is enhanced'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328017
@@ -576,7 +492,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43619328018
     m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
-      Decrease every second.'
+      Consumes 2 per second.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328019
@@ -594,59 +510,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328023
-    m_Localized: 'Guide 1
-
-      - Move the character
-
-      ({0}/5)'
+    m_Localized: "Guide 1\n \n  - Move the character\n \n  ({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328024
-    m_Localized: 'Guide 2
-
-      - Survive for 10 seconds
-
-      ({0}/10 seconds)'
+    m_Localized: "Guide 2\n \n  - Survive for 10 seconds\n \n  ({0}/10 seconds)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328025
-    m_Localized: 'Guide 3
-
-      - Install the constellation
-
-      ({0}/5)'
+    m_Localized: "Guide 3\n \n  - Install the constellation\n \n  ({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328026
-    m_Localized: 'Guide 4
-
-      - Rotate the constellations
-
-      ({0}/5)'
+    m_Localized: "Guide 4\n \n  - Rotate the constellations\n \n  ({0}/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328027
-    m_Localized: 'Guide 5
-
-      - Keep the constellations
-
-      ({0}/4)'
+    m_Localized: "Guide 5\n \n  - Keep the constellations\n \n  ({0}/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328028
-    m_Localized: 'Guide 6
-
-      - Sell the constellation
-
-      ({0}/4)'
+    m_Localized: "Guide 6\n \n  - Sell the constellation\n \n  ({0}/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328029
-    m_Localized: 'Guide 7
-
-      - Fight the enemy and win
-
-      ({0}/1)'
+    m_Localized: "Guide 7\n \n  - Fight the enemy and win\n \n  ({0}/1)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328031
@@ -706,39 +594,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328047
-    m_Localized: "The character can be moved with\nWASD or \u2191\u2193\u2190\u2192\nTry
-      moving the character"
+    m_Localized: "The character can be moved with\n \n  WASD or \u2191\u2193\u2190\u2192\n
+      \n  Try moving the character"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328048
-    m_Localized: 'Enemies will attack you
-
-      Avoid enemy attacks and survive'
+    m_Localized: "Enemies will attack you\n \n  Avoid enemy attacks and survive"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328049
-    m_Localized: 'Constellations can be purchased from the bottom shop
-
-      by
-      paying gold
-
-      Drag the constellation from the shop to place it in the
-      area'
+    m_Localized: "Constellations can be purchased from the bottom shop\n \n  by paying
+      gold\n \n  Drag the constellation from the shop to place it in the area"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328050
-    m_Localized: 'Rotate the constellation
-
-      To rotate the constellation,
-
-      Drag
-      the constellation,
-
-      Press R,
-
-      or
-
-      Right-click the mouse'
+    m_Localized: "Rotate the constellation\n \n  To rotate the constellation,\n \n 
+      Drag the constellation,\n \n  Press R,\n \n  or\n \n  Right-click the mouse"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328051
@@ -747,62 +618,47 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328052
-    m_Localized: 'While dragging the constellation, the sales area at the bottom
-      becomes active.
-
-      When you drag the constellation and place it in the
-      sales area,
-
-      the constellation is sold and you can earn gold.'
+    m_Localized: "While dragging the constellation, the sales area at the bottom
+      becomes active.\n \n  When you drag the constellation and place it in the sales
+      area,\n \n  the constellation is sold and you can earn gold."
     m_Metadata:
       m_Items: []
   - m_Id: 43619328053
-    m_Localized: 'After you''re ready for battle,
-
-      press [Start Battle] at
-      the bottom right
-
-      to start the battle
-
-
-      and step on the constellations
-
-      to
-      attack the enemy and win'
+    m_Localized: "After you're ready for battle,\n \n  press [Start Battle] at the
+      bottom right\n \n  to start the battle\n \n  \n \n  and step on the constellations\n
+      \n  to attack the enemy and win"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328055
-    m_Localized: "Completion Conditions \nMove Character (0/5)"
+    m_Localized: "Completion Conditions \n \n  Move Character (0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328056
-    m_Localized: "Completion Conditions \nSurvive for 10 seconds (0/10 seconds)"
+    m_Localized: "Completion Conditions \n \n  Survive for 10 seconds (0/10 seconds)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328057
-    m_Localized: "Completion Conditions \nInstall 5 constellations (0/5)"
+    m_Localized: "Completion Conditions \n \n  Install 5 constellations (0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328058
-    m_Localized: "Completion Conditions \nRotate the Constellation (0/5)"
+    m_Localized: "Completion Conditions \n \n  Rotate the Constellation (0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328059
-    m_Localized: "Completion Conditions \nStore 4 constellations (0/4)"
+    m_Localized: "Completion Conditions \n \n  Store 4 constellations (0/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328060
-    m_Localized: "Completion Conditions \nSell 4 constellations ({0}/4)"
+    m_Localized: "Completion Conditions \n \n  Sell 4 constellations ({0}/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328061
-    m_Localized: "Completion Conditions \nWin the Battle (0/1)"
+    m_Localized: "Completion Conditions \n \n  Win the Battle (0/1)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328063
-    m_Localized: 'ReRoll (1G)
-
-      Shortcut: D'
+    m_Localized: "ReRoll (1G)\n \n  Shortcut: D"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328064
@@ -906,15 +762,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 106024537825285
-    m_Localized: 'You have completed all the guides
-
-      Very powerful enemies
-      await you
-
-      Place numerous constellations
-
-      Fight the enemies and
-      win'
+    m_Localized: "You have completed all the guides\n \n  Very powerful enemies await
+      you\n \n  Place numerous constellations\n \n  Fight the enemies and win"
     m_Metadata:
       m_Items: []
   - m_Id: 118802749202442
@@ -926,14 +775,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 456771884425216
-    m_Localized: 'Deals 5 Burn damage<sprite name="Fire"> at once and removes all
-      Burns <sprite name="Fire">.
-
-      (Damage: <color=red>0~255</color>)
-
-      If
-      there are 3 or more Magic Circles <sprite name="MagicCircles"> located on the
-      <color=yellow>Star</color>, deal 10 Burn damage<sprite name="Fire">.'
+    m_Localized: "Deals 5 Burn damage<sprite name=\"Fire\"> at once and removes all
+      Burns <sprite name=\"Fire\">.\n \n  (Damage: <color=red>0~255</color>)\n \n 
+      If there are 3 or more Magic Circles <sprite name=\"MagicCircles\"> located
+      on the <color=yellow>Star</color>, deal 10 Burn damage<sprite name=\"Fire\">."
     m_Metadata:
       m_Items: []
   - m_Id: 498343233593344
@@ -964,56 +809,84 @@ MonoBehaviour:
     m_Localized: Ancient Totem
     m_Metadata:
       m_Items: []
-  - m_Id: 1528835340902400
-    m_Localized: Lava Blade
-    m_Metadata:
-      m_Items: []
   - m_Id: 1528835340902401
     m_Localized: cat wizard
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096704
-    m_Localized: '<color=red>Does not activate if there is no totem spot.</color>
-
-      Stacks
-      totems <sprite name="Totem">. Activates when 3 totems <sprite name="Totem">
-      are stacked.
-
-      <color=yellow>On activate</color>: Enemies'' Curse<sprite
-      name="Curse"> values are considered 5 higher for 4 seconds. (The actual values
-      are unchanged; this effect only applies to curse value-based conditions and
-      damage calculations.)
-
-      <color=yellow>When empowered</color>: Enemies''
-      curse<sprite name="Curse"> values are considered 10 higher for 4 seconds.
-
-      <color=yellow>Cooldown
-      is reduced by 10% for each summoned <sprite name="Summon"> located on the Star<sprite
-      name="Star">.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1528835345096705
-    m_Localized: 'On the next attack, all swords <sprite name="Sword"> will inflict
-      1 Burn <sprite name="Fire"> and their attack power will be equal to the number
-      of summoned swords. Summon a sword <sprite name="Sword"> and all swords will
-      attack.
-
-      (Damage: <color=red>Number of summoned swords</color>)
-
-      Cooldown
-      is reduced by 10% for each summoned <sprite name="Summon"> located on the <color=yellow>star
-      <sprite name="Star">.'
+    m_Localized: "Stacks totems <sprite name=\"Totem\">. Activates when 3 totems
+      <sprite name=\"Totem\"> are stacked.\n \n  <color=yellow>On activate</color>:
+      Fires a projectile.\n \n  (Damage: <color=red>15</color>)\n \n  <color=yellow>When
+      enhanced</color>: Damage is multiplied by 5.\n \n  <color=yellow>Cooldown is
+      reduced by 10% for each summon <sprite name=\"Summon\"> located on The Star<sprite
+      name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096706
-    m_Localized: '<color=yellow>Start of battle</color>: Summon a cat wizard.
-
-      <color=yellow>When
-      activated</color>: Gain 5 Barrier <sprite name="Barrier">.
-
-      Gain an additional
-      5 Barrier <sprite name="Barrier"> for each <sprite name="Summon"> located on
-      the <color=yellow>star</color>. (No duplicates)'
+    m_Localized: "<color=yellow>At the start of combat</color>: Summon a Cat Wizard.\n
+      <color=yellow>On activation</color>: Gain 5 Barrier.\n Gain an additional 5
+      Barrier for each type of Summon <sprite name=\"Summon\"> on the <color=yellow>Star</color>."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571146
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571145
+    m_Localized: Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571144
+    m_Localized: hell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571143
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571142
+    m_Localized: Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571141
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571140
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571139
+    m_Localized: Credit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571138
+    m_Localized: BOOK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2315244012183561
+    m_Localized: Select difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333737138921472
+    m_Localized: "On the next attack, all swords <sprite name=\"Sword\"> will inflict
+      1 Burn <sprite name=\"Fire\"> and their attack power will be equal to the number
+      of summoned swords. Summon a sword <sprite name=\"Sword\"> and all swords will
+      attack.\n \n  (Damage: <color=red>Number of summoned swords</color>)\n \n 
+      Cooldown is reduced by 10% for each summoned <sprite name=\"Summon\"> located
+      on the <color=yellow>star <sprite name=\"Star\">."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333737105367040
+    m_Localized: Lava Blade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571137
+    m_Localized: GUIDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369512836571136
+    m_Localized: START
     m_Metadata:
       m_Items: []
   references:

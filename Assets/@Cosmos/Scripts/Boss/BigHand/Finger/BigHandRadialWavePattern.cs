@@ -9,6 +9,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
     private int _damage;
+    private bool _isSoundCoolTime = false;
 
     public string PatternName => "방사형_확산";
     
@@ -94,7 +95,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     {
         while (!line.IsComplete)
         {
-            boss.StartCoroutine(PlayAttackSound());
+            boss.StartCoroutine(PlayAttackSound(boss, boss.Beat / 4));
 
             Vector3Int nextPos = line.GetNextPosition();
             if (nextPos != Vector3Int.zero)
@@ -126,10 +127,27 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     {
         Debug.Log("구불거리는 선형 확산 패턴 정리 완료");
     }
-    public IEnumerator PlayAttackSound()
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
     {
-        yield return new WaitForSeconds(0.8f); // 예시로 빈 코루틴 반환
-        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate_Small");
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
+    }
+
+    public IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
     }
 }
 
