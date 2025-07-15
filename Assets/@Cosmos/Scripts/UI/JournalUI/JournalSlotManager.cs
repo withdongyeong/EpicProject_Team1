@@ -174,7 +174,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     }
 
 
-    private void CloseJournal()
+    public void CloseJournal()
     {
         if (DragManager.Instance.GetCurrentDragObject() == null)
         {

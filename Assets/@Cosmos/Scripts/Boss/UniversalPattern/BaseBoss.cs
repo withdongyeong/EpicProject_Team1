@@ -530,7 +530,6 @@ public abstract class BaseBoss : MonoBehaviour
         SoundManager.Instance.OrcMageSoundClip(clipName);
     }
 
-
     private void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(Init);
