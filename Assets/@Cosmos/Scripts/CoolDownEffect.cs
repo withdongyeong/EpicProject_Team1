@@ -14,9 +14,9 @@ public class CoolDownEffect : MonoBehaviour
     public void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        string hexColor = "#080929";
+        string hexColor = "#4DD0E1";
         ColorUtility.TryParseHtmlString(hexColor, out Color color);
-        color.a = 0.9f;
+        color.a = 0.35f;
         yellowColor = color;
         sr.color = yellowColor;
         EventBus.SubscribeGameStart(SetPosition);

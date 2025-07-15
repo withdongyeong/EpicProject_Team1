@@ -10190,30 +10190,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DropObjects
       objectReference: {fileID: 0}
-    - target: {fileID: 4102995991862664931, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
-      propertyPath: lifeTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102995991862664931, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
-      propertyPath: spawnCount
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102995991862664931, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
-      propertyPath: spawnHeight
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102995991862664931, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
-      propertyPath: spawnRangeX
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102995991862664931, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
-      propertyPath: rotationSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102995991862664931, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
-      propertyPath: spawnInterval
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 5141017064314876877, guid: fbfbb17f9c96e8a49807b57f43a9e4aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

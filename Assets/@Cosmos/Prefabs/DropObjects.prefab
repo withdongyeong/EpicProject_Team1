@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: -104807025640587069, guid: 146c1c1fc4659a94db8d86c434066b1e, type: 3}
   - {fileID: 5748205303381885770, guid: 2b3d38e6c9d40e440a53314cd11e99e5, type: 3}
   - {fileID: 21300000, guid: bd60c81f24b7f514e98ee1cbd0ea909b, type: 3}
-  - {fileID: 21300000, guid: ed8b54fac293e134b84712a0b81de89f, type: 3}
+  - {fileID: 21300000, guid: c01a7efbad2d1274e9e25dd35f0344b4, type: 3}
   - {fileID: 21300000, guid: a5aeafa8e35617a41831db5cab4582a1, type: 3}
   - {fileID: 21300000, guid: bbdf7988e06819a45988df62dc79e5d8, type: 3}
   - {fileID: 21300000, guid: b873196cb8c4e644ab45dbf0fef3e789, type: 3}
@@ -69,7 +69,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 83d528f61f6547f4a8f57c63ab882657, type: 3}
   - {fileID: 21300000, guid: 226b9f13a0942e04994abb4e65be6d03, type: 3}
   - {fileID: 21300000, guid: b04f69c9eb12c184295cdbcfa3ea2af8, type: 3}
-  - {fileID: 21300000, guid: e7f88762ac7ecab4288d71421173f3b3, type: 3}
+  - {fileID: 21300000, guid: 19331567e3008af44a37a40e18446de5, type: 3}
   - {fileID: 21300000, guid: d99759c240190644087b1140ce42bed9, type: 3}
   - {fileID: 21300000, guid: b0c9d00ede4afad409ce72dceb125a14, type: 3}
   - {fileID: 21300000, guid: ee94be7bc20fc2846993a9c8b6826ab6, type: 3}
@@ -77,18 +77,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f0cc2e1977e491b42bbfa71f71f3ffa0, type: 3}
   - {fileID: 21300000, guid: 5fa27b57f8c233e4bb4f90f5d1d58196, type: 3}
   - {fileID: 21300000, guid: 1891765b840b646468989c1b81e97046, type: 3}
+  - {fileID: 21300000, guid: f8d3bba0ce4378a43954898358c47f8b, type: 3}
+  - {fileID: 21300000, guid: 44538d145c48f654ab9b2bfebd589d5d, type: 3}
+  - {fileID: 21300000, guid: 921b039171aa3af4b8367c43b9819b3d, type: 3}
+  - {fileID: 21300000, guid: 723269c7b35aaf541aab3dffc4805d22, type: 3}
   dropPrefab: {fileID: 2969415491547676326, guid: f6041b9c9568b734fb1e821aef6bfac6, type: 3}
-  spawnCount: 20
-  spawnInterval: 0.1
-  spawnRangeX: 10
+  spawnCount: 15
+  spawnInterval: 0.8
+  spawnRangeX: 20
   excludeCenterWidth: 4
-  spawnHeight: 6
+  spawnHeight: 8
   fallSpeed: 2
-  rotationSpeed: 90
-  lifeTime: 5
+  rotationSpeed: 40
+  lifeTime: 10
   fallSpeedVariation: 0.5
   rotationSpeedVariation: 30
-  scaleVariation: 0.3
   scaleRange: {x: 0.5, y: 1.2}
   enableLight: 1
   lightIntensity: 0.3
