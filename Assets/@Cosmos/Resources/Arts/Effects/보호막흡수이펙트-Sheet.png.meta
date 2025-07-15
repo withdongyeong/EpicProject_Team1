@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d41d9d2a9837caa43817e37b5b5b236c
+guid: 667989505bea5cc4c86d0fb6c3ed024e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 991049441188381412
-    second: Space Background (5)_0
+      213: -9064631071868364132
+    second: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_0"
+  - first:
+      213: 696674033295305160
+    second: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_1"
+  - first:
+      213: 1049833073770786459
+    second: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_2"
+  - first:
+      213: 8535663947068693097
+    second: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_3"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Space Background (5)_0
+      name: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_0"
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e202e8473ae0cd00800000000000000
-      internalID: 991049441188381412
+      spriteID: c9a515d0116f33280800000000000000
+      internalID: -9064631071868364132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_1"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c92ec697551ba900800000000000000
+      internalID: 696674033295305160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_2"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e609b4e91c19e00800000000000000
+      internalID: 1049833073770786459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_3"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96a532fc225c47670800000000000000
+      internalID: 8535663947068693097
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 5b2898afad6aaaf46813d8c472ae7bd7
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Space Background (5)_0: 991049441188381412
+      "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_0": -9064631071868364132
+      "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_1": 696674033295305160
+      "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_2": 1049833073770786459
+      "\uBCF4\uD638\uB9C9\uD761\uC218\uC774\uD399\uD2B8-Sheet_3": 8535663947068693097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
