@@ -253,9 +253,13 @@ public class BossDebuffs : MonoBehaviour
             {
                 boss.StopAttack(2f); // 2초 동안 공격 중지
             }
+            else
+            {
+                boss.IncreasedDamageTaken(2f); // 손 보스의 경우 2초 동안 받는 데미지 증가
+            }
 
-            // 애니메이터 일시중지 (원래 속도 저장)
-            float originalAnimatorSpeed = boss.Animator.speed;
+                // 애니메이터 일시중지 (원래 속도 저장)
+                float originalAnimatorSpeed = boss.Animator.speed;
             boss.Animator.speed = 0f;
 
             // 2초 후 애니메이터 재생 재개
