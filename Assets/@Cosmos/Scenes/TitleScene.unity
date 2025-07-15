@@ -3045,7 +3045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 990, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813890138
@@ -8658,6 +8658,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleSelf
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 813890136}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleSelf
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1015049090}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1183691464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8892,6 +8916,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleSelf
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1015049090}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1288559143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9104,6 +9140,42 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleJournal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleSelf
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1015049090}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleSelf
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 813890136}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9711,6 +9783,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1015049090}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1616034083}
+        m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
+        m_MethodName: DisAbleJournal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

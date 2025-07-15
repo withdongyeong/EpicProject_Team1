@@ -168,7 +168,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 689, y: 514}
+  m_SizeDelta: {x: 730, y: 514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2121220231326031990
 CanvasRenderer:
@@ -411,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429532405669406385, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1350
+      value: 1430
       objectReference: {fileID: 0}
     - target: {fileID: 1429532405669406385, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_SizeDelta.y
@@ -471,7 +471,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766011474536304283, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_Padding.m_Left
-      value: 10
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766011474536304283, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5932096424347249747, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_Pivot.x
@@ -567,15 +571,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186307228509006209, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.10980393
       objectReference: {fileID: 0}
     - target: {fileID: 6186307228509006209, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.10980393
       objectReference: {fileID: 0}
     - target: {fileID: 6186307228509006209, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.10980393
       objectReference: {fileID: 0}
     - target: {fileID: 6186307228509006209, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_Enabled
@@ -599,7 +603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6335578982522601958, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6335578982522601958, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -669,13 +673,35 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1429532405669406385, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6015625630848882484}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7782029814173532429, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4378303058567312251}
   m_SourcePrefab: {fileID: 100100000, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
 --- !u!224 &2288331502856435673 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5932096424347249747, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
   m_PrefabInstance: {fileID: 5589744647015685002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2769029628039453319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7782029814173532429, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
+  m_PrefabInstance: {fileID: 5589744647015685002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4378303058567312251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769029628039453319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 1
 --- !u!224 &6792689387111415099 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1429532405669406385, guid: e0fb7bb0c89e24a4a910fda35c4d8125, type: 3}
