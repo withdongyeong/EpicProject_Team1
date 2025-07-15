@@ -34,6 +34,7 @@ public class ArchmageStaffSkill : ProjectileSkill
         if (axodiaCount >= 2)
         {
             damage -= 10;
+            SteamAchievement.Achieve("ACH_CON_AXODIA"); // Axodia 업적 달성
         }
         else if (axodiaCount >= 1)
         {

@@ -3,6 +3,7 @@
 public class ManaAIStarSkill : StarBase
 {
     private ManaAISkill skill;
+    private int _manaTurretCount = 0;
 
     protected override void Awake()
     {
@@ -31,6 +32,7 @@ public class ManaAIStarSkill : StarBase
         if (SceneLoader.IsInBuilding())
         {
             GridManager.Instance.RemoveUnmovableGridPosition(GridManager.Instance.WorldToGridPosition(transform.position));
+            _manaTurretCount = 0; // 빌딩 씬에서는 마나 터렛 카운트를 초기화합니다.
         }
     }
 
@@ -48,6 +50,12 @@ public class ManaAIStarSkill : StarBase
         if(CheckCondition(skillBase))
         {
             skill.ActivateManaTurret(skillBase);
+            _manaTurretCount++;
+            if (_manaTurretCount >= 4)
+            {
+                // 4개 이상의 마나 터렛이 활성화되면 업적 달성
+                SteamAchievement.Achieve("ACH_CON_TURRET");
+            }
         }
     }
 
