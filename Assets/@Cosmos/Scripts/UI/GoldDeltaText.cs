@@ -17,11 +17,12 @@ public class GoldDeltaText : MonoBehaviour
         _currentGold = GoldManager.Instance.CurrentGold;
         _goldText = GetComponent<TextMeshProUGUI>();
         EventBus.SubscribeGoldChanged(ChangeText);
+        ChangeText(0);
     }
 
     private void ChangeText(int gold)
     {
-        int delta = gold - _currentGold;
+        int delta = GoldManager.Instance.deltaGold;
         if(delta != 0)
         {
             if(_coroutine != null)
@@ -41,7 +42,8 @@ public class GoldDeltaText : MonoBehaviour
             _currentGold = gold;
             _coroutine = StartCoroutine(FadeText());
         }
-        
+        GoldManager.Instance.deltaGold = 0;
+
     }
 
     IEnumerator FadeText()

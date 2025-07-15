@@ -86,7 +86,7 @@ public class GameManager : Singleton<GameManager>
     {
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
-        GoldManager.Instance.SetCurrentGold(0);
+        GoldManager.Instance.SetCurrentGold(16);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();

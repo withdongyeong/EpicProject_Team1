@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 /// <summary>
 /// 플레이어의 골드를 관리하는 매니저입니다
@@ -15,15 +13,14 @@ public class GoldManager : Singleton<GoldManager>
     /// </summary>
     public int CurrentGold => _currentGold;
 
-    private int _currentStage = 0;
-    
+    public int deltaGold = 0;
 
     protected override void Awake()
     {
         base.Awake();
-        SetCurrentGold(0);
-        EventBus.SubscribeSceneLoaded(GetGoldPerStage);
-        //EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
+        SetCurrentGold(16);
+        EventBus.SubscribeBossDeath(GetGoldPerStage);
+        EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 
 
@@ -47,7 +44,9 @@ public class GoldManager : Singleton<GoldManager>
     /// <param name="gold">이 값만큼 현재 골드가 변경됩니다. 1이면 +1입니다.</param>
     public void ModifyCurrentGold(int gold)
     {
-        _currentGold = Mathf.Max(_currentGold + gold, 0);
+        int changedGold = Mathf.Max(_currentGold + gold, 0);
+        deltaGold += changedGold - _currentGold;
+        _currentGold = changedGold;
         EventBus.PublishGoldChanged(_currentGold);
     }
 
@@ -72,34 +71,25 @@ public class GoldManager : Singleton<GoldManager>
         else
         {
             _currentGold -= gold;
+            deltaGold -= gold;
             EventBus.PublishGoldChanged(_currentGold);
             return true;
         }
 
     }
 
-    private void GetGoldPerStage(Scene scene, LoadSceneMode mode)
+    private void GetGoldPerStage()
     {
-        if (GameStateManager.Instance.CurrentState != GameState.Defeat && SceneLoader.IsInBuilding())
+        if (GameStateManager.Instance.CurrentState != GameState.Defeat)
         {
-            if(_currentStage != StageSelectManager.Instance.StageNum) // 플레이어 진행시
+            if (StageSelectManager.Instance.StageNum < 2)
             {
-                if (StageSelectManager.Instance.StageNum < 3)
-                {
-                    ModifyCurrentGold(16);
-                }
-                else
-                {
-                    ModifyCurrentGold((StageSelectManager.Instance.StageNum - 1) / 2 + 13);
-                }
-
-                _currentStage = StageSelectManager.Instance.StageNum;
+                ModifyCurrentGold(16);
             }
-            else //플레이어 사망시
+            else
             {
-                ModifyCurrentGold(10);
+                ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
             }
-           
         }
     }
 
@@ -111,7 +101,7 @@ public class GoldManager : Singleton<GoldManager>
 
     private void OnDestroy()
     {
-        EventBus.UnsubscribeSceneLoaded(GetGoldPerStage);
-        //EventBus.UnsubscribePlayerDeath(GetGoldOnPlayerDeath);
+        EventBus.UnsubscribeBossDeath(GetGoldPerStage);
+        EventBus.UnsubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 }
