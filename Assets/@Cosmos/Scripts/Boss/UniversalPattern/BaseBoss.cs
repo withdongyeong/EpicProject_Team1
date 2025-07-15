@@ -285,6 +285,9 @@ public abstract class BaseBoss : MonoBehaviour
         // 애니메이터 사망처리
         _animator.SetBool("IsAlive", false);
         Debug.Log($"{GetType().Name} DEFEATED!");
+
+        string ACHKey = "ACH_STG_" + StageSelectManager.Instance.StageNum;
+        SteamAchievement.Achieve(ACHKey);
         
         // 사망 이벤트 발생
         EventBus.PublishBossDeath();
