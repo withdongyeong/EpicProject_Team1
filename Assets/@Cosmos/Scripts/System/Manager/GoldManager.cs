@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 플레이어의 골드를 관리하는 매니저입니다
@@ -13,14 +14,16 @@ public class GoldManager : Singleton<GoldManager>
     /// 현재 소유하고 있는 골드입니다.
     /// </summary>
     public int CurrentGold => _currentGold;
+
+    private int _currentStage = 0;
     
 
     protected override void Awake()
     {
         base.Awake();
-        SetCurrentGold(16);
-        EventBus.SubscribeBossDeath(GetGoldPerStage);
-        EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
+        SetCurrentGold(0);
+        EventBus.SubscribeSceneLoaded(GetGoldPerStage);
+        //EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 
 
@@ -75,20 +78,29 @@ public class GoldManager : Singleton<GoldManager>
 
     }
 
-    private void GetGoldPerStage()
+    private void GetGoldPerStage(Scene scene, LoadSceneMode mode)
     {
-        if(GameStateManager.Instance.CurrentState != GameState.Defeat)
+        if (GameStateManager.Instance.CurrentState != GameState.Defeat && SceneLoader.IsInBuilding())
         {
-            if (StageSelectManager.Instance.StageNum < 2)
+            if(_currentStage != StageSelectManager.Instance.StageNum) // 플레이어 진행시
             {
-                ModifyCurrentGold(16);
+                if (StageSelectManager.Instance.StageNum < 3)
+                {
+                    ModifyCurrentGold(16);
+                }
+                else
+                {
+                    ModifyCurrentGold((StageSelectManager.Instance.StageNum - 1) / 2 + 13);
+                }
+
+                _currentStage = StageSelectManager.Instance.StageNum;
             }
-            else
+            else //플레이어 사망시
             {
-                ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
+                ModifyCurrentGold(10);
             }
+           
         }
-        
     }
 
 
@@ -99,7 +111,7 @@ public class GoldManager : Singleton<GoldManager>
 
     private void OnDestroy()
     {
-        EventBus.UnsubscribeBossDeath(GetGoldPerStage);
-        EventBus.UnsubscribePlayerDeath(GetGoldOnPlayerDeath);
+        EventBus.UnsubscribeSceneLoaded(GetGoldPerStage);
+        //EventBus.UnsubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 }

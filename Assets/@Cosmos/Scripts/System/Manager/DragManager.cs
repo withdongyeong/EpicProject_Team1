@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-
 
 /// <summary>
 /// DragManager는 드래그 이벤트를 관리하는 싱글턴 클래스입니다.
