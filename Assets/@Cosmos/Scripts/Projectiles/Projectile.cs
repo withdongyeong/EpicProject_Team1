@@ -85,7 +85,7 @@ public class Projectile : MonoBehaviour
                     {
                         enemy.TakeDamage(damage, hitEffect);
                         // 피해량이 500 이상인 경우 업적
-                        if (damage >= 500)
+                        if (damage >= 333)
                         {
                             SteamAchievement.Achieve("ACH_CON_HAMMER");
                         }
