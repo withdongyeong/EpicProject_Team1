@@ -56,7 +56,7 @@ public class TurtleBase : MonoBehaviour
         _protectionEffect = FindAnyObjectByType<ProtectionEffect>();
         _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/TurtleProjectile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        EventBus.SubscribeProtectionConsume(OnProtectionConsume);
+        //EventBus.SubscribeProtectionConsume(OnProtectionConsume);
     }
 
 
@@ -100,7 +100,11 @@ public class TurtleBase : MonoBehaviour
     {
         if(_chargedProtection < 15)
         {
-            _protectionScript.TryProtectionBlock(_consumeProtection, true);
+            if(_protectionScript.TryProtectionBlock(_consumeProtection, true))
+            {
+                OnProtectionConsume(_consumeProtection);
+            }
+                   
         }
     }
 
@@ -135,7 +139,7 @@ public class TurtleBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventBus.UnSubscribeProtectionConsume(OnProtectionConsume);
+        //EventBus.UnSubscribeProtectionConsume(OnProtectionConsume);
     }
 
 

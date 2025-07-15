@@ -533,10 +533,28 @@ public abstract class BaseBoss : MonoBehaviour
         EventBus.UnsubscribeGameStart(Init);
     }
     
-    
-    
     public void TestBossHpSet(int hp)
     {
         _currentHealth = hp;
+    }
+
+    public void SetDifficulty()
+    {
+        int difficulty = GameManager.Instance.DifficultyLevel;
+        
+        switch (difficulty)
+        {
+            case 0:
+                BPM = BPM * 0.7f;
+                break;
+            case 2:
+                BPM = BPM * 1.3f;
+                break;
+            case 3:
+                BPM = BPM * 1.3f;
+                break;
+            default:
+                break;
+        }
     }
 }

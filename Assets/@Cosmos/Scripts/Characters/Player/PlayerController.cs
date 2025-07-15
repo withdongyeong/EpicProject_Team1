@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour
             {
                 HandleMovementWithBuffer();
             }
+            if(_canInteractionTile)
+            {
+                CheckTileInteraction();
+            }
         }
         else
         {
@@ -202,6 +206,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator MoveAnimation(Vector3Int newPos)
     {
         _isMoving = true;
+        _canInteractionTile = false;
         _animator.SetBool("IsMoving", true);
         _canInteractionTile = false;
 
@@ -236,6 +241,10 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(x, y + extraHeight, 0);
             transform.rotation = Quaternion.Euler(0, 0, wobbleRotation);
 
+            //날라가는 애니메이션이 70% 이상 진행됬으면
+            if(t >= 0.7f)
+                _canInteractionTile = true;
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -248,10 +257,6 @@ public class PlayerController : MonoBehaviour
         _isMoving = false;
         _animator.SetBool("IsMoving", false);
 
-        // 여기서 상호작용 허용
-        _canInteractionTile = true;
-        CheckTileInteraction(); // 여기서 1회만 호출
-        _canInteractionTile = false; // 다시 차단
     }
 
     
