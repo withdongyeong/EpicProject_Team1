@@ -45,29 +45,29 @@ public class LastBoss : BaseBoss
             AddPattern(new LastBossPattern_Staff5(explosionPrefab, StrongDamage), 0f).
             SetGroupInterval(Beat);
 
-        //AddGroup().
-        //    AddPattern(new LastBossPattern_SwordEquip(sword), 0f).
-        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-        //    AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
-        //    AddPattern(new LastBossPattern_Sword2(swordExplosionPrefab, WeakDamage), 0f).
-        //    AddPattern(new LastBossPattern_Sword3(swordExplosionPrefab, StrongDamage), 0f).
-        //    SetGroupInterval(Beat);
+        AddGroup().
+            AddPattern(new LastBossPattern_SwordEquip(sword), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Sword2(swordExplosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Sword3(swordExplosionPrefab, StrongDamage), 0f).
+            SetGroupInterval(Beat);
 
-        //AddGroup().
-        //    AddPattern(new LastBossPattern_FrostEquip(frost), 0f).
-        //    AddPattern(new LastBossPattern_Frost1(frostExplosionPrefab, WeakDamage), 0f).
-        //    AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab, WeakDamage), 0f).
-        //    SetGroupInterval(Beat);
+        AddGroup().
+            AddPattern(new LastBossPattern_FrostEquip(frost), 0f).
+            AddPattern(new LastBossPattern_Frost1(frostExplosionPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab, WeakDamage), 0f).
+            SetGroupInterval(Beat);
 
-        //AddGroup().
-        //    AddPattern(new LastBossPattern_FlameEquip(flame), 0f).
-        //    AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), Beat).
-        //    AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), Beat).
-        //    AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), Beat).
-        //    AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), Beat).
-        //    SetGroupInterval(Beat);
+        AddGroup().
+            AddPattern(new LastBossPattern_FlameEquip(flame), 0f).
+            AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), Beat).
+            AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), Beat).
+            AddPattern(new LastBossPattern_Flame1(flameExplosionPrefab, WeakDamage), Beat).
+            AddPattern(new LastBossPattern_Flame2(flameExplosionPrefab, WeakDamage), Beat).
+            SetGroupInterval(Beat);
     }
 
     protected override void DamageFeedback()
