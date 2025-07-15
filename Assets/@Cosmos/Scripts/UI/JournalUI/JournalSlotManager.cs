@@ -14,6 +14,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private GameObject _tileInfoPanel;
 
     private bool _isInit;
+    private bool _isJournalOpen = false;
 
     private InfoPanel _infoPanel;
 
@@ -38,6 +39,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     public List<GameObject> LegendaryStoreTiles => _legendaryStoreTiles;
     public List<GameObject> MythicStoreTiles => _mythicStoreTiles;
     public List<GameObject> FirstStoreTiles => _firstStoreTiles;
+    public bool IsJournalOpen => _isJournalOpen;
 
 
     protected override void Awake()
@@ -181,9 +183,8 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             {
                 _infoPanel.Hide();
             }
+            _isJournalOpen = false;
         }
-               
-        
     }
 
     public void CloseJournalOnSceneChange(Scene scene, LoadSceneMode mode)
@@ -191,6 +192,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(_isInit)
         {
             _scrollView.SetActive(false);
+            _isJournalOpen = false;
         }
         
     }
@@ -200,10 +202,12 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(_scrollView.activeSelf)
         {
             _scrollView.SetActive(false);
+            _isJournalOpen = false;
         }
         else
         {
             _scrollView.SetActive(true);
+            _isJournalOpen = true;
         }
     }
 

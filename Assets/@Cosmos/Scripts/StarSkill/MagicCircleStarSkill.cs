@@ -51,6 +51,8 @@ public class MagicCircleStarSkill : StarBase
                     skill.ApplyStatBuff(new TileBuffData(BuffableTileStat.MagicCircle, 1f));
                 }
                 isActivated = true; // Magic Circle 인접 효과가 활성화됨
+                // 업적 달성
+                SteamAchievement.Achieve("ACH_CON_MAGIC_CIRCLE");
             }
         }
     }

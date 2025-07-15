@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.IO;
+using Steamworks;
 
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
@@ -69,6 +70,23 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     public void OpenDifficultySelectPannel()
     {
         FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
+    }
+
+    public void OpenSettingsPanel()
+    {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        SceneLoader.ToggleSetting();
+    }
+
+    public void ExitGameButton()
+    {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        // 게임 종료
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
 }
