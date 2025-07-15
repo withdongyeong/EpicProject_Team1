@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 23f1f88184631e64cb84235f929062ff
+guid: b3f819b69d061764f908fb630b8f0305
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5549597623131305649
-    second: BookIcon_0
+      213: -1683121636833160271
+    second: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_0"
+  - first:
+      213: 7489223051675190161
+    second: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_1"
+  - first:
+      213: 2785853941487380318
+    second: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_2"
+  - first:
+      213: -8984901702418186757
+    second: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_3"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BookIcon_0
+      name: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 17
+        y: 81
+        width: 30
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4908e26d5edbf2b0800000000000000
-      internalID: -5549597623131305649
+      spriteID: 1b319c2f9c954a8e0800000000000000
+      internalID: -1683121636833160271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_1"
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 81
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19344c69fa01fe760800000000000000
+      internalID: 7489223051675190161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_2"
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 81
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e572a72566759a620800000000000000
+      internalID: 2785853941487380318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_3"
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 17
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfdbf8571873f4380800000000000000
+      internalID: -8984901702418186757
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BookIcon_0: -5549597623131305649
+      "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_0": -1683121636833160271
+      "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_1": 7489223051675190161
+      "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_2": 2785853941487380318
+      "\uACE0\uB300 \uD1A0\uD15C \uACF5\uACA9-Sheet_3": -8984901702418186757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
