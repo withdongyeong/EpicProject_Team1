@@ -97,8 +97,8 @@ Tile_TileDescription_DamageTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆
  （ダメージ：<color=red>呪い<sprite name=""Curse"">カウント（最小1）</color>）
  
  <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","토템<sprite name=""Totem"">을 쌓습니다. 3개의 토템<sprite name=""Totem"">이 쌓이면 발동합니다.
-<color=yellow>발동시</color>: 저주<sprite name=""Curse"">를 1 부여합니다. 
-<color=yellow>강화시</color>: 저주<sprite name=""Curse"">를 1 부여하고 적에게 부여된 저주<sprite name=""Curse""> 개수에 비례해 피해가 증가하는 투사체를 발사합니다.
+<color=yellow>발동 시</color>: 저주<sprite name=""Curse"">를 1 부여합니다. 
+<color=yellow>강화 시</color>: 저주<sprite name=""Curse"">를 1 부여하고 적에게 부여된 저주<sprite name=""Curse""> 개수에 비례해 피해가 증가하는 투사체를 발사합니다.
 (피해량: <color=red>저주<sprite name=""Curse""> 개수 (최소 1)</color>) 
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
 Tile_TileDescription_FireBallTile,"发射 3 枚投射物。
@@ -121,7 +121,7 @@ Tile_TileDescription_FireBallTile,"发射 3 枚投射物。
  
   <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、1つの弾をさらに発射します。","3개의 투사체를 발사합니다.
 (피해량: <color=red>8</color>)
-<color=yellow>적중시</color>: 화염<sprite name=""Fire"">을 부여합니다.
+<color=yellow>적중 시</color>: 화염<sprite name=""Fire"">을 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 1개의 투사체를 더 발사합니다."
 Tile_TileDescription_FireBoltTile,"发射一枚投射物。
  
@@ -143,7 +143,7 @@ Tile_TileDescription_FireBoltTile,"发射一枚投射物。
  
   <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、1つの弾をさらに発射します。","투사체를 발사합니다. 
 (피해량: <color=red>8</color>)
-<color=yellow>적중시</color>: 화염<sprite name=""Fire"">을 부여합니다.
+<color=yellow>적중 시</color>: 화염<sprite name=""Fire"">을 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 1개의 투사체를 더 발사합니다."
 Tile_TileDescription_FrostStaffTile,"发射一枚投射物。
  
@@ -159,7 +159,7 @@ Tile_TileDescription_FrostStaffTile,"发射一枚投射物。
  
   <color=yellow>ヒット時</color>: 凍傷<sprite name=""Ice"">を1付与します。","투사체를 발사합니다.
 (피해량: <color=red>15</color>)
-<color=yellow>적중시</color>: 동상<sprite name=""Ice"">을 1 부여합니다."
+<color=yellow>적중 시</color>: 동상<sprite name=""Ice"">을 1 부여합니다."
 Tile_TileDescription_HatTile,"获得 15 个 <sprite name=""Barrier"">盾牌。","Gain 15 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を15獲得します。","보호막<sprite name=""Barrier"">을 15 획득합니다."
 Tile_TileDescription_HealTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆叠 3 个图腾 <sprite name=""Totem""> 时激活。
  
@@ -223,8 +223,8 @@ Tile_TileDescription_KoreaTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆�
  <color=yellow>強化時</color>: 4秒間、敵の呪い<sprite name=""Curse"">数値を20高いと見なします。
  
  <color=yellow>星<sprite name=""Star"">にある</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","토템<sprite name=""Totem"">을 쌓습니다. 3개의 토템<sprite name=""Totem"">이 쌓이면 발동합니다.
-<color=yellow>발동 시</color>: 4초 동안 적의 저주<sprite name=""Curse""> 수치를 10 더 높은 것으로 간주합니다. (실제 수치는 변하지 않으며, 이 효과는 저주 수치 기반 조건과 피해 계산에만 적용됩니다.)
-<color=yellow>강화 시</color>: 4초 동안 적의 저주<sprite name=""Curse""> 수치를 20 더 높은 것으로 간주합니다.
+<color=yellow>발동 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 5 부여합니다. (4초 후 제거)
+<color=yellow>강화 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 10 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
 Tile_TileDescription_RobeTile,"获得 30 个 <sprite name=""Barrier"">盾牌。","Gain 30 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を30獲得します。","보호막<sprite name=""Barrier"">을 30 획득합니다."
 Tile_TileDescription_SwordTile,"召唤一把<sprite name=""Sword"">，所有剑都会攻击。
@@ -277,8 +277,7 @@ Tile_TileDescription_CrowTile,"<color=yellow>战斗开始时</color>：召唤一
   <color=yellow>バリア<sprite name=""Barrier""> 15吸収時</color>：敵に烙印<sprite name=""Mark"">を付与します。
  
   <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","<color=yellow>전투 시작 시</color>: 까마귀를 소환합니다.
-<color=yellow>보호막<sprite name=""Barrier""> 15 흡수시</color>: 적에게 낙인<sprite name=""Mark"">을 부여합니다.
-<color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
+<color=yellow>보호막<sprite name=""Barrier""> 15 흡수 시</color>: 적에게 낙인<sprite name=""Mark"">을 부여합니다."
 Tile_TileDescription_FlamingSwordTile,"下次攻击时，所有剑 <sprite name=""Sword""> 将获得 1 点火焰 <sprite name=""Fire"">。召唤一把剑 <sprite name=""Sword"">，所有剑都将攻击。
  
   （伤害：<color=red>5</color>）
@@ -306,7 +305,8 @@ Tile_TileDescription_GoddessTile,"位于<color=yellow>星星<sprite name=""Star"
 Tile_TileDescription_GuideStaffTile,发射一颗充满新手运气的射弹。​​（伤害：<color=red>10</color>）,Fires a projectile filled with beginner's luck. (Damage: <color=red>10</color>),"初心者の幸運を込めた弾を発射します。
  
   （ダメージ：<color=red>10</color>）","초심자의 행운을 담은 투사체를 발사합니다.
-(피해량: <color=red>10</color>)"
+(피해량: <color=red>10</color>)
+<color=yellow>별<sprite name=""Star"">에 위치한</color> 무기<sprite name=""Weapon"">마다 피해량이 5 증가합니다."
 Tile_TileDescription_HauntedDollTile,"赋予诅咒<sprite name=""Curse"">。根据诅咒<sprite name=""Curse"">的堆叠数量触发额外效果。
  
   <color=yellow>20</color>: 赋予 1 点冻伤<sprite name=""ice"">。
@@ -453,7 +453,7 @@ Tile_TileDescription_TotemBaseTile,"<color=yellow>购买后：</color>商店中�
  
   戦闘時、トーテムが溜まる位置です。
  
-  <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">のクールタイムを10%減少させます。","<color=yellow>구매시:</color> 토템<sprite name=""Totem"">이 상점에 등장합니다.
+  <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">のクールタイムを10%減少させます。","<color=yellow>구매 시:</color> 토템<sprite name=""Totem"">이 상점에 등장합니다.
 전투 시, 토템이 쌓이는 위치입니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">의 쿨타임을 10% 감소시킵니다."
 Tile_TileDescription_ThunderStormCloudTile,"<color=yellow>激活时</color>：击落闪电。如果被标记，则再次标记。
@@ -609,7 +609,7 @@ UI_Quest_Instruction1,"指南 1
  
   -キャラクターを動く
  
-  ({0}/5)","가이드 1 
+  ({0}/5)","튜토리얼 1
 - 캐릭터를 움직이세요 
 ({0}/5)"
 UI_Quest_Instruction2,"指南 2
@@ -624,7 +624,7 @@ UI_Quest_Instruction2,"指南 2
  
   - 10秒間生き残る
  
-  ({0}/10秒)","가이드 2
+  ({0}/10秒)","튜토리얼 2
 - 10초간 생존하세요
 ({0}/10초)"
 UI_Quest_Instruction3,"指南 3
@@ -639,9 +639,10 @@ UI_Quest_Instruction3,"指南 3
  
   - 星座を設置する
  
-  ({0}/5個)","가이드 3
-- 별자리를 설치하세요
-({0}/5개)"
+  ({0}/5個)","튜토리얼 3
+- 별자리를 설치하고 
+별을 활성화 하세요
+(설치 {0}/3개)  (별 {1}/3개)"
 UI_Quest_Instruction4,"指南 4
  
   - 旋转星座
@@ -654,7 +655,7 @@ UI_Quest_Instruction4,"指南 4
  
   - 星座を回転させる
  
-  ({0}/5個)","가이드 4
+  ({0}/5個)","튜토리얼 4
 - 별자리를 회전시켜보세요
 ({0}/5개)"
 UI_Quest_Instruction5,"指南 5
@@ -669,7 +670,7 @@ UI_Quest_Instruction5,"指南 5
  
   - 星座を保管する
  
-  ({0}/4個)","가이드 5
+  ({0}/4個)","튜토리얼 5
 - 별자리를 보관해보세요
 ({0}/4개)"
 UI_Quest_Instruction6,"指南6
@@ -684,7 +685,7 @@ UI_Quest_Instruction6,"指南6
  
   - 星座を販売する
  
-  （{0}/4個）","가이드 6
+  （{0}/4個）","튜토리얼 6
 - 별자리를 판매해보세요
 ({0}/4개)"
 UI_Quest_Instruction7,"指南 7
@@ -699,17 +700,17 @@ UI_Quest_Instruction7,"指南 7
  
   -敵と戦って勝利する
  
-  ({0}/1)","가이드 7
+  ({0}/1)","튜토리얼 7
 - 적과 싸워 승리하세요
 ({0}/1)"
 ,,,,
-UI_Quest_Title1,- 指南 1 -,- Guide 1 -,- ガイド 1 -,- 가이드 1 -
-UI_Quest_Title2,- 指南 2 -,- Guide 2 -,- ガイド 2 -,- 가이드 2 -
-UI_Quest_Title3,- 指南 3 -,- Guide 3 -,- ガイド 3 -,- 가이드 3 -
-UI_Quest_Title4,- 指南 4 -,- Guide 4 -,- ガイド 4 -,- 가이드 4 -
-UI_Quest_Title5,- 指南 5 -,- Guide 5 -,- ガイド 5 -,- 가이드 5 -
-UI_Quest_Title6,- 指南 6 -,- Guide 6 -,- ガイド 6 -,- 가이드 6 -
-UI_Quest_Title7,- 指南 7 -,- Guide 7 -,- ガイド 7 -,- 가이드 7 -
+UI_Quest_Title1,- 指南 1 -,- Guide 1 -,- ガイド 1 -,튜토리얼 1
+UI_Quest_Title2,- 指南 2 -,- Guide 2 -,- ガイド 2 -,튜토리얼 2
+UI_Quest_Title3,- 指南 3 -,- Guide 3 -,- ガイド 3 -,튜토리얼 3
+UI_Quest_Title4,- 指南 4 -,- Guide 4 -,- ガイド 4 -,튜토리얼 4
+UI_Quest_Title5,- 指南 5 -,- Guide 5 -,- ガイド 5 -,튜토리얼 5
+UI_Quest_Title6,- 指南 6 -,- Guide 6 -,- ガイド 6 -,튜토리얼 6
+UI_Quest_Title7,- 指南 7 -,- Guide 7 -,- ガイド 7 -,튜토리얼 7
 ,,,,
 UI_Quest_SubTitle1,移动,Move,移動する,이동하기
 UI_Quest_SubTitle2,存活,Survive,生き残る,살아남기
@@ -760,8 +761,12 @@ UI_Quest_Content3,"星座可以通过支付金币从底部商店购买
   店で星座を
  
   クリックしたまま移動し配置してください","별자리는 하단 상점에서 
-골드를 지불해 
 구매할 수 있습니다
+
+각 별자리는 고유의 별을 가지고 있어 
+각 별자리의 조건을 달성시 
+별자리가 강화됩니다. 
+
 상점에서 별자리를 
 드래그 하여 영역에 설치하세요"
 UI_Quest_Content4,"旋转星座
@@ -870,44 +875,43 @@ UI_Quest_Goal1,- 完成条件 - 移动角色 (0/5),"Completion Conditions
   Move Character (0/5)","クリア条件
  
   キャラクターを移動する(0/5)","완료 조건
-  캐릭터 이동하기 (0/5)"
+ 캐릭터 이동하기 (0/5)"
 UI_Quest_Goal2,- 完成条件 - 存活 10 秒 (0/10 秒),"Completion Conditions 
  
   Survive for 10 seconds (0/10 seconds)","クリア条件
  
   10秒間生き残る（0/10秒）","완료 조건
- 
-  10초간 생존하기 (0/10초)"
+10초 동안 생존하기 (10초)"
 UI_Quest_Goal3,- 完成条件 - 安装 5 个星座 (0/5),"Completion Conditions 
  
   Install 5 constellations (0/5)","クリア条件
  
   星座5個を設置する（0/5個）","완료 조건
-  별자리 5개 설치하기 (0/5개)"
+(설치 0/3개)  (별 0/3개)"
 UI_Quest_Goal4,- 完成条件 - 旋转星座 (0/5),"Completion Conditions 
  
   Rotate the Constellation (0/5)","クリア条件
  
   星座5個を回転する（0/５個）","완료 조건
-  별자리 회전시키기 (0/5)"
+별자리 회전시키기 (0/5)"
 UI_Quest_Goal5,- 完成条件 - 储存 4 个星座 (0/4),"Completion Conditions 
  
   Store 4 constellations (0/4)","クリア条件
  
   星座を4個保管する（0/4個）","완료 조건
-  별자리 4개 보관하기 (0/4개)"
+별자리 4개 보관하기 (0/4개)"
 UI_Quest_Goal6,- 完成条件 - 出售 4 个星座 ({0}/4),"Completion Conditions 
  
   Sell 4 constellations ({0}/4)","クリア条件 
  
   星座を4個販売する（{0}/4個）","완료 조건
-  별자리 4개 판매하기 (0/4개)"
+별자리 4개 판매하기 (0/4개)"
 UI_Quest_Goal7,- 完成条件 - 赢得战斗 (0/1),"Completion Conditions 
  
   Win the Battle (0/1)","クリア条件
  
   戦いに勝つ(0/1)","완료 조건
-  전투 승리 (0/1)"
+전투 승리 (0/1)"
 ,,,,
 UI_Button_FinalBossRetry,最终 Boss 再次挑战,Final Boss Re-challenge,最後のボス再挑戦,마지막 보스 재도전
 UI_Button_Reroll,"刷新 (1G)
@@ -929,14 +933,14 @@ UI_Button_Yas,是的,Yas,はい,네
 UI_Button_No,不,No,いいえ,아니오
 UI_Button_Start,开始,START,スタート,게임 시작
 UI_Button_Guide,指导,GUIDE,ガイド,튜토리얼
-UI_Button_Book,书,BOOK,本,도감
+UI_Button_Book,书,BOOK,本,별자리 도감
 UI_Button_Credit,信用,Credit,クレジット,크레딧
 UI_Button_Close,关闭,Close,閉じる,닫기
 UI_Button_Easy,简单的,Easy,イージー,쉬움
 UI_Button_Nomal,普通的,Normal,ノーマル,보통
 UI_Button_Hard,难的,Hard,ハード,어려움
 UI_Button_VeryHard,地狱,hell,地獄,지옥
-UI_Button_Setting,环境,Setting,設定,설정
+UI_Button_Setting,环境,Setting,設定,환경 설정
 UI_Button_Exit,结尾,Exit,終了,게임 종료
 ,,,,
 UI_Text_ProbabilityTable,概率表,Probability Table,確率表,확률표
