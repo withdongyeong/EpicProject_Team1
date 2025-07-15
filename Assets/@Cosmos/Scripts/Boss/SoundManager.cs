@@ -15,172 +15,36 @@ public class SoundManager : Singleton<SoundManager>
 
     // 플레이어 사운드 딕셔너리
     private Dictionary<string, AudioClip> playerSoundDictionary = new Dictionary<string, AudioClip>();
-    // 플레이어 사운드 볼륨 딕셔너리
-    private Dictionary<string, float> playerSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        { "StickRoll", 1f },
-        { "AriaActive", 1f },
-        { "PlayerMove", 0.03f },
-        { "PlayerDamage", 1f },
-        { "PlayerDead", 1f }
-    };
 
     // 타일 사운드 딕셔너리
     private Dictionary<string, AudioClip> tileSoundDictionary = new Dictionary<string, AudioClip>();
-    // 타일 볼륨 딕셔너리
-    private Dictionary<string, float> tileSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"HealSkillActivate", 0.2f},
-        {"FireBallSkillActivate", 0.5f},
-        {"FireBoltSkillActivate", 0.2f},
-        {"ShieldSkillActivate", 0.3f },
-        {"IcicleSkillActivate", 0.2f },
-        {"FlamingSwordSkillActivate", 0.5f},
-        {"FrostStaffSkillActivate", 0.2f },
-        {"TotemSummonSkillActivate", 0.5f },
-        {"ManaTurretSkillActivate", 0.3f },
-        {"ProjectileSkillActivate", 0.3f},
-        {"ArchmageStaffSkillActivate", 0.7f},
-        {"RainbowSkillActivate", 0.2f},
-        {"StaffSkillActivate", 0.3f},
-        {"ProtectionSkillActivate", 1f },
-        {"ShieldSkillRemove", 0.3f },
-        {"SwordSkillActivate", 1f},
-        {"WarFlagSkillActivate", 1f },
-        {"FrostHammerSkillActivate", 1f },
-        {"HauntedDollSkillActivate", 0.3f},
-        {"CloudSkillActivate", 0.5f },
-        {"PhantomSkillActivate", 0.5f },
-        {"NecronomiconSkillActivate", 1f },
-        {"WraithSkillActivate", 0.8f },
-        {"비구름", 0.3f },
-    };
 
     //아라크네 사운드 딕셔너리
     private Dictionary<string, AudioClip> ArachneSoundDictionary = new Dictionary<string, AudioClip>();
-    //아라크네 볼륨 딕셔너리
-    private Dictionary<string, float> ArachneSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"PoisionExplotionActivate", 0.7f},
-        {"PoisonBallActivate", 0.7f },
-        {"SpiderLegActivate", 0.3f },
-        {"SpiderSilkActivate", 0.8f },
-        {"ArachneDamageActivate", 0.3f},
-        { "ArachneDeadActivate", 1f}
-    };
 
     //오크메이지 사운드 딕셔너리
     Dictionary<string, AudioClip> OrcMageSoundDictionary = new Dictionary<string, AudioClip>();
-    //오크메이지 사운드볼륨
-    private Dictionary<string, float> OrcMageSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"OrcMage_DamageActivate", 0.6f},
-        {"OrcMage_DieActivate", 0.6f },
-        {"OrcMage_FrogActivate", 1f },
-        {"OrcMage_RunActivate", 0.3f },
-        {"OrcMage_ScreamActivate", 0.6f },
-        {"OrcMage_SpikeActivate", 0.2f }
-    };
 
     //슬라임 사운드 딕셔너리
     private Dictionary<string, AudioClip> SlimeSoundDictionary = new Dictionary<string, AudioClip>();
-    //슬라임 볼륨 딕셔너리
-    private Dictionary<string, float> SlimeSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"PoisionExplotionActivate", 1f},
-        {"PoisonBallActivate", 1f },
-        {"SlimeTentacleActivate", 0.5f },
-        {"SlimeDamageActivate", 1f},
-        {"SlimeDeadActivate", 0.3f}
-    };
-
+    //폭탄 사운드 딕셔너리
     private Dictionary<string, AudioClip> BomberSoundDictionary = new Dictionary<string, AudioClip>();
-    //복탄 볼륨 딕셔너리
-    private Dictionary<string, float> BomberSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"BomberAttackActivate", 0.05f},
-        {"BomberDamageActivate", 0.3f },
-        {"BomberDeadActivate", 0.7f },
-    };
-
+    //골렘 사운드 딕셔너리
     private Dictionary<string, AudioClip> GolemSoundDictionary = new Dictionary<string, AudioClip>();
-    //골렘 볼륨 딕셔너리
-    private Dictionary<string, float> GolemSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"GolemAttackActivate", 0.2f},
-        {"GolemDamageActivate", 1f },
-        {"GolemDeadActivate", 1f },
-    };
-
+    //나무거북 사운드 딕셔너리
     private Dictionary<string, AudioClip> TurtreeSoundDictionary = new Dictionary<string, AudioClip>();
-    //나무거북 볼륨 딕셔너리
-    private Dictionary<string, float> TurtreeSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"TurtreeAttackActivate", 0.05f},
-        {"TurtreeDamageActivate", 0.3f },
-        {"TurtreeDeadActivate", 0.3f },
-    };
-
+    //리퍼 사운드 딕셔너리
     private Dictionary<string, AudioClip> ReaperSoundDictionary = new Dictionary<string, AudioClip>();
-    //리퍼 볼륨 딕셔너리
-    private Dictionary<string, float> ReaperSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"ReaperAttackActivate", 0.3f},
-        {"ReaperDamageActivate", 1f },
-        {"ReaperDeadActivate", 1f },
-    };
-
+    //기사 사운드 딕셔너리
     private Dictionary<string, AudioClip> KnightSoundDictionary = new Dictionary<string, AudioClip>();
-    //기사 볼륨 딕셔너리
-    private Dictionary<string, float> KnightSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"KnightAttackActivate", 0.1f},
-        {"KnightDashActivate", 1f},
-        {"KnightDamageActivate", 1f },
-        {"KnightDeadActivate", 1f },
-    };
 
+    //손 사운드 딕셔너리
     private Dictionary<string, AudioClip> BigHandSoundDictionary = new Dictionary<string, AudioClip>();
-    //손 볼륨 딕셔너리
-    private Dictionary<string, float> BigHandSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"BigHandAttackActivate", 0.3f},
-        {"BigHandFistActivate", 0.01f},
-        {"BigHandFingerActivate", 0.7f},
-        {"BigHandDamageActivate", 0.3f },
-        {"BigHandDeadActivate", 0.3f },
-        {"BigHandSlideActivate", 0.5f}
-    };
-
+    //최종보스 사운드 딕셔너리
     private Dictionary<string, AudioClip> LastBossSoundDictionary = new Dictionary<string, AudioClip>();
-    //최종보스 볼륨 딕셔너리
-    private Dictionary<string, float> LastBossSoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"LastBossDamageActivate", 0.3f },
-        {"LastBossDeadActivate", 1f },
-        {"LastBossFlameAttackActivate", 0.1f },
-        {"LastBossFrostAttackActivate", 0.1f },
-        {"LastBossStaffAttackActivate", 0.1f },
-        {"LastBossSwordAttackActivate", 0.1f },
-        {"LastBossFlameModeActivate", 0.1f },
-        {"LastBossFrostModeActivate", 0.1f },
-        {"LastBossStaffModeActivate", 0.1f },
-        {"LastBossSwordModeActivate", 1f }
-    };
 
     //UI 사운드 딕셔너리
     Dictionary<string, AudioClip> UISoundDictionary = new Dictionary<string, AudioClip>();
-    //UI 사운드볼륨
-    private Dictionary<string, float> UISoundVolumeDictionary = new Dictionary<string, float>
-    {
-        {"DeploymentActivate", 0.2f},
-        {"RerollActivate", 0.5f },
-        {"ButtonActivate", 0.1f },
-        {"BlackHoleStartActivate", 0.8f },
-        {"TileOpenActivate", 0.3f },
-        {"TileLockActivate", 0.3f },
-        {"TileSellActivate", 1f }
-    };
 
     //BGM 사운드 딕셔너리
     Dictionary<string, AudioClip> BGMSoundDictionary = new Dictionary<string, AudioClip>();
@@ -385,7 +249,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void PlayTileSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
         if (clip != null && interactionAudioSource != null)
         {
             AudioClip tileClip = tileSoundDictionary.ContainsKey(clip) ? tileSoundDictionary[clip] : null;
@@ -403,8 +266,6 @@ public class SoundManager : Singleton<SoundManager>
     /// </summary>
     public void ArachneSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -423,8 +284,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void OrcMageSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -443,8 +302,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void SlimeSoundClip(string clip)
     {
-        //Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -463,8 +320,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void BomberSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -483,8 +338,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void GolemSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -503,8 +356,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void TurtreeSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -523,8 +374,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void ReaperSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -543,8 +392,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void KnightSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -563,8 +410,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void BigHandSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
@@ -583,8 +428,6 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="clip"></param>
     public void LastBossSoundClip(string clip)
     {
-        Debug.Log($"PlayTileSoundClip called with clip: {clip}");
-
         if (clip != null && interactionAudioSource != null)
         {
 
