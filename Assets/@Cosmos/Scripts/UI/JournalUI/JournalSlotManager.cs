@@ -58,9 +58,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     {
         //DontDestroyOnLoad(Instantiate(_eventSystem));
         SetStoreTileList();
-        InstantiateAllJournalSlots();
-        _isInit = true;
-        ToggleJournal();
+        _isInit = true; 
     }
 
     public void SetStoreTileList()
@@ -136,11 +134,15 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             }
 
         }
+
+        InstantiateAllJournalSlots();
     }
 
 
     private void InstantiateAllJournalSlots()
     {
+        //이거 안하면 오류납니다.
+        _scrollView.SetActive(true);
         //먼저 저널 슬롯 싹 비웁니다
         for (int i = _slotParent.childCount - 1; i >= 0; i--)
         {
@@ -152,6 +154,9 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         InstantiateJournalSlotList(_epicStoreTiles);
         InstantiateJournalSlotList(_legendaryStoreTiles);
         InstantiateJournalSlotList(_mythicStoreTiles);
+
+        //볼장 다 봤으니 다시 끕니다
+        _scrollView.SetActive(false);
     }
 
     private void InstantiateJournalSlotList(List<GameObject> objects)
