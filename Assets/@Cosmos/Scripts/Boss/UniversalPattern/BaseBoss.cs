@@ -382,6 +382,25 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
+    /// 공격 중지 불가 보스용 데미지만 증가
+    /// </summary>
+    public void IncreasedDamageTaken(float time)
+    {
+        _isStopped = true;
+        StartCoroutine(IncreasedDamageTakenRoutine(time));
+    }
+
+    /// <summary>
+    /// 공격 중지 불가 보스용 데미지 증가 루틴
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator IncreasedDamageTakenRoutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _isStopped = false;
+    }
+
+    /// <summary>
     /// 상태이상 추가
     /// </summary>
     /// <param name="debuff">추가할 상태이상</param>
