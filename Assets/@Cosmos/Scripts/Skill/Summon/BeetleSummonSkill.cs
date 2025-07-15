@@ -33,6 +33,11 @@ public class BeetleSummonSkill : SkillBase
     {
         base.Activate();
         _playerProtection.SetProtection(true, 5 + _adjacentSummonNameList.Count * 5);
+        // 인접 소환수 7개 이상이면 업적
+        if (_adjacentSummonNameList.Count >= 7)
+        {
+            SteamAchievement.Achieve("ACH_CON_BEETLE");
+        }
         
     }
     protected override void OnDestroy()
