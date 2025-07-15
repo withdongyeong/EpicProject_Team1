@@ -549,9 +549,11 @@ public abstract class BaseBoss : MonoBehaviour
                 break;
             case 2:
                 BPM = BPM * 1.3f;
+                MaxHealth = (int)(MaxHealth * 1.3);
                 break;
             case 3:
                 BPM = BPM * 1.3f;
+                MaxHealth = (int)(MaxHealth * 1.5);
                 break;
             default:
                 break;

@@ -16,7 +16,7 @@ public class BigHandFingerPattern : IBossAttackPattern
     private List<Vector3Int> _blockedPositions;
     private Vector3Int _currentTargetPos;
     private int _damage;
-
+    private bool _isSoundCoolTime = false;
     public string PatternName => "손가락_추적공격";
     
     public BigHandFingerPattern(GameObject fingerBottomPrefab, GameObject fingerTopPrefab, 
@@ -84,7 +84,7 @@ public class BigHandFingerPattern : IBossAttackPattern
         
         _fingerObject = Object.Instantiate(selectedPrefab, startTipPos, Quaternion.identity);
 
-        boss.StartCoroutine(PlayAttackSound("BigHandFingerActivate", 1f));
+        boss.StartCoroutine(PlayAttackSound(boss, 0, "BigHandFingerActivate"));
 
         // 손가락 본체 전조
         foreach (Vector3Int pos in fingerPositions)
@@ -163,7 +163,7 @@ public class BigHandFingerPattern : IBossAttackPattern
             yield return new WaitForSeconds(explosionDelay);
         }
         
-        boss.StartCoroutine(PlayAttackSound("BigHandAttackActivate", 1f));
+        boss.StartCoroutine(PlayAttackSound(boss, 0, "BigHandAttackActivate"));
 
         boss.BombHandler.ExecuteFixedBomb(
             crossPositions, 
@@ -364,10 +364,27 @@ public class BigHandFingerPattern : IBossAttackPattern
             _fingerObject = null;
         }
     }
-    public IEnumerator PlayAttackSound(string SoundName, float BombTime)
+
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime, string SoundName)
     {
-        yield return new WaitForSeconds(BombTime); // 예시로 빈 코루틴 반환
-        SoundManager.Instance.BigHandSoundClip(SoundName);
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay(SoundName));
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
     }
 
+    public IEnumerator SoundPlay(string soundName)
+    {
+        yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
+        SoundManager.Instance.BigHandSoundClip(soundName);
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
+    }
 }
