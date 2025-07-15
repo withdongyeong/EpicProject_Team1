@@ -129,7 +129,6 @@ public class InfoPanel : MonoBehaviour
             {
                 rectTransform.position = new Vector2(rectTransform.position.x, 450);
             }
-            Debug.Log("패널 위치: " + rectTransform.position);
         }
         else
         {

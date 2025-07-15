@@ -209,6 +209,18 @@ public class TileObject : MonoBehaviour
                 star.SetLightProperties(2,0,1f,0.1f,0.2f);
             }
         }
+
+        if (combinedStarCell.GetComponent<CombinedStarCell>().GetStarSkill().GetType().Name.Contains("GuideStaffStarSkill"))
+        {
+            if (activeStarCount > 0)
+            {
+                combinedStarCell.GetComponent<GuideStaffStarSkill>().QuestClear();
+            }
+            else
+            {
+                combinedStarCell.GetComponent<GuideStaffStarSkill>().QuestReset();
+            }
+        }
     }
 
     public void HideStarCell()
