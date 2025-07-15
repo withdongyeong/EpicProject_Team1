@@ -837,10 +837,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096706
-    m_Localized: "<color=yellow>Start of battle</color>: Summon a cat wizard.\r\n
-      <color=yellow>When activated</color>: Gain 5 Barrier <sprite name=\"Barrier\">.\r\n
-      Gain an additional 5 Barrier <sprite name=\"Barrier\"> for each <sprite name=\"Summon\">
-      located on the <color=yellow>star</color>. (No duplicates)"
+    m_Localized: '<color=yellow>At the start of combat</color>: Summon a Cat Wizard.
+
+      <color=yellow>On
+      activation</color>: Gain 5 Barrier.
+
+      Gain an additional 5 Barrier for
+      each type of Summon <sprite name="Summon"> on the <color=yellow>Star</color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 2315244007989257
@@ -876,7 +879,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2315244012183559
-    m_Localized: Very hard
+    m_Localized: hell
     m_Metadata:
       m_Items: []
   - m_Id: 2315244012183561
