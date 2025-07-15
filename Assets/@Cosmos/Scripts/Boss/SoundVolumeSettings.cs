@@ -36,6 +36,7 @@ public class SoundVolumeSettings : MonoBehaviour
     public float NecronomiconSkillActivate = 1f;
     public float WraithSkillActivate = 0.8f;
     public float 비구름 = 0.3f;
+    public float HellFireSkillActivate = 1f;
 
     // ---------------- Arachne ----------------
     [Header("🕷 Arachne")]

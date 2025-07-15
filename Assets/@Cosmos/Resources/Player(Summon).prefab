@@ -723,14 +723,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53f541fc9c636e448a4b0a041a45e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  protectionImagePrefab: {fileID: 603461643113537889, guid: 310dd52b216708a4a80938bc9054490d, type: 3}
-  defaultMoveDuration: 1
+  protectionImagePrefab: {fileID: 837882256275589291, guid: c53f6cb008bb9074593176348632f76f, type: 3}
+  moveDuration: 1
   minCurveHeight: 0.5
   maxCurveHeight: 2
   minCurveOffset: -0.5
   maxCurveOffset: 0.5
   minScale: 0.5
   maxScale: 1.5
+  defaultObjectCount: 3
+  spawnInterval: 0.2
 --- !u!1 &4924547627108980569
 GameObject:
   m_ObjectHideFlags: 0
