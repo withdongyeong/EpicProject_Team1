@@ -26,7 +26,7 @@ public class StarQuest : GuideQuest
     }
     public override void OnStart()
     {
-        starActivated = 0;
+        
     }
 
     public override bool IsCompleted()
