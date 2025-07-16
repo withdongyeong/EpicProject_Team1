@@ -27,7 +27,6 @@ public class PlaceQuest : GuideQuest
     public override void OnStart()
     {
         tilesPlaced = 0;
-        
     }
 
     public override bool IsCompleted()
