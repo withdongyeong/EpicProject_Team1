@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -27,6 +28,8 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     private Transform _slotParent; //슬롯의 부모, 그러니까 StoreSlotController가 붙은 쯤의 위치입니다.
     private GameObject _scrollView; //이거 끄면 저널이 안보이게됩니다.
+
+    private LocalizedString _localizedString;
 
     //이 밑은 희귀도에 따라서 분류된 리스트입니다
     private List<GameObject> _normalStoreTiles = new();
@@ -63,6 +66,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/DamageTotemTile"));
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/CloudTile"));
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/TurtleTile"));
+        _localizedString = new LocalizedString("EpicProject_Table", "UI_Text_UnlockedTileCount");
         _isInit = false;
     }
 
@@ -247,8 +251,14 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
                 {
                     _showUnlockedTilePanel.gameObject.SetActive(true);
                     _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
-                    _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-                        $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
+
+                    _localizedString.StringChanged += (text) =>
+                    {
+                        _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text = text.Replace("{0}", _unlockedTileNumList[SaveManager.ShownUnlockLevel].ToString());
+                    };
+
+                    //_showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
+                    //    $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
                 }
             }
                        

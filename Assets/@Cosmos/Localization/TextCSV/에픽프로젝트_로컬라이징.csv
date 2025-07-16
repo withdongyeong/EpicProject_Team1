@@ -99,11 +99,8 @@ Tile_TileDescription_FireBoltTile,"发射一枚投射物。
 (Damage: <color=red>8</color>)
 <color=yellow>On hit</color>: Inflict 1 Burn <sprite name=""Fire"">.
 If there are 3 or more <sprite name=""MagicCircle"">s located on the <color=yellow>star</color>, fires 1 additional projectile.","弾を発射します。 
-
 (ダメージ: <color=red>8</color>)
-
 <color=yellow>ヒット時</color>: 炎<sprite name=""Fire"">を付与します。
-
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、1つの弾をさらに発射します。","투사체를 발사합니다. 
 (피해량: <color=red>8</color>)
 <color=yellow>적중 시</color>: 화염<sprite name=""Fire"">을 부여합니다.
@@ -418,11 +415,11 @@ UI_Quest_Instruction2,"教程 2
 ({0}/10초)"
 UI_Quest_Instruction3,"教程 3
 - 安装星座
-({0}/5)","Tutorial 3
+({0}/3)","Tutorial 3
 - Install the constellation
-({0}/5)","チュートリアル3
+({0}/3)","チュートリアル3
 - 星座を設置する
-({0}/5個)","튜토리얼 3
+({0}/3個)","튜토리얼 3
 - 별자리를 설치하세요
 (설치 {0}/3개)"
 UI_Quest_Instruction3_1,"教程 4
@@ -600,10 +597,10 @@ UI_Quest_Goal2,"- 完成条件 -
 Survive for 10 seconds (0/10 seconds)","クリア条件
 10秒間生き残る（0/10秒）","완료 조건
 10초 동안 생존하기 (10초)"
-UI_Quest_Goal3,"- 完成条件 - 
-安装 5 个星座 (0/5)","Completion Conditions 
-Install 5 constellations (0/5)","クリア条件
-星座5個を設置する（0/5個）","완료 조건
+UI_Quest_Goal3,"完成条件
+安装 5 个星座 (0/3)","Completion Conditions 
+Install 5 constellations (0/3)","クリア条件
+星座5個を設置する（0/3個）","완료 조건
 (설치 0/3개)"
 UI_Quest_Goal3_1,完成条件（激活 0/3 颗星）,Completion Conditions (0/3 stars activated),"完了条件
 （活性化された星0/3個）","완료 조건
@@ -618,10 +615,10 @@ UI_Quest_Goal5,"- 完成条件 -
 Store 4 constellations (0/4)","クリア条件
 星座を4個保管する（0/4個）","완료 조건
 별자리 4개 보관하기 (0/4개)"
-UI_Quest_Goal6,"- 完成条件 - 
-出售 4 个星座 ({0}/4)","Completion Conditions 
-Sell 4 constellations ({0}/4)","クリア条件 
-星座を4個販売する（{0}/4個）","완료 조건
+UI_Quest_Goal6,"完成条件
+出售 4 个星座 (0/4)","Completion Conditions 
+Sell 4 constellations (0/4)","クリア条件 
+星座を4個販売する（0/4個）","완료 조건
 별자리 4개 판매하기 (0/4개)"
 UI_Quest_Goal7,"- 完成条件 - 
 赢得战斗 (0/1)","Completion Conditions 
