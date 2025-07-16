@@ -66,6 +66,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/DamageTotemTile"));
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/CloudTile"));
         _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/TurtleTile"));
+        EventBus.SubscribeSceneLoaded(ShowUnlockTilesOnTitle);
         _localizedString = new LocalizedString("EpicProject_Table", "UI_Text_UnlockedTileCount");
         _isInit = false;
     }
@@ -75,7 +76,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     {
         //DontDestroyOnLoad(Instantiate(_eventSystem));
         SetStoreTileList();
-        HideUnlockTiles();
+        _showUnlockedTilePanel.gameObject.SetActive(false);
         _isInit = true; 
     }
 
@@ -257,8 +258,6 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
                         _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text = text.Replace("{0}", _unlockedTileNumList[SaveManager.ShownUnlockLevel].ToString());
                     };
 
-                    //_showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-                    //    $"{_unlockedTileNumList[SaveManager.ShownUnlockLevel]}개의 별자리가 해금됐습니다!";
                 }
             }
                        
@@ -271,9 +270,18 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         ShowUnlockTiles();
     }
 
+    private void ShowUnlockTilesOnTitle(Scene scene, LoadSceneMode mode)
+    {
+        if(SceneLoader.IsInTitle())
+        {
+            ShowUnlockTiles();
+        }
+    }
+
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(CloseJournalOnSceneChange);
+        EventBus.UnsubscribeSceneLoaded(ShowUnlockTilesOnTitle);
     }
 
 }
