@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Localization;
 
+using System;
 public class StarQuest : GuideQuest
 {
     [SerializeField]
@@ -31,9 +32,10 @@ public class StarQuest : GuideQuest
 
     public override bool IsCompleted()
     {
-        if (starActivated > 3) starActivated = 3; // 최대 3회로 제한
+        int i = Math.Min(3, starActivated);
+
         // 언어 설정에 따라 번역된 문자열 가져오기
-        instructionTextLocalized.Arguments = new object[] { starActivated };
+        instructionTextLocalized.Arguments = new object[] { i };
         instructionTextLocalized.RefreshString();
 
         GuideHandler.instance.questText.text = instructionText;
