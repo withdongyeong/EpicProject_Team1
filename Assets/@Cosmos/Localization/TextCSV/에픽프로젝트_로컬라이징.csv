@@ -176,7 +176,7 @@ Cooldown is reduced by 10% for each Summon <sprite name=""Summon""> located on a
 Tile_TileDescription_ClockTile,"<color=yellow>星 <sprite name=""Star> 上的图块的冷却时间减少 25%。</color>","<color=yellow>The cooldown of tiles located on the Star <sprite name=""Star> is reduced by 25%.</color>","<color=yellow>星<sprite name=""Star>に位置する</color>タイルのクールタイムが25％減少します。","<color=yellow>별<sprite name=""Star>에 위치한</color> 타일의 쿨타임이 25% 감소합니다"
 Tile_TileDescription_CloudTile,"<color=yellow>购买时</color>：云朵<sprite name=""Cloud"">会出现在商店中。
 授予<sprite name=""Ice"">时，有20%的概率再次授予。
-授予<sprite name=""fire"">时，有20%的概率不授予。","When granting Statue<sprite name=""Ice"">, there is a 20% chance to inflict it again.
+授予<sprite name=""fire"">时，有20%的概率不授予。","When granting Frostbyte<sprite name=""Ice"">, there is a 20% chance to inflict it again.
 When granting Burn<sprite name=""fire"">, there is a 20% chance to not inflict it.","凍傷 <sprite name=""Ice""> を付与するとき、20% の確率でもう一度付与します。
 炎<sprite name=""fire"">を付与する場合、20%の確率で付与しません。","동상<sprite name=""Ice"">을 부여할 때 20% 확률로 한번 더 부여합니다.
 화염<sprite name=""fire"">을 부여할 때 20% 확률로 부여하지 않습니다."
@@ -194,13 +194,16 @@ Cooldown is reduced by 10% for each summon <sprite name=""Summon""> located on t
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","다음 공격 시 모든 검<sprite name=""Sword"">이 화염<sprite name=""Fire"">을 1 부여합니다. 검<sprite name=""Sword"">을 한 개 소환하고 모든 검이 공격합니다.
 (피해량: <color=red>5</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_FrostHammerTile,"发射一枚射弹。如果目标被冻结，伤害将乘以<color=green>10</color>。<color=red>解除冻结状态。</color>
-(伤害：<color=red>30</color>)","Fires a projectile. If the target is frozen, the damage is multiplied by <color=green>10</color>. <color=red>Removes the frozen state.</color>
-(Damage: <color=red>30</color>)","弾を発射します。敵が氷結<sprite name=""Freeze"">状態の場合、ダメージが<color=green>10</color>倍になります。 <color=red>氷結状態を解除します。</color>
-
-（ダメージ：<color=red>30</color>）","투사체를 발사합니다. 적이 빙결<sprite name=""Freeze""> 상태면 피해량이 <color=green>10</color>배가 됩니다. <color=red>빙결 상태를 해제합니다.</color>
-(피해량:<color=red>30</color>)"
-Tile_TileDescription_GoddessTile,"位于<color=yellow>星<sprite name=""Star"">上的<sprite name=""Weapon"">的伤害增加<color=green>3</color>。","The damage of the Weapon<sprite name=""Weapon""> located on the <color=yellow>star<sprite name=""Star""> increases by <color=green>3</color>.","<color=yellow>星<sprite name=""Star"">に位置する</color>武器<sprite name=""Weapon"">のダメージが<color=green>3</color>上昇します。","<color=yellow>별<sprite name=""Star"">에 위치한</color> 무기<sprite name=""Weapon"">의 데미지가 <color=green>3</color> 상승합니다."
+Tile_TileDescription_FrostHammerTile,"发射一枚投射物。如果目标被冻结，伤害将乘以 <color=green>10</color>。<color=red>解除冻结状态。</color>
+（伤害：<color=red>30</color>）
+<color=red>击中</color>：造成 <sprite name=""Ice"">","Fires a projectile. If the target is frozen, the damage is multiplied by <color=green>10</color>. <color=red>Removes the frozen state.</color>
+(Damage: <color=red>30</color>)
+<color=red>On hit</color>: Inflicts 1  Frostbyte<sprite name=""Ice"">","弾を発射します。対象が氷結<sprite name=""Freeze"">状態の場合、ダメージが<color=green>10</color>倍になります。 <color=red>氷結状態を解除します。</color>
+（ダメージ：<color=red>30</color>）
+<color=red>ヒット時</color>：凍傷<sprite name=""Ice"">を付与します。","투사체를 발사합니다. 대상이 빙결<sprite name=""Freeze""> 상태면 피해량이 <color=green>10</color>배가 됩니다. <color=red>빙결 상태를 해제합니다.</color>
+(피해량:<color=red>30</color>)
+<color=red>적중 시</color>: 동상<sprite name=""Ice"">을 부여합니다."
+Tile_TileDescription_GoddessTile,"位于<color=yellow>星<sprite name=""Star"">上的<sprite name=""Weapon"">的伤害增加<color=green>3</color>。","The damage of the Weapon<sprite name=""Weapon""> located on the <color=yellow>star<sprite name=""Star""> increases by <color=green>3</color>.","<color=yellow>星<sprite name=""Star"">に位置する</color>武器<sprite name=""Weapon"">のダメージが<color=green>3</color>上昇します。","<color=yellow>별<sprite name=""Star"">에 위치한</color> 무기<sprite name=""Weapon"">의 피해량이 <color=green>3</color> 상승합니다."
 Tile_TileDescription_GuideStaffTile,发射一颗充满新手运气的射弹。​​（伤害：<color=red>10</color>）,Fires a projectile filled with beginner's luck. (Damage: <color=red>10</color>),"初心者の幸運を込めた弾を発射します。
 (ダメージ：<color=red>10</color>）","초심자의 행운을 담은 투사체를 발사합니다.
 (피해량: <color=red>10</color>)
@@ -301,18 +304,18 @@ Tile_TileDescription_ThunderStormCloudTile,"<color=yellow>激活时</color>：�
 (Damage: <color=red>40</color>)
 Reduces the cooldown of Summons<sprite name=""Summon""> located on the <color=yellow>Stars</color> by 10%.","<color=yellow>起動時</color>：雷を降ります。烙印<sprite name=""Mark"">が押されている場合は、烙印<sprite name=""Mark"">を再度撮ります。
 (ダメージ: <color=red>40</color>)
-<color=yellow>星<sprite name=""Star"">にある</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","<color=yellow>발동 시</color>: 번개를 내리칩니다. 낙인<sprite name=""Mark"">이 찍혀있다면 낙인<sprite name=""Mark"">을 다시 찍습니다.
-(데미지: <color=red>40</color>)
+<color=yellow>星<sprite name=""Star"">にある</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","<color=yellow>발동 시</color>: 번개를 내리칩니다. 번개를 내리칩니다. 적에게 낙인 <sprite name=""Mark"">이 부여되어 있다면 공격 후 낙인<sprite name=""Mark"">을 다시 부여합니다.
+(피해량: <color=red>40</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
 Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>：召唤一只吸收<sprite name=""Barrier"">护盾的乌龟。乌龟每秒吸收3个<sprite name=""Barrier"">护盾。（<color=red>最多15个</color>）
 <color=yellow>激活时</color>：发射乌龟。乌龟会根据吸收的护盾数量造成伤害。
-(伤害：<color=red>吸收量的3倍</color>)","<color=yellow>在<sprite name=""""Star"""">上召唤每个<sprite name=""""Summon"""">，冷却时间减少10%。"",""<color=yellow>Start of battle</color>: Summon a turtle that consumes Barrier<sprite name=""""Barrier"""">. The turtle consumes 3 Barriers<sprite name=""""Barrier""""> per second. (<color=red>Maximum 15</color>)
-<color=yellow>On activation</color>: Launch the turtle. The turtle deals damage based on the amount of Barrier<sprite name=""""Barrier""""> consumed.
+(伤害：<color=red>吸收量的3倍</color>)","<color=yellow>在<sprite name=""Star"">上召唤每个<sprite name=""Summon"">，冷却时间减少10%。<color=yellow>Start of battle</color>: Summon a turtle that consumes Barrier<sprite name=""Barrier"">. The turtle consumes 3 Barriers<sprite name=""Barrier""> per second. (<color=red>Maximum 15</color>)
+<color=yellow>On activation</color>: Launch the turtle. The turtle deals damage based on the amount of Barrier<sprite name=""Barrier""> consumed.
 (Damage: <color=red>3 X Barrier consumed</color>)","<color=yellow>戦闘開始時</color>: バリア<sprite name=""Barrier"">を吸収するカメを召喚します。カメは毎秒3のバリア<sprite name=""Barrier"">を吸収します。 (<color=red>最大 15</color>)
 <color=yellow>発動時</color>：カメを発射します。カメは吸収した保護膜量に比例してダメージを与えます。
 (ダメージ: <color=red>3 X 吸収されたバリア</color>)","<color=yellow>전투 시작 시</color>: 보호막<sprite name=""Barrier"">을 흡수하는 거북이를 소환합니다. 거북이는 매초 3의 보호막<sprite name=""Barrier"">을 흡수합니다. (<color=red>최대 15</color>)
 <color=yellow>발동 시</color>: 거북이를 발사합니다. 거북이는 흡수한 보호막량에 비례해 피해를 입힙니다.
-(피해량: <color=red>3 X 흡수한 양</color>)"
+(피해량: <color=red>3 X 흡수한 보호막</color>)"
 Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">的最大数量提升至40。<color=yellow>触发</color>时：消耗<color=red>40个诅咒</color>并造成1点痛苦<sprite name=""Pain"">。将当前施加于敌人的所有火焰<sprite name=""fire"">和冰霜<sprite name=""ice"">转换为诅咒<sprite name=""Curse"">。如果<color=yellow>星星</color>上有3个或更多魔法阵<sprite name=""MagicCircle"">，则消耗<color=red>20个诅咒</color>。","<color=yellow>Start of battle</color>: Increase the maximum number of Curses <sprite name=""Curse""> to 40. 
 <color=yellow>When triggered</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=""Pain"">. 
 Convert all Burn <sprite name=""fire""> and FrostByte <sprite name=""ice""> currently applied to enemies to Curses <sprite name=""Curse"">. 
@@ -348,14 +351,14 @@ Tile_TileDescription_MoaiTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆�
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","토템<sprite name=""Totem"">을 쌓습니다. 3개의 토템<sprite name=""Totem"">이 쌓이면 발동합니다.
 <color=yellow>발동 시</color>: 투사체를 발사합니다.
 (피해량: <color=red>15</color>)
-<color=yellow>강화 시</color>: 데미지가 5배가 됩니다.
+<color=yellow>강화 시</color>: 피해량이 5배가 됩니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
 Tile_TileDescription_MagmaBladeTile,"下次攻击时，所有剑 <sprite name=""Sword""> 将获得 1 点火焰 <sprite name=""Fire"">，其攻击力等于召唤的剑的数量。召唤一把剑 <sprite name=""Sword"">，所有剑都会攻击。
 (伤害：<color=red>召唤的剑数量</color>）
 每召唤一个位于 <color=yellow> 星 <sprite name=""Star""> 上的 <sprite name=""Summon"">，冷却时间减少 10%。","On the next attack, all swords <sprite name=""Sword""> will inflict 1 Burn <sprite name=""Fire""> and their attack power will be equal to the number of summoned swords. Summon a sword <sprite name=""Sword""> and all swords will attack.
 (Damage: <color=red>Number of summoned swords</color>)
 Cooldown is reduced by 10% for each summoned <sprite name=""Summon""> located on the <color=yellow>star <sprite name=""Star"">.","次の攻撃時にすべての剣<sprite name=""Sword"">が炎<sprite name=""Fire"">を1付与し、剣の攻撃力が召喚された剣の数と等しくなります。
-(ダメージ：<color = red>召喚された剣の数</color>)
+(ダメージ：<color=red>召喚された剣の数</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","다음 공격 시 모든 검<sprite name=""Sword"">이 화염<sprite name=""Fire"">을 1 부여하고 검의 공격력이 소환된 검의 수와 같아집니다. 검<sprite name=""Sword"">을 한 개 소환하고 모든 검이 공격합니다.
 (피해량: <color=red>소환된 검의 수</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."

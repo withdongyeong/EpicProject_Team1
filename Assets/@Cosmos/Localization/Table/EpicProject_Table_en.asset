@@ -302,7 +302,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133712
-    m_Localized: 'When granting Statue<sprite name="Ice">, there is a 20% chance
+    m_Localized: 'When granting Frostbyte<sprite name="Ice">, there is a 20% chance
       to inflict it again.
 
       When granting Burn<sprite name="fire">, there is
@@ -334,7 +334,10 @@ MonoBehaviour:
       by <color=green>10</color>. <color=red>Removes the frozen state.</color>
 
       (Damage:
-      <color=red>30</color>)'
+      <color=red>30</color>)
+
+      <color=red>On hit</color>: Inflicts 1  Frostbyte<sprite
+      name="Ice">'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133716
@@ -450,12 +453,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: "<color=yellow>\u5728<sprite name=\"\"Star\"\">\u4E0A\u53EC\u5524\u6BCF\u4E2A<sprite
-      name=\"\"Summon\"\">\uFF0C\u51B7\u5374\u65F6\u95F4\u51CF\u5C1110%\u3002\",\"<color=yellow>Start
-      of battle</color>: Summon a turtle that consumes Barrier<sprite name=\"\"Barrier\"\">.
-      The turtle consumes 3 Barriers<sprite name=\"\"Barrier\"\"> per second. (<color=red>Maximum
+    m_Localized: "<color=yellow>\u5728<sprite name=\"Star\">\u4E0A\u53EC\u5524\u6BCF\u4E2A<sprite
+      name=\"Summon\">\uFF0C\u51B7\u5374\u65F6\u95F4\u51CF\u5C1110%\u3002<color=yellow>Start
+      of battle</color>: Summon a turtle that consumes Barrier<sprite name=\"Barrier\">.
+      The turtle consumes 3 Barriers<sprite name=\"Barrier\"> per second. (<color=red>Maximum
       15</color>)\n<color=yellow>On activation</color>: Launch the turtle. The turtle
-      deals damage based on the amount of Barrier<sprite name=\"\"Barrier\"\"> consumed.\n(Damage:
+      deals damage based on the amount of Barrier<sprite name=\"Barrier\"> consumed.\n(Damage:
       <color=red>3 X Barrier consumed</color>)"
     m_Metadata:
       m_Items: []

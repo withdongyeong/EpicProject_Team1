@@ -41,17 +41,17 @@ public class Reaper : BaseBoss
     protected override void InitializeAttackPatterns()
     {
         AddGroup()
-            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 9), Beat)
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, Beat * 9), Beat)
             .AddPattern(new ReaperPattern1(ReaperActtck, WeakDamage), Beat)
             .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 4), Beat)
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, Beat * 3), Beat)
             .AddPattern(new ReaperPattern2(ReaperActtck, WeakDamage), Beat)
             .SetGroupInterval(Beat);
 
         AddGroup()
-            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, 3), Beat)
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathAria, Beat * 2.5f), Beat)
             .AddPattern(new ReaperPattern3(ReaperActtck, StrongDamage), Beat)
             .SetGroupInterval(Beat);
     }
