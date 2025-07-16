@@ -114,7 +114,6 @@ public class GameManager : Singleton<GameManager>
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
-        JournalSlotManager.Instance.ShowUnlockTiles();
         
         for(int i =0; i<5; i++)
         {
