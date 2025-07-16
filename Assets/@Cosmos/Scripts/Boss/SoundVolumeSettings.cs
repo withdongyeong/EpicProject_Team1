@@ -37,6 +37,15 @@ public class SoundVolumeSettings : MonoBehaviour
     public float WraithSkillActivate = 0.8f;
     public float 비구름 = 0.3f;
     public float HellFireSkillActivate = 1f;
+    public float MagmaBladeSkillActivate = 1f;
+    public float MoaiTotemSkillActivate = 0.7f;
+    public float BeetleSummonSkillActivate = 1f;
+
+    public float TurtleAttack = 1f;
+    public float CrowHowling = 1f;
+    public float KabutoCastOff = 1f;
+    public float KabutoConsume = 1f;
+    public float KabutoFire = 1f;
 
     // ---------------- Arachne ----------------
     [Header("🕷 Arachne")]
