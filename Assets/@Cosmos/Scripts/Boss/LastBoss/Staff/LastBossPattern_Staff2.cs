@@ -54,7 +54,7 @@ public class LastBossPattern_Staff2 : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(boss.Beat);
     }
 
     private void AddIfValid(Vector3Int pos, List<Vector3Int> list)

@@ -9,7 +9,6 @@ public class TotemBaseSkill : NonActivateSkill
         {
             // 전투씬 시작시 인접 효과를 초기화합니다.
             ClearStarBuff();
-            _coolTimeMaterial.SetFloat("_FillAmount", 0);
             Color invisibleColor = originalColor;
             invisibleColor.a = 0.15f;
             spriteRenderer.color = invisibleColor;

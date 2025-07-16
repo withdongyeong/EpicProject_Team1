@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,8 +29,6 @@ public abstract class SkillBase : MonoBehaviour
 
     private float lastUsedTime = -Mathf.Infinity;
 
-    protected Material _coolTimeMaterial;
-
     //타일 오브젝트입니다.
     protected TileObject tileObject;
     
@@ -56,7 +55,9 @@ public abstract class SkillBase : MonoBehaviour
     /// </summary>
     protected Action<SkillBase> onActivateAction;
 
-
+    
+    protected List<GameObject> _lightList = new();
+    protected SpriteRenderer _sr;
 
 
     protected virtual void Awake()
@@ -69,6 +70,11 @@ public abstract class SkillBase : MonoBehaviour
         EventBus.SubscribeSceneLoaded(ResetCoolDown);
 
         combineCell = GetComponent<CombineCell>();
+        _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        for(int i =0; i<_sr.transform.childCount; i++)
+        {
+            _lightList.Add(_sr.transform.GetChild(i).gameObject);
+        }
     }
 
     protected virtual void Start()
@@ -76,9 +82,6 @@ public abstract class SkillBase : MonoBehaviour
         //sm = SkillUseManager.Instance;
         if (TryGetComponent<CombineCell>(out CombineCell combineCell))
         {
-            _coolTimeMaterial = combineCell.GetSprite().material;
-            _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
-            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
             tileObject = combineCell.GetTileObject();
             cooldown = tileObject.GetTileData().TileCoolTime;
             originalScale = combineCell.GetSprite().transform.localScale;
@@ -90,8 +93,8 @@ public abstract class SkillBase : MonoBehaviour
     }
 
     protected virtual void LateUpdate()
-    {
-        _coolTimeMaterial.SetFloat("_FillAmount", 1 - (GetCooldownRemaining() / finalCooldown));
+    {     
+        ApplyCoolDownToImage();
     }
 
     /// <summary>
@@ -283,6 +286,26 @@ public abstract class SkillBase : MonoBehaviour
         {
             lastUsedTime = -Mathf.Infinity;
         }   
+    }
+
+    protected virtual void ApplyCoolDownToImage()
+    {
+        if(IsOnCooldown)
+        {
+            _sr.color = Color.gray;
+            foreach (GameObject light in _lightList)
+            {
+                light.SetActive(false);
+            }
+        }
+        else
+        {
+            _sr.color = Color.white;
+            foreach (GameObject light in _lightList)
+            {
+                light.SetActive(true);
+            }
+        }
     }
 
     protected virtual void OnDestroy()
