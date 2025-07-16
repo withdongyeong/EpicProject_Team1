@@ -45,7 +45,7 @@ public class LastBossPattern_Sword2 : IBossAttackPattern
             }
         }
 
-        yield return new WaitForSeconds(boss.Beat/2);
+        yield return new WaitForSeconds(boss.Beat);
 
         // 2. 대각선으로 연속 공격 (굵기 3)
         int maxLength = GetMaxDiagonalLength();

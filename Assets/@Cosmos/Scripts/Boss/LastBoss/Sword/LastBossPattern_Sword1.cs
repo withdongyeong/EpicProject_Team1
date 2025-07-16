@@ -45,7 +45,7 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
             }
         }
 
-        yield return new WaitForSeconds(boss.Beat/2);
+        yield return new WaitForSeconds(boss.Beat);
 
         // 2. 직선 연속 공격 (굵기 3)
         for (int i = 1; i < 9; i++)

@@ -20,30 +20,29 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
     {
         boss.SetAnimationTrigger("Attack");
 
+        // 바깥에서 안으로 웨이브 형태로 공격
         for (int radius = 4; radius >= 1; radius--)
         {
-            for (int r = 4; r >= radius; r--)
-            {
-                boss.StartCoroutine(SoundPlay());
+            boss.StartCoroutine(SoundPlay());
 
-                foreach (var pos in GetRingLayer(r))
+            // 현재 반지름의 링만 공격 (누적 X)
+            foreach (var pos in GetRingLayer(radius))
+            {
+                if (IsValid(pos))
                 {
-                    if (IsValid(pos))
-                    {
-                        boss.BombHandler.ExecuteFixedBomb(
-                            new() { Vector3Int.zero },
-                            pos,
-                            _explosionPrefab,
-                            1f,
-                            0.8f,
-                            _damage,
-                            WarningType.Type1
-                        );
-                    }
+                    boss.BombHandler.ExecuteFixedBomb(
+                        new() { Vector3Int.zero },
+                        pos,
+                        _explosionPrefab,
+                        1f,
+                        0.8f,
+                        _damage,
+                        WarningType.Type1
+                    );
                 }
             }
 
-            yield return new WaitForSeconds(radius >= 2 ? 0.4f : boss.Beat/4);
+            yield return new WaitForSeconds(radius >= 2 ? boss.Beat / 2 : boss.Beat / 4);
         }
 
         yield return new WaitForSeconds(boss.Beat);
