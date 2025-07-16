@@ -28,7 +28,6 @@ public class NonActivateSkill : SkillBase
         {   
             // 전투씬 시작시 인접 효과를 초기화합니다.
             ClearStarBuff();
-            _coolTimeMaterial.SetFloat("_FillAmount", 0);
             Color invisibleColor = originalColor;
             invisibleColor.a = 0.15f;
             spriteRenderer.color = invisibleColor;
@@ -44,7 +43,6 @@ public class NonActivateSkill : SkillBase
     {
         if (SceneLoader.IsInBuilding())
         {
-            _coolTimeMaterial.SetFloat("_FillAmount", 1);
             spriteRenderer.color = originalColor;
             foreach (Transform child in transform.GetChild(0))
             {
