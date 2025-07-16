@@ -45,7 +45,7 @@ public class LastBoss : BaseBoss
             AddPattern(new LastBossPattern_Staff4(explosionPrefab, WeakDamage), Beat).
             AddPattern(new LastBossPattern_Staff5(explosionPrefab, StrongDamage), 0f).
             SetGroupInterval(Beat);
-
+        
         AddGroup().
             AddPattern(new LastBossPattern_SwordEquip(sword), 0f).
             AddPattern(new LastBossPattern_Sword1(swordExplosionPrefab, WeakDamage), 0f).
@@ -59,7 +59,7 @@ public class LastBoss : BaseBoss
         AddGroup().
             AddPattern(new LastBossPattern_FrostEquip(frost), 0f).
             AddPattern(new LastBossPattern_Frost1(frostExplosionPrefab, wallPrefab, WeakDamage), 0f).
-            AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab, wallPrefab, WeakDamage), 0f).
+            AddPattern(new LastBossPattern_Frost2(frostExplosionPrefab, wallPrefab, WeakDamage), Beat).
             SetGroupInterval(Beat);
         
         AddGroup().

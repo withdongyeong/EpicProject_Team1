@@ -26,7 +26,8 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
         boss.SetAnimationTrigger("Attack");
 
         HashSet<Vector3Int> usedCenters = new HashSet<Vector3Int>();
-        List<Vector3Int> unmovablePositions = new List<Vector3Int>();
+        
+        float wallDuration = boss.Beat * 5; // 벽 지속시간
 
         for (int i = 0; i < 10; i++)
         {
@@ -48,14 +49,19 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
 
                 List<Vector3Int> snowflakeShape = GetSnowflakeShape(center);
 
-                // 중심점은 이동불가 처리
-                boss.BombHandler.ShowWarningOnly(
+                // 중심점은 벽 + 이동불가 처리
+                boss.BombHandler.ExecuteFixedBomb(
+                    new() { Vector3Int.zero },
                     center,
+                    _wallPrefab,
                     1f,
+                    wallDuration,
+                    0,
                     WarningType.Type3
                 );
-                GridManager.Instance.AddUnmovableGridPosition(center);
-                unmovablePositions.Add(center);
+                
+                // 벽이 생기는 시점(1초 후)에 Grid 막기
+                boss.StartCoroutine(DelayedGridLock(center, 1f, wallDuration));
 
                 // 나머지 눈꽃 부분은 일반 공격
                 foreach (var pos in snowflakeShape)
@@ -75,21 +81,27 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
                 }
             }
 
-            yield return new WaitForSeconds(boss.Beat / 2); // 기존 beat/4 * 2
+            yield return new WaitForSeconds(boss.Beat);
         }
 
-        yield return new WaitForSeconds(boss.Beat);
+        yield return new WaitForSeconds(boss.Beat * 2);
+    }
 
-        // 패턴 종료 시 모든 이동불가 위치 해제
-        foreach (var pos in unmovablePositions)
-        {
-            GridManager.Instance.RemoveUnmovableGridPosition(pos);
-        }
+    private IEnumerator DelayedGridLock(Vector3Int pos, float lockDelay, float wallDuration)
+    {
+        // 벽이 생기는 시점에 Grid 막기
+        yield return new WaitForSeconds(lockDelay);
+        GridManager.Instance.AddUnmovableGridPosition(pos);
+        
+        // 벽이 사라지는 시점에 Grid 해제
+        yield return new WaitForSeconds(wallDuration);
+        GridManager.Instance.RemoveUnmovableGridPosition(pos);
     }
 
     private Vector3Int GetRandomPosition()
     {
-        // 9x9 격자 기준, 주변 공격을 고려해 가장자리 제외 (1~7)
+        // 9x9 격자에서 랜덤한 위치 선택
+        // 경계에서 너무 가까운 곳은 피하기 위해 1~7 범위 사용
         int x = Random.Range(1, 8);
         int y = Random.Range(1, 8);
         return new Vector3Int(x, y, 0);
@@ -97,7 +109,7 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
 
     private List<Vector3Int> GetSnowflakeShape(Vector3Int center)
     {
-        List<Vector3Int> shape = new() { center };
+        List<Vector3Int> shape = new() { center }; // 중심점 명시적으로 추가
 
         // 십자 방향 (거리 2)
         Vector3Int[] crossDirs = {
