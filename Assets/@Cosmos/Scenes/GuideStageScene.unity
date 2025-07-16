@@ -1514,7 +1514,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 3.28125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4425,6 +4425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1752254456}
   - component: {fileID: 1752254457}
+  - component: {fileID: 1752254458}
   m_Layer: 0
   m_Name: 4Star
   m_TagString: Untagged
@@ -4513,6 +4514,153 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &1752254458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752254455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3702999398867009633
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702999398867009633
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1752254457}
+        m_TrackedProperties:
+          items:
+          - rid: 3702999398867009634
+          - rid: 3702999398867009635
+          - rid: 3702999398867009636
+          - rid: 3702999398867009637
+          - rid: 3702999398867009638
+          - rid: 3702999398867009639
+          - rid: 3702999398867009640
+          - rid: 3702999398867009641
+          - rid: 3702999398867009642
+          - rid: 3702999398867009643
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 3702999398867009634
+      type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: instructionTextLocalized.m_TableReference.m_TableCollectionName
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+        - localeIdentifier:
+            m_Code: en
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+    - rid: 3702999398867009635
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: instructionTextLocalized.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 2651018377175042
+        - localeIdentifier:
+            m_Code: en
+          value: 2651018377175042
+    - rid: 3702999398867009636
+      type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: titleTextLocalized.m_TableReference.m_TableCollectionName
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+        - localeIdentifier:
+            m_Code: en
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+    - rid: 3702999398867009637
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: titleTextLocalized.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 2651018377175044
+        - localeIdentifier:
+            m_Code: en
+          value: 2651018377175044
+    - rid: 3702999398867009638
+      type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: subTitleTextLocalized.m_TableReference.m_TableCollectionName
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+        - localeIdentifier:
+            m_Code: en
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+    - rid: 3702999398867009639
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: subTitleTextLocalized.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 2651018377175046
+        - localeIdentifier:
+            m_Code: en
+          value: 2651018377175046
+    - rid: 3702999398867009640
+      type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: contentTextLocalized.m_TableReference.m_TableCollectionName
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+        - localeIdentifier:
+            m_Code: en
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+    - rid: 3702999398867009641
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: contentTextLocalized.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 2651018377175048
+        - localeIdentifier:
+            m_Code: en
+          value: 2651018377175048
+    - rid: 3702999398867009642
+      type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: goalTextLocalized.m_TableReference.m_TableCollectionName
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+        - localeIdentifier:
+            m_Code: en
+          value: GUID:acbd475831ad36a4dbe7ab499a00530a
+    - rid: 3702999398867009643
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: goalTextLocalized.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 2651018377175050
+        - localeIdentifier:
+            m_Code: en
+          value: 2651018377175050
 --- !u!1 &1764811734
 GameObject:
   m_ObjectHideFlags: 0

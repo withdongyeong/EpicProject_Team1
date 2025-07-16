@@ -423,44 +423,49 @@ UI_Quest_Instruction3,"教程 3
 ({0}/5)","チュートリアル3
 - 星座を設置する
 ({0}/5個)","튜토리얼 3
-- 별자리를 설치하고 
-별을 활성화 하세요
+- 별자리를 설치하세요
 (설치 {0}/3개)"
-UI_Quest_Instruction3_1,,,,"튜토리얼 4
+UI_Quest_Instruction3_1,"教程 4
+- 激活星星
+（已激活星星 {0}/3）","Tutorial 4
+- Activate the Stars
+(Activated Stars {0}/3)","チュートリアル4
+- 星を活性化する
+（アクティブ化された星{0} / 3個）","튜토리얼 4
 - 별을 활성화 하세요
 (활성화된 별 {0}/3개)"
-UI_Quest_Instruction4,"教程 4
+UI_Quest_Instruction4,"教程 5
 - 旋转星座
-({0}/5)","Tutorial 4
+({0}/5)","Tutorial 5
 - Rotate the constellations
-({0}/5)","チュートリアル4
+({0}/5)","チュートリアル5
 - 星座を回転させる
 ({0}/5個)","튜토리얼 5
 - 별자리를 회전시켜보세요
 ({0}/5개)"
-UI_Quest_Instruction5,"教程 5
+UI_Quest_Instruction5,"教程 6
 - 保留星座
-({0}/4)","Tutorial 5
+({0}/4)","Tutorial 6
 - Keep the constellations
-({0}/4)","チュートリアル5
+({0}/4)","チュートリアル6
 - 星座を保管する
 ({0}/4個)","튜토리얼 6
 - 별자리를 보관해보세요
 ({0}/4개)"
-UI_Quest_Instruction6,"教程 6
+UI_Quest_Instruction6,"教程 7
 - 出售星座
-({0}/4)","Tutorial 6
+({0}/4)","Tutorial 7
 - Sell the constellation
-({0}/4)","チュートリアル6
+({0}/4)","チュートリアル7
 - 星座を販売する
 ({0}/4個)","튜토리얼 7
 - 별자리를 판매해보세요
 ({0}/4개)"
-UI_Quest_Instruction7,"教程 7
+UI_Quest_Instruction7,"教程 8
 - 与敌人战斗并取得胜利
-({0}/1)","Tutorial 7
+({0}/1)","Tutorial 8
 - Fight the enemy and win
-({0}/1)","チュートリアル7
+({0}/1)","チュートリアル8
 -敵と戦って勝利する
 ({0}/1)","튜토리얼 8
 - 적과 싸워 승리하세요
@@ -469,16 +474,16 @@ UI_Quest_Instruction7,"教程 7
 UI_Quest_Title1,- 教程 1 -,- Tutorial 1 -,- チュートリアル 1 -,튜토리얼 1
 UI_Quest_Title2,- 教程 2 -,- Tutorial 2 -,- チュートリアル 2 -,튜토리얼 2
 UI_Quest_Title3,- 教程 3 -,- Tutorial 3 -,- チュートリアル 3 -,튜토리얼 3
-UI_Quest_Title3_1,,,,튜토리얼 4
-UI_Quest_Title4,- 教程 4 -,- Tutorial 4 -,- チュートリアル 4 -,튜토리얼 5
-UI_Quest_Title5,- 教程 5 -,- Tutorial 5 -,- チュートリアル 5 -,튜토리얼 6
-UI_Quest_Title6,- 教程 6 -,- Tutorial 6 -,- チュートリアル 6 -,튜토리얼 7
-UI_Quest_Title7,- 教程 7 -,- Tutorial 7 -,- チュートリアル 7 -,튜토리얼 8
+UI_Quest_Title3_1,- 教程 4 -,- Tutorial 4 -,- チュートリアル 4 -,튜토리얼 4
+UI_Quest_Title4,- 教程 5 -,- Tutorial 5 -,- チュートリアル 5 -,튜토리얼 5
+UI_Quest_Title5,- 教程 6 -,- Tutorial 6 -,- チュートリアル 6 -,튜토리얼 6
+UI_Quest_Title6,- 教程 7 -,- Tutorial 7 -,- チュートリアル 7 -,튜토리얼 7
+UI_Quest_Title7,- 教程 8 -,- Tutorial 8 -,- チュートリアル 8 -,튜토리얼 8
 ,,,,
 UI_Quest_SubTitle1,移动,Move,移動する,이동하기
 UI_Quest_SubTitle2,存活,Survive,生き残る,살아남기
 UI_Quest_SubTitle3,安装星座,Installing the constellation,星座の設置,별자리 설치하기
-UI_Quest_SubTitle3_1,,,,별자리 강화하기
+UI_Quest_SubTitle3_1,强化星座,Strengthening the constellation,星座を強化する,별자리 강화하기
 UI_Quest_SubTitle4,旋转星座,Rotate the constellations,星座を回転させる,별자리를 회전하기
 UI_Quest_SubTitle5,保留你的星座,Keep your constellations,星座を保管する,별자리 보관하기
 UI_Quest_SubTitle6,出售星座,Selling constellations,星座を販売する,별자리를 판매하기
@@ -512,7 +517,15 @@ Drag the constellation from the shop to place it in the area","星座は下の�
 
 상점에서 별자리를 
 드래그 하여 영역에 설치하세요"
-UI_Quest_Content3_1,,,,"각 별자리는 고유의 별을 가지고 있어 
+UI_Quest_Content3_1,"每个星座都有专属的星星，当满足每个星座的条件时，该星座就会得到强化。
+
+激活星星即可强化星座。","Each constellation has its own star, and when the conditions of each constellation are met, the constellation is strengthened. 
+
+Activate the star to strengthen the constellation.","各星座は固有の星を持っています。 
+各星座の条件を達成するとき 
+星座が強化されます
+
+星を活性化して星座を強化する","각 별자리는 고유의 별을 가지고 있어 
 각 별자리의 조건을 달성시 
 별자리가 강화됩니다
 
@@ -592,7 +605,8 @@ UI_Quest_Goal3,"- 完成条件 -
 Install 5 constellations (0/5)","クリア条件
 星座5個を設置する（0/5個）","완료 조건
 (설치 0/3개)"
-UI_Quest_Goal3_1,,,,"완료 조건
+UI_Quest_Goal3_1,完成条件（激活 0/3 颗星）,Completion Conditions (0/3 stars activated),"完了条件
+（活性化された星0/3個）","완료 조건
 (활성화 된 별 0/3개)"
 UI_Quest_Goal4,"- 完成条件 - 
 旋转星座 (0/5)","Completion Conditions 
