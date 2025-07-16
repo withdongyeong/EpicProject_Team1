@@ -31,6 +31,7 @@ public class StarQuest : GuideQuest
 
     public override bool IsCompleted()
     {
+        if (starActivated > 3) starActivated = 3; // 최대 3회로 제한
         // 언어 설정에 따라 번역된 문자열 가져오기
         instructionTextLocalized.Arguments = new object[] { starActivated };
         instructionTextLocalized.RefreshString();

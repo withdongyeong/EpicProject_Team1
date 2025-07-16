@@ -33,6 +33,7 @@ public class StorageQuest : GuideQuest
 
     public override bool IsCompleted()
     {
+        if (count > 4) count = 4; // 최대 4회로 제한
         instructionTextLocalized.StringChanged += (text) => {
             instructionText = text.Replace("{0}", count.ToString());
         };

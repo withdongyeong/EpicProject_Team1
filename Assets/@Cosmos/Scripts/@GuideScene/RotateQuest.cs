@@ -32,6 +32,7 @@ public class RotateQuest : GuideQuest
 
     public override bool IsCompleted()
     {
+        if(tilesRotated > 5) tilesRotated = 5; // 최대 5회로 제한
         // 언어 설정에 따라 번역된 문자열 가져오기
         instructionTextLocalized.StringChanged += (text) => {
             instructionText = text.Replace("{0}", tilesRotated.ToString());

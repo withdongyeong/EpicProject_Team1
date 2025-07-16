@@ -31,10 +31,11 @@ public class PlaceQuest : GuideQuest
 
     public override bool IsCompleted()
     {
+        if(tilesPlaced > 3) tilesPlaced = 3; // 최대 3회로 제한
         // 언어 설정에 따라 번역된 문자열 가져오기
         instructionTextLocalized.Arguments = new object[] { tilesPlaced };
         instructionTextLocalized.RefreshString();
-
+        
         GuideHandler.instance.questText.text = instructionText;
         return tilesPlaced >= 3;
     }

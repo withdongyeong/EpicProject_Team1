@@ -33,7 +33,7 @@ public class MoveQuest : GuideQuest
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) moveCount++;
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) moveCount++;
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) moveCount++;
-
+        if(moveCount > 5) moveCount = 5; // 최대 5회로 제한
         instructionTextLocalized.StringChanged += (text) =>
         {
             instructionText = text.Replace("{0}", moveCount.ToString());
