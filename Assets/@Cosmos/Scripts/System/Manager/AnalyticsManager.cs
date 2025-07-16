@@ -23,8 +23,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             
             // 1. 초기화 옵션 객체를 생성합니다.
             var options = new InitializationOptions();
-            options.SetEnvironmentName("earlyaccess"); 
-            //options.SetEnvironmentName("development"); 
+            //options.SetEnvironmentName("earlyaccess"); 
+            options.SetEnvironmentName("development"); 
             
             await UnityServices.InitializeAsync(options);
             Debug.Log("✅ [1/2] UGS 초기화 성공!");
