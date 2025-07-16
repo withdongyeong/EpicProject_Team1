@@ -32,6 +32,7 @@ public class SellQuest : GuideQuest
 
     public override bool IsCompleted()
     {
+        
         instructionTextLocalized.StringChanged += (text) => {
             instructionText = text.Replace("{0}", count.ToString());
         };

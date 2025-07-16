@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TestManager : MonoBehaviour
 {
+    public bool isTestMode = false; // 테스트 모드 활성화 여부
     public bool isCheatEnabled = false;
     public int stageNum = 1;
     private Canvas canvas;
@@ -19,6 +20,7 @@ public class TestManager : MonoBehaviour
 
     private void Update()
     {
+        if(!isTestMode) return;
         if(Input.GetKeyDown(KeyCode.PageDown)) TestModeToggle();
         if (!isCheatEnabled) return;
         if(Input.GetKeyDown(KeyCode.F1)) GoldUp();
