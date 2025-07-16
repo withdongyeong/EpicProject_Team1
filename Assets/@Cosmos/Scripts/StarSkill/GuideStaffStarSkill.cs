@@ -7,14 +7,14 @@ public class GuideStaffStarSkill : EnhancementStarSkill
     {
         if (!isQuestCompleted)
         {
-            FindAnyObjectByType<PlaceQuest>().starActivated += 1;
+            FindAnyObjectByType<StarQuest>().starActivated += 1;
             isQuestCompleted = true;
         }
     }
     public void QuestReset() {
         if (isQuestCompleted)
         {
-            FindAnyObjectByType<PlaceQuest>().starActivated -= 1;
+            FindAnyObjectByType<StarQuest>().starActivated -= 1;
             isQuestCompleted = false;
         }
     }

@@ -5,7 +5,6 @@ public class PlaceQuest : GuideQuest
 {
     [SerializeField]
     public int tilesPlaced = 0;
-    public int starActivated = 0;
 
     public LocalizedString instructionTextLocalized;
     public LocalizedString titleTextLocalized;
@@ -28,17 +27,17 @@ public class PlaceQuest : GuideQuest
     public override void OnStart()
     {
         tilesPlaced = 0;
-        starActivated = 0;
+        
     }
 
     public override bool IsCompleted()
     {
         // 언어 설정에 따라 번역된 문자열 가져오기
-        instructionTextLocalized.Arguments = new object[] { tilesPlaced, starActivated };
+        instructionTextLocalized.Arguments = new object[] { tilesPlaced };
         instructionTextLocalized.RefreshString();
 
         GuideHandler.instance.questText.text = instructionText;
-        return tilesPlaced >= 3 && starActivated >= 3;
+        return tilesPlaced >= 3;
     }
 
     public override void OnComplete()
