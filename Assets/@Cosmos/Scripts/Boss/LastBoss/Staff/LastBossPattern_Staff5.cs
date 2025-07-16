@@ -25,6 +25,7 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
 
         Vector3Int center = new(4, 4, 0);
         int[] radii = { 1, 2, 3, 4 };
+        HashSet<Vector3Int> usedPositions = new HashSet<Vector3Int>();
 
         for (int ring = 0; ring < radii.Length; ring++)
         {
@@ -36,8 +37,11 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
                 int y = Mathf.RoundToInt(center.y + radii[ring] * Mathf.Sin(rad));
                 Vector3Int pos = new Vector3Int(x, y, 0);
 
-                if (!IsCenterX(pos) && IsValid(pos))
+                if (!IsCenterX(pos) && IsValid(pos) && !usedPositions.Contains(pos))
+                {
                     ringPositions.Add(pos);
+                    usedPositions.Add(pos);
+                }
             }
 
             boss.StartCoroutine(PlayAttackSound(boss, boss.Beat / 4));

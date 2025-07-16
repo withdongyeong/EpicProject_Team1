@@ -22,13 +22,26 @@ public class LastBossPattern_Staff4 : IBossAttackPattern
         boss.SetAnimationTrigger("Attack");
         List<Vector3Int> positions = new();
 
-        for (int x = 0; x < 9; x++)
-        for (int y = 0; y < 9; y++)
+        // 4구역 중앙 2x2 좌표들 (Staff3 나선형과 겹치는 부분)
+        HashSet<Vector3Int> excludePositions = new HashSet<Vector3Int>
         {
-            if (x == 4 || y == 4) continue; // 십자형 공간 제외
-            if ((x + y) % 2 == 0)           // 일정 밀도로
-                positions.Add(new Vector3Int(x, y, 0));
-        }
+            new(1,1,0), new(2,1,0), new(1,2,0), new(2,2,0), // 좌하 중앙
+            new(6,1,0), new(7,1,0), new(6,2,0), new(7,2,0), // 우하 중앙
+            new(1,6,0), new(2,6,0), new(1,7,0), new(2,7,0), // 좌상 중앙
+            new(6,6,0), new(7,6,0), new(6,7,0), new(7,7,0)  // 우상 중앙
+        };
+
+        for (int x = 0; x < 9; x++)
+            for (int y = 0; y < 9; y++)
+            {
+                Vector3Int pos = new Vector3Int(x, y, 0);
+                
+                if (x == 4 || y == 4) continue; // 십자형 공간 제외
+                if ((x + y) % 2 != 0) continue; // 체스판 패턴 (짝수 합만)
+                if (excludePositions.Contains(pos)) continue; // 4구역 중앙 제외
+                
+                positions.Add(pos);
+            }
 
         boss.StartCoroutine(PlayAttackSound(boss, boss.Beat));
 

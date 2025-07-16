@@ -41,7 +41,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
             boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
         }
 
-        yield return new WaitForSeconds(boss.Beat);
+        yield return new WaitForSeconds(boss.Beat * 2);
     }
 
     private IEnumerator SpiralInArea(BaseBoss boss, int startX, int startY)

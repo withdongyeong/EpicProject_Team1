@@ -20,47 +20,29 @@ public class LastBossPattern_Flame2 : IBossAttackPattern
     {
         boss.SetAnimationTrigger("Attack");
 
-        boss.StartCoroutine(SoundPlay());
-
-        // Step 0: 중심 한 칸만 공격
-        Vector3Int center = new Vector3Int(4, 4, 0);
-        boss.BombHandler.ExecuteFixedBomb(
-            new() { Vector3Int.zero },
-            center,
-            _explosionPrefab,
-            0.8f,
-            0.8f,
-            _damage,
-            WarningType.Type1
-        );
-
-        yield return new WaitForSeconds(0.3f);
-
-        // Step 1~3: 중심부터 확장하면서 누적 공격 (경계 제외)
-        for (int radius = 1; radius <= 3; radius++)
+        // 중심에서 바깥으로 웨이브 형태로 확장
+        for (int radius = 0; radius <= 3; radius++)
         {
-            // 0~radius까지 누적 범위
-            for (int r = 0; r <= radius; r++)
+            boss.StartCoroutine(SoundPlay());
+
+            // 현재 반지름의 링만 공격 (누적 X)
+            foreach (var pos in GetRingLayer(radius))
             {
-                boss.StartCoroutine(SoundPlay());
-                foreach (var pos in GetRingLayer(r))
+                if (IsValid(pos))
                 {
-                    if (IsValid(pos))
-                    {
-                        boss.BombHandler.ExecuteFixedBomb(
-                            new() { Vector3Int.zero },
-                            pos,
-                            _explosionPrefab,
-                            1f,
-                            0.8f,
-                            _damage,
-                            WarningType.Type1
-                        );
-                    }
+                    boss.BombHandler.ExecuteFixedBomb(
+                        new() { Vector3Int.zero },
+                        pos,
+                        _explosionPrefab,
+                        1f,
+                        0.8f,
+                        _damage,
+                        WarningType.Type1
+                    );
                 }
             }
 
-            yield return new WaitForSeconds(radius <= 2 ? 0.3f : boss.Beat/4);
+            yield return new WaitForSeconds(radius <= 2 ? boss.Beat / 2 : boss.Beat / 4);
         }
 
         yield return new WaitForSeconds(boss.Beat);
@@ -69,6 +51,13 @@ public class LastBossPattern_Flame2 : IBossAttackPattern
     private List<Vector3Int> GetRingLayer(int radius)
     {
         List<Vector3Int> result = new();
+
+        // radius 0인 경우 중심점만
+        if (radius == 0)
+        {
+            result.Add(new Vector3Int(4, 4, 0));
+            return result;
+        }
 
         for (int x = 1; x < 8; x++) // 경계 제외: 1~7
         {
