@@ -419,7 +419,7 @@ MonoBehaviour:
     m_Localized: "Inflict 1 Burn<sprite name=\"Fire\">, 1 Frostbyte<sprite name=\"Ice\">,
       1 Curse<sprite name=\"Curse\"> to the enemy. \nIf there are 3 or more </color>Magic
       Circles<sprite name=\"MagicCircle\"> located on the <color=yellow>Star<sprite
-      name=\"Star\"></color>, Inflict 1 additional Burn<sprite name=\"Fire\">\u3001Curse<sprite
+      name=\"Star\"></color>, Inflict 1 additional Burn<sprite name=\"Fire\">,Curse<sprite
       name=\"Curse\">."
     m_Metadata:
       m_Items: []
@@ -454,13 +454,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: "<color=yellow>\u5728<sprite name=\"Star\">\u4E0A\u53EC\u5524\u6BCF\u4E2A<sprite
-      name=\"Summon\">\uFF0C\u51B7\u5374\u65F6\u95F4\u51CF\u5C1110%\u3002<color=yellow>Start
-      of battle</color>: Summon a turtle that consumes Barrier<sprite name=\"Barrier\">.
-      The turtle consumes 3 Barriers<sprite name=\"Barrier\"> per second. (<color=red>Maximum
-      15</color>)\n<color=yellow>On activation</color>: Launch the turtle. The turtle
-      deals damage based on the amount of Barrier<sprite name=\"Barrier\"> consumed.\n(Damage:
-      <color=red>3 X Barrier consumed</color>)"
+    m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that consumes
+      Barrier<sprite name="Barrier">. The turtle consumes 3 Barriers<sprite name="Barrier">
+      per second. (<color=red>Maximum 15</color>)
+
+      <color=yellow>On activation</color>:
+      Launch the turtle. The turtle deals damage based on the amount of Barrier<sprite
+      name="Barrier"> consumed.
+
+      (Damage: <color=red>3 X Barrier consumed</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
@@ -917,7 +919,7 @@ MonoBehaviour:
       (Damage: <color=red>0~255</color>)
 
       If
-      there are 3 or more Magic Circles <sprite name="MagicCircles"> located on the
+      there are 3 or more Magic Circles <sprite name="MagicCircle"> located on the
       <color=yellow>Star<sprite name="Star"></color>, deal 10 Burn damage<sprite
       name="Fire">.'
     m_Metadata:
@@ -1127,8 +1129,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3048611024347146
-    m_Localized: Give up the game and return to the title. (The game will not be
-      saved.)
+    m_Localized: "Give up the game and return to the title. \n(The game will not
+      be saved.)"
     m_Metadata:
       m_Items: []
   references:
