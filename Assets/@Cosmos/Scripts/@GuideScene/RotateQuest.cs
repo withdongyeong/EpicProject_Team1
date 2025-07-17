@@ -6,14 +6,20 @@ public class RotateQuest : GuideQuest
     [SerializeField]
     public int tilesRotated = 0;
 
-    public LocalizedString instructionTextLocalized;
-    public LocalizedString titleTextLocalized;
-    public LocalizedString subTitleTextLocalized;
-    public LocalizedString contentTextLocalized;
-    public LocalizedString goalTextLocalized;
+    private LocalizedString instructionTextLocalized;
+    private LocalizedString titleTextLocalized;
+    private LocalizedString subTitleTextLocalized;
+    private LocalizedString contentTextLocalized;
+    private LocalizedString goalTextLocalized;
 
     public override void SetTexts()
     {
+        instructionTextLocalized = new LocalizedString("EpicProject_Table", "UI_Quest_Instruction4");
+        titleTextLocalized = new LocalizedString("EpicProject_Table", "UI_Quest_Title4");
+        subTitleTextLocalized = new LocalizedString("EpicProject_Table", "UI_Quest_SubTitle4");
+        contentTextLocalized = new LocalizedString("EpicProject_Table", "UI_Quest_Content4");
+        goalTextLocalized = new LocalizedString("EpicProject_Table", "UI_Quest_Goal4");
+
         // 언어 설정에 따라 번역된 문자열 가져오기
         instructionTextLocalized.StringChanged += (text) => {
             instructionText = text.Replace("{0}", "0");

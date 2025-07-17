@@ -466,7 +466,7 @@ UI_Quest_Instruction7,"教程 8
 ({0}/1)","Tutorial 8
 - Fight the enemy and win
 ({0}/1)","チュートリアル8
--敵と戦って勝利する
+-戦いに勝つ
 ({0}/1)","튜토리얼 8
 - 적과 싸워 승리하세요
 ({0}/1)"
@@ -512,7 +512,8 @@ Drag the constellation from the shop to place it in the area","星座は下の�
 ゴールドを支払って
 購入できます
 店で星座を
-クリックしたまま移動し配置してください","별자리는 하단 상점에서 
+クリックしたまま移動し
+配置してください","별자리는 하단 상점에서 
 구매할 수 있습니다
 
 상점에서 별자리를 
@@ -525,7 +526,8 @@ Activate the star to strengthen the constellation.","各星座は固有の星を
 各星座の条件を達成するとき 
 星座が強化されます
 
-星を活性化して星座を強化してください。","각 별자리는 고유의 별을 가지고 있어 
+星を活性化して
+星座を強化してください。","각 별자리는 고유의 별을 가지고 있어 
 각 별자리의 조건을 달성시 
 별자리가 강화됩니다
 
@@ -545,10 +547,10 @@ Right-click the mouse","星座を回転してみてください。
 星座をクリックしたまま、
 Rを押すか、 
 右クリックすると回転します。","별자리를 회전시켜보세요
-별자리를 회전시키는 방법은
-별자리를 드래그 한 후,
+별자리를 클릭한 상태에서
 R을 누르거나, 
-마우스 오른쪽 버튼을 클릭하면 됩니다"
+마우스 오른쪽 버튼을 클릭하면 
+별자리를 회전 시킬 수 있습니다. "
 UI_Quest_Content5,可以通过将星座拖拽至区域两侧来保存它们。保存的星座无法在战斗中使用。,Constellations can be stored by dragging them to either side of the area. Stored constellations cannot be used in battle.,"星座は領域の両方の空間に移動して
 保存できます
 保存した星座
@@ -601,12 +603,19 @@ Survive for 10 seconds (0/10 seconds)","クリア条件
 10秒間生き残る（0/10秒）","완료 조건
 10초 동안 생존하기 (10초)"
 UI_Quest_Goal3,"完成条件
-安装 5 个星座 (0/3)","Completion Conditions 
-Install 5 constellations (0/3)","クリア条件
-星座5個を設置する（0/3個）","완료 조건
+安装 3 个星座 (0/3)","Completion Conditions 
+Install 3 constellations (0/3)","クリア条件
+星座3個を設置する（0/3個）","완료 조건
+별자리 3개 배치하기
 (설치 0/3개)"
-UI_Quest_Goal3_1,完成条件（激活 0/3 颗星）,Completion Conditions (0/3 stars activated),"完了条件
+UI_Quest_Goal3_1,"完成条件
+激活3颗星
+(激活 0/3 星)","Completion Conditions 
+Activate 3 stars
+(0/3 stars activated)","完了条件
+星を3つ活性化する
 （活性化された星0/3個）","완료 조건
+별자리 3개 활성화하기
 (활성화 된 별 0/3개)"
 UI_Quest_Goal4,"- 完成条件 - 
 旋转星座 (0/5)","Completion Conditions 
