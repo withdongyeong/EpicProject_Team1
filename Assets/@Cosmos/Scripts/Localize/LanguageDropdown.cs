@@ -49,10 +49,11 @@ public class FontChangingDropdown : MonoBehaviour
         while (true)
         {
             // 드롭다운이 열렸는지 확인
-            var list = GameObject.Find("Dropdown List");
-            if (list != null && list != dropdownList)
+            var list = transform.Find("Dropdown List");
+            
+            if (list != null && list.gameObject != dropdownList)
             {
-                dropdownList = list;
+                dropdownList = list.gameObject;
                 ApplyFontsToDropdownItems();
             }
             yield return null;
