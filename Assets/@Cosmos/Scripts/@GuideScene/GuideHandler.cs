@@ -18,6 +18,7 @@ public class GuideHandler : MonoBehaviour
     public int CurrentIndex => currentIndex;
     private GuideQuest currentQuest => guideQuests[currentIndex];
     public GuideQuest CurrentQuest => currentQuest;
+    public bool canSell;
     
     public bool assignQuest = false; //가이드 퀘스트 완료 여부
     
@@ -45,6 +46,7 @@ public class GuideHandler : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartQuestInit());
+        canSell = false;
     }
     
     private void Update()

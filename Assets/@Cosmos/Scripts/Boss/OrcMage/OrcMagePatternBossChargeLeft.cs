@@ -104,7 +104,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         Coroutine chargeMovement = boss.StartCoroutine(ExecuteChargeMovementWithWave(boss, start, end));
         
         // 2단계: 돌진 중간에 후폭풍 스파이크 시작
-        yield return new WaitForSeconds(beat);
+        yield return new WaitForSeconds(beat * 2);
         boss.StartCoroutine(ExecuteAfterShockSpikes(boss, start, end));
         
         // 돌진 이동이 완료될 때까지 대기
@@ -158,6 +158,41 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         yield return MoveBossToWorldPosition(boss, endWorldPos, moveDuration);
     }
 
+/// <summary>
+    /// 이동 방향에 따른 전조 영역 계산 (겹침 방지)
+    /// </summary>
+    private List<Vector3Int> GetMovementWarningArea(Vector3Int direction)
+    {
+        List<Vector3Int> warningArea = new List<Vector3Int>();
+        
+        if (direction.x < 0) // 왼쪽 이동
+        {
+            warningArea.Add(new Vector3Int(-1, -1, 0));
+            warningArea.Add(new Vector3Int(-1,  0, 0));
+            warningArea.Add(new Vector3Int(-1,  1, 0));
+        }
+        else if (direction.x > 0) // 오른쪽 이동
+        {
+            warningArea.Add(new Vector3Int(1, -1, 0));
+            warningArea.Add(new Vector3Int(1,  0, 0));
+            warningArea.Add(new Vector3Int(1,  1, 0));
+        }
+        else if (direction.y < 0) // 아래쪽 이동
+        {
+            warningArea.Add(new Vector3Int(-1, -1, 0));
+            warningArea.Add(new Vector3Int( 0, -1, 0));
+            warningArea.Add(new Vector3Int( 1, -1, 0));
+        }
+        else if (direction.y > 0) // 위쪽 이동
+        {
+            warningArea.Add(new Vector3Int(-1, 1, 0));
+            warningArea.Add(new Vector3Int( 0, 1, 0));
+            warningArea.Add(new Vector3Int( 1, 1, 0));
+        }
+        
+        return warningArea;
+    }
+
     /// <summary>
     /// 돌진 경로에 웨이브 전조 표시
     /// </summary>
@@ -166,10 +201,22 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         for (int i = 0; i < chargePath.Count; i++)
         {
             Vector3Int pos = chargePath[i];
-            List<Vector3Int> bossArea = GetBossArea(pos);
+            List<Vector3Int> warningArea;
+            
+            if (i == 0)
+            {
+                // 첫 번째 위치는 전체 3x3 영역
+                warningArea = GetBossArea(pos);
+            }
+            else
+            {
+                // 이후 위치는 이동 방향의 새로운 영역만
+                Vector3Int direction = chargePath[i] - chargePath[i-1];
+                warningArea = GetMovementWarningArea(direction);
+            }
             
             // 웨이브 전조 + 데미지
-            boss.BombHandler.ExecuteWarningThenDamage(bossArea, pos, beat, _damage, WarningType.Type2);
+            boss.BombHandler.ExecuteWarningThenDamage(warningArea, pos, 1f, _damage, WarningType.Type2);
             
             yield return new WaitForSeconds(waveInterval);
         }

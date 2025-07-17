@@ -12,14 +12,9 @@ public abstract class SkillBase : MonoBehaviour
     protected float cooldown = 5f;
 
     [Header("Animation Settings")]
-    private float pulseScale = 1.5f; // 펄스 시 확대 배율
-    private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
+    private float pulseScale = 2.5f; // 펄스 시 확대 배율
+    private float pulseDuration = 0.3f; // 펄스 애니메이션 지속시간
     private Vector3 originalScale;
-
-    [Header("발동 이펙트")]
-    private GameObject activateEffectPrefab;
-    private float effectDuration = 1.3f;
-
 
     //쿨다운 계수입니다.
     private float cooldownFactor;
@@ -27,6 +22,7 @@ public abstract class SkillBase : MonoBehaviour
     private float finalCooldown;
 
     private float lastUsedTime = -Mathf.Infinity;
+    private bool isPulseAnimationPlaying = false; // 펄스 애니메이션 진행 중 플래그
 
     //타일 오브젝트입니다.
     protected TileObject tileObject;
@@ -85,10 +81,6 @@ public abstract class SkillBase : MonoBehaviour
             cooldown = tileObject.GetTileData().TileCoolTime;
             originalScale = combineCell.GetSprite().transform.localScale;
         }
-        
-        // 발동 프리팹 할당
-        activateEffectPrefab = Resources.Load<GameObject>("Prefabs/Effects/ActivateEffect");
-
     }
 
     protected virtual void LateUpdate()
@@ -134,9 +126,6 @@ public abstract class SkillBase : MonoBehaviour
         
         // 펄스 애니메이션 실행
         StartCoroutine(PulseAnimation());
-
-        // 발동 이펙트 0.1초 지연 소환
-        StartCoroutine(SpawnEffectDelayed());
         
         // 타일 발동시 발동시킬 인접 효과의 액션 리스트를 발동시킵니다.
         onActivateAction?.Invoke(this);
@@ -149,7 +138,20 @@ public abstract class SkillBase : MonoBehaviour
     {
         if (tileObject == null) yield break;
 
+        isPulseAnimationPlaying = true; // 펄스 애니메이션 시작
+
         Transform tileTransform = combineCell.GetSprite().transform;
+        SpriteRenderer tileSpriteRenderer = tileTransform.GetComponent<SpriteRenderer>();
+        
+        // 원래 Mask Interaction 저장
+        SpriteMaskInteraction originalMaskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        if (tileSpriteRenderer != null)
+        {
+            originalMaskInteraction = tileSpriteRenderer.maskInteraction;
+            // 확대 시작 전에 Mask Interaction을 None으로 변경
+            tileSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+        }
+
         Vector3 targetScale = originalScale * pulseScale;
 
         float elapsedTime = 0f;
@@ -185,27 +187,15 @@ public abstract class SkillBase : MonoBehaviour
 
         // 정확히 원래 스케일로 복원
         tileTransform.localScale = originalScale;
-    }
-
-    /// <summary>
-    /// 발동 이펙트
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator SpawnEffectDelayed()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        if (activateEffectPrefab != null)
+        
+        // 원래 Mask Interaction 복원
+        if (tileSpriteRenderer != null)
         {
-            var playerPosition = FindAnyObjectByType<PlayerMarker>();
-            if (playerPosition != null)
-            {
-                GameObject effect = Instantiate(activateEffectPrefab, playerPosition.transform.position, Quaternion.identity);
-                Destroy(effect, effectDuration);
-            }
+            tileSpriteRenderer.maskInteraction = originalMaskInteraction;
         }
+        
+        isPulseAnimationPlaying = false; // 펄스 애니메이션 완료
     }
-
     
     /// <summary>
     /// 남은 쿨타임 반환
@@ -289,9 +279,20 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void ApplyCoolDownToImage()
     {
+        if (isPulseAnimationPlaying) 
+        {
+            // 펄스 애니메이션 중에는 강제로 흰색 유지
+            _sr.color = Color.white;
+            foreach (GameObject light in _lightList)
+            {
+                light.SetActive(true);
+            }
+            return;
+        }
+
         if(IsOnCooldown)
         {
-            _sr.color = Color.gray;
+            _sr.color = new Color(0.4f, 0.4f, 0.4f, 1f);
             foreach (GameObject light in _lightList)
             {
                 light.SetActive(false);
