@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DifficultySelectPannel : MonoBehaviour
@@ -12,20 +13,24 @@ public class DifficultySelectPannel : MonoBehaviour
         if(SaveManager.GameModeLevel>=2)
         {
             transform.GetChild(3).GetComponent<Button>().onClick.AddListener(() => DifficultySelectButton(2));
+            transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         }
         else
         {
             transform.GetChild(3).GetComponent<Button>().interactable = false;
+            transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
         }
 
         //베리 하드모드
         if (SaveManager.GameModeLevel >= 3)
         {
             transform.GetChild(4).GetComponent<Button>().onClick.AddListener(() => DifficultySelectButton(3));
+            transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         }
         else
         {
             transform.GetChild(4).GetComponent<Button>().interactable = false;
+            transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
         }
 
         transform.GetChild(5).GetComponent<Button>().onClick.AddListener(ClosePannel);
