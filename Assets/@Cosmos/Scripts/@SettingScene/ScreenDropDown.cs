@@ -13,17 +13,19 @@ public class ScreenDropDown : MonoBehaviour
         public string Label => $"{width}x{height}";
     }
 
-    [SerializeField]
+    
     private List<ResolutionOption> allowedResolutions = new List<ResolutionOption>
     {
-        new ResolutionOption { width = 1600, height = 900 },
         new ResolutionOption { width = 1280, height = 720 },
+        new ResolutionOption { width = 1600, height = 900 },
         new ResolutionOption { width = 1920, height = 1080 }
     };
 
     private TMP_Dropdown _resolutionDropDown;
     
 
+    
+    
     private void Start()
     {
         _resolutionDropDown = GetComponent<TMP_Dropdown>();
