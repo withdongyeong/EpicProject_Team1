@@ -282,8 +282,8 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""> located on the
 <color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 모두 잃습니다. 
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse""> 개수의 최대치를 60으로 올립니다."
 Tile_TileDescription_RainbowTile,使敌人获得 1 点火焰、1 点冰霜和 1 点诅咒效果。如果<color=yellow>星星</color>上有 3 个或更多魔法阵，则额外获得 1 点火焰和 1 点诅咒效果。,"Inflict 1 Burn<sprite name=""Fire"">, 1 Frostbyte<sprite name=""Ice"">, 1 Curse<sprite name=""Curse""> to the enemy. 
-If there are 3 or more </color>Magic Circles<sprite name=""MagicCircle""> located on the <color=yellow>Star<sprite name=""Star""></color>, Inflict 1 additional Burn<sprite name=""Fire"">、Curse<sprite name=""Curse"">.","敵に炎<sprite name=""Fire"">, 凍傷<sprite name=""Ice"">, 呪い<sprite name=""Curse"">を1ずつ付与します
-<color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、炎<sprite name=""Fire"">、呪い<sprite name=""Curse"">を1追加で付与します","적에게 화염<sprite name=""Fire"">, 동상<sprite name=""Ice"">, 저주<sprite name=""Curse"">를 1씩 부여합니다.
+If there are 3 or more </color>Magic Circles<sprite name=""MagicCircle""> located on the <color=yellow>Star<sprite name=""Star""></color>, Inflict 1 additional Burn<sprite name=""Fire"">,Curse<sprite name=""Curse"">.","敵に炎<sprite name=""Fire"">, 凍傷<sprite name=""Ice"">, 呪い<sprite name=""Curse"">を1ずつ付与します
+<color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、炎<sprite name=""Fire"">, 呪い<sprite name=""Curse"">を1追加で付与します","적에게 화염<sprite name=""Fire"">, 동상<sprite name=""Ice"">, 저주<sprite name=""Curse"">를 1씩 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 화염<sprite name=""Fire"">, 저주<sprite name=""Curse"">를 1 추가로 부여합니다."
 Tile_TileDescription_RainCloudTile,"每 5 秒用 <sprite name=""Mark""> 标记敌人。","Inflicts Mark<sprite name=""Mark""> on enemies every 5 seconds.","5秒ごとに敵に烙印<sprite name=""Mark"">を付与します。","5초마다 적에게 낙인<sprite name=""Mark"">을 부여합니다."
 Tile_TileDescription_StaffTile,发射一枚射弹。（伤害：<color=red>15</color>）,Fires a projectile. (Damage: <color=red>15</color>),"弾を発射します。
@@ -309,7 +309,7 @@ Reduces the cooldown of Summons<sprite name=""Summon""> located on the <color=ye
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
 Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>：召唤一只吸收<sprite name=""Barrier"">护盾的乌龟。乌龟每秒吸收3个<sprite name=""Barrier"">护盾。（<color=red>最多15个</color>）
 <color=yellow>激活时</color>：发射乌龟。乌龟会根据吸收的护盾数量造成伤害。
-(伤害：<color=red>吸收量的3倍</color>)","<color=yellow>在<sprite name=""Star"">上召唤每个<sprite name=""Summon"">，冷却时间减少10%。<color=yellow>Start of battle</color>: Summon a turtle that consumes Barrier<sprite name=""Barrier"">. The turtle consumes 3 Barriers<sprite name=""Barrier""> per second. (<color=red>Maximum 15</color>)
+(伤害：<color=red>吸收量的3倍</color>)","<color=yellow>Start of battle</color>: Summon a turtle that consumes Barrier<sprite name=""Barrier"">. The turtle consumes 3 Barriers<sprite name=""Barrier""> per second. (<color=red>Maximum 15</color>)
 <color=yellow>On activation</color>: Launch the turtle. The turtle deals damage based on the amount of Barrier<sprite name=""Barrier""> consumed.
 (Damage: <color=red>3 X Barrier consumed</color>)","<color=yellow>戦闘開始時</color>: バリア<sprite name=""Barrier"">を吸収するカメを召喚します。カメは毎秒3のバリア<sprite name=""Barrier"">を吸収します。 (<color=red>最大 15</color>)
 <color=yellow>発動時</color>：カメを発射します。カメは吸収した保護膜量に比例してダメージを与えます。
@@ -326,9 +326,9 @@ If there are 3 or more Magic Circles <sprite name=""MagicCircle""> located on th
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 <color=red>20 소모</color>합니다."
 Tile_TileDescription_HellFireTile,"一次性造成 5 点火焰伤害，并消除所有火焰 <sprite name=""Fire"">。
 (伤害：<color=red>0~255</color>）
-如果 <color=yellow>星</color> 上有 3 个或更多魔法阵 <sprite name=""MagicCircles"">，则造成 10 点火焰伤害。","Deals 5 Burn damage<sprite name=""Fire""> at once and removes all Burns <sprite name=""Fire"">.
+如果 <color=yellow>星</color> 上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则造成 10 点火焰伤害。","Deals 5 Burn damage<sprite name=""Fire""> at once and removes all Burns <sprite name=""Fire"">.
 (Damage: <color=red>0~255</color>)
-If there are 3 or more Magic Circles <sprite name=""MagicCircles""> located on the <color=yellow>Star<sprite name=""Star""></color>, deal 10 Burn damage<sprite name=""Fire"">.","次の5つの炎<sprite name=""Fire"">ダメージを一度に与え、炎<sprite name=""Fire"">をすべて削除します。
+If there are 3 or more Magic Circles <sprite name=""MagicCircle""> located on the <color=yellow>Star<sprite name=""Star""></color>, deal 10 Burn damage<sprite name=""Fire"">.","次の5つの炎<sprite name=""Fire"">ダメージを一度に与え、炎<sprite name=""Fire"">をすべて削除します。
 (ダメージ：<color=red>0〜255</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、次の10回の炎<sprite name=""Fire"">ダメージを与えます。","다음 5번의 화염<sprite name=""Fire""> 피해를 한 번에 입히고 화염<sprite name=""Fire"">을 모두 제거합니다.
 (피해량: <color=red>0~255</color>)
