@@ -27,7 +27,7 @@ public class GuardianGolem : BaseBoss
             .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, true, WeakDamage), Beat)
             .AddPattern(new GuardianGolemPattern1(GuardianGolemRook, false, WeakDamage), Beat)
             .SetGroupInterval(Beat);
-
+        
         AddGroup()
             .AddPattern(new GuardianGolemPattern2(GuardianGolemRook, WeakDamage), Beat)
             .SetGroupInterval(Beat);
