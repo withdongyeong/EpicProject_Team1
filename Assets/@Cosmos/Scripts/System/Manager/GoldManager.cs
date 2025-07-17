@@ -105,7 +105,10 @@ public class GoldManager : Singleton<GoldManager>
 
     private void GetGoldOnPlayerDeath()
     {
-        ModifyCurrentGold(10);
+        if (!SceneLoader.IsInTitle())
+        {
+            ModifyCurrentGold(10);
+        }        
     }
 
     private void OnDestroy()
