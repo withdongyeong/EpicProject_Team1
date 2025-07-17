@@ -40,14 +40,13 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
         {
             if (RandomPoint == x) continue;
             boss.StartCoroutine(ExecuteColumnAttack(boss, x));
-            yield return new WaitForSeconds(boss.Beat);
+            yield return new WaitForSeconds(boss.Beat / 2);
         }
     }
 
     private IEnumerator ExecuteColumnAttack(BaseBoss boss, int x)
     {
         boss.AttackAnimation();
-        float halfBeat = boss.HalfBeat;
 
         for (int y = 0; y < 9; y++)
         {
@@ -61,7 +60,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));
-            yield return new WaitForSeconds(halfBeat);
+            yield return new WaitForSeconds(boss.Beat / 4);
         }
     }
 
@@ -74,14 +73,13 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
         {
             if (y == RandomPoint) continue;
             boss.StartCoroutine(ExecuteRow(boss, y));
-            yield return new WaitForSeconds(boss.Beat);
+            yield return new WaitForSeconds(boss.Beat / 2);
         }
     }
 
     private IEnumerator ExecuteRow(BaseBoss boss, int y)
     {
         boss.AttackAnimation();
-        float halfBeat = boss.HalfBeat;
 
         for (int x = Wallcount; x < 9 - Wallcount; x++)
         {
@@ -95,7 +93,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));
-            yield return new WaitForSeconds(halfBeat / 2);
+            yield return new WaitForSeconds(boss.Beat / 4);
         }
     }
 
