@@ -132,15 +132,6 @@ public class DragOnGrid : DraggableObject
         }
 
         
-        //튜토리얼 용
-        if (GameManager.Instance.IsInTutorial)
-        {
-            if (GuideHandler.instance.CurrentQuest is not SellQuest)
-            {
-                return;
-            }
-        }
-        //여기까지
         _sellTilePanel.ShowPanel(_tileObject.GetTileData().TileCost);
     }
     
@@ -150,15 +141,6 @@ public class DragOnGrid : DraggableObject
         {
             _sellTilePanel = FindAnyObjectByType<SellTilePanel>();
         }
-        //튜토리얼 용
-        if (GameManager.Instance.IsInTutorial)
-        {
-            if (GuideHandler.instance.CurrentQuest is not SellQuest)
-            {
-                return;
-            }
-        }
-        //여기까지
         _sellTilePanel.HidePanel();
     }
 }

@@ -754,7 +754,7 @@ MonoBehaviour:
     m_Localized: "\u4E00\u6B21\u6027\u9020\u6210 5 \u70B9\u706B\u7130\u4F24\u5BB3\uFF0C\u5E76\u6D88\u9664\u6240\u6709\u706B\u7130
       <sprite name=\"Fire\">\u3002\n(\u4F24\u5BB3\uFF1A<color=red>0~255</color>\uFF09\n\u5982\u679C
       <color=yellow>\u661F</color> \u4E0A\u6709 3 \u4E2A\u6216\u66F4\u591A\u9B54\u6CD5\u9635
-      <sprite name=\"MagicCircles\">\uFF0C\u5219\u9020\u6210 10 \u70B9\u706B\u7130\u4F24\u5BB3\u3002"
+      <sprite name=\"MagicCircle\">\uFF0C\u5219\u9020\u6210 10 \u70B9\u706B\u7130\u4F24\u5BB3\u3002"
     m_Metadata:
       m_Items: []
   - m_Id: 498343233593344
@@ -911,6 +911,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3009476708409353
     m_Localized: "\u89E3\u9501\u6761\u4EF6\n\n\u5B8C\u6210{0}\u4E2A\u5173\u5361\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3047510455754757
+    m_Localized: "\u653E\u5F03\u6E38\u620F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3047843219251209
+    m_Localized: "\u7EE7\u7EED\u6E38\u620F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3048611024347146
+    m_Localized: "\u653E\u5F03\u6E38\u620F\u5E76\u8FD4\u56DE\u6807\u9898\u3002\uFF08\u6E38\u620F\u5C06\u4E0D\u4F1A\u4FDD\u5B58\u3002\uFF09"
     m_Metadata:
       m_Items: []
   references:

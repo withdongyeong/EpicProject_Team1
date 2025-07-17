@@ -36,15 +36,15 @@ public class StoreSlotController : MonoBehaviour
     }
 
     private void Start()
-    {
-        if(StageSelectManager.Instance.StageNum == 1)
+    {      
+        SetupStoreSlots();
+
+        //만약 1스테이지 못깬 사람의 첫 스테이지라면
+        if (StageSelectManager.Instance.StageNum == 1 || GameManager.Instance.CurrentUnlockLevel < 1)
         {
             SetUpFirstStoreSlots();
         }
-        else
-        {
-            SetupStoreSlots();
-        }    
+
     }
 
     private void Update()
@@ -165,15 +165,7 @@ public class StoreSlotController : MonoBehaviour
     {
         for(int i = 0; i < storeSlots.Length; i++)
         {
-            if(i >= _firstStoreTiles.Count)
-            {
-                storeSlots[i].SetSlot(_safePrefab.GetComponent<TileObject>().GetTileData().TileCost, _safePrefab);
-
-                //이미지 비율을 맞추기 위한 코드입니다.
-                //storeSlots[i].GetComponent<Image>().preserveAspect = true;
-                storeSlots[i].GetComponent<Image>().SetNativeSize();
-            }
-            else
+            if(i<_firstStoreTiles.Count)
             {
                 GameObject chosenTile = _firstStoreTiles[i];
                 storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
@@ -181,7 +173,7 @@ public class StoreSlotController : MonoBehaviour
                 //이미지 비율을 맞추기 위한 코드입니다.
                 //storeSlots[i].GetComponent<Image>().preserveAspect = true;
                 storeSlots[i].GetComponent<Image>().SetNativeSize();
-            }            
+            }
         }
     }
 
@@ -205,11 +197,11 @@ public class StoreSlotController : MonoBehaviour
     private void SetStoreTileList()
     {
         _storeTiles.Clear();
-        _storeTiles.Add(JournalSlotManager.Instance.NormalStoreTiles.ToList());
-        _storeTiles.Add(JournalSlotManager.Instance.RareStoreTiles.ToList());
-        _storeTiles.Add(JournalSlotManager.Instance.EpicStoreTiles.ToList());
-        _storeTiles.Add(JournalSlotManager.Instance.LegendaryStoreTiles.ToList());
-        _storeTiles.Add(JournalSlotManager.Instance.MythicStoreTiles.ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.StoreTiles[0].ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.StoreTiles[1].ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.StoreTiles[2].ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.StoreTiles[3].ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.StoreTiles[4].ToList());
         _firstStoreTiles = JournalSlotManager.Instance.FirstStoreTiles.ToList();
         _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/StaffTile");
 
@@ -283,27 +275,7 @@ public class StoreSlotController : MonoBehaviour
     private void RefillList(TileGrade grade)
     {
         List<GameObject> newList;
-        switch (grade)
-        {
-            case TileGrade.Normal:
-                newList = JournalSlotManager.Instance.NormalStoreTiles.ToList();
-                break;
-            case TileGrade.Rare:
-                newList = JournalSlotManager.Instance.RareStoreTiles.ToList();
-                break;
-            case TileGrade.Epic:
-                newList = JournalSlotManager.Instance.EpicStoreTiles.ToList();
-                break;
-            case TileGrade.Legendary:
-                newList = JournalSlotManager.Instance.LegendaryStoreTiles.ToList();
-                break;
-            case TileGrade.Mythic:
-                newList = JournalSlotManager.Instance.MythicStoreTiles.ToList();
-                break;
-            default:
-                newList = JournalSlotManager.Instance.NormalStoreTiles.ToList();
-                break;
-        }
+        newList = JournalSlotManager.Instance.StoreTiles[(int)grade].ToList();
 
         _storeTiles[(int)grade] = newList;
     }
