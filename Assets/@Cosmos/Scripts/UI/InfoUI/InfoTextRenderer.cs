@@ -74,12 +74,21 @@ public class InfoTextRenderer : MonoBehaviour
             TextUIResizer synergyText = Instantiate(synergyTextPrefab, transform).GetComponent<TextUIResizer>();
             synergyText.SetText(synergy);
         }
-        
 
+        
         //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        LocalizedString localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" + tileInfo.TileName);
-        localized_description.StringChanged += (text) => descriptionText.SetText(text);
+        LocalizedString localized_description;
+        if (tileInfo.TileName == "???")
+        {
+            descriptionText.SetText(LocalizeManager.Instance.Local_TileUnlockConditions(tileInfo.UnlockInt));
+        }
+        else
+        {
+            localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" + tileInfo.TileName);
+            localized_description.StringChanged += (text) => descriptionText.SetText(text);
+        }
+
 
         //태그 설명 추가
         foreach (string tag in tags)
