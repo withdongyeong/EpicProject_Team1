@@ -91,7 +91,12 @@ public class OrcMagePatternWave : IBossAttackPattern
             // 두번쨰까지만 1비트 나머지는 반비트
             if (step == 0 || step == 1)
             {
-                yield return new WaitForSeconds(beat); // 첫 번째만 여유
+                yield return new WaitForSeconds(beat); // 좀 빨라지게
+            }
+            else if (step == 2 || step == 3)
+
+            {
+                yield return new WaitForSeconds(beat/2); // 점점 빨라지게
             }
             else
             {
