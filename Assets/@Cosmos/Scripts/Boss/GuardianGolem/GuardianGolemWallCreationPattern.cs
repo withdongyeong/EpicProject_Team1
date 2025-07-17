@@ -11,11 +11,16 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
     private float countdown = 0;
     private List<Vector3Int> AllWallPointList;
 
+    private float beat;
+
     private List<Vector3Int> _singlePointShape;   
     void Start()
     {
         DeleteCount = 0;
 
+        float bpm = GlobalSetting.Instance.GetBossBpm(4);
+        beat = 60f / bpm;
+        
         _singlePointShape = new List<Vector3Int>
         {
             new Vector3Int(0, 0, 0)
@@ -26,13 +31,15 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
 
     private IEnumerator CallFunctionEverybomMinute()
     {
-        yield return new WaitForSeconds(5f);
+        // 노말 기준 4.8초
+        yield return new WaitForSeconds(8 * beat);
 
         StartCoroutine(WallCreation());
 
         while (DeleteCount < 3)
         {
-            countdown =+ 30f;
+            // 노말 기준 25.2초
+            countdown =+ 42 * beat;
               
             while (countdown > 0)
             {
