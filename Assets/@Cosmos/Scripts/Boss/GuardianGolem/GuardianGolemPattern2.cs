@@ -59,6 +59,22 @@ public class GuardianGolemPattern2 : IBossAttackPattern
                 allAttackPositions.Add(new Vector3Int(4 - x, 4 - y, 0));
         }
 
+        // 가운데 세로줄(x=4)에서 2칸마다 격자무늬 안전영역 제거
+        List<Vector3Int> safePositions = new List<Vector3Int>();
+        for (int y = 0; y < 9; y++)
+        {
+            if (y % 2 == 0) // 짝수 행에서 가운데 세로줄 안전영역
+            {
+                safePositions.Add(new Vector3Int(0, 4 - y, 0)); // 중심좌표 기준
+            }
+        }
+
+        // 안전영역에 해당하는 공격 위치들을 제거
+        foreach (var safePos in safePositions)
+        {
+            allAttackPositions.Remove(safePos);
+        }
+
         boss.AttackAnimation();
 
         // 모든 위치를 동시에 공격

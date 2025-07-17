@@ -34,9 +34,35 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
     private IEnumerator ExecuteSpiderWebAttack(BaseBoss boss)
     {
         Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
-        int RandomPoint = Random.Range(Wallcount, 4);
+        
+        // 공격 가능한 세로줄 범위 계산
+        int leftBound = Wallcount;
+        int rightBound = 8 - Wallcount;
+        int availableColumns = rightBound - leftBound + 1;
+        
+        // 세로줄이 1줄만 남았을 때는 공격하지 않음 (전체 안전지대)
+        if (availableColumns <= 1)
+        {
+            yield break;
+        }
+        
+        // 안전지대 선택 범위 (가장 왼쪽, 오른쪽 제외)
+        int safeRangeLeft = leftBound + 1;
+        int safeRangeRight = rightBound - 1;
+        int RandomPoint;
+        
+        // 안전 범위가 유효한지 확인
+        if (safeRangeLeft <= safeRangeRight)
+        {
+            RandomPoint = Random.Range(safeRangeLeft, safeRangeRight + 1);
+        }
+        else
+        {
+            // 안전 범위가 없으면 중간값 사용
+            RandomPoint = (leftBound + rightBound) / 2;
+        }
 
-        for (int x = 8 - Wallcount; x >= Wallcount; x--)
+        for (int x = rightBound; x >= leftBound; x--)
         {
             if (RandomPoint == x) continue;
             boss.StartCoroutine(ExecuteColumnAttack(boss, x));
