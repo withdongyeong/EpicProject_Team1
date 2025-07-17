@@ -29,52 +29,59 @@ public class GuardianGolemPattern2 : IBossAttackPattern
     private IEnumerator GuardianGolemPattern(BaseBoss boss)
     {
         float beat = boss.Beat;
-        float halfBeat = boss.HalfBeat;
         int deleteCount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
-        // 웨이브 단위로 분리
-        List<List<Vector3Int>> waves = new();
+        // 모든 공격 위치를 하나의 리스트로 통합
+        List<Vector3Int> allAttackPositions = new List<Vector3Int>();
 
         // 대각선 (↘ / ↙)
         for (int y = deleteCount; y <= 8 - deleteCount; y++)
         {
-            List<Vector3Int> wave = new();
             for (int x = 0; x < 9; x++)
             {
                 if (x == y || x + y == 8)
-                    wave.Add(new Vector3Int(4 - x, 4 - y, 0));
+                    allAttackPositions.Add(new Vector3Int(4 - x, 4 - y, 0));
             }
-            if (wave.Count > 0)
-                waves.Add(wave);
         }
 
         // 상단 바깥쪽
         for (int y = 0; y < deleteCount; y++)
         {
-            List<Vector3Int> wave = new();
             for (int x = deleteCount; x <= 8 - deleteCount; x++)
-                wave.Add(new Vector3Int(4 - x, 4 - y, 0));
-            if (wave.Count > 0)
-                waves.Add(wave);
+                allAttackPositions.Add(new Vector3Int(4 - x, 4 - y, 0));
         }
 
         // 하단 바깥쪽
         for (int y = 8; y > 8 - deleteCount; y--)
         {
-            List<Vector3Int> wave = new();
             for (int x = deleteCount; x <= 8 - deleteCount; x++)
-                wave.Add(new Vector3Int(4 - x, 4 - y, 0));
-            if (wave.Count > 0)
-                waves.Add(wave);
+                allAttackPositions.Add(new Vector3Int(4 - x, 4 - y, 0));
+        }
+
+        // 가운데 세로줄(x=4)에서 2칸마다 격자무늬 안전영역 제거
+        List<Vector3Int> safePositions = new List<Vector3Int>();
+        for (int y = 0; y < 9; y++)
+        {
+            if (y % 2 == 0) // 짝수 행에서 가운데 세로줄 안전영역
+            {
+                safePositions.Add(new Vector3Int(0, 4 - y, 0)); // 중심좌표 기준
+            }
+        }
+
+        // 안전영역에 해당하는 공격 위치들을 제거
+        foreach (var safePos in safePositions)
+        {
+            allAttackPositions.Remove(safePos);
         }
 
         boss.AttackAnimation();
 
-        foreach (var wave in waves)
+        // 모든 위치를 동시에 공격
+        if (allAttackPositions.Count > 0)
         {
             boss.BombHandler.ExecuteFixedBomb(
-                wave,
+                allAttackPositions,
                 centerPos,
                 _guardianGolemRook,
                 warningDuration: 1f,
@@ -83,13 +90,8 @@ public class GuardianGolemPattern2 : IBossAttackPattern
             );
 
             boss.StartCoroutine(DelayedSound());
-            yield return new WaitForSeconds(halfBeat);
+            yield return new WaitForSeconds(beat * 2); // 2비트 대기
         }
-
-        float total = halfBeat * waves.Count;
-        float rounded = Mathf.Ceil(total / beat) * beat;
-        float remainder = rounded - total;
-        yield return new WaitForSeconds(remainder);
     }
 
     private IEnumerator DelayedSound()

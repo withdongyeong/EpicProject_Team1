@@ -32,33 +32,31 @@ public class GuardianGolemPattern1 : IBossAttackPattern
     private IEnumerator GuardianGolemPattern(BaseBoss boss)
     {
         float beat = boss.Beat;
-        float halfBeat = boss.HalfBeat;
 
         int wallCount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
         Vector3Int centerPos = new Vector3Int(4, 4, 0);
 
-        List<List<Vector3Int>> waves = new();
+        // 모든 공격 위치를 하나의 리스트로 통합
+        List<Vector3Int> allAttackPositions = new List<Vector3Int>();
 
         for (int y = 0; y < 9; y++)
         {
             if (_isOdd && y % 2 == 0) continue;
             if (!_isOdd && y % 2 != 0) continue;
 
-            List<Vector3Int> row = new();
             for (int x = wallCount; x <= 8 - wallCount; x++)
             {
-                row.Add(new Vector3Int(4 - x, 4 - y, 0));
+                allAttackPositions.Add(new Vector3Int(4 - x, 4 - y, 0));
             }
-            if (row.Count > 0)
-                waves.Add(row);
         }
 
         boss.AttackAnimation();
 
-        for (int i = 0; i < waves.Count; i++)
+        // 모든 위치를 동시에 공격
+        if (allAttackPositions.Count > 0)
         {
             boss.BombHandler.ExecuteFixedBomb(
-                waves[i],
+                allAttackPositions,
                 centerPos,
                 _guardianGolemRook,
                 warningDuration: 1f,
@@ -67,14 +65,8 @@ public class GuardianGolemPattern1 : IBossAttackPattern
             );
 
             boss.StartCoroutine(DelayedSound(1f));
-            yield return new WaitForSeconds(halfBeat);
+            yield return new WaitForSeconds(beat * 2); // 2비트 대기
         }
-
-        // 정렬
-        float total = halfBeat * waves.Count;
-        float rounded = Mathf.Ceil(total / beat) * beat;
-        float remainder = rounded - total;
-        yield return new WaitForSeconds(remainder);
     }
 
     private IEnumerator DelayedSound(float delay)
