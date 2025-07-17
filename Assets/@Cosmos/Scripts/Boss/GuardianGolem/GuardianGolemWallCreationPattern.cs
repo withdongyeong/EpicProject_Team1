@@ -36,7 +36,7 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
 
         StartCoroutine(WallCreation());
 
-        while (DeleteCount < 3)
+        while (DeleteCount < 2)
         {
             // 노말 기준 25.2초
             countdown =+ 42 * beat;
