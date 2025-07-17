@@ -27,7 +27,7 @@ public class SellQuest : GuideQuest
 
     public override void OnStart()
     {
-   
+        GuideHandler.instance.canSell = true;
     }
 
     public override bool IsCompleted()
@@ -43,5 +43,6 @@ public class SellQuest : GuideQuest
     public override void OnComplete()
     {
         GuideHandler.instance.fightButton.interactable = true;
+        GuideHandler.instance.canSell = false;
     }
 }
