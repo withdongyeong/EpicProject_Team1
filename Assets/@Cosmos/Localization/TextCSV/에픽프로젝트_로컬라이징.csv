@@ -656,7 +656,7 @@ UI_Button_Yas,是的,Yas,はい,네
 UI_Button_No,不,No,いいえ,아니오
 UI_Button_Start,开始,GAME START,ゲームスタート,게임 시작
 UI_Button_Guide,教程,TUTORIAL,チュートリアル,튜토리얼
-UI_Button_Book,星座图鉴,STAR ENCYCLOPEDIA,星座図鑑,별자리 도감
+UI_Button_Book,星座图鉴,ENCYCLOPEDIA,星座図鑑,별자리 도감
 UI_Button_Credit,信用,Credit,クレジット,크레딧
 UI_Button_Close,关闭,Close,閉じる,닫기
 UI_Button_Easy,简单的,Easy,イージー,쉬움
@@ -665,6 +665,8 @@ UI_Button_Hard,难的,Hard,ハード,어려움
 UI_Button_VeryHard,地狱,Hell,地獄,지옥
 UI_Button_Setting,设置,SETTING,設定,환경 설정
 UI_Button_Exit,退出游戏,EXIT GAME,ゲーム終了,게임 종료
+UI_Button_CheckGameGiveUp,放弃游戏,Give up the game,ゲームを放棄する,게임 포기
+UI_Button_CheckGameContinue,继续游戏,Continue the game,ゲームを続ける,게임 계속
 ,,,,
 UI_Text_ProbabilityTable,概率表,Probability Table,確率表,확률표
 UI_Text_Resolution,解决,Resolution,解像度,해상도
@@ -739,3 +741,7 @@ Clear {0} stage.","解禁条件
 {0}ステージクリア。","해금조건
 
 {0} 스테이지 클리어."
+UI_Text_CheckGameTitle,放弃游戏并返回标题。（游戏将不会保存。）,"Give up the game and return to the title. 
+(The game will not be saved.)","ゲームを放棄してタイトルに戻ります。
+（ゲームは保存されません。）","게임을 포기하고 타이틀로 돌아갑니다.
+(게임이 저장되지 않습니다.)"
