@@ -119,6 +119,16 @@ public class InfoPanel : MonoBehaviour
                 (Input.mousePosition.x > Screen.width * 0.6f ? -1 : 1) * offset.x,
                 (Input.mousePosition.y > Screen.height * 0.5f ? -1 : 1) * offset.y
             );
+            // 화면 상단을 넘어가지 않도록 조정
+            if (rectTransform.position.y > 700) 
+            {
+                rectTransform.position = new Vector2(rectTransform.position.x, 650);
+            }
+            // 화면 하단을 넘어가지 않도록 조정
+            if (rectTransform.position.y < 450) 
+            {
+                rectTransform.position = new Vector2(rectTransform.position.x, 450);
+            }
         }
         else
         {

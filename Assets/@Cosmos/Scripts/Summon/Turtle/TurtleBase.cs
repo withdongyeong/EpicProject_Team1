@@ -45,7 +45,7 @@ public class TurtleBase : MonoBehaviour
         _protectionScript = FindAnyObjectByType<PlayerProtection>();
         _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/TurtleProjectile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        EventBus.SubscribeProtectionConsume(OnProtectionConsume);
+        //EventBus.SubscribeProtectionConsume(OnProtectionConsume);
     }
 
 
@@ -72,7 +72,11 @@ public class TurtleBase : MonoBehaviour
     {
         if(_chargedProtection < 15)
         {
-            _protectionScript.TryProtectionBlock(_consumeProtection, true);
+            if(_protectionScript.TryProtectionBlock(_consumeProtection, true))
+            {
+                OnProtectionConsume(_consumeProtection);
+            }
+                   
         }
     }
 
@@ -85,16 +89,21 @@ public class TurtleBase : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, dir);
             Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
             projectileObj.transform.rotation = lookRotation * clockwise90;
-            Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3);
+            bool isRainbow;
             if (_chargedProtection < 15)
             {
                 SoundManager.Instance.PlayTileSoundClip("TurtleAttack");
+                isRainbow = false;
             }
             else
             {
                 SoundManager.Instance.PlayTileSoundClip("TurtleRainbowAttack");
+                isRainbow = true;
             }
+
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3,isRainbow);
+            
             _chargedProtection = 0;
 
         }
@@ -107,7 +116,7 @@ public class TurtleBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventBus.UnSubscribeProtectionConsume(OnProtectionConsume);
+        //EventBus.UnSubscribeProtectionConsume(OnProtectionConsume);
     }
 
 

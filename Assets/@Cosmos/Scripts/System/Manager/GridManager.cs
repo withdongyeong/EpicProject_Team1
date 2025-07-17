@@ -167,6 +167,7 @@ public class GridManager : Singleton<GridManager>
         EventBus.SubscribeSceneLoaded(GridPosChange);
         EventBus.SubscribeTilePlaced(AddPlacedTileList);
         EventBus.SubscribeTileSell(RemovePlacedTileList);
+        EventBus.SubscribeGameStart(IsGridFull);
         cellPrefab = Resources.Load<GameObject>("Prefabs/Tiles/TIleBase/board");
         Sprite[] cells = Resources.LoadAll<Sprite>("NewBoard/cellLine");
         //occupiedSprite = cells.FirstOrDefault(s => s.name == "cellLineOccupied"); // 점유 스프라이트 로드
@@ -283,7 +284,7 @@ public class GridManager : Singleton<GridManager>
             //if(grid[gridPos.x, gridPos.y].IsOccupied) Debug.Log("해당 위치는 이미 점유되어 있습니다: " + gridPos);
             return !grid[gridPos.x, gridPos.y].IsOccupied;
         }
-        Debug.Log("범위 밖 " + gridPos);
+        //Debug.Log("범위 밖 " + gridPos);
         return false;
     }
 
@@ -424,7 +425,7 @@ public class GridManager : Singleton<GridManager>
         _placedTileList.Add(tileObject.GetTileData().TileName);
     }
 
-    private void RemovePlacedTileList(TileObject tileObject)
+    public void RemovePlacedTileList(TileObject tileObject)
     {
         _placedTileList.Remove(tileObject.GetTileData().TileName);
     }    
@@ -468,11 +469,53 @@ public class GridManager : Singleton<GridManager>
         
         
     }
+
+
+    //AnalyticsManager에서 타일 배치 수를 가져오는 메서드입니다.
+    public Dictionary<string, int> GetPlacedTileCount()
+    {
+        Dictionary<string, int> tileCount = new Dictionary<string, int>();
+        foreach (string tileName in _placedTileList)
+        {
+            if (tileCount.ContainsKey(tileName))
+            {
+                tileCount[tileName]++;
+            }
+            else
+            {
+                tileCount[tileName] = 1;
+            }
+        }
+        return tileCount;
+    }
+    //전부 배치 도전과제용 함수입니다
+    private void IsGridFull()
+    {
+        bool result = true;
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector3Int gridPos = new Vector3Int(x, y, 0);
+                if (IsCellAvailable(gridPos))
+                {
+                    result = false;
+
+                }
+            }
+        }
+
+        if(result)
+        {
+            SteamAchievement.Achieve("ACH_BLD_FULL");
+        }
+    }
     
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(GridPosChange);
         EventBus.UnSubscribeTilePlaced(AddPlacedTileList);
         EventBus.UnSubscribeTileSell(RemovePlacedTileList);
+        EventBus.UnsubscribeGameStart(IsGridFull);
     }
 }

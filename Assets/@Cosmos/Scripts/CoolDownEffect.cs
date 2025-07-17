@@ -11,16 +11,25 @@ public class CoolDownEffect : MonoBehaviour
 
     [SerializeField]
     private Color yellowColor;
+    
+    [Header("발동 이펙트")]
+    private GameObject activateEffectPrefab;
+    private float effectDuration = 1f;
+    
     public void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        string hexColor = "#080929";
+        string hexColor = "#404040";
+        // string hexColor = "#7F8263";
         ColorUtility.TryParseHtmlString(hexColor, out Color color);
-        color.a = 0.9f;
+        color.a = 0.5f;
         yellowColor = color;
         sr.color = yellowColor;
         EventBus.SubscribeGameStart(SetPosition);
         EventBus.SubscribeSceneLoaded(Init);
+        
+        // 발동 프리팹 할당
+        activateEffectPrefab = Resources.Load<GameObject>("Prefabs/Effects/ActivateEffect");
     }
 
     
@@ -41,10 +50,13 @@ public class CoolDownEffect : MonoBehaviour
     private IEnumerator CompleteEffectCoroutine()
     {
         //노란색이 됐다가 빠르게 흰색으로 변함
-        float duration = 0.1f;
+        float duration = 0.3f;
         Color originalColor = yellowColor;
-        Color targetColor = new Color(1f, 1f, 0f, 0.4f);
+        Color targetColor = new Color(0.984f, 0.949f, 0.212f, 0.4f);
         float elapsedTime = 0f;
+        
+        // 준비 완료 이펙트
+        StartCoroutine(SpawnEffect());
         
         while (elapsedTime < duration)
         {
@@ -54,7 +66,7 @@ public class CoolDownEffect : MonoBehaviour
             yield return null;
         }
 
-        duration = 0.2f;
+        duration = 0.3f;
         originalColor = new Color(1f, 1f, 0f, 0.1f);
         targetColor = new Color(1f, 1f, 0f, 0.0f);
         elapsedTime = 0f;
@@ -67,6 +79,35 @@ public class CoolDownEffect : MonoBehaviour
             yield return null;
         }
     }
+
+    /// <summary>
+    /// 발동 이펙트
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SpawnEffect()
+    {
+        if (activateEffectPrefab != null)
+        {
+            // 부모의 CombineCell을 찾아서 중심점 구하기
+            CombineCell combineCell = GetComponentInParent<CombineCell>();
+            Vector3 effectPosition = transform.position; // 기본값은 현재 위치
+            
+            if (combineCell != null)
+            {
+                // SkillBase와 동일한 방식으로 타일의 중심점 찾기
+                Transform spriteTransform = combineCell.GetSprite().transform;
+                if (spriteTransform != null)
+                {
+                    effectPosition = spriteTransform.position;
+                }
+            }
+            
+            GameObject effect = Instantiate(activateEffectPrefab, effectPosition, Quaternion.identity);
+            Destroy(effect, effectDuration);
+        }
+        yield return null;
+    }
+    
     public void StartCoolDown(float coolDownTime)
     {
         sr.size = new Vector2(1, 0);
@@ -91,8 +132,7 @@ public class CoolDownEffect : MonoBehaviour
     /// </summary>
     public void SetPosition()
     {
-        if (!SceneLoader.IsInStage()) return;
-        Debug.Log("[쿨타임] SetPosition 호출됨");
+        if (!SceneLoader.IsInStage() && !SceneLoader.IsInBuilding()) return;
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
         if (transform.rotation.eulerAngles.z == 0)

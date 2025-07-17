@@ -10,7 +10,6 @@ public class DisableOnEndingStage : MonoBehaviour
         {
             EventBus.SubscribeStageChange(OnStageChange);
         }
-        Debug.Log("시작");
         OnStageChange();
     }
 

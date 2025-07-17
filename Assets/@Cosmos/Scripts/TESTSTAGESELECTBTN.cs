@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
+using Unity.Services.Analytics;
+using Steamworks;
 
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
@@ -10,6 +12,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
         StageSelectManager.Instance.StageSelect();
+        
     }
 
 
@@ -40,6 +43,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenJournal()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         JournalSlotManager.Instance.ToggleJournal();
         
     }
@@ -58,10 +62,45 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         if(SaveManager.IsTutorialCompleted == 1)
         {
             // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
-            GOBUILDSCENE();
+            OpenDifficultySelectPannel();
             return;
         }
         gameObject.SetActive(true);
         SaveManager.SaveIsTutorialCompleted(1); // 튜토리얼 완료 상태로 저장
     }
+
+    public void OpenDifficultySelectPannel()
+    {
+        FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
+    }
+
+    public void OpenSettingsPanel()
+    {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        SceneLoader.ToggleSetting();
+    }
+
+    //게임 시작, 별자리 도감등의 버튼을 눌렀을때 떠있는 다른 패널들을 끄는 역할을 합니다
+    public void DisAbleSelf(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+    }
+
+    //이건 위의 DisAbleSelf로도 못끄는 도감을 끄기 위한 함수입니다
+    public void DisAbleJournal()
+    {
+        JournalSlotManager.Instance.CloseJournal();
+    }
+
+    public void ExitGameButton()
+    {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        // 게임 종료
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
 }

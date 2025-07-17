@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 75931051}
   - component: {fileID: 75931052}
   m_Layer: 0
-  m_Name: '7Fight '
+  m_Name: '8Fight '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,6 +627,7 @@ MonoBehaviour:
   - {fileID: 1979145290}
   - {fileID: 904852370}
   - {fileID: 716840239}
+  - {fileID: 1752254457}
   - {fileID: 1010252471}
   - {fileID: 1363325452}
   - {fileID: 1549304061}
@@ -742,6 +743,7 @@ GameObject:
   - component: {fileID: 241535784}
   - component: {fileID: 241535787}
   - component: {fileID: 241535786}
+  - component: {fileID: 241535788}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -942,6 +944,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &241535788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241535782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3702999398867009666
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702999398867009666
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 241535784}
+        m_TrackedProperties:
+          items:
+          - rid: 3702999398867009667
+          - rid: 3702999398867009668
+        m_UpdateType: 0
+    - rid: 3702999398867009667
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 42
+        - localeIdentifier:
+            m_Code: en
+          value: 36
+    - rid: 3702999398867009668
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSizeBase
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 42
+        - localeIdentifier:
+            m_Code: en
+          value: 36
 --- !u!1 &349847611
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +1005,7 @@ GameObject:
   - component: {fileID: 349847613}
   - component: {fileID: 349847616}
   - component: {fileID: 349847615}
+  - component: {fileID: 349847617}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1155,6 +1206,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &349847617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349847611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3702999398867009669
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702999398867009669
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 349847613}
+        m_TrackedProperties:
+          items:
+          - rid: 3702999398867009670
+          - rid: 3702999398867009671
+        m_UpdateType: 0
+    - rid: 3702999398867009670
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 42
+        - localeIdentifier:
+            m_Code: en
+          value: 36
+    - rid: 3702999398867009671
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSizeBase
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 42
+        - localeIdentifier:
+            m_Code: en
+          value: 36
 --- !u!1 &370369015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1267,7 @@ GameObject:
   - component: {fileID: 370369017}
   - component: {fileID: 370369020}
   - component: {fileID: 370369019}
+  - component: {fileID: 370369021}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1368,6 +1468,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &370369021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370369015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 3702999398867009663
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702999398867009663
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 370369017}
+        m_TrackedProperties:
+          items:
+          - rid: 3702999398867009664
+          - rid: 3702999398867009665
+        m_UpdateType: 0
+    - rid: 3702999398867009664
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 42
+        - localeIdentifier:
+            m_Code: en
+          value: 36
+    - rid: 3702999398867009665
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontSizeBase
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 42
+        - localeIdentifier:
+            m_Code: en
+          value: 36
 --- !u!1 &473630440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1661,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.375
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2652,7 +2800,7 @@ GameObject:
   - component: {fileID: 1010252472}
   - component: {fileID: 1010252471}
   m_Layer: 0
-  m_Name: 4Rotate
+  m_Name: 5Rotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3691,6 +3839,7 @@ Transform:
   - {fileID: 1979145291}
   - {fileID: 904852369}
   - {fileID: 716840238}
+  - {fileID: 1752254456}
   - {fileID: 1010252472}
   - {fileID: 1363325451}
   - {fileID: 1549304060}
@@ -3708,7 +3857,7 @@ GameObject:
   - component: {fileID: 1363325451}
   - component: {fileID: 1363325452}
   m_Layer: 0
-  m_Name: 5Storage
+  m_Name: 6Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4007,7 +4156,7 @@ GameObject:
   - component: {fileID: 1549304060}
   - component: {fileID: 1549304061}
   m_Layer: 0
-  m_Name: 6Sell
+  m_Name: 7Sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4413,6 +4562,104 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1752254455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752254456}
+  - component: {fileID: 1752254457}
+  m_Layer: 0
+  m_Name: 4Star
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752254456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752254455}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344891046}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1752254457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752254455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564dda55ec2bb45448db1d1dad33cf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionText: 
+  titleText: 
+  subTitleText: 
+  contentText: 
+  goalText: 
+  starActivated: 0
+  instructionTextLocalized:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  titleTextLocalized:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  subTitleTextLocalized:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  contentTextLocalized:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  goalTextLocalized:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1764811734
 GameObject:
   m_ObjectHideFlags: 0
@@ -4848,6 +5095,15 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  Test:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   references:
     version: 2
     RefIds: []
@@ -5219,8 +5475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\uC774\uB4DC 1\n\u3134 \uCE90\uB9AD\uD130\uB97C \uC6C0\uC9C1\uC774\uC138\uC694
-    \n(0/4)"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
@@ -5247,11 +5502,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_fontSizeMin: 12
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1

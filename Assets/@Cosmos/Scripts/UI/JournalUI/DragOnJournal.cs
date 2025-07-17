@@ -1,5 +1,4 @@
 ﻿using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class DragOnJournal : DraggableObject

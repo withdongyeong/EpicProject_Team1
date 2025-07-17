@@ -12,13 +12,13 @@ public abstract class SkillBase : MonoBehaviour
     protected float cooldown = 5f;
 
     [Header("Animation Settings")]
-    private float pulseScale = 1.5f; // 펄스 시 확대 배율
-    private float pulseDuration = 0.2f; // 펄스 애니메이션 지속시간
+    private float pulseScale = 2f; // 펄스 시 확대 배율
+    private float pulseDuration = 0.25f; // 펄스 애니메이션 지속시간
     private Vector3 originalScale;
 
     [Header("발동 이펙트")]
     private GameObject activateEffectPrefab;
-    private float effectDuration = 0.5f;
+    private float effectDuration = 1.3f;
 
 
     //쿨다운 계수입니다.
@@ -27,8 +27,7 @@ public abstract class SkillBase : MonoBehaviour
     private float finalCooldown;
 
     private float lastUsedTime = -Mathf.Infinity;
-
-    protected Material _coolTimeMaterial;
+    private bool isPulseAnimationPlaying = false; // 펄스 애니메이션 진행 중 플래그
 
     //타일 오브젝트입니다.
     protected TileObject tileObject;
@@ -56,7 +55,9 @@ public abstract class SkillBase : MonoBehaviour
     /// </summary>
     protected Action<SkillBase> onActivateAction;
 
-
+    
+    protected List<GameObject> _lightList = new();
+    protected SpriteRenderer _sr;
 
 
     protected virtual void Awake()
@@ -69,6 +70,11 @@ public abstract class SkillBase : MonoBehaviour
         EventBus.SubscribeSceneLoaded(ResetCoolDown);
 
         combineCell = GetComponent<CombineCell>();
+        _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        for(int i =0; i<_sr.transform.childCount; i++)
+        {
+            _lightList.Add(_sr.transform.GetChild(i).gameObject);
+        }
     }
 
     protected virtual void Start()
@@ -76,9 +82,6 @@ public abstract class SkillBase : MonoBehaviour
         //sm = SkillUseManager.Instance;
         if (TryGetComponent<CombineCell>(out CombineCell combineCell))
         {
-            _coolTimeMaterial = combineCell.GetSprite().material;
-            _coolTimeMaterial.SetFloat("_WorldSpaceHeight", combineCell.GetSprite().bounds.size.y);
-            _coolTimeMaterial.SetFloat("_WorldSpaceBottomY", combineCell.GetSprite().localBounds.min.y);
             tileObject = combineCell.GetTileObject();
             cooldown = tileObject.GetTileData().TileCoolTime;
             originalScale = combineCell.GetSprite().transform.localScale;
@@ -90,8 +93,8 @@ public abstract class SkillBase : MonoBehaviour
     }
 
     protected virtual void LateUpdate()
-    {
-        _coolTimeMaterial.SetFloat("_FillAmount", 1 - (GetCooldownRemaining() / finalCooldown));
+    {     
+        ApplyCoolDownToImage();
     }
 
     /// <summary>
@@ -147,7 +150,20 @@ public abstract class SkillBase : MonoBehaviour
     {
         if (tileObject == null) yield break;
 
+        isPulseAnimationPlaying = true; // 펄스 애니메이션 시작
+
         Transform tileTransform = combineCell.GetSprite().transform;
+        SpriteRenderer tileSpriteRenderer = tileTransform.GetComponent<SpriteRenderer>();
+        
+        // 원래 Mask Interaction 저장
+        SpriteMaskInteraction originalMaskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        if (tileSpriteRenderer != null)
+        {
+            originalMaskInteraction = tileSpriteRenderer.maskInteraction;
+            // 확대 시작 전에 Mask Interaction을 None으로 변경
+            tileSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+        }
+
         Vector3 targetScale = originalScale * pulseScale;
 
         float elapsedTime = 0f;
@@ -183,6 +199,14 @@ public abstract class SkillBase : MonoBehaviour
 
         // 정확히 원래 스케일로 복원
         tileTransform.localScale = originalScale;
+        
+        // 원래 Mask Interaction 복원
+        if (tileSpriteRenderer != null)
+        {
+            tileSpriteRenderer.maskInteraction = originalMaskInteraction;
+        }
+        
+        isPulseAnimationPlaying = false; // 펄스 애니메이션 완료
     }
 
     /// <summary>
@@ -193,12 +217,14 @@ public abstract class SkillBase : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        if (activateEffectPrefab != null)
+        if (activateEffectPrefab != null && combineCell != null)
         {
-            var playerPosition = FindAnyObjectByType<PlayerMarker>();
-            if (playerPosition != null)
+            // 펄스 애니메이션의 중심점 (타일 스프라이트 위치)
+            Transform tileTransform = combineCell.GetSprite().transform;
+            
+            if (tileTransform != null)
             {
-                GameObject effect = Instantiate(activateEffectPrefab, playerPosition.transform.position, Quaternion.identity);
+                GameObject effect = Instantiate(activateEffectPrefab, tileTransform.position, Quaternion.identity);
                 Destroy(effect, effectDuration);
             }
         }
@@ -283,6 +309,29 @@ public abstract class SkillBase : MonoBehaviour
         {
             lastUsedTime = -Mathf.Infinity;
         }   
+    }
+
+    protected virtual void ApplyCoolDownToImage()
+    {
+        // 펄스 애니메이션 중일 때는 쿨다운 색상 적용하지 않음
+        if (isPulseAnimationPlaying) return;
+
+        if(IsOnCooldown)
+        {
+            _sr.color = new Color(0.4f, 0.4f, 0.4f, 1f); // 더 어두운 회색
+            foreach (GameObject light in _lightList)
+            {
+                light.SetActive(false);
+            }
+        }
+        else
+        {
+            _sr.color = Color.white;
+            foreach (GameObject light in _lightList)
+            {
+                light.SetActive(true);
+            }
+        }
     }
 
     protected virtual void OnDestroy()

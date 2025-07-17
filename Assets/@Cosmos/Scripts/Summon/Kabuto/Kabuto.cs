@@ -67,7 +67,7 @@ public class Kabuto : MonoBehaviour
     private void PutOn()
     {
         _currentConsume = 0;
-        _isCastOff = false;
+        _isCastOff = false; 
         _sr.sprite = _pupa;
         _sr.color = Color.white;
 
@@ -82,11 +82,15 @@ public class Kabuto : MonoBehaviour
             _isCharging = true;
             _protection.SetChargeBool(true);
         }
-        
     }
 
     private void Fire()
     {
+        // 보호막 100 이상이면 업적 달성
+        if (_currentConsume >= 120)
+        {
+            SteamAchievement.Achieve("ACH_CON_KABUTO");
+        }
         SoundManager.Instance.PlayTileSoundClip("KabutoFire");
         Vector3 dir = _target.transform.position - transform.position;
         GameObject projectileObj = Instantiate(_projectile, transform.position, Quaternion.identity);

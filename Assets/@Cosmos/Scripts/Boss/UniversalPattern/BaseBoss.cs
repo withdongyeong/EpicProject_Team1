@@ -25,6 +25,8 @@ public abstract class BaseBoss : MonoBehaviour
     private bool _isStopped = false; // 공격 중지 여부
     private bool _unstoppable = false; // 공격 중지 가능 여부
     private bool _isHandBoss = false; // 손 보스 여부 (손 보스는 공격 중지 불가능)
+    
+    private int _lastExecutedUnitIndex = -1;
 
     // 컴포넌트 참조
     private GridManager _gridSystem;
@@ -281,10 +283,16 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
+        AnalyticsManager.Instance.SendStageClearEvent();
+        
+        
         _isDead = true;
         // 애니메이터 사망처리
         _animator.SetBool("IsAlive", false);
         Debug.Log($"{GetType().Name} DEFEATED!");
+
+        string ACHKey = "ACH_STG_" + StageSelectManager.Instance.StageNum;
+        SteamAchievement.Achieve(ACHKey);
         
         // 사망 이벤트 발생
         EventBus.PublishBossDeath();
@@ -296,6 +304,8 @@ public abstract class BaseBoss : MonoBehaviour
         {
             StartCoroutine(BossDeath(stageHandler));
         }
+
+        
     }
 
     /// <summary>
@@ -379,6 +389,25 @@ public abstract class BaseBoss : MonoBehaviour
     }
 
     /// <summary>
+    /// 공격 중지 불가 보스용 데미지만 증가
+    /// </summary>
+    public void IncreasedDamageTaken(float time)
+    {
+        _isStopped = true;
+        StartCoroutine(IncreasedDamageTakenRoutine(time));
+    }
+
+    /// <summary>
+    /// 공격 중지 불가 보스용 데미지 증가 루틴
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator IncreasedDamageTakenRoutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _isStopped = false;
+    }
+
+    /// <summary>
     /// 상태이상 추가
     /// </summary>
     /// <param name="debuff">추가할 상태이상</param>
@@ -436,11 +465,30 @@ public abstract class BaseBoss : MonoBehaviour
     /// <summary>
     /// 랜덤 실행 단위 실행
     /// </summary>
+    /// <summary>
+    /// 랜덤 실행 단위 실행 (바로 직전 패턴 제외)
+    /// </summary>
     private IEnumerator ExecuteRandomUnit()
     {
-        int randomIndex = UnityEngine.Random.Range(0, _executableUnits.Count);
+        int randomIndex;
+    
+        // 패턴이 1개뿐이면 그냥 실행
+        if (_executableUnits.Count <= 1)
+        {
+            randomIndex = 0;
+        }
+        else
+        {
+            // 바로 직전 패턴을 제외하고 랜덤 선택
+            do
+            {
+                randomIndex = UnityEngine.Random.Range(0, _executableUnits.Count);
+            } while (randomIndex == _lastExecutedUnitIndex);
+        }
+    
         ExecutableUnit selectedUnit = _executableUnits[randomIndex];
-        
+        _lastExecutedUnitIndex = randomIndex; // 현재 실행한 패턴 인덱스 저장
+    
         if (selectedUnit.IsIndividualPattern)
         {
             yield return StartCoroutine(ExecuteIndividualPattern(selectedUnit.IndividualPattern));
@@ -533,10 +581,30 @@ public abstract class BaseBoss : MonoBehaviour
         EventBus.UnsubscribeGameStart(Init);
     }
     
-    
-    
     public void TestBossHpSet(int hp)
     {
         _currentHealth = hp;
+    }
+
+    public void SetDifficulty()
+    {
+        int difficulty = GameManager.Instance.DifficultyLevel;
+        
+        switch (difficulty)
+        {
+            case 0:
+                BPM = BPM * 0.7f;
+                break;
+            case 2:
+                BPM = BPM * 1.3f;
+                MaxHealth = (int)(MaxHealth * 1.3);
+                break;
+            case 3:
+                BPM = BPM * 1.3f;
+                MaxHealth = (int)(MaxHealth * 1.5);
+                break;
+            default:
+                break;
+        }
     }
 }

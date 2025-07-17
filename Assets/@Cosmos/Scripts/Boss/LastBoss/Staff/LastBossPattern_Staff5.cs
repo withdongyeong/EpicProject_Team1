@@ -10,6 +10,7 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
     private GameObject _explosionPrefab;
     public string PatternName => "StaffPattern5";
     private int _damage;
+    private bool _isSoundCoolTime = false;
 
     public LastBossPattern_Staff5(GameObject explosionPrefab, int damage)
     {
@@ -24,6 +25,7 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
 
         Vector3Int center = new(4, 4, 0);
         int[] radii = { 1, 2, 3, 4 };
+        HashSet<Vector3Int> usedPositions = new HashSet<Vector3Int>();
 
         for (int ring = 0; ring < radii.Length; ring++)
         {
@@ -35,12 +37,15 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
                 int y = Mathf.RoundToInt(center.y + radii[ring] * Mathf.Sin(rad));
                 Vector3Int pos = new Vector3Int(x, y, 0);
 
-                if (!IsCenterX(pos) && IsValid(pos))
+                if (!IsCenterX(pos) && IsValid(pos) && !usedPositions.Contains(pos))
+                {
                     ringPositions.Add(pos);
+                    usedPositions.Add(pos);
+                }
             }
 
-            boss.StartCoroutine(SoundPlay());
-            boss.StartCoroutine(SoundPlay());
+            boss.StartCoroutine(PlayAttackSound(boss, boss.Beat / 4));
+  
 
             foreach (var pos in ringPositions)
             {
@@ -63,9 +68,26 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
         return pos.x >= 0 && pos.x < 9 && pos.y >= 0 && pos.y < 9;
     }
 
-    private IEnumerator SoundPlay()
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
+    {
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
+    }
+
+    public IEnumerator SoundPlay()
     {
         yield return new WaitForSeconds(1f);
         SoundManager.Instance.LastBossSoundClip("LastBossStaffAttackActivate");
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
     }
 }

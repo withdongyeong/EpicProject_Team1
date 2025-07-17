@@ -141,7 +141,7 @@ public class CombineCell : MonoBehaviour
             {
                 grouped[yLevel] = new List<CoolDownEffect>();
             }
-            Debug.Log(yLevel+ " 레벨에 " + effect.name + " 추가");
+            //Debug.Log(yLevel+ " 레벨에 " + effect.name + " 추가");
             grouped[yLevel].Add(effect);
         }
 

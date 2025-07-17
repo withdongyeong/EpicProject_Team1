@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 플레이어의 골드를 관리하는 매니저입니다
@@ -13,7 +12,8 @@ public class GoldManager : Singleton<GoldManager>
     /// 현재 소유하고 있는 골드입니다.
     /// </summary>
     public int CurrentGold => _currentGold;
-    
+
+    public int deltaGold = 0;
 
     protected override void Awake()
     {
@@ -34,8 +34,12 @@ public class GoldManager : Singleton<GoldManager>
         {
             _currentGold = gold;
         }
+        if(_currentGold >= 30)
+        {
+            SteamAchievement.Achieve("ACH_BLD_GOLD");
+            Debug.Log("30원모음");
+        }
         EventBus.PublishGoldChanged(_currentGold);
-        
     }
 
     /// <summary>
@@ -44,7 +48,14 @@ public class GoldManager : Singleton<GoldManager>
     /// <param name="gold">이 값만큼 현재 골드가 변경됩니다. 1이면 +1입니다.</param>
     public void ModifyCurrentGold(int gold)
     {
-        _currentGold = Mathf.Max(_currentGold + gold, 0);
+        int changedGold = Mathf.Max(_currentGold + gold, 0);
+        deltaGold += changedGold - _currentGold;
+        _currentGold = changedGold;
+        if (_currentGold >= 30)
+        {
+            SteamAchievement.Achieve("ACH_BLD_GOLD");
+            Debug.Log("30원모음");
+        }
         EventBus.PublishGoldChanged(_currentGold);
     }
 
@@ -69,6 +80,7 @@ public class GoldManager : Singleton<GoldManager>
         else
         {
             _currentGold -= gold;
+            deltaGold -= gold;
             EventBus.PublishGoldChanged(_currentGold);
             return true;
         }
@@ -77,7 +89,7 @@ public class GoldManager : Singleton<GoldManager>
 
     private void GetGoldPerStage()
     {
-        if(GameStateManager.Instance.CurrentState != GameState.Defeat)
+        if (GameStateManager.Instance.CurrentState != GameState.Defeat)
         {
             if (StageSelectManager.Instance.StageNum < 2)
             {
@@ -88,7 +100,6 @@ public class GoldManager : Singleton<GoldManager>
                 ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
             }
         }
-        
     }
 
 

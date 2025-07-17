@@ -5,10 +5,18 @@ using System.IO;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField]
+  
+    
+    [Header("Game State")]
+    private bool isInStage = false; // 스테이지 진행 중 ?
+    public bool IsInStage => isInStage;
+    private bool isInBuilding = false; // 빌딩 모드 ?
+    public bool IsInBuilding => isInBuilding;
     private bool isInTutorial = false; // 튜토리얼 진행 중 ?
     public bool IsInTutorial => isInTutorial;
 
+    private LogHandler logHandler;
+    public LogHandler LogHandler => logHandler;
     //현재 적용되고 있는 해금된 별자리들의 레벨입니다.
     private int currentUnlockLevel;
 
@@ -17,9 +25,14 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public int CurrentUnlockLevel => currentUnlockLevel;
 
+    private int difficultyLevel = 0;
+
+    public int DifficultyLevel => difficultyLevel;
+
     protected override void Awake()
     {
         base.Awake();
+        logHandler = GetComponent<LogHandler>();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
         LoadGameData();
@@ -30,7 +43,6 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         ShowSetting();
-        
         // Alt + Enter 감지 → 비율 깨짐 방지
         if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
         {
@@ -38,6 +50,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    
 
     private void LoadGameData()
     {
@@ -67,7 +80,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void ShowSetting(){
         
-        if(Input.GetKeyDown(KeyCode.Escape) && (SceneLoader.IsInBuilding() || SceneLoader.IsInTitle() || SceneLoader.IsInStage()))
+        if(Input.GetKeyDown(KeyCode.Escape) && (SceneLoader.IsInBuilding() || SceneLoader.IsInTitle() || SceneLoader.IsInStage()) && !JournalSlotManager.Instance.IsJournalOpen)
         {
             SceneLoader.ToggleSetting();
         }    
@@ -76,17 +89,32 @@ public class GameManager : Singleton<GameManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SetTutorial();
+        if (SceneLoader.IsInBuilding())
+        {
+            isInBuilding = true;
+            isInStage = false;
+        }
+
+        if (SceneLoader.IsInStage())
+        {
+            isInStage = true;
+            isInBuilding = false;
+        }
     }
     // 타이틀로 돌아갈 때 벌어지는 일들
     public void LoadTitle()
     {
+        Debug.Log("김요한 = 타이틀로 돌아갑니다.");
+        AnalyticsManager.Instance.GoTitleEvent();
+        LogHandler.SetTotalPlayTimer();
+        currentUnlockLevel = SaveManager.UnlockLevel;
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
         GoldManager.Instance.SetCurrentGold(16);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
-        currentUnlockLevel = SaveManager.UnlockLevel;
+        
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);
@@ -105,12 +133,31 @@ public class GameManager : Singleton<GameManager>
             isInTutorial = false;
         }
     }
+
+    public void SetDifficultyLevel(int level)
+    {
+        difficultyLevel = level;
+    }
+
     
+    
+    public void GameQuit()
+    {
+        SaveManager.SaveAll(); // 게임 저장
+        SteamStatsManager.Instance.UploadStatsToServer();
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                        Application.Quit();
+        #endif
+    }
     
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
+
         SceneLoader.LoadSceneWithName("InitializeScene");
+        
     }
 
 }

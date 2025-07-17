@@ -4,7 +4,7 @@ using UnityEngine.Localization;
 public class PlaceQuest : GuideQuest
 {
     [SerializeField]
-    public int tilesPlaced = 4;
+    public int tilesPlaced = 0;
 
     public LocalizedString instructionTextLocalized;
     public LocalizedString titleTextLocalized;
@@ -26,21 +26,23 @@ public class PlaceQuest : GuideQuest
     }
     public override void OnStart()
     {
-        
+        tilesPlaced = 0;
     }
 
     public override bool IsCompleted()
     {
+        if(tilesPlaced > 3) tilesPlaced = 3; // 최대 3회로 제한
         // 언어 설정에 따라 번역된 문자열 가져오기
         instructionTextLocalized.Arguments = new object[] { tilesPlaced };
         instructionTextLocalized.RefreshString();
-
+        
         GuideHandler.instance.questText.text = instructionText;
-        return tilesPlaced >= 5;
+        return tilesPlaced >= 3;
     }
 
     public override void OnComplete()
     {
         
     }
+    
 }

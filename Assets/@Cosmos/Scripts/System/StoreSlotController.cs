@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -7,19 +8,20 @@ using Random = UnityEngine.Random;
 public class StoreSlotController : MonoBehaviour
 {
     private StoreSlot[] storeSlots;
-    
+
+    private int _rerollNum = 0; //도전과제용 리롤한 횟수입니다.
+
     private int _safeInt = 0;
     private int _unlockLevel;
 
-    private GameObject _safePrefab;
+    private GameObject _safePrefab; //만약 에러가 뜨면 슬롯에 넣어줄 안전장치 입니다. 현재는 지팡이입니다.
 
-    //이 밑은 희귀도에 따라서 분류된 리스트입니다
-    private List<GameObject> _normalStoreTiles = new();
-    private List<GameObject> _rareStoreTiles = new();
-    private List<GameObject> _epicStoreTiles = new();
-    private List<GameObject> _legendaryStoreTiles = new();
-    private List<GameObject> _mythicStoreTiles = new();
+    private List<string> appeardTileNameList = new();
 
+    //희귀도에 따라서 분류된 리스트를 모아놓은 리스트입니다
+    private List<List<GameObject>> _storeTiles = new();
+
+    //1스테이지 상점에 처음 나올 5개 타일입니다
     private List<GameObject> _firstStoreTiles = new();
     //가이드용
     public List<GameObject> guideList = new List<GameObject>();
@@ -52,25 +54,30 @@ public class StoreSlotController : MonoBehaviour
             if(!DragManager.Instance.IsDragging)
             {
                 ResetSlotBtn();
+              
             }            
         }
     }
     
     private void SetupStoreSlots()
     {
-        List<GameObject> appeardTileList = new();
-        List<string> appeardTileNameList = new();
+        //슬롯들을 채워야 하면 각 확률 리스트들을 초기화해줍니다.
+        SetStoreTileList();
+
+        //조건 판별에 쓰이는 리스트를 초기화해줍니다.
+        appeardTileNameList.Clear();
         
         
         for (int i = 0; i < storeSlots.Length; i++)
         {
             GameObject chosenTile;
 
+            //먼저 잠금된 애들이 있으면 반영합니다.
             if (StoreLockManager.Instance.GetStoreLocks(i) != null)
             {
                 chosenTile = StoreLockManager.Instance.GetStoreLocks(i);
             }
-            else
+            else //확률로 정해지는 애들입니다.
             {
                 float roll = Random.value * 100f;
                 TileGrade chosenGrade;
@@ -108,26 +115,9 @@ public class StoreSlotController : MonoBehaviour
                     chosenGrade = TileGrade.Mythic;
                 }
 
-                List<GameObject> chosenList = _normalStoreTiles;
-                switch (chosenGrade)
-                {
-                    case TileGrade.Normal:
-                        chosenList = _normalStoreTiles;
-                        break;
-                    case TileGrade.Rare:
-                        chosenList = _rareStoreTiles;
-                        break;
-                    case TileGrade.Epic:
-                        chosenList = _epicStoreTiles;
-                        break;
-                    case TileGrade.Legendary:
-                        chosenList = _legendaryStoreTiles;
-                        break;
-                    case TileGrade.Mythic:
-                        chosenList = _mythicStoreTiles;
-                        break;
+                List<GameObject> chosenList = _storeTiles[(int)TileGrade.Normal];
+                chosenList = _storeTiles[(int)chosenGrade];
 
-                }
                 //가이드용
                 if (isGuide)
                 {
@@ -136,15 +126,34 @@ public class StoreSlotController : MonoBehaviour
                     storeSlots[i].GetComponent<Image>().SetNativeSize();
                     continue;
                 }
-                int randomIndex = Random.Range(0, chosenList.Count);
+
+                int randomIndex;
+                //이건 선택된 리스트에 남은 애들이 있을때 입니다
+                if (chosenList.Count > 0)
+                {
+                    randomIndex = Random.Range(0, chosenList.Count);
+                }
+                else //이건 리스트가 비어있으면 다시 채우는 과정입니다
+                {
+                    RefillList(chosenGrade);
+                    chosenList = _storeTiles[(int)chosenGrade];
+                    randomIndex = Random.Range(0, chosenList.Count);
+                }
+
                 chosenTile = chosenList[randomIndex];
                 //선택된 타일이 상점에 등장해도 되는지 조건검사를 합니다.
-                chosenTile = CheckTileCondition(chosenTile, chosenList, appeardTileList, appeardTileNameList);
+                chosenTile = CheckTileCondition(chosenTile, chosenGrade);
+                //중복이 안되도록 제거해줍니다
+                if(_storeTiles[(int)chosenGrade].Contains(chosenTile))
+                {
+                    _storeTiles[(int)chosenGrade].Remove(chosenTile);
+                }
+
             }
             
             storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
-            appeardTileList.Add(chosenTile);
             appeardTileNameList.Add(chosenTile.GetComponent<TileObject>().GetTileData().TileName);
+            
             
             //이미지 비율을 맞추기 위한 코드입니다.
             //storeSlots[i].GetComponent<Image>().preserveAspect = true;
@@ -182,6 +191,11 @@ public class StoreSlotController : MonoBehaviour
         if(GoldManager.Instance.UseCurrentGold(1))
         {
             SetupStoreSlots();
+            _rerollNum++;
+            if (_rerollNum >= 10)
+            {
+                SteamAchievement.Achieve("ACH_BLD_REROLL");
+            }
         }
     }
 
@@ -190,73 +204,14 @@ public class StoreSlotController : MonoBehaviour
     /// </summary>
     private void SetStoreTileList()
     {
-        ////현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
-        //_unlockLevel = GameManager.Instance.CurrentUnlockLevel;
-
-        //List<GameObject> allTilePrefabs = new();
-
-        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
-        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/BookTile"));
-        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
-        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/EquipTile"));
-        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
-        //allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
-        //_safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
-
-        //foreach (GameObject tilePrefab in allTilePrefabs)
-        //{
-        //    TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
-        //    if(tileInfo.UnlockInt <= _unlockLevel)
-        //    {
-        //        TileGrade grade = tileInfo.TileGrade;
-        //        if (grade == TileGrade.Normal)
-        //        {
-        //            if (tileInfo.TileName != "GuideStaffTile")
-        //            {
-        //                _normalStoreTiles.Add(tilePrefab);
-        //            }
-        //            foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
-        //            {
-        //                if (tileData.tileName == tileInfo.TileName)
-        //                {
-        //                    _firstStoreTiles.Add(tilePrefab);
-        //                }
-        //            }
-        //        }
-        //        else if (grade == TileGrade.Rare)
-        //        {
-        //            _rareStoreTiles.Add(tilePrefab);
-        //            foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
-        //            {
-        //                if (tileData.tileName == tileInfo.TileName)
-        //                {
-        //                    _firstStoreTiles.Add(tilePrefab);
-        //                }
-        //            }
-        //        }
-        //        else if (grade == TileGrade.Epic)
-        //        {
-        //            _epicStoreTiles.Add(tilePrefab);
-        //        }
-        //        else if (grade == TileGrade.Legendary)
-        //        {
-        //            _legendaryStoreTiles.Add(tilePrefab);
-        //        }
-        //        else
-        //        {
-        //            _mythicStoreTiles.Add(tilePrefab);
-        //        }
-        //    }
-
-
-        //}
-        _normalStoreTiles = JournalSlotManager.Instance.NormalStoreTiles.ToList();
-        _rareStoreTiles = JournalSlotManager.Instance.RareStoreTiles.ToList();
-        _epicStoreTiles = JournalSlotManager.Instance.EpicStoreTiles.ToList();
-        _legendaryStoreTiles = JournalSlotManager.Instance.LegendaryStoreTiles.ToList();
-        _mythicStoreTiles = JournalSlotManager.Instance.MythicStoreTiles.ToList();
+        _storeTiles.Clear();
+        _storeTiles.Add(JournalSlotManager.Instance.NormalStoreTiles.ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.RareStoreTiles.ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.EpicStoreTiles.ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.LegendaryStoreTiles.ToList());
+        _storeTiles.Add(JournalSlotManager.Instance.MythicStoreTiles.ToList());
         _firstStoreTiles = JournalSlotManager.Instance.FirstStoreTiles.ToList();
-        _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
+        _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/StaffTile");
 
     }
 
@@ -266,15 +221,14 @@ public class StoreSlotController : MonoBehaviour
     /// <param name="tile">조건을 판단할 타일입니다</param>
     /// <param name="list">내가 조건을 판단할 타일을 뽑은 리스트입니다.</param>
     /// <returns></returns>
-    private GameObject CheckTileCondition(GameObject tile, List<GameObject> list,List<GameObject> alreadyPlacedList,
-        List<string>placedNameList)
+    private GameObject CheckTileCondition(GameObject tile, TileGrade grade)
     {
         _safeInt++;
-        if (_safeInt > 20)
+        if (_safeInt > 10)
         {
-            Debug.LogError("너무 많이 조건에 맞는 타일을 상점에 생성하려는 시도가 반복됨! 오류!");
+            Debug.LogError("너무 많이 조건에 맞는 타일을 상점에 생성하려는 시도가 반복됨!");
             _safeInt = 0;
-            return tile;
+            return _safePrefab;
         }
         TileObject tileObject = tile.GetComponent<TileObject>();
         bool isAvailable = true;
@@ -293,22 +247,13 @@ public class StoreSlotController : MonoBehaviour
         {
             foreach(TileData tileData in tileObject.GetTileData().RejectTileList)
             {
-                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName) || placedNameList.Contains(tileData.tileName))
+                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName) || appeardTileNameList.Contains(tileData.tileName))
                 {
                     isAvailable = false;
                 }
 
             }    
             
-        }
-
-        //이미 상점에 뜬 타일인지 검사합니다.
-        if(alreadyPlacedList != null)
-        {
-            if(alreadyPlacedList.Contains(tile))
-            {
-                isAvailable = false;
-            }
         }
 
         if(isAvailable)
@@ -319,22 +264,48 @@ public class StoreSlotController : MonoBehaviour
         else
         {
             //만족 안했으므로 다시 돌립니다.
-            List<GameObject> newList = new(list);
-            //조건을 만족 안하는 타일을 리스트에서 일시적으로 제거합니다.
-            if (newList.Contains(tile))
+            //조건을 만족 안하는 타일을 리스트에서 제거합니다.
+            if (_storeTiles[(int)grade].Contains(tile))
             {
-                newList.Remove(tile);
+                _storeTiles[(int)grade].Remove(tile);
             }
-            if (newList.Count == 0)
+            if (_storeTiles[(int)grade].Count == 0)
             {
-                Debug.LogWarning("희귀도에 알맞는, 상점에 등장할 수 있는 타일이 없어용");
-                return _safePrefab;
+                RefillList(grade);
             }
-            int randomIndex = Random.Range(0, newList.Count);
-            GameObject chosenTile = newList[randomIndex];
-            return CheckTileCondition(chosenTile, newList,alreadyPlacedList,placedNameList);
+            int randomIndex = Random.Range(0, _storeTiles[(int)grade].Count);
+            GameObject chosenTile = _storeTiles[(int)grade][randomIndex];
+            return CheckTileCondition(chosenTile, grade);
         }
 
+    }
+
+    private void RefillList(TileGrade grade)
+    {
+        List<GameObject> newList;
+        switch (grade)
+        {
+            case TileGrade.Normal:
+                newList = JournalSlotManager.Instance.NormalStoreTiles.ToList();
+                break;
+            case TileGrade.Rare:
+                newList = JournalSlotManager.Instance.RareStoreTiles.ToList();
+                break;
+            case TileGrade.Epic:
+                newList = JournalSlotManager.Instance.EpicStoreTiles.ToList();
+                break;
+            case TileGrade.Legendary:
+                newList = JournalSlotManager.Instance.LegendaryStoreTiles.ToList();
+                break;
+            case TileGrade.Mythic:
+                newList = JournalSlotManager.Instance.MythicStoreTiles.ToList();
+                break;
+            default:
+                newList = JournalSlotManager.Instance.NormalStoreTiles.ToList();
+                break;
+        }
+
+        _storeTiles[(int)grade] = newList;
     }
 
     

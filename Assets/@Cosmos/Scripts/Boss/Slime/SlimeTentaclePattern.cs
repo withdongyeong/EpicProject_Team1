@@ -6,7 +6,6 @@ public class SlimeTentaclePattern : IBossAttackPattern
     private GameObject _slimeTentacle;
     private int _tentatacleCount;
 
-    private float waitDuration = 0.2f;
     private float tentacleLength = 5f;
     private float beat;
     private float halfBeat;

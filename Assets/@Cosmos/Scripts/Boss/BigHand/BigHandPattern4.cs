@@ -9,7 +9,7 @@ public class BigHandPattern4 : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
     private int _damage;    
-
+    private bool _isSoundCoolTime = false;
     public string PatternName => "패턴4_체스판";
     
     public BigHandPattern4(GameObject attackEffectPrefab, int damage)
@@ -46,7 +46,7 @@ public class BigHandPattern4 : IBossAttackPattern
             }
         }
 
-        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound(boss, boss.Beat));
 
         boss.BombHandler.ExecuteFixedBomb(
             blackSquares, 
@@ -73,7 +73,7 @@ public class BigHandPattern4 : IBossAttackPattern
             }
         }
         
-        boss.StartCoroutine(PlayAttackSound());
+        boss.StartCoroutine(PlayAttackSound(boss, boss.Beat));
 
         boss.BombHandler.ExecuteFixedBomb(
             whiteSquares, 
@@ -93,10 +93,27 @@ public class BigHandPattern4 : IBossAttackPattern
         Debug.Log("패턴4 정리 완료");
     }
 
-    public IEnumerator PlayAttackSound()
+    public IEnumerator PlayAttackSound(BaseBoss boss, float coolTime)
+    {
+        if (_isSoundCoolTime)
+        {
+            yield break; // 쿨타임 중이면 실행하지 않음
+        }
+        boss.StartCoroutine(SoundPlay());
+        boss.StartCoroutine(SetSoundCoolTime(coolTime));
+    }
+
+    public IEnumerator SoundPlay()
     {
         yield return new WaitForSeconds(1f); // 예시로 빈 코루틴 반환
         SoundManager.Instance.BigHandSoundClip("BigHandAttackActivate");
+    }
+
+    public IEnumerator SetSoundCoolTime(float isCoolTime)
+    {
+        _isSoundCoolTime = true;
+        yield return new WaitForSeconds(isCoolTime);
+        _isSoundCoolTime = false;
     }
 
 }

@@ -22,6 +22,8 @@ public class PlayerHp : MonoBehaviour
     private bool _isInvincible = false;
     private Coroutine _blinkCoroutine;
 
+    private int _healedAmount = 0; //도전과제용 이번 라운드에 얼마나 힐했는지
+
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
     public bool IsInvincible { get => _isInvincible; }
@@ -169,6 +171,11 @@ public class PlayerHp : MonoBehaviour
     {
         _currentHealth += amount;
         _currentHealth = Mathf.Min(_maxHealth, _currentHealth);
+        _healedAmount += amount;
+        if(_healedAmount >= 100)
+        {
+            SteamAchievement.Achieve("ACH_BTL_HEAL");
+        }
         EventBus.PublishPlayerHpChanged(_currentHealth);
         
     }

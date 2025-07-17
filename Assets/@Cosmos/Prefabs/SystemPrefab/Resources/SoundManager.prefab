@@ -88,6 +88,7 @@ MonoBehaviour:
   NecronomiconSkillActivate: 1
   WraithSkillActivate: 0.8
   "\uBE44\uAD6C\uB984": 0.3
+  HellFireSkillActivate: 1
   PoisionExplotionActivate: 0.7
   PoisonBallActivate: 0.7
   SpiderLegActivate: 0.3
@@ -109,7 +110,7 @@ MonoBehaviour:
   GolemAttackActivate: 0.2
   GolemDamageActivate: 1
   GolemDeadActivate: 1
-  TurtreeAttackActivate: 0.05
+  TurtreeAttackActivate: 0.1
   TurtreeDamageActivate: 0.3
   TurtreeDeadActivate: 0.3
   ReaperAttackActivate: 0.3
@@ -119,18 +120,18 @@ MonoBehaviour:
   KnightDashActivate: 1
   KnightDamageActivate: 1
   KnightDeadActivate: 1
-  BigHandAttackActivate: 0.6
-  BigHandAttackActivate_Small: 0.1
-  BigHandFistActivate: 0.01
+  BigHandAttackActivate: 0.25
+  BigHandAttackActivate_Small: 0.25
+  BigHandFistActivate: 0.7
   BigHandFingerActivate: 0.7
   BigHandDamageActivate: 0.3
   BigHandDeadActivate: 0.3
-  BigHandSlideActivate: 0.5
+  BigHandSlideActivate: 1
   LastBossDamageActivate: 0.1
   LastBossDeadActivate: 1
   LastBossFlameAttackActivate: 0.1
   LastBossFrostAttackActivate: 0.1
-  LastBossStaffAttackActivate: 0.1
+  LastBossStaffAttackActivate: 0.25
   LastBossSwordAttackActivate: 0.1
   LastBossFlameModeActivate: 0.1
   LastBossFrostModeActivate: 0.1

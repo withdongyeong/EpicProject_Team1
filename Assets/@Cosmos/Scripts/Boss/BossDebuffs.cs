@@ -154,8 +154,6 @@ public class BossDebuffs : MonoBehaviour
     {
         if (debuffs[(int)debuff] > 0)
         {
-            debuffs[(int)debuff] = 0; // 상태 이상 카운트 초기화
-            bossHPUI.UpdateDebuffUI(debuff, 0);
             if (debuff == BossDebuff.Mark)
             {
                 // Mark 상태 이상이 제거되면 애니메이션 중지
@@ -173,8 +171,14 @@ public class BossDebuffs : MonoBehaviour
                 {
                     // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
                     SetCurseAnimLevel();
+                    if (debuffs[(int)BossDebuff.Curse] >= 60)
+                    {
+                        SteamAchievement.Achieve("ACH_CON_CURSE"); // 저주 상태 이상 60개 제거 시 업적
+                    }
                 }
             }
+            debuffs[(int)debuff] = 0; // 상태 이상 카운트 초기화
+            bossHPUI.UpdateDebuffUI(debuff, 0);
         }
     }
 
@@ -249,9 +253,13 @@ public class BossDebuffs : MonoBehaviour
             {
                 boss.StopAttack(2f); // 2초 동안 공격 중지
             }
+            else
+            {
+                boss.IncreasedDamageTaken(2f); // 손 보스의 경우 2초 동안 받는 데미지 증가
+            }
 
-            // 애니메이터 일시중지 (원래 속도 저장)
-            float originalAnimatorSpeed = boss.Animator.speed;
+                // 애니메이터 일시중지 (원래 속도 저장)
+                float originalAnimatorSpeed = boss.Animator.speed;
             boss.Animator.speed = 0f;
 
             // 2초 후 애니메이터 재생 재개

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,13 +13,23 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     private GameObject _safePrefab;
 
+    private List<GameObject> _showOnUnlock = new();
+    private int[] _unlockedTileNumList = new int[5];
+
     private GameObject _tileInfoPanel;
 
-    private bool _isInit;
+    private Transform _showUnlockedTilePanel;
+    private JournalSlot _unlockedTileSlot;
 
+    private bool _isInit;
+    private bool _isJournalOpen = false;
+
+    private InfoPanel _infoPanel;
 
     private Transform _slotParent; //슬롯의 부모, 그러니까 StoreSlotController가 붙은 쯤의 위치입니다.
     private GameObject _scrollView; //이거 끄면 저널이 안보이게됩니다.
+
+    private LocalizedString _localizedString;
 
     //이 밑은 희귀도에 따라서 분류된 리스트입니다
     private List<GameObject> _normalStoreTiles = new();
@@ -37,9 +49,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     public List<GameObject> LegendaryStoreTiles => _legendaryStoreTiles;
     public List<GameObject> MythicStoreTiles => _mythicStoreTiles;
     public List<GameObject> FirstStoreTiles => _firstStoreTiles;
-
-    private bool _isJournalSlotUpdated = true;
-
+    public bool IsJournalOpen => _isJournalOpen;
 
 
     protected override void Awake()
@@ -48,21 +58,26 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         _journalSlotPrefab = Resources.Load<GameObject>("Prefabs/UI/Journal/JournalSlot");
         _scrollView = transform.GetChild(0).GetChild(0).gameObject;
         _slotParent = _scrollView.transform.GetChild(0).GetChild(0);
+        _infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
+        _showUnlockedTilePanel = transform.GetChild(0).GetChild(1);
+        _unlockedTileSlot = _showUnlockedTilePanel.GetComponentInChildren<JournalSlot>();
         EventBus.SubscribeSceneLoaded(CloseJournalOnSceneChange);
-        _isJournalSlotUpdated = true;
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/SwordTile"));
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/DamageTotemTile"));
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/CloudTile"));
+        _showOnUnlock.Add(Resources.Load<GameObject>("Prefabs/Tiles/SummonTIle/TurtleTile"));
+        EventBus.SubscribeSceneLoaded(ShowUnlockTilesOnTitle);
+        _localizedString = new LocalizedString("EpicProject_Table", "UI_Text_UnlockedTileCount");
         _isInit = false;
     }
-
-
 
 
     private void Start()
     {
         //DontDestroyOnLoad(Instantiate(_eventSystem));
         SetStoreTileList();
-        InstantiateAllJournalSlots();
-        _isInit = true;
-        ToggleJournal();
+        _showUnlockedTilePanel.gameObject.SetActive(false);
+        _isInit = true; 
     }
 
     public void SetStoreTileList()
@@ -131,6 +146,11 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
                 {
                     _mythicStoreTiles.Add(tilePrefab);
                 }
+
+                if(tileInfo.UnlockInt != 0)
+                {
+                    _unlockedTileNumList[tileInfo.UnlockInt]++;
+                }
             }
             else
             {
@@ -138,20 +158,15 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             }
 
         }
-        _isJournalSlotUpdated = false;
+
+        InstantiateAllJournalSlots();
     }
 
-    private void OnEnable()
-    {
-        if(!_isJournalSlotUpdated && _isInit)
-        {
-            Debug.Log("이거 발동되면 안되잇");
-            InstantiateAllJournalSlots();
-        }
-    }
 
     private void InstantiateAllJournalSlots()
     {
+        //이거 안하면 오류납니다.
+        _scrollView.SetActive(true);
         //먼저 저널 슬롯 싹 비웁니다
         for (int i = _slotParent.childCount - 1; i >= 0; i--)
         {
@@ -163,7 +178,9 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         InstantiateJournalSlotList(_epicStoreTiles);
         InstantiateJournalSlotList(_legendaryStoreTiles);
         InstantiateJournalSlotList(_mythicStoreTiles);
-        _isJournalSlotUpdated = true;
+
+        //볼장 다 봤으니 다시 끕니다
+        _scrollView.SetActive(false);
     }
 
     private void InstantiateJournalSlotList(List<GameObject> objects)
@@ -186,10 +203,18 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     }
 
 
-    private void CloseJournal()
+    public void CloseJournal()
     {
         if (DragManager.Instance.GetCurrentDragObject() == null)
-            _scrollView.SetActive(false);    
+        {
+            _scrollView.SetActive(false);
+
+            if (_infoPanel != null)
+            {
+                _infoPanel.Hide();
+            }
+            _isJournalOpen = false;
+        }
     }
 
     public void CloseJournalOnSceneChange(Scene scene, LoadSceneMode mode)
@@ -197,6 +222,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(_isInit)
         {
             _scrollView.SetActive(false);
+            _isJournalOpen = false;
         }
         
     }
@@ -206,16 +232,56 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         if(_scrollView.activeSelf)
         {
             _scrollView.SetActive(false);
+            _isJournalOpen = false;
         }
         else
         {
             _scrollView.SetActive(true);
+            _isJournalOpen = true;
+        }
+    }
+
+    public void ShowUnlockTiles()
+    {
+        if(SaveManager.ShownUnlockLevel < SaveManager.UnlockLevel)
+        {
+            SaveManager.SaveShownUnlockLevel(SaveManager.ShownUnlockLevel + 1);
+            if(SaveManager.ShownUnlockLevel - 1 < _showOnUnlock.Count)
+            {
+                if (_showOnUnlock[SaveManager.ShownUnlockLevel - 1] != null)
+                {
+                    _showUnlockedTilePanel.gameObject.SetActive(true);
+                    _unlockedTileSlot.SetSlot(_showOnUnlock[SaveManager.ShownUnlockLevel - 1]);
+
+                    _localizedString.StringChanged += (text) =>
+                    {
+                        _showUnlockedTilePanel.GetChild(3).GetComponent<TextMeshProUGUI>().text = text.Replace("{0}", _unlockedTileNumList[SaveManager.ShownUnlockLevel].ToString());
+                    };
+
+                }
+            }
+                       
+        }
+    }
+
+    public void HideUnlockTiles()
+    {
+        _showUnlockedTilePanel.gameObject.SetActive(false);
+        ShowUnlockTiles();
+    }
+
+    private void ShowUnlockTilesOnTitle(Scene scene, LoadSceneMode mode)
+    {
+        if(SceneLoader.IsInTitle())
+        {
+            ShowUnlockTiles();
         }
     }
 
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(CloseJournalOnSceneChange);
+        EventBus.UnsubscribeSceneLoaded(ShowUnlockTilesOnTitle);
     }
 
 }
