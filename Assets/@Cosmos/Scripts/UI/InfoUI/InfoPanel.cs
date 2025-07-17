@@ -20,7 +20,7 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] private Image backgroundImage; // 내부 배경 이미지 컴포넌트 (Tiled)
     [SerializeField] private GameObject textObject; // Text 오브젝트 (InfoTextRenderer가 있는)
     
-    private TileObject currentTileObject; // 현재 표시 중인 TileObject
+    private TileInfo currentTileInfo; // 현재 표시 중인 TileInfo
     private RectTransform rectTransform;
     private Canvas canvas;
     private GameObject nameTextPrefab; // 이름 텍스트
@@ -57,22 +57,21 @@ public class InfoPanel : MonoBehaviour
     /// <summary>
     /// TileObject 정보를 설정하고 패널을 표시
     /// </summary>
-    public void Show(TileObject tileObject, Vector3 position, bool isUIElement)
+    public void Show(TileInfo tileInfo, Vector3 position, bool isUIElement)
     {
-        currentTileObject = tileObject;
+        currentTileInfo = tileInfo;
         gameObject.SetActive(true);
-        
-        
-        
+
+        Debug.Log("여까지 들어옴");
         // 등급에 따른 테두리 이미지 설정
-        SetBorderByGrade(currentTileObject.GetTileData().TileGrade);
+        SetBorderByGrade(currentTileInfo.TileGrade);
 
         // 이름 텍스트 설정 (textObject 하위에 생성)
         Transform headText = Instantiate(nameTextPrefab, textObject.transform).transform;
         TextMeshProUGUI nameText = headText.GetChild(0).GetComponent<TextMeshProUGUI>();
-        LocalizedString localizedString_Name = new LocalizedString("EpicProject_Table", "Tile_TileName_" + currentTileObject.GetTileData().TileName);
+        LocalizedString localizedString_Name = new LocalizedString("EpicProject_Table", "Tile_TileName_" + currentTileInfo.TileName);
         localizedString_Name.StringChanged += (text) => nameText.text = text;
-        switch (currentTileObject.GetTileData().TileGrade)
+        switch (currentTileInfo.TileGrade)
         {
             case TileGrade.Normal:
                 nameText.color = Color.white;
@@ -96,16 +95,16 @@ public class InfoPanel : MonoBehaviour
 
 
         TextMeshProUGUI coolTimeText = headText.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
-        if(currentTileObject.GetTileData().TileCoolTime != 0)
+        if(currentTileInfo.TileCoolTime != 0)
         {
-            coolTimeText.text = currentTileObject.GetTileData().TileCoolTime.ToString() + "s";
+            coolTimeText.text = currentTileInfo.TileCoolTime.ToString() + "s";
         }
         else
         {
             coolTimeText.gameObject.transform.parent.gameObject.SetActive(false);
         }
         
-        textRenderer.InstantiateDescriptionText(currentTileObject);
+        textRenderer.InstantiateDescriptionText(currentTileInfo);
 
         // 위치 업데이트
         if (isUIElement)
@@ -189,7 +188,7 @@ public class InfoPanel : MonoBehaviour
     /// </summary>
     public void Hide()
     {
-        currentTileObject = null;
+        currentTileInfo= null;
         // 자식 오브젝트 제거 (textObject의 자식들만 제거)
         if (textObject != null)
         {

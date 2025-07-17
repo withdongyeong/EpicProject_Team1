@@ -52,11 +52,11 @@ public class InfoTextRenderer : MonoBehaviour
     /// 여기에 타일 데이터.디스크립션 넣어주면 여기서 정보 가공해서 후처리 합니다
     /// </summary>
     /// <param name="tileInfo">tiledata.description 넣어주시면 됩니다</param>
-    public void InstantiateDescriptionText(TileObject tileInfo)
+    public void InstantiateDescriptionText(TileInfo tileInfo)
     {
         bool hasTag = false;
         //태그 프리팹 추가
-        List<string> tags = Parse(tileInfo.GetTileData().Description);
+        List<string> tags = Parse(tileInfo.Description);
         string synergy = "";
         if (tags.Count > 0)
         {
@@ -78,7 +78,7 @@ public class InfoTextRenderer : MonoBehaviour
 
         //설명 텍스트 추가
         TextUIResizer descriptionText = Instantiate(descriptionTextPrefab, transform).GetComponent<TextUIResizer>();
-        LocalizedString localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" + tileInfo.GetTileData().TileName);
+        LocalizedString localized_description = new LocalizedString("EpicProject_Table", "Tile_TileDescription_" + tileInfo.TileName);
         localized_description.StringChanged += (text) => descriptionText.SetText(text);
 
         //태그 설명 추가
@@ -93,10 +93,9 @@ public class InfoTextRenderer : MonoBehaviour
         }
 
         //카테고리 텍스트 추가
-        TextMeshProUGUI categoryText = Instantiate(categoryTextPrefab, transform).GetComponent<TextMeshProUGUI>();
-
-        if (_categoryDict.TryGetValue(tileInfo.GetTileData().TileCategory, out LocalizedString categoryTextValue))
+        if (_categoryDict.TryGetValue(tileInfo.TileCategory, out LocalizedString categoryTextValue))
         {
+            TextMeshProUGUI categoryText = Instantiate(categoryTextPrefab, transform).GetComponent<TextMeshProUGUI>();
             categoryTextValue.StringChanged += (text) => categoryText.text = text;
         }
     }
