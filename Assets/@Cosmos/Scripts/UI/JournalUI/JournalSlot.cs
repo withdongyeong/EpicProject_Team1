@@ -3,25 +3,25 @@ using UnityEngine.UI;
 
 public class JournalSlot : MonoBehaviour
 {
-    private GameObject objectPrefab;
-    private Image image;
-    private HoverTileInfo hoverTileInfo;
+    protected GameObject objectPrefab;
+    protected Image image;
+    protected HoverTileInfo hoverTileInfo;
     [SerializeField]
-    private Image backgroundImage;
+    protected Image backgroundImage;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         image = GetComponent<Image>();
         backgroundImage = transform.parent.GetComponent<Image>();
         hoverTileInfo = GetComponent<HoverTileInfo>();
     }
 
-    public GameObject GetObject()
+    public virtual GameObject GetObject()
     {
         return objectPrefab; // 오브젝트 반환
     }
 
-    public void SetSlot(GameObject prefab)
+    public virtual void SetSlot(GameObject prefab)
     {
         //Debug.Log(cost);
         this.objectPrefab = prefab;

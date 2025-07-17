@@ -61,7 +61,7 @@ public class TileInfoUI : MonoBehaviour
     {
         if (!isShowing)
         {
-            infoPanel.Show(tileObject, panelPos, false);
+            infoPanel.Show(tileObject.GetTileData(), panelPos, false);
             isShowing = true;
         }
     }
