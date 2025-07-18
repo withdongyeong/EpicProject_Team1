@@ -62,7 +62,6 @@ public class InfoPanel : MonoBehaviour
         currentTileInfo = tileInfo;
         gameObject.SetActive(true);
 
-        Debug.Log("여까지 들어옴");
         // 등급에 따른 테두리 이미지 설정
         SetBorderByGrade(currentTileInfo.TileGrade);
 

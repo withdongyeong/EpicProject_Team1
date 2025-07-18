@@ -112,7 +112,6 @@ public class DragOnStore : DraggableObject
             DragManager.Instance.GetCurrentDragObject().transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
             DragManager.Instance.GetCurrentDragObject().AddComponent<DragOnStorage>();
             storeSlot.BuyObject();
-            Destroy(this);
             return;
         }
         
