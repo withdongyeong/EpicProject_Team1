@@ -329,7 +329,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133721
     m_Localized: "<color=red>\u65E0\u6CD5\u901A\u8FC7\u8E29\u8E0F\u6FC0\u6D3B\u3002\u65E0\u6CD5\u7A7F\u8FC7\u3002</color>\n<color=yellow>\u6FC0\u6D3B\u4F4D\u4E8E
-      <sprite name=\"Star\"> \u4E0A\u7684\u6B66\u5668 <sprite name=\"Weapon\"> \u65F6\u4F1A\u540C\u65F6\u653B\u51FB\u3002\n(\u4F24\u5BB3\uFF1A<color=red>15</color>)"
+      <sprite name=\"Star\"> \u4E0A\u7684\u6B66\u5668 <sprite name=\"Weapon\"> \u65F6\u4F1A\u540C\u65F6\u653B\u51FB\u3002\nMana
+      AI \u51FA\u73B0\u5728\u5546\u5E97\u4E2D\u3002\n(\u4F24\u5BB3\uFF1A<color=red>15</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133722
@@ -378,7 +379,8 @@ MonoBehaviour:
   - m_Id: 43615133729
     m_Localized: "<color=yellow>\u6218\u6597\u5F00\u59CB\u65F6</color>\uFF1A\u53EC\u5524\u4E00\u53EA\u5438\u6536<sprite
       name=\"Barrier\">\u62A4\u76FE\u7684\u4E4C\u9F9F\u3002\u4E4C\u9F9F\u6BCF\u79D2\u5438\u65363\u4E2A<sprite
-      name=\"Barrier\">\u62A4\u76FE\u3002\uFF08<color=red>\u6700\u591A15\u4E2A</color>\uFF09\n<color=yellow>\u6FC0\u6D3B\u65F6</color>\uFF1A\u53D1\u5C04\u4E4C\u9F9F\u3002\u4E4C\u9F9F\u4F1A\u6839\u636E\u5438\u6536\u7684\u62A4\u76FE\u6570\u91CF\u9020\u6210\u4F24\u5BB3\u3002\n(\u4F24\u5BB3\uFF1A<color=red>\u5438\u6536\u91CF\u76843\u500D</color>)"
+      name=\"Barrier\">\u62A4\u76FE\u3002\uFF08<color=red>\u9700\u8981\u76FE\u724C
+      \u6700\u591A15\u4E2A</color>\uFF09\n<color=yellow>\u6FC0\u6D3B\u65F6</color>\uFF1A\u53D1\u5C04\u4E4C\u9F9F\u3002\u4E4C\u9F9F\u4F1A\u6839\u636E\u5438\u6536\u7684\u62A4\u76FE\u6570\u91CF\u9020\u6210\u4F24\u5BB3\u3002\n(\u4F24\u5BB3\uFF1A<color=red>\u5438\u6536\u91CF\u76843\u500D</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
@@ -391,7 +393,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133732
-    m_Localized: "<color=yellow>\u5355\u4E2A\u65B9\u5757 (2)</color>\uFF1A\u53D1\u5C04\u4E00\u679A\u5C04\u5F39\u3002(\u4F24\u5BB3\uFF1A<color=red>6</color>)"
+    m_Localized: "<color=yellow>\u5355\u4E2A\u65B9\u5757 (2)</color>\uFF1A\u53D1\u5C04\u4E00\u679A\u5C04\u5F39\u3002\n(\u4F24\u5BB3\uFF1A<color=red>6</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
@@ -483,7 +485,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43619328020
     m_Localized: "\u5370\u8BB0<sprite name=\"Mark\">: \u4F7F\u4F60\u4E0B\u6B21\u653B\u51FB\u53D7\u5230\u7684\u4F24\u5BB3\u63D0\u9AD8
-      50%\u3002"
+      50%\u3002(\u6700\u591A1\u4E2A)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328021
@@ -594,7 +596,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328051
-    m_Localized: "\u53EF\u4EE5\u901A\u8FC7\u5C06\u661F\u5EA7\u62D6\u62FD\u81F3\u533A\u57DF\u4E24\u4FA7\u6765\u4FDD\u5B58\u5B83\u4EEC\u3002\u4FDD\u5B58\u7684\u661F\u5EA7\u65E0\u6CD5\u5728\u6218\u6597\u4E2D\u4F7F\u7528\u3002"
+    m_Localized: "\u53EF\u4EE5\u901A\u8FC7\u5C06\u661F\u5EA7\u62D6\u62FD\u81F3\u533A\u57DF\u4E24\u4FA7\u6765\u4FDD\u5B58\u5B83\u4EEC\u3002\n\u4FDD\u5B58\u7684\u661F\u5EA7\u65E0\u6CD5\u5728\u6218\u6597\u4E2D\u4F7F\u7528\u3002"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328052
@@ -923,6 +925,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3048611024347146
     m_Localized: "\u653E\u5F03\u6E38\u620F\u5E76\u8FD4\u56DE\u6807\u9898\u3002\uFF08\u6E38\u620F\u5C06\u4E0D\u4F1A\u4FDD\u5B58\u3002\uFF09"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3389944159150081
+    m_Localized: "\u611F\u8C22\u60A8\u6E38\u73A9\u672C\u6E38\u620F\uFF01"
     m_Metadata:
       m_Items: []
   references:

@@ -226,7 +226,7 @@ MonoBehaviour:
       (Damage: <color=red>15</color>)
 
       <color=yellow>On
-      hit</color>: Inflict 1 Frostbyte<sprite name="Ice">'
+      hit</color>: Inflict 1 Frostbite<sprite name="Ice">'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133703
@@ -259,7 +259,7 @@ MonoBehaviour:
       (Damage:<color=red>7</color>)
 
       <color=red>On
-      Hit:</color> Inflict 1 Frostbyte<sprite name="Ice">'
+      Hit:</color> Inflict 1 Frostbite<sprite name="Ice">'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133707
@@ -267,11 +267,11 @@ MonoBehaviour:
       name="Totem"> are stacked.
 
       <color=yellow>On activate</color>: Enemies''
-      Curse<sprite name="Curse"> values are considered 5 higher for 4 seconds. (It
+      Curse<sprite name="Curse"> values are considered 10 higher for 4 seconds. (It
       will be removed in 4 seconds.)
 
       <color=yellow>When enhanced</color>:
-      Enemies'' curse<sprite name="Curse"> values are considered 10 higher for 4
+      Enemies'' curse<sprite name="Curse"> values are considered 20 higher for 4
       seconds.(It will be removed in 4 seconds.)
 
       <color=yellow>Cooldown is
@@ -302,7 +302,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133712
-    m_Localized: 'When granting Frostbyte<sprite name="Ice">, there is a 20% chance
+    m_Localized: 'When granting Frostbite<sprite name="Ice">, there is a 20% chance
       to inflict it again.
 
       When granting Burn<sprite name="fire">, there is
@@ -336,7 +336,7 @@ MonoBehaviour:
       (Damage:
       <color=red>30</color>)
 
-      <color=red>On hit</color>: Inflicts 1  Frostbyte<sprite
+      <color=red>On hit</color>: Inflicts 1  Frostbite<sprite
       name="Ice">'
     m_Metadata:
       m_Items: []
@@ -354,7 +354,7 @@ MonoBehaviour:
       based on the amount of Curse<sprite name="Curse"> accumulated.
 
       <color=yellow>20</color>:
-      inflict 2 Frostbyte<sprite name="Ice">.
+      inflict 2 Frostbite<sprite name="Ice">.
 
       <color=yellow>30</color>: inflict
       5 Burn<sprite name="Fire">.
@@ -394,8 +394,10 @@ MonoBehaviour:
       Attacks together when activating a Weapon <sprite name="Weapon">
       <color=yellow>located on the Star<sprite name="Star"></color>.
 
-      (Damage:
-      <color=red>15</color>)'
+      Mana
+      AI appears in the shop.
+
+      (Damage: <color=red>15</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133722
@@ -416,7 +418,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133724
-    m_Localized: "Inflict 1 Burn<sprite name=\"Fire\">, 1 Frostbyte<sprite name=\"Ice\">,
+    m_Localized: "Inflict 1 Burn<sprite name=\"Fire\">, 1 Frostbite<sprite name=\"Ice\">,
       1 Curse<sprite name=\"Curse\"> to the enemy. \nIf there are 3 or more </color>Magic
       Circles<sprite name=\"MagicCircle\"> located on the <color=yellow>Star<sprite
       name=\"Star\"></color>, Inflict 1 additional Burn<sprite name=\"Fire\">,Curse<sprite
@@ -456,28 +458,29 @@ MonoBehaviour:
   - m_Id: 43615133729
     m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that consumes
       Barrier<sprite name="Barrier">. The turtle consumes 3 Barriers<sprite name="Barrier">
-      per second. (<color=red>Maximum 15</color>)
+      per second. (<color=red>Need shield. Maximum 15</color>)
 
-      <color=yellow>On activation</color>:
-      Launch the turtle. The turtle deals damage based on the amount of Barrier<sprite
-      name="Barrier"> consumed.
+      <color=yellow>On
+      activation</color>: Launch the turtle. The turtle deals damage based on the
+      amount of Barrier<sprite name="Barrier"> consumed.
 
-      (Damage: <color=red>3 X Barrier consumed</color>)'
+      (Damage: <color=red>3
+      X Barrier consumed</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
       of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>When triggered</color>:
       Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \nConvert all Burn <sprite name=\"fire\"> and FrostByte <sprite name=\"ice\">
+      \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
       currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
       are 3 or more Magic Circles <sprite name=\"MagicCircle\"> located on the <color=yellow>Star<sprite
       name=\"Star\"></color>, Consume <color=red>20 Curses</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133732
-    m_Localized: '<color=yellow>Individual Square (2)</color>: Fires a projectile.
-      (Damage: <color=red>6</color>)'
+    m_Localized: "<color=yellow>Individual Square (2)</color>: Fires a projectile.
+      \n(Damage: <color=red>6</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
@@ -517,7 +520,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328007
-    m_Localized: <color=#0F88C1>#Frostbyte<sprite name="Ice"></color>
+    m_Localized: <color=#0F88C1>#Frostbite<sprite name="Ice"></color>
     m_Metadata:
       m_Items: []
   - m_Id: 43619328008
@@ -542,7 +545,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328014
-    m_Localized: 'Frostbyte<sprite name="Ice">: When stacked 10 times, freezes enemies
+    m_Localized: 'Frostbite<sprite name="Ice">: When stacked 10 times, freezes enemies
       for 2 seconds.'
     m_Metadata:
       m_Items: []
@@ -572,7 +575,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43619328020
     m_Localized: 'Mark<sprite name="Mark">: Increases the damage taken from your
-      next attack by 50%.'
+      next attack by 50%. (Maximum 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328021
@@ -704,13 +707,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328049
-    m_Localized: 'Constellations can be purchased from the bottom shop
-
-      by
-      paying gold
-
-      Drag the constellation from the shop to place it in the
-      area'
+    m_Localized: "Constellations can be purchased from the bottom shop\nby paying
+      gold\nDrag the constellation from \nthe shop to place \nit in the area"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328050
@@ -729,18 +727,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328051
-    m_Localized: Constellations can be stored by dragging them to either side of
-      the area. Stored constellations cannot be used in battle.
+    m_Localized: "Constellations can be stored by dragging \nthem to either side
+      of the area. \nStored constellations cannot \nbe used in battle."
     m_Metadata:
       m_Items: []
   - m_Id: 43619328052
-    m_Localized: 'While dragging the constellation, the sales area at the bottom
-      becomes active.
-
-      When you drag the constellation and place it in the
-      sales area,
-
-      the constellation is sold and you can earn gold.'
+    m_Localized: "While dragging the constellation, \nthe sales area at \nthe bottom
+      becomes active.\nWhen you drag the constellation \nand place it in the sales
+      area,\nthe constellation is sold and \nyou can earn gold."
     m_Metadata:
       m_Items: []
   - m_Id: 43619328053
@@ -789,7 +783,7 @@ MonoBehaviour:
   - m_Id: 43619328063
     m_Localized: 'ReRoll (1G)
 
-      Shortcut: D'
+      HotKey: D'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328064
@@ -817,7 +811,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328070
-    m_Localized: Go Ahead
+    m_Localized: Go!
     m_Metadata:
       m_Items: []
   - m_Id: 43619328072
@@ -877,7 +871,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15235124174859
-    m_Localized: Remaining Opportunities
+    m_Localized: Lives
     m_Metadata:
       m_Items: []
   - m_Id: 17316375568389
@@ -937,7 +931,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 815751466983433
-    m_Localized: Yas
+    m_Localized: Yes
     m_Metadata:
       m_Items: []
   - m_Id: 815751466983434
@@ -953,7 +947,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1528835340902401
-    m_Localized: cat wizard
+    m_Localized: Cat wizard
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096704
@@ -969,15 +963,15 @@ MonoBehaviour:
       enhanced</color>: Damage is multiplied by 5.
 
       Cooldown is reduced by
-      10% for each summon <sprite name="Summon"><color=yellow> located on The Star<sprite
+      10% for each summon <sprite name="Summon"><color=yellow> located on the Star<sprite
       name="Star"></color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096706
-    m_Localized: '<color=yellow>At the start of combat</color>: Summon a Cat Wizard.
+    m_Localized: '<color=yellow>Start of Battle</color>: Summon a Cat Wizard.
 
       <color=yellow>On
-      activation</color>: Gain 5 Barrier.
+      Activation</color>: Gain 5 Barrier.
 
       Gain an additional 5 Barrier for
       each type of Summon <sprite name="Summon"> on the <color=yellow>Star<sprite
@@ -1033,8 +1027,8 @@ MonoBehaviour:
       (Damage: <color=red>Number of summoned swords</color>)
 
       Cooldown
-      is reduced by 10% for each summoned <sprite name="Summon"> located on the <color=yellow>star
-      <sprite name="Star">.'
+      is reduced by 10% for each summoned <sprite name="Summon"><color=yellow>located
+      on the Star <sprite name="Star">.'
     m_Metadata:
       m_Items: []
   - m_Id: 2333737105367040
@@ -1058,7 +1052,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2446700369813505
-    m_Localized: '<color=red>Unlocked when clearing Normal Difficulty
+    m_Localized: '<color=red>Unlocked after clearing Normal Difficulty
 
       Boss
       attack speed increased by 30%
@@ -1067,7 +1061,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2446700369813506
-    m_Localized: '<color=red>Unlocked when cleared on Normal difficulty
+    m_Localized: '<color=red>Unlocked after clearing Normal Difficulty
 
       Boss
       attack speed increased by 30%
@@ -1075,7 +1069,7 @@ MonoBehaviour:
       Boss health increased by 50%
 
       Player
-      starts health 1 (max health 100)</color>'
+      starts "with" health 1 (max health 100)</color>'
     m_Metadata:
       m_Items: []
   - m_Id: 2651018377175042
@@ -1098,11 +1092,11 @@ MonoBehaviour:
   - m_Id: 2651018377175048
     m_Localized: "Each constellation has its own star, and when the conditions of
       each constellation are met, the constellation is strengthened. \n\nActivate
-      the star to strengthen the constellation."
+      the star to strengthen \nthe constellation."
     m_Metadata:
       m_Items: []
   - m_Id: 2651018377175050
-    m_Localized: "Completion Conditions \nActivate 3 stars\n(0/3 stars activated)"
+    m_Localized: "Completion Conditions \nActivate 3 stars\n(0/3 stars Activated)"
     m_Metadata:
       m_Items: []
   - m_Id: 2651018377175053
@@ -1131,6 +1125,10 @@ MonoBehaviour:
   - m_Id: 3048611024347146
     m_Localized: "Give up the game and return to the title. \n(The game will not
       be saved.)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3389944159150081
+    m_Localized: Thank you for playing!
     m_Metadata:
       m_Items: []
   references:
