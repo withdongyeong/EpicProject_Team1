@@ -349,7 +349,7 @@ Tile_TileDescription_MoaiTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆�
 <color=yellow>On activate</color>: Fires a projectile.
 (Damage: <color=red>15</color>)
 <color=yellow>When enhanced</color>: Damage is multiplied by 5.
-Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow> located on The Star<sprite name=""Star""></color>.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
+Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow> located on the Star<sprite name=""Star""></color>.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
 <color=yellow>発動時</color>：弾を発射します。
 (ダメージ：<color=red>15</color>)
 <color=yellow>強化時</color>: ダメージが5倍になります。
@@ -761,3 +761,6 @@ UI_Text_CheckGameTitle,放弃游戏并返回标题。（游戏将不会保存。
 (The game will not be saved.)","ゲームを放棄してタイトルに戻ります。
 （ゲームは保存されません。）","게임을 포기하고 타이틀로 돌아갑니다.
 (게임이 저장되지 않습니다.)",,,
+UI_Text_ClearText,感谢您游玩本游戏！,Thank you for playing!,"プレイしていただき
+ありがとうございます！","플레이 해주셔서 
+감사합니다!",,,
