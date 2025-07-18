@@ -33,8 +33,7 @@ public class ArachnePattern2 : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         float beat = boss.Beat;
-        float halfBeat = boss.HalfBeat;
-        yield return boss.StartCoroutine(SpiderAttack(boss, halfBeat));
+        yield return boss.StartCoroutine(SpiderAttack(boss, beat));
     }
 
     public bool CanExecute(BaseBoss boss)

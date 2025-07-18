@@ -7,16 +7,18 @@ public class ArachnePattern3 : IBossAttackPattern
     private GameObject _poisionAriaPrefab;
     private GameObject _lToRspiderLeg;
     private GameObject _rToLspiderLeg;
-    private int _damage;
+    private int _strongDamage;
+    private int _weakDamage;
 
     public string PatternName => "ArachnePattern3";
 
-    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab, int damage)
+    public ArachnePattern3(GameObject poisionAriaPrefab, GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab, int strongDamage, int weakDamage)
     {
         _poisionAriaPrefab = poisionAriaPrefab;
         _lToRspiderLeg = LToRspiderLegPrefab;
         _rToLspiderLeg = RToLspiderLegPrefab;
-        _damage = damage;
+        _strongDamage = strongDamage;
+        _weakDamage = weakDamage;
     }
 
     public IEnumerator Execute(BaseBoss boss)
@@ -39,10 +41,10 @@ public class ArachnePattern3 : IBossAttackPattern
         for (int i = 0; i < 4; i++)
         {
             boss.StartCoroutine(ExecuteAreaAttack(boss));
-            yield return new WaitForSeconds(beat / 2);
+            yield return new WaitForSeconds(beat);
         }
 
-        yield return new WaitForSeconds(beat / 2);
+        yield return new WaitForSeconds(beat);
 
         boss.StartCoroutine(SpiderLeg_DiagonalSlash1(boss));
         yield return new WaitForSeconds(beat / 2);
@@ -74,7 +76,7 @@ public class ArachnePattern3 : IBossAttackPattern
             }
         }
 
-        boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab, 1f, 0.7f, _damage);
+        boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab, 1f, 0.7f, _weakDamage);
         boss.AttackAnimation();
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 1f));
 
@@ -94,8 +96,8 @@ public class ArachnePattern3 : IBossAttackPattern
 
         Vector3Int player = new(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY, 0);
 
-        boss.BombHandler.ExecuteFixedBomb(effect, player, _rToLspiderLeg, 1f, 0.3f, _damage);
-        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _damage);
+        boss.BombHandler.ExecuteFixedBomb(effect, player, _rToLspiderLeg, 1f, 0.3f, _strongDamage);
+        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _strongDamage);
         boss.AttackAnimation();
         boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 1f));
 
@@ -115,8 +117,8 @@ public class ArachnePattern3 : IBossAttackPattern
 
         Vector3Int player = new(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY, 0);
 
-        boss.BombHandler.ExecuteFixedBomb(effect, player, _lToRspiderLeg, 1f, 0.3f, _damage);
-        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _damage);
+        boss.BombHandler.ExecuteFixedBomb(effect, player, _lToRspiderLeg, 1f, 0.3f, _strongDamage);
+        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _strongDamage);
         boss.AttackAnimation();
         boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 1f));
 

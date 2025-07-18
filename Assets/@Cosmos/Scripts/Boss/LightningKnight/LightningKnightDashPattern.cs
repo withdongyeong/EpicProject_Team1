@@ -32,6 +32,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         Vector3 originalPosition = _startTransform;
+        boss.Unstoppable = true;
 
         List<Vector3> dashPoints = DashPointCreate(_gridDashPoint);
         dashPoints.Add(originalPosition);
@@ -60,6 +61,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
             yield return new WaitForSeconds(boss.Beat/4);
         }
 
+        boss.Unstoppable = false;
         // 대시 종료
         boss.boolAnimation("IsDash", false);
     }

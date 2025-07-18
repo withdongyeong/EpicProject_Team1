@@ -87,7 +87,7 @@ public class Projectile : MonoBehaviour
             if (enemy != null)
             {
                 // FrostHammer 투사체이고 보스가 정지 상태인 경우
-                if (isFrostHammer && enemy.IsStopped)
+                if (isFrostHammer && (enemy.IsStopped || enemy.IsDamageIncreased))
                 {
                     damage *= 10; // 피해량 10배 증가
                 }
@@ -98,9 +98,19 @@ public class Projectile : MonoBehaviour
                     {
                         enemy.TakeDamage(damage, hitEffect);
                         // 피해량이 500 이상인 경우 업적
-                        if (damage >= 333)
+                        if (isFrostHammer)
                         {
-                            SteamAchievement.Achieve("ACH_CON_HAMMER");
+                            if (damage >= 333)
+                            {
+                                SteamAchievement.Achieve("ACH_CON_HAMMER"); // FrostHammer 업적 달성
+                            }
+
+                            if (enemy.IsStopped || enemy.IsDamageIncreased)
+                            {
+                                enemy.GetComponent<BossDebuffs>().InterruptFrostEffect(); // 동결 효과 중단
+                                Destroy(gameObject); // 디버프 부여하지 않고 투사체 제거
+                            }
+                            
                         }
                     }
                     else enemy.TakeDamage(damage, null);
@@ -108,12 +118,7 @@ public class Projectile : MonoBehaviour
                     enemy.AddDebuff(bossDebuff); // 상태 이상 추가
                 }
                 else enemy.TakeDamage(damage, null);
-
-                // FrostHammer 투사체이고 보스가 정지 상태인 경우
-                if (isFrostHammer && enemy.IsStopped)
-                {
-                    enemy.GetComponent<BossDebuffs>().InterruptFrostEffect(); // 동결 효과 중단
-                }
+                
                 Destroy(gameObject);
             }
         }

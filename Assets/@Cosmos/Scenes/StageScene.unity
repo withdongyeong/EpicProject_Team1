@@ -446,7 +446,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.453125
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1276,6 +1276,18 @@ PrefabInstance:
       propertyPath: m_UpdateAsset.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: set_font
       objectReference: {fileID: 0}
+    - target: {fileID: 3659055426989253134, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659055426989253134, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 3389944159150081
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659055426989253134, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:acbd475831ad36a4dbe7ab499a00530a
+      objectReference: {fileID: 0}
     - target: {fileID: 4687626375006803143, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1473,7 +1485,6 @@ PrefabInstance:
       value: GUID:acbd475831ad36a4dbe7ab499a00530a
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 3659055426989253134, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
     - {fileID: 849244462996917583, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
