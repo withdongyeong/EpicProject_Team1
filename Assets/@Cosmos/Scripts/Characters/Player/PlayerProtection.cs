@@ -157,8 +157,11 @@ public class PlayerProtection : MonoBehaviour
             if (_protectionAmount <= 0)
             { 
                 SetProtection(false);
-                //못막은 분 만큼 데미지를 받습니다.
-                GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
+                if(!isCounsumed)
+                {
+                    //못막은 분 만큼 데미지를 받습니다.
+                    GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
+                }              
                 _protectionAmount = 0;
             }
             if(isCounsumed)
