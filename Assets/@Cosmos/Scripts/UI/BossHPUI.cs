@@ -309,9 +309,10 @@ public class BossHPUI : MonoBehaviour
                     }
                     else
                     {
-                        tmpText.text = curse.ToString();
+                        tmpText.text = curse.ToString();                       
                     }
-                    
+                    tmpText.margin = new Vector4(0, 0, 17, 0);
+
                 }
                 else
                 {
