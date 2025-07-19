@@ -163,11 +163,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133696
-    m_Localized: "Fires a powerful projectile. \n(Damage: <color=red>40</color>)\nThe
+    m_Localized: "Fires a powerful projectile. \r\n(Damage: <color=red>40</color>)\r\nThe
       effect is based on the number of clocks and statues <color=yellow>located on
-      the Star <sprite name=\"Star\"></color>\n<color=yellow>1</color>: Damage increases
-      to <color=red>50</color>.\n<color=yellow>2</color>: Fires 3 projectiles with
-      <color=red>30</color> damage."
+      the Star <sprite name=\"Star\"></color>\r\n<color=yellow>1</color>: Damage
+      increases to <color=red>50</color>.\r\n<color=yellow>2</color>: Fires 3 projectiles
+      with <color=red>30</color> damage."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133697
@@ -176,7 +176,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133698
     m_Localized: "<color=yellow>Individual Square (3)</color>: Restores <color=green>5</color>
-      health. \nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
+      health. \r\nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
       <color=yellow>located on the Star<sprite name=\"Star\"></color>, restores <color=green>10</color>
       health."
     m_Metadata:
@@ -214,8 +214,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133701
-    m_Localized: "Fires a projectile. \n(Damage: <color=red>8</color>)\n<color=yellow>On
-      Hit</color>: Inflict 1 Burn <sprite name=\"Fire\">.\nIf there are 3 or more
+    m_Localized: "Fires a projectile. \r\n(Damage: <color=red>8</color>)\r\n<color=yellow>On
+      Hit</color>: Inflict 1 Burn <sprite name=\"Fire\">.\r\nIf there are 3 or more
       MagicCircles<sprite name=\"MagicCircle\"> <color=yellow>located on the Star<sprite
       name=\"Star\"></color>, fires 1 additional projectile."
     m_Metadata:
@@ -248,7 +248,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133705
-    m_Localized: "Restores <color=green>5</color> health. \nIf there are 3 or more
+    m_Localized: "Restores <color=green>5</color> health. \r\nIf there are 3 or more
       magic circles <sprite name=\"MagicCircle\"> <color=yellow>located on the Star<sprite
       name=\"Star\"></color>, restores <color=green>10</color> health."
     m_Metadata:
@@ -275,7 +275,7 @@ MonoBehaviour:
 
       Cooldown
       is reduced by 10% for each Summon<sprite name="Summon"> <color=yellow>located
-      on The Star<sprite name="Star"></color>.'
+      on the Star<sprite name="Star"></color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133708
@@ -283,16 +283,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133709
-    m_Localized: "Summon a Sword<sprite name=\"Sword\"> and all swords attack. \n(Damage:
-      <color=red>5</color>) \nCooldown is reduced by 10% for each Summon<sprite name=\"Summon\">
-      <color=yellow>located on the Star<sprite name=\"Star\"></color>."
+    m_Localized: "Summon a Sword<sprite name=\"Sword\"> and all swords attack. \r\n(Damage:
+      <color=red>5</color>) \r\nCooldown is reduced by 10% for each Summon<sprite
+      name=\"Summon\"> <color=yellow>located on the Star<sprite name=\"Star\"></color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133710
     m_Localized: "Summon 3 Swords <sprite name=\"Sword\"> and each time you summon
       them, all Swords <sprite name=\"Sword\"> will attack. \n(Damage: <color=red>5</color>)
       \nCooldown is reduced by 10% for each Summon <sprite name=\"Summon\"> <color=yellow>located
-      on a Star <sprite name=\"Star\">."
+      on the Star <sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133711
@@ -313,7 +313,7 @@ MonoBehaviour:
 
       <color=yellow>When
       15 Barriers<sprite name="Barrier"> are consumed</color>: Mark enemies with
-      a <sprite name="Mark">.'
+      a Mark<sprite name="Mark">.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133714
@@ -335,7 +335,7 @@ MonoBehaviour:
       (Damage:
       <color=red>30</color>)
 
-      <color=red>On hit</color>: Inflicts 1  Frostbite<sprite
+      <color=yellow>On Hit</color>: Inflicts 1  Frostbite<sprite
       name="Ice">'
     m_Metadata:
       m_Items: []
@@ -366,25 +366,24 @@ MonoBehaviour:
 
       <color=yellow>60</color>: inflict 1 Pain<sprite name="Pain">.
       If there are 3 or more Magic Circles <sprite name="MagicCircle"> <color=yellow>located
-      on a Star<sprite name="Star"></color>, inflict 2 Curses <sprite name="Curse">.'
+      on the Star<sprite name="Star"></color>, inflict 2 Curses <sprite name="Curse">.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133719
     m_Localized: "<color=yellow>Start of battle</color>: Summon a pupa.\n<color=yellow>Pupa</color>:
       Consumes 20 Barrier<sprite name=\"Barrier\"> to become an adult.\n<color=yellow>Adult</color>:
       Consumes all Barrier<sprite name=\"Barrier\"> gained for 4 seconds. After 4
-      seconds, fires a powerful projectile, then returns to the pupa.\n(Damage: <color=red>60
-      + \u200B\u200BBarrier consumed X 3</color>)\nCooldown is reduced by 10% for
-      each summoned<sprite name=\"Summon\"> <color=yellow>located on a Star<sprite
-      name=\"Star\">."
+      seconds, fires a powerful projectile, then returns to the pupa.\n(Damage: <color=red>Barrier
+      consumed X 3 + 60\u200B\u200B</color>)\nCooldown is reduced by 10% for each
+      summoned<sprite name=\"Summon\"> <color=yellow>located on the Star<sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133720
     m_Localized: '<color=red>Cannot be stepped on. Cannot pass through.</color>
 
       Mana
-      turrets <color=yellow>located on Star<sprite name="Star"></color> perform an
-      auto-attack once every 3 seconds.'
+      turrets <color=yellow>located on the Star<sprite name="Star"></color> perform
+      an auto-attack once every 3 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133721
@@ -402,8 +401,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133722
     m_Localized: "Fires a projectile that deals damage proportional to the number
-      of Curses<sprite name=\"Curse\"> inflicted on the enemy. \n(Damage: <color=red>Curse<sprite
-      name=\"Curse\"> (Minimum 1)</color>) \nIf there are 3 or more Magic Circles<sprite
+      of Curses<sprite name=\"Curse\"> inflicted on the enemy. \r\n(Damage: <color=red>Curse<sprite
+      name=\"Curse\"> (Minimum 1)</color>) \r\nIf there are 3 or more Magic Circles<sprite
       name=\"MagicCircle\"> <color=yellow>located on the Star<sprite name=\"Star\"></color>,
       the damage increases by <color=red>Curse<sprite name=\"Curse\"> x 2</color>."
     m_Metadata:
@@ -411,15 +410,15 @@ MonoBehaviour:
   - m_Id: 43615133723
     m_Localized: "<color=yellow>Start of battle</color>:  Increase Curse<sprite name=\"Curse\"> 
       limit to 45. The Cursed doll gains additional abilities based on the increased
-      maximum. \n<color=yellow>When activated</color>: <color=Red>Lose all Curses<sprite
-      name=\"Curse\"></color>. \nIf there are 3 or more Magic Circles<sprite name=\"MagicCircle\"><color=yellow>located
+      maximum. \r\n<color=yellow>When activated</color>: <color=Red>Lose all Curses<sprite
+      name=\"Curse\"></color>. \r\nIf there are 3 or more Magic Circles<sprite name=\"MagicCircle\"><color=yellow>located
       on the Star<sprite name=\"Star\"></color>, increase the maximum number of Curses<sprite
       name=\"Curse\"> to 60."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133724
     m_Localized: "Inflict 1 Burn<sprite name=\"Fire\">, 1 Frostbite<sprite name=\"Ice\">,
-      1 Curse<sprite name=\"Curse\"> to the enemy. \nIf there are 3 or more </color>Magic
+      1 Curse<sprite name=\"Curse\"> to the enemy. \r\nIf there are 3 or more </color>Magic
       Circles<sprite name=\"MagicCircle\"> <color=yellow>located on the Star<sprite
       name=\"Star\"></color>, Inflict 1 additional Burn<sprite name=\"Fire\">,Curse<sprite
       name=\"Curse\">."
@@ -430,7 +429,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133726
-    m_Localized: "Fires a projectile. \n(Damage: <color=red>15</color>)"
+    m_Localized: "Fires a projectile. \r\n(Damage: <color=red>15</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133727
@@ -464,23 +463,23 @@ MonoBehaviour:
       activated</color>: Launch the turtle. The turtle deals damage based on the
       amount of Barrier<sprite name="Barrier"> consumed.
 
-      (Damage: <color=red>3
-      X Barrier consumed</color>)'
+      (Damage: <color=red>Barrier
+      consumed X 3</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
-      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>When activated</color>:
+      of Curses <sprite name=\"Curse\"> to 40. \r\n<color=yellow>When activated</color>:
       Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
-      currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
+      \r\nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
+      currently applied to enemies to Curses <sprite name=\"Curse\">. \r\nIf there
       are 3 or more Magic Circles <sprite name=\"MagicCircle\"> <color=yellow>located
       on the Star<sprite name=\"Star\"></color>, Consume <color=red>20 Curses</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133732
     m_Localized: "<color=yellow>Individual Square (2)</color>: Fires a projectile.
-      \n(Damage: <color=red>6</color>)"
+      \r\n(Damage: <color=red>6</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
@@ -695,8 +694,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328047
-    m_Localized: "The character can be moved with \n<color=yellow>WASD</color> or
-      <color=yellow>\u2191\u2193\u2190\u2192</color> \n\nTry moving the character"
+    m_Localized: "The character can be moved with \r\n<color=yellow>WASD</color>
+      or <color=yellow>\u2191\u2193\u2190\u2192</color> \r\n\r\nTry moving the character"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328048
@@ -707,28 +706,29 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328049
-    m_Localized: "Constellations can be purchased from the bottom shop \n<color=yellow>and</color>\nDrag
-      the constellations from the shop to your area to place them"
+    m_Localized: "Constellations can be <color=yellow>purchased</color> from the
+      bottom shop \nand\nDrag the constellations from the shop to your area to place
+      them"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328050
-    m_Localized: "Rotate the constellation\nClick on the constellation <color=yellow>and
-      press <sprite name=\"Star\">R or <sprite name=\"Star\">, \n<color=yellow>right-click
-      the mouse <sprite name=\"Star\"> to rotate the constellation."
+    m_Localized: "Rotate the constellation\nClick on the constellation <color=yellow>\nand
+      press R</color> or , \n<color=yellow>right-click the mouse </color> \nto rotate
+      the constellation."
     m_Metadata:
       m_Items: []
   - m_Id: 43619328051
-    m_Localized: Constellations can be stored by dragging them to the <color=yellow>spaces
-      on either side of the area</color>. <color=yellow>Stored constellations</color>
-      cannot be used in battle.
+    m_Localized: "Constellations can be stored by dragging them to the <color=yellow>spaces
+      on either side of the area</color>. \n<color=yellow>Stored constellations</color>
+      cannot be used in battle."
     m_Metadata:
       m_Items: []
   - m_Id: 43619328052
     m_Localized: 'While dragging a constellation, the <color=yellow>Sales Area</color>
       at the bottom will be activated.
 
-      When you drag a constellation and drop
-      it into the Sales Area,
+      When you drag a constellation and
+      drop it into the Sales Area,
 
       the constellation will be <color=yellow>sold</color>
       and you can earn gold.'
@@ -737,47 +737,43 @@ MonoBehaviour:
   - m_Id: 43619328053
     m_Localized: 'After you''re ready for battle,
 
-
       click <color=yellow>[Start
       Battle]</color> at the bottom right
 
-
       to start the battle
 
-
-      and
-      step on the constellations
-
+      and step
+      on the constellations
 
       to attack the enemy and <color=yellow>win</color>'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328055
-    m_Localized: "Completion Conditions \nMove Character (0/5)"
+    m_Localized: "Completion Conditions \r\nMove Character (0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328056
-    m_Localized: "Completion Conditions \nSurvive for 10 seconds (0/10 seconds)"
+    m_Localized: "Completion Conditions \r\nSurvive for 10 seconds (0/10 seconds)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328057
-    m_Localized: "Completion Conditions \nInstall 3 constellations (0/3)"
+    m_Localized: "Completion Conditions \r\nInstall 3 constellations (0/3)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328058
-    m_Localized: "Completion Conditions \nRotate the Constellation (0/5)"
+    m_Localized: "Completion Conditions \r\nRotate the Constellation (0/5)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328059
-    m_Localized: "Completion Conditions \nStore 4 constellations (0/4)"
+    m_Localized: "Completion Conditions \r\nStore 4 constellations (0/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328060
-    m_Localized: "Completion Conditions \nSell 4 constellations (0/4)"
+    m_Localized: "Completion Conditions \r\nSell 4 constellations (0/4)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328061
-    m_Localized: "Completion Conditions \nWin the Battle (0/1)"
+    m_Localized: "Completion Conditions \r\nWin the Battle (0/1)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328063
@@ -1099,7 +1095,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2651018377175050
-    m_Localized: "Completion Conditions \nActivate 3 stars\n(0/3 stars Activated)"
+    m_Localized: "Completion Conditions \r\nActivate 3 stars\r\n(0/3 stars Activated)"
     m_Metadata:
       m_Items: []
   - m_Id: 2651018377175053
@@ -1113,6 +1109,7 @@ MonoBehaviour:
   - m_Id: 3009476708409353
     m_Localized: 'Unlock Conditions
 
+      
 
       Clear {0} stage.'
     m_Metadata:
@@ -1126,7 +1123,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3048611024347146
-    m_Localized: "Give up the game and return to the title. \n(The game will not
+    m_Localized: "Give up the game and return to the title. \r\n(The game will not
       be saved.)"
     m_Metadata:
       m_Items: []
