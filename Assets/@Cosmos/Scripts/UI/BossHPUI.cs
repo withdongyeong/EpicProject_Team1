@@ -240,11 +240,12 @@ public class BossHPUI : MonoBehaviour
                 UpdateDebuffText(debuff, count);
             }
         }
-        else
+        else if(count > 0)
         {
             CreateDebuffUI(debuff, count);
         }
-        
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(debuffPanel.GetComponent<RectTransform>());
     }
 
     /// <summary>

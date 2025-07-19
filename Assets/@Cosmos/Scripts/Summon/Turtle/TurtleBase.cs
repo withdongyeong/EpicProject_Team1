@@ -130,7 +130,15 @@ public class TurtleBase : MonoBehaviour
             }
 
             Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3,isRainbow);
+            if(_chargedProtection == 0)
+            {
+                projectile.Initialize(dir, Projectile.ProjectileTeam.Player, 1, isRainbow);
+            }
+            else
+            {
+                projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3, isRainbow);
+            }
+                
             
             _chargedProtection = 0;
 

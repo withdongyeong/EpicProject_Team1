@@ -102,7 +102,7 @@ public class InfoPanel : MonoBehaviour
 
 
         TextMeshProUGUI coolTimeText = headText.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
-        if(currentTileInfo.TileCoolTime != 0)
+        if(currentTileInfo.TileCoolTime != 0 && !currentTileInfo.HideCoolTIme)
         {
             coolTimeText.text = currentTileInfo.TileCoolTime.ToString() + "s";
         }
