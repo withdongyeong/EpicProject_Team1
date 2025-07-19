@@ -275,7 +275,7 @@ MonoBehaviour:
 
       Cooldown
       is reduced by 10% for each Summon<sprite name="Summon"> <color=yellow>located
-      on The Star<sprite name="Star"></color>.'
+      on the Star<sprite name="Star"></color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133708
@@ -290,9 +290,9 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133710
     m_Localized: "Summon 3 Swords <sprite name=\"Sword\"> and each time you summon
-      them, all Swords <sprite name=\"Sword\"> will attack. \r\n(Damage: <color=red>5</color>)
-      \r\nCooldown is reduced by 10% for each Summon <sprite name=\"Summon\"> <color=yellow>located
-      on a Star <sprite name=\"Star\">."
+      them, all Swords <sprite name=\"Sword\"> will attack. \n(Damage: <color=red>5</color>)
+      \nCooldown is reduced by 10% for each Summon <sprite name=\"Summon\"> <color=yellow>located
+      on the Star <sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133711
@@ -313,7 +313,7 @@ MonoBehaviour:
 
       <color=yellow>When
       15 Barriers<sprite name="Barrier"> are consumed</color>: Mark enemies with
-      a <sprite name="Mark">.'
+      a Mark<sprite name="Mark">.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133714
@@ -370,21 +370,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133719
-    m_Localized: "<color=yellow>Start of battle</color>: Summon a pupa.\r\n<color=yellow>Pupa</color>:
-      Consumes 20 Barrier<sprite name=\"Barrier\"> to become an adult.\r\n<color=yellow>Adult</color>:
+    m_Localized: "<color=yellow>Start of battle</color>: Summon a pupa.\n<color=yellow>Pupa</color>:
+      Consumes 20 Barrier<sprite name=\"Barrier\"> to become an adult.\n<color=yellow>Adult</color>:
       Consumes all Barrier<sprite name=\"Barrier\"> gained for 4 seconds. After 4
-      seconds, fires a powerful projectile, then returns to the pupa.\r\n(Damage:
-      <color=red>60 + \u200B\u200BBarrier consumed X 3</color>)\r\nCooldown is reduced
-      by 10% for each summoned<sprite name=\"Summon\"> <color=yellow>located on a
-      Star<sprite name=\"Star\">."
+      seconds, fires a powerful projectile, then returns to the pupa.\n(Damage: <color=red>Barrier
+      consumed X 3 + 60\u200B\u200B</color>)\nCooldown is reduced by 10% for each
+      summoned<sprite name=\"Summon\"> <color=yellow>located on the Star<sprite name=\"Star\">."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133720
     m_Localized: '<color=red>Cannot be stepped on. Cannot pass through.</color>
 
       Mana
-      turrets <color=yellow>located on Star<sprite name="Star"></color> perform an
-      auto-attack once every 3 seconds.'
+      turrets <color=yellow>located on the Star<sprite name="Star"></color> perform
+      an auto-attack once every 3 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133721
@@ -464,8 +463,8 @@ MonoBehaviour:
       activated</color>: Launch the turtle. The turtle deals damage based on the
       amount of Barrier<sprite name="Barrier"> consumed.
 
-      (Damage: <color=red>3
-      X Barrier consumed</color>)'
+      (Damage: <color=red>Barrier
+      consumed X 3</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
