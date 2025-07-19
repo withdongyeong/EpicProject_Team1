@@ -14,6 +14,7 @@ using Unity.Services.Core.Environments;
 public class AnalyticsManager : Singleton<AnalyticsManager>
 {
     private bool _isInitialized = false;
+    public bool noAnalytics = false; // 테스트용, 실제 배포시 false로 설정해야 합니다.
     
     private async void Start()
     {
@@ -53,6 +54,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     private bool IsInit()
     {
+        if (noAnalytics) return false; // 테스트용, 실제 배포시 false로 설정해야 합니다.
         if (!_isInitialized)
         {
             Debug.LogError("아직 초기화되지 않음! 이벤트 전송 불가."); 
@@ -64,55 +66,194 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     
     
-    public void SendStageClearEvent()
+    public void StageClearEvent()
     {
         if(!IsInit()) return;
         
         // 1. 필요한 정보를 수집합니다.
-        string itemsJson = JsonConvert.SerializeObject(GridManager.Instance.GetPlacedTileCount()); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
-        int stageIndex =  StageSelectManager.Instance.StageNum;
-        float stageClearTime = GameManager.Instance.LogHandler.GetStageClearTimer();
-        int difficultyLevel = GameManager.Instance.DifficultyLevel;
+        
+        int stageIndex =  GameManager.Instance.LogHandler.GetStageIndex();
+        int difficulty = GameManager.Instance.DifficultyLevel;
+        float stageTime = GameManager.Instance.LogHandler.GetStageTimer();
+        string itemsJson = GameManager.Instance.LogHandler.GetPlacedTileCountJson(); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
+        int damageTaken = 0;
+        int healingReceived = 0;
+        int protectedDamage = 0;
+        string hitPatterns = "null";
         
         
         // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent stageClearEvent = new CustomEvent("stage_clear")
         {
-            { "difficulty_level", difficultyLevel },
             { "stage_index", stageIndex },
-            { "clear_time", stageClearTime },
-            { "used_items",  itemsJson}
+            { "difficulty", difficulty },
+            { "stage_time", stageTime },
+            { "used_tiles",  itemsJson },
+            { "damage_taken", damageTaken },
+            { "healing_received", healingReceived },
+            { "protected_damage", protectedDamage },
+            { "hit_patterns", hitPatterns }
         };
 
         // 3. 이벤트를 기록하고 전송합니다.
         AnalyticsService.Instance.RecordEvent(stageClearEvent);
         //AnalyticsService.Instance.Flush();
         
-        Debug.Log($"'stage_clear' 이벤트 전송 성공 : StageClearEvent");
+        Debug.Log($" 이벤트 전송 성공 : StageClearEvent");
        //Debug.Log(itemsJson);
     }
 
-    public void GoTitleEvent() // 게임 종료시 보낼 정보
+    public void StageFailEvent()
     {
         if(!IsInit()) return;
-        int difficultyLevel = GameManager.Instance.DifficultyLevel;
-        int stageIndex = StageSelectManager.Instance.StageNum; // 현재 스테이지 인덱스
-        float totalPlayTime = GameManager.Instance.LogHandler.GetTotalPlayTimer();
         
-        string itemsJson = JsonConvert.SerializeObject(GridManager.Instance.GetPlacedTileCount()); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
+        // 1. 필요한 정보를 수집합니다.
+        int stageIndex =  GameManager.Instance.LogHandler.GetStageIndex();
+        int difficulty = GameManager.Instance.DifficultyLevel;
+        float stageTime = GameManager.Instance.LogHandler.GetStageTimer();
+        string itemsJson = GameManager.Instance.LogHandler.GetPlacedTileCountJson(); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
+        int damageTaken = 0;
+        int healingReceived = 0;
+        int protectedDamage = 0;
+        string hitPatterns = "null";
+        
+        
         // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
-        CustomEvent goTitle = new CustomEvent("go_title")
+        CustomEvent stageFailEvent = new CustomEvent("stage_fail")
         {
-            { "difficulty_level", difficultyLevel },
             { "stage_index", stageIndex },
-            { "session_clear_time", totalPlayTime },
-            { "used_items",  itemsJson}
+            { "difficulty", difficulty },
+            { "stage_time", stageTime },
+            { "used_tiles",  itemsJson },
+            { "damage_taken", damageTaken },
+            { "healing_received", healingReceived },
+            { "protected_damage", protectedDamage },
+            { "hit_patterns", hitPatterns }
         };
-        AnalyticsService.Instance.RecordEvent(goTitle);
-       //
+
+        // 3. 이벤트를 기록하고 전송합니다.
+        AnalyticsService.Instance.RecordEvent(stageFailEvent);
+        //AnalyticsService.Instance.Flush();
+        
+        Debug.Log($"이벤트 전송 성공 : stageFailEvent");
+        //Debug.Log(itemsJson);
+    }
+
+    
+    // 세션 클리어 이벤트
+    public void SessionClearEvent()
+    {
+        if(!IsInit()) return;
+        
+        // 1. 필요한 정보를 수집합니다.
+        int difficulty = GameManager.Instance.DifficultyLevel;
+        float sessionTime = GameManager.Instance.LogHandler.GetSessionPlayTimer();
+        
+        
+        // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
+        CustomEvent sessionClearEvent = new CustomEvent("session_clear")
+        {
+            { "difficulty", difficulty },
+            { "session_time", sessionTime },
+        };
+        
+        AnalyticsService.Instance.RecordEvent(sessionClearEvent);
     }
     
     
+    // 전투씬 진입(덱 구성 완료)
+    public void BuildingCompleteEvent()
+    {
+        if(!IsInit()) return;
+        
+        // 1. 필요한 정보를 수집합니다.
+        float sessionTime = GameManager.Instance.LogHandler.GetSessionPlayTimer();
+        string purchasedTiles = ""; //
+        string placedTiles = ""; // 
+        string soldTiles = ""; //
+        int lockCount = -1; // 잠긴 타일 개수
+        int rerollCount = -1; // 재롤 횟수
+        int enforcedTilesCount = -1; // 강화된 타일 개수 
+        int totalStarCount = -1; // 총 별 개수
+        int activatedStarCount = -1; // 활성화된 별 개수
+        
+        
+        
+        // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
+        CustomEvent buildingCompleteEvent = new CustomEvent("building_complete")
+        {
+            { "session_time", sessionTime },
+            { "purchased_tiles",  purchasedTiles},
+            { "placed_tiles",  placedTiles},
+            { "sold_tiles",  soldTiles},
+            { "lock_count",  lockCount},
+            { "reroll_count",  rerollCount},
+            { "enforced_tiles_count",  enforcedTilesCount},
+            { "total_star_count",  totalStarCount},
+            { "activated_star_count",  activatedStarCount},
+        };
+        
+        AnalyticsService.Instance.RecordEvent(buildingCompleteEvent);
+    }
+    
+
+    
+    // 게임 종료 이벤트
+    public void GameExitEvent()
+    {
+        if(!IsInit()) return;
+        
+        // 1. 필요한 정보를 수집합니다.
+        int stageIndex =  GameManager.Instance.LogHandler.GetStageIndex();
+        string gameState = GameStateManager.Instance.CurrentState.ToString();
+        
+        
+        // 2.이벤트를 생성하고 파라미터를 담습니다.
+        CustomEvent gameExitEvent = new CustomEvent("game_exit")
+        {
+            { "stage_index", stageIndex },
+            { "game_state", gameState },
+        };
+        
+        AnalyticsService.Instance.RecordEvent(gameExitEvent);
+    }
+
+    
+    // 타이틀 버튼 누를때
+    public void GoTitleEvent() 
+    {
+        if(!IsInit()) return;
+        int difficulty =  GameManager.Instance.DifficultyLevel;
+        int stageIndex = GameManager.Instance.LogHandler.GetStageIndex(); // 현재 스테이지 인덱스
+        string gameState = GameStateManager.Instance.CurrentState.ToString();
+        float sessionTime = GameManager.Instance.LogHandler.GetSessionPlayTimer();
+        
+        string itemsJson = JsonConvert.SerializeObject(GridManager.Instance.GetPlacedTileCount()); // 아이템 사용 딕셔너리를 JSON 문자열로 변환합니다.
+        // 2. 이벤트를 생성하고 파라미터를 담습니다.
+        CustomEvent goTitle = new CustomEvent("go_title")
+        {
+            { "difficulty", difficulty },
+            { "stage_index", stageIndex },
+            { "game_state", gameState },
+            { "session_time", sessionTime },
+        };
+        
+        AnalyticsService.Instance.RecordEvent(goTitle);
+       
+    }
+
+    public void TutorialPromptResponseEvent()
+    {
+        if(!IsInit()) return;
+        string initialChoice = "null";
+        
+        // 2. 이벤트를 생성하고 파라미터를 담습니다.
+        CustomEvent tutorialPromptResponse = new CustomEvent("tutorial_prompt_response")
+        {
+            { "initial_choice", initialChoice }
+        };
+        AnalyticsService.Instance.RecordEvent(tutorialPromptResponse);
+    }
     
     
 }
