@@ -22,7 +22,7 @@ public class DifficultySelectPannel : MonoBehaviour
         }
 
         //베리 하드모드
-        if (SaveManager.GameModeLevel >= 3)
+        if (SaveManager.GameModeLevel >= 2)
         {
             transform.GetChild(4).GetComponent<Button>().onClick.AddListener(() => DifficultySelectButton(3));
             transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>().color = Color.white;

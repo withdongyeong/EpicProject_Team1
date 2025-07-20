@@ -44,7 +44,7 @@ public class InfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (tileObject != null)
         {
             Vector3 position = isUIElement ? transform.position : transform.position;
-            infoPanel.Show(tileObject, position + new Vector3(-300f, 0, 0), isUIElement);
+            infoPanel.Show(tileObject.GetTileData(), position + new Vector3(-300f, 0, 0), isUIElement);
         }
     }
 

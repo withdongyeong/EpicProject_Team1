@@ -347,13 +347,13 @@ public class BossDebuffs : MonoBehaviour
         // 모든 상태 이상을 저주로 변환
         for (int i = 0; i < debuffs.Length; i++)
         {
-            if (debuffs[i] > 0 && (BossDebuff)i == BossDebuff.Burning && (BossDebuff)i == BossDebuff.Frostbite)
+            if (debuffs[i] > 0 && ((BossDebuff)i == BossDebuff.Burning || (BossDebuff)i == BossDebuff.Frostbite))
             {
                 BossDebuff debuffType = (BossDebuff)i;
                 int count = debuffs[i];
                 for (int j = 0; j < count; j++)
                 {
-                    //if(debuffs[(int)BossDebuff.Curse] >= maxCurseCount)
+                    //if (debuffs[(int)BossDebuff.Curse] >= maxCurseCount)
                     //{
                     //    return; // 저주 상태 이상이 최대치에 도달하면 변환 중지
                     //}

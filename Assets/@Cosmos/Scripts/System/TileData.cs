@@ -20,5 +20,6 @@ public class TileData : ScriptableObject
     public TileData requiredTile;
     public List<TileData> rejectTileList;
     public int unlockInt = 0;
+    public bool hideCoolTime = false;
     
 }

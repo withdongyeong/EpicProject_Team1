@@ -240,11 +240,12 @@ public class BossHPUI : MonoBehaviour
                 UpdateDebuffText(debuff, count);
             }
         }
-        else
+        else if(count > 0)
         {
             CreateDebuffUI(debuff, count);
         }
-        
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(debuffPanel.GetComponent<RectTransform>());
     }
 
     /// <summary>
@@ -308,9 +309,10 @@ public class BossHPUI : MonoBehaviour
                     }
                     else
                     {
-                        tmpText.text = curse.ToString();
+                        tmpText.text = curse.ToString();                       
                     }
-                    
+                    tmpText.margin = new Vector4(0, 0, 17, 0);
+
                 }
                 else
                 {
