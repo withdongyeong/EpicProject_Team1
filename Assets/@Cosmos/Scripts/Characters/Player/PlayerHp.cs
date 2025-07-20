@@ -9,6 +9,7 @@ public class PlayerHp : MonoBehaviour
     private PlayerShield _playerShield;
     private PlayerProtection _playerProtection;
     private SpriteRenderer _spriteRenderer;
+    private CameraShakeTrigger _shakeTrigger;
 
     
     private int _maxHealth = 100;
@@ -35,6 +36,7 @@ public class PlayerHp : MonoBehaviour
         _playerShield = GetComponent<PlayerShield>();
         _playerProtection = GetComponent<PlayerProtection>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _shakeTrigger = FindAnyObjectByType<CameraShakeTrigger>();
         
         if (_spriteRenderer == null)
         {
@@ -88,6 +90,9 @@ public class PlayerHp : MonoBehaviour
             // 살아있으면 피격 처리 및 무적 시간 시작
             FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Damaged");
             SoundManager.Instance.PlayPlayerSound("PlayerDamage");
+            
+            // 피격감 강화(카메라 진동)
+            _shakeTrigger.Shake(0.5f);
             
             StartInvincibility();
         }
