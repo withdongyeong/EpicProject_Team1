@@ -18,6 +18,7 @@ public class LastBossPattern_FrostEquip : IBossAttackPattern
 
     public IEnumerator Execute(BaseBoss boss)
     {
+        boss.Unstoppable = true;
         if (boss is LastBoss lastBoss)
         {
             lastBoss.SetWeaponPrefab(_weaponVisualPrefab, 4f, false);

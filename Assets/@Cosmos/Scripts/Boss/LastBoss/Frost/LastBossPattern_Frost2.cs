@@ -83,8 +83,9 @@ public class LastBossPattern_Frost2 : IBossAttackPattern
 
             yield return new WaitForSeconds(boss.Beat);
         }
-
+        
         yield return new WaitForSeconds(boss.Beat * 2);
+        boss.Unstoppable = false;
     }
 
     private IEnumerator DelayedGridLock(Vector3Int pos, float lockDelay, float wallDuration)

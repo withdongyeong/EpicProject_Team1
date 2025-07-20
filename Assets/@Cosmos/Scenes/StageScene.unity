@@ -301,6 +301,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!4 &467719080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+  m_PrefabInstance: {fileID: 4701987028861204840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &473630440
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +340,7 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 548056445}
+  - {fileID: 467719080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -1411,6 +1417,7 @@ GameObject:
   - component: {fileID: 2145711278}
   - component: {fileID: 2145711281}
   - component: {fileID: 2145711280}
+  - component: {fileID: 2145711284}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1432,7 +1439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 0
-    m_Value: 0
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -1519,6 +1526,30 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &2145711284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145711277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &2421605388139584602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,6 +1607,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57970058a6dacc8469e9bbb63a2820d3, type: 3}
+--- !u!1001 &4701987028861204840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 473630441}
+    m_Modifications:
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.6274414
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4980377
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.017921427
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043300438019391809, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545432943338323306, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
+      propertyPath: m_Name
+      value: CinemachineImpulseSource
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7265fbfae3f50f34b86e67a21f863f8c, type: 3}
 --- !u!1001 &7651743157957784811
 PrefabInstance:
   m_ObjectHideFlags: 0
