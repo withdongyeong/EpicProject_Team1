@@ -38,12 +38,12 @@ public class BossHPUI : MonoBehaviour
     [Header("흔들림 설정 - 3단계")]
     private float smallShakeThreshold = 30f;
     private float mediumShakeThreshold = 100f;
-    private float smallShakeIntensity = 5f;
-    private float mediumShakeIntensity = 10f;
-    private float bigShakeIntensity = 20f;
-    private float smallShakeDuration = 0.1f;
-    private float mediumShakeDuration = 0.2f;
-    private float bigShakeDuration = 0.3f;
+    private float smallShakeIntensity = 10f;
+    private float mediumShakeIntensity = 30f;
+    private float bigShakeIntensity = 50f;
+    private float smallShakeDuration = 0.2f;
+    private float mediumShakeDuration = 0.3f;
+    private float bigShakeDuration = 0.4f;
 
     private Vector3 _originalPosition;
 

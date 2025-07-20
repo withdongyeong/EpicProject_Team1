@@ -10,6 +10,7 @@ public class PlayerHp : MonoBehaviour
     private PlayerProtection _playerProtection;
     private SpriteRenderer _spriteRenderer;
     private CameraShakeTrigger _shakeTrigger;
+    private DamageScreenEffect _damageScreenEffect; 
 
     
     private int _maxHealth = 100;
@@ -37,10 +38,16 @@ public class PlayerHp : MonoBehaviour
         _playerProtection = GetComponent<PlayerProtection>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _shakeTrigger = FindAnyObjectByType<CameraShakeTrigger>();
+        _damageScreenEffect = FindAnyObjectByType<DamageScreenEffect>();
         
         if (_spriteRenderer == null)
         {
             Debug.LogError("PlayerHealth: SpriteRenderer component not found!");
+        }
+        
+        if (_damageScreenEffect == null)
+        {
+            Debug.LogWarning("PlayerHealth: DamageScreenEffect component not found!");
         }
     }
 
@@ -93,6 +100,12 @@ public class PlayerHp : MonoBehaviour
             
             // 피격감 강화(카메라 진동)
             _shakeTrigger.Shake(0.5f);
+            
+            // 피격감 강화(화면 효과) - 추가된 부분
+            if (_damageScreenEffect != null)
+            {
+                _damageScreenEffect.ShowDamageEffect();
+            }
             
             StartInvincibility();
         }
