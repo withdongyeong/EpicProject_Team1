@@ -31,7 +31,7 @@ public static class SceneLoader
     
     
     public static bool IsCurrentScene(string sceneName) => SceneManager.GetActiveScene().name == sceneName;
-    
+    public static string GetCurrentSceneName() => SceneManager.GetActiveScene().name;
     public static bool IsInTitle() => IsCurrentScene(TitleScene);
 
     public static bool IsInBuilding()

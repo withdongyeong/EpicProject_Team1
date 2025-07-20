@@ -30,6 +30,7 @@ public class GameStateManager : Singleton<GameStateManager>
         // 상태에 따른 타임스케일 조절
         switch (newState)
         {
+            
             case GameState.Playing:
                 _timeScaleManager.ResetTimeScale();
                 break;

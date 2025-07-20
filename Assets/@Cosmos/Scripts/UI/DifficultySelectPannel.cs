@@ -40,7 +40,7 @@ public class DifficultySelectPannel : MonoBehaviour
     private void GOBUILDSCENE()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
-
+        GameManager.Instance.LogHandler.SetSessionPlayTimer();
         SceneLoader.LoadBuilding();
     }
 
