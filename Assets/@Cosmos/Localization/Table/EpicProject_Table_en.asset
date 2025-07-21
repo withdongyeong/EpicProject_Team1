@@ -455,8 +455,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: '<color=yellow>At the start of combat</color>: Summon a turtle that
-      consumes <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
+    m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that consumes
+      <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
       shields per second.
 
       <color=yellow>When Barrier<sprite name="Barrier">
@@ -469,10 +469,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
-      of Curses <sprite name=\"Curse\"> to 40. \r\n<color=yellow>When activated</color>:
+      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>When activated</color>:
       Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \r\nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
-      currently applied to enemies to Curses <sprite name=\"Curse\">. \r\nIf there
+      \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
+      currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
       are 3 or more Magic Circles <sprite name=\"MagicCircle\"> <color=yellow>located
       on the Star<sprite name=\"Star\"></color>, Consume <color=red>20 Curses</color>."
     m_Metadata:
