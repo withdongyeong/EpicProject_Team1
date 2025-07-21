@@ -186,14 +186,14 @@ MonoBehaviour:
   - m_Id: 43615133699
     m_Localized: "\uD1A0\uD15C<sprite name=\"Totem\">\uC744 \uC313\uC2B5\uB2C8\uB2E4.
       3\uAC1C\uC758 \uD1A0\uD15C<sprite name=\"Totem\">\uC774 \uC313\uC774\uBA74
-      \uBC1C\uB3D9\uD569\uB2C8\uB2E4.\r\n<color=yellow>\uBC1C\uB3D9 \uC2DC</color>:
-      \uC800\uC8FC<sprite name=\"Curse\">\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.
-      \r\n<color=yellow>\uAC15\uD654 \uC2DC</color>: \uC800\uC8FC<sprite name=\"Curse\">\uB97C
-      1 \uBD80\uC5EC\uD558\uACE0 \uC801\uC5D0\uAC8C \uBD80\uC5EC\uB41C \uC800\uC8FC<sprite
+      \uBC1C\uB3D9\uD569\uB2C8\uB2E4.\n<color=yellow>\uBC1C\uB3D9 \uC2DC</color>:
+      \uC800\uC8FC<sprite name=\"Curse\">\uB97C 2 \uBD80\uC5EC\uD569\uB2C8\uB2E4.
+      \n<color=yellow>\uAC15\uD654 \uC2DC</color>: \uC800\uC8FC<sprite name=\"Curse\">\uB97C
+      2 \uBD80\uC5EC\uD558\uACE0 \uC801\uC5D0\uAC8C \uBD80\uC5EC\uB41C \uC800\uC8FC<sprite
       name=\"Curse\"> \uAC1C\uC218\uC5D0 \uBE44\uB840\uD574 \uD53C\uD574\uAC00 \uC99D\uAC00\uD558\uB294
-      \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\r\n(\uD53C\uD574\uB7C9:
+      \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
       <color=red>\uC800\uC8FC<sprite name=\"Curse\"> \uAC1C\uC218 (\uCD5C\uC18C 1)</color>)
-      \r\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color>
+      \n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color>
       \uC18C\uD658\uC218<sprite name=\"Summon\">\uB9C8\uB2E4 \uCFE8\uD0C0\uC784\uC774
       10% \uAC10\uC18C\uD569\uB2C8\uB2E4."
     m_Metadata:
@@ -432,13 +432,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133729
     m_Localized: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uBCF4\uD638\uB9C9<sprite
-      name=\"Barrier\">\uC744 \uC18C\uBAA8\uD558\uB294 \uAC70\uBD81\uC774\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4.
+      name=\"Barrier\">\uC744 \uD761\uC218\uD558\uB294 \uAC70\uBD81\uC774\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4.
       \uAC70\uBD81\uC774\uB294 \uB9E4\uCD08 3\uC758 \uBCF4\uD638\uB9C9<sprite name=\"Barrier\">\uC744
-      \uC18C\uBAA8\uD569\uB2C8\uB2E4. (<color=red>\uBCF4\uD638\uB9C9 \uD544\uC694.
-      \uCD5C\uB300 15</color>)\n<color=yellow>\uBC1C\uB3D9 \uC2DC</color>: \uAC70\uBD81\uC774\uB97C
-      \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uAC70\uBD81\uC774\uB294 \uC18C\uBAA8\uD55C
-      \uBCF4\uD638\uB9C9\uB7C9\uC5D0 \uBE44\uB840\uD574 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
-      <color=red>\uC18C\uBAA8\uD55C \uBCF4\uD638\uB9C9 X 3 </color>)"
+      \uD761\uC218\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCF4\uD638\uB9C9<sprite name=\"Barrier\">
+      \uD761\uC218 \uC2DC</color>: \uD53C\uD574\uB7C9\uC774 \uD761\uC218\uB41C \uBCF4\uD638\uB9C9\uC758
+      3\uBC30\uB9CC\uD07C \uC0C1\uC2B9\uD569\uB2C8\uB2E4. (<color=red>\uCD5C\uB300
+      45</color>)\n<color=yellow>\uBC1C\uB3D9 \uC2DC</color>: \uAC70\uBD81\uC774\uB97C
+      \uBC1C\uC0AC\uD569\uB2C8\uB2E4. (\uD53C\uD574\uB7C9: <color=red>\uD761\uC218\uD55C
+      \uBCF4\uD638\uB9C9 X 3</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
@@ -908,10 +909,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1528835345096706
     m_Localized: "<color=yellow>\uC804\uD22C \uC2DC\uC791 \uC2DC</color>: \uACE0\uC591\uC774
-      \uB9C8\uBC95\uC0AC\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4.\r\n<color=yellow>\uBC1C\uB3D9
-      \uC2DC</color>: \uBCF4\uD638\uB9C9<sprite name=\"Barrier\">\uC744 5 \uD68D\uB4DD\uD569\uB2C8\uB2E4.\r\n<color=yellow>\uBCC4<sprite
+      \uB9C8\uBC95\uC0AC\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4.\n<color=yellow>\uBC1C\uB3D9
+      \uC2DC</color>: \uBCF4\uD638\uB9C9<sprite name=\"Barrier\">\uC744 8 \uD68D\uB4DD\uD569\uB2C8\uB2E4.\n<color=yellow>\uBCC4<sprite
       name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218<sprite name=\"Summon\">\uC885\uB958
-      \uD558\uB098\uB2F9 \uBCF4\uD638\uB9C9<sprite name=\"Barrier\">\uC744 5 \uCD94\uAC00\uB85C
+      \uD558\uB098\uB2F9 \uBCF4\uD638\uB9C9<sprite name=\"Barrier\">\uC744 6 \uCD94\uAC00\uB85C
       \uD68D\uB4DD\uD569\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
@@ -1055,15 +1056,18 @@ MonoBehaviour:
     m_Localized: "\uD50C\uB808\uC774 \uD574\uC8FC\uC154\uC11C \r\n\uAC10\uC0AC\uD569\uB2C8\uB2E4!"
     m_Metadata:
       m_Items: []
-  - m_Id: 3467957827674114
-    m_Localized: "<color=white>#\uAC1C\uBCC4\uCE78(N)<sprite name=\"Multiple\"></color>"
+  - m_Id: 3467957827674116
+    m_Localized: "\uC131\uC6B4(N)<sprite name=\"Nebula\">: N\uAC1C\uC758 \uBCC4\uC790\uB9AC\uAC00
+      \uACB0\uD569\uB41C \uAD6C\uC870\uB85C, \uAC01 \uBCC4\uC790\uB9AC\uB294 \uB3C5\uB9BD\uC801\uC778
+      \uB2A5\uB825\uACFC \uCFE8\uD0C0\uC784\uC744 \uAC00\uC9D1\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
-  - m_Id: 3467957827674116
-    m_Localized: "\uAC1C\uBCC4\uCE78(N)<sprite name=\"Multiple\">: N\uAC1C\uC758
-      \uB2E4\uB978 \uBCC4\uC790\uB9AC\uC73C\uB85C \uCDE8\uAE09\uB429\uB2C8\uB2E4.
-      \uAC01 \uCFE8\uD0C0\uC784\uC740 \uAC1C\uBCC4\uB85C \uC9C4\uD589\uB418\uBA70
-      \uAC15\uD654 \uD6A8\uACFC\uB294 \uACF5\uC720\uD569\uB2C8\uB2E4."
+  - m_Id: 4385363873898498
+    m_Localized: "<color=white>#\uC131\uC6B4(N)<sprite name=\"Nebula\"></color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4387483503173641
+    m_Localized: "\uC2DC\uC791"
     m_Metadata:
       m_Items: []
   references:

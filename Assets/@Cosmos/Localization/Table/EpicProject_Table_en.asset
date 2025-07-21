@@ -186,10 +186,10 @@ MonoBehaviour:
       name="Totem"> are stacked.
 
       <color=yellow>When activated</color>: Inflict
-      1 Curse <sprite name="Curse">.
+      2 Curse <sprite name="Curse">.
 
       <color=yellow>When enhanced</color>:
-      Inflict 1 Curse <sprite name="Curse"> and fires a projectile that deals damage
+      Inflict 2 Curse <sprite name="Curse"> and fires a projectile that deals damage
       proportional to the number of Curses <sprite name="Curse"> on the enemy.
 
       (Damage:
@@ -455,16 +455,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that consumes
-      Barrier<sprite name="Barrier">. The turtle consumes 3 Barriers<sprite name="Barrier">
-      per second. (<color=red>Need shield. Maximum 15</color>)
+    m_Localized: '<color=yellow>At the start of combat</color>: Summon a turtle that
+      consumes <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
+      shields per second.
 
-      <color=yellow>When
-      activated</color>: Launch the turtle. The turtle deals damage based on the
-      amount of Barrier<sprite name="Barrier"> consumed.
+      <color=yellow>When Barrier<sprite name="Barrier">
+      is consumed</color>: Damage increases by 3 times the consumed shields. (<color=red>Maximum
+      45</color>)
 
-      (Damage: <color=red>Barrier
-      consumed X 3</color>)'
+      <color=yellow>When activated</color>: Launch a turtle. (Damage:
+      <color=red>absorbed Barrier X 3</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
@@ -966,9 +966,9 @@ MonoBehaviour:
     m_Localized: '<color=yellow>Start of Battle</color>: Summon a Cat Wizard.
 
       <color=yellow>When
-      activated</color>: Gain 5 Barrier.
+      activated</color>: Gain 8 Barrier.
 
-      Gain an additional 5 Barrier for
+      Gain an additional 6 Barrier for
       each type of Summon <sprite name="Summon"> <color=yellow> located on the Star<sprite
       name="Star"></color>.'
     m_Metadata:
@@ -1131,13 +1131,17 @@ MonoBehaviour:
     m_Localized: Thank you for playing!
     m_Metadata:
       m_Items: []
-  - m_Id: 3467957827674114
-    m_Localized: <color=white>#Individual Square (N)<sprite name="Multiple"></color>
+  - m_Id: 3467957827674116
+    m_Localized: 'Nebula(N)<sprite name="Nebula">: A structure that combines N constellations,
+      each with independent abilities and cooldowns.'
     m_Metadata:
       m_Items: []
-  - m_Id: 3467957827674116
-    m_Localized: 'Individual Square (N)<sprite name="Multiple">: Acts as N constellations.
-      Each has its own cooldown, but shares enhancements.'
+  - m_Id: 4385363873898498
+    m_Localized: <color=white>#Nebula(N)<sprite name="Nebula"></color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4387483503173641
+    m_Localized: Start
     m_Metadata:
       m_Items: []
   references:
