@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class RetryButton : MonoBehaviour
@@ -15,7 +15,7 @@ public class RetryButton : MonoBehaviour
             return;
         }
 
-        if (LifeManager.Instance != null && LifeManager.Instance.Life == 0)
+        if (LifeManager.Instance != null && LifeManager.Instance.Life < 0)
         {
             _button.interactable = false;
         }

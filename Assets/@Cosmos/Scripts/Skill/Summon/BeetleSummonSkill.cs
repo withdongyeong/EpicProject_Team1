@@ -21,7 +21,7 @@ public class BeetleSummonSkill : SkillBase
     {
         if (tileObject.IsPlaced)
         {
-            Vector3 spawnPos = transform.TransformPoint(new Vector3(0, 1f));
+            Vector3 spawnPos = transform.TransformPoint(new Vector3(1, 1f));
             Quaternion rotate = transform.parent.rotation;
             Instantiate(_beetlePrefab, spawnPos, rotate);
             _playerProtection = FindAnyObjectByType<PlayerProtection>();

@@ -422,7 +422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -615,7 +615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7674058613047970359, guid: 508eb2a706cd82a478432fcbf38f63c0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -801,6 +801,10 @@ PrefabInstance:
     - target: {fileID: 7951068133944047977, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
       propertyPath: m_Name
       value: IcicleTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687408947308703364, guid: 9b4489cedd3ae7b49834a423d6c80729, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

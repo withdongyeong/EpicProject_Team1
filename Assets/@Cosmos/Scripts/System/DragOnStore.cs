@@ -15,11 +15,26 @@ public class DragOnStore : DraggableObject
     private TileObject _tileObject;
     private GameObject originalObject;
     private StorageArea _storageArea;
+    private Canvas _canvas;
+    private RectTransform _rectTransform;
+
+    private Vector3 worldPosition;
 
     private void Awake()
     {
         storeSlot = GetComponent<StoreSlot>();
         _storageArea = FindAnyObjectByType<StorageArea>();
+        _canvas = transform.parent.parent.parent.parent.GetComponent<Canvas>();
+        if(transform.GetChild(0) != null)
+        {
+            _rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
+        }
+        else
+        {
+            _rectTransform = GetComponent<RectTransform>();
+        }
+        
+
     }
     
 
@@ -31,12 +46,13 @@ public class DragOnStore : DraggableObject
         {
             Vector3 mousePosition = Input.mousePosition;
             Camera mainCamera = Camera.main;
-            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-            worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
-                                  //드래그 오브젝트 생성 및 위치 초기화
-            dragObject = Instantiate(originalObject, worldPosition, originalObject.transform.rotation);
+
+            //드래그 오브젝트 생성 및 위치 초기화
+            worldPosition = _canvas.worldCamera.ScreenToWorldPoint(_rectTransform.TransformPoint(Vector3.zero));
+            worldPosition.z = 0;
+            Debug.Log(worldPosition);
+            dragObject = Instantiate(originalObject,worldPosition, originalObject.transform.rotation);
             _tileObject = dragObject.GetComponent<TileObject>();
-            DragManager.Instance.LocalPos = Vector3.zero;
         }
         else
         {
