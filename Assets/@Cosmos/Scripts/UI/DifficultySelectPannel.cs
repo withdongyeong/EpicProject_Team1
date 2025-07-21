@@ -14,21 +14,13 @@ public class DifficultySelectPannel : MonoBehaviour
         {
             transform.GetChild(3).GetComponent<Button>().onClick.AddListener(() => DifficultySelectButton(2));
             transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-        }
-        else
-        {
-            transform.GetChild(3).GetComponent<Button>().interactable = false;
-            transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
-        }
-
-        //베리 하드모드
-        if (SaveManager.GameModeLevel >= 2)
-        {
             transform.GetChild(4).GetComponent<Button>().onClick.AddListener(() => DifficultySelectButton(3));
             transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         }
         else
         {
+            transform.GetChild(3).GetComponent<Button>().interactable = false;
+            transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
             transform.GetChild(4).GetComponent<Button>().interactable = false;
             transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
         }
@@ -46,11 +38,9 @@ public class DifficultySelectPannel : MonoBehaviour
 
     private void DifficultySelectButton(int num)
     {
-        if(SaveManager.GameModeLevel >= num)
-        {
-            GameManager.Instance.SetDifficultyLevel(num);
-            GOBUILDSCENE();
-        }
+        GameManager.Instance.SetDifficultyLevel(num);
+        GOBUILDSCENE();
+
     }
 
     private void ClosePannel()
