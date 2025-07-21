@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System.Linq;
+
 using UnityEngine.Localization.Settings;
 
 public class FontChangingDropdown : MonoBehaviour
@@ -12,35 +12,17 @@ public class FontChangingDropdown : MonoBehaviour
 
     private GameObject dropdownList;
 
-    public string[] languageCodes = { "ko", "zh", "ja", "en" };
+
     void Start()
     {
-        dropdown.onValueChanged.AddListener(OnLanguageChanged);
+        //언어 변경
+        dropdown.onValueChanged.AddListener(LocalizeManager.Instance.OnLanguageChanged);
 
-        // 현재 선택된 언어에 따라 드롭다운 초기 선택값 설정
-        var currentCode = LocalizationSettings.SelectedLocale.Identifier.Code;
-        int index = System.Array.IndexOf(languageCodes, currentCode);
-        if (index >= 0)
-            dropdown.value = index;
+        //현재 언어에 따라 드롭다운 위치 변경
+        if (LocalizeManager.Instance.LocalizedIndex >= 0)
+            dropdown.value = LocalizeManager.Instance.LocalizedIndex;
 
-        dropdown.onValueChanged.AddListener(OnValueChanged);
         StartCoroutine(AttachDropdownOpenHandler());
-    }
-
-    void OnLanguageChanged(int index)
-    {
-        if (index < 0 || index >= languageCodes.Length) return;
-
-        string selectedCode = languageCodes[index];
-
-        var locale = LocalizationSettings.AvailableLocales.Locales
-            .FirstOrDefault(l => l.Identifier.Code == selectedCode);
-
-        if (locale != null)
-        {
-            LocalizationSettings.SelectedLocale = locale;
-            Debug.Log("언어 변경됨: " + locale.Identifier.Code);
-        }
     }
 
     // 드롭다운이 열릴 때 동적으로 생성된 오브젝트에 접근
@@ -70,10 +52,5 @@ public class FontChangingDropdown : MonoBehaviour
                 texts[i].font = fontsPerOption[i];
             }
         }
-    }
-
-    void OnValueChanged(int index)
-    {
-        Debug.Log($"선택된 항목: {index}");
     }
 }

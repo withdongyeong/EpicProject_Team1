@@ -42,7 +42,8 @@ public class LockedJournalSlot : JournalSlot
         }
         string fileName = "Locked" + tileObject.GetTileData().TileGrade.ToString() + "Tile";
         string filePath = "TileData/" + fileName;
-        TileData tileData = Resources.Load<TileData>(filePath);  
+        TileData tileData = Instantiate(Resources.Load<TileData>(filePath));
+        tileData.unlockInt = tileObject.GetTileData().UnlockInt;
         hoverLockedTileInfo.SetTileObject(new TileInfo(tileData));
         image.SetNativeSize();
         backgroundImage.GetComponent<RectTransform>().sizeDelta = image.rectTransform.sizeDelta; // 배경 이미지 크기 조정

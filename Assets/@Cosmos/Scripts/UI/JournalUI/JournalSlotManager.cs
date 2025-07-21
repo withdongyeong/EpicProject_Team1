@@ -288,6 +288,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             tileLists.Clear();
         }
         _unlockedTileNumList = new int[5];
+        _firstStoreTiles.Clear();
     }
 
     private void OnDestroy()

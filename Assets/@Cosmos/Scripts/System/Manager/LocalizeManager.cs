@@ -1,13 +1,40 @@
 ﻿using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using System.Linq;
 
 public class LocalizeManager : Singleton<LocalizeManager>
 {
+    public string[] languageCodes = { "ko", "zh", "ja", "en" };
+
     protected override void Awake()
     {
         base.Awake();
     }
 
+    public int LocalizedIndex
+    {
+        get
+        {
+            string currentCode = LocalizationSettings.SelectedLocale.Identifier.Code;
+            return System.Array.IndexOf(languageCodes, currentCode);
+        }
+    }
 
+    public void OnLanguageChanged(int index)
+    {
+        // 선택된 인덱스가 유효한지 확인
+        if (index < 0 || index >= languageCodes.Length) return;
+
+        string selectedCode = languageCodes[index];
+
+        Locale locale = LocalizationSettings.AvailableLocales.Locales
+            .FirstOrDefault(l => l.Identifier.Code == selectedCode);
+
+        if (locale != null)
+        {
+            LocalizationSettings.SelectedLocale = locale;
+        }
+    }
 
     public string Local_Quset_Instruction_Text(string key)
     {

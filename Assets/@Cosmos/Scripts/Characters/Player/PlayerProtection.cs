@@ -149,8 +149,10 @@ public class PlayerProtection : MonoBehaviour
         }
     }
 
-    public bool TryProtectionBlock(int damage, bool isCounsumed = false)
+    public int TryProtectionBlock(int damage, bool isCounsumed = false)
     {
+        //못막은 데미지를 return 합니다.
+        int result = 0;
         if (_isProtected && _protectionAmount > 0)
         {
             _protectionAmount -= damage;
@@ -160,7 +162,8 @@ public class PlayerProtection : MonoBehaviour
                 if(!isCounsumed)
                 {
                     //못막은 분 만큼 데미지를 받습니다.
-                    GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
+                    //GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
+                    result = -_protectionAmount;
                 }              
                 _protectionAmount = 0;
             }
@@ -168,9 +171,15 @@ public class PlayerProtection : MonoBehaviour
             {
                 EventBus.PublishProtectionConsume(damage);
             }
-            return true; // 보호막으로 데미지 차단 성공
+            //return true; // 보호막으로 데미지 차단 성공
         }
-        return false; // 보호막으로 데미지 차단 실패
+        else
+        {
+            //보호막이 없다는 소리이므로 그대로 데미지 이랏샤이마세 합니다
+            result = damage;
+        }
+        //return false; // 보호막으로 데미지 차단 실패
+        return result;
     }
 
     /// <summary>
