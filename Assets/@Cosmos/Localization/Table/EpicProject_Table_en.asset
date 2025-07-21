@@ -111,7 +111,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43610939413
-    m_Localized: Rhinoceros Deetle
+    m_Localized: Rhinoceros Beetle
     m_Metadata:
       m_Items: []
   - m_Id: 43610939414
@@ -175,8 +175,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133698
-    m_Localized: "<color=yellow>Individual Square (3)</color>: Restores <color=green>5</color>
-      health. \r\nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
+    m_Localized: "<color=yellow>Nebula (3)</color>: Restores <color=green>5</color>
+      health. \nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
       <color=yellow>located on the Star<sprite name=\"Star\"></color>, restores <color=green>10</color>
       health."
     m_Metadata:
@@ -185,10 +185,10 @@ MonoBehaviour:
     m_Localized: 'Stacks totems <sprite name="Totem">. Activates when 3 totems <sprite
       name="Totem"> are stacked.
 
-      <color=yellow>When activated</color>: Inflict
+      <color=yellow>On activate</color>: Inflict
       2 Curse <sprite name="Curse">.
 
-      <color=yellow>When enhanced</color>:
+      <color=yellow>On enhancement</color>:
       Inflict 2 Curse <sprite name="Curse"> and fires a projectile that deals damage
       proportional to the number of Curses <sprite name="Curse"> on the enemy.
 
@@ -237,10 +237,10 @@ MonoBehaviour:
     m_Localized: 'Stacks totems <sprite name="Totem">. Activates when 3 totems <sprite
       name="Totem"> are stacked.
 
-      <color=yellow>When activated</color>: Restores
+      <color=yellow>On activate</color>: Restores
       <color=green>5</color> health.
 
-      <color=yellow>When enhanced</color>:
+      <color=yellow>On enhancement</color>:
       The amount recovered is doubled.
 
       Cooldown is reduced by 10% for each
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133706
-    m_Localized: '<color=yellow>Individual Square (3)</color>: Fires a projectile.
+    m_Localized: '<color=yellow>Nebula (3)</color>: Fires a projectile.
 
       (Damage:<color=red>7</color>)
 
@@ -266,16 +266,15 @@ MonoBehaviour:
     m_Localized: 'Stacks a Totem<sprite name="Totem">. When 3 Totems<sprite name="Totem">
       are stacked, it activates.
 
-      <color=yellow>When activated</color>: Applies
-      10 Temporary Curse<sprite name="Curse"> to enemies for 4 seconds. (Removed
-      after 4 seconds)
+      <color=yellow>On activate</color>: Applies
+      10 Temporary Curse<sprite name="Curse"> to enemies for 4 seconds.
 
-      <color=yellow>When enhanced</color>: Applies 20 Temporary
-      Curse<sprite name="Curse"> to enemies for 4 seconds. (Removed after 4 seconds)
+      <color=yellow>On
+      enhancement</color>: Applies 20 Temporary Curse<sprite name="Curse"> to enemies
+      for 4 seconds.
 
-      Cooldown
-      is reduced by 10% for each Summon<sprite name="Summon"> <color=yellow>located
-      on the Star<sprite name="Star"></color>.'
+      Cooldown is reduced by 10% for each Summon<sprite name="Summon">
+      <color=yellow>located on the Star<sprite name="Star"></color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133708
@@ -410,7 +409,7 @@ MonoBehaviour:
   - m_Id: 43615133723
     m_Localized: "<color=yellow>Start of battle</color>:  Increase Curse<sprite name=\"Curse\"> 
       limit to 45. The Cursed doll gains additional abilities based on the increased
-      maximum. \r\n<color=yellow>When activated</color>: <color=Red>Lose all Curses<sprite
+      maximum. \r\n<color=yellow>On activate</color>: <color=Red>Lose all Curses<sprite
       name=\"Curse\"></color>. \r\nIf there are 3 or more Magic Circles<sprite name=\"MagicCircle\"><color=yellow>located
       on the Star<sprite name=\"Star\"></color>, increase the maximum number of Curses<sprite
       name=\"Curse\"> to 60."
@@ -444,42 +443,42 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133728
-    m_Localized: '<color=yellow>When activated</color>: Strikes down lightning. If
-      Marked<sprite name="Mark">, Marks<sprite name="Mark"> again.
+    m_Localized: '<color=yellow>On activate</color>: Strikes down lightning. If Marked<sprite
+      name="Mark">, Marks<sprite name="Mark"> again.
 
-      (Damage:
-      <color=red>40</color>)
+      (Damage: <color=red>40</color>)
 
-      Cooldown is reduced by 10% for each summon <sprite
-      name="Summon"><color=yellow> located on the Star<sprite name="Star"></color>.'
+      Cooldown
+      is reduced by 10% for each summon <sprite name="Summon"><color=yellow> located
+      on the Star<sprite name="Star"></color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: '<color=yellow>At the start of combat</color>: Summon a turtle that
-      consumes <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
+    m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that consumes
+      <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
       shields per second.
 
       <color=yellow>When Barrier<sprite name="Barrier">
       is consumed</color>: Damage increases by 3 times the consumed shields. (<color=red>Maximum
       45</color>)
 
-      <color=yellow>When activated</color>: Launch a turtle. (Damage:
+      <color=yellow>On activate</color>: Launch a turtle. (Damage:
       <color=red>absorbed Barrier X 3</color>)'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
-      of Curses <sprite name=\"Curse\"> to 40. \r\n<color=yellow>When activated</color>:
+      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>On activate</color>:
       Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \r\nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
-      currently applied to enemies to Curses <sprite name=\"Curse\">. \r\nIf there
+      \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
+      currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
       are 3 or more Magic Circles <sprite name=\"MagicCircle\"> <color=yellow>located
       on the Star<sprite name=\"Star\"></color>, Consume <color=red>20 Curses</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133732
-    m_Localized: "<color=yellow>Individual Square (2)</color>: Fires a projectile.
-      \r\n(Damage: <color=red>6</color>)"
+    m_Localized: "<color=yellow>Nebula (2)</color>: Fires a projectile. \n(Damage:
+      <color=red>6</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
@@ -949,27 +948,27 @@ MonoBehaviour:
     m_Localized: 'Stacks totems <sprite name="Totem">. Activates when 3 totems <sprite
       name="Totem"> are stacked.
 
-      <color=yellow>When activated</color>: Fires
+      <color=yellow>On activate</color>: Fires
       a projectile.
 
       (Damage: <color=red>15</color>)
 
-      <color=yellow>When
-      enhanced</color>: Damage is multiplied by 5.
+      <color=yellow>On
+      enhancement</color>: Damage is multiplied by 5.
 
-      Cooldown is reduced by
-      10% for each summon <sprite name="Summon"><color=yellow> located on the Star<sprite
-      name="Star"></color>.'
+      Cooldown is reduced
+      by 10% for each summon <sprite name="Summon"><color=yellow> located on the
+      Star<sprite name="Star"></color>.'
     m_Metadata:
       m_Items: []
   - m_Id: 1528835345096706
     m_Localized: '<color=yellow>Start of Battle</color>: Summon a Cat Wizard.
 
-      <color=yellow>When
-      activated</color>: Gain 8 Barrier.
+      <color=yellow>On
+      activate</color>: Gain 8 Barrier.
 
-      Gain an additional 6 Barrier for
-      each type of Summon <sprite name="Summon"> <color=yellow> located on the Star<sprite
+      Gain an additional 6 Barrier for each
+      type of Summon <sprite name="Summon"> <color=yellow> located on the Star<sprite
       name="Star"></color>.'
     m_Metadata:
       m_Items: []
@@ -1006,7 +1005,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2369512836571138
-    m_Localized: ENCYCLOPEDIA
+    m_Localized: CONSTELLATION
     m_Metadata:
       m_Items: []
   - m_Id: 2315244012183561
@@ -1019,7 +1018,7 @@ MonoBehaviour:
       of summoned swords. Summon a sword <sprite name="Sword"> and all swords will
       attack.
 
-      (Damage: <color=red>Number of summoned swords</color>)
+      (Damage: <color=red>Summoned Swords</color>)
 
       Cooldown
       is reduced by 10% for each summoned <sprite name="Summon"><color=yellow>located
@@ -1115,11 +1114,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3047510455754757
-    m_Localized: Give up the game
+    m_Localized: "Give up \nthe game"
     m_Metadata:
       m_Items: []
   - m_Id: 3047843219251209
-    m_Localized: Continue the game
+    m_Localized: "Continue \nthe game"
     m_Metadata:
       m_Items: []
   - m_Id: 3048611024347146
