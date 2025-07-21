@@ -47,6 +47,8 @@ public class SoundVolumeSettings : MonoBehaviour
     public float KabutoConsume = 1f;
     public float KabutoFire = 1f;
 
+    public float FreezeActivate = 0.8f;
+
     // ---------------- Arachne ----------------
     [Header("🕷 Arachne")]
     public float PoisionExplotionActivate = 0.7f;

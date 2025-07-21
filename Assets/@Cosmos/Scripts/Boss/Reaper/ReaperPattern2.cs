@@ -12,6 +12,7 @@ public class ReaperPattern2 : IBossAttackPattern
     public ReaperPattern2(GameObject DeathAriaPrefeb, int damage)
     {
         _deathAriaPrefeb = DeathAriaPrefeb;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
