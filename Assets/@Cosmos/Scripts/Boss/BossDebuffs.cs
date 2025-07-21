@@ -244,6 +244,8 @@ public class BossDebuffs : MonoBehaviour
     /// </summary>
     private void ApplyFreezingEffect()
     {
+        SoundManager.Instance.PlayTileSoundClip("FreezeActivate");
+
         // 기존 디버프 처리
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
