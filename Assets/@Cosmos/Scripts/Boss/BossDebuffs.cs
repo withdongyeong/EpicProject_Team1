@@ -267,6 +267,10 @@ public class BossDebuffs : MonoBehaviour
 
             PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
         }
+        else
+        {
+            boss.IncreasedDamageTaken(2f); //  unstoppable의 경우 2초 동안 받는 데미지 증가
+        }
     }
 
     /// <summary>
@@ -296,7 +300,15 @@ public class BossDebuffs : MonoBehaviour
         }
 
         // 보스 공격 중지 해제
-        boss.StopAttack(0f); // 즉시 공격 재개
+        if(!boss.Unstoppable && !boss.IsHandBoss)
+        {
+            boss.StopAttack(0f); // 즉시 공격 재개
+        }
+        else
+        {
+            boss.IncreasedDamageTaken(0f); // 손 보스의 경우 받는 데미지 증가 해제
+        }
+        
     }
 
     private IEnumerator ResumeAnimatorAfterFreeze(float originalSpeed)
