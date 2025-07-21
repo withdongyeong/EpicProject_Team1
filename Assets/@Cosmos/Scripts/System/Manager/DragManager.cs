@@ -17,6 +17,7 @@ public class DragManager : Singleton<DragManager>
     private bool isDragging = false; // 드래그 중인지 여부
     public bool IsDragging => isDragging; // 외부에서 드래그 상태를 확인할 수 있도록 공개
 
+    //현재 마우스 위치와 오브젝트 사이의 벡터 차 입니다.
     public Vector3 LocalPos { get; set; }
 
     private GameObject dragRotationGuide; // DragRotationGuide 프리팹 참조
@@ -216,7 +217,9 @@ public class DragManager : Singleton<DragManager>
     {
         //놓으려는 물체가 회전중인지 미리 검사하고, 회전중이면 멈춥니다.
         TryStopRotate();
-        Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().GetCoreCell().transform.position;
+        //TODO: 드래그 버그나면 여기일 확률 98%입니다.
+        //Vector3 corePos = currentDragObject.GetComponentInChildren<CombineCell>().GetCoreCell().transform.position;
+        Vector3 corePos = currentDragObject.transform.position;
         corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
         currentDragObject.transform.position = corePos;
         currentDragObject.transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
