@@ -4,7 +4,6 @@ using System.Linq;
 
 public class LocalizeManager : Singleton<LocalizeManager>
 {
-    public int NowLoCalizedIndex;
     public string[] languageCodes = { "ko", "zh", "ja", "en" };
 
     protected override void Awake()
@@ -23,8 +22,6 @@ public class LocalizeManager : Singleton<LocalizeManager>
 
     public void OnLanguageChanged(int index)
     {
-        NowLoCalizedIndex = index;
-
         // 선택된 인덱스가 유효한지 확인
         if (index < 0 || index >= languageCodes.Length) return;
 
