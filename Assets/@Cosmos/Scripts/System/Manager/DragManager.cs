@@ -86,8 +86,8 @@ public class DragManager : Singleton<DragManager>
             Vector3 mousePosition = Input.mousePosition;
             mainCamera = Camera.main;
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-            worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
-                                  // 드래그 오브젝트 위치 업데이트
+            worldPosition.z = 0f;
+            // 드래그 오브젝트 위치 업데이트
             currentDragObject.transform.position = worldPosition + LocalPos;
             
             // 회전 가이드 위치도 함께 업데이트
@@ -126,7 +126,7 @@ public class DragManager : Singleton<DragManager>
         Vector3 mousePosition = Input.mousePosition;
         mainCamera = Camera.main;
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-        worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
+        worldPosition.z = 0f;
         LocalPos = currentDragObject.transform.position - worldPosition; //현재 마우스 위치 기준으로 현재 드래그되는 타일의 로컬 포지션.
         draggableObject.GetComponent<TileObject>().OnDragged();
         
@@ -198,8 +198,8 @@ public class DragManager : Singleton<DragManager>
                 // 가이드를 마우스 근처 또는 드래그 오브젝트 근처에 위치시킵니다.
                 // 필요에 따라 오프셋을 조정할 수 있습니다.
                 Vector3 guidePosition = mouseWorldPosition;
-                guidePosition.x += 1f; // 마우스 오른쪽으로 1유닛 떨어진 곳에 표시
-                guidePosition.y += 1f; // 마우스 위쪽으로 1유닛 떨어진 곳에 표시
+                guidePosition.x += 1f; // 마우스 x 오프셋
+                guidePosition.y -= 2f; // 마우스 y 오프셋
                 
                 dragRotationGuide.transform.position = guidePosition;
             }
