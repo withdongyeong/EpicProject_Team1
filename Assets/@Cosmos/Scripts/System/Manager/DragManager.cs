@@ -19,16 +19,61 @@ public class DragManager : Singleton<DragManager>
 
     public Vector3 LocalPos { get; set; }
 
-    
-
-
+    private GameObject dragRotationGuide; // DragRotationGuide 프리팹 참조
+    private SpriteRenderer[] rotationGuideSpriteRenderers; // 가이드의 SpriteRenderer들
 
     protected override void Awake()
     {
+        Debug.Log("DragManager Awake 호출됨");
         base.Awake();
         smoothRotator = gameObject.AddComponent<SmoothRotator>();
+        
+        // Resources 폴더에서 DragRotationGuide 프리팹을 로드
+        LoadRotationGuide();
+        
+        Debug.Log($"Awake 완료 - dragRotationGuide: {(dragRotationGuide != null ? "할당됨" : "null")}");
     }
-    
+
+    private void Start()
+    {
+        Debug.Log("DragManager Start 호출됨");
+        // Awake에서 로드가 실패했다면 Start에서 다시 시도
+        if (dragRotationGuide == null)
+        {
+            Debug.Log("Start에서 dragRotationGuide 재로드 시도");
+            LoadRotationGuide();
+        }
+    }
+
+    private void LoadRotationGuide()
+    {
+        Debug.Log("DragRotationGuide 로드 시작");
+        GameObject guidePrefab = Resources.Load<GameObject>("Prefabs/UI/DragRotationGuide");
+        Debug.Log($"DragRotationGuide 프리팹 로드 결과: {(guidePrefab != null ? "성공" : "실패")}");
+        
+        if (guidePrefab != null)
+        {
+            dragRotationGuide = Instantiate(guidePrefab);
+            Debug.Log($"DragRotationGuide 인스턴스 생성: {dragRotationGuide.name}");
+            rotationGuideSpriteRenderers = dragRotationGuide.GetComponentsInChildren<SpriteRenderer>();
+            if (rotationGuideSpriteRenderers != null && rotationGuideSpriteRenderers.Length > 0)
+            {
+                foreach (var spriteRenderer in rotationGuideSpriteRenderers)
+                {
+                    spriteRenderer.enabled = false; // 초기에는 모두 숨김
+                }
+                Debug.Log($"SpriteRenderer {rotationGuideSpriteRenderers.Length}개 찾음 및 비활성화 완료");
+            }
+            else
+            {
+                Debug.LogWarning("DragRotationGuide에서 SpriteRenderer를 찾을 수 없습니다.");
+            }
+        }
+        else
+        {
+            Debug.LogError("DragRotationGuide 프리팹을 Resources 폴더에서 찾을 수 없습니다. 경로: Prefabs/UI/DragRotationGuide");
+        }
+    }
     
     private void Update()
     {
@@ -44,11 +89,38 @@ public class DragManager : Singleton<DragManager>
             worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
                                   // 드래그 오브젝트 위치 업데이트
             currentDragObject.transform.position = worldPosition + LocalPos;
+            
+            // 회전 가이드 위치도 함께 업데이트
+            UpdateRotationGuidePosition(worldPosition);
         }
     }
     
     public void BeginDrag(GameObject draggableObject)
     {
+        Debug.Log($"BeginDrag - dragRotationGuide: {(dragRotationGuide != null ? "존재함" : "null")}");
+        
+        // dragRotationGuide가 null이면 여기서 다시 로드 시도
+        if (dragRotationGuide == null)
+        {
+            Debug.Log("dragRotationGuide가 null이므로 다시 로드 시도");
+            GameObject guidePrefab = Resources.Load<GameObject>("Prefabs/UI/DragRotationGuide");
+            Debug.Log($"재로드 결과: {(guidePrefab != null ? "성공" : "실패")}");
+            
+            if (guidePrefab != null)
+            {
+                dragRotationGuide = Instantiate(guidePrefab);
+                rotationGuideSpriteRenderers = dragRotationGuide.GetComponentsInChildren<SpriteRenderer>();
+                if (rotationGuideSpriteRenderers != null && rotationGuideSpriteRenderers.Length > 0)
+                {
+                    foreach (var spriteRenderer in rotationGuideSpriteRenderers)
+                    {
+                        spriteRenderer.enabled = false;
+                    }
+                    Debug.Log($"재로드 후 SpriteRenderer {rotationGuideSpriteRenderers.Length}개 설정 완료");
+                }
+            }
+        }
+        
         isDragging = true;
         currentDragObject = draggableObject;
         Vector3 mousePosition = Input.mousePosition;
@@ -57,6 +129,9 @@ public class DragManager : Singleton<DragManager>
         worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
         LocalPos = currentDragObject.transform.position - worldPosition; //현재 마우스 위치 기준으로 현재 드래그되는 타일의 로컬 포지션.
         draggableObject.GetComponent<TileObject>().OnDragged();
+        
+        // 회전 가이드 표시
+        ShowRotationGuide();
     }
     
     public void Drag()
@@ -74,8 +149,62 @@ public class DragManager : Singleton<DragManager>
         currentDragObject = null;
         GridManager.Instance.TilesOnGrid.SetTileObjectStarEffect();
         UpdatePreviewCell();
+        
+        // 회전 가이드 숨김
+        HideRotationGuide();
     }
 
+    /// <summary>
+    /// 회전 가이드를 표시합니다.
+    /// </summary>
+    private void ShowRotationGuide()
+    {
+        // 스테이지 1일 때만 가이드 표시
+        if (StageSelectManager.Instance.StageNum == 1 && rotationGuideSpriteRenderers != null)
+        {
+            foreach (var spriteRenderer in rotationGuideSpriteRenderers)
+            {
+                spriteRenderer.enabled = true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 회전 가이드를 숨깁니다.
+    /// </summary>
+    private void HideRotationGuide()
+    {
+        if (rotationGuideSpriteRenderers != null)
+        {
+            foreach (var spriteRenderer in rotationGuideSpriteRenderers)
+            {
+                spriteRenderer.enabled = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 회전 가이드의 위치를 업데이트합니다.
+    /// </summary>
+    /// <param name="mouseWorldPosition">마우스의 월드 좌표</param>
+    private void UpdateRotationGuidePosition(Vector3 mouseWorldPosition)
+    {
+        // 스테이지 1일 때만 가이드 위치 업데이트
+        if (StageSelectManager.Instance.StageNum == 1 && dragRotationGuide != null && rotationGuideSpriteRenderers != null && rotationGuideSpriteRenderers.Length > 0)
+        {
+            // 첫 번째 SpriteRenderer가 활성화되어 있는지 확인 (모든 자식이 같이 활성화/비활성화되므로)
+            if (rotationGuideSpriteRenderers[0].enabled)
+            {
+                // 가이드를 마우스 근처 또는 드래그 오브젝트 근처에 위치시킵니다.
+                // 필요에 따라 오프셋을 조정할 수 있습니다.
+                Vector3 guidePosition = mouseWorldPosition;
+                guidePosition.x += 1f; // 마우스 오른쪽으로 1유닛 떨어진 곳에 표시
+                guidePosition.y += 1f; // 마우스 위쪽으로 1유닛 떨어진 곳에 표시
+                
+                dragRotationGuide.transform.position = guidePosition;
+            }
+        }
+    }
 
     public void SetObjectPosition(Vector3 position)
     {
@@ -308,5 +437,4 @@ public class DragManager : Singleton<DragManager>
         smoothRotator.TryStopRotate();
         UpdatePreviewCell();
     }
-
 }
