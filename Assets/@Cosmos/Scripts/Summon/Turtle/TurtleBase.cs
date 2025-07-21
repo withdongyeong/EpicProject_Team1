@@ -100,11 +100,7 @@ public class TurtleBase : MonoBehaviour
     {
         if(_chargedProtection < 15)
         {
-            if(_protectionScript.TryProtectionBlock(_consumeProtection, true))
-            {
-                //OnProtectionConsume(_consumeProtection);
-            }
-                   
+            _protectionScript.TryProtectionBlock(_consumeProtection, true);
         }
     }
 

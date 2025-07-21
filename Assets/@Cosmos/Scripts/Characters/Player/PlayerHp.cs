@@ -70,9 +70,25 @@ public class PlayerHp : MonoBehaviour
         if (_isInvincible)
             return;
 
+        //피격 애니메이션을 재생하고 소리도 틉니다
+        FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Damaged");
+        SoundManager.Instance.PlayPlayerSound("PlayerDamage");
+
+        // 피격감 강화(카메라 진동)
+        _shakeTrigger.Shake(0.5f);
+        //무적 부여
+        StartInvincibility();
+
+
         // 보호 상태면 보호막량 감소
-        if (_playerProtection.TryProtectionBlock(damage))
+        damage = _playerProtection.TryProtectionBlock(damage);
+        
+        //이건 막았다는 뜻이므로 return 합니다.
+        if (damage <= 0)
+        {
             return;
+        }
+            
 
         // 방어 상태면 방어막량 감소
         if (_playerShield.TryShieldBlock(damage))
@@ -96,22 +112,11 @@ public class PlayerHp : MonoBehaviour
             Die();
             SoundManager.Instance.PlayPlayerSound("PlayerDead");
         }
-        else
+        else if(_damageScreenEffect != null)
         {
-            // 살아있으면 피격 처리 및 무적 시간 시작
-            FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Damaged");
-            SoundManager.Instance.PlayPlayerSound("PlayerDamage");
-            
-            // 피격감 강화(카메라 진동)
-            _shakeTrigger.Shake(0.5f);
-            
             // 피격감 강화(화면 효과) - 추가된 부분
-            if (_damageScreenEffect != null)
-            {
-                _damageScreenEffect.ShowDamageEffect();
-            }
-            
-            StartInvincibility();
+            _damageScreenEffect.ShowDamageEffect();
+
         }
     }
     

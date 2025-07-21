@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 
@@ -33,7 +33,7 @@ public class QAtest : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("hptext is not assigned in the inspector.");
+            //Debug.LogWarning("hptext is not assigned in the inspector.");
         }
     }
     
