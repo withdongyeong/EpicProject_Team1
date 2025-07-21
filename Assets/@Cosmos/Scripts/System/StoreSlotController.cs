@@ -37,12 +37,14 @@ public class StoreSlotController : MonoBehaviour
 
     private void Start()
     {      
-        SetupStoreSlots();
-
         //만약 1스테이지 못깬 사람의 첫 스테이지라면
-        if (StageSelectManager.Instance.StageNum == 1 || GameManager.Instance.CurrentUnlockLevel < 1)
+        if (StageSelectManager.Instance.StageNum == 1 && GameManager.Instance.CurrentUnlockLevel < 1)
         {
             SetUpFirstStoreSlots();
+        }
+        else
+        {
+            SetupStoreSlots();
         }
 
     }
@@ -165,16 +167,98 @@ public class StoreSlotController : MonoBehaviour
     {
         for(int i = 0; i < storeSlots.Length; i++)
         {
-            if(i<_firstStoreTiles.Count)
-            {
-                GameObject chosenTile = _firstStoreTiles[i];
-                storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            GameObject chosenTile;
 
-                //이미지 비율을 맞추기 위한 코드입니다.
-                //storeSlots[i].GetComponent<Image>().preserveAspect = true;
-                storeSlots[i].GetComponent<Image>().SetNativeSize();
+            if (i<_firstStoreTiles.Count)
+            {
+                chosenTile = _firstStoreTiles[i];
+                if (_storeTiles[(int)TileGrade.Normal].Contains(chosenTile))
+                {
+                    _storeTiles[(int)TileGrade.Normal].Remove(chosenTile);
+                }
             }
+            else
+            {
+                float roll = Random.value * 100f;
+                TileGrade chosenGrade;
+                int stageNum;
+                if (StageSelectManager.Instance.StageNum > 10)
+                {
+                    stageNum = 10;
+                }
+                else
+                {
+                    stageNum = StageSelectManager.Instance.StageNum;
+                }
+
+                //현재 확률
+                ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[stageNum];
+
+                if (roll < chanceList.shop_NormalChance)
+                {
+                    chosenGrade = TileGrade.Normal;
+                }
+                else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance)
+                {
+                    chosenGrade = TileGrade.Rare;
+                }
+                else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance)
+                {
+                    chosenGrade = TileGrade.Epic;
+                }
+                else if (roll < chanceList.shop_NormalChance + chanceList.shop_RareChance + chanceList.shop_EpicChance + chanceList.shop_LegendaryChance)
+                {
+                    chosenGrade = TileGrade.Legendary;
+                }
+                else
+                {
+                    chosenGrade = TileGrade.Mythic;
+                }
+
+                List<GameObject> chosenList = _storeTiles[(int)TileGrade.Normal];
+                chosenList = _storeTiles[(int)chosenGrade];
+
+                //가이드용
+                if (isGuide)
+                {
+                    chosenList = guideList;
+                    storeSlots[i].SetSlot(chosenList[0].GetComponent<TileObject>().GetTileData().TileCost, chosenList[0]);
+                    storeSlots[i].GetComponent<Image>().SetNativeSize();
+                    continue;
+                }
+
+                int randomIndex;
+                //이건 선택된 리스트에 남은 애들이 있을때 입니다
+                if (chosenList.Count > 0)
+                {
+                    randomIndex = Random.Range(0, chosenList.Count);
+                }
+                else //이건 리스트가 비어있으면 다시 채우는 과정입니다
+                {
+                    RefillList(chosenGrade);
+                    chosenList = _storeTiles[(int)chosenGrade];
+                    randomIndex = Random.Range(0, chosenList.Count);
+                }
+
+                chosenTile = chosenList[randomIndex];
+                //선택된 타일이 상점에 등장해도 되는지 조건검사를 합니다.
+                chosenTile = CheckTileCondition(chosenTile, chosenGrade);
+                //중복이 안되도록 제거해줍니다
+                if (_storeTiles[(int)chosenGrade].Contains(chosenTile))
+                {
+                    _storeTiles[(int)chosenGrade].Remove(chosenTile);
+                }
+            }
+
+            storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            appeardTileNameList.Add(chosenTile.GetComponent<TileObject>().GetTileData().TileName);
+            //이미지 비율을 맞추기 위한 코드입니다.
+            //storeSlots[i].GetComponent<Image>().preserveAspect = true;
+            storeSlots[i].GetComponent<Image>().SetNativeSize();
+
         }
+
+
     }
 
     public void ResetSlotBtn()
