@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Localization;
 
 /// <summary>
 /// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
@@ -171,7 +172,8 @@ public class StageHandler : MonoBehaviour
         // 카운트다운 완료
         if (countdownText != null)
         {
-            countdownText.text = "Start!";
+            LocalizedString localizedString = new LocalizedString("EpicProject_Table", "UI_Text_Start");
+            localizedString.StringChanged += (text) => countdownText.text = text;
             yield return new WaitForSecondsRealtime(0.5f);
             countdownText.gameObject.SetActive(false);
         }
