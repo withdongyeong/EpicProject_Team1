@@ -32,7 +32,7 @@ public class InfoTextRenderer : MonoBehaviour
         { "Barrier", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Barrier") },
         {"Curse", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Curse") },
         {"Cloud",new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Cloud") },
-        {"Multiple", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Multiple")  }
+        {"Nebula", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Nebula")  }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -144,6 +144,6 @@ public class InfoTextRenderer : MonoBehaviour
         {"Pain", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Pain")},
         {"Mark", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Mark") },
         {"Curse", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Curse") },
-        {"Multiple", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Multiple") }
+        {"Nebula", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Nebula") }
     };
 }
