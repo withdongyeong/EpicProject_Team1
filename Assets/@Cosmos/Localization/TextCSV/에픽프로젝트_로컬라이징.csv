@@ -22,7 +22,7 @@ Tile_TileName_FrostHammerTile,冰锤,Ice Hammer,氷のハンマー,얼음 망치
 Tile_TileName_GoddessTile,女神雕像,Statue of Goddess,女神賞,여신상
 Tile_TileName_GuideStaffTile,新手法杖,Beginner's Staff,初心者の杖,초심자의 지팡이
 Tile_TileName_HauntedDollTile,诅咒娃娃,Cursed Doll,呪い人形,저주 인형
-Tile_TileName_KabutoTile,独角仙,Rhinoceros Deetle,カブトムシ,장수풍뎅이
+Tile_TileName_KabutoTile,独角仙,Rhinoceros Beetle,カブトムシ,장수풍뎅이
 Tile_TileName_ManaAITile,法力人工智能,Mana AI,マナAI,마나 AI
 Tile_TileName_ManaTurretTile,法力塔,Mana Tower,マナタワー,마나포탑
 Tile_TileName_NecronomiconTile,死灵之书,Necronomicon,ネクロノミコン,네크로노미콘
@@ -68,8 +68,8 @@ Tile_TileDescription_DamageTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆
 <color=yellow>强化时</color>：获得 2 个诅咒 <sprite name=""Curse""> 并发射一枚投射物，该投射物对敌人造成伤害，伤害量与敌人身上的诅咒 <sprite name=""Curse""> 数量成正比。
 (伤害：<color=red>诅咒 <sprite name=""Curse"">（最低 1 个）</color>)
 <color=yellow>在 <sprite name=""Star""> 上每召唤一个 <sprite name=""Summon"">，冷却时间减少 10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
-<color=yellow>When activated</color>: Inflict 2 Curse <sprite name=""Curse"">.
-<color=yellow>When enhanced</color>: Inflict 2 Curse <sprite name=""Curse""> and fires a projectile that deals damage proportional to the number of Curses <sprite name=""Curse""> on the enemy.
+<color=yellow>On activate</color>: Inflict 2 Curse <sprite name=""Curse"">.
+<color=yellow>On enhancement</color>: Inflict 2 Curse <sprite name=""Curse""> and fires a projectile that deals damage proportional to the number of Curses <sprite name=""Curse""> on the enemy.
 (Damage: <color=red>Curse <sprite name=""Curse""> (Minimum 1)</color>)
 Cooldown is reduced by 10% for each Summon <sprite name=""Summon""> <color=yellow>located on the Star <sprite name=""Star"">.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
 <color=yellow>発動時</color>：呪い<sprite name=""Curse"">を2付与します。
@@ -120,8 +120,8 @@ Tile_TileDescription_HealTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆�
 <color=yellow>激活时</color>：恢复 <color=green>5</color> 点生命值。
 <color=yellow>强化时</color>：恢复量翻倍。
 <color=yellow>每召唤一个位于 <sprite name=""Star""> 上的 <sprite name=""Summon"">，冷却时间减少 10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
-<color=yellow>When activated</color>: Restores <color=green>5</color> health.
-<color=yellow>When enhanced</color>: The amount recovered is doubled.
+<color=yellow>On activate</color>: Restores <color=green>5</color> health.
+<color=yellow>On enhancement</color>: The amount recovered is doubled.
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""> <color=yellow>located on The Star<sprite name=""Star""></color>.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
 <color=yellow>発動時</color>: 体力を<color=green>5</color>回復します。
 <color=yellow>強化時</color>: 回復量が2倍になります。
@@ -143,17 +143,17 @@ Tile_TileDescription_IcicleTile,"<color=yellow>星云 (3)</color>：发射一枚
 (피해량:<color=red>7</color>)
 <color=red>적중 시:</color> 동상<sprite name=""Ice"">을 1 부여합니다."
 Tile_TileDescription_KoreaTotemTile,"堆叠图腾<sprite name=""Totem"">。当堆叠满3个图腾<sprite name=""Totem"">时发动。
-<color=yellow>发动时</color>：4秒内对敌人施加10点临时诅咒<sprite name=""Curse"">。（4秒后移除）
-<color=yellow>强化时</color>：4秒内对敌人施加20点临时诅咒<sprite name=""Curse"">。（4秒后移除）
+<color=yellow>发动时</color>：4秒内对敌人施加10点临时诅咒<sprite name=""Curse"">。
+<color=yellow>强化时</color>：4秒内对敌人施加20点临时诅咒<sprite name=""Curse"">。
 每有一个位于星星<sprite name=""Star"">上的召唤物<sprite name=""Summon"">，冷却时间减少10%。","Stacks a Totem<sprite name=""Totem"">. When 3 Totems<sprite name=""Totem""> are stacked, it activates.
-<color=yellow>When activated</color>: Applies 10 Temporary Curse<sprite name=""Curse""> to enemies for 4 seconds. (Removed after 4 seconds)
-<color=yellow>When enhanced</color>: Applies 20 Temporary Curse<sprite name=""Curse""> to enemies for 4 seconds. (Removed after 4 seconds)
+<color=yellow>On activate</color>: Applies 10 Temporary Curse<sprite name=""Curse""> to enemies for 4 seconds.
+<color=yellow>On enhancement</color>: Applies 20 Temporary Curse<sprite name=""Curse""> to enemies for 4 seconds.
 Cooldown is reduced by 10% for each Summon<sprite name=""Summon""> <color=yellow>located on the Star<sprite name=""Star""></color>.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
-<color=yellow>発動時</color>：4秒間、敵に一時的な呪い<sprite name=""Curse"">を10付与します。（4秒後に解除）
-<color=yellow>強化時</color>：4秒間、敵に一時的な呪い<sprite name=""Curse"">を20付与します。（4秒後に解除）
+<color=yellow>発動時</color>：4秒間、敵に一時的な呪い<sprite name=""Curse"">を10付与します。
+<color=yellow>強化時</color>：4秒間、敵に一時的な呪い<sprite name=""Curse"">を20付与します。
 星<sprite name=""Star"">の上にいる召喚獣<sprite name=""Summon"">1体ごとにクールタイムが10%短縮されます。","토템<sprite name=""Totem"">을 쌓습니다. 3개의 토템<sprite name=""Totem"">이 쌓이면 발동합니다.
-<color=yellow>발동 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 10 부여합니다. (4초 후 제거)
-<color=yellow>강화 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 20 부여합니다. (4초 후 제거)
+<color=yellow>발동 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 10 부여합니다.
+<color=yellow>강화 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 20 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
 Tile_TileDescription_RobeTile,"获得 30 个 <sprite name=""Barrier"">盾牌。","Gain 30 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を30獲得します。","보호막<sprite name=""Barrier"">을 30 획득합니다."
 Tile_TileDescription_SwordTile,"召唤一把<sprite name=""Sword"">，所有剑都会攻击。
@@ -280,7 +280,7 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""> <color=yellow>
 Tile_TileDescription_PhantomTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">的最大数量增加到45个。诅咒人偶将根据增加的最大值获得额外能力。
 <color=yellow>激活时</color>：失去所有诅咒<sprite name=""Curse"">。
 如果一颗<color=yellow>星<sprite name=""Star"">上有3个或更多魔法阵<sprite name=""MagicCircle"">，则将诅咒<sprite name=""Curse"">的最大数量增加到60个。","<color=yellow>Start of battle</color>:  Increase Curse<sprite name=""Curse"">  limit to 45. The Cursed doll gains additional abilities based on the increased maximum. 
-<color=yellow>When activated</color>: <color=Red>Lose all Curses<sprite name=""Curse""></color>. 
+<color=yellow>On activate</color>: <color=Red>Lose all Curses<sprite name=""Curse""></color>. 
 If there are 3 or more Magic Circles<sprite name=""MagicCircle""><color=yellow>located on the Star<sprite name=""Star""></color>, increase the maximum number of Curses<sprite name=""Curse""> to 60.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を45に上げます。
 上がった最大値に応じて、呪い人形に追加の能力があります。
 <color=yellow>発動時</color>：呪い<sprite name=""Curse"">をすべて失います。
@@ -308,7 +308,7 @@ Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">의 쿨타임을 10% 감소시킵니다."
 Tile_TileDescription_ThunderStormCloudTile,"<color=yellow>激活时</color>：击落闪电。如果被标记，则再次标记。
 (伤害：<color=red>40</color>)
-在<color=yellow>星</color>上召唤的每个<sprite name=""Summon"">冷却时间减少10%。","<color=yellow>When activated</color>: Strikes down lightning. If Marked<sprite name=""Mark"">, Marks<sprite name=""Mark""> again.
+在<color=yellow>星</color>上召唤的每个<sprite name=""Summon"">冷却时间减少10%。","<color=yellow>On activate</color>: Strikes down lightning. If Marked<sprite name=""Mark"">, Marks<sprite name=""Mark""> again.
 (Damage: <color=red>40</color>)
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow> located on the Star<sprite name=""Star""></color>.","<color=yellow>発動時</color>：雷を降ります。烙印<sprite name=""Mark"">が押されている場合は、烙印<sprite name=""Mark"">を再度撮ります。
 (ダメージ: <color=red>40</color>)
@@ -319,18 +319,18 @@ Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>：召唤�
 <color=yellow>保护盾<sprite name=""Barrier"">时</color>：伤害增加为消耗护盾的3倍。（<color=red>最高45</color>）
 <color=yellow>触发时</color>：发射一只乌龟。（伤害：<color=red>吸收3倍保护盾</color>）","<color=yellow>Start of battle</color>: Summon a turtle that consumes <sprite name=""Barrier""> shields. The turtle consumes 3 <sprite name=""Barrier""> shields per second.
 <color=yellow>When Barrier<sprite name=""Barrier""> is consumed</color>: Damage increases by 3 times the consumed shields. (<color=red>Maximum 45</color>)
-<color=yellow>When activated</color>: Launch a turtle. (Damage: <color=red>absorbed Barrier X 3</color>)","<color=yellow>戦闘開始時</color>: シールド<sprite name=""Barrier"">を消費するカメを召喚します。
+<color=yellow>On activate</color>: Launch a turtle. (Damage: <color=red>absorbed Barrier X 3</color>)","<color=yellow>戦闘開始時</color>: シールド<sprite name=""Barrier"">を消費するカメを召喚します。
 カメは毎秒3の保護膜<sprite name=""Barrier"">を消費します。
 <color=yellow>バリア<sprite name=""Barrier"">消耗時</color>: ダメージが消耗した保護膜の3倍だけ上昇します。 (<color=red>最大 45</color>)
 <color=yellow>発動時</color>：カメを発射します。 
-(ダメージ：<color=red> 吸収されたバリア×3</color>)","<color=yellow>전투 시작 시</color>: 보호막<sprite name=""Barrier"">을 흡수하는 거북이를 소환합니다. 거북이는 매초 3의 보호막<sprite name=""Barrier"">을 흡수합니다.
-<color=yellow>보호막<sprite name=""Barrier""> 흡수 시</color>: 피해량이 흡수된 보호막의 3배만큼 상승합니다. (<color=red>최대 45</color>)
-<color=yellow>발동 시</color>: 거북이를 발사합니다. (피해량: <color=red>흡수한 보호막 X 3</color>)"
+(ダメージ：<color=red> 吸収されたバリア×3</color>)","<color=yellow>전투 시작 시</color>: 보호막<sprite name=""Barrier"">을 소모하는 거북이를 소환합니다. 거북이는 매초 3의 보호막<sprite name=""Barrier"">을 소모합니다.
+<color=yellow>보호막<sprite name=""Barrier""> 소모 시</color>: 피해량이 소모한 보호막의 3배만큼 상승합니다. (<color=red>최대 45</color>)
+<color=yellow>발동 시</color>: 거북이를 발사합니다. (피해량: <color=red>소모한 보호막 X 3</color>)"
 Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">的最大数量提升至40。
 <color=yellow>触发</color>时：消耗<color=red>40个诅咒</color>并造成1点痛苦<sprite name=""Pain"">。
 将当前施加于敌人的所有火焰<sprite name=""fire"">和冰霜<sprite name=""ice"">转换为诅咒<sprite name=""Curse"">。
 如果<color=yellow>星星</color>上有3个或更多魔法阵<sprite name=""MagicCircle"">，则消耗<color=red>20个诅咒</color>。","<color=yellow>Start of battle</color>: Increase the maximum number of Curses <sprite name=""Curse""> to 40. 
-<color=yellow>When activated</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=""Pain"">. 
+<color=yellow>On activate</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=""Pain"">. 
 Convert all Burn <sprite name=""fire""> and Frostbite <sprite name=""ice""> currently applied to enemies to Curses <sprite name=""Curse"">. 
 If there are 3 or more Magic Circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, Consume <color=red>20 Curses</color>.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を40に上げます。
 現在、敵に適用されているすべての炎 <sprite name=""fire""> と 凍傷<sprite name=""ice""> を呪い<sprite name=""Curse""> に置き換えます。
@@ -357,9 +357,9 @@ Tile_TileDescription_MoaiTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆�
 (伤害：<color=red>15</color>）
 <color=yellow>强化时</color>：伤害乘以 5。
 <color=yellow>每召唤一个位于 <sprite name=""Star""> 上的 <sprite name=""Summon"">，冷却时间减少 10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
-<color=yellow>When activated</color>: Fires a projectile.
+<color=yellow>On activate</color>: Fires a projectile.
 (Damage: <color=red>15</color>)
-<color=yellow>When enhanced</color>: Damage is multiplied by 5.
+<color=yellow>On enhancement</color>: Damage is multiplied by 5.
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow> located on the Star<sprite name=""Star""></color>.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
 <color=yellow>発動時</color>：弾を発射します。
 (ダメージ：<color=red>15</color>)
@@ -381,7 +381,7 @@ Cooldown is reduced by 10% for each summoned <sprite name=""Summon""><color=yell
 Tile_TileDescription_CatTile,"<color=yellow>战斗开始时</color>：召唤一只猫巫师。
 <color=yellow>激活时</color>：获得 8 点屏障。
 <color=yellow>星</color>上每种召唤<sprite name=""Summon"">类型，额外获得 6 点屏障。","<color=yellow>Start of Battle</color>: Summon a Cat Wizard.
-<color=yellow>When activated</color>: Gain 8 Barrier.
+<color=yellow>On activate</color>: Gain 8 Barrier.
 Gain an additional 6 Barrier for each type of Summon <sprite name=""Summon""> <color=yellow> located on the Star<sprite name=""Star""></color>.","<color=yellow>戦闘開始時</color>: 魔法使い猫を召喚します。
 <color=yellow>発動時</color>: 保護膜<sprite name=""Barrier"">を8獲得します。
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">種類1につきバリア<sprite name=""Barrier"">を6追加で獲得します。","<color=yellow>전투 시작 시</color>: 고양이 마법사를 소환합니다.
@@ -410,7 +410,7 @@ Tile_TileTagDescription_Ice,"冻伤<sprite name=""Ice"">: 堆叠 10 次后，冻
 Tile_TileTagDescription_Sword,"剑<sprite name=""Sword"">：召唤生物，持续一定时间。当你向一把剑发出命令时，所有剑都会执行相同的命令。","Sword<sprite name=""Sword"">: Temporarily summoned. All swords follow the same command.","剣<sprite name=""Sword"">: 一定時間維持される召喚獣。剣を発行すると、すべての剣が同じコマンドを実行します。","검<sprite name=""Sword"">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다."
 Tile_TileTagDescription_Totem,"图腾<sprite name=""Totem"">：当3个图腾叠加时，触发效果并消失。叠加的第3个图腾的效果会强化。","Totem<sprite name=""Totem"">: Activates when 3 stack. The 3rd totem's effect is enhanced.","トーテム <sprite name=""Totem"">: トーテムが3つ積み重なると効果を発動して消えます。","토템<sprite name=""Totem"">: 토템이 3개 쌓이면 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다."
 Tile_TileTagDescription_Shield,"盾牌<sprite name=""Shield"">：阻挡 1 轮伤害。","Shield<sprite name=""Shield"">: Blocks 1 round of damage.","シールド <sprite name=""Shield"">: 1 回のダメージを防ぎます。","방어막<sprite name=""Shield"">: 1회의 피해를 막아줍니다."
-Tile_TileTagDescription_Barrier,"保护盾<sprite name=""Barrier"">：阻挡一定量的伤害。每秒吸收2点护盾。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Consumes 2 per second.","バリア<sprite name=""Barrier"">: 一定量のダメージを防ぎます。毎秒2消費します。","보호막<sprite name=""Barrier"">: 일정량의 피해를 막아줍니다. 매초 2 소모합니다."
+Tile_TileTagDescription_Barrier,"保护盾<sprite name=""Barrier"">：阻挡一定量的伤害。每秒吸收2点护盾。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Consumes 2 per second.","バリア<sprite name=""Barrier"">: 一定量のダメージを防ぎます。毎秒2消費します。","보호막<sprite name=""Barrier"">: 일정량의 피해를 막아줍니다. 매초 2 소모됩니다."
 Tile_TileTagDescription_Pain,"痛苦<sprite name=""Pain"">：受到的伤害增加 10%。","Pain<sprite name=""Pain"">: Damage taken increases by 10%.","痛み<sprite name=""Pain"">: 受けるダメージが10%増加します。","고통<sprite name=""Pain"">: 받는 피해가 10% 증가합니다."
 Tile_TileTagDescription_Mark,"印记<sprite name=""Mark"">: 使你下次攻击受到的伤害提高 50%。(最多1个)","Mark<sprite name=""Mark"">: Increases the damage taken from your next attack by 50%. (Maximum 1)","烙印 <sprite name=""Mark"">: 次の攻撃 1 回のダメージを 50% 増加して受けます。(最大1)","낙인<sprite name=""Mark"">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다.(최대 1)"
 Tile_TileTagDescription_Curse,"诅咒<sprite name=""Curse"">：诅咒物品使用的资源。默认限制为 30。","Curse<sprite name=""Curse"">: A resource used by Curse items. The default limit is 30.","呪い<sprite name=""Curse"">: 呪いアイテムが使用するリソースです。","저주<sprite name=""Curse"">: 저주 아이템들이 사용하는 자원입니다. 기본적인 한도는 30입니다."
@@ -673,7 +673,7 @@ UI_Button_Yas,是的,Yes,はい,네
 UI_Button_No,不,No,いいえ,아니오
 UI_Button_Start,开始,GAME START,ゲームスタート,게임 시작
 UI_Button_Guide,教程,TUTORIAL,チュートリアル,튜토리얼
-UI_Button_Book,星座图鉴,ENCYCLOPEDIA,星座図鑑,별자리 도감
+UI_Button_Book,星座图鉴,CONSTELLATION,星座図鑑,별자리 도감
 UI_Button_Credit,信用,Credit,クレジット,크레딧
 UI_Button_Close,关闭,Close,閉じる,닫기
 UI_Button_Easy,简单的,Easy,イージー,쉬움
