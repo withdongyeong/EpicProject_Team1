@@ -75,8 +75,12 @@ public class PlayerHp : MonoBehaviour
             return;
 
         // 방어 상태면 방어막량 감소
-        if (_playerShield.TryShieldBlock(damage)) 
+        if (_playerShield.TryShieldBlock(damage))
+        {
+            SoundManager.Instance.PlayTileSoundClip("ShieldSkillRemove");
             return;
+        }
+
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);

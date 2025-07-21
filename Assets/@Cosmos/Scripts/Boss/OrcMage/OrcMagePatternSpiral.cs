@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
     public OrcMagePatternSpiral(GameObject groundSpikePrefab, int damage)
     {
         _groundSpikePrefab = groundSpikePrefab;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
