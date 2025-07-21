@@ -175,8 +175,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133698
-    m_Localized: "<color=yellow>Individual Square (3)</color>: Restores <color=green>5</color>
-      health. \r\nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
+    m_Localized: "<color=yellow>Nebula (3)</color>: Restores <color=green>5</color>
+      health. \nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
       <color=yellow>located on the Star<sprite name=\"Star\"></color>, restores <color=green>10</color>
       health."
     m_Metadata:
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133706
-    m_Localized: '<color=yellow>Individual Square (3)</color>: Fires a projectile.
+    m_Localized: '<color=yellow>Nebula (3)</color>: Fires a projectile.
 
       (Damage:<color=red>7</color>)
 
@@ -455,8 +455,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133729
-    m_Localized: '<color=yellow>At the start of combat</color>: Summon a turtle that
-      consumes <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
+    m_Localized: '<color=yellow>Start of battle</color>: Summon a turtle that consumes
+      <sprite name="Barrier"> shields. The turtle consumes 3 <sprite name="Barrier">
       shields per second.
 
       <color=yellow>When Barrier<sprite name="Barrier">
@@ -469,17 +469,17 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
-      of Curses <sprite name=\"Curse\"> to 40. \r\n<color=yellow>When activated</color>:
+      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>When activated</color>:
       Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \r\nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
-      currently applied to enemies to Curses <sprite name=\"Curse\">. \r\nIf there
+      \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
+      currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
       are 3 or more Magic Circles <sprite name=\"MagicCircle\"> <color=yellow>located
       on the Star<sprite name=\"Star\"></color>, Consume <color=red>20 Curses</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133732
-    m_Localized: "<color=yellow>Individual Square (2)</color>: Fires a projectile.
-      \r\n(Damage: <color=red>6</color>)"
+    m_Localized: "<color=yellow>Nebula (2)</color>: Fires a projectile. \n(Damage:
+      <color=red>6</color>)"
     m_Metadata:
       m_Items: []
   - m_Id: 43615133734
@@ -1019,7 +1019,7 @@ MonoBehaviour:
       of summoned swords. Summon a sword <sprite name="Sword"> and all swords will
       attack.
 
-      (Damage: <color=red>Number of summoned swords</color>)
+      (Damage: <color=red>Summoned Swords</color>)
 
       Cooldown
       is reduced by 10% for each summoned <sprite name="Summon"><color=yellow>located
@@ -1115,11 +1115,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3047510455754757
-    m_Localized: Give up the game
+    m_Localized: "Give up \nthe game"
     m_Metadata:
       m_Items: []
   - m_Id: 3047843219251209
-    m_Localized: Continue the game
+    m_Localized: "Continue \nthe game"
     m_Metadata:
       m_Items: []
   - m_Id: 3048611024347146
