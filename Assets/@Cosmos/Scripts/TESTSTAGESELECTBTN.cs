@@ -6,6 +6,9 @@ using Steamworks;
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
+    public Canvas dataCollectionCanvas;
+    
+    
     //빌딩씬에서 쓰는 스테이지 선택 버튼
     public void OnClick()
     {
@@ -14,6 +17,8 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         StageSelectManager.Instance.StageSelect();
         
     }
+
+  
 
 
     //타이틀씬에서 쓰는 빌딩 씬으로 이동하는 버튼
@@ -28,8 +33,10 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
-        GameManager.Instance.LoadTitle();
+        GameManager.Instance.LoadTitleFirst();
     }
+    
+    
 
     
     //가이드 전투씬으로 갑니다.
@@ -59,7 +66,8 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenTutoChoicePanel(GameObject gameObject)
     {
-        if(SaveManager.IsTutorialCompleted == 1)
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        if (SaveManager.IsTutorialCompleted == 1)
         {
             // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
             OpenDifficultySelectPannel();
@@ -71,6 +79,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenDifficultySelectPannel()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
     }
 

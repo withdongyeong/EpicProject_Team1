@@ -18,9 +18,23 @@ using Unity.Services.Core.Environments;
 public class AnalyticsManager : Singleton<AnalyticsManager>
 {
     private bool _isInitialized = false;
-    public bool noAnalytics = false; // 테스트용, 실제 배포시 false로 설정해야 합니다.
-    
+    public bool isAgreed = false; // 데이터 수집 동의 여부
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        EventBus.SubscribePlayerDeath(StageFailEvent);
+    }
     private async void Start()
+    {
+        isAgreed = SaveManager.IsDataAgreement;
+        if(!isAgreed) return;
+        CollectStart();
+    }
+
+
+    public async void CollectStart()
     {
         Debug.Log("--- UGS 테스트 시작 ---");
         try
@@ -56,7 +70,6 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     private bool IsInit()
     {
-        if (noAnalytics) return false; // 테스트용, 실제 배포시 false로 설정해야 합니다.
         if (!_isInitialized)
         {
             Debug.LogError("아직 초기화되지 않음! 이벤트 전송 불가."); 
@@ -96,8 +109,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "damage_taken", damageTaken },
             { "healing_received", healingReceived },
             { "protected_damage", protectedDamage },
-            { "hit_patterns", hitPatterns },
-            { "killer_pattern", killerPattern }
+            { "hit_patterns", hitPatterns }, 
+            { "killer_pattern", killerPattern } // 추가
         };
 
         // 3. 이벤트를 기록하고 전송합니다.
@@ -109,6 +122,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         
         // 스테이지 클리어 후 보스 패턴 로그 초기화
         BossPatternLogger.Instance.ClearLogs();
+        
+        AnalyticsService.Instance.Flush();
     }
 
     /// <summary>
@@ -143,7 +158,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "healing_received", healingReceived },
             { "protected_damage", protectedDamage },
             { "hit_patterns", hitPatterns },
-            { "killer_pattern", killerPattern }
+            { "killer_pattern", killerPattern } // 추가
         };
 
         // 3. 이벤트를 기록하고 전송합니다.
@@ -276,5 +291,12 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "initial_choice", initialChoice }
         };
         AnalyticsService.Instance.RecordEvent(tutorialPromptResponse);
+    }
+    
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribePlayerDeath(StageFailEvent);
+        
     }
 }
