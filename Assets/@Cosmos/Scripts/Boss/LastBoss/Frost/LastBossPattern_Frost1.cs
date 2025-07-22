@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 최종보스 - Frost1: 랜덤한 지역에 십자 모양으로 얼음 벽 생성 (중심점은 이동불가)
+/// 기존 이동불가 칸을 고려하여 해제하지 않도록 수정
 /// </summary>
 public class LastBossPattern_Frost1 : IBossAttackPattern
 {
@@ -58,12 +59,12 @@ public class LastBossPattern_Frost1 : IBossAttackPattern
                     1f,
                     wallDuration,
                     0,
-                    warningType:WarningType.Type3,
-                    patternName:PatternName
+                    PatternName,
+                    WarningType.Type3
                 );
                 
-                // 벽이 생기는 시점(1초 후)에 Grid 막기
-                boss.StartCoroutine(DelayedGridLock(center, 1f, wallDuration));
+                // 벽이 생기는 시점(1초 후)에 Grid 막기 (기존 상태 고려)
+                boss.StartCoroutine(DelayedGridLockWithCheck(center, 1f, wallDuration));
 
                 // 나머지 십자 부분은 일반 공격
                 foreach (var pos in crossShape)
@@ -77,8 +78,8 @@ public class LastBossPattern_Frost1 : IBossAttackPattern
                             1f,
                             0.8f,
                             _damage,
-                            warningType:WarningType.Type1,
-                            patternName:PatternName
+                            PatternName,
+                            WarningType.Type1
                         );
                     }
                 }
@@ -90,15 +91,34 @@ public class LastBossPattern_Frost1 : IBossAttackPattern
         yield return new WaitForSeconds(boss.Beat);
     }
 
-    private IEnumerator DelayedGridLock(Vector3Int pos, float lockDelay, float wallDuration)
+    /// <summary>
+    /// 기존 이동불가 상태를 고려한 Grid 잠금/해제
+    /// </summary>
+    /// <param name="pos">대상 위치</param>
+    /// <param name="lockDelay">잠금 지연 시간</param>
+    /// <param name="wallDuration">벽 지속 시간</param>
+    private IEnumerator DelayedGridLockWithCheck(Vector3Int pos, float lockDelay, float wallDuration)
     {
+        // 패턴 시작 전 해당 칸의 이동불가 상태 확인
+        bool wasAlreadyUnmovable = GridManager.Instance.UnmovableGridPositions.Contains(pos);
+        
         // 벽이 생기는 시점에 Grid 막기
         yield return new WaitForSeconds(lockDelay);
-        GridManager.Instance.AddUnmovableGridPosition(pos);
+        
+        // 이미 이동불가가 아닌 경우에만 추가
+        if (!wasAlreadyUnmovable)
+        {
+            GridManager.Instance.AddUnmovableGridPosition(pos);
+        }
         
         // 벽이 사라지는 시점에 Grid 해제
         yield return new WaitForSeconds(wallDuration);
-        GridManager.Instance.RemoveUnmovableGridPosition(pos);
+        
+        // 패턴 시작 전에 이미 이동불가였다면 해제하지 않음
+        if (!wasAlreadyUnmovable)
+        {
+            GridManager.Instance.RemoveUnmovableGridPosition(pos);
+        }
     }
 
     private Vector3Int GetRandomPosition()

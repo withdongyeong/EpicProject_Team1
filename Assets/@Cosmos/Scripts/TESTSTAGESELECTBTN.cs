@@ -6,16 +6,15 @@ using Steamworks;
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
-    public Canvas dataCollectionCanvas;
     
     
     //빌딩씬에서 쓰는 스테이지 선택 버튼
     public void OnClick()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
-        //빌딩 -> 전투이므로 이벤트를 호출합니다
         AnalyticsManager.Instance.BuildingCompleteEvent();
         StageSelectManager.Instance.StageSelect();
+        
         
     }
 
@@ -41,6 +40,17 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     
     //가이드 전투씬으로 갑니다.
+    public void ClickYesTuto()
+    {
+        AnalyticsManager.Instance.TutorialPromptResponseEvent("yes");
+        GOTUTO();
+    }
+    
+    public void ClickNoTuto()
+    {
+        AnalyticsManager.Instance.TutorialPromptResponseEvent("no");
+    }
+    
     public void GOTUTO()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
