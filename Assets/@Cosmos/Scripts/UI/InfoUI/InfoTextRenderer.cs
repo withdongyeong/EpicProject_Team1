@@ -32,7 +32,6 @@ public class InfoTextRenderer : MonoBehaviour
         { "Barrier", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Barrier") },
         {"Curse", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Curse") },
         {"Cloud",new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Cloud") },
-        {"Nebula", new LocalizedString("EpicProject_Table", "Tile_TileSynergy_Nebula")  }
     };
 
     private GameObject descriptionTextPrefab; // 설명 텍스트
@@ -128,6 +127,7 @@ public class InfoTextRenderer : MonoBehaviour
             if(!result.Contains(name)) 
             {
                 result.Add(name);
+                Debug.Log(name);
             }
         }
         return result;
