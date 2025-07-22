@@ -10,7 +10,7 @@ public class LastBossPattern_Frost1 : IBossAttackPattern
     private GameObject _explosionPrefab;
     private GameObject _wallPrefab;
     private int _damage;
-    public string PatternName => "Frost1";
+    public string PatternName => "10_3";
 
     public LastBossPattern_Frost1(GameObject explosionPrefab, GameObject wallPrefab, int damage)
     {
@@ -58,7 +58,8 @@ public class LastBossPattern_Frost1 : IBossAttackPattern
                     1f,
                     wallDuration,
                     0,
-                    WarningType.Type3
+                    warningType:WarningType.Type3,
+                    patternName:PatternName
                 );
                 
                 // 벽이 생기는 시점(1초 후)에 Grid 막기
@@ -76,7 +77,8 @@ public class LastBossPattern_Frost1 : IBossAttackPattern
                             1f,
                             0.8f,
                             _damage,
-                            WarningType.Type1
+                            warningType:WarningType.Type1,
+                            patternName:PatternName
                         );
                     }
                 }

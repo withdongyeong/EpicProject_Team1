@@ -10,7 +10,7 @@ public class LastBossPattern_Staff : IBossAttackPattern
     private GameObject _explosionPrefab;
     private int _damage;
     private bool _isSoundCoolTime = false;
-    public string PatternName => "StaffPattern";
+    public string PatternName => "10_5";
 
     public LastBossPattern_Staff(GameObject explosionPrefab, int damage)
     {
@@ -63,7 +63,8 @@ public class LastBossPattern_Staff : IBossAttackPattern
                 warningDuration: 1f,
                 explosionDuration: 1f,
                 damage: _damage,
-                WarningType.Type1
+                warningType:WarningType.Type1,
+                patternName:PatternName
             );
         }
 

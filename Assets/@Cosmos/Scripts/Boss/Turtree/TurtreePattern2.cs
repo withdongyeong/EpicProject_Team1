@@ -7,7 +7,7 @@ public class TurtreePattern2 : IBossAttackPattern
     private GameObject _treeAttackPrefeb;
     private int _damage;
 
-    public string PatternName => "TurtreePattern2";
+    public string PatternName => "5_3";
 
     public TurtreePattern2(GameObject TreeAttackPrefeb, int Damage)
     {
@@ -52,7 +52,8 @@ public class TurtreePattern2 : IBossAttackPattern
                     _treeAttackPrefeb,
                     warningDuration: 1f,
                     explosionDuration: 2f,
-                    damage: _damage
+                    damage: _damage,
+                    patternName:PatternName
                 );
 
                 if (Time.time - lastSoundTime >= halfBeat)

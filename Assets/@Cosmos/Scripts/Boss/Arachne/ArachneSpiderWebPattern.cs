@@ -11,7 +11,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
     private int _spiderWebCount;
     private List<Vector3Int> _singlePointShape;
 
-    public string PatternName => "ArachneSpiderWeb";
+    public string PatternName => "2_4";
 
     /// <summary>
     /// 아라크네 거미줄 패턴 생성자
@@ -72,7 +72,7 @@ public class ArachneSpiderWebPattern : IBossAttackPattern
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
                 boss.BombHandler.ExecuteFixedBomb(_singlePointShape, randomPosition, _spiderWebPrefab,
-                                              warningDuration: 1f, explosionDuration: 5*beat, damage: 0, warningType: WarningType.Type3);
+                                              warningDuration: 1f, explosionDuration: 5*beat, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
             }
         }    
 

@@ -12,7 +12,7 @@ public class BomberBigBombPattern : IBossAttackPattern
     private float quarterBeat;
     private float _lastSoundTime = -10f;
 
-    public string PatternName => "BomberBigBombPattern";
+    public string PatternName => "3_1";
 
     private readonly List<Vector3Int> bombPositions = new()
     {
@@ -47,7 +47,8 @@ public class BomberBigBombPattern : IBossAttackPattern
             warningDuration: 1f,
             explosionDuration: 0.8f,
             damage: 0,
-            warningType: WarningType.Type3
+            warningType: WarningType.Type3,
+            patternName:PatternName
         );
 
         boss.AttackAnimation();
@@ -69,7 +70,8 @@ public class BomberBigBombPattern : IBossAttackPattern
             warningDuration: 1f,
             explosionDuration: 0.8f,
             damage: 0,
-            warningType: WarningType.Type3
+            warningType: WarningType.Type3,
+            patternName:PatternName
         );
 
         yield return new WaitForSeconds(beat);
@@ -128,7 +130,8 @@ public class BomberBigBombPattern : IBossAttackPattern
                 warningDuration: 1f,
                 explosionDuration: 1f,
                 damage: _damage,
-                warningType: WarningType.Type1
+                warningType: WarningType.Type1,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(BombSound());

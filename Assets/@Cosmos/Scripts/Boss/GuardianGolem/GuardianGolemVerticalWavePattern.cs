@@ -10,7 +10,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private float _lastSoundTime = -10f; // ⬅️ 사운드 쿨다운 기준 시간
 
-    public string PatternName => "GuardianGolemTemporaryWallSummonPattern";
+    public string PatternName => "4_4";
 
     public GuardianGolemVerticalWavePattern(GameObject GuardianGolemRook, int damage)
     {
@@ -82,7 +82,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 1f,
                 explosionDuration: 0.7f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));
@@ -115,7 +116,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 1f,
                 explosionDuration: 0.7f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));

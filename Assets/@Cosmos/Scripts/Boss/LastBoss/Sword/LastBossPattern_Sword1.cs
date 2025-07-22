@@ -9,7 +9,7 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
     private int _damage;
-    public string PatternName => "Sword1";
+    public string PatternName => "10_10";
 
     public LastBossPattern_Sword1(GameObject explosionPrefab, int damage)
     {
@@ -40,7 +40,8 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
                     1f,
                     1f,
                     _damage,
-                    WarningType.Type1
+                    warningType:WarningType.Type1,
+                    patternName:PatternName
                 );
             }
         }
@@ -66,7 +67,8 @@ public class LastBossPattern_Sword1 : IBossAttackPattern
                         1f,
                         1f,
                         _damage,
-                        WarningType.Type1
+                        warningType:WarningType.Type1,
+                        patternName:PatternName
                     );
                 }
             }

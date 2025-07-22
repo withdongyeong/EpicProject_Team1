@@ -10,7 +10,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
     private GameObject _groundSpikePrefab;
     private int _damage;
 
-    public string PatternName => "OrcMagePattern_ExpandingSquare";
+    public string PatternName => "6_5";
 
     public OrcMagePatternExpandingSquare(GameObject groundSpikePrefab, int damage)
     {
@@ -42,7 +42,7 @@ public class OrcMagePatternExpandingSquare : IBossAttackPattern
             
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             boss.BombHandler.ExecuteFixedBomb(squareShape, center, _groundSpikePrefab,
-                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
             
             if (size == 1 || size == 2)
             {
