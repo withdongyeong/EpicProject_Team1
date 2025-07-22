@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class TimeScaleManager : Singleton<TimeScaleManager>
 {
     private static TimeScaleManager _instance;
+    [SerializeField]
+    private bool isTimeScaleStopped = false;
+    public bool IsTimeScaleStopped => isTimeScaleStopped;
     
     protected override void Awake()
     {
@@ -25,6 +28,8 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
             Time.timeScale = 1.0f;
             AudioListener.pause = false;
         }
+        Time.timeScale = 1.0f;
+        isTimeScaleStopped = false;
     }
     
     private void OnDestroy()
@@ -32,15 +37,12 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
     }
 
-    /// <summary>
-    /// 게임 완전 일시정지 (Time.timeScale + AudioListener)
-    /// </summary>
     public void StopTimeScale()
     {
         Time.timeScale = 0f;
         AudioListener.pause = true;  // 오디오도 일시정지
+        isTimeScaleStopped = true;
     }
-    
     /// <summary>
     /// 타임스케일 강제 초기화
     /// </summary>
@@ -48,5 +50,6 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     {
         Time.timeScale = 1.0f;
         AudioListener.pause = false;  // 오디오 일시정지 해제
+        isTimeScaleStopped = false;
     }
 }
