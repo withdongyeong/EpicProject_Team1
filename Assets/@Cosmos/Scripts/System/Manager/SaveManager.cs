@@ -16,6 +16,7 @@ public static class SaveManager
     public static int ShownUnlockLevel { get; private set; } //해금된 타일이 타이틀에서 보여진 정도입니다
     
     public static int LanguageIndex { get; private set; } //언어 인덱스 (0: 한국어, 3: 영어 등)
+    public static bool IsDataAgreement { get; private set; } // 데이터 동의 여부 (true: 동의, false: 비동의)
 
     // ✅ 처음 로드시 호출
     public static void LoadAll()
@@ -31,6 +32,7 @@ public static class SaveManager
         GameModeLevel = PlayerPrefs.GetInt(SaveKeys.GameModeLevel, 1);
         ShownUnlockLevel = PlayerPrefs.GetInt(SaveKeys.ShownUnlockLevel, 0);
         LanguageIndex = PlayerPrefs.GetInt(SaveKeys.LanguageIndex, 3); // 기본값은 3 (영어)
+        IsDataAgreement = PlayerPrefs.GetInt(SaveKeys.DataAgreement, 0) == 1; // 기본값은 비동의 (0)
     }
 
     public static void SaveAll()
@@ -46,6 +48,7 @@ public static class SaveManager
         PlayerPrefs.SetInt(SaveKeys.GameModeLevel, GameModeLevel);
         PlayerPrefs.SetInt(SaveKeys.ShownUnlockLevel, ShownUnlockLevel);
         PlayerPrefs.SetInt(SaveKeys.LanguageIndex, LanguageIndex); // 언어 인덱스 저장
+        PlayerPrefs.SetInt(SaveKeys.DataAgreement, IsDataAgreement ? 1 : 0); // 데이터 동의 여부 저장
         
         PlayerPrefs.Save(); // 변경 사항 저장
     }
@@ -134,6 +137,13 @@ public static class SaveManager
         PlayerPrefs.Save();
     }
     
+    public static void SaveDataAgreement(bool isAgreed)
+    {
+        IsDataAgreement = isAgreed;
+        PlayerPrefs.SetInt(SaveKeys.DataAgreement, isAgreed ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    
     public static void DeleteAllSaves()
     {
         PlayerPrefs.DeleteKey(SaveKeys.FirstStart);
@@ -147,6 +157,7 @@ public static class SaveManager
         PlayerPrefs.DeleteKey(SaveKeys.GameModeLevel);
         PlayerPrefs.DeleteKey(SaveKeys.ShownUnlockLevel);
         PlayerPrefs.DeleteKey(SaveKeys.LanguageIndex);
+        PlayerPrefs.DeleteKey(SaveKeys.DataAgreement);
         LoadAll();
         PlayerPrefs.Save(); // 변경 사항 저장
         
@@ -176,5 +187,6 @@ public static class SaveKeys
     public const string ShownUnlockLevel = "Shown_Unlock_Level";
     
     public const string LanguageIndex = "Language_Index"; // 언어 인덱스 저장 키
+    public const string DataAgreement = "Data_Agreement"; // 데이터 동의 여부 저장 키
     
 }
