@@ -15,6 +15,7 @@ public static class SceneLoader
     //셋팅 씬
     public const string SettingScene = "SettingScene";
     private static bool settingSceneLoaded = false;
+    private static bool isPausedBySettings = false;  // 설정창으로 인한 일시정지 상태 추적
 
     public static void LoadTitle() => FadeManager.Instance.LoadSceneWithFade(TitleScene);
     public static void LoadLogo() => FadeManager.Instance.LoadSceneWithFade(LogoScene);
@@ -61,15 +62,45 @@ public static class SceneLoader
         return false;
     }
 
+    /// <summary>
+    /// 설정창 토글 - 게임 상태에 따른 일시정지 처리 포함
+    /// </summary>
     public static void ToggleSetting()
     {
+        GameStateManager gameStateManager = GameStateManager.Instance;
+    
+        // Count 상태에서는 설정창 열기 차단
+        if (!settingSceneLoaded && !gameStateManager.CanOpenSetting())
+        {
+            return;
+        }
+
         if(!settingSceneLoaded)
         {
+            // Playing 상태이면서 현재 일시정지되지 않은 상태에서만 일시정지하고 플래그 설정
+            if (gameStateManager.CurrentState == GameState.Playing && 
+                !TimeScaleManager.Instance.IsTimeScaleStopped)
+            {
+                TimeScaleManager.Instance.StopTimeScale();
+                isPausedBySettings = true;  // 설정창이 일시정지를 시킨 경우만 true
+            }
+            else
+            {
+                isPausedBySettings = false;  // 이미 일시정지 상태였거나 Playing이 아닌 경우
+            }
+        
             SceneManager.LoadSceneAsync(SettingScene, LoadSceneMode.Additive);
             settingSceneLoaded = true;
         }
         else
         {
+            // 설정창으로 인한 일시정지였다면 해제
+            if (isPausedBySettings)
+            {
+                TimeScaleManager.Instance.ResetTimeScale();
+                isPausedBySettings = false;
+            }
+        
             SceneManager.UnloadSceneAsync(SettingScene);
             settingSceneLoaded = false;
         }

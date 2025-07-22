@@ -9,6 +9,7 @@ public enum GameState
     Title,
     Building,
     StageSelect,
+    Count,
     Playing,
     Victory,
     Defeat

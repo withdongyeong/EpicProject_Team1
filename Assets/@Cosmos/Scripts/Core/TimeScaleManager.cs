@@ -22,8 +22,13 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Time.timeScale = 1.0f;
-        isTimeScaleStopped = false;
+        // Additive 모드(설정창 등)에서는 timeScale을 건드리지 않음
+        if (mode == LoadSceneMode.Single)
+        {
+            Time.timeScale = 1.0f;
+            AudioListener.pause = false;
+            isTimeScaleStopped = false;
+        }
     }
     
     private void OnDestroy()
@@ -34,14 +39,17 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     public void StopTimeScale()
     {
         Time.timeScale = 0f;
+        AudioListener.pause = true;  // 오디오도 일시정지
         isTimeScaleStopped = true;
     }
+    
     /// <summary>
     /// 타임스케일 강제 초기화
     /// </summary>
     public void ResetTimeScale()
     {
         Time.timeScale = 1.0f;
+        AudioListener.pause = false;  // 오디오 일시정지 해제
         isTimeScaleStopped = false;
     }
 }
