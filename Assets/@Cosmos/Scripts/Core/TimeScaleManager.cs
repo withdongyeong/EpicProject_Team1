@@ -27,9 +27,8 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
         {
             Time.timeScale = 1.0f;
             AudioListener.pause = false;
+            isTimeScaleStopped = false;
         }
-        Time.timeScale = 1.0f;
-        isTimeScaleStopped = false;
     }
     
     private void OnDestroy()
@@ -43,6 +42,7 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
         AudioListener.pause = true;  // 오디오도 일시정지
         isTimeScaleStopped = true;
     }
+    
     /// <summary>
     /// 타임스케일 강제 초기화
     /// </summary>
