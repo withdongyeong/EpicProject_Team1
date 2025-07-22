@@ -11,6 +11,11 @@ public class LocalizeManager : Singleton<LocalizeManager>
         base.Awake();
     }
 
+    private void Start()
+    {
+        OnLanguageChanged(SaveManager.LanguageIndex);
+    }
+
     public int LocalizedIndex
     {
         get
@@ -34,6 +39,7 @@ public class LocalizeManager : Singleton<LocalizeManager>
         {
             LocalizationSettings.SelectedLocale = locale;
         }
+        SaveManager.SaveLanguageIndex(LocalizedIndex);
     }
 
     public string Local_Quset_Instruction_Text(string key)

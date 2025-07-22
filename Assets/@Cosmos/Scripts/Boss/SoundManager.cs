@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager>
 {
-
-
     [Tooltip("오디오 스코어")]
     private AudioSource interactionAudioSource;
     private AudioSource bgmAudioSource;
@@ -58,7 +56,6 @@ public class SoundManager : Singleton<SoundManager>
         {"TitleBGM", 0.1f }
     };
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -68,6 +65,53 @@ public class SoundManager : Singleton<SoundManager>
         interactionAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         bgmAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
 
+        /// 배경음악은 타임 스케일 영향 안 받도록(일시정지 영향 X)
+        if (bgmAudioSource != null)
+        {
+            bgmAudioSource.ignoreListenerPause = true;
+        }
+        
+        // 효과음 초기 설정
+        UpdateInteractionAudioSettings();
+        
+        // 게임 상태 변경 이벤트 구독
+        EventBus.SubscribeGameStateChanged(OnGameStateChanged);
+        
+        LoadAllSoundClips();
+        SubscribeEvents();
+    }
+
+    /// <summary>
+    /// 게임 상태 변경 시 효과음 AudioSource 설정 업데이트
+    /// </summary>
+    private void OnGameStateChanged(GameState newState)
+    {
+        UpdateInteractionAudioSettings();
+    }
+
+    /// <summary>
+    /// 게임 상태에 따른 효과음 AudioSource ignoreListenerPause 설정
+    /// Count, Victory, Defeat 상태에서는 효과음 일시정지 안함
+    /// </summary>
+    private void UpdateInteractionAudioSettings()
+    {
+        if (interactionAudioSource == null) return;
+        
+        GameState currentState = GameStateManager.Instance.CurrentState;
+        
+        // Count(카운트다운), Victory, Defeat 상태에서는 효과음이 일시정지되지 않도록 설정
+        bool shouldIgnorePause = (currentState == GameState.Count || 
+                                 currentState == GameState.Victory || 
+                                 currentState == GameState.Defeat);
+        
+        interactionAudioSource.ignoreListenerPause = shouldIgnorePause;
+    }
+
+    /// <summary>
+    /// 모든 사운드 클립 로딩
+    /// </summary>
+    private void LoadAllSoundClips()
+    {
         // 플레이어 사운드 초기화
         AudioClip[] playeraudioClips = Resources.LoadAll<AudioClip>("Sounds/Player");
         foreach (AudioClip clip in playeraudioClips)
@@ -89,7 +133,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] ArachneaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Arachne");
-
         foreach (AudioClip clip in ArachneaudioClips)
         {
             if (!ArachneSoundDictionary.ContainsKey(clip.name))
@@ -99,7 +142,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] OrcMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/OrcMage");
-
         foreach (AudioClip clip in OrcMageaudioClips)
         {
             if (!OrcMageSoundDictionary.ContainsKey(clip.name))
@@ -109,7 +151,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] SlimeMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Slime");
-
         foreach (AudioClip clip in SlimeMageaudioClips)
         {
             if (!SlimeSoundDictionary.ContainsKey(clip.name))
@@ -119,7 +160,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] BomberMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Bomber");
-
         foreach (AudioClip clip in BomberMageaudioClips)
         {
             if (!BomberSoundDictionary.ContainsKey(clip.name))
@@ -129,7 +169,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] GolemMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Golem");
-
         foreach (AudioClip clip in GolemMageaudioClips)
         {
             if (!GolemSoundDictionary.ContainsKey(clip.name))
@@ -139,7 +178,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] TurtreeMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Turtree");
-
         foreach (AudioClip clip in TurtreeMageaudioClips)
         {
             if (!TurtreeSoundDictionary.ContainsKey(clip.name))
@@ -149,7 +187,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] ReaperMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Reaper");
-
         foreach (AudioClip clip in ReaperMageaudioClips)
         {
             if (!ReaperSoundDictionary.ContainsKey(clip.name))
@@ -159,7 +196,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] KnightMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/Knight");
-
         foreach (AudioClip clip in KnightMageaudioClips)
         {
             if (!KnightSoundDictionary.ContainsKey(clip.name))
@@ -169,7 +205,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] BigHandMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/BigHand");
-
         foreach (AudioClip clip in BigHandMageaudioClips)
         {
             if (!BigHandSoundDictionary.ContainsKey(clip.name))
@@ -179,7 +214,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] LastBossMageaudioClips = Resources.LoadAll<AudioClip>("Sounds/Boss/LastBoss");
-
         foreach (AudioClip clip in LastBossMageaudioClips)
         {
             if (!LastBossSoundDictionary.ContainsKey(clip.name))
@@ -189,7 +223,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] UIaudioClips = Resources.LoadAll<AudioClip>("Sounds/UI");
-
         foreach (AudioClip clip in UIaudioClips)
         {
             if (!UISoundDictionary.ContainsKey(clip.name))
@@ -199,7 +232,6 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         AudioClip[] BGMaudioClips = Resources.LoadAll<AudioClip>("Sounds/BGM");
-
         foreach (AudioClip clip in BGMaudioClips)
         {
             if (!BGMSoundDictionary.ContainsKey(clip.name))
@@ -207,7 +239,13 @@ public class SoundManager : Singleton<SoundManager>
                 BGMSoundDictionary.Add(clip.name, clip);
             }
         }
+    }
 
+    /// <summary>
+    /// 이벤트 구독
+    /// </summary>
+    private void SubscribeEvents()
+    {
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
         EventBus.SubscribePlayerDeath(PlayerDeadSound);
         EventBus.SubscribeBossDeath(BossDeadSound);
@@ -260,7 +298,6 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-
     /// <summary>
     /// 아라크네 사운드 재생
     /// </summary>
@@ -268,7 +305,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = ArachneSoundDictionary.ContainsKey(clip) ? ArachneSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -286,7 +322,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = OrcMageSoundDictionary.ContainsKey(clip) ? OrcMageSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -304,7 +339,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = SlimeSoundDictionary.ContainsKey(clip) ? SlimeSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -322,7 +356,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = BomberSoundDictionary.ContainsKey(clip) ? BomberSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -340,7 +373,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = GolemSoundDictionary.ContainsKey(clip) ? GolemSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -358,7 +390,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = TurtreeSoundDictionary.ContainsKey(clip) ? TurtreeSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -376,7 +407,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = ReaperSoundDictionary.ContainsKey(clip) ? ReaperSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -394,7 +424,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = KnightSoundDictionary.ContainsKey(clip) ? KnightSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -412,7 +441,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = BigHandSoundDictionary.ContainsKey(clip) ? BigHandSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -430,7 +458,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (clip != null && interactionAudioSource != null)
         {
-
             AudioClip tileClip = LastBossSoundDictionary.ContainsKey(clip) ? LastBossSoundDictionary[clip] : null;
             if (tileClip != null)
             {
@@ -538,6 +565,7 @@ public class SoundManager : Singleton<SoundManager>
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
         EventBus.UnsubscribePlayerDeath(PlayerDeadSound);
         EventBus.UnsubscribeBossDeath(BossDeadSound);
+        EventBus.UnsubscribeGameStateChanged(OnGameStateChanged);
     }
 
     private float GetVolumeFromSettings(string clipName)

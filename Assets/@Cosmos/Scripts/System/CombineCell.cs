@@ -13,19 +13,20 @@ public class CombineCell : MonoBehaviour
     private SkillBase[] skills;
     private TileObject tileObject;
     
-    
     [SerializeField]
     private CoolDownEffect[] coolDownEffects;
 
     public Action OnStarListChanged;
 
+    /// <summary>
+    /// 현재 CombineCell에 할당된 스킬들을 반환합니다.
+    /// </summary>
     public SkillBase[] Skills => skills;
 
     private Dictionary<int, List<CoolDownEffect>> grouped = new();
     private List<int> sortedKeys = new List<int>();
 
     private void Awake()
-    
     {
         if (coreCell == null)
         {
@@ -44,22 +45,33 @@ public class CombineCell : MonoBehaviour
         EventBus.SubscribeSceneLoaded(StopAllCouroutines);
     }
 
+    /// <summary>
+    /// CombineCell의 스프라이트 렌더러를 반환합니다.
+    /// </summary>
     public SpriteRenderer GetSprite()
     {
         return sr;
     }
     
+    /// <summary>
+    /// 코어 셀 게임오브젝트를 반환합니다.
+    /// </summary>
     public GameObject GetCoreCell()
     {
         return coreCell;
     }
     
+    /// <summary>
+    /// 타일 오브젝트를 반환합니다.
+    /// </summary>
     public TileObject GetTileObject()
     {
         return tileObject;
     }
     
-    
+    /// <summary>
+    /// 할당된 모든 스킬을 실행 시도합니다.
+    /// </summary>
     public void ExecuteSkill()
     {
         if (skills == null || skills.Length == 0)
@@ -81,11 +93,18 @@ public class CombineCell : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 인접효과 리스트가 변경되었을 때 호출되는 메서드입니다.
+    /// </summary>
     private void UpdateStarList()
     {
         OnStarListChanged?.Invoke();
     }
 
+    /// <summary>
+    /// 스킬들에게 업데이트된 인접효과 리스트를 전달합니다.
+    /// </summary>
+    /// <param name="starBases">업데이트된 인접효과 리스트</param>
     private void GiveSkillStarList(List<StarBase> starBases)
     {
         foreach(SkillBase skill in skills)
@@ -94,46 +113,74 @@ public class CombineCell : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 쿨다운 이펙트를 활성화합니다.
+    /// </summary>
+    /// <param name="coolDownTime">총 쿨다운 시간</param>
     public void CoolDownEffectActivate(float coolDownTime)
     {
         StopAllCoroutines();
         StartCoroutine(CoolDownActivateCoroutine(coolDownTime));
     }
 
+    /// <summary>
+    /// 일시정지를 고려한 쿨다운 이펙트 실행 코루틴입니다.
+    /// </summary>
+    /// <param name="coolDownTime">총 쿨다운 시간</param>
     private IEnumerator CoolDownActivateCoroutine(float coolDownTime)
     {
-        
-        //sr.color = new Color(1, 1, 1, 1f);
         foreach (var effect in coolDownEffects)
         {
             effect.Init();
         }
         
-        
         int count = sortedKeys.Count;
-        coolDownTime/= count;
+        float groupCoolDownTime = coolDownTime / count;
+        
         foreach (int y in sortedKeys)
         {
             foreach (var effect in grouped[y])
             {
-                effect.StartCoolDown(coolDownTime);
+                effect.StartCoolDown(groupCoolDownTime);
             }
             
-            yield return new WaitForSeconds(coolDownTime);
+            // 일시정지를 고려한 대기
+            yield return StartCoroutine(WaitForGameTime(groupCoolDownTime));
         }
         
         foreach (var effect in coolDownEffects)
         {
             effect.CompleteEffect();
         }
-        
     }
 
-    
+    /// <summary>
+    /// 일시정지를 고려하여 게임 시간 기준으로 대기하는 코루틴입니다.
+    /// </summary>
+    /// <param name="waitTime">대기할 시간(초)</param>
+    private IEnumerator WaitForGameTime(float waitTime)
+    {
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < waitTime)
+        {
+            // 일시정지 중이 아닐 때만 시간을 증가
+            if (Time.timeScale > 0)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// 게임 시작시 쿨다운 이펙트들을 Y 레벨별로 그룹화합니다.
+    /// </summary>
     public void InitCoolDownGroup()
     {
-        grouped.Clear(); // 기존 그룹화된 데이터를 초기화
-        sortedKeys.Clear(); // 기존 정렬된 키 리스트 초기화
+        grouped.Clear();
+        sortedKeys.Clear();
+        
         foreach (var effect in coolDownEffects)
         {
             int yLevel = Mathf.RoundToInt(effect.transform.parent.position.y);
@@ -141,26 +188,34 @@ public class CombineCell : MonoBehaviour
             {
                 grouped[yLevel] = new List<CoolDownEffect>();
             }
-            //Debug.Log(yLevel+ " 레벨에 " + effect.name + " 추가");
             grouped[yLevel].Add(effect);
         }
 
-        sortedKeys = grouped.Keys.OrderBy(y => y).ToList(); // Y 레벨을 기준으로 정렬
+        sortedKeys = grouped.Keys.OrderBy(y => y).ToList();
     }
 
+    /// <summary>
+    /// 씬 변경시 모든 코루틴을 중지합니다. Additive 씬 로드는 제외됩니다.
+    /// </summary>
+    /// <param name="scene">로드된 씬</param>
+    /// <param name="mode">씬 로드 모드</param>
     private void StopAllCouroutines(Scene scene = default, LoadSceneMode mode = default)
     {
-        // 씬이 변경될 때 모든 코루틴을 중지합니다.
-        StopAllCoroutines();
+        // Additive 모드(설정창 등)는 무시하고, Single 모드일 때만 코루틴 중지
+        if (mode == LoadSceneMode.Single)
+        {
+            StopAllCoroutines();
+        }
     }
+
     private void OnDestroy()
     {
-        if(tileObject!=null)
+        if(tileObject != null)
         {
             tileObject.OnStarListChanged -= UpdateStarList;
+            tileObject.OnStarListUpdateCompleted -= GiveSkillStarList;
         }       
         EventBus.UnsubscribeGameStart(InitCoolDownGroup);
         EventBus.UnsubscribeSceneLoaded(StopAllCouroutines);
     }
-
 }

@@ -11,6 +11,7 @@ public class StageUIHandler : MonoBehaviour
     [Header("결과 패널")]
     public GameObject victoryPanel;    // 승리 시 표시되는 패널
     public GameObject defeatPanel;     // 패배 시 표시되는 패널
+    public GameObject titleScenePanel; // 타이틀 씬 패널
 
     [Header("버튼")]
     public Button victoryReturnButton; // 승리 패널의 돌아가기 버튼
@@ -19,8 +20,10 @@ public class StageUIHandler : MonoBehaviour
     public Button menuButton;
     public Button endingMenuButton;// 메인 메뉴 버튼
     public Button retryButton;         // 재시도 버튼
+    public Button continueButton;      // 계속하기 버튼
+    public Button abandonButton;       // 포기 버튼
 
-    
+
     private GameStateManager _gameStateManager;
 
 
@@ -60,11 +63,17 @@ public class StageUIHandler : MonoBehaviour
         }
 
         if (menuButton != null)
-            menuButton.onClick.AddListener(ReturnToMainMenu);
+            menuButton.onClick.AddListener(ShowTitleScenePanel);
 
         if (endingMenuButton != null)
             endingMenuButton.onClick.AddListener(ReturnToMainMenu);
 
+        if (continueButton != null)
+            continueButton.onClick.AddListener(OnContinueButton);
+
+        if (abandonButton != null) {
+            abandonButton.onClick.AddListener(ReturnToMainMenu);
+        }
 
     }
 
@@ -106,6 +115,15 @@ public class StageUIHandler : MonoBehaviour
     }
 
     /// <summary>
+    /// 타이틀 씬 패널 표시
+    /// </summary>
+    private void ShowTitleScenePanel()
+    {
+        ButtonClickSound();
+        titleScenePanel.SetActive(true);
+    }
+
+    /// <summary>
     /// 결과 패널 숨기기
     /// </summary>
     private void HideResultPanels()
@@ -119,6 +137,7 @@ public class StageUIHandler : MonoBehaviour
     /// </summary>
     private void ReturnToBuilding()
     {
+        ButtonClickSound();
         TimeScaleManager.Instance.ResetTimeScale();
         SceneLoader.LoadBuilding();
         
@@ -132,8 +151,15 @@ public class StageUIHandler : MonoBehaviour
 
     }
 
+    private void OnContinueButton()
+    {
+        ButtonClickSound();
+        titleScenePanel.SetActive(false);
+    }
+
     private void ReturnToMainMenu()
     {
+        ButtonClickSound();
         TimeScaleManager.Instance.ResetTimeScale();
         GameManager.Instance.LoadTitle();
 
@@ -148,6 +174,12 @@ public class StageUIHandler : MonoBehaviour
     {
         HideResultPanels();
         _gameStateManager.RestartGame();
+    }
+
+    private void ButtonClickSound()
+    {
+        // 버튼 클릭 사운드 재생
+        SoundManager.Instance.UISoundClip("ButtonActivate");
     }
 
     /// <summary>
