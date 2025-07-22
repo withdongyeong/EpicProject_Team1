@@ -13,6 +13,8 @@ public static class SaveManager
     public static float SfxVolume { get; private set; }
     public static int GameModeLevel { get; private set; } //게임모드가 해금 된 정도입니다 (ex:하드모드, 베리 하드모드)
     public static int ShownUnlockLevel { get; private set; } //해금된 타일이 타이틀에서 보여진 정도입니다
+    
+    public static int LanguageIndex { get; private set; } //언어 인덱스 (0: 한국어, 3: 영어 등)
 
     // ✅ 처음 로드시 호출
     public static void LoadAll()
@@ -26,6 +28,7 @@ public static class SaveManager
         SfxVolume = PlayerPrefs.GetFloat(SaveKeys.SfxVolume, 1.0f);
         GameModeLevel = PlayerPrefs.GetInt(SaveKeys.GameModeLevel, 1);
         ShownUnlockLevel = PlayerPrefs.GetInt(SaveKeys.ShownUnlockLevel, 0);
+        LanguageIndex = PlayerPrefs.GetInt("LanguageIndex", 3); // 기본값은 3 (영어)
     }
 
     public static void SaveAll()
@@ -39,6 +42,7 @@ public static class SaveManager
         PlayerPrefs.SetFloat(SaveKeys.SfxVolume, SfxVolume);
         PlayerPrefs.SetInt(SaveKeys.GameModeLevel, GameModeLevel);
         PlayerPrefs.SetInt(SaveKeys.ShownUnlockLevel, ShownUnlockLevel);
+        PlayerPrefs.SetInt(SaveKeys.LanguageIndex, LanguageIndex); // 언어 인덱스 저장
         
         PlayerPrefs.Save(); // 변경 사항 저장
     }
@@ -111,6 +115,14 @@ public static class SaveManager
         PlayerPrefs.SetInt(SaveKeys.ShownUnlockLevel, level);
         PlayerPrefs.Save();
     }
+    
+    public static void SaveLanguageIndex(int index)
+    {
+        LanguageIndex = index;
+        PlayerPrefs.SetInt("LanguageIndex", index);
+        PlayerPrefs.Save();
+    }
+    
     public static void DeleteAllSaves()
     {
         PlayerPrefs.DeleteKey(SaveKeys.UnlockLevel);
@@ -122,6 +134,7 @@ public static class SaveManager
         PlayerPrefs.DeleteKey(SaveKeys.SfxVolume);
         PlayerPrefs.DeleteKey(SaveKeys.GameModeLevel);
         PlayerPrefs.DeleteKey(SaveKeys.ShownUnlockLevel);
+        PlayerPrefs.DeleteKey(SaveKeys.LanguageIndex);
         LoadAll();
         PlayerPrefs.Save(); // 변경 사항 저장
         
@@ -148,5 +161,7 @@ public static class SaveKeys
     public const string GameModeLevel = "Game_Mode_Level";
 
     public const string ShownUnlockLevel = "Shown_Unlock_Level";
+    
+    public const string LanguageIndex = "Language_Index"; // 언어 인덱스 저장 키
     
 }
