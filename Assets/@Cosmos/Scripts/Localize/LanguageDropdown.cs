@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-using UnityEngine.Localization.Settings;
-
 public class FontChangingDropdown : MonoBehaviour
 {
     public TMP_Dropdown dropdown;
