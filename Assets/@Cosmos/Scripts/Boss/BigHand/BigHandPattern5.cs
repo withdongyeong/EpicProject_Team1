@@ -9,7 +9,7 @@ public class BigHandPattern5 : IBossAttackPattern
 {
     private GameObject _attackEffectPrefab;
     private int _damage;
-    public string PatternName => "패턴5_회전Y자";
+    public string PatternName => "9_6";
     private bool _isSoundCoolTime = false;
 
     public BigHandPattern5(GameObject attackEffectPrefab, int damage)
@@ -66,7 +66,8 @@ public class BigHandPattern5 : IBossAttackPattern
                 warningDuration: 1f,
                 explosionDuration: 0.8f,
                 damage: _damage,
-                warningType: WarningType.Type1
+                warningType: WarningType.Type1,
+                patternName:PatternName
             );
 
             yield return new WaitForSeconds(boss.Beat * 2);

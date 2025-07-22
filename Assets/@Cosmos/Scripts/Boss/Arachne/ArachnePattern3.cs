@@ -10,7 +10,7 @@ public class ArachnePattern3 : IBossAttackPattern
     private int _strongDamage;
     private int _weakDamage;
 
-    public string PatternName => "ArachnePattern3";
+    public string PatternName => "2_3";
 
     public ArachnePattern3(GameObject poisionAriaPrefab, GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab, int strongDamage, int weakDamage)
     {
@@ -76,7 +76,7 @@ public class ArachnePattern3 : IBossAttackPattern
             }
         }
 
-        boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab, 1f, 0.7f, _weakDamage);
+        boss.BombHandler.ExecuteTargetingBomb(attackShape, _poisionAriaPrefab, 1f, 0.7f, _weakDamage, patternName:PatternName);
         boss.AttackAnimation();
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 1f));
 
@@ -96,8 +96,8 @@ public class ArachnePattern3 : IBossAttackPattern
 
         Vector3Int player = new(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY, 0);
 
-        boss.BombHandler.ExecuteFixedBomb(effect, player, _rToLspiderLeg, 1f, 0.3f, _strongDamage);
-        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _strongDamage);
+        boss.BombHandler.ExecuteFixedBomb(effect, player, _rToLspiderLeg, 1f, 0.3f, _strongDamage, patternName:PatternName);
+        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _strongDamage, patternName:PatternName);
         boss.AttackAnimation();
         boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 1f));
 
@@ -117,8 +117,8 @@ public class ArachnePattern3 : IBossAttackPattern
 
         Vector3Int player = new(boss.BombHandler.PlayerController.CurrentX, boss.BombHandler.PlayerController.CurrentY, 0);
 
-        boss.BombHandler.ExecuteFixedBomb(effect, player, _lToRspiderLeg, 1f, 0.3f, _strongDamage);
-        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _strongDamage);
+        boss.BombHandler.ExecuteFixedBomb(effect, player, _lToRspiderLeg, 1f, 0.3f, _strongDamage, patternName:PatternName);
+        boss.BombHandler.ExecuteWarningThenDamage(damage, player, 1f, _strongDamage, patternName:PatternName);
         boss.AttackAnimation();
         boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 1f));
 

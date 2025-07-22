@@ -6,6 +6,7 @@ public class EnemyProjectile : MonoBehaviour
     private float speed = 12f;
     private Vector3 direction;
     private ProjectileTeam _team; // 투사체 소속 진영
+    private string PatternName = "EnemyProjectile";
 
     public enum ProjectileTeam
     {
@@ -47,7 +48,7 @@ public class EnemyProjectile : MonoBehaviour
             PlayerHp player = other.GetComponent<PlayerHp>();
             if (player != null)
             {
-                player.TakeDamage(damage);
+                player.TakeDamage(damage, patternName:PatternName);
                 Destroy(gameObject);
             }
         }

@@ -11,7 +11,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
     {
         private GameObject _groundSpikePrefab;
 
-        public string PatternName => "OrcMagePattern_Wave";
+        public string PatternName => "6_1";
 
         public OrcMagePatternWave(GameObject groundSpikePrefab)
         {
@@ -51,7 +51,7 @@ namespace Cosmos.Scripts.Boss.OrcMage
 
                 boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 0.8f));
                 boss.BombHandler.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
-                                                  warningDuration: 0.3f, explosionDuration: 0.5f, damage: 25, WarningType.Type1);
+                                                  warningDuration: 0.3f, explosionDuration: 0.5f, damage: 25, warningType:WarningType.Type1, patternName:PatternName);
 
                 yield return new WaitForSeconds(0.2f); // 빠른 연속 실행
             }

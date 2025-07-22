@@ -10,7 +10,7 @@ public class OrcMagePatternWave : IBossAttackPattern
     private GameObject _groundSpikePrefab;
     private int _damage;
     private float beat;
-    public string PatternName => "OrcMagePattern_Wave";
+    public string PatternName => "6_7";
 
     public OrcMagePatternWave(GameObject groundSpikePrefab, int damage)
     {
@@ -86,7 +86,7 @@ public class OrcMagePatternWave : IBossAttackPattern
             
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             boss.BombHandler.ExecuteFixedBomb(lineShape, center, _groundSpikePrefab,
-                warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                warningDuration: 1f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
 
             // 두번쨰까지만 1비트 나머지는 반비트
             if (step == 0 || step == 1)

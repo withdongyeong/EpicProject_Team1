@@ -5,7 +5,7 @@ using System.Collections;
 public class GuardianGolemPattern2 : IBossAttackPattern
 {
     private GameObject _guardianGolemRook;
-    public string PatternName => "GuardianGolemPattern2";
+    public string PatternName => "4_2";
     private int _damage;
 
     public GuardianGolemPattern2(GameObject guardianGolemRook, int damage)
@@ -86,7 +86,8 @@ public class GuardianGolemPattern2 : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 1f,
                 explosionDuration: 0.7f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(DelayedSound());

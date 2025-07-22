@@ -10,7 +10,7 @@ public class BigHandFistPrepPattern : IBossAttackPattern
     private GameObject _attackEffectPrefab;
     private int _damage;
     private bool _isSoundCoolTime = false; // 사운드 쿨타임 관리
-    public string PatternName => "주먹_유도";
+    public string PatternName => "9_9";
     
     public BigHandFistPrepPattern(GameObject attackEffectPrefab, int damage)
     {
@@ -189,7 +189,8 @@ public class BigHandFistPrepPattern : IBossAttackPattern
             _attackEffectPrefab,
             warningDuration: 1f,
             explosionDuration: 0.8f,
-            damage: _damage
+            damage: _damage,
+            patternName:PatternName
         );
         
         yield break;
@@ -262,7 +263,8 @@ public class BigHandFistPrepPattern : IBossAttackPattern
             _attackEffectPrefab,
             warningDuration: 1f,
             explosionDuration: 0.7f,
-            damage: _damage
+            damage: _damage,
+            patternName:PatternName
         );
         
         yield break;

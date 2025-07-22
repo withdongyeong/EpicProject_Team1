@@ -6,7 +6,7 @@ public class ReaperShortDeathAreaPattern : IBossAttackPattern
 {
     private GameObject _shortDeathAria;
     private float _deathAriaTime;
-    public string PatternName => "ReaperShortDeathAriaPattern";
+    public string PatternName => "7_6";
 
     /// <summary>
     /// 가디언 골렘 패턴1 생성자
@@ -68,7 +68,7 @@ public class ReaperShortDeathAreaPattern : IBossAttackPattern
             }
 
            boss.BombHandler.ExecuteFixedBomb(webPositions, new Vector3Int(0, 0, 0), _shortDeathAria,
-                                                  warningDuration: 1f, explosionDuration: _deathAriaTime, damage: 0, warningType: WarningType.Type3);
+                                                  warningDuration: 1f, explosionDuration: _deathAriaTime, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
 
             yield return new WaitForSeconds(boss.Beat / 2);
         }
