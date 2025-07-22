@@ -26,7 +26,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         base.Awake();
         EventBus.SubscribePlayerDeath(StageFailEvent);
     }
-    private async void Start()
+    private void Start()
     {
         isAgreed = SaveManager.IsDataAgreement;
         if(!isAgreed) return;
@@ -123,7 +123,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 스테이지 클리어 후 보스 패턴 로그 초기화
         BossPatternLogger.Instance.ClearLogs();
         
-        AnalyticsService.Instance.Flush();
+        //AnalyticsService.Instance.Flush();
     }
 
     /// <summary>
