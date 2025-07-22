@@ -251,6 +251,13 @@ public abstract class BaseBoss : MonoBehaviour
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
         _totalDamageManager.AddDamage(damage);
+
+        if(damage >= 200)
+        {
+            Debug.Log("됨");
+            SteamAchievement.Achieve("ACH_BTL_DAMAGE");
+        }
+        
         
         if (_currentHealth <= 0)
         {

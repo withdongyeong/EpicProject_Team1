@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using System.Threading.Tasks;
 using Unity.Services.Core;
@@ -200,9 +200,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
     public void BuildingCompleteEvent()
     {
         if(!IsInit()) return;
-        
+
+        StoreSlotController storeSlotController = FindAnyObjectByType<StoreSlotController>();
+
         // 1. 필요한 정보를 수집합니다.
-        float sessionTime = GameManager.Instance.LogHandler.GetSessionPlayTimer();
+        int stageIndex = GameManager.Instance.LogHandler.GetStageIndex();
         string purchasedTiles = "";
         string placedTiles = "";
         string soldTiles = "";
@@ -215,7 +217,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 2. 'building_complete' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent buildingCompleteEvent = new CustomEvent("building_complete")
         {
-            { "session_time", sessionTime },
+            { "stage_index", stageIndex },
             { "purchased_tiles", purchasedTiles},
             { "placed_tiles", placedTiles},
             { "sold_tiles", soldTiles},

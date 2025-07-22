@@ -13,7 +13,8 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     public void OnClick()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
-
+        //빌딩 -> 전투이므로 이벤트를 호출합니다
+        AnalyticsManager.Instance.BuildingCompleteEvent();
         StageSelectManager.Instance.StageSelect();
         
     }
