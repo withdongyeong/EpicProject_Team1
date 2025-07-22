@@ -10,7 +10,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
     private GameObject _groundSpikePrefab;
     private int _damage;
 
-    public string PatternName => "OrcMagePattern_ChainExplosion";
+    public string PatternName => "6_4";
 
     public OrcMagePatternChainExplosion(GameObject groundSpikePrefab, int damage)
     {
@@ -43,7 +43,7 @@ public class OrcMagePatternChainExplosion : IBossAttackPattern
 
             boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
             boss.BombHandler.ExecuteFixedBomb(explosionShape, explosionPos, _groundSpikePrefab,
-                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
 
             yield return new WaitForSeconds(beat/2);
         }

@@ -8,7 +8,7 @@ public class ArachnePattern1 : IBossAttackPattern
     private GameObject _rToLspiderLegPrefab;
     private int _damage;
 
-    public string PatternName => "ArachnePattern1";
+    public string PatternName => "2_1";
 
     public ArachnePattern1(GameObject LToRspiderLegPrefab, GameObject RToLspiderLegPrefab, int Damage)
     {
@@ -53,10 +53,10 @@ public class ArachnePattern1 : IBossAttackPattern
             }
 
             boss.BombHandler.ExecuteFixedBomb(EffectslashShape, centerPos, _rToLspiderLegPrefab,
-                warningDuration: 1f, explosionDuration: halfBeat, damage: _damage);
+                warningDuration: 1f, explosionDuration: halfBeat, damage: _damage, patternName:PatternName);
             
             boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
-                warningDuration: 1f, damage: _damage);
+                warningDuration: 1f, damage: _damage, patternName:PatternName);
 
             boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 1f));
             boss.AttackAnimation();
@@ -85,10 +85,10 @@ public class ArachnePattern1 : IBossAttackPattern
             }
 
             boss.BombHandler.ExecuteFixedBomb(EffectslashShape, centerPos, _lToRspiderLegPrefab,
-                warningDuration: 1f, explosionDuration: halfBeat, damage: _damage);
+                warningDuration: 1f, explosionDuration: halfBeat, damage: _damage, patternName:PatternName);
 
             boss.BombHandler.ExecuteWarningThenDamage(slashShape, centerPos,
-                warningDuration: 1f, damage: _damage);
+                warningDuration: 1f, damage: _damage, patternName:PatternName);
 
             if (!isTorsion) boss.StartCoroutine(PlayDelayedSound("SpiderLegActivate", 1f));
             boss.AttackAnimation();

@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class BigHandFingerReturnPattern : IBossAttackPattern
 {
-    public string PatternName => "손가락_복귀";
+    public string PatternName => "9_11";
 
     public bool CanExecute(BaseBoss boss)
     {

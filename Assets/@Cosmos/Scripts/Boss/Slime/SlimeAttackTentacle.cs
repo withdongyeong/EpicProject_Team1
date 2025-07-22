@@ -3,6 +3,7 @@
 public class SlimeAttackTentacle : MonoBehaviour
 {
     private int damage = 20;
+    private string PatternName = "1_4";
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -10,7 +11,7 @@ public class SlimeAttackTentacle : MonoBehaviour
         PlayerHp player = other.GetComponent<PlayerHp>();
         if (player != null)
         {
-            player.TakeDamage(damage);
+            player.TakeDamage(damage, patternName:PatternName);
         }
     }
 }

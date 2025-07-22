@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ReaperDeathArea : MonoBehaviour
 {
     public GameObject DeathAreaPrefeb;
-
+    private string PatternName = "7_2";
     private List<Vector3Int> _singlePointShape;
     void Start()
     {
@@ -35,7 +35,7 @@ public class ReaperDeathArea : MonoBehaviour
             if (x == PassX1 || x == PassX2) continue;
 
             GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(x, 4, 0), DeathAreaPrefeb,
-                warningDuration: 0.8f, explosionDuration: 2000.0f, damage: 0, warningType: WarningType.Type3);
+                warningDuration: 0.8f, explosionDuration: 2000.0f, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
         }
 
         yield return 0;
@@ -51,7 +51,7 @@ public class ReaperDeathArea : MonoBehaviour
             if (y == PassY1 || y == PassY2) continue;
 
             GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(4, y, 0), DeathAreaPrefeb,
-                                             warningDuration: 0.8f, explosionDuration: 2000.0f, damage: 0, warningType: WarningType.Type3);
+                                             warningDuration: 0.8f, explosionDuration: 2000.0f, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
         }
 
         yield return 0;

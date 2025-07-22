@@ -12,7 +12,7 @@ public class BomberSpeardAttack : IBossAttackPattern
     private float beat;
     private float quarterBeat;
 
-    public string PatternName => "LightningKnightSpeardAttack";
+    public string PatternName => "3_2";
 
     public BomberSpeardAttack(GameObject BombActtck, GameObject Bombball, Vector3Int centerPos, int damage)
     {
@@ -45,7 +45,8 @@ public class BomberSpeardAttack : IBossAttackPattern
             warningDuration: 0f,
             explosionDuration: 0.3f,
             damage: 0,
-            warningType: WarningType.Type3
+            warningType: WarningType.Type3,
+            patternName:PatternName
         );
 
         yield return new WaitForSeconds(quarterBeat);
@@ -86,7 +87,8 @@ public class BomberSpeardAttack : IBossAttackPattern
                 warningDuration: 1f,
                 explosionDuration: 1f,
                 damage: _damage,
-                WarningType.Type1
+                warningType:WarningType.Type1,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(BombSound());

@@ -8,7 +8,7 @@ using UnityEngine;
 public class LastBossPattern_Staff5 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
-    public string PatternName => "StaffPattern5";
+    public string PatternName => "10_9";
     private int _damage;
     private bool _isSoundCoolTime = false;
 
@@ -49,7 +49,7 @@ public class LastBossPattern_Staff5 : IBossAttackPattern
 
             foreach (var pos in ringPositions)
             {
-                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, warningType:WarningType.Type1, patternName:PatternName);
             }
 
             yield return new WaitForSeconds(boss.Beat/4);
