@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using Newtonsoft.Json; // 🔑 JSON 직렬화를 위해 필요합니다.
 
@@ -46,8 +46,37 @@ public class LogHandler : MonoBehaviour
         return json; // 아이템 사용 딕셔너리를 JSON 문자열로 변환
     }
     
-    
-   
+    public int GetHealedAmount()
+    {
+        PlayerHp playerHp = FindAnyObjectByType<PlayerHp>();
+        int healedAmount = 0; // 초기화
+        if (playerHp != null)
+        {
+            healedAmount = playerHp.HealedAmount; // 플레이어가 힐한 양을 가져옵니다.
+        }
+        else
+        {
+            Debug.LogWarning("PlayerHp component not found.");
+        }
+        return healedAmount; // 힐한 양 반환
+    }
+
+    public int GetProtectionAmount()
+    {
+        PlayerProtection playerProtection = FindAnyObjectByType<PlayerProtection>();
+        int protectionAmount = 0; // 초기화
+        if (playerProtection != null)
+        {
+            protectionAmount = playerProtection.AllProtectionAmount; // 플레이어가 보호한 양을 가져옵니다.
+        }
+        else
+        {
+            Debug.LogWarning("PlayerProtection component not found.");
+        }
+        return protectionAmount; // 보호한 양 반환
+    }
+
+
     private void UpdateTimers()
     {
         // 총 플레이 시간 업데이트
