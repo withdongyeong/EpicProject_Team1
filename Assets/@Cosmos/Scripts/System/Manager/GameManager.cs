@@ -161,6 +161,7 @@ public class GameManager : Singleton<GameManager>
     public void GameQuit()
     {
         SaveManager.SaveAll(); // 게임 저장
+        AnalyticsManager.Instance.GameExitEvent();
         SteamStatsManager.Instance.UploadStatsToServer();
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
