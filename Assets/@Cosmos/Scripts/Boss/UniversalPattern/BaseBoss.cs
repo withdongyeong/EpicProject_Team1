@@ -247,6 +247,13 @@ public abstract class BaseBoss : MonoBehaviour
         {
             damage = Mathf.CeilToInt(damage * 1.5f); // 공격 중지 상태에서는 데미지 1.5배 증가
         }
+        if (hitObject.name.Contains("Hammer"))
+        {
+            if (damage >= 500)
+            {
+                SteamAchievement.Achieve("ACH_CON_HAMMER"); // FrostHammer 업적 달성
+            }
+        }
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);

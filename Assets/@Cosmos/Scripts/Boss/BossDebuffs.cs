@@ -162,19 +162,20 @@ public class BossDebuffs : MonoBehaviour
                 {
                     Destroy(markEffect); // Mark 이펙트 제거
                 }
-                else if (debuff == BossDebuff.Burning)
+            }
+            else if (debuff == BossDebuff.Burning)
+            {
+                // 화상 상태 이상이 제거되면 애니메이션 레벨 초기화
+                SetBurningAnimLevel();
+            }
+            else if (debuff == BossDebuff.Curse)
+            {
+                // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
+                SetCurseAnimLevel();
+                Debug.Log($"Curse Count: {debuffs[(int)BossDebuff.Curse]}");
+                if (debuffs[(int)BossDebuff.Curse] >= 60)
                 {
-                    // 화상 상태 이상이 제거되면 애니메이션 레벨 초기화
-                    SetBurningAnimLevel();
-                }
-                else if (debuff == BossDebuff.Curse)
-                {
-                    // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
-                    SetCurseAnimLevel();
-                    if (debuffs[(int)BossDebuff.Curse] >= 60)
-                    {
-                        SteamAchievement.Achieve("ACH_CON_CURSE"); // 저주 상태 이상 60개 제거 시 업적
-                    }
+                    SteamAchievement.Achieve("ACH_CON_CURSE"); // 저주 상태 이상 60개 제거 시 업적
                 }
             }
             debuffs[(int)debuff] = 0; // 상태 이상 카운트 초기화
