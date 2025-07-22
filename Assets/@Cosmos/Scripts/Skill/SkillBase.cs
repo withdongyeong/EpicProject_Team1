@@ -271,7 +271,8 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void ResetCoolDown(Scene scene, LoadSceneMode mode)
     {
-        if(SceneLoader.IsInBuilding())
+        // Additive 모드는 무시하고, BuildingScene일 때만 리셋
+        if (mode == LoadSceneMode.Single && SceneLoader.IsInBuilding())
         {
             lastUsedTime = -Mathf.Infinity;
         }   
