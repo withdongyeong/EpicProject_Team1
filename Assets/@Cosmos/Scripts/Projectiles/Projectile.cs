@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     private SpriteRenderer _sr;
 
     private GameObject hitEffect;
+    private GameObject hitEffectHammer;
     private string PatternName = "Projectile";
    
     public enum ProjectileTeam
@@ -47,6 +48,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         hitEffect = Resources.Load("Prefabs/HitEffect/HitEffect_Frost") as GameObject;
+        hitEffectHammer = Resources.Load("Prefabs/HitEffect/HitEffect_Hammer") as GameObject;
     }
 
     void Update()
@@ -97,14 +99,9 @@ public class Projectile : MonoBehaviour
                 {
                     if(bossDebuff == BossDebuff.Frostbite)
                     {
-                        enemy.TakeDamage(damage, hitEffect);
-                        // 피해량이 500 이상인 경우 업적
                         if (isFrostHammer)
                         {
-                            if (damage >= 333)
-                            {
-                                SteamAchievement.Achieve("ACH_CON_HAMMER"); // FrostHammer 업적 달성
-                            }
+                            enemy.TakeDamage(damage, hitEffectHammer); // FrostHammer 효과 적용
 
                             if (enemy.IsStopped || enemy.IsDamageIncreased)
                             {
@@ -112,6 +109,10 @@ public class Projectile : MonoBehaviour
                                 Destroy(gameObject); // 디버프 부여하지 않고 투사체 제거
                             }
                             
+                        }
+                        else
+                        {
+                            enemy.TakeDamage(damage, hitEffect); // Frostbite 효과 적용
                         }
                     }
                     else enemy.TakeDamage(damage, null);
