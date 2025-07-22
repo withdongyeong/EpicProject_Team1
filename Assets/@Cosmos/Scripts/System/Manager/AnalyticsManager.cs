@@ -19,8 +19,14 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 {
     private bool _isInitialized = false;
     public bool isAgreed = false; // 데이터 수집 동의 여부
-    
-    private async void Start()
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        EventBus.SubscribePlayerDeath(StageFailEvent);
+    }
+    private void Start()
     {
         isAgreed = SaveManager.IsDataAgreement;
         if(!isAgreed) return;
@@ -103,8 +109,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "damage_taken", damageTaken },
             { "healing_received", healingReceived },
             { "protected_damage", protectedDamage },
-            { "hit_patterns", hitPatterns },
-            { "killer_pattern", killerPattern }
+            { "hit_patterns", hitPatterns }, 
+            { "killer_pattern", killerPattern } // 추가
         };
 
         // 3. 이벤트를 기록하고 전송합니다.
@@ -116,6 +122,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         
         // 스테이지 클리어 후 보스 패턴 로그 초기화
         BossPatternLogger.Instance.ClearLogs();
+        
+        //AnalyticsService.Instance.Flush();
     }
 
     /// <summary>
@@ -150,7 +158,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "healing_received", healingReceived },
             { "protected_damage", protectedDamage },
             { "hit_patterns", hitPatterns },
-            { "killer_pattern", killerPattern }
+            { "killer_pattern", killerPattern } // 추가
         };
 
         // 3. 이벤트를 기록하고 전송합니다.
@@ -283,5 +291,12 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "initial_choice", initialChoice }
         };
         AnalyticsService.Instance.RecordEvent(tutorialPromptResponse);
+    }
+    
+    
+    private void OnDestroy()
+    {
+        EventBus.UnsubscribePlayerDeath(StageFailEvent);
+        
     }
 }
