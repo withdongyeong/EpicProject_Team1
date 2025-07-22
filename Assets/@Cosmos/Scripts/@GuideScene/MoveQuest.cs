@@ -50,6 +50,5 @@ public class MoveQuest : GuideQuest
 
     public override void OnComplete()
     {
-        SteamAchievement.Achieve("TEST_ACHV_01");
     }
 }
