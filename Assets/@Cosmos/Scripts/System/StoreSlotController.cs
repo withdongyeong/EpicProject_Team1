@@ -9,7 +9,8 @@ public class StoreSlotController : MonoBehaviour
 {
     private StoreSlot[] storeSlots;
 
-    private int _rerollNum = 0; //도전과제용 리롤한 횟수입니다.
+    private int _rerollNum = 0; //이번 상점에서 리롤한 횟수입니다.
+    public int RerollNum => _rerollNum;
 
     private int _safeInt = 0;
     private int _unlockLevel;

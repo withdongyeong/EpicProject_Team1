@@ -7,6 +7,7 @@ using Unity.Services.Analytics;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Unity.Services.Core.Environments;
+using System.Linq;
 
 // ✅ 이 스크립트는 Unity Analytics를 사용하여 게임 이벤트를 기록하는 매니저입니다.
 // ✅ 이 스크립트는 싱글턴 패턴을 사용하여 게임 전역에서 접근할 수 있는 AnalyticsManager를 구현합니다.
@@ -205,17 +206,19 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
     public void BuildingCompleteEvent()
     {
         if(!IsInit()) return;
-        
+
+        StoreSlotController storeSlotController = FindAnyObjectByType<StoreSlotController>();
+
         // 1. 필요한 정보를 수집합니다.
         int stageIndex = GameManager.Instance.LogHandler.GetStageIndex();
-        string purchasedTiles = "";
-        string placedTiles = "";
-        string soldTiles = "";
-        int lockCount = -1;
-        int rerollCount = -1;
-        int enforcedTilesCount = -1;
-        int totalStarCount = -1;
-        int activatedStarCount = -1;
+        string purchasedTiles = GameManager.Instance.LogHandler.GetPurchasedTile();
+        string placedTiles = string.Join(", ", GridManager.Instance.PlacedTileList);
+        string soldTiles = GameManager.Instance.LogHandler.GetSelledTile();
+        int lockCount = StoreLockManager.Instance.GetStoreLockInt();
+        int rerollCount = storeSlotController.RerollNum;
+        int enforcedTilesCount = GameManager.Instance.LogHandler.EnforcedTileNum;
+        int totalStarCount = GameManager.Instance.LogHandler.totalStarNum;
+        int activatedStarCount = GridManager.Instance.TilesOnGrid.GetEnforcedStarNum();
         
         // 2. 'building_complete' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent buildingCompleteEvent = new CustomEvent("building_complete")

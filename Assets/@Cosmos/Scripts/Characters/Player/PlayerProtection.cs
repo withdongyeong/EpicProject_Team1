@@ -161,7 +161,11 @@ public class PlayerProtection : MonoBehaviour
         {
             //보호한 데미지량
             int blockedDamage = Mathf.Min(damage, _protectionAmount);
-            _allProtectionAmount += blockedDamage;
+            //흡수하는 데미지가 아니라면 로그로 보낼 막은 데미지에 더합니다.
+            if(!isCounsumed)
+            {
+               _allProtectionAmount += blockedDamage;
+            }
             _protectionAmount -= damage;
             if (_protectionAmount <= 0)
             { 

@@ -48,6 +48,7 @@ public class DragOnGrid : DraggableObject
             GridManager.Instance.ReleaseCell(gridPos);
         }
         GridManager.Instance.RemovePlacedTileList(gameObject.GetComponent<TileObject>());
+        GameManager.Instance.LogHandler.totalStarNum -= _tileObject.StarCount;
         //_tileObject.ShowStarCell(); << 여기다 넣었는데 안되더라구요 , 코루틴이면 1프레임 쉬고 넣었을텐데 .
     }
 
