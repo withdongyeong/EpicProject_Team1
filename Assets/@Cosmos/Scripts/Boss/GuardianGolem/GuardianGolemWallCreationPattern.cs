@@ -12,6 +12,7 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
     private List<Vector3Int> AllWallPointList;
 
     private float beat;
+    private string PatternName = "4_5";
 
     private List<Vector3Int> _singlePointShape;   
     void Start()
@@ -62,10 +63,10 @@ public class GuardianGolemWallCreationPattern : MonoBehaviour
             LeftPointList.Add(new Vector3Int(8 - DeleteCount, y, 0));
 
             GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(DeleteCount, y, 0), WallObject,
-                                              warningDuration: 1f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3);
+                                              warningDuration: 1f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
 
             GetComponent<BaseBoss>().BombHandler.ExecuteFixedBomb(_singlePointShape, new Vector3Int(8 - DeleteCount, y, 0), WallObject,
-                                  warningDuration: 1f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3);
+                                  warningDuration: 1f, explosionDuration: 1000.0f, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
         }
 
         yield return new WaitForSeconds(1f);

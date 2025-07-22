@@ -33,8 +33,10 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
-        GameManager.Instance.LoadTitle();
+        GameManager.Instance.LoadTitleFirst();
     }
+    
+    
 
     
     //가이드 전투씬으로 갑니다.

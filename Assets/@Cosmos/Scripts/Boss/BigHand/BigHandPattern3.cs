@@ -10,7 +10,7 @@ public class BigHandPattern3 : IBossAttackPattern
     private GameObject _attackEffectPrefab;
     private int _damage;
     private bool _isSoundCoolTime = false;
-    public string PatternName => "패턴3_나선확산";
+    public string PatternName => "9_4";
     
     public BigHandPattern3(GameObject attackEffectPrefab, int damage)
     {
@@ -67,7 +67,8 @@ public class BigHandPattern3 : IBossAttackPattern
                         warningDuration: 1f, 
                         explosionDuration: 0.6f, 
                         damage: _damage, 
-                        warningType: WarningType.Type1
+                        warningType: WarningType.Type1,
+                        patternName:PatternName
                     );
                 }
                 

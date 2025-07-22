@@ -9,7 +9,7 @@ public class GuardianGolemTemporaryWallSummonPattern : IBossAttackPattern
     private List<Vector3Int> _singlePointShape;
     private List<Vector3Int> _wallPositions;
 
-    public string PatternName => "GuardianGolemTemporaryWallSummonPattern";
+    public string PatternName => "4_3";
 
     /// <summary>
     /// 임시벽 생성자
@@ -72,7 +72,7 @@ public class GuardianGolemTemporaryWallSummonPattern : IBossAttackPattern
             if (randomPosition != Vector3Int.zero) // 유효한 위치가 생성되었을 때만
             {
                 boss.BombHandler.ExecuteFixedBomb(_singlePointShape, randomPosition, _temporaryWall,
-                                              warningDuration: 1f, explosionDuration: 3.0f, damage: 0, warningType: WarningType.Type3);
+                                              warningDuration: 1f, explosionDuration: 3.0f, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
 
             }
         }

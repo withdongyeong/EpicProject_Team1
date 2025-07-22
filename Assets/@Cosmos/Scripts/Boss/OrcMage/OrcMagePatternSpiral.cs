@@ -10,7 +10,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
     private GameObject _groundSpikePrefab;
     private int _damage;
 
-    public string PatternName => "OrcMagePattern_Spiral";
+    public string PatternName => "6_6";
 
     public OrcMagePatternSpiral(GameObject groundSpikePrefab, int damage)
     {
@@ -44,7 +44,7 @@ public class OrcMagePatternSpiral : IBossAttackPattern
             for (int j = 0; j < 4 && i + j < spiralPositions.Count; j++)
             {
                 boss.BombHandler.ExecuteFixedBomb(singlePoint, spiralPositions[i + j], _groundSpikePrefab,
-                                                  warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                                  warningDuration: 1f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
             }
 
             int groupIndex = i / 4;

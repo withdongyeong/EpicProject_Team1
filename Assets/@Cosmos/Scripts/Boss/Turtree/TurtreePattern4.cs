@@ -7,7 +7,7 @@ public class TurtreePattern4 : IBossAttackPattern
     private GameObject _treeAttackPrefeb;
     private bool _isDownUP;
     private int _damage;
-    public string PatternName => "TurtreePattern4";
+    public string PatternName => "5_5";
 
     public TurtreePattern4(GameObject TreeAttackPrefeb, bool isDownUP, int Damage)
     {
@@ -49,7 +49,8 @@ public class TurtreePattern4 : IBossAttackPattern
                 _treeAttackPrefeb,
                 warningDuration: 1f,
                 explosionDuration: 2f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
             
             boss.AttackAnimation();

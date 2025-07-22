@@ -6,6 +6,7 @@ public class DeathArea : MonoBehaviour
     PlayerHp playerHp;
     private int _damage;
 
+    private string PatternName = "7_1";
     private void Start()
     {
         playerHp = FindAnyObjectByType<PlayerHp>();
@@ -14,7 +15,7 @@ public class DeathArea : MonoBehaviour
 
     private void Update()
     {
-        if(IsStayPlayer && playerHp.CurrentHealth > 0) playerHp.TakeDamage(_damage);
+        if(IsStayPlayer && playerHp.CurrentHealth > 0) playerHp.TakeDamage(_damage, patternName:PatternName);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -13,7 +13,7 @@ public class BigHandPattern1A : IBossAttackPattern
     private Vector3 _leftHandOffset = new Vector3(-4, -5, 0);
     private Vector3 _rightHandOffset = new Vector3(3, -2, 0);
 
-    public string PatternName => "패턴1A_손가두기";
+    public string PatternName => "9_1";
     
     public BigHandPattern1A(GameObject leftHandPrefab, GameObject rightHandPrefab, GameObject wallPrefab)
     {
@@ -93,7 +93,7 @@ public class BigHandPattern1A : IBossAttackPattern
         foreach (Vector3Int gridPos in positions)
         {
             boss.BombHandler.ExecuteFixedBomb(singlePointShape, gridPos, _wallPrefab,
-                warningDuration: 1f, explosionDuration: boss.Beat * 40, damage: 0, warningType: WarningType.Type3);
+                warningDuration: 1f, explosionDuration: boss.Beat * 40, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
             GridManager.Instance.AddUnmovableGridPosition(gridPos);
             bigHand.BlockedPositions.Add(gridPos);
         }

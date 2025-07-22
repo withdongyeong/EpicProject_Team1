@@ -14,7 +14,7 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
     private bool _isLeftToRight;
     private int _damage;
     
-    public string PatternName => "손바닥_쓸어내기";
+    public string PatternName => "9_7";
 
     public BigHandPalmSweepPattern(GameObject palmFromLeftPrefab, GameObject palmFromRightPrefab, GameObject attackEffectPrefab, int damage)
     {
@@ -90,7 +90,8 @@ public class BigHandPalmSweepPattern : IBossAttackPattern
                 _attackEffectPrefab,
                 warningDuration: 1f,
                 explosionDuration: 0.4f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
         }
 

@@ -6,7 +6,7 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
 {
     private GameObject _explosionPrefab;
     private int _damage;
-    public string PatternName => "Flame1";
+    public string PatternName => "10_1";
 
     public LastBossPattern_Flame1(GameObject explosionPrefab, int damage)
     {
@@ -37,7 +37,8 @@ public class LastBossPattern_Flame1 : IBossAttackPattern
                         1f,
                         0.8f,
                         _damage,
-                        WarningType.Type1
+                        warningType:WarningType.Type1,
+                        patternName:PatternName
                     );
                 }
             }
