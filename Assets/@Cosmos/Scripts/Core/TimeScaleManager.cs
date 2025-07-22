@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class TimeScaleManager : Singleton<TimeScaleManager>
 {
     private static TimeScaleManager _instance;
+    [SerializeField]
+    private bool isTimeScaleStopped = false;
+    public bool IsTimeScaleStopped => isTimeScaleStopped;
     
     protected override void Awake()
     {
@@ -20,6 +23,7 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1.0f;
+        isTimeScaleStopped = false;
     }
     
     private void OnDestroy()
@@ -30,6 +34,7 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     public void StopTimeScale()
     {
         Time.timeScale = 0f;
+        isTimeScaleStopped = true;
     }
     /// <summary>
     /// 타임스케일 강제 초기화
@@ -37,5 +42,6 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
     public void ResetTimeScale()
     {
         Time.timeScale = 1.0f;
+        isTimeScaleStopped = false;
     }
 }
