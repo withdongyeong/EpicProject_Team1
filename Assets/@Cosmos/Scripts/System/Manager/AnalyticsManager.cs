@@ -202,7 +202,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         if(!IsInit()) return;
         
         // 1. 필요한 정보를 수집합니다.
-        float sessionTime = GameManager.Instance.LogHandler.GetSessionPlayTimer();
+        int stageIndex = GameManager.Instance.LogHandler.GetStageIndex();
         string purchasedTiles = "";
         string placedTiles = "";
         string soldTiles = "";
@@ -215,7 +215,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 2. 'building_complete' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent buildingCompleteEvent = new CustomEvent("building_complete")
         {
-            { "session_time", sessionTime },
+            { "stage_index", stageIndex },
             { "purchased_tiles", purchasedTiles},
             { "placed_tiles", placedTiles},
             { "sold_tiles", soldTiles},
@@ -279,11 +279,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
     /// <summary>
     /// 튜토리얼 프롬프트 응답 이벤트
     /// </summary>
-    public void TutorialPromptResponseEvent()
+    public void TutorialPromptResponseEvent(string response)
     {
         if(!IsInit()) return;
-        
-        string initialChoice = "null";
+
+        string initialChoice = response;
         
         // 2. 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent tutorialPromptResponse = new CustomEvent("tutorial_prompt_response")
