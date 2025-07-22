@@ -203,6 +203,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     public void CloseJournal()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         if (DragManager.Instance.GetCurrentDragObject() == null)
         {
             _scrollView.SetActive(false);

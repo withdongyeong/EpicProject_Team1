@@ -64,7 +64,8 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenTutoChoicePanel(GameObject gameObject)
     {
-        if(SaveManager.IsTutorialCompleted == 1)
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        if (SaveManager.IsTutorialCompleted == 1)
         {
             // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
             OpenDifficultySelectPannel();
@@ -76,6 +77,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenDifficultySelectPannel()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
     }
 
