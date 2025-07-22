@@ -14,9 +14,17 @@ using Unity.Services.Core.Environments;
 public class AnalyticsManager : Singleton<AnalyticsManager>
 {
     private bool _isInitialized = false;
-    public bool noAnalytics = false; // 테스트용, 실제 배포시 false로 설정해야 합니다.
+    public bool isAgreed = false; // 데이터 수집 동의 여부
     
     private async void Start()
+    {
+        isAgreed = SaveManager.IsDataAgreement;
+        if(!isAgreed) return;
+        CollectStart();
+    }
+
+
+    public async void CollectStart()
     {
         Debug.Log("--- UGS 테스트 시작 ---");
         try
@@ -54,7 +62,6 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     private bool IsInit()
     {
-        if (noAnalytics) return false; // 테스트용, 실제 배포시 false로 설정해야 합니다.
         if (!_isInitialized)
         {
             Debug.LogError("아직 초기화되지 않음! 이벤트 전송 불가."); 

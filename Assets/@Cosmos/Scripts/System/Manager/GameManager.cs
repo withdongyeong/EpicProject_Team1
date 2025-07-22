@@ -120,6 +120,24 @@ public class GameManager : Singleton<GameManager>
         }      
         SceneLoader.LoadTitle();
     }
+
+    public void LoadTitleFirst()
+    {
+        LogHandler.SetTotalPlayTimer();
+        currentUnlockLevel = SaveManager.UnlockLevel;
+        TimeScaleManager.Instance.ResetTimeScale();
+        GridManager.Instance.ResetGridCompletely();
+        GoldManager.Instance.SetCurrentGold(16);
+        LifeManager.Instance.ResetLifeManager();
+        StageSelectManager.Instance.ResetManager();
+        JournalSlotManager.Instance.SetStoreTileList();
+        
+        for(int i =0; i<5; i++)
+        {
+            StoreLockManager.Instance.RemoveStoreLock(i);
+        }      
+        SceneLoader.LoadTitle();
+    }
     //매 씬 로드마다 튜토리얼 여부를 확인합니다
     private void SetTutorial()
     {

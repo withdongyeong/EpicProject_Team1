@@ -22,6 +22,16 @@ public class dataAgreePanel : MonoBehaviour
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
         panel.gameObject.SetActive(false);
+        SaveManager.SaveDataAgreement(true);
+        SaveManager.SaveFirstStart();
+        AnalyticsManager.Instance.CollectStart();
+    }
+    
+    public void OnDisagree()
+    {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        panel.gameObject.SetActive(false);
+        SaveManager.SaveDataAgreement(false);
         SaveManager.SaveFirstStart();
     }
 }
