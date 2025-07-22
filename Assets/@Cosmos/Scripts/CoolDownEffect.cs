@@ -138,11 +138,11 @@ public class CoolDownEffect : MonoBehaviour
     /// </summary>
     public void SetPosition()
     {
-        Debug.Log("CoolDownEffect");
+        
         if (!SceneLoader.IsInStage() && !SceneLoader.IsInBuilding()) return;
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
-        Debug.Log("before :: " + tileObject.transform.rotation.eulerAngles + " " + transform.localRotation.eulerAngles);
+        
         if (tileObject.transform.rotation.eulerAngles.z == 0)
         {
             transform.localPosition = new Vector3(0, -0.5f, 0);
@@ -163,7 +163,7 @@ public class CoolDownEffect : MonoBehaviour
             transform.localPosition = new Vector3(0.5f, 0, 0);
             transform.localRotation = Quaternion.Euler(0, 0, 90);
         }
-        Debug.Log("after :: " + transform.rotation.eulerAngles + " " + transform.localRotation.eulerAngles);
+       
         
         
     }

@@ -70,6 +70,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     private bool IsInit()
     {
+        if (!isAgreed)
+        {
+            Debug.LogWarning("동의하지 않음 이벤트 전송 불가.");
+            return false;
+        }
         if (!_isInitialized)
         {
             Debug.LogError("아직 초기화되지 않음! 이벤트 전송 불가."); 
