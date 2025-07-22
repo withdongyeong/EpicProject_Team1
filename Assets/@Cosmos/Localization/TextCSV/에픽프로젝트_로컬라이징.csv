@@ -58,10 +58,10 @@ The effect is based on the number of clocks and statues <color=yellow>located on
 <color=yellow>1개</color>: 피해량이 <color=red>50</color>으로 증가합니다.
 <color=yellow>2개</color>: 피해량 <color=red>30</color>의 투사체를 3개 발사합니다."
 Tile_TileDescription_ArmorTile,"获得一个<sprite name=""Shield"">。","Obtain a Shield<sprite name=""Shield"">.","シールド<sprite name=""Shield"">を獲得します。","방어막<sprite name=""Shield"">을 획득합니다."
-Tile_TileDescription_BigHeartTile,"<color=yellow>星云 (3)</color>：恢复 <color=green>5</color> 点生命值。
-如果一颗 <color=yellow>星星<sprite name=""Star"">上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则恢复 <color=green>10</color> 点生命值。","<color=yellow>Nebula (3)</color>: Restores <color=green>5</color> health. 
-If there are 3 or more magic circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, restores <color=green>10</color> health.","<color=yellow>星雲(3)</color>: 体力を<color=green>5</color>回復します。
-<color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、体力を<color=green>10</color>回復します。","<color=yellow>성운(3)</color>: 체력을 <color=green>5</color> 회복합니다.
+Tile_TileDescription_BigHeartTile,"星云 (3)<sprite name=""Nebula"">：恢复 <color=green>5</color> 点生命值。
+如果一颗 <color=yellow>星星<sprite name=""Star"">上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则恢复 <color=green>10</color> 点生命值。","Nebula (3)<sprite name=""Nebula"">: Restores <color=green>5</color> health. 
+If there are 3 or more magic circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, restores <color=green>10</color> health.","星雲(3)<sprite name=""Nebula"">: 体力を<color=green>5</color>回復します。
+<color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、体力を<color=green>10</color>回復します。","성운(3)<sprite name=""Nebula"">: 체력을 <color=green>5</color> 회복합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 체력을 <color=green>10</color>회복합니다."
 Tile_TileDescription_DamageTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆叠 3 个图腾 <sprite name=""Totem""> 时激活。
 <color=yellow>激活时</color>：获得 2 个诅咒 <sprite name=""Curse"">。
@@ -133,13 +133,13 @@ Tile_TileDescription_HeartTile,"恢复 <color=green>5</color> 点生命值。如
 If there are 3 or more magic circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, restores <color=green>10</color> health.","体力を<color=green>5</color>回復します。
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、体力を<color=green>10</color>回復します。","체력을 <color=green>5</color>회복합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 체력을 <color=green>10</color>회복합니다."
-Tile_TileDescription_IcicleTile,"<color=yellow>星云 (3)</color>：发射一枚投射物。
+Tile_TileDescription_IcicleTile,"星云 (3)<sprite name=""Nebula"">：发射一枚投射物。
 (伤害：<color=red>7</color>)
-<color=red>击中时：</color>获得 1 个 <sprite name=""Ice"">","<color=yellow>Nebula (3)</color>: Fires a projectile.
+<color=red>击中时：</color>获得 1 个 <sprite name=""Ice"">","Nebula (3)<sprite name=""Nebula"">: Fires a projectile.
 (Damage:<color=red>7</color>)
-<color=red>On Hit:</color> Inflict 1 Frostbite<sprite name=""Ice"">","<color=yellow>星雲(3)</color>: 弾を発射します。
+<color=red>On Hit:</color> Inflict 1 Frostbite<sprite name=""Ice"">","星雲(3)<sprite name=""Nebula"">: 弾を発射します。
 (ダメージ：<color=red>7</color>)
-<color=red>ヒット時：</color>凍傷<sprite name=""Ice"">を1付与します。","<color=yellow>성운(3)</color>: 투사체를 발사합니다.
+<color=red>ヒット時：</color>凍傷<sprite name=""Ice"">を1付与します。","성운(3)<sprite name=""Nebula"">: 투사체를 발사합니다.
 (피해량:<color=red>7</color>)
 <color=red>적중 시:</color> 동상<sprite name=""Ice"">을 1 부여합니다."
 Tile_TileDescription_KoreaTotemTile,"堆叠图腾<sprite name=""Totem"">。当堆叠满3个图腾<sprite name=""Totem"">时发动。
@@ -348,10 +348,10 @@ If there are 3 or more Magic Circles <sprite name=""MagicCircle""><color=yellow>
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、次の10回の炎<sprite name=""Fire"">ダメージを与えます。","다음 5번의 화염<sprite name=""Fire""> 피해를 한 번에 입히고 화염<sprite name=""Fire"">을 모두 제거합니다.
 (피해량: <color=red>0~255</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 다음 10번의 화염<sprite name=""Fire""> 피해를 입힙니다."
-Tile_TileDescription_WandTile,"<color=yellow>星云 (2)</color>：发射一枚射弹。
-(伤害：<color=red>6</color>)","<color=yellow>Nebula (2)</color>: Fires a projectile. 
-(Damage: <color=red>6</color>)","<color=yellow>星雲（2）</color>：弾を発射します。 
-(ダメージ: <color=red>6</color>)","<color=yellow>성운(2)</color>: 투사체를 발사합니다.
+Tile_TileDescription_WandTile,"星云 (2)<sprite name=""Nebula"">：发射一枚射弹。
+(伤害：<color=red>6</color>)","Nebula (2)<sprite name=""Nebula"">: Fires a projectile. 
+(Damage: <color=red>6</color>)","星雲（2）<sprite name=""Nebula"">：弾を発射します。 
+(ダメージ: <color=red>6</color>)","성운(2)<sprite name=""Nebula"">: 투사체를 발사합니다.
 (피해량: <color=red>6</color>)"
 Tile_TileDescription_MoaiTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆叠 3 个图腾 <sprite name=""Totem""> 时激活。
 <color=yellow>激活时</color>：发射一枚投射物。
