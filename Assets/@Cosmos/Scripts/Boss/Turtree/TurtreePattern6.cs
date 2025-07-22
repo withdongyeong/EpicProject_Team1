@@ -7,7 +7,7 @@ public class TurtreePattern6 : IBossAttackPattern
     private GameObject _attackPrefab;
     private int _damage;
 
-    public string PatternName => "TurtreePattern6";
+    public string PatternName => "5_7";
 
     public TurtreePattern6(GameObject AttackPrefab, int Damage)
     {
@@ -57,7 +57,8 @@ public class TurtreePattern6 : IBossAttackPattern
             warningDuration: 1f,
             explosionDuration: 2f,
             damage: _damage,
-            warningType: WarningType.Type1
+            warningType: WarningType.Type1,
+            patternName:PatternName
         );
 
         yield return new WaitForSeconds(boss.Beat * 2);

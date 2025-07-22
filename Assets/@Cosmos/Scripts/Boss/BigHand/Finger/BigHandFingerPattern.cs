@@ -17,7 +17,7 @@ public class BigHandFingerPattern : IBossAttackPattern
     private Vector3Int _currentTargetPos;
     private int _damage;
     private bool _isSoundCoolTime = false;
-    public string PatternName => "손가락_추적공격";
+    public string PatternName => "9_10";
     
     public BigHandFingerPattern(GameObject fingerBottomPrefab, GameObject fingerTopPrefab, 
                               GameObject fingerLeftPrefab, GameObject fingerRightPrefab, 
@@ -96,7 +96,8 @@ public class BigHandFingerPattern : IBossAttackPattern
                 warningDuration: 1f, 
                 explosionDuration: 5f,
                 damage: 0, 
-                warningType: WarningType.Type2
+                warningType: WarningType.Type2,
+                patternName:PatternName
             );
         }
         
@@ -172,7 +173,8 @@ public class BigHandFingerPattern : IBossAttackPattern
             warningDuration: warningDuration, 
             explosionDuration: 0.7f, 
             damage: _damage, 
-            warningType: WarningType.Type1
+            warningType: WarningType.Type1,
+            patternName:PatternName
         );
     }
 

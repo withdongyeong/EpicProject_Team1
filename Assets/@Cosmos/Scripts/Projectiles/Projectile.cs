@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     private SpriteRenderer _sr;
 
     private GameObject hitEffect;
+    private string PatternName = "Projectile";
    
     public enum ProjectileTeam
     {
@@ -76,7 +77,7 @@ public class Projectile : MonoBehaviour
             PlayerHp player = other.GetComponent<PlayerHp>();
             if (player != null)
             {
-                player.TakeDamage(damage);
+                player.TakeDamage(damage, patternName:PatternName);
                 Destroy(gameObject);
             }
         }

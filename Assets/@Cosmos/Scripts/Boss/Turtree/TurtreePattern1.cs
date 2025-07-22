@@ -8,7 +8,7 @@ public class TurtreePattern1 : IBossAttackPattern
     private Vector3Int _startPoint;
     private int _damage;
 
-    public string PatternName => "TurtreePattern1";
+    public string PatternName => "5_1";
     public TurtreePattern1(GameObject TreeAttackPrefeb, Vector3Int StartPoint, int Damage)
     {
         _treeAttackPrefeb = TreeAttackPrefeb;
@@ -107,7 +107,8 @@ public class TurtreePattern1 : IBossAttackPattern
                     _treeAttackPrefeb,
                     warningDuration: 1f,
                     explosionDuration: 2f,
-                    damage: _damage
+                    damage: _damage,
+                    patternName:PatternName
                 );
 
                 if (Time.time - lastSoundTime >= soundCooldown)

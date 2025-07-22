@@ -11,7 +11,7 @@ public class BigHandRadialWavePattern : IBossAttackPattern
     private int _damage;
     private bool _isSoundCoolTime = false;
 
-    public string PatternName => "방사형_확산";
+    public string PatternName => "9_12";
     
     public BigHandRadialWavePattern(GameObject attackEffectPrefab, int damage)
     {
@@ -109,7 +109,8 @@ public class BigHandRadialWavePattern : IBossAttackPattern
                         _attackEffectPrefab,
                         warningDuration: 1f,
                         explosionDuration: 0.4f,
-                        damage: _damage
+                        damage: _damage,
+                        patternName:PatternName
                     );
                 }
                 line.Advance();

@@ -3,6 +3,7 @@ using System.Collections;
 
 /// <summary>
 /// 플레이어 체력 관리 시스템 (무적 시간 및 깜박임 포함)
+/// 보스 패턴 로그 시스템과 연동
 /// </summary>
 public class PlayerHp : MonoBehaviour
 {
@@ -25,12 +26,24 @@ public class PlayerHp : MonoBehaviour
     private Coroutine _blinkCoroutine;
 
     private int _healedAmount = 0; //도전과제용 이번 라운드에 얼마나 힐했는지
+    
+    // 보스 패턴 로그용 - 마지막 피격 패턴 추적
+    private string _lastHitPattern = "";
 
+    /// <summary>
+    /// 최대 체력 프로퍼티
+    /// </summary>
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+    
+    /// <summary>
+    /// 현재 체력 프로퍼티
+    /// </summary>
     public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
+    
+    /// <summary>
+    /// 무적 상태 여부 프로퍼티
+    /// </summary>
     public bool IsInvincible { get => _isInvincible; }
-
-   
 
     private void Awake()
     {
@@ -62,13 +75,21 @@ public class PlayerHp : MonoBehaviour
     }
     
     /// <summary>
-    /// 데미지 처리 (무적 시간 포함)
+    /// 데미지 처리 (무적 시간 포함) - 패턴명 필수
     /// </summary>
-    public void TakeDamage(int damage)
+    /// <param name="damage">받을 데미지</param>
+    /// <param name="patternName">공격한 패턴명 (예: "1_1")</param>
+    public void TakeDamage(int damage, string patternName)
     {
         // 무적 상태면 데미지 무시
         if (_isInvincible)
             return;
+
+        // 보스 패턴 피격 로그 기록
+        BossPatternLogger.Instance.LogPlayerHit(patternName);
+        
+        // 마지막 피격 패턴 저장 (사망시 킬러 패턴 기록용)
+        _lastHitPattern = patternName;
 
         //피격 애니메이션을 재생하고 소리도 틉니다
         FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Damaged");
@@ -79,7 +100,6 @@ public class PlayerHp : MonoBehaviour
         //무적 부여
         StartInvincibility();
 
-
         // 보호 상태면 보호막량 감소
         damage = _playerProtection.TryProtectionBlock(damage);
         
@@ -88,7 +108,6 @@ public class PlayerHp : MonoBehaviour
         {
             return;
         }
-            
 
         // 방어 상태면 방어막량 감소
         if (_playerShield.TryShieldBlock(damage))
@@ -96,7 +115,6 @@ public class PlayerHp : MonoBehaviour
             SoundManager.Instance.PlayTileSoundClip("ShieldSkillRemove");
             return;
         }
-
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
@@ -116,7 +134,6 @@ public class PlayerHp : MonoBehaviour
         {
             // 피격감 강화(화면 효과) - 추가된 부분
             _damageScreenEffect.ShowDamageEffect();
-
         }
     }
     
@@ -209,7 +226,6 @@ public class PlayerHp : MonoBehaviour
             SteamAchievement.Achieve("ACH_BTL_HEAL");
         }
         EventBus.PublishPlayerHpChanged(_currentHealth);
-        
     }
 
     /// <summary>
@@ -218,8 +234,14 @@ public class PlayerHp : MonoBehaviour
     private void Die()
     {
         Debug.Log("플레이어 사망");
-        FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Death");
         
+        // 마지막 피격 패턴을 킬러 패턴으로 기록
+        if (!string.IsNullOrEmpty(_lastHitPattern))
+        {
+            BossPatternLogger.Instance.LogPlayerDeath(_lastHitPattern);
+        }
+        
+        FindAnyObjectByType<StageHandler>().Player.Animator.SetTrigger("Death");
         
         // 무적 시간 강제 종료 (죽었으니까)
         EndInvincibility();
@@ -239,7 +261,11 @@ public class PlayerHp : MonoBehaviour
         EndInvincibility();
     }
 
-    public void TestHpSetting(int hp) // 테스트용
+    /// <summary>
+    /// 테스트용 체력 설정
+    /// </summary>
+    /// <param name="hp">설정할 체력</param>
+    public void TestHpSetting(int hp)
     {
         _currentHealth = hp;
     }

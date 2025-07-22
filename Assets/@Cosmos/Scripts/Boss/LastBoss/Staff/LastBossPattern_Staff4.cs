@@ -7,7 +7,7 @@ public class LastBossPattern_Staff4 : IBossAttackPattern
     private GameObject _explosionPrefab;
     private int _damage;
     private bool _isSoundCoolTime = false; 
-    public string PatternName => "StaffPattern4";
+    public string PatternName => "10_8";
 
     public LastBossPattern_Staff4(GameObject explosionPrefab, int damage)
     {
@@ -47,7 +47,7 @@ public class LastBossPattern_Staff4 : IBossAttackPattern
 
         foreach (var pos in positions)
         {
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, pos, _explosionPrefab, 1f, 1f, _damage, warningType:WarningType.Type1, patternName:PatternName);
         }
 
         yield return new WaitForSeconds(boss.Beat);

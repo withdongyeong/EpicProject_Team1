@@ -11,7 +11,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
     private int _damage;
     private float beat;
 
-    public string PatternName => "OrcMagePattern_BossChargeLeft";
+    public string PatternName => "6_2";
 
     public OrcMagePatternBossChargeLeft(GameObject groundSpikePrefab, int damage)
     {
@@ -89,7 +89,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         List<Vector3Int> bossArea = GetBossArea(position);
         
         // 전조 → 데미지 (이펙트 없음)
-        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 1f, _damage, WarningType.Type2);
+        boss.BombHandler.ExecuteWarningThenDamage(bossArea, position, 1f, _damage, warningType:WarningType.Type2, patternName:PatternName);
         yield return new WaitForSeconds(1f);
     }
 
@@ -216,7 +216,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             }
             
             // 웨이브 전조 + 데미지
-            boss.BombHandler.ExecuteWarningThenDamage(warningArea, pos, 1f, _damage, WarningType.Type2);
+            boss.BombHandler.ExecuteWarningThenDamage(warningArea, pos, 1f, _damage, warningType:WarningType.Type2, patternName:PatternName);
             
             yield return new WaitForSeconds(waveInterval);
         }
@@ -290,7 +290,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
         // 가운데(보스 위치)에 스파이크 공격 먼저 실행
         List<Vector3Int> centerSpike = new List<Vector3Int> { new Vector3Int(0, 0, 0) };
         boss.BombHandler.ExecuteFixedBomb(centerSpike, centerPos, _groundSpikePrefab,
-                                          warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                          warningDuration: 1f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
         
         boss.StartCoroutine(boss.PlayOrcExplosionSoundDelayed("OrcMage_SpikeActivate", 1f));
 
@@ -322,7 +322,7 @@ public class OrcMagePatternBossChargeLeft : IBossAttackPattern
             List<Vector3Int> currentWave = new List<Vector3Int> { spikeLine[wave] };
             
             boss.BombHandler.ExecuteFixedBomb(currentWave, centerPos, _groundSpikePrefab,
-                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 1f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
             
             // 1/4 비트 간격으로 다음 웨이브
             yield return new WaitForSeconds(beat / 4f);

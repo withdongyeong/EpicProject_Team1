@@ -7,7 +7,7 @@ public class TurtreePattern3 : IBossAttackPattern
     private GameObject _treeAttackPrefeb;
     private int _damage;
 
-    public string PatternName => "TurtreePattern3";
+    public string PatternName => "5_4";
 
     public TurtreePattern3(GameObject TreeAttackPrefeb, int Damage)
     {
@@ -64,7 +64,8 @@ public class TurtreePattern3 : IBossAttackPattern
                     warningDuration: 1f,
                     explosionDuration: 2f,
                     damage: _damage,
-                    warningType: WarningType.Type1
+                    warningType: WarningType.Type1,
+                    patternName:PatternName
                 );
 
                 boss.StartCoroutine(TurtreeAttackSound());

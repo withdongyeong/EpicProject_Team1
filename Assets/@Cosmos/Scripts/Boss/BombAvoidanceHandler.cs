@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// 폭탄 피하기 공격 관리자 (다중 전조 타입 지원)
+/// 보스 패턴 로그 시스템과 연동
 /// </summary>
 public class BombAvoidanceHandler : MonoBehaviour
 {
@@ -15,24 +16,36 @@ public class BombAvoidanceHandler : MonoBehaviour
     public GameObject _warningPrefabType2;   // Type2
     public GameObject _warningPrefabType3;   // Type3
     
+    /// <summary>
+    /// 플레이어 컨트롤러 프로퍼티
+    /// </summary>
     public PlayerController PlayerController 
     { 
         get => _playerController; 
         set => _playerController = value; 
     }
     
+    /// <summary>
+    /// 기본 전조 프리팹 프로퍼티
+    /// </summary>
     public GameObject WarningPrefab 
     { 
         get => _warningPrefab; 
         set => _warningPrefab = value; 
     }
     
+    /// <summary>
+    /// Type2 전조 프리팹 프로퍼티
+    /// </summary>
     public GameObject WarningPrefabType2 
     { 
         get => _warningPrefabType2; 
         set => _warningPrefabType2 = value; 
     }
     
+    /// <summary>
+    /// Type3 전조 프리팹 프로퍼티
+    /// </summary>
     public GameObject WarningPrefabType3 
     { 
         get => _warningPrefabType3; 
@@ -44,7 +57,9 @@ public class BombAvoidanceHandler : MonoBehaviour
         EventBus.SubscribeGameStart(Init);
     }
     
-
+    /// <summary>
+    /// 초기화
+    /// </summary>
     private void Init()
     {
         if (_playerController == null)
@@ -124,30 +139,32 @@ public class BombAvoidanceHandler : MonoBehaviour
     }
     
     /// <summary>
-    /// 전조 → 데미지만 (이펙트 없음) - 기본 타입
+    /// 전조 → 데미지만 (이펙트 없음) - 기본 타입, 패턴명 필수
     /// </summary>
     /// <param name="shape">공격 모양 (상대 좌표)</param>
     /// <param name="targetPosition">고정 중심 위치</param>
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     public void ExecuteWarningThenDamage(List<Vector3Int> shape, Vector3Int targetPosition, 
-                                         float warningDuration, int damage)
+                                         float warningDuration, int damage, string patternName)
     {
-        ExecuteWarningThenDamage(shape, targetPosition, warningDuration, damage, WarningType.Type1);
+        ExecuteWarningThenDamage(shape, targetPosition, warningDuration, damage, patternName, WarningType.Type1);
     }
     
     /// <summary>
-    /// 전조 → 데미지만 (이펙트 없음) - 타입 지정
+    /// 전조 → 데미지만 (이펙트 없음) - 타입 지정, 패턴명 필수
     /// </summary>
     /// <param name="shape">공격 모양 (상대 좌표)</param>
     /// <param name="targetPosition">고정 중심 위치</param>
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     /// <param name="warningType">전조 타입</param>
     public void ExecuteWarningThenDamage(List<Vector3Int> shape, Vector3Int targetPosition, 
-                                         float warningDuration, int damage, WarningType warningType)
+                                         float warningDuration, int damage, string patternName, WarningType warningType)
     {
-        StartCoroutine(ExecuteWarningThenDamageCoroutine(shape, targetPosition, warningDuration, damage, warningType));
+        StartCoroutine(ExecuteWarningThenDamageCoroutine(shape, targetPosition, warningDuration, damage, patternName, warningType));
     }
     
     /// <summary>
@@ -178,7 +195,7 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// 전조 → 데미지만 코루틴 (이펙트 없음)
     /// </summary>
     private IEnumerator ExecuteWarningThenDamageCoroutine(List<Vector3Int> shape, Vector3Int targetPosition, 
-                                                          float warningDuration, int damage, WarningType warningType)
+                                                          float warningDuration, int damage, string patternName, WarningType warningType)
     {
         // 공격 위치 계산
         List<Vector3Int> attackPositions = CalculateAttackPositions(shape, targetPosition);
@@ -193,10 +210,10 @@ public class BombAvoidanceHandler : MonoBehaviour
         DestroyWarningTiles(warningTiles);
         
         // 플레이어 피격 판정만 수행 (이펙트 없음)
-        CheckPlayerDamage(attackPositions, damage);
+        CheckPlayerDamage(attackPositions, damage, patternName);
     }
     
-    // ========== 기존 메소드들 (기본 타입 사용) ==========
+    // ========== 기존 메소드들 (패턴명 필수로 변경) ==========
     
     /// <summary>
     /// 플레이어 추적 폭탄 공격 (기본 전조 타입)
@@ -206,13 +223,13 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="explosionDuration">폭발 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     public void ExecuteTargetingBomb(List<Vector3Int> shape, GameObject explosionPrefab, 
-                                     float warningDuration, float explosionDuration, int damage)
+                                     float warningDuration, float explosionDuration, int damage, string patternName)
     {
-        ExecuteTargetingBomb(shape, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
+        ExecuteTargetingBomb(shape, explosionPrefab, warningDuration, explosionDuration, damage, patternName, WarningType.Type1);
     }
     
-
     /// <summary>
     /// 랜덤 위치 폭탄 공격 (기본 전조 타입)
     /// </summary>
@@ -223,10 +240,11 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="explosionDuration">폭발 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     public void ExecuteRandomBomb(List<Vector3Int> shape, int count, int range, GameObject explosionPrefab, 
-                                  float warningDuration, float explosionDuration, int damage)
+                                  float warningDuration, float explosionDuration, int damage, string patternName)
     {
-        ExecuteRandomBomb(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
+        ExecuteRandomBomb(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage, patternName, WarningType.Type1);
     }
     
     /// <summary>
@@ -238,13 +256,14 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="explosionDuration">폭발 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     public void ExecuteFixedBomb(List<Vector3Int> shape, Vector3Int targetPosition, GameObject explosionPrefab, 
-                                 float warningDuration, float explosionDuration, int damage)
+                                 float warningDuration, float explosionDuration, int damage, string patternName)
     {
-        ExecuteFixedBomb(shape, targetPosition, explosionPrefab, warningDuration, explosionDuration, damage, WarningType.Type1);
+        ExecuteFixedBomb(shape, targetPosition, explosionPrefab, warningDuration, explosionDuration, damage, patternName, WarningType.Type1);
     }
     
-    // ========== 새로운 메소드들 (전조 타입 지정 가능) ==========
+    // ========== 새로운 메소드들 (전조 타입 지정 가능, 패턴명 필수) ==========
     
     /// <summary>
     /// 플레이어 추적 폭탄 공격 (전조 타입 지정)
@@ -254,12 +273,13 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="explosionDuration">폭발 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     /// <param name="warningType">전조 타일 타입</param>
     public void ExecuteTargetingBomb(List<Vector3Int> shape, GameObject explosionPrefab, 
-                                     float warningDuration, float explosionDuration, int damage, WarningType warningType)
+                                     float warningDuration, float explosionDuration, int damage, string patternName, WarningType warningType)
     {
         Vector3Int playerPosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
-        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, playerPosition, warningType));
+        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, patternName, playerPosition, warningType));
     }
     
     /// <summary>
@@ -272,11 +292,12 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="explosionDuration">폭발 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     /// <param name="warningType">전조 타일 타입</param>
     public void ExecuteRandomBomb(List<Vector3Int> shape, int count, int range, GameObject explosionPrefab, 
-                                  float warningDuration, float explosionDuration, int damage, WarningType warningType)
+                                  float warningDuration, float explosionDuration, int damage, string patternName, WarningType warningType)
     {
-        StartCoroutine(ExecuteRandomBombCoroutine(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage, warningType));
+        StartCoroutine(ExecuteRandomBombCoroutine(shape, count, range, explosionPrefab, warningDuration, explosionDuration, damage, patternName, warningType));
     }
     
     /// <summary>
@@ -288,18 +309,19 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// <param name="warningDuration">경고 지속 시간</param>
     /// <param name="explosionDuration">폭발 지속 시간</param>
     /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명 (예: "1_1")</param>
     /// <param name="warningType">전조 타일 타입</param>
     public void ExecuteFixedBomb(List<Vector3Int> shape, Vector3Int targetPosition, GameObject explosionPrefab, 
-                                 float warningDuration, float explosionDuration, int damage, WarningType warningType)
+                                 float warningDuration, float explosionDuration, int damage, string patternName, WarningType warningType)
     {
-        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, targetPosition, warningType));
+        StartCoroutine(ExecuteBombCoroutine(shape, explosionPrefab, warningDuration, explosionDuration, damage, patternName, targetPosition, warningType));
     }
     
     /// <summary>
     /// 단일 중심점 폭탄 공격 코루틴 (전조 타입 지원)
     /// </summary>
     private IEnumerator ExecuteBombCoroutine(List<Vector3Int> shape, GameObject explosionPrefab, 
-                                             float warningDuration, float explosionDuration, int damage, Vector3Int centerPosition, WarningType warningType)
+                                             float warningDuration, float explosionDuration, int damage, string patternName, Vector3Int centerPosition, WarningType warningType)
     {
         // 공격 위치 계산
         List<Vector3Int> attackPositions = CalculateAttackPositions(shape, centerPosition);
@@ -311,7 +333,7 @@ public class BombAvoidanceHandler : MonoBehaviour
         yield return new WaitForSeconds(warningDuration);
         
         // 플레이어 피격 판정
-        CheckPlayerDamage(attackPositions, damage);
+        CheckPlayerDamage(attackPositions, damage, patternName);
         
         // 폭발 이펙트 생성
         CreateExplosionEffects(attackPositions, explosionPrefab, explosionDuration);
@@ -324,7 +346,7 @@ public class BombAvoidanceHandler : MonoBehaviour
     /// 랜덤 폭탄 공격 코루틴 (전조 타입 지원)
     /// </summary>
     private IEnumerator ExecuteRandomBombCoroutine(List<Vector3Int> shape, int count, int range, GameObject explosionPrefab, 
-                                                   float warningDuration, float explosionDuration, int damage, WarningType warningType)
+                                                   float warningDuration, float explosionDuration, int damage, string patternName, WarningType warningType)
     {
         Vector3Int basePosition = GridManager.Instance.WorldToGridPosition(_playerController.transform.position);
         List<Vector3Int> allAttackPositions = new List<Vector3Int>();
@@ -347,7 +369,7 @@ public class BombAvoidanceHandler : MonoBehaviour
         yield return new WaitForSeconds(warningDuration);
         
         // 플레이어 피격 판정
-        CheckPlayerDamage(allAttackPositions, damage);
+        CheckPlayerDamage(allAttackPositions, damage, patternName);
         
         // 폭발 이펙트 생성
         CreateExplosionEffects(allAttackPositions, explosionPrefab, explosionDuration);
@@ -408,9 +430,12 @@ public class BombAvoidanceHandler : MonoBehaviour
     }
     
     /// <summary>
-    /// 플레이어 피격 판정
+    /// 플레이어 피격 판정 (패턴명 필수)
     /// </summary>
-    private void CheckPlayerDamage(List<Vector3Int> attackPositions, int damage)
+    /// <param name="attackPositions">공격 위치들</param>
+    /// <param name="damage">데미지</param>
+    /// <param name="patternName">패턴명</param>
+    private void CheckPlayerDamage(List<Vector3Int> attackPositions, int damage, string patternName)
     {
         if (damage <= 0) return; // 데미지가 0 이하면 피격 판정 안함 (거미줄 같은 함정용)
         
@@ -420,10 +445,10 @@ public class BombAvoidanceHandler : MonoBehaviour
         {
             if (playerGridPos == attackPos)
             {
-                // PlayerHealth를 통해 데미지 적용
+                // PlayerHealth를 통해 데미지 적용 (패턴명 포함)
                 if (_playerHp != null)
                 {
-                    _playerHp.TakeDamage(damage);
+                    _playerHp.TakeDamage(damage, patternName);
                 }
                 break;
             }
@@ -458,7 +483,6 @@ public class BombAvoidanceHandler : MonoBehaviour
             }
         }
     }
-    
     
     private void OnDestroy()
     {

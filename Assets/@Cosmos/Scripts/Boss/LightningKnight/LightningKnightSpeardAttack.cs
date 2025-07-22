@@ -8,7 +8,7 @@ public class LightningKnightSpeardAttack : IBossAttackPattern
     private GameObject _lightningball;
     private int _damage;
     private Vector3Int _centerPos;
-    public string PatternName => "LightningKnightSpeardAttack";
+    public string PatternName => "8_6";
 
     /// <summary>
     /// 보스 생성자
@@ -55,7 +55,7 @@ public class LightningKnightSpeardAttack : IBossAttackPattern
         };
 
         boss.BombHandler.ExecuteFixedBomb(new List<Vector3Int>() {new Vector3Int(0,0,0)}, centerPos, _lightningball,
-                                             warningDuration: 0.5f, explosionDuration: 5.0f, damage: 0, warningType: WarningType.Type3);
+                                             warningDuration: 0.5f, explosionDuration: 5.0f, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
 
         // 9칸까지 확장 (거리 = 0~8)
         for (int dist = 0; dist < 9; dist++)
@@ -72,7 +72,7 @@ public class LightningKnightSpeardAttack : IBossAttackPattern
 
             // 공격 실행
             boss.BombHandler.ExecuteFixedBomb(result, centerPos, _lightningActtck,
-                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, WarningType.Type1);
+                                              warningDuration: 0.8f, explosionDuration: 1f, damage: _damage, warningType:WarningType.Type1, patternName:PatternName);
 
             yield return new WaitForSeconds(0.1f);
         }

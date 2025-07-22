@@ -11,7 +11,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
     private int _weakDamage;
     private int _strongDamage;
     
-    public string PatternName => "LightningKnightDashPattern";
+    public string PatternName => "8_2";
 
     public LightningKnightDashPattern(Vector3 startTransform, List<Vector3Int> GridDashPoint, GameObject attackEffect, int weakDamage, int strongDamage)
     {
@@ -131,7 +131,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                 }
 
                 boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0,0,0), 1f, _strongDamage, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0,0,0), 1f, _strongDamage, warningType:WarningType.Type2, patternName:PatternName);
 
                 yield return new WaitForSeconds(boss.Beat/8);
             }
@@ -165,7 +165,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                 }
 
                 boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 1, _strongDamage, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 1, _strongDamage, warningType:WarningType.Type2, patternName:PatternName);
 
                 yield return new WaitForSeconds(boss.Beat/8);
             }
@@ -199,7 +199,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                 }
 
                 boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 1, _strongDamage, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 1, _strongDamage, warningType:WarningType.Type2, patternName:PatternName);
 
                 yield return new WaitForSeconds(boss.Beat/8);
             }
@@ -233,7 +233,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
                 }
 
                 boss.StartCoroutine(AttacKSoundPlay("KnightDashActivate"));
-                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 1f, _strongDamage, WarningType.Type2);
+                boss.BombHandler.ExecuteWarningThenDamage(DangerAreas, new Vector3Int(0, 0, 0), 1f, _strongDamage, warningType:WarningType.Type2, patternName:PatternName);
 
                 yield return new WaitForSeconds(boss.Beat/8);
             }
@@ -384,7 +384,7 @@ public class LightningKnightDashPattern : IBossAttackPattern
         boss.StartCoroutine(AttacKSoundPlay("KnightAttackActivate"));
 
         boss.BombHandler.ExecuteFixedBomb(positions, new Vector3Int(0, 0, 0), _AttackEffect,
-                                      warningDuration: 1f, explosionDuration: 1f, damage: _weakDamage, WarningType.Type1);
+                                      warningDuration: 1f, explosionDuration: 1f, damage: _weakDamage, warningType:WarningType.Type1, patternName:PatternName);
         yield return null;
     }
 

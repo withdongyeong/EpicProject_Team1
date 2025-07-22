@@ -8,7 +8,7 @@ public class TutorialBossPattern : IBossAttackPattern
     private bool _isOddNumber;
     private int _damage;
 
-    public string PatternName => "TutorialBossPattern";
+    public string PatternName => "0_1";
     public TutorialBossPattern(GameObject TutorialBossAttack, bool IsOddNumber, int damage)
     {
         _tutorialBossAttack = TutorialBossAttack;
@@ -58,7 +58,7 @@ public class TutorialBossPattern : IBossAttackPattern
                 if (Match(grid[size - 1 - layer, i])) layerPoints.Add(new Vector3Int(size - 1 - layer - 4, i - 4, 0)); // 하단
                 if (Match(grid[i, layer])) layerPoints.Add(new Vector3Int(i - 4, layer - 4, 0));          // 좌측
                 if (Match(grid[i, size - 1 - layer])) layerPoints.Add(new Vector3Int(i - 4, size - 1 - layer - 4, 0)); // 우측
-            }
+            } 
 
             if (layerPoints.Count > 0)
                 groupedPoints.Add(layerPoints);
@@ -73,7 +73,8 @@ public class TutorialBossPattern : IBossAttackPattern
                 _tutorialBossAttack,
                 warningDuration: 1f,
                 explosionDuration: 0.3f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
             boss.StartCoroutine(SlimeSoundEffect());
             yield return new WaitForSeconds(boss.Beat);
