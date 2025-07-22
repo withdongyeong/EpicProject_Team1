@@ -104,7 +104,6 @@ public class GameManager : Singleton<GameManager>
     // 타이틀로 돌아갈 때 벌어지는 일들
     public void LoadTitle()
     {
-        Debug.Log("김요한 = 타이틀로 돌아갑니다.");
         AnalyticsManager.Instance.GoTitleEvent();
         LogHandler.SetTotalPlayTimer();
         currentUnlockLevel = SaveManager.UnlockLevel;
