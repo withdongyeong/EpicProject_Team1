@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using System.Threading.Tasks;
 using Unity.Services.Core;
@@ -70,6 +70,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     private bool IsInit()
     {
+        if (!isAgreed)
+        {
+            Debug.LogWarning("동의하지 않음 이벤트 전송 불가.");
+            return false;
+        }
         if (!_isInitialized)
         {
             Debug.LogError("아직 초기화되지 않음! 이벤트 전송 불가."); 
@@ -95,9 +100,9 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         string hitPatterns = BossPatternLogger.Instance.GetPatternHitJson();
         string killerPattern = "None"; // 클리어했으므로 킬러 패턴 없음
         
-        int damageTaken = 0;
-        int healingReceived = 0;
-        int protectedDamage = 0;
+        //int damageTaken = 0;
+        int healingReceived = GameManager.Instance.LogHandler.GetHealedAmount();
+        int protectedDamage = GameManager.Instance.LogHandler.GetProtectionAmount();
         
         // 2. 'stage_clear' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent stageClearEvent = new CustomEvent("stage_clear")
@@ -106,7 +111,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "difficulty", difficulty },
             { "stage_time", stageTime },
             { "used_tiles", itemsJson },
-            { "damage_taken", damageTaken },
+            //{ "damage_taken", damageTaken },
             { "healing_received", healingReceived },
             { "protected_damage", protectedDamage },
             { "hit_patterns", hitPatterns }, 
@@ -142,11 +147,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 보스 패턴 관련 데이터 수집
         string hitPatterns = BossPatternLogger.Instance.GetPatternHitJson();
         string killerPattern = BossPatternLogger.Instance.GetKillerPattern();
-        
-        int damageTaken = 0;
-        int healingReceived = 0;
-        int protectedDamage = 0;
-        
+
+        //int damageTaken = 0;
+        int healingReceived = GameManager.Instance.LogHandler.GetHealedAmount();
+        int protectedDamage = GameManager.Instance.LogHandler.GetProtectionAmount();
+
         // 2. 'stage_fail' 이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent stageFailEvent = new CustomEvent("stage_fail")
         {
@@ -154,7 +159,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
             { "difficulty", difficulty },
             { "stage_time", stageTime },
             { "used_tiles", itemsJson },
-            { "damage_taken", damageTaken },
+            //{ "damage_taken", damageTaken },
             { "healing_received", healingReceived },
             { "protected_damage", protectedDamage },
             { "hit_patterns", hitPatterns },

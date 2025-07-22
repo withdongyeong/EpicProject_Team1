@@ -120,6 +120,12 @@ public class StageUIHandler : MonoBehaviour
     private void ShowTitleScenePanel()
     {
         ButtonClickSound();
+        if (LifeManager.Instance.Life <= 0)
+        {
+            // 생명이 없을 때는 타이틀 씬 패널을 표시하지 않음
+            ReturnToMainMenu();
+            return;
+        }
         titleScenePanel.SetActive(true);
     }
 

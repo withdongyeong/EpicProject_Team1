@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 최종 보스 패턴1A - 손으로 테두리 가두기
+/// 기존 이동불가 칸을 고려하여 해제하지 않도록 수정
 /// </summary>
 public class BigHandPattern1A : IBossAttackPattern
 {
@@ -22,6 +23,11 @@ public class BigHandPattern1A : IBossAttackPattern
         _wallPrefab = wallPrefab;
     }
 
+    /// <summary>
+    /// 손 오프셋 설정
+    /// </summary>
+    /// <param name="leftHandOffset">왼손 오프셋</param>
+    /// <param name="rightHandOffset">오른손 오프셋</param>
     public void SetHandOffsets(Vector3 leftHandOffset, Vector3 rightHandOffset)
     {
         _leftHandOffset = leftHandOffset;
@@ -53,8 +59,8 @@ public class BigHandPattern1A : IBossAttackPattern
         // 바깥쪽 테두리 위치들 가져오기
         List<Vector3Int> outerBorderPositions = GetOuterBorderPositions();
         
-        // 그리드 차단
-        BlockGridPositions(outerBorderPositions, boss, bigHand);
+        // 그리드 차단 (기존 이동불가 상태 고려)
+        BlockGridPositionsSelectively(outerBorderPositions, boss, bigHand);
         
         // 손 오브젝트들 생성 및 이동
         yield return CreateAndMoveHands(bigHand);
@@ -62,6 +68,9 @@ public class BigHandPattern1A : IBossAttackPattern
         Debug.Log("패턴1A 완료 - 테두리 차단 및 손 배치 완료");
     }
 
+    /// <summary>
+    /// 바깥쪽 테두리 위치들 반환
+    /// </summary>
     private List<Vector3Int> GetOuterBorderPositions()
     {
         List<Vector3Int> positions = new List<Vector3Int>();
@@ -77,29 +86,59 @@ public class BigHandPattern1A : IBossAttackPattern
             }
         }
         
-        Debug.Log($"바깥쪽 테두리 차단 위치 개수: {positions.Count}개");
         return positions;
     }
 
-    private void BlockGridPositions(List<Vector3Int> positions, BaseBoss boss, BigHand bigHand)
+    /// <summary>
+    /// 그리드 위치를 선택적으로 차단 (기존 이동불가 상태 고려)
+    /// </summary>
+    /// <param name="positions">차단할 위치들</param>
+    /// <param name="boss">보스 인스턴스</param>
+    /// <param name="bigHand">BigHand 보스 인스턴스</param>
+    private void BlockGridPositionsSelectively(List<Vector3Int> positions, BaseBoss boss, BigHand bigHand)
     {
         List<Vector3Int> singlePointShape = new List<Vector3Int>
         {
             new Vector3Int(0, 0, 0)
         };
         
-        bigHand.BlockedPositions.Clear(); // 기존 차단 위치 초기화
+        // 기존 차단 위치 초기화
+        bigHand.BlockedPositions.Clear();
+        bigHand.OriginallyUnmovablePositions.Clear();
+        
+        int newlyBlockedCount = 0;
+        int alreadyBlockedCount = 0;
         
         foreach (Vector3Int gridPos in positions)
         {
+            // 기존에 이동불가였는지 확인
+            bool wasAlreadyUnmovable = GridManager.Instance.UnmovableGridPositions.Contains(gridPos);
+            
+            // 벽 이펙트는 모든 위치에 생성
             boss.BombHandler.ExecuteFixedBomb(singlePointShape, gridPos, _wallPrefab,
-                warningDuration: 1f, explosionDuration: boss.Beat * 40, damage: 0, warningType: WarningType.Type3, patternName:PatternName);
-            GridManager.Instance.AddUnmovableGridPosition(gridPos);
-            bigHand.BlockedPositions.Add(gridPos);
+                warningDuration: 1f, explosionDuration: boss.Beat * 40, damage: 0, 
+                PatternName, WarningType.Type3);
+            
+            if (wasAlreadyUnmovable)
+            {
+                // 기존에 이동불가였던 위치 기록
+                bigHand.OriginallyUnmovablePositions.Add(gridPos);
+                alreadyBlockedCount++;
+            }
+            else
+            {
+                // 새로 차단할 위치만 추가
+                GridManager.Instance.AddUnmovableGridPosition(gridPos);
+                bigHand.BlockedPositions.Add(gridPos);
+                newlyBlockedCount++;
+            }
         }
-        Debug.Log($"테두리 차단 완료! 차단된 위치: {bigHand.BlockedPositions.Count}개");
+        
     }
 
+    /// <summary>
+    /// 손 오브젝트들 생성 및 이동
+    /// </summary>
     private IEnumerator CreateAndMoveHands(BigHand bigHand)
     {
         Vector3 leftHandStartPos = new Vector3(-20, -20, 0);

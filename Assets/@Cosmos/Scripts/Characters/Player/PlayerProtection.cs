@@ -12,10 +12,14 @@ public class PlayerProtection : MonoBehaviour
     private Coroutine _protectionCoroutine;
     private GameObject _activeProtectionEffect;
 
+    private int _allProtectionAmount = 0; // 누적 보호막량
+
     //만약 장수풍뎅이 차지중이라면 보호막을 얻지 않습니다
     private bool _isCharging = false;
 
     public bool IsProtected => _isProtected;
+
+    public int AllProtectionAmount { get => _allProtectionAmount; }
 
     private void Awake()
     {
@@ -155,6 +159,9 @@ public class PlayerProtection : MonoBehaviour
         int result = 0;
         if (_isProtected && _protectionAmount > 0)
         {
+            //보호한 데미지량
+            int blockedDamage = Mathf.Min(damage, _protectionAmount);
+            _allProtectionAmount += blockedDamage;
             _protectionAmount -= damage;
             if (_protectionAmount <= 0)
             { 
