@@ -1,6 +1,7 @@
-﻿using System;
-using UnityEngine;
-using Newtonsoft.Json; // 🔑 JSON 직렬화를 위해 필요합니다.
+﻿using UnityEngine;
+using Newtonsoft.Json;
+using NUnit.Framework;
+using System.Collections.Generic; // 🔑 JSON 직렬화를 위해 필요합니다.
 
 /// <summary>
 /// 게임 진행 중 로그로 남길 모든 데이터들을 여기서 측정 합니다.
@@ -11,9 +12,16 @@ public class LogHandler : MonoBehaviour
     public float sessionPlayTimer = 0f; // 세션 플레이 시간
     public float stageTimer = 0f;
 
+    private List<string> _purchasedTiles = new(); //이번 라운드동안 구매한 타일.
+    private List<string> _selledTiles = new(); //이번 라운드동안 판매한 타일.
+    public int EnforcedTileNum = 0; // 강화된 마법진의 개수.
+    public int totalStarNum = 0; //배치된 별들의 개수.
+
+
     private void Awake()
     {
         EventBus.SubscribeGameStart(SetStageTimer);
+        EventBus.SubscribeTileSell(AddSelledTile);
         SetTotalPlayTimer();
     }
 
@@ -124,10 +132,38 @@ public class LogHandler : MonoBehaviour
         return totalPlayTimer; // 현재 총 플레이 시간 반환
     }
 
-    
+    public void AddPurchasedTile(string tileName)
+    {
+        _purchasedTiles.Add(tileName);
+    }
+
+    /// <summary>
+    /// 이번 라운드동안 산 타일들 리스트를 받습니다. 그 뒤 산 타일들 리스트를 초기화합니다.
+    /// </summary>
+    /// <returns>산 타일들을 화염살, 지팡이, 거북이 이런식으로 받습니다.</returns>
+    public string GetPurchasedTile()
+    {
+        string result = string.Join(", ", _purchasedTiles);
+        _purchasedTiles.Clear();
+        return result;
+    }
+
+    public void AddSelledTile(TileObject selledTile)
+    {
+        _selledTiles.Add(selledTile.GetTileData().TileName);
+    }
+
+    public string GetSelledTile()
+    {
+        string result = string.Join(", ", _selledTiles);
+        _selledTiles.Clear();
+        return result;
+    }
+
 
     public void OnDestroy()
     {
         EventBus.UnsubscribeGameStart(SetStageTimer);
+        EventBus.UnSubscribeTileSell(AddSelledTile);
     }
 }

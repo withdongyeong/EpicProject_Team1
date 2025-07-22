@@ -28,6 +28,14 @@ public class TileObject : MonoBehaviour
     private bool isPlaced = false;
     public bool IsPlaced => isPlaced;
 
+    //로그 찍기 용 자신의 별 개수입니다.
+    private int _starCount;
+    public int StarCount => _starCount;
+
+    //로그 찍기 용 자신의 활성화된 별 개수입니다.
+    private int _enforcedStarCount;
+    public int EnforcedStarCount => _enforcedStarCount;
+
     private void Awake()
     {
         InitializeTile();
@@ -53,6 +61,7 @@ public class TileObject : MonoBehaviour
             //combinedStarCell.SetActive(true); // 스타셀의 부모 오브젝트 비활성화
         }
         isInitialized = true;
+        _starCount = GetComponentsInChildren<StarCell>(true).Length;
     }
 
     /// <summary>
@@ -183,8 +192,10 @@ public class TileObject : MonoBehaviour
                 activeStarCount++;
             }
         }
+
+        _enforcedStarCount = activeStarCount;
         
-        
+
         /*if (activeStarCount >= conditionCount)
         {
             GetComponentInChildren<CombineCell>().GetSprite().color = new Color(1f, 1f, 0.5f, 1f);
@@ -197,6 +208,7 @@ public class TileObject : MonoBehaviour
         
         if (activeStarCount >= conditionCount)
         {
+            GameManager.Instance.LogHandler.EnforcedTileNum++;
             foreach (var star in GetComponentsInChildren<LightController>())
             {
                 star.SetLightProperties(6,3,0.8f,0.1f,0.4f);
@@ -238,6 +250,7 @@ public class TileObject : MonoBehaviour
     public void OnPlaced()
     {
         isPlaced = true;
+        GameManager.Instance.LogHandler.totalStarNum += _starCount;
     }
 
     public void OnDragged()
