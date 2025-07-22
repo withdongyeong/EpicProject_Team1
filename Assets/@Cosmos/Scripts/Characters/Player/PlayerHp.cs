@@ -45,6 +45,8 @@ public class PlayerHp : MonoBehaviour
     /// </summary>
     public bool IsInvincible { get => _isInvincible; }
 
+    public int HealedAmount { get => _healedAmount; }
+
     private void Awake()
     {
         _playerShield = GetComponent<PlayerShield>();
