@@ -36,10 +36,14 @@ public class CoolDownEffect : MonoBehaviour
 
     
     //초기화
-    public void Init(Scene scene = default , LoadSceneMode mode = default)
+    public void Init(Scene scene = default, LoadSceneMode mode = default)
     {
-        StopAllCoroutines();
-        sr.size = new Vector2(1, 0);
+        // Additive 모드는 무시
+        if (mode == LoadSceneMode.Single)
+        {
+            StopAllCoroutines();
+            sr.size = new Vector2(1, 0);
+        }
     }
 
 
