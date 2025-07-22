@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 최종 보스 패턴1B - 손 거두기 및 차단 해제
+/// 기존 이동불가 칸을 고려하여 해제하지 않도록 수정
 /// </summary>
 public class BigHandPattern1B : IBossAttackPattern
 {
@@ -29,12 +30,15 @@ public class BigHandPattern1B : IBossAttackPattern
         Debug.Log("패턴1B 시작 - 손 거두기 및 차단 해제");
         
         // 손들을 화면 밖으로 돌려보내고 차단 해제
-        yield return ReturnHandsAndUnblock(bigHand);
+        yield return ReturnHandsAndUnblockSelectively(bigHand);
         
         Debug.Log("패턴1B 완료 - 손 거두기 및 차단 해제 완료");
     }
 
-    private IEnumerator ReturnHandsAndUnblock(BigHand bigHand)
+    /// <summary>
+    /// 손을 돌려보내고 선택적으로 차단 해제 (기존 이동불가 위치는 유지)
+    /// </summary>
+    private IEnumerator ReturnHandsAndUnblockSelectively(BigHand bigHand)
     {
         Vector3 leftHandExitPos = new Vector3(-20, -20, 0);
         Vector3 rightHandExitPos = new Vector3(15, 15, 0);
@@ -71,14 +75,30 @@ public class BigHandPattern1B : IBossAttackPattern
             bigHand.RightHandObject = null;
         }
         
-        // 차단된 위치들 해제
+        // 차단된 위치들을 선택적으로 해제 (기존 이동불가 위치는 유지)
+        UnblockGridPositionsSelectively(bigHand);
+        
+    }
+
+    /// <summary>
+    /// 그리드 위치를 선택적으로 해제 (기존 이동불가 위치는 유지)
+    /// </summary>
+    /// <param name="bigHand">BigHand 보스 인스턴스</param>
+    private void UnblockGridPositionsSelectively(BigHand bigHand)
+    {
+        int removedCount = 0;
+        int maintainedCount = 0;
+        
+        // 패턴으로 새로 차단한 위치만 해제
         foreach (Vector3Int gridPos in bigHand.BlockedPositions)
         {
             GridManager.Instance.RemoveUnmovableGridPosition(gridPos);
+            removedCount++;
         }
-        bigHand.BlockedPositions.Clear();
         
-        Debug.Log("테두리 차단 해제 완료! 손들이 화면 밖으로 나간 후 삭제됨");
+        // 리스트들 정리
+        bigHand.BlockedPositions.Clear();
+        bigHand.OriginallyUnmovablePositions.Clear();
     }
 
     public void Cleanup()
