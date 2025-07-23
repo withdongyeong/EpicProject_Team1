@@ -16,6 +16,12 @@ public class BeetleSummonSkill : SkillBase
         EventBus.SubscribeGameStart(SpawnBeetle);
     }
 
+    protected override void ClearStarBuff()
+    {
+        base.ClearStarBuff();
+        _adjacentSummonNameList.Clear();
+    }
+
 
     private void SpawnBeetle()
     {
@@ -33,10 +39,11 @@ public class BeetleSummonSkill : SkillBase
     {
         base.Activate();
         _playerProtection.SetProtection(true, 8 + _adjacentSummonNameList.Count * 6);
-        // 인접 소환수 7개 이상이면 업적
+        // 인접 소환수 8개 이상이면 업적
         if (_adjacentSummonNameList.Count >= 8)
         {
             SteamAchievement.Achieve("ACH_CON_BEETLE");
+            Debug.LogError("도전과제 됨");
         }
         
     }
