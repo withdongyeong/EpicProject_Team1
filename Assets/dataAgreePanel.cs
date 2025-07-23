@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class dataAgreePanel : MonoBehaviour
@@ -25,6 +25,7 @@ public class dataAgreePanel : MonoBehaviour
         SoundManager.Instance.UISoundClip("ButtonActivate");
         panel.gameObject.SetActive(false);
         SaveManager.SaveDataAgreement(true);
+        AnalyticsManager.Instance.isAgreed = true;
         SaveManager.SaveFirstStart();
         AnalyticsManager.Instance.CollectStart();
     }
@@ -34,6 +35,7 @@ public class dataAgreePanel : MonoBehaviour
         SoundManager.Instance.UISoundClip("ButtonActivate");
         panel.gameObject.SetActive(false);
         SaveManager.SaveDataAgreement(false);
+        AnalyticsManager.Instance.isAgreed = false;
         SaveManager.SaveFirstStart();
     }
     
