@@ -105,7 +105,8 @@ public class TestManager : MonoBehaviour
     }
     
     private void DeleteSaveData()
-    {
+    { 
+        
         SaveManager.DeleteAllSaves();
     }
 

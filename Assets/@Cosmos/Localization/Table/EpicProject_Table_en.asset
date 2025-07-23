@@ -563,7 +563,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43619328018
     m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
-      Consumes 2 per second.'
+      Consumes 2 per second.
+
+      When acquiring a duplicate barrier, it will be
+      updated to the higher value.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328019
@@ -1188,6 +1191,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5136727679836165
     m_Localized: "Learn More \n(Steam)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5156470998573065
+    m_Localized: "One More Time\u2026"
     m_Metadata:
       m_Items: []
   references:

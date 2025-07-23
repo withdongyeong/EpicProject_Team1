@@ -59,12 +59,11 @@ public static class SaveDataResetProcess
     
     private static void ResetSaveData()
     {
+        Debug.Log("Save_Version_1.0.0 : 초기화 프로세스가 시작되었습니다.");
         SaveManager.DeleteAllSaves();
         // 새로운 세이브 키 1.0.0 저장
         PlayerPrefs.SetString(SaveVersionKey, SaveVersion);
         PlayerPrefs.Save();
-        SteamUserStats.ResetAllStats(true);
-        SteamUserStats.StoreStats();
         Debug.Log("Save_Version_1.0.0 : 모든 세이브 데이터가 초기화되었습니다.");
     }
 }

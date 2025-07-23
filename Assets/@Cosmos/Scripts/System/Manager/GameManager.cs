@@ -1,4 +1,5 @@
-﻿using Steamworks;
+﻿using System;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -32,7 +33,6 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        SaveDataResetProcess.DataResetProcess();
         logHandler = GetComponent<LogHandler>();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
@@ -40,7 +40,12 @@ public class GameManager : Singleton<GameManager>
         currentUnlockLevel = SaveManager.UnlockLevel;
         SetResolution(SaveManager.Resolution);
     }
-    
+
+    private void Start()
+    {
+        SaveDataResetProcess.DataResetProcess();
+    }
+
     private void Update()
     {
         ShowSetting();
