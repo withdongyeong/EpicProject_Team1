@@ -247,12 +247,14 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         // 1. 필요한 정보를 수집합니다.
         int stageIndex = GameManager.Instance.LogHandler.GetStageIndex();
         string gameState = GameStateManager.Instance.CurrentState.ToString();
+        float totalPlayTime = GameManager.Instance.LogHandler.GetTotalPlayTimer();
         
         // 2.이벤트를 생성하고 파라미터를 담습니다.
         CustomEvent gameExitEvent = new CustomEvent("game_exit")
         {
             { "stage_index", stageIndex },
             { "game_state2", gameState },
+            { "total_play_time", totalPlayTime },
         };
         
         AnalyticsService.Instance.RecordEvent(gameExitEvent);
