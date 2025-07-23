@@ -252,7 +252,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         CustomEvent gameExitEvent = new CustomEvent("game_exit")
         {
             { "stage_index", stageIndex },
-            { "game_state", gameState },
+            { "game_state2", gameState },
         };
         
         AnalyticsService.Instance.RecordEvent(gameExitEvent);
@@ -277,7 +277,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
         {
             { "difficulty", difficulty },
             { "stage_index", stageIndex },
-            { "game_state", gameState },
+            { "game_state2", gameState },
             { "session_time", sessionTime },
         };
         
