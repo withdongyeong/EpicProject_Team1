@@ -133,7 +133,7 @@ public static class SaveManager
     public static void SaveLanguageIndex(int index)
     {
         LanguageIndex = index;
-        PlayerPrefs.SetInt("LanguageIndex", index);
+        PlayerPrefs.SetInt("Language_Index", index);
         PlayerPrefs.Save();
     }
     
