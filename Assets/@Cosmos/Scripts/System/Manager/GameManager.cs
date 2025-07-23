@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        SaveDataResetProcess.DataResetProcess();
         logHandler = GetComponent<LogHandler>();
         EventBus.Init(); // 꼭 한 번만 호출되게
         EventBus.SubscribeSceneLoaded(OnSceneLoaded);
