@@ -412,7 +412,7 @@ Tile_TileTagDescription_Sword,"剑<sprite name=""Sword"">：召唤生物，持�
 Tile_TileTagDescription_Totem,"图腾<sprite name=""Totem"">：当3个图腾叠加时，触发效果并消失。叠加的第3个图腾的效果会强化。","Totem<sprite name=""Totem"">: Activates when 3 stack. The 3rd totem's effect is enhanced.","トーテム <sprite name=""Totem"">: トーテムが3つ積み重なると効果を発動して消えます。","토템<sprite name=""Totem"">: 토템이 3개 쌓이면 효과를 발동하고 사라집니다. 3번째로 올라간 토템의 효과는 강화됩니다."
 Tile_TileTagDescription_Shield,"盾牌<sprite name=""Shield"">：阻挡 1 轮伤害。","Shield<sprite name=""Shield"">: Blocks 1 round of damage.","シールド <sprite name=""Shield"">: 1 回のダメージを防ぎます。","방어막<sprite name=""Shield"">: 1회의 피해를 막아줍니다."
 Tile_TileTagDescription_Barrier,"保护盾<sprite name=""Barrier"">：阻挡一定量的伤害。每秒吸收2点护盾。
-获得重复的屏障时，将以较高的数值进行更新。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Consumes 2 per second.
+保护盾重复的屏障时，将以较高的数值进行更新。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Consumes 2 per second.
 When acquiring a duplicate barrier, it will be updated to the higher value.","バリア<sprite name=""Barrier"">: 一定量のダメージを防ぎます。毎秒2消費します。
 バリアを重複して獲得した場合、高い数値に更新されます。","보호막<sprite name=""Barrier"">: 일정량의 피해를 막아줍니다. 매초 2 소모됩니다.
 중복 보호막 획득 시 높은 값으로 갱신됩니다."
