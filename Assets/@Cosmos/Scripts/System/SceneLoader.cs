@@ -68,7 +68,6 @@ public static class SceneLoader
     public static void ToggleSetting()
     {
         GameStateManager gameStateManager = GameStateManager.Instance;
-        Debug.LogError(settingSceneLoaded);
     
         // Count 상태에서는 설정창 열기 차단
         if (!settingSceneLoaded && !gameStateManager.CanOpenSetting())
@@ -92,7 +91,6 @@ public static class SceneLoader
             }
         
             SceneManager.LoadSceneAsync(SettingScene, LoadSceneMode.Additive);
-            Debug.LogError("킴");
 
         }
         else
@@ -106,7 +104,6 @@ public static class SceneLoader
                 Debug.Log(scene.name);
                 if(SettingScene == scene.name)
                 {
-                    Debug.LogError("찾음");
                     sceneExist = true;
                 }
             }
@@ -122,7 +119,6 @@ public static class SceneLoader
                 }
 
                 SceneManager.UnloadSceneAsync(SettingScene);
-                Debug.LogError("끔");
             }
            
         }
@@ -139,6 +135,5 @@ public static class SceneLoader
         }
 
         SceneManager.UnloadSceneAsync(SettingScene);
-        Debug.LogError("끔");
     }
 }
