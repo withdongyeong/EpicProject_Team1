@@ -158,6 +158,7 @@ public static class SaveManager
         PlayerPrefs.DeleteKey(SaveKeys.ShownUnlockLevel);
         PlayerPrefs.DeleteKey(SaveKeys.LanguageIndex);
         PlayerPrefs.DeleteKey(SaveKeys.DataAgreement);
+        PlayerPrefs.DeleteAll();
         LoadAll();
         PlayerPrefs.Save(); // 변경 사항 저장
         
