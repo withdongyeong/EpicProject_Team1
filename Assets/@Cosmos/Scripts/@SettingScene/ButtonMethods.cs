@@ -41,7 +41,7 @@ public class ButtonMethods : MonoBehaviour
     public void OnConfirmButton()
     {
         ButtonClickSound();
-        SceneLoader.ToggleSetting();
+        SceneLoader.CloseSetting();
     }
     
     public void OnExitButton()

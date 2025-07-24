@@ -77,6 +77,7 @@ public static class SceneLoader
 
         if(!settingSceneLoaded)
         {
+            settingSceneLoaded = true;
             // Playing 상태이면서 현재 일시정지되지 않은 상태에서만 일시정지하고 플래그 설정
             if (gameStateManager.CurrentState == GameState.Playing && 
                 !TimeScaleManager.Instance.IsTimeScaleStopped)
@@ -90,19 +91,49 @@ public static class SceneLoader
             }
         
             SceneManager.LoadSceneAsync(SettingScene, LoadSceneMode.Additive);
-            settingSceneLoaded = true;
+
         }
         else
         {
-            // 설정창으로 인한 일시정지였다면 해제
-            if (isPausedBySettings)
+            //만약 세팅씬이 로드되어있지 않을 가능성이 있으므로 예외처리 합니다.
+            bool sceneExist = false;
+            int sceneCount = SceneManager.sceneCount;
+            for(int i = 0; i<sceneCount; i++)
             {
-                TimeScaleManager.Instance.ResetTimeScale();
-                isPausedBySettings = false;
+                Scene scene = SceneManager.GetSceneAt(i);
+                Debug.Log(scene.name);
+                if(SettingScene == scene.name)
+                {
+                    sceneExist = true;
+                }
             }
-        
-            SceneManager.UnloadSceneAsync(SettingScene);
-            settingSceneLoaded = false;
+
+            if(sceneExist)
+            {
+                settingSceneLoaded = false;
+                // 설정창으로 인한 일시정지였다면 해제
+                if (isPausedBySettings)
+                {
+                    TimeScaleManager.Instance.ResetTimeScale();
+                    isPausedBySettings = false;
+                }
+
+                SceneManager.UnloadSceneAsync(SettingScene);
+            }
+           
         }
+    }
+
+    public static void CloseSetting()
+    {
+        settingSceneLoaded = false;
+        // 설정창으로 인한 일시정지였다면 해제
+        if (isPausedBySettings)
+        {
+            TimeScaleManager.Instance.ResetTimeScale();
+            isPausedBySettings = false;
+        }
+
+        SceneManager.UnloadSceneAsync(SettingScene);
     }
 }

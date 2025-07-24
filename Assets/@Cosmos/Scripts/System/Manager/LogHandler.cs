@@ -90,14 +90,14 @@ public class LogHandler : MonoBehaviour
         // 총 플레이 시간 업데이트
         totalPlayTimer += Time.deltaTime; 
         
-        // 세션 플레이 시간 업데이트
+        // 스테이지 클리어 타이머 업데이트
         if (GameManager.Instance.IsInStage  && stageTimer >= 0f)
         {
             stageTimer += Time.deltaTime; 
         }
-
-        // 스테이지 클리어 타이머 업데이트
-        if (GameManager.Instance.IsInBuilding && GameManager.Instance.IsInStage && sessionPlayTimer >= 0f)
+        
+        // 세션 플레이 시간 업데이트
+        if ((GameManager.Instance.IsInBuilding || GameManager.Instance.IsInStage) && sessionPlayTimer >= 0f)
         {
             sessionPlayTimer += Time.deltaTime;
         }
