@@ -33,7 +33,10 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private IEnumerator ExecuteSpiderWebAttack(BaseBoss boss)
     {
-        Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+        if (!boss.IsHandBoss)
+        {
+            Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;    
+        }
         
         // 공격 가능한 세로줄 범위 계산
         int leftBound = Wallcount;
@@ -93,7 +96,10 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private IEnumerator ExecuteRowWaveAttack(BaseBoss boss)
     {
-        Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+        if (!boss.IsHandBoss)
+        {
+            Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;    
+        }
         int RandomPoint = Random.Range(5, 9);
 
         for (int y = 0; y < 9; y++)

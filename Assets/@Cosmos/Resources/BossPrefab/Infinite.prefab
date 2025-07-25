@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4161561124712667831}
   - component: {fileID: 6309084347469199974}
   - component: {fileID: 3838866332782451978}
+  - component: {fileID: 6006495807416335480}
   m_Layer: 0
   m_Name: Infinite
   m_TagString: Untagged
@@ -230,3 +231,28 @@ MonoBehaviour:
   BombActtck: {fileID: 9114323422099295405, guid: 6e8706064fcd00c4b86777e5486f646d, type: 3}
   Bombball: {fileID: 6240613559509360692, guid: 63f04ac956d20fe489982550251dbcef, type: 3}
   GroundSpike: {fileID: 9114323422099295405, guid: 5e268869a8c53c14c878364033ebb428, type: 3}
+  turtreeAttack: {fileID: 9114323422099295405, guid: 6c9eb84b9744e2c40a4661b75378aed2, type: 3}
+  ReaperActtack: {fileID: 9114323422099295405, guid: 405fb0e6452cccd4d940ffd7c6c38522, type: 3}
+  DeathArea: {fileID: 6240613559509360692, guid: b9923d9bc0212f5468b825d4d5cebd0a, type: 3}
+  LightningActtack: {fileID: 9114323422099295405, guid: e378b0037dea1fa4fab80a9c79081448, type: 3}
+  startPosition: {x: 0, y: 0, z: 0}
+  fingerBottomPrefab: {fileID: 2253190953738238710, guid: 8510fbc9b4aaac04cbca9bb7fcc7aa8d, type: 3}
+  fingerTopPrefab: {fileID: 2253190953738238710, guid: 14065e2aa330bb3479857d17302bd0b6, type: 3}
+  fingerLeftPrefab: {fileID: 2253190953738238710, guid: b72cbef972c205042af2c68ea3835264, type: 3}
+  fingerRightPrefab: {fileID: 2253190953738238710, guid: 13c56698b4684e14da31009851c53845, type: 3}
+  palmLeftPrefab: {fileID: 2253190953738238710, guid: 9e59657f5aa4bf943bbca6291cee3d24, type: 3}
+  palmRightPrefab: {fileID: 2253190953738238710, guid: 69ee14f3cb7af9740b8d7ab7b07c8aa4, type: 3}
+  attackPrefab: {fileID: 898110886596449252, guid: 0739b5f1274ae874da7d2bf2e5b4ba9a, type: 3}
+--- !u!114 &6006495807416335480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909207524506738849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011ae990a2ff134488ea5d603402f2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathAreaPrefeb: {fileID: 6240613559509360692, guid: b9923d9bc0212f5468b825d4d5cebd0a, type: 3}

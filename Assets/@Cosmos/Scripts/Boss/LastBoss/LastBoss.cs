@@ -15,7 +15,7 @@ public class LastBoss : BaseBoss
     public GameObject flameExplosionPrefab;
     public GameObject swordExplosionPrefab;
     public GameObject wallPrefab;
-    private GameObject currentWeapon;
+    public GameObject currentWeapon;
     public GameObject CurrentWeapon => currentWeapon;
 
     /// <summary>
