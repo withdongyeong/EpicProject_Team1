@@ -543,8 +543,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328014
-    m_Localized: 'Frostbite<sprite name="Ice">: When stacked 10 times, freezes enemies
-      for 2 seconds.'
+    m_Localized: 'Frostbite<sprite name="Ice">: When stacked 10 times, freezes<sprite
+      name="Freeze"> enemies for 2 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328015
@@ -563,10 +563,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43619328018
     m_Localized: 'Barrier<sprite name="Barrier">: Blocks a certain amount of damage.
-      Consumes 2 per second.
-
-      When acquiring a duplicate barrier, it will be
-      updated to the higher value.'
+      Consumes 2 per second. When acquiring a duplicate barrier, it will be updated
+      to the higher value.'
     m_Metadata:
       m_Items: []
   - m_Id: 43619328019
@@ -1195,6 +1193,11 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5156470998573065
     m_Localized: "One More Time\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6230733167927296
+    m_Localized: 'Freeze<sprite name="Freeze">: Enemy stops attacking and takes 50%
+      more damage. Some enemy patterns cannot be frozen.'
     m_Metadata:
       m_Items: []
   references:

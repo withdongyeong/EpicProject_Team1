@@ -144,6 +144,7 @@ public class InfoTextRenderer : MonoBehaviour
         {"Pain", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Pain")},
         {"Mark", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Mark") },
         {"Curse", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Curse") },
-        {"Nebula", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Nebula") }
+        {"Nebula", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Nebula") },
+        {"Freeze", new LocalizedString("EpicProject_Table", "Tile_TileTagDescription_Freeze") }
     };
 }
