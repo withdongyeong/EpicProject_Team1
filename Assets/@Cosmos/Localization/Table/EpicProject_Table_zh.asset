@@ -454,8 +454,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328014
-    m_Localized: "\u51BB\u4F24<sprite name=\"Ice\">: \u5806\u53E0 10 \u6B21\u540E\uFF0C\u51BB\u7ED3\u654C\u4EBA
-      2 \u79D2\u3002"
+    m_Localized: "\u51BB\u4F24<sprite name=\"Ice\">: \u5806\u53E0 10 \u6B21\u540E\uFF0C\u51BB\u7ED3<sprite
+      name=\"Freeze\">\u654C\u4EBA 2 \u79D2\u3002"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328015
@@ -471,7 +471,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328018
-    m_Localized: "\u4FDD\u62A4\u76FE<sprite name=\"Barrier\">\uFF1A\u963B\u6321\u4E00\u5B9A\u91CF\u7684\u4F24\u5BB3\u3002\u6BCF\u79D2\u5438\u65362\u70B9\u62A4\u76FE\u3002\n\u4FDD\u62A4\u76FE\u91CD\u590D\u7684\u5C4F\u969C\u65F6\uFF0C\u5C06\u4EE5\u8F83\u9AD8\u7684\u6570\u503C\u8FDB\u884C\u66F4\u65B0\u3002"
+    m_Localized: "\u4FDD\u62A4\u76FE<sprite name=\"Barrier\">\uFF1A\u963B\u6321\u4E00\u5B9A\u91CF\u7684\u4F24\u5BB3\u3002\u6BCF\u79D2\u5438\u65362\u70B9\u62A4\u76FE\u3002\u4FDD\u62A4\u76FE\u91CD\u590D\u7684\u5C4F\u969C\u65F6\uFF0C\u5C06\u4EE5\u8F83\u9AD8\u7684\u6570\u503C\u8FDB\u884C\u66F4\u65B0\u3002"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328019
@@ -983,6 +983,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5156470998573065
     m_Localized: "\u518D\u6765\u4E00\u6B21\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6230733167927296
+    m_Localized: "\u51B0\u51BB<sprite name=\"Freeze\">\uFF1A\u65E0\u6CD5\u653B\u51FB\uFF0C\u53D7\u5230\u7684\u4F24\u5BB3\u589E\u52A050%\u3002"
     m_Metadata:
       m_Items: []
   references:
