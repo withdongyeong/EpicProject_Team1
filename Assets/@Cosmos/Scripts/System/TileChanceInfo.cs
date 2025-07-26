@@ -22,7 +22,9 @@ public class TileChanceInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         chanceText.gameObject.SetActive(true);
-        ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[StageSelectManager.Instance.StageNum];
+        Debug.Log(StageSelectManager.Instance.StageNum);
+        int num = Mathf.Min(10, StageSelectManager.Instance.StageNum);
+        ShopChanceClass chanceList = GlobalSetting.Shop_ChanceList[num];
 
         string Probabailitytext = "";
 
