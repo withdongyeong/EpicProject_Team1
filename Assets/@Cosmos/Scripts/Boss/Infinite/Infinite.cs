@@ -1,23 +1,51 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 최종 보스
 /// </summary>
-public class LastBoss : BaseBoss
+public class Infinite : LastBoss
 {
-    // [Header("최종 보스 전용 프리팹들")]
-    public GameObject staff;              // 지팡이 프리팹 (머리 위 무기용)
-    public GameObject sword;
-    public GameObject frost;
-    public GameObject flame;
-    public GameObject explosionPrefab;   // 공격 이펙트용
-    public GameObject frostExplosionPrefab;
-    public GameObject flameExplosionPrefab;
-    public GameObject swordExplosionPrefab;
-    public GameObject wallPrefab;
-    public GameObject currentWeapon;
-    public GameObject CurrentWeapon => currentWeapon;
+    [Header("1스테이지")]
+    public GameObject SlimeActtckTentacle;
+    public GameObject SlimeTrapTentacle;
+    
+    [Header("2스테이지")]
+    public GameObject poisionAriaPrefeb;
+    public GameObject LToRspiderLeg;
+    public GameObject RToLspiderLeg;
+    public GameObject SpiderWeb;
+    
+    [Header("3스테이지")]
+    public GameObject BombActtck;
+    public GameObject Bombball;
 
+    [Header("4-6스테이지")]
+    public GameObject GroundSpike;
+
+    [Header("4-6스테이지")]
+    public GameObject turtreeAttack;
+    
+    [Header("7스테이지")]
+    public GameObject ReaperActtack;
+    public GameObject DeathArea;
+
+    [Header("8스테이지")]
+    public GameObject LightningActtack;
+    public Vector3 startPosition;
+    private List<Vector3Int> PatternA = new List<Vector3Int> { new Vector3Int(7,7,0), new Vector3Int(7, 1, 0), new Vector3Int(1, 1, 0), new Vector3Int(1, 7, 0), new Vector3Int(7, 7, 0) };
+
+    [Header("9스테이지")]
+    public GameObject fingerBottomPrefab;
+    public GameObject fingerTopPrefab;
+    public GameObject fingerLeftPrefab;
+    public GameObject fingerRightPrefab;
+    public GameObject palmLeftPrefab;
+    public GameObject palmRightPrefab;
+    public GameObject attackPrefab;
+    
+    
     /// <summary>
     /// 초기화 - 고유한 스탯 설정
     /// </summary>
@@ -25,10 +53,15 @@ public class LastBoss : BaseBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = GlobalSetting.Instance.GetBossBalance(10).maxHP;
-        WeakDamage = GlobalSetting.Instance.GetBossBalance(10).weakDamage;
-        StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
-        BPM = GlobalSetting.Instance.GetBossBpm(10);
+        // MaxHealth = GlobalSetting.Instance.GetBossBalance(10).maxHP;
+        // WeakDamage = GlobalSetting.Instance.GetBossBalance(10).weakDamage;
+        // StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
+        // BPM = GlobalSetting.Instance.GetBossBpm(10);
+        /// 무한모드 전 임시 설정
+        MaxHealth = 6000;
+        WeakDamage = 50;
+        StrongDamage = 50;
+        BPM = 120;
         SetDifficulty();
         // 빙결 불가 설정
         IsHandBoss = true;
@@ -39,6 +72,64 @@ public class LastBoss : BaseBoss
     /// </summary>
     protected override void InitializeAttackPatterns()
     {
+        // 1스테이지
+        AddGroup()
+            .AddPattern(new SlimeFloorPattern1(SlimeTrapTentacle, WeakDamage), Beat)
+            .AddPattern(new SlimeFloorPattern2(SlimeTrapTentacle, WeakDamage), Beat)
+            .AddPattern(new SlimeFloorPattern3(SlimeTrapTentacle, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 2스테이지
+        AddGroup()
+            .AddPattern(new ArachneSpiderWebPattern(SpiderWeb, 16), Beat)
+            .AddPattern(new ArachnePattern1(LToRspiderLeg, RToLspiderLeg, StrongDamage), Beat)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg, StrongDamage,WeakDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 3 스테이지
+        AddGroup()
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(8, 0, 0), WeakDamage), Beat)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(4, 4, 0), WeakDamage), Beat)
+            .AddPattern(new BomberSpeardAttack(BombActtck, Bombball, new Vector3Int(0, 8, 0), WeakDamage), Beat)
+            .AddPattern(new BomberBigBombPattern(BombActtck, Bombball, StrongDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 4 스테이지
+        AddGroup()
+            .AddPattern(new GuardianGolemVerticalWavePattern(GroundSpike, StrongDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 5스테이지
+        AddGroup()
+            .AddPattern(new TurtreePattern1(turtreeAttack, new Vector3Int(8, 4, 0), WeakDamage), Beat)
+            .AddPattern(new TurtreePattern2(turtreeAttack, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern6(turtreeAttack, StrongDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 6스테이지
+        AddGroup()
+            .AddPattern(new OrcMagePatternExpandingSquare(GroundSpike, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 7스테이지
+        AddGroup()
+            .AddPattern(new ReaperShortDeathAreaPattern(DeathArea, Beat * 5), Beat)
+            .AddPattern(new ReaperPattern2(ReaperActtack, WeakDamage), Beat)
+            .SetGroupInterval(Beat);
+        
+        // 8스테이지
+        AddGroup()
+            .AddPattern(new LightningKnightPattern3(LightningActtack, new Vector3Int(2, 0, 0), WeakDamage), 0f)
+            .AddPattern(new LightningKnightPattern1(LightningActtack, WeakDamage), Beat)
+            .AddPattern(new LightningKnightPattern2(LightningActtack, WeakDamage), 0f)
+            .SetGroupInterval(Beat);
+        
+        // 9스테이지
+        AddGroup()
+            .AddPattern(new BigHandPalmSweepPattern(palmLeftPrefab, palmRightPrefab, attackPrefab, WeakDamage), 0f)
+            .SetGroupInterval(Beat);
+        
+        // 10스테이지
         AddGroup().
             AddPattern(new LastBossPattern_StaffEquip(staff), 0f).
             AddPattern(new LastBossPattern_Staff(explosionPrefab, WeakDamage), Beat).
