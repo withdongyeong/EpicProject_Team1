@@ -53,10 +53,15 @@ public class Infinite : LastBoss
     {
         base.Awake();
         // 기본 스탯 설정
-        MaxHealth = GlobalSetting.Instance.GetBossBalance(10).maxHP;
-        WeakDamage = GlobalSetting.Instance.GetBossBalance(10).weakDamage;
-        StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
-        BPM = GlobalSetting.Instance.GetBossBpm(10);
+        // MaxHealth = GlobalSetting.Instance.GetBossBalance(10).maxHP;
+        // WeakDamage = GlobalSetting.Instance.GetBossBalance(10).weakDamage;
+        // StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
+        // BPM = GlobalSetting.Instance.GetBossBpm(10);
+        /// 무한모드 전 임시 설정
+        MaxHealth = 6000;
+        WeakDamage = 50;
+        StrongDamage = 50;
+        BPM = 120;
         SetDifficulty();
         // 빙결 불가 설정
         IsHandBoss = true;
