@@ -136,4 +136,9 @@ public static class SceneLoader
 
         SceneManager.UnloadSceneAsync(SettingScene);
     }
+
+    public static void SetSettingSceneLoadedFalse()
+    {
+        settingSceneLoaded = false;
+    }
 }

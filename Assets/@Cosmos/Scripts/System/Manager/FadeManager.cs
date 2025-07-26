@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -59,5 +59,6 @@ public class FadeManager : Singleton<FadeManager>
             .SetUpdate(true)
             .WaitForCompletion();
         fadeImage.raycastTarget = false;
+        SceneLoader.SetSettingSceneLoadedFalse();
     }
 }
