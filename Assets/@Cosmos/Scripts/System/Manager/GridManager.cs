@@ -353,7 +353,6 @@ public class GridManager : Singleton<GridManager>
     public void SetCellSprite(Vector3Int gridPos, Sprite sprite)
     {
         if (!IsWithinGrid(gridPos)) return;
-        
         if (grid[gridPos.x, gridPos.y].IsOccupied)
         {
             return;

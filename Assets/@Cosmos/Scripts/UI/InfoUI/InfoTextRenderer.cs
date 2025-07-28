@@ -127,7 +127,7 @@ public class InfoTextRenderer : MonoBehaviour
             if(!result.Contains(name)) 
             {
                 result.Add(name);
-                Debug.Log(name);
+                //Debug.Log(name);
             }
         }
         return result;

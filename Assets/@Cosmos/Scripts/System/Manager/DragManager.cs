@@ -98,14 +98,10 @@ public class DragManager : Singleton<DragManager>
     
     public void BeginDrag(GameObject draggableObject)
     {
-        Debug.Log($"BeginDrag - dragRotationGuide: {(dragRotationGuide != null ? "존재함" : "null")}");
-        
         // dragRotationGuide가 null이면 여기서 다시 로드 시도
         if (dragRotationGuide == null)
         {
-            Debug.Log("dragRotationGuide가 null이므로 다시 로드 시도");
             GameObject guidePrefab = Resources.Load<GameObject>("Prefabs/UI/DragRotationGuide");
-            Debug.Log($"재로드 결과: {(guidePrefab != null ? "성공" : "실패")}");
             
             if (guidePrefab != null)
             {
@@ -117,7 +113,7 @@ public class DragManager : Singleton<DragManager>
                     {
                         spriteRenderer.enabled = false;
                     }
-                    Debug.Log($"재로드 후 SpriteRenderer {rotationGuideSpriteRenderers.Length}개 설정 완료");
+                    
                 }
             }
         }
@@ -223,6 +219,7 @@ public class DragManager : Singleton<DragManager>
         corePos = GridManager.Instance.GridToWorldPosition(GridManager.Instance.WorldToGridPosition(corePos));
         currentDragObject.transform.position = corePos;
         currentDragObject.transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
+        SetGridSprite();
         foreach (var cell in currentDragObject.GetComponentsInChildren<Cell>())
         {
             
@@ -235,13 +232,11 @@ public class DragManager : Singleton<DragManager>
                 GridManager.Instance.AddStarSkill(gridPos, starSkill);
                 continue;
             }
-            
             // 스타셀이 아니라 그냥 셀일때
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
 
         SoundManager.Instance.UISoundClip("DeploymentActivate");
-        SetGridSprite();
         
         
         TileObject tileObject = currentDragObject.GetComponent<TileObject>();
@@ -413,6 +408,8 @@ public class DragManager : Singleton<DragManager>
                 cellsPos.Add(GridManager.Instance.WorldToGridPosition(cell.transform.position));
         }
         GridManager.Instance.GridSpriteController.SetSprite(cellsPos.ToArray());
+        
+        //이건 그 빨갛게 보이는 그리드 미리보기용입니다.
         if (isPreview)
         {
             foreach (Vector3Int pos in cellsPos)
