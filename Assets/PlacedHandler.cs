@@ -37,7 +37,7 @@ public class PlacedHandler : MonoBehaviour
     private void PlaceTile()
     {
         _placedTile.transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
-        _placedTile.transform.localPosition = Vector3.zero;
+        _placedTile.transform.localPosition = Vector3.zero + Vector3.left;
         SetGridSprite();
         foreach (var cell in _placedTile.GetComponentsInChildren<Cell>())
         {
