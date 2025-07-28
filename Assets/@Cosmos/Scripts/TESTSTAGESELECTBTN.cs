@@ -58,6 +58,18 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
         StageSelectManager.Instance.StageSet("Guide");
         SceneLoader.LoadGuideStage();
     }
+    
+    
+    public void GoStageTuto()
+    {
+        if (GridManager.Instance.PlacedTileList.Count <= 0)
+        {
+            DragManager.Instance.GetComponentInChildren<PlacedHandler>().FirstPresent();
+        }
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        StageSelectManager.Instance.StageSet("Guide");
+        SceneLoader.LoadGuideStage();
+    }
 
     public void OpenJournal()
     {
