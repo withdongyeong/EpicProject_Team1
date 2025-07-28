@@ -43,7 +43,7 @@ public class SellQuest : GuideQuest
             instructionText = text.Replace("{0}", count.ToString());
         };
         GuideHandler.instance.questText.text = instructionText;
-        return count >= 4;
+        return count >= 2;
     }
 
     public override void OnComplete()

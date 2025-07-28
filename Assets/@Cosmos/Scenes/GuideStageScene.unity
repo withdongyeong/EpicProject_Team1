@@ -579,8 +579,8 @@ MonoBehaviour:
   - {fileID: 1979145290}
   - {fileID: 904852370}
   - {fileID: 716840239}
-  - {fileID: 1752254457}
   - {fileID: 1010252471}
+  - {fileID: 1752254457}
   - {fileID: 1363325452}
   - {fileID: 1549304061}
   - {fileID: 75931052}
@@ -1783,7 +1783,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.296875
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2946,7 +2946,7 @@ GameObject:
   - component: {fileID: 1010252472}
   - component: {fileID: 1010252471}
   m_Layer: 0
-  m_Name: 5Rotate
+  m_Name: 4Rotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3937,8 +3937,8 @@ Transform:
   - {fileID: 1979145291}
   - {fileID: 904852369}
   - {fileID: 716840238}
-  - {fileID: 1752254456}
   - {fileID: 1010252472}
+  - {fileID: 1752254456}
   - {fileID: 1363325451}
   - {fileID: 1549304060}
   - {fileID: 75931051}
@@ -4624,7 +4624,7 @@ GameObject:
   - component: {fileID: 1752254456}
   - component: {fileID: 1752254457}
   m_Layer: 0
-  m_Name: 4Star
+  m_Name: 5Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
