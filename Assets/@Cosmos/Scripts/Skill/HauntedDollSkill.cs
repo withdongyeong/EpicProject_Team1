@@ -36,9 +36,9 @@ public class HauntedDollSkill : SkillBase
             }
             if (targetEnemy.GetDebuffCount(BossDebuff.Curse) >= 30)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    targetEnemy.AddDebuff(BossDebuff.Burning); // 화염을 5 부여
+                    targetEnemy.AddDebuff(BossDebuff.Burning); // 화염을 3 부여
                 }
             }
             if (targetEnemy.GetDebuffCount(BossDebuff.Curse) >= 40)
