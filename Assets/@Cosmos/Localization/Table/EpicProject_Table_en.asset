@@ -168,17 +168,17 @@ MonoBehaviour:
       (Damage: <color=red>40</color>)
 
       Gain
-      the basic effect when placing either a Clock or Statue of Goddess at the <color=yellow>Star<sprite
-      name="Star"> position</color>.
+      the basic effect when placing either a <color=orange>Clock</color> or <color=orange>Statue
+      of Goddess</color> at the <color=yellow>Star<sprite name="Star"> position</color>.
 
-      Gain the additional effect when both
-      are placed.
+      Gain
+      the additional effect when both are placed.
 
-      <color=yellow>Basic Effect</color>: Damage increases to
-      <color=red>50</color>.
+      <color=yellow>Basic Effect</color>:
+      Damage increases to <color=red>50</color>.
 
-      <color=yellow>Additional Effect</color>: Fires
-      3 projectiles dealing <color=red>30</color> damage each.'
+      <color=yellow>Additional
+      Effect</color>: Fires 3 projectiles dealing <color=red>30</color> damage each.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133697
@@ -188,7 +188,7 @@ MonoBehaviour:
   - m_Id: 43615133698
     m_Localized: "Nebula (3)<sprite name=\"Nebula\">: Restores <color=green>5</color>
       health. \nIf there are 3 or more magic circles <sprite name=\"MagicCircle\">
-      <color=yellow>located on the Star<sprite name=\"Star\"></color>, restores <color=green>10</color>
+      <color=yellow>located on the Star<sprite name=\"Star\"></color>, restores <color=green>7</color>
       health."
     m_Metadata:
       m_Items: []
@@ -259,9 +259,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133705
-    m_Localized: "Restores <color=green>5</color> health. \r\nIf there are 3 or more
+    m_Localized: "Restores <color=green>5</color> health. \nIf there are 3 or more
       magic circles <sprite name=\"MagicCircle\"> <color=yellow>located on the Star<sprite
-      name=\"Star\"></color>, restores <color=green>10</color> health."
+      name=\"Star\"></color>, restores <color=green>7</color> health."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133706
@@ -392,9 +392,9 @@ MonoBehaviour:
   - m_Id: 43615133720
     m_Localized: '<color=red>Cannot be stepped on. Cannot pass through.</color>
 
-      Mana
-      turrets <color=yellow>located on the Star<sprite name="Star"></color> perform
-      an auto-attack once every 3 seconds.'
+      <color=orange>Mana
+      turrets</color> <color=yellow>located on the Star<sprite name="Star"></color>
+      perform an auto-attack once every 3 seconds.'
     m_Metadata:
       m_Items: []
   - m_Id: 43615133721
@@ -404,8 +404,8 @@ MonoBehaviour:
       Attacks together when activating a Weapon <sprite name="Weapon">
       <color=yellow>located on the Star<sprite name="Star"></color>.
 
-      Mana
-      AI appears in the shop.
+      <color=orange>Mana
+      AI</color> appears in the shop.
 
       (Damage: <color=red>15</color>)'
     m_Metadata:
@@ -421,10 +421,11 @@ MonoBehaviour:
   - m_Id: 43615133723
     m_Localized: "<color=yellow>Start of battle</color>:  Increase Curse<sprite name=\"Curse\"> 
       limit to 45. The Cursed doll gains additional abilities based on the increased
-      maximum. \r\n<color=yellow>On activate</color>: <color=Red>Lose all Curses<sprite
-      name=\"Curse\"></color>. \r\nIf there are 3 or more Magic Circles<sprite name=\"MagicCircle\"><color=yellow>located
-      on the Star<sprite name=\"Star\"></color>, increase the maximum number of Curses<sprite
-      name=\"Curse\"> to 60."
+      maximum. \n<color=yellow>When held</color>: <color=orange>Wraith</color> will
+      not appear in the shop.\n<color=yellow>On activate</color>: <color=Red>Lose
+      all Curses<sprite name=\"Curse\"></color>. \nIf there are 3 or more Magic Circles<sprite
+      name=\"MagicCircle\"><color=yellow>located on the Star<sprite name=\"Star\"></color>,
+      increase the maximum number of Curses<sprite name=\"Curse\"> to 60."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133724
@@ -480,11 +481,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133730
     m_Localized: "<color=yellow>Start of battle</color>: Increase the maximum number
-      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>On activate</color>:
-      Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=\"Pain\">.
-      \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite name=\"ice\">
-      currently applied to enemies to Curses <sprite name=\"Curse\">. \nIf there
-      are 3 or more Magic Circles <sprite name=\"MagicCircle\"> <color=yellow>located
+      of Curses <sprite name=\"Curse\"> to 40. \n<color=yellow>When held</color>:
+      <color=orange>Phantom</color> will not appear in the shop.\n<color=yellow>On
+      activate</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite
+      name=\"Pain\">. \nConvert all Burn <sprite name=\"fire\"> and Frostbite <sprite
+      name=\"ice\"> currently applied to enemies to Curses <sprite name=\"Curse\">.
+      \nIf there are 3 or more Magic Circles <sprite name=\"MagicCircle\"> <color=yellow>located
       on the Star<sprite name=\"Star\"></color>, Consume <color=red>20 Curses</color>."
     m_Metadata:
       m_Items: []
@@ -642,11 +644,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43619328029
-    m_Localized: 'Tutorial 8
-
-      - Fight the enemy and win
-
-      ({0}/1)'
+    m_Localized: "Tutorial 8\n- Step on constellations, \nstrike enemies, claim victory.\n({0}/1)"
     m_Metadata:
       m_Items: []
   - m_Id: 43619328031
@@ -1228,6 +1226,10 @@ MonoBehaviour:
   - m_Id: 7047939883671557
     m_Localized: 'Nebula(N)<sprite name="Nebula">: A structure that combines N constellations,
       each with independent abilities and cooldowns.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7351079094853642
+    m_Localized: No duplicate Mythic Constellations
     m_Metadata:
       m_Items: []
   references:

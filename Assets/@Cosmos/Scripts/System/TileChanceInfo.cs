@@ -12,6 +12,7 @@ public class TileChanceInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public LocalizedString EpiclocalizedString;
     public LocalizedString LegendarylocalizedString;
     public LocalizedString MythiclocalizedString;
+    public LocalizedString MythicSingleString;
 
     private void Awake()
     {
@@ -41,7 +42,10 @@ public class TileChanceInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             Probabailitytext += text.Replace("{0}", (chanceList.shop_LegendaryChance.ToString())) + "\n";
         };
         MythiclocalizedString.StringChanged += (text) => {
-            Probabailitytext += text.Replace("{0}", (chanceList.Shop_MythicChance().ToString()));
+            Probabailitytext += text.Replace("{0}", (chanceList.Shop_MythicChance().ToString())) + "\n";
+        };
+        MythicSingleString.StringChanged += (text) => {
+            Probabailitytext += text;
         };
 
         //string text = $"일반 확률: {chanceList.shop_NormalChance}" +
