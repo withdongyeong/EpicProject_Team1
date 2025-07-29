@@ -10,7 +10,7 @@ public class ArachnePattern2 : IBossAttackPattern
     private List<Vector3Int> _bigAttackShape;
     private int _damage;
 
-    public string PatternName => "ArachnePattern2";
+    public string PatternName => "2_2";
 
     public ArachnePattern2(GameObject poisionAriaPrefab, int Damage)
     {
@@ -33,8 +33,7 @@ public class ArachnePattern2 : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         float beat = boss.Beat;
-        float halfBeat = boss.HalfBeat;
-        yield return boss.StartCoroutine(SpiderAttack(boss, halfBeat));
+        yield return boss.StartCoroutine(SpiderAttack(boss, beat));
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -58,7 +57,7 @@ public class ArachnePattern2 : IBossAttackPattern
 
     private IEnumerator FireSingle(BaseBoss boss, float beat)
     {
-        boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab, 1f, 0.7f, _damage);
+        boss.BombHandler.ExecuteTargetingBomb(_singlePointShape, _poisionAriaPrefab, 1f, 0.7f, _damage, patternName:PatternName);
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 1f));
         boss.AttackAnimation();
         yield return new WaitForSeconds(beat / 2);
@@ -78,7 +77,7 @@ public class ArachnePattern2 : IBossAttackPattern
             }
         }
 
-        boss.BombHandler.ExecuteFixedBomb(attackShape.ToList(), new Vector3Int(4, 4, 0), _poisionAriaPrefab, 1f, 0.7f, _damage);
+        boss.BombHandler.ExecuteFixedBomb(attackShape.ToList(), new Vector3Int(4, 4, 0), _poisionAriaPrefab, 1f, 0.7f, _damage, patternName:PatternName);
         boss.StartCoroutine(PlayDelayedSound("PoisionExplotionActivate", 1f));
         yield return new WaitForSeconds(beat / 2);
     }

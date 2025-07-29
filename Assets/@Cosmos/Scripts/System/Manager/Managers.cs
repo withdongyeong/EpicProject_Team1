@@ -27,6 +27,8 @@ public class Managers : MonoBehaviour
     private GameObject journalManager;
     private GameObject steamStatsManager;
     private GameObject analyticsManager;
+    private GameObject LocalizeManager;
+    private GameObject pauseManager;
 
     
     
@@ -53,6 +55,8 @@ public class Managers : MonoBehaviour
         journalManager = Resources.Load<GameObject>("Prefabs/UI/Journal/Journal");
         steamStatsManager = Resources.Load<GameObject>("SteamStatsManager");
         analyticsManager = Resources.Load<GameObject>("AnalyticsManager");
+        LocalizeManager = Resources.Load<GameObject>("LocalizeManager");
+        pauseManager = Resources.Load<GameObject>("PauseManager");
         //Instantiate the managers
         MakeManager(gameManager);
         MakeManager(soundManager);
@@ -72,6 +76,8 @@ public class Managers : MonoBehaviour
         MakeManager(journalManager);
         MakeManager(steamStatsManager);
         MakeManager(analyticsManager);
+        MakeManager(LocalizeManager);
+        MakeManager(pauseManager);
     }
 
     private void MakeManager(GameObject manager)

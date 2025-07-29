@@ -7,11 +7,12 @@ public class ReaperPattern2 : IBossAttackPattern
     private GameObject _deathAriaPrefeb;
     private int _damage;
 
-    public string PatternName => "ReaperPattern2";
+    public string PatternName => "7_4";
 
     public ReaperPattern2(GameObject DeathAriaPrefeb, int damage)
     {
         _deathAriaPrefeb = DeathAriaPrefeb;
+        _damage = damage;
     }
 
     public bool CanExecute(BaseBoss boss)
@@ -42,7 +43,7 @@ public class ReaperPattern2 : IBossAttackPattern
         boss.StartCoroutine(AttackSoundSound());
 
         boss.BombHandler.ExecuteFixedBomb(PointList, new Vector3Int(4, 4, 0), _deathAriaPrefeb,
-                                  warningDuration: 1f, explosionDuration: 1.0f, damage: _damage, warningType: WarningType.Type1);
+                                  warningDuration: 1f, explosionDuration: 1.0f, damage: _damage, warningType: WarningType.Type1, patternName:PatternName);
 
         boss.AttackAnimation();
 

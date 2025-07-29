@@ -48,6 +48,7 @@ public class DragOnGrid : DraggableObject
             GridManager.Instance.ReleaseCell(gridPos);
         }
         GridManager.Instance.RemovePlacedTileList(gameObject.GetComponent<TileObject>());
+        GameManager.Instance.LogHandler.totalStarNum -= _tileObject.StarCount;
         //_tileObject.ShowStarCell(); << 여기다 넣었는데 안되더라구요 , 코루틴이면 1프레임 쉬고 넣었을텐데 .
     }
 
@@ -132,15 +133,6 @@ public class DragOnGrid : DraggableObject
         }
 
         
-        //튜토리얼 용
-        if (GameManager.Instance.IsInTutorial)
-        {
-            if (GuideHandler.instance.CurrentQuest is not SellQuest)
-            {
-                return;
-            }
-        }
-        //여기까지
         _sellTilePanel.ShowPanel(_tileObject.GetTileData().TileCost);
     }
     
@@ -150,15 +142,6 @@ public class DragOnGrid : DraggableObject
         {
             _sellTilePanel = FindAnyObjectByType<SellTilePanel>();
         }
-        //튜토리얼 용
-        if (GameManager.Instance.IsInTutorial)
-        {
-            if (GuideHandler.instance.CurrentQuest is not SellQuest)
-            {
-                return;
-            }
-        }
-        //여기까지
         _sellTilePanel.HidePanel();
     }
 }

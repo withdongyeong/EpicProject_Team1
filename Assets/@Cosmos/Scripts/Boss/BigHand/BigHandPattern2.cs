@@ -11,7 +11,7 @@ public class BigHandPattern2 : IBossAttackPattern
     private GameObject _attackEffectPrefab;
     private int _damage;
     private bool _isSoundCoolTime;
-    public string PatternName => "패턴2_회전Y스포크";
+    public string PatternName => "9_3";
     
     public BigHandPattern2(GameObject attackEffectPrefab, int damage)
     {
@@ -74,7 +74,8 @@ public class BigHandPattern2 : IBossAttackPattern
                 warningDuration: 1f, 
                 explosionDuration: 0.6f, 
                 damage: _damage, 
-                warningType: WarningType.Type1
+                warningType: WarningType.Type1,
+                patternName:PatternName
             );
             
             // 회전 속도

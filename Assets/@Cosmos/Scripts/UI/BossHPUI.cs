@@ -38,12 +38,12 @@ public class BossHPUI : MonoBehaviour
     [Header("흔들림 설정 - 3단계")]
     private float smallShakeThreshold = 30f;
     private float mediumShakeThreshold = 100f;
-    private float smallShakeIntensity = 5f;
-    private float mediumShakeIntensity = 10f;
-    private float bigShakeIntensity = 20f;
-    private float smallShakeDuration = 0.1f;
-    private float mediumShakeDuration = 0.2f;
-    private float bigShakeDuration = 0.3f;
+    private float smallShakeIntensity = 10f;
+    private float mediumShakeIntensity = 30f;
+    private float bigShakeIntensity = 50f;
+    private float smallShakeDuration = 0.2f;
+    private float mediumShakeDuration = 0.3f;
+    private float bigShakeDuration = 0.4f;
 
     private Vector3 _originalPosition;
 
@@ -240,11 +240,12 @@ public class BossHPUI : MonoBehaviour
                 UpdateDebuffText(debuff, count);
             }
         }
-        else
+        else if(count > 0)
         {
             CreateDebuffUI(debuff, count);
         }
-        
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(debuffPanel.GetComponent<RectTransform>());
     }
 
     /// <summary>
@@ -299,7 +300,19 @@ public class BossHPUI : MonoBehaviour
             {
                 if(debuff == BossDebuff.Curse)
                 {
-                    tmpText.text = count.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
+                    //임시 저주가 0이면 뒤에 (+0)이게 안생기게 합니다.
+                    int tempCurse = _enemy.GetDebuffCount(BossDebuff.TemporaryCurse);
+                    int curse = _enemy.GetDebuffCount(BossDebuff.Curse);
+                    if (tempCurse != 0)
+                    {
+                        tmpText.text = curse.ToString() + " (+" + _enemy.GetDebuffCount(BossDebuff.TemporaryCurse) + ")";
+                    }
+                    else
+                    {
+                        tmpText.text = curse.ToString();                       
+                    }
+                    tmpText.margin = new Vector4(0, 0, 17, 0);
+
                 }
                 else
                 {
@@ -330,7 +343,7 @@ public class BossHPUI : MonoBehaviour
         }
         else if(debuff == BossDebuff.TemporaryCurse)
         {
-            RemoveDebuffUI(BossDebuff.Curse);
+            UpdateDebuffUI(BossDebuff.Curse, _enemy.GetDebuffCount(BossDebuff.Curse));
         }
     }
 

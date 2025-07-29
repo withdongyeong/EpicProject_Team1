@@ -12,8 +12,14 @@ public class PlayerProtection : MonoBehaviour
     private Coroutine _protectionCoroutine;
     private GameObject _activeProtectionEffect;
 
+    private int _allProtectionAmount = 0; // 누적 보호막량
+
     //만약 장수풍뎅이 차지중이라면 보호막을 얻지 않습니다
     private bool _isCharging = false;
+
+    public bool IsProtected => _isProtected;
+
+    public int AllProtectionAmount { get => _allProtectionAmount; }
 
     private void Awake()
     {
@@ -147,27 +153,44 @@ public class PlayerProtection : MonoBehaviour
         }
     }
 
-    public bool TryProtectionBlock(int damage, bool isCounsumed = false)
+    public int TryProtectionBlock(int damage, bool isCounsumed = false)
     {
+        //못막은 데미지를 return 합니다.
+        int result = 0;
         if (_isProtected && _protectionAmount > 0)
         {
+            //보호한 데미지량
+            int blockedDamage = Mathf.Min(damage, _protectionAmount);
+            //흡수하는 데미지가 아니라면 로그로 보낼 막은 데미지에 더합니다.
+            if(!isCounsumed)
+            {
+               _allProtectionAmount += blockedDamage;
+            }
             _protectionAmount -= damage;
-            Debug.Log($"보호막으로 {damage} 데미지 차단, 남은 보호막량: {_protectionAmount}");
             if (_protectionAmount <= 0)
             { 
                 SetProtection(false);
-                //못막은 분 만큼 데미지를 받습니다.
-                GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
+                if(!isCounsumed)
+                {
+                    //못막은 분 만큼 데미지를 받습니다.
+                    //GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
+                    result = -_protectionAmount;
+                }              
                 _protectionAmount = 0;
-                Debug.Log("보호막 소멸로 보호 상태 종료");
             }
             if(isCounsumed)
             {
                 EventBus.PublishProtectionConsume(damage);
             }
-            return true; // 보호막으로 데미지 차단 성공
+            //return true; // 보호막으로 데미지 차단 성공
         }
-        return false; // 보호막으로 데미지 차단 실패
+        else
+        {
+            //보호막이 없다는 소리이므로 그대로 데미지 이랏샤이마세 합니다
+            result = damage;
+        }
+        //return false; // 보호막으로 데미지 차단 실패
+        return result;
     }
 
     /// <summary>

@@ -75,6 +75,17 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
 
     public void ShowPanel(int tileCost)
     {
+        //튜토리얼 용
+        if (GameManager.Instance.IsInTutorial)
+        {
+            if (GuideHandler.instance.canSell == false)
+            {
+                return;
+            }
+        }
+        //여기까지
+        
+        
         gameObject.SetActive(true);
         _rectTransform.anchoredPosition = Vector2.down * 300f;;
 
@@ -90,6 +101,17 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
     
     public void HidePanel()
     {
+        
+        //튜토리얼 용
+        if (GameManager.Instance.IsInTutorial)
+        {
+            if (GuideHandler.instance.canSell == false)
+            {
+                return;
+            }
+        }
+        //여기까지
+        
         _rectTransform.anchoredPosition = Vector2.zero;
         _rectTransform.DOAnchorPos(Vector2.down*300f,0.25f).SetEase(Ease.OutSine).OnComplete(() =>
         {

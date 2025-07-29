@@ -6,7 +6,7 @@ public class CreditsHandler : MonoBehaviour
     private TextMeshProUGUI creditsText; // 크레딧 텍스트
     private float normalSpeed = 100f; // 기본 스크롤 속도 (픽셀/초)
     private float fastSpeed = 300f; // 빠른 스크롤 속도 (픽셀/초)
-    private float endPosition = 300f; // 텍스트가 도달하면 종료되는 Y 위치
+    private float endPosition = 600f; // 텍스트가 도달하면 종료되는 Y 위치
 
     private float currentSpeed; // 현재 스크롤 속도
     private RectTransform textRectTransform;

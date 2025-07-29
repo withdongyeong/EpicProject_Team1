@@ -162,19 +162,20 @@ public class BossDebuffs : MonoBehaviour
                 {
                     Destroy(markEffect); // Mark 이펙트 제거
                 }
-                else if (debuff == BossDebuff.Burning)
+            }
+            else if (debuff == BossDebuff.Burning)
+            {
+                // 화상 상태 이상이 제거되면 애니메이션 레벨 초기화
+                SetBurningAnimLevel();
+            }
+            else if (debuff == BossDebuff.Curse)
+            {
+                // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
+                SetCurseAnimLevel();
+                Debug.Log($"Curse Count: {debuffs[(int)BossDebuff.Curse]}");
+                if (debuffs[(int)BossDebuff.Curse] >= 60)
                 {
-                    // 화상 상태 이상이 제거되면 애니메이션 레벨 초기화
-                    SetBurningAnimLevel();
-                }
-                else if (debuff == BossDebuff.Curse)
-                {
-                    // 저주 상태 이상이 제거되면 애니메이션 레벨 초기화
-                    SetCurseAnimLevel();
-                    if (debuffs[(int)BossDebuff.Curse] >= 60)
-                    {
-                        SteamAchievement.Achieve("ACH_CON_CURSE"); // 저주 상태 이상 60개 제거 시 업적
-                    }
+                    SteamAchievement.Achieve("ACH_CON_CURSE"); // 저주 상태 이상 60개 제거 시 업적
                 }
             }
             debuffs[(int)debuff] = 0; // 상태 이상 카운트 초기화
@@ -244,6 +245,8 @@ public class BossDebuffs : MonoBehaviour
     /// </summary>
     private void ApplyFreezingEffect()
     {
+        SoundManager.Instance.PlayTileSoundClip("FreezeActivate");
+
         // 기존 디버프 처리
         debuffs[(int)BossDebuff.Frostbite] = 0;
         bossHPUI.UpdateDebuffUI(BossDebuff.Frostbite, 0);
@@ -266,6 +269,10 @@ public class BossDebuffs : MonoBehaviour
             freezeCoroutine = StartCoroutine(ResumeAnimatorAfterFreeze(originalAnimatorSpeed));
 
             PlayDebuffAnim(BossDebuff.Freeze, 2); // 빙결 이펙트 재생
+        }
+        else
+        {
+            boss.IncreasedDamageTaken(2f); //  unstoppable의 경우 2초 동안 받는 데미지 증가
         }
     }
 
@@ -296,7 +303,15 @@ public class BossDebuffs : MonoBehaviour
         }
 
         // 보스 공격 중지 해제
-        boss.StopAttack(0f); // 즉시 공격 재개
+        if(!boss.Unstoppable && !boss.IsHandBoss)
+        {
+            boss.StopAttack(0f); // 즉시 공격 재개
+        }
+        else
+        {
+            boss.IncreasedDamageTaken(0f); // 손 보스의 경우 받는 데미지 증가 해제
+        }
+        
     }
 
     private IEnumerator ResumeAnimatorAfterFreeze(float originalSpeed)
@@ -347,13 +362,13 @@ public class BossDebuffs : MonoBehaviour
         // 모든 상태 이상을 저주로 변환
         for (int i = 0; i < debuffs.Length; i++)
         {
-            if (debuffs[i] > 0 && (BossDebuff)i == BossDebuff.Burning && (BossDebuff)i == BossDebuff.Frostbite)
+            if (debuffs[i] > 0 && ((BossDebuff)i == BossDebuff.Burning || (BossDebuff)i == BossDebuff.Frostbite))
             {
                 BossDebuff debuffType = (BossDebuff)i;
                 int count = debuffs[i];
                 for (int j = 0; j < count; j++)
                 {
-                    //if(debuffs[(int)BossDebuff.Curse] >= maxCurseCount)
+                    //if (debuffs[(int)BossDebuff.Curse] >= maxCurseCount)
                     //{
                     //    return; // 저주 상태 이상이 최대치에 도달하면 변환 중지
                     //}

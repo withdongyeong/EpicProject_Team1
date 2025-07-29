@@ -6,14 +6,19 @@ using Steamworks;
 
 public class TESTSTAGESELECTBTN : MonoBehaviour
 {
+    
+    
     //빌딩씬에서 쓰는 스테이지 선택 버튼
     public void OnClick()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
-
+        AnalyticsManager.Instance.BuildingCompleteEvent();
         StageSelectManager.Instance.StageSelect();
         
+        
     }
+
+  
 
 
     //타이틀씬에서 쓰는 빌딩 씬으로 이동하는 버튼
@@ -28,15 +33,40 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
-        GameManager.Instance.LoadTitle();
+        GameManager.Instance.LoadTitleFirst();
     }
+    
+    
 
     
     //가이드 전투씬으로 갑니다.
+    public void ClickYesTuto()
+    {
+        AnalyticsManager.Instance.TutorialPromptResponseEvent("yes");
+        GOTUTO();
+    }
+    
+    public void ClickNoTuto()
+    {
+        AnalyticsManager.Instance.TutorialPromptResponseEvent("no");
+    }
+    
     public void GOTUTO()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
 
+        StageSelectManager.Instance.StageSet("Guide");
+        SceneLoader.LoadGuideStage();
+    }
+    
+    
+    public void GoStageTuto()
+    {
+        if (GridManager.Instance.PlacedTileList.Count <= 0)
+        {
+            DragManager.Instance.GetComponentInChildren<PlacedHandler>().FirstPresent();
+        }
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         StageSelectManager.Instance.StageSet("Guide");
         SceneLoader.LoadGuideStage();
     }
@@ -59,7 +89,8 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenTutoChoicePanel(GameObject gameObject)
     {
-        if(SaveManager.IsTutorialCompleted == 1)
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        if (SaveManager.IsTutorialCompleted == 1)
         {
             // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
             OpenDifficultySelectPannel();
@@ -71,6 +102,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
 
     public void OpenDifficultySelectPannel()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
     }
 

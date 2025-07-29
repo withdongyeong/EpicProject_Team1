@@ -43,7 +43,7 @@ public class Arachne : BaseBoss
 
         //그룹 C: 
         AddGroup()
-            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg, WeakDamage), Beat)
+            .AddPattern(new ArachnePattern3(poisionAriaPrefeb, LToRspiderLeg, RToLspiderLeg, StrongDamage,WeakDamage), Beat)
             .SetGroupInterval(Beat);
     }
 

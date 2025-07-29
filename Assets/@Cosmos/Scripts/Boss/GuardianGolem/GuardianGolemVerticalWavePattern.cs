@@ -10,7 +10,7 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private float _lastSoundTime = -10f; // ⬅️ 사운드 쿨다운 기준 시간
 
-    public string PatternName => "GuardianGolemTemporaryWallSummonPattern";
+    public string PatternName => "4_4";
 
     public GuardianGolemVerticalWavePattern(GameObject GuardianGolemRook, int damage)
     {
@@ -33,7 +33,10 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private IEnumerator ExecuteSpiderWebAttack(BaseBoss boss)
     {
-        Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+        if (!boss.IsHandBoss)
+        {
+            Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;    
+        }
         
         // 공격 가능한 세로줄 범위 계산
         int leftBound = Wallcount;
@@ -82,7 +85,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 1f,
                 explosionDuration: 0.7f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));
@@ -92,7 +96,10 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
 
     private IEnumerator ExecuteRowWaveAttack(BaseBoss boss)
     {
-        Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;
+        if (!boss.IsHandBoss)
+        {
+            Wallcount = boss.GetComponent<GuardianGolemWallCreationPattern>().DeleteCount;    
+        }
         int RandomPoint = Random.Range(5, 9);
 
         for (int y = 0; y < 9; y++)
@@ -115,7 +122,8 @@ public class GuardianGolemVerticalWavePattern : IBossAttackPattern
                 _guardianGolemRook,
                 warningDuration: 1f,
                 explosionDuration: 0.7f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
 
             boss.StartCoroutine(DelayedAttackSound(1f));

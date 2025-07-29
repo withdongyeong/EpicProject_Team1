@@ -30,6 +30,9 @@ public class GameStateManager : Singleton<GameStateManager>
         // 상태에 따른 타임스케일 조절
         switch (newState)
         {
+            case GameState.Count:
+                _timeScaleManager.StopTimeScale();
+                break;
             case GameState.Playing:
                 _timeScaleManager.ResetTimeScale();
                 break;
@@ -41,6 +44,14 @@ public class GameStateManager : Singleton<GameStateManager>
         
         // 상태 변경 이벤트 발생
         EventBus.PublishGameStateChanged(newState);
+    }
+
+    /// <summary>
+    /// 카운트다운 시작
+    /// </summary>
+    public void StartCountdown()
+    {
+        SetGameState(GameState.Count);
     }
 
     /// <summary>
@@ -78,5 +89,13 @@ public class GameStateManager : Singleton<GameStateManager>
     {
         _timeScaleManager.ResetTimeScale();
         SetGameState(GameState.Playing);
+    }
+
+    /// <summary>
+    /// 설정창 열기 가능 여부 확인
+    /// </summary>
+    public bool CanOpenSetting()
+    {
+        return _currentState != GameState.Count;
     }
 }

@@ -7,6 +7,7 @@ public class CoolDownEffect : MonoBehaviour
 {
     [SerializeField]
     private float coolDownPoint = 0;
+    private TileObject tileObject;
     private SpriteRenderer sr;
 
     [SerializeField]
@@ -18,6 +19,7 @@ public class CoolDownEffect : MonoBehaviour
     
     public void Awake()
     {
+        tileObject = transform.parent.GetComponent<Cell>().GetCombineCell().GetTileObject();
         sr = GetComponent<SpriteRenderer>();
         string hexColor = "#404040";
         // string hexColor = "#7F8263";
@@ -34,10 +36,14 @@ public class CoolDownEffect : MonoBehaviour
 
     
     //초기화
-    public void Init(Scene scene = default , LoadSceneMode mode = default)
+    public void Init(Scene scene = default, LoadSceneMode mode = default)
     {
-        StopAllCoroutines();
-        sr.size = new Vector2(1, 0);
+        // Additive 모드는 무시
+        if (mode == LoadSceneMode.Single)
+        {
+            StopAllCoroutines();
+            sr.size = new Vector2(1, 0);
+        }
     }
 
 
@@ -132,29 +138,33 @@ public class CoolDownEffect : MonoBehaviour
     /// </summary>
     public void SetPosition()
     {
+        
         if (!SceneLoader.IsInStage() && !SceneLoader.IsInBuilding()) return;
         StopAllCoroutines();
         sr.size = new Vector2(1, 0);
-        if (transform.rotation.eulerAngles.z == 0)
+        
+        if (tileObject.transform.rotation.eulerAngles.z == 0)
         {
             transform.localPosition = new Vector3(0, -0.5f, 0);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        if (transform.rotation.eulerAngles.z == 90)
+        else if (tileObject.transform.rotation.eulerAngles.z == 90)
         {
             transform.localPosition = new Vector3(-0.5f, 0, 0);
             transform.localRotation = Quaternion.Euler(0, 0, -90);
         }
-        if (transform.rotation.eulerAngles.z == 180)
+        else if (tileObject.transform.rotation.eulerAngles.z == 180)
         {
             transform.localPosition = new Vector3(0, 0.5f, 0);
             transform.localRotation = Quaternion.Euler(0, 0, 180);
         }
-        if (transform.rotation.eulerAngles.z == 270)
+        else if (tileObject.transform.rotation.eulerAngles.z == 270)
         {
             transform.localPosition = new Vector3(0.5f, 0, 0);
             transform.localRotation = Quaternion.Euler(0, 0, 90);
         }
+       
+        
         
     }
 

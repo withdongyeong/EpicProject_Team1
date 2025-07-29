@@ -8,7 +8,7 @@ public class SlimeFloorPattern1 : IBossAttackPattern
     private GameObject _slimeFloorPrefeb;
     private int _damage;
 
-    public string PatternName => "SlimeFloorPattern1";
+    public string PatternName => "1_1";
 
     public SlimeFloorPattern1(GameObject SlimeFloorPrefeb, int damage)
     {
@@ -69,7 +69,8 @@ public class SlimeFloorPattern1 : IBossAttackPattern
                 _slimeFloorPrefeb,
                 warningDuration: 1f,
                 explosionDuration: 0.7f,
-                damage: _damage
+                damage: _damage,
+                patternName:PatternName
             );
             boss.StartCoroutine(SlimeSoundEffect());
             yield return new WaitForSeconds(beat/2);

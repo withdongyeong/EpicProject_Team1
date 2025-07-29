@@ -9,6 +9,7 @@ public enum GameState
     Title,
     Building,
     StageSelect,
+    Count,
     Playing,
     Victory,
     Defeat
@@ -81,6 +82,7 @@ public class TileInfo
     private TileData requiredTile;
     private List<TileData> rejectTileList;
     private int unlockInt;
+    private bool hideCoolTime;
 
     public string TileName => tileName;
     public string Description => description;
@@ -92,6 +94,7 @@ public class TileInfo
     public TileData RequiredTile => requiredTile;
     public List<TileData> RejectTileList => rejectTileList;
     public int UnlockInt => unlockInt;
+    public bool HideCoolTIme => hideCoolTime;
 
     public TileInfo(TileData data)
     {
@@ -105,6 +108,7 @@ public class TileInfo
         requiredTile = data.requiredTile;
         rejectTileList = data.rejectTileList;
         unlockInt = data.unlockInt;
+        hideCoolTime = data.hideCoolTime;
     }
 }
 

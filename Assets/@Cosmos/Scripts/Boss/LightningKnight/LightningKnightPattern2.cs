@@ -8,7 +8,7 @@ public class LightningKnightPattern2 : IBossAttackPattern
     private HashSet<Vector2Int> bannedArea = new HashSet<Vector2Int>();
     private int _damage;
 
-    public string PatternName => "LightningKnightPattern2";
+    public string PatternName => "8_4";
 
     public LightningKnightPattern2(GameObject lightningActtck, int damage)
     {
@@ -77,7 +77,8 @@ public class LightningKnightPattern2 : IBossAttackPattern
             _lightningActtck,
             warningDuration: 1f,
             explosionDuration: 0.7f,
-            damage: _damage
+            damage: _damage,
+            patternName:PatternName
         );
 
         yield return new WaitForSeconds(boss.Beat);

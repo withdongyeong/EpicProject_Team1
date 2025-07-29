@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
     private SpriteRenderer _sr;
 
     private GameObject hitEffect;
+    private GameObject hitEffectHammer;
+    private string PatternName = "Projectile";
    
     public enum ProjectileTeam
     {
@@ -46,6 +48,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         hitEffect = Resources.Load("Prefabs/HitEffect/HitEffect_Frost") as GameObject;
+        hitEffectHammer = Resources.Load("Prefabs/HitEffect/HitEffect_Hammer") as GameObject;
     }
 
     void Update()
@@ -76,7 +79,7 @@ public class Projectile : MonoBehaviour
             PlayerHp player = other.GetComponent<PlayerHp>();
             if (player != null)
             {
-                player.TakeDamage(damage);
+                player.TakeDamage(damage, patternName:PatternName);
                 Destroy(gameObject);
             }
         }
@@ -87,7 +90,7 @@ public class Projectile : MonoBehaviour
             if (enemy != null)
             {
                 // FrostHammer 투사체이고 보스가 정지 상태인 경우
-                if (isFrostHammer && enemy.IsStopped)
+                if (isFrostHammer && (enemy.IsStopped || enemy.IsDamageIncreased))
                 {
                     damage *= 10; // 피해량 10배 증가
                 }
@@ -96,11 +99,20 @@ public class Projectile : MonoBehaviour
                 {
                     if(bossDebuff == BossDebuff.Frostbite)
                     {
-                        enemy.TakeDamage(damage, hitEffect);
-                        // 피해량이 500 이상인 경우 업적
-                        if (damage >= 333)
+                        if (isFrostHammer)
                         {
-                            SteamAchievement.Achieve("ACH_CON_HAMMER");
+                            enemy.TakeDamage(damage, hitEffectHammer); // FrostHammer 효과 적용
+
+                            if (enemy.IsStopped || enemy.IsDamageIncreased)
+                            {
+                                enemy.GetComponent<BossDebuffs>().InterruptFrostEffect(); // 동결 효과 중단
+                                Destroy(gameObject); // 디버프 부여하지 않고 투사체 제거
+                            }
+                            
+                        }
+                        else
+                        {
+                            enemy.TakeDamage(damage, hitEffect); // Frostbite 효과 적용
                         }
                     }
                     else enemy.TakeDamage(damage, null);
@@ -108,12 +120,7 @@ public class Projectile : MonoBehaviour
                     enemy.AddDebuff(bossDebuff); // 상태 이상 추가
                 }
                 else enemy.TakeDamage(damage, null);
-
-                // FrostHammer 투사체이고 보스가 정지 상태인 경우
-                if (isFrostHammer && enemy.IsStopped)
-                {
-                    enemy.GetComponent<BossDebuffs>().InterruptFrostEffect(); // 동결 효과 중단
-                }
+                
                 Destroy(gameObject);
             }
         }

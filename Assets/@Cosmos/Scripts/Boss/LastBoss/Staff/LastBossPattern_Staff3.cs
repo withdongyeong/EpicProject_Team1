@@ -10,7 +10,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
     private GameObject _explosionPrefab;
     private int _damage;
     private bool _isSoundCoolTime = false; 
-    public string PatternName => "StaffPattern3";
+    public string PatternName => "10_7";
 
     public LastBossPattern_Staff3(GameObject explosionPrefab, int damage)
     {
@@ -23,7 +23,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
     public IEnumerator Execute(BaseBoss boss)
     {
         // 중심 (4, 4) 먼저 공격
-        boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+        boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, 4, 0), _explosionPrefab, 1f, 1f, _damage, warningType:WarningType.Type1, patternName:PatternName);
 
         // 병렬 실행
         boss.StartCoroutine(SpiralInArea(boss, 0, 5)); // 좌상
@@ -37,8 +37,8 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
             boss.StartCoroutine(PlayAttackSound(boss, boss.Beat/4));
 
             if (i == 4) continue;
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
-            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 1f, 1f, _damage, WarningType.Type1);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(4, i, 0), _explosionPrefab, 1f, 1f, _damage, warningType:WarningType.Type1, patternName:PatternName);
+            boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(i, 4, 0), _explosionPrefab, 1f, 1f, _damage, warningType:WarningType.Type1, patternName:PatternName);
         }
 
         yield return new WaitForSeconds(boss.Beat * 2);
@@ -66,7 +66,7 @@ public class LastBossPattern_Staff3 : IBossAttackPattern
             {
                 int gx = gridX[cx, cy];
                 int gy = gridY[cx, cy];
-                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, WarningType.Type1);
+                boss.BombHandler.ExecuteFixedBomb(new() { Vector3Int.zero }, new Vector3Int(gx, gy, 0), _explosionPrefab, 0.8f, 1f, _damage, warningType:WarningType.Type1, patternName:PatternName);
                 visited[cx, cy] = true;
                 count++;
                 yield return new WaitForSeconds(boss.Beat/4);

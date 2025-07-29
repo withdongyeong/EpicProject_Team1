@@ -25,7 +25,8 @@ public class StarMovingUI : MonoBehaviour
 
         rect.anchoredPosition = startPoint;
 
-        transform.parent.GetComponent<Image>().sprite = StageSelectManager.Instance.StageUISprites[StageSelectManager.Instance.StageNum];
+        int num = Mathf.Min(10, StageSelectManager.Instance.StageNum);
+        transform.parent.GetComponent<Image>().sprite = StageSelectManager.Instance.StageUISprites[num];
     }
 
     private void Update()

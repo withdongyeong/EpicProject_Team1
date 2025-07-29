@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 최종 보스 손가락 패턴 - 플레이어 추적 손가락 공격
+/// 기존 이동불가 칸을 고려하여 해제하지 않도록 수정
 /// </summary>
 public class BigHandFingerPattern : IBossAttackPattern
 {
@@ -14,10 +15,11 @@ public class BigHandFingerPattern : IBossAttackPattern
     private GameObject _attackEffectPrefab;
     private GameObject _fingerObject;
     private List<Vector3Int> _blockedPositions;
+    private List<Vector3Int> _originallyUnmovablePositions; // 기존에 이동불가였던 위치들
     private Vector3Int _currentTargetPos;
     private int _damage;
     private bool _isSoundCoolTime = false;
-    public string PatternName => "손가락_추적공격";
+    public string PatternName => "9_10";
     
     public BigHandFingerPattern(GameObject fingerBottomPrefab, GameObject fingerTopPrefab, 
                               GameObject fingerLeftPrefab, GameObject fingerRightPrefab, 
@@ -29,6 +31,7 @@ public class BigHandFingerPattern : IBossAttackPattern
         _fingerRightPrefab = fingerRightPrefab;
         _attackEffectPrefab = attackEffectPrefab;
         _blockedPositions = new List<Vector3Int>();
+        _originallyUnmovablePositions = new List<Vector3Int>();
         _damage = damage;
     }
 
@@ -96,7 +99,8 @@ public class BigHandFingerPattern : IBossAttackPattern
                 warningDuration: 1f, 
                 explosionDuration: 5f,
                 damage: 0, 
-                warningType: WarningType.Type2
+                PatternName,
+                WarningType.Type2
             );
         }
         
@@ -120,12 +124,8 @@ public class BigHandFingerPattern : IBossAttackPattern
         if (_fingerObject != null)
             _fingerObject.transform.position = fingerTipWorld;
         
-        // 차단 설정
-        foreach (Vector3Int pos in fingerPositions)
-        {
-            GridManager.Instance.AddUnmovableGridPosition(pos);
-            _blockedPositions.Add(pos);
-        }
+        // 차단 설정 (기존 이동불가 상태 고려)
+        SetFingerBlocking(fingerPositions);
         
         // 보스에 손가락 오브젝트 저장 (기존 방식과 동일)
         var bigHand = boss as BigHand;
@@ -133,8 +133,36 @@ public class BigHandFingerPattern : IBossAttackPattern
         {
             bigHand.LastFingerTipPosition = fingerPositions[fingerPositions.Count - 1];
             bigHand.FingerBlockedPositions = new List<Vector3Int>(_blockedPositions);
+            bigHand.FingerOriginallyUnmovablePositions = new List<Vector3Int>(_originallyUnmovablePositions);
             bigHand.FingerObject = _fingerObject; // 오브젝트 직접 저장
         }
+    }
+
+    /// <summary>
+    /// 손가락 위치에 차단 설정 (기존 이동불가 상태 고려)
+    /// </summary>
+    /// <param name="fingerPositions">손가락이 차지할 위치들</param>
+    private void SetFingerBlocking(List<Vector3Int> fingerPositions)
+    {
+        foreach (Vector3Int pos in fingerPositions)
+        {
+            // 기존에 이동불가였는지 확인
+            bool wasAlreadyUnmovable = GridManager.Instance.UnmovableGridPositions.Contains(pos);
+            
+            if (wasAlreadyUnmovable)
+            {
+                // 기존에 이동불가였던 위치 기록
+                _originallyUnmovablePositions.Add(pos);
+            }
+            else
+            {
+                // 새로 차단할 위치만 추가
+                GridManager.Instance.AddUnmovableGridPosition(pos);
+                _blockedPositions.Add(pos);
+            }
+        }
+        
+        Debug.Log($"손가락 차단 설정: 새로 차단 {_blockedPositions.Count}개, 기존 차단 {_originallyUnmovablePositions.Count}개");
     }
 
     /// <summary>
@@ -172,7 +200,8 @@ public class BigHandFingerPattern : IBossAttackPattern
             warningDuration: warningDuration, 
             explosionDuration: 0.7f, 
             damage: _damage, 
-            warningType: WarningType.Type1
+            PatternName,
+            WarningType.Type1
         );
     }
 
@@ -183,11 +212,8 @@ public class BigHandFingerPattern : IBossAttackPattern
         Vector3 currentPos = _fingerObject.transform.position;
         Vector3 exitPos = CalculateExitPosition(currentPos, _currentTargetPos);
         
-        foreach (Vector3Int pos in _blockedPositions)
-        {
-            GridManager.Instance.RemoveUnmovableGridPosition(pos);
-        }
-        _blockedPositions.Clear();
+        // 차단 해제 (기존에 이동불가였던 위치는 해제하지 않음)
+        RemoveFingerBlocking();
         
         float duration = 1f;
         float elapsedTime = 0f;
@@ -208,6 +234,23 @@ public class BigHandFingerPattern : IBossAttackPattern
             Object.Destroy(_fingerObject);
             _fingerObject = null;
         }
+    }
+
+    /// <summary>
+    /// 손가락 차단 해제 (기존 이동불가 위치는 유지)
+    /// </summary>
+    private void RemoveFingerBlocking()
+    {
+        // 패턴으로 새로 차단한 위치만 해제
+        foreach (Vector3Int pos in _blockedPositions)
+        {
+            GridManager.Instance.RemoveUnmovableGridPosition(pos);
+        }
+        
+        Debug.Log($"손가락 차단 해제: 해제 {_blockedPositions.Count}개, 유지 {_originallyUnmovablePositions.Count}개");
+        
+        _blockedPositions.Clear();
+        _originallyUnmovablePositions.Clear();
     }
     
     private Vector3Int GetFingerTargetPosition(Vector3Int playerPos)
@@ -352,11 +395,8 @@ public class BigHandFingerPattern : IBossAttackPattern
 
     public void Cleanup()
     {
-        foreach (Vector3Int pos in _blockedPositions)
-        {
-            GridManager.Instance.RemoveUnmovableGridPosition(pos);
-        }
-        _blockedPositions.Clear();
+        // 차단 해제
+        RemoveFingerBlocking();
         
         if (_fingerObject != null)
         {

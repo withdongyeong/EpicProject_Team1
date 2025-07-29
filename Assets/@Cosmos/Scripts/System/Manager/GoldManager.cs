@@ -91,7 +91,7 @@ public class GoldManager : Singleton<GoldManager>
     {
         if (GameStateManager.Instance.CurrentState != GameState.Defeat)
         {
-            if (StageSelectManager.Instance.StageNum < 2)
+            if (StageSelectManager.Instance.StageNum < 2 && !SceneLoader.IsInGuide())
             {
                 ModifyCurrentGold(16);
             }
@@ -105,7 +105,10 @@ public class GoldManager : Singleton<GoldManager>
 
     private void GetGoldOnPlayerDeath()
     {
-        ModifyCurrentGold(10);
+        if (!SceneLoader.IsInTitle())
+        {
+            ModifyCurrentGold(10);
+        }        
     }
 
     private void OnDestroy()

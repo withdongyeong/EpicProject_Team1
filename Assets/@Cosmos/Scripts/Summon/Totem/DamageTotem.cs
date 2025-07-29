@@ -24,12 +24,14 @@ public class DamageTotem : BaseTotem
     {
         base.ActivateTotem(context);
         _targetEnemy.AddDebuff(BossDebuff.Curse);
+        _targetEnemy.AddDebuff(BossDebuff.Curse);
         //FireProjectile(_lesserProjectile, _totemPower);
 
     }
 
     protected override void ActivateTotemBetter(TotemContext context)
     {
+        _targetEnemy.AddDebuff(BossDebuff.Curse);
         _targetEnemy.AddDebuff(BossDebuff.Curse);
         FireProjectile(_betterProjectile, _targetEnemy.GetDebuffCount(BossDebuff.Curse));
     }

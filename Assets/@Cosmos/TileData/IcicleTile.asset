@@ -15,7 +15,8 @@ MonoBehaviour:
   tileName: IcicleTile
   description: "<color=yellow>\uAC1C\uBCC4\uCE78(3)</color>: \uD22C\uC0AC\uCCB4\uB97C
     \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:<color=red>7</color>)\n<color=red>\uC801\uC911
-    \uC2DC:</color> \uB3D9\uC0C1<sprite name=\"Ice\">\uC744 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    \uC2DC:</color> \uB3D9\uC0C1<sprite name=\"Ice\">\uC744 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n<sprite
+    name=\"Nebula\"> <sprite name=\"Freeze\">"
   tileCategory: 0
   tileSprite: {fileID: 21300000, guid: 41648171f9ff166418edc1f7387c1d2f, type: 3}
   tileGrade: 2
@@ -24,3 +25,4 @@ MonoBehaviour:
   requiredTile: {fileID: 0}
   rejectTileList: []
   unlockInt: 0
+  hideCoolTime: 0

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Localization;
 
 /// <summary>
 /// 게임 전체 관리 클래스 - TileBuilder로 타일 생성 로직 분리
@@ -136,21 +137,19 @@ public class StageHandler : MonoBehaviour
     {
         // 플레이어 생성 대기 (한 프레임 대기)
         yield return null;
-        
-        // 게임 시간은 멈추되 UI는 업데이트되도록 설정
-        if (TimeScaleManager.Instance != null)
+    
+        // 카운트다운 상태로 변경 (timeScale 자동 정지됨)
+        if (_gameStateManager != null)
         {
-            TimeScaleManager.Instance.StopTimeScale();
+            _gameStateManager.StartCountdown();
         }
-        
+    
         // 플레이어의 스타트 애니메이션 재생 (속도 조정 포함)
         if (_player != null && _player.Animator != null)
         {
             _player.Animator.SetTrigger("Start");
         }
-        
-        
-
+    
         // 카운트다운 시작
         float timeLeft = countdownDuration;
 
@@ -171,17 +170,13 @@ public class StageHandler : MonoBehaviour
         // 카운트다운 완료
         if (countdownText != null)
         {
-            countdownText.text = "Start!";
+            LocalizedString localizedString = new LocalizedString("EpicProject_Table", "UI_Text_Start");
+            localizedString.StringChanged += (text) => countdownText.text = text;
             yield return new WaitForSecondsRealtime(0.5f);
             countdownText.gameObject.SetActive(false);
         }
 
-        if (TimeScaleManager.Instance != null)
-        {
-            TimeScaleManager.Instance.ResetTimeScale();
-        }
-
-        // 게임 시작 상태로 설정
+        // 게임 시작 상태로 설정 (timeScale 자동 복구됨)
         if (_gameStateManager != null)
         {
             _gameStateManager.StartGame();

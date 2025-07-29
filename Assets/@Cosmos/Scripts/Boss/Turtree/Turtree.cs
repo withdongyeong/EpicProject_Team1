@@ -23,20 +23,19 @@ public class Turtree : BaseBoss
         AddGroup()
             .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 4, 0), WeakDamage), Beat)
             .AddPattern(new TurtreePattern2(AttackPrefeb, WeakDamage), Beat)
-            .AddPattern(new TurtreePattern3(AttackPrefeb, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern3(AttackPrefeb, StrongDamage), Beat)
             .SetGroupInterval(Beat);
-        
+
         AddGroup()
             .AddPattern(new TurtreePattern4(AttackPrefeb, true, WeakDamage), Beat)
             .AddPattern(new TurtreePattern1_1(AttackPrefeb, new Vector3Int(4, 8, 0), WeakDamage), Beat)
             .AddPattern(new TurtreePattern4(AttackPrefeb, false, WeakDamage), Beat)
-            .AddPattern(new TurtreePattern3(AttackPrefeb, WeakDamage), Beat)
+            .AddPattern(new TurtreePattern3(AttackPrefeb, StrongDamage), Beat)
             .SetGroupInterval(Beat);
 
         AddGroup()
             .AddPattern(new TurtreePattern1(AttackPrefeb, new Vector3Int(8, 8, 0), WeakDamage), Beat)
             .AddPattern(new TurtreePattern6(AttackPrefeb, WeakDamage), Beat)
-            .AddPattern(new TurtreePattern5(AttackPrefeb, StrongDamage), Beat)
             .AddPattern(new TurtreePattern2(AttackPrefeb, WeakDamage), Beat)
             .SetGroupInterval(Beat);
     }

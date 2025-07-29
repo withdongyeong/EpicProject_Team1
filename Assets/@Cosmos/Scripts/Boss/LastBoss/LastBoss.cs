@@ -15,7 +15,7 @@ public class LastBoss : BaseBoss
     public GameObject flameExplosionPrefab;
     public GameObject swordExplosionPrefab;
     public GameObject wallPrefab;
-    private GameObject currentWeapon;
+    public GameObject currentWeapon;
     public GameObject CurrentWeapon => currentWeapon;
 
     /// <summary>
@@ -30,6 +30,8 @@ public class LastBoss : BaseBoss
         StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
         BPM = GlobalSetting.Instance.GetBossBpm(10);
         SetDifficulty();
+        // 빙결 불가 설정
+        IsHandBoss = true;
     }
 
     /// <summary>

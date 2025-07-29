@@ -2,9 +2,10 @@
 
 public class TilesOnGrid : MonoBehaviour
 {
-    
+
     public void SetTileObjectStarEffect()
     {
+        GameManager.Instance.LogHandler.EnforcedTileNum = 0;
         foreach (TileObject tile in GetComponentsInChildren<TileObject>())
         {
             tile.ShowStarCell();
@@ -12,4 +13,15 @@ public class TilesOnGrid : MonoBehaviour
             tile.HideStarCell();
         }
     }
+
+    public int GetEnforcedStarNum()
+    {
+        int result = 0;
+        foreach (TileObject tile in GetComponentsInChildren<TileObject>())
+        {
+            result += tile.EnforcedStarCount;
+        }
+        return result;
+    }
+
 }

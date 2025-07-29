@@ -26,4 +26,17 @@ public class StoreLockManager : Singleton<StoreLockManager>
             storeLocks[i] = null;
         }
     }
+
+    public int GetStoreLockInt()
+    {
+        int result = 0;
+        foreach(GameObject _object in storeLocks)
+        {
+            if(_object != null)
+            {
+                result++;
+            }
+        }
+        return result;
+    }
 }

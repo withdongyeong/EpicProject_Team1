@@ -90,6 +90,10 @@ public class SwordHandler : MonoBehaviour
         SwordController foundSword = FindAnyObjectByType<SwordController>();
         SwordController[] foundSwords = GameObject.FindObjectsByType<SwordController>(0);
         swords.AddRange(foundSwords);
+        if (swords.Count >= 20)
+        {
+            SteamAchievement.Achieve("ACH_CON_SWORD");
+        }
     }
 
     /// <summary>
@@ -101,10 +105,6 @@ public class SwordHandler : MonoBehaviour
         if (sword != null && !swords.Contains(sword))
         {
             swords.Add(sword);
-            if (swords.Count >= 20)
-            {
-                SteamAchievement.Achieve("ACH_CON_SWORD");
-            }
         }
     }
 

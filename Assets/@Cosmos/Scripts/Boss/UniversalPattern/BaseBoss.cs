@@ -23,6 +23,7 @@ public abstract class BaseBoss : MonoBehaviour
     [Header("상태 이상 클래스")]
     private BossDebuffs _bossDebuff;
     private bool _isStopped = false; // 공격 중지 여부
+    private bool _isDamageIncreased = false; // 공격 중지 불가 보스용 데미지 증가 여부
     private bool _unstoppable = false; // 공격 중지 가능 여부
     private bool _isHandBoss = false; // 손 보스 여부 (손 보스는 공격 중지 불가능)
     
@@ -83,6 +84,11 @@ public abstract class BaseBoss : MonoBehaviour
     /// 공격 중지 여부 프로퍼티
     /// </summary>
     public bool IsStopped { get => _isStopped; set => _isStopped = value; }
+
+    /// <summary>
+    /// 공격 중지 불가 보스용 데미지 증가 여부 프로퍼티
+    /// </summary>
+    public bool IsDamageIncreased { get => _isDamageIncreased; set => _isDamageIncreased = value; }
 
     /// <summary>
     /// 공격 중지 가능 여부 프로퍼티
@@ -237,14 +243,28 @@ public abstract class BaseBoss : MonoBehaviour
         }
         damage = _bossDebuff.ApplyMarkEffect(damage);
         damage = _bossDebuff.ApplyPainEffect(damage);
-        if (_isStopped)
+        if (_isStopped || _isDamageIncreased)
         {
             damage = Mathf.CeilToInt(damage * 1.5f); // 공격 중지 상태에서는 데미지 1.5배 증가
+        }
+        if (hitObject.name.Contains("Hammer"))
+        {
+            if (damage >= 500)
+            {
+                SteamAchievement.Achieve("ACH_CON_HAMMER"); // FrostHammer 업적 달성
+            }
         }
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(0, _currentHealth);
         _damageTextHandler.SpawnDamageText(damage);
         _totalDamageManager.AddDamage(damage);
+
+        if(damage >= 200)
+        {
+            Debug.Log("됨");
+            SteamAchievement.Achieve("ACH_BTL_DAMAGE");
+        }
+        
         
         if (_currentHealth <= 0)
         {
@@ -283,7 +303,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
-        AnalyticsManager.Instance.SendStageClearEvent();
+        AnalyticsManager.Instance.StageClearEvent();
         
         
         _isDead = true;
@@ -384,6 +404,7 @@ public abstract class BaseBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _isStopped = false;
+        _isDamageIncreased = false; // 공격 중지 불가 보스용 데미지 증가 해제
         StartCoroutine(AttackRoutine());
         StartCoroutine(ApplyDebuffsRoutine());
     }
@@ -393,7 +414,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// </summary>
     public void IncreasedDamageTaken(float time)
     {
-        _isStopped = true;
+        _isDamageIncreased = true;
         StartCoroutine(IncreasedDamageTakenRoutine(time));
     }
 
@@ -404,7 +425,7 @@ public abstract class BaseBoss : MonoBehaviour
     public IEnumerator IncreasedDamageTakenRoutine(float time)
     {
         yield return new WaitForSeconds(time);
-        _isStopped = false;
+        _isDamageIncreased = false;
     }
 
     /// <summary>

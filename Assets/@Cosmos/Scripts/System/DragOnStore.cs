@@ -12,11 +12,29 @@ public class DragOnStore : DraggableObject
     private StoreSlot storeSlot;
     
     private GameObject dragObject;
+    private TileObject _tileObject;
     private GameObject originalObject;
+    private StorageArea _storageArea;
+    private Canvas _canvas;
+    private RectTransform _rectTransform;
+
+    private Vector3 worldPosition;
 
     private void Awake()
     {
         storeSlot = GetComponent<StoreSlot>();
+        _storageArea = FindAnyObjectByType<StorageArea>();
+        _canvas = transform.parent.parent.parent.parent.GetComponent<Canvas>();
+        if(transform.GetChild(0) != null)
+        {
+            _rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
+        }
+        else
+        {
+            _rectTransform = GetComponent<RectTransform>();
+        }
+        
+
     }
     
 
@@ -28,11 +46,13 @@ public class DragOnStore : DraggableObject
         {
             Vector3 mousePosition = Input.mousePosition;
             Camera mainCamera = Camera.main;
-            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-            worldPosition.z = 0f; // 2D 게임이므로 z값을 0으로 설정
-                                  //드래그 오브젝트 생성 및 위치 초기화
-            dragObject = Instantiate(originalObject, worldPosition, originalObject.transform.rotation);
-            DragManager.Instance.LocalPos = Vector3.zero;
+
+            //드래그 오브젝트 생성 및 위치 초기화
+            worldPosition = _canvas.worldCamera.ScreenToWorldPoint(_rectTransform.TransformPoint(Vector3.zero));
+            worldPosition.z = 0;
+            Debug.Log(worldPosition);
+            dragObject = Instantiate(originalObject,worldPosition, originalObject.transform.rotation);
+            _tileObject = dragObject.GetComponent<TileObject>();
         }
         else
         {
@@ -44,8 +64,14 @@ public class DragOnStore : DraggableObject
 
 
         //dragObject.name = "dragObject";
-    }                                 
-    
+    }
+
+    protected override void Drag()
+    {
+        if (!_tileObject.IsStarDisplayEnabled)
+            _tileObject.ShowStarCell();
+    }
+
     protected override void EndDrag()
     {
         //1. 그리드 안에 배치 가능하고 구매 가능하다면
@@ -65,13 +91,55 @@ public class DragOnStore : DraggableObject
                 }
                 
             }
-            
-            
             return;
         }
-        //2. 그리드 밖에 배치한다면
+        
         
         //3. 보관함에 배치한다면
+        if(_storageArea == null) 
+        {
+            _storageArea = FindAnyObjectByType<StorageArea>();
+        }
+        if (storeSlot.CanPurchase() &&_storageArea.IsCanStore)
+        {
+            GameObject g = DragManager.Instance.GetCurrentDragObject();
+            foreach (Cell cell in g.GetComponentsInChildren<Cell>())
+            {
+                if(cell.GetType() == typeof(Cell))
+                {
+                    cell.AddComponent<BoxCollider2D>();
+                    HoverTileInfo hti = cell.AddComponent<HoverTileInfo>();
+                    hti.SetTileObject(g.GetComponent<TileObject>());
+                }
+                
+            }
+            
+            //튜토리얼 중이고 , 회전 퀘스트 중이면.. 
+            if (GameManager.Instance.IsInTutorial)
+            {
+                StorageQuest quest = GuideHandler.instance.CurrentQuest as StorageQuest;
+                if (quest != null)
+                {
+                    quest.count++;
+                }
+            }
+            //까지입니다 ..
+            
+            
+            
+            
+            _storageArea.StoreTileObject(GetComponent<TileObject>());
+            foreach (var coll in DragManager.Instance.GetCurrentDragObject().GetComponentsInChildren<Collider2D>())
+            {
+                coll.enabled = true;
+            }
+            DragManager.Instance.GetCurrentDragObject().transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
+            DragManager.Instance.GetCurrentDragObject().AddComponent<DragOnStorage>();
+            storeSlot.BuyObject();
+            return;
+        }
+        
+        
         
         //그 외
         DragManager.Instance.DestroyObject();

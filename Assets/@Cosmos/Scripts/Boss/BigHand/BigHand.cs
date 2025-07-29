@@ -25,6 +25,8 @@ public class BigHand : BaseBoss
     public GameObject LeftHandObject { get; set; }
     public GameObject RightHandObject { get; set; }
     public List<Vector3Int> BlockedPositions { get; set; } = new List<Vector3Int>();
+    public List<Vector3Int> FingerOriginallyUnmovablePositions { get; set; }
+    public List<Vector3Int> OriginallyUnmovablePositions { get; set; } = new List<Vector3Int>();
     
     // 주먹 패턴 상태
     public Vector3Int PlannedFistCenterColumn { get; set; }

@@ -10,6 +10,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private int _unlockLevel;
 
     private GameObject _journalSlotPrefab;
+    private GameObject _lockedJournalSlotPrefab;
 
     private GameObject _safePrefab;
 
@@ -32,22 +33,28 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private LocalizedString _localizedString;
 
     //이 밑은 희귀도에 따라서 분류된 리스트입니다
-    private List<GameObject> _normalStoreTiles = new();
-    private List<GameObject> _rareStoreTiles = new();
-    private List<GameObject> _epicStoreTiles = new();
-    private List<GameObject> _legendaryStoreTiles = new();
-    private List<GameObject> _mythicStoreTiles = new();
-    private List<GameObject> _lockedStoreTiles = new();
+    //private List<GameObject> _normalStoreTiles = new();
+    //private List<GameObject> _rareStoreTiles = new();
+    //private List<GameObject> _epicStoreTiles = new();
+    //private List<GameObject> _legendaryStoreTiles = new();
+    //private List<GameObject> _mythicStoreTiles = new();
+
+    private List<GameObject>[] _storeTiles = new List<GameObject>[5];
+
+    //아직 해금 안된 리스트입ㄴ디ㅏ
+    private List<GameObject>[] _lockedStoreTiles = new List<GameObject>[5];
+
 
     //첫상점에 무조건 뜨는 리스트입니다
     private List<GameObject> _firstStoreTiles = new();
 
     //리스트에 접근하는 프로퍼티입니다
-    public List<GameObject> NormalStoreTiles => _normalStoreTiles;
-    public List<GameObject> RareStoreTiles => _rareStoreTiles;
-    public List<GameObject> EpicStoreTiles => _epicStoreTiles;
-    public List<GameObject> LegendaryStoreTiles => _legendaryStoreTiles;
-    public List<GameObject> MythicStoreTiles => _mythicStoreTiles;
+    //public List<GameObject> NormalStoreTiles => _normalStoreTiles;
+    //public List<GameObject> RareStoreTiles => _rareStoreTiles;
+    //public List<GameObject> EpicStoreTiles => _epicStoreTiles;
+    //public List<GameObject> LegendaryStoreTiles => _legendaryStoreTiles;
+    //public List<GameObject> MythicStoreTiles => _mythicStoreTiles;
+    public List<GameObject>[] StoreTiles => _storeTiles;
     public List<GameObject> FirstStoreTiles => _firstStoreTiles;
     public bool IsJournalOpen => _isJournalOpen;
 
@@ -56,6 +63,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     {
         base.Awake();
         _journalSlotPrefab = Resources.Load<GameObject>("Prefabs/UI/Journal/JournalSlot");
+        _lockedJournalSlotPrefab = Resources.Load<GameObject>("Prefabs/UI/Journal/LockedJournalSlot");
         _scrollView = transform.GetChild(0).GetChild(0).gameObject;
         _slotParent = _scrollView.transform.GetChild(0).GetChild(0);
         _infoPanel = FindAnyObjectByType<InfoPanel>(FindObjectsInactive.Include);
@@ -69,6 +77,12 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         EventBus.SubscribeSceneLoaded(ShowUnlockTilesOnTitle);
         _localizedString = new LocalizedString("EpicProject_Table", "UI_Text_UnlockedTileCount");
         _isInit = false;
+
+        for(int i=0; i<_storeTiles.Length; i++)
+        {
+            _storeTiles[i] = new List<GameObject>();
+            _lockedStoreTiles[i] = new List<GameObject>();
+        }
     }
 
 
@@ -95,25 +109,25 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
         _safePrefab = Resources.Load<GameObject>("Prefabs/Tiles/WeaponTile/GuideStaffTile");
 
-        _normalStoreTiles.Clear();
-        _rareStoreTiles.Clear();
-        _epicStoreTiles.Clear();
-        _legendaryStoreTiles.Clear();
-        _mythicStoreTiles.Clear();
-        _lockedStoreTiles.Clear();
+        ClearStoreTileLists();
 
         foreach (GameObject tilePrefab in allTilePrefabs)
         {
             TileInfo tileInfo = tilePrefab.GetComponent<TileObject>().GetTileData();
+            TileGrade grade = tileInfo.TileGrade;
+
+            _unlockedTileNumList[tileInfo.UnlockInt]++;
+            //해금 된 별자리들
             if (tileInfo.UnlockInt <= _unlockLevel)
             {
-                TileGrade grade = tileInfo.TileGrade;
-                if (grade == TileGrade.Normal)
+                //초심자의 지팡이는 제외입니다
+                if(tileInfo.TileName != "GuideStaffTile")
                 {
-                    if (tileInfo.TileName != "GuideStaffTile")
-                    {
-                        _normalStoreTiles.Add(tilePrefab);
-                    }
+                    //넣어줍니다
+                    _storeTiles[(int)grade].Add(tilePrefab);
+                }
+                if(grade == TileGrade.Normal) // 맨 처음에 띄어줄 지팡이랑 화염살만 넣어줍니다
+                {
                     foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
                     {
                         if (tileData.tileName == tileInfo.TileName)
@@ -121,42 +135,13 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
                             _firstStoreTiles.Add(tilePrefab);
                         }
                     }
-
-                }
-                else if (grade == TileGrade.Rare)
-                {
-                    _rareStoreTiles.Add(tilePrefab);
-                    foreach (TileData tileData in GlobalSetting.Shop_FirstTileDataList)
-                    {
-                        if (tileData.tileName == tileInfo.TileName)
-                        {
-                            _firstStoreTiles.Add(tilePrefab);
-                        }
-                    }
-                }
-                else if (grade == TileGrade.Epic)
-                {
-                    _epicStoreTiles.Add(tilePrefab);
-                }
-                else if (grade == TileGrade.Legendary)
-                {
-                    _legendaryStoreTiles.Add(tilePrefab);
-                }
-                else
-                {
-                    _mythicStoreTiles.Add(tilePrefab);
-                }
-
-                if(tileInfo.UnlockInt != 0)
-                {
-                    _unlockedTileNumList[tileInfo.UnlockInt]++;
                 }
             }
             else
-            {
-                _lockedStoreTiles.Add(tilePrefab);
+            {   
+                //해금 안된 애들 넣어줍니다
+                _lockedStoreTiles[(int)grade].Add(tilePrefab);
             }
-
         }
 
         InstantiateAllJournalSlots();
@@ -173,11 +158,11 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             Destroy(_slotParent.GetChild(i).gameObject);
         }
 
-        InstantiateJournalSlotList(_normalStoreTiles);
-        InstantiateJournalSlotList(_rareStoreTiles);
-        InstantiateJournalSlotList(_epicStoreTiles);
-        InstantiateJournalSlotList(_legendaryStoreTiles);
-        InstantiateJournalSlotList(_mythicStoreTiles);
+        for(int i = 0; i < _storeTiles.Length; i++)
+        {
+            InstantiateJournalSlotList(_storeTiles[i]);
+        }
+        InstantiateLockedJournalSlotList();
 
         //볼장 다 봤으니 다시 끕니다
         _scrollView.SetActive(false);
@@ -194,6 +179,19 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         }
     }
 
+    private void InstantiateLockedJournalSlotList()
+    {
+        for(int i = 0; i<_lockedStoreTiles.Length; i++)
+        {
+            foreach (GameObject tile in _lockedStoreTiles[i])
+            {
+                LockedJournalSlot journalSlot = Instantiate(_lockedJournalSlotPrefab, _slotParent).GetComponentInChildren<LockedJournalSlot>();
+                journalSlot.SetSlot(tile);
+                journalSlot.GetComponent<Image>().SetNativeSize();
+            }
+        }   
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -205,6 +203,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
 
     public void CloseJournal()
     {
+        SoundManager.Instance.UISoundClip("ButtonActivate");
         if (DragManager.Instance.GetCurrentDragObject() == null)
         {
             _scrollView.SetActive(false);
@@ -276,6 +275,21 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
         {
             ShowUnlockTiles();
         }
+    }
+
+    private void ClearStoreTileLists()
+    {
+        foreach(List<GameObject> tileLists in _storeTiles)
+        {
+            tileLists.Clear();
+        }
+
+        foreach (List<GameObject> tileLists in _lockedStoreTiles)
+        {
+            tileLists.Clear();
+        }
+        _unlockedTileNumList = new int[5];
+        _firstStoreTiles.Clear();
     }
 
     private void OnDestroy()
