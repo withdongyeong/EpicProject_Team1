@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -40,6 +41,11 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     //private List<GameObject> _mythicStoreTiles = new();
 
     private List<GameObject>[] _storeTiles = new List<GameObject>[5];
+    
+    
+    public List<GameObject> allTiles = new List<GameObject>();
+    
+    public  List<GameObject> AllTiles => allTiles;
 
     //아직 해금 안된 리스트입ㄴ디ㅏ
     private List<GameObject>[] _lockedStoreTiles = new List<GameObject>[5];
@@ -83,6 +89,18 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
             _storeTiles[i] = new List<GameObject>();
             _lockedStoreTiles[i] = new List<GameObject>();
         }
+        
+        
+        
+        
+        allTiles =  new List<GameObject>();
+        allTiles.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
+        allTiles.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/BookTile"));
+        allTiles.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/SummonTile"));
+        allTiles.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/EquipTile"));
+        allTiles.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/PotionTile"));
+        allTiles.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/TrinketTile"));
+        
     }
 
 
@@ -98,7 +116,9 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     {
         //현재 해금된 애들. 이 번호보다 작거나 같으면 해금된거에요
         _unlockLevel = GameManager.Instance.CurrentUnlockLevel;
-
+        
+        
+        
         List<GameObject> allTilePrefabs = new();
 
         allTilePrefabs.AddRange(Resources.LoadAll<GameObject>("Prefabs/Tiles/WeaponTile"));
