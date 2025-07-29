@@ -19,7 +19,7 @@ Tile_TileName_CloudTile,云,Cloud,雲,구름
 Tile_TileName_CrowTile,乌鸦,Crow,カラス,까마귀
 Tile_TileName_FlamingSwordTile,火焰剑,Flaming Sword,燃える剣,불타는 검
 Tile_TileName_FrostHammerTile,冰锤,Ice Hammer,氷のハンマー,얼음 망치
-Tile_TileName_GoddessTile,女神雕像,Statue of Goddess,女神賞,여신상
+Tile_TileName_GoddessTile,女神像,Statue of Goddess,女神賞,여신상
 Tile_TileName_GuideStaffTile,新手法杖,Beginner's Staff,初心者の杖,초심자의 지팡이
 Tile_TileName_HauntedDollTile,诅咒娃娃,Cursed Doll,呪い人形,저주 인형
 Tile_TileName_KabutoTile,独角仙,Rhinoceros Beetle,カブトムシ,장수풍뎅이
@@ -61,17 +61,17 @@ Gain the additional effect when both are placed.
 둘 다 배치되면 추가 효과를 얻습니다.
 <color=yellow>기본효과</color>: 피해량이 <color=red>50</color>으로 증가합니다.
 <color=yellow>추가효과</color>: 피해량 <color=red>30</color>의 투사체를 3개 발사합니다."
-Tile_TileDescription_ArmorTile,"获得一个<sprite name=""Shield"">。","Obtain a Shield<sprite name=""Shield"">.","シールド<sprite name=""Shield"">を獲得します。","방어막<sprite name=""Shield"">을 획득합니다."
-Tile_TileDescription_BigHeartTile,"星云 (3)<sprite name=""Nebula"">：恢复 <color=green>5</color> 点生命值。
-如果一颗 <color=yellow>星星<sprite name=""Star"">上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则恢复 <color=green>10</color> 点生命值。","Nebula (3)<sprite name=""Nebula"">: Restores <color=green>5</color> health. 
+Tile_TileDescription_ArmorTile,"获得护盾<sprite name=""Shield"">。","Obtain a Shield<sprite name=""Shield"">.","シールド<sprite name=""Shield"">を獲得します。","방어막<sprite name=""Shield"">을 획득합니다."
+Tile_TileDescription_BigHeartTile,"星云(3)<sprite name=""Nebula"">: 恢复<color=green>5</color>点体力。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，恢复<color=green>10</color>点体力。","Nebula (3)<sprite name=""Nebula"">: Restores <color=green>5</color> health. 
 If there are 3 or more magic circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, restores <color=green>10</color> health.","星雲(3)<sprite name=""Nebula"">: 体力を<color=green>5</color>回復します。
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、体力を<color=green>10</color>回復します。","성운(3)<sprite name=""Nebula"">: 체력을 <color=green>5</color> 회복합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 체력을 <color=green>10</color>회복합니다."
-Tile_TileDescription_DamageTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆叠 3 个图腾 <sprite name=""Totem""> 时激活。
-<color=yellow>激活时</color>：获得 2 个诅咒 <sprite name=""Curse"">。
-<color=yellow>强化时</color>：获得 2 个诅咒 <sprite name=""Curse""> 并发射一枚投射物，该投射物对敌人造成伤害，伤害量与敌人身上的诅咒 <sprite name=""Curse""> 数量成正比。
-(伤害：<color=red>诅咒 <sprite name=""Curse"">（最低 1 个）</color>)
-<color=yellow>在 <sprite name=""Star""> 上每召唤一个 <sprite name=""Summon"">，冷却时间减少 10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
+Tile_TileDescription_DamageTotemTile,"堆叠图腾<sprite name=""Totem"">。当3个图腾<sprite name=""Totem"">堆叠时触发。
+<color=yellow>触发时</color>: 施加2点诅咒<sprite name=""Curse"">。
+<color=yellow>强化时</color>: 施加2点诅咒<sprite name=""Curse"">并发射伤害随敌人身上诅咒<sprite name=""Curse"">数量增加的投射物。
+(伤害: <color=red>诅咒<sprite name=""Curse"">数量 (最小1)</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
 <color=yellow>On activate</color>: Inflict 2 Curse <sprite name=""Curse"">.
 <color=yellow>On enhancement</color>: Inflict 2 Curse <sprite name=""Curse""> and fires a projectile that deals damage proportional to the number of Curses <sprite name=""Curse""> on the enemy.
 (Damage: <color=red>Curse <sprite name=""Curse""> (Minimum 1)</color>)
@@ -84,10 +84,10 @@ Cooldown is reduced by 10% for each Summon <sprite name=""Summon""> <color=yello
 <color=yellow>강화 시</color>: 저주<sprite name=""Curse"">를 2 부여하고 적에게 부여된 저주<sprite name=""Curse""> 개수에 비례해 피해가 증가하는 투사체를 발사합니다.
 (피해량: <color=red>저주<sprite name=""Curse""> 개수 (최소 1)</color>) 
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_FireBallTile,"发射 3 枚投射物。
-(伤害：<color=red>8</color>)
-<color=yellow>击中</color>时：获得<sprite name=""Fire"">。
-如果<color=yellow>星</color>上有 3 个或更多 <sprite name=""MagicCircle"">，则额外发射 1 枚投射物。","Fires 3 projectiles.
+Tile_TileDescription_FireBallTile,"发射3个投射物。
+(伤害: <color=red>8</color>)
+<color=yellow>命中时</color>: 施加火焰<sprite name=""Fire"">。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，额外发射1个投射物。","Fires 3 projectiles.
 (Damage: <color=red>8</color>)
 <color=yellow>On Hit</color>: Inflict 1 Burn <sprite name=""Fire"">.
 If there are 3 or more MagicCircles<sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, fires 1 additional projectile.","3つの弾を発射します。
@@ -97,10 +97,10 @@ If there are 3 or more MagicCircles<sprite name=""MagicCircle""> <color=yellow>l
 (피해량: <color=red>8</color>)
 <color=yellow>적중 시</color>: 화염<sprite name=""Fire"">을 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 1개의 투사체를 더 발사합니다."
-Tile_TileDescription_FireBoltTile,"发射一枚投射物。
-(伤害：<color=red>8</color>)
-<color=yellow>击中</color>时：获得<sprite name=""Fire"">。
-如果<color=yellow>星</color>上有 3 个或更多 <sprite name=""MagicCircle"">，则额外发射 1 枚投射物。","Fires a projectile. 
+Tile_TileDescription_FireBoltTile,"发射投射物。
+(伤害: <color=red>8</color>)
+<color=yellow>命中时</color>: 施加火焰<sprite name=""Fire"">。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，额外发射1个投射物。","Fires a projectile. 
 (Damage: <color=red>8</color>)
 <color=yellow>On Hit</color>: Inflict 1 Burn <sprite name=""Fire"">.
 If there are 3 or more MagicCircles<sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, fires 1 additional projectile.","弾を発射します。 
@@ -110,20 +110,20 @@ If there are 3 or more MagicCircles<sprite name=""MagicCircle""> <color=yellow>l
 (피해량: <color=red>8</color>)
 <color=yellow>적중 시</color>: 화염<sprite name=""Fire"">을 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 1개의 투사체를 더 발사합니다."
-Tile_TileDescription_FrostStaffTile,"发射一枚投射物。
-(伤害：<color=red>15</color>)
-<color=yellow>命中</color>：造成 1 个 <sprite name=""Ice"">","Fires a projectile.
+Tile_TileDescription_FrostStaffTile,"发射投射物。
+(伤害: <color=red>15</color>)
+<color=yellow>命中时</color>: 施加1层冻伤<sprite name=""Ice"">。","Fires a projectile.
 (Damage: <color=red>15</color>)
 <color=yellow>On Hit</color>: Inflict 1 Frostbite<sprite name=""Ice"">","弾を発射します。
 (ダメージ：<color=red>15</color>)
 <color=yellow>ヒット時</color>: 凍傷<sprite name=""Ice"">を1付与します。","투사체를 발사합니다.
 (피해량: <color=red>15</color>)
 <color=yellow>적중 시</color>: 동상<sprite name=""Ice"">을 1 부여합니다."
-Tile_TileDescription_HatTile,"获得 15 个 <sprite name=""Barrier"">盾牌。","Gain 15 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を15獲得します。","보호막<sprite name=""Barrier"">을 15 획득합니다."
-Tile_TileDescription_HealTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆叠 3 个图腾 <sprite name=""Totem""> 时激活。
-<color=yellow>激活时</color>：恢复 <color=green>2</color> 点生命值。
-<color=yellow>强化时</color>：恢复量翻倍。
-<color=yellow>每召唤一个位于 <sprite name=""Star""> 上的 <sprite name=""Summon"">，冷却时间减少 10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
+Tile_TileDescription_HatTile,"获得15点屏障<sprite name=""Barrier"">。","Gain 15 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を15獲得します。","보호막<sprite name=""Barrier"">을 15 획득합니다."
+Tile_TileDescription_HealTotemTile,"堆叠图腾<sprite name=""Totem"">。当3个图腾<sprite name=""Totem"">堆叠时触发。
+<color=yellow>触发时</color>: 恢复<color=green>5</color>点体力。
+<color=yellow>强化时</color>: 恢复量变为<color=green>2</color>倍。
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
 <color=yellow>On activate</color>: Restores <color=green>2</color> health.
 <color=yellow>On enhancement</color>: The amount recovered is doubled.
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""> <color=yellow>located on The Star<sprite name=""Star""></color>.","トーテム<sprite name=""Totem"">を積み重ねます。 3つのトーテム<sprite name=""Totem"">が積み重なると発動します。
@@ -133,13 +133,14 @@ Cooldown is reduced by 10% for each summon <sprite name=""Summon""> <color=yello
 <color=yellow>발동 시</color>: 체력을 <color=green>5</color> 회복합니다.
 <color=yellow>강화 시</color>: 회복량이 <color=green>2</color>배가 됩니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_HeartTile,"恢复 <color=green>5</color> 点生命值。如果 <color=yellow>星星<sprite name=""Star"">上有三个或更多魔法阵 <sprite name=""MagicCircle"">，则恢复 <color=green>10</color> 点生命值。","Restores <color=green>5</color> health. 
+Tile_TileDescription_HeartTile,"恢复<color=green>5</color>点体力。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，恢复<color=green>10</color>点体力。","Restores <color=green>5</color> health. 
 If there are 3 or more magic circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, restores <color=green>10</color> health.","体力を<color=green>5</color>回復します。
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、体力を<color=green>10</color>回復します。","체력을 <color=green>5</color>회복합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 체력을 <color=green>10</color>회복합니다."
-Tile_TileDescription_IcicleTile,"星云 (3)<sprite name=""Nebula"">：发射一枚投射物。
-(伤害：<color=red>7</color>)
-<color=red>击中时：</color>获得 1 个 <sprite name=""Ice"">","Nebula (3)<sprite name=""Nebula"">: Fires a projectile.
+Tile_TileDescription_IcicleTile,"星云(3)<sprite name=""Nebula"">: 发射投射物。
+(伤害:<color=red>7</color>)
+<color=red>命中时:</color> 施加1层冻伤<sprite name=""Ice"">。","Nebula (3)<sprite name=""Nebula"">: Fires a projectile.
 (Damage:<color=red>7</color>)
 <color=red>On Hit:</color> Inflict 1 Frostbite<sprite name=""Ice"">","星雲(3)<sprite name=""Nebula"">: 弾を発射します。
 (ダメージ：<color=red>7</color>)
@@ -159,49 +160,48 @@ Tile_TileDescription_KoreaTotemTile,"堆叠图腾<sprite name=""Totem"">。当3�
 <color=yellow>발동 시</color>: 4초 동안 적에게 임시 저주<sprite name=""Curse"">를 10 부여합니다. 임시 저주는 저주 한도를 초과할 수 있습니다.
 <color=yellow>강화 시</color>: 임시 저주<sprite name=""Curse"">를 20으로 증가합니다. 
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_RobeTile,"获得 30 个 <sprite name=""Barrier"">盾牌。","Gain 30 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を30獲得します。","보호막<sprite name=""Barrier"">을 30 획득합니다."
-Tile_TileDescription_SwordTile,"召唤一把<sprite name=""Sword"">，所有剑都会攻击。
-(伤害：<color=red>5</color>)
-每有一个<sprite name=""Summon"">位于<color=yellow>星</color>上，冷却时间就会减少10%。","Summon a Sword<sprite name=""Sword""> and all swords attack. 
+Tile_TileDescription_RobeTile,"获得30点屏障<sprite name=""Barrier"">。","Gain 30 Barrier<sprite name=""Barrier"">.","バリア<sprite name=""Barrier"">を30獲得します。","보호막<sprite name=""Barrier"">을 30 획득합니다."
+Tile_TileDescription_SwordTile,"召唤剑<sprite name=""Sword"">并使所有剑进行攻击。
+(伤害: <color=red>5</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","Summon a Sword<sprite name=""Sword""> and all swords attack. 
 (Damage: <color=red>5</color>) 
 Cooldown is reduced by 10% for each Summon<sprite name=""Summon""> <color=yellow>located on the Star<sprite name=""Star""></color>.","剣<sprite name=""Sword"">を召喚し、すべての剣が攻撃します。 
 (ダメージ: <color=red>5</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","검<sprite name=""Sword"">을 소환하고 모든 검이 공격합니다. 
 (피해량: <color=red>5</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_WarFlagTile,"召唤 3 把剑 <sprite name=""Sword"">，每次召唤时，所有剑 <sprite name=""Sword""> 都会发起攻击。
-(伤害：<color=red>5</color>)
-每召唤一个位于 <color=yellow> 星 <sprite name=""Star""> 上的 <sprite name=""Summon""> ，冷却时间减少 10%。","Summon 3 Swords <sprite name=""Sword""> and each time you summon them, all Swords <sprite name=""Sword""> will attack. 
+Tile_TileDescription_WarFlagTile,"召唤3把剑<sprite name=""Sword"">，每次召唤时所有剑<sprite name=""Sword"">都会攻击。
+(伤害: <color=red>5</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","Summon 3 Swords <sprite name=""Sword""> and each time you summon them, all Swords <sprite name=""Sword""> will attack. 
 (Damage: <color=red>5</color>) 
 Cooldown is reduced by 10% for each Summon <sprite name=""Summon""> <color=yellow>located on the Star <sprite name=""Star"">.","剣<sprite name=""Sword"">を3つ召喚し召喚するたびに、すべての剣<sprite name=""Sword"">が攻撃します。 
 (ダメージ: <color=red>5</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","검<sprite name=""Sword"">을 3개 소환하고 소환할 때마다 모든 검<sprite name=""Sword"">이 공격합니다. 
 (피해량: <color=red>5</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_ClockTile,"<color=yellow>星 <sprite name=""Star> 上的</color>星座的冷却时间减少 25%。","The cooldown of Constellation <color=yellow>located on the Star <sprite name=""Star></color> is reduced by 25%.","<color=yellow>星<sprite name=""Star>に位置する</color>星座のクールタイムが25％減少します。","<color=yellow>별<sprite name=""Star>에 위치한</color> 별자리의 쿨타임이 25% 감소합니다"
-Tile_TileDescription_CloudTile,"<color=yellow>购买时</color>：云朵<sprite name=""Cloud"">会出现在商店中。
-授予<sprite name=""Ice"">时，有20%的概率再次授予。
-授予<sprite name=""fire"">时，有20%的概率不授予。","When inflicting Frostbite<sprite name=""Ice"">, there is a 20% chance to inflict it again.
+Tile_TileDescription_ClockTile,"<color=yellow>星<sprite name=""Star"">位置上的</color>星座冷却时间减少25%","The cooldown of Constellation <color=yellow>located on the Star <sprite name=""Star></color> is reduced by 25%.","<color=yellow>星<sprite name=""Star>に位置する</color>星座のクールタイムが25％減少します。","<color=yellow>별<sprite name=""Star>에 위치한</color> 별자리의 쿨타임이 25% 감소합니다"
+Tile_TileDescription_CloudTile,"施加冻伤<sprite name=""Ice"">时有20%概率额外施加一次。
+施加火焰<sprite name=""Fire"">时有20%概率不施加。","When inflicting Frostbite<sprite name=""Ice"">, there is a 20% chance to inflict it again.
 When inflicting Burn<sprite name=""fire"">, there is a 20% chance to not inflict it.","凍傷 <sprite name=""Ice""> を付与するとき、20% の確率でもう一度付与します。
 炎<sprite name=""fire"">を付与する場合、20%の確率で付与しません。","동상<sprite name=""Ice"">을 부여할 때 20% 확률로 한번 더 부여합니다.
 화염<sprite name=""fire"">을 부여할 때 20% 확률로 부여하지 않습니다."
-Tile_TileDescription_CrowTile,"<color=yellow>战斗开始时</color>：召唤一只乌鸦。
-<color=yellow>消耗 15 个屏障时</color>：用 <sprite name=""Mark""> 标记敌人。","<color=yellow>Start of battle</color>: Summon a crow.
+Tile_TileDescription_CrowTile,"<color=yellow>战斗开始时</color>: 召唤乌鸦。
+<color=yellow>消耗15点屏障<sprite name=""Barrier"">时</color>: 对敌人施加烙印<sprite name=""Mark"">。","<color=yellow>Start of battle</color>: Summon a crow.
 <color=yellow>When 15 Barriers<sprite name=""Barrier""> are consumed</color>: Mark enemies with a Mark<sprite name=""Mark"">.","<color=yellow>戦闘開始時</color>: カラスを召喚します。
 <color=yellow>バリア<sprite name=""Barrier""> 15消費時</color>：敵に烙印<sprite name=""Mark"">を付与します。","<color=yellow>전투 시작 시</color>: 까마귀를 소환합니다.
 <color=yellow>보호막<sprite name=""Barrier""> 15 소모 시</color>: 적에게 낙인<sprite name=""Mark"">을 부여합니다."
-Tile_TileDescription_FlamingSwordTile,"下次攻击时，所有剑 <sprite name=""Sword""> 将获得 1 点火焰 <sprite name=""Fire"">。召唤一把剑 <sprite name=""Sword"">，所有剑都将攻击。
-(伤害：<color=red>5</color>)
-在 <color=yellow> 星 <sprite name=""Star""> 上，每召唤一个 <sprite name=""Summon"">，冷却时间减少 10%。","On the next attack, all swords <sprite name=""Sword""> will inflict 1 Burn <sprite name=""Fire"">. Summon a sword <sprite name=""Sword""> and all swords will attack.
+Tile_TileDescription_FlamingSwordTile,"下次攻击时所有剑<sprite name=""Sword"">施加1层火焰<sprite name=""Fire"">。召唤一把剑<sprite name=""Sword"">并使所有剑攻击。
+(伤害: <color=red>5</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","On the next attack, all swords <sprite name=""Sword""> will inflict 1 Burn <sprite name=""Fire"">. Summon a sword <sprite name=""Sword""> and all swords will attack.
 (Damage: <color=red>5</color>)
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""> <color=yellow>located on the Star <sprite name=""Star"">.","次の攻撃では、すべての剣<sprite name=""Sword"">が炎<sprite name=""Fire"">を1付与します。
 (ダメージ: <color=red>5</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","다음 공격 시 모든 검<sprite name=""Sword"">이 화염<sprite name=""Fire"">을 1 부여합니다. 검<sprite name=""Sword"">을 한 개 소환하고 모든 검이 공격합니다.
 (피해량: <color=red>5</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_FrostHammerTile,"发射一枚投射物。如果目标被冻结，伤害将乘以 <color=green>10</color>。<color=red>解除冻结状态。</color>
-（伤害：<color=red>30</color>）
-<color=yellow>击中</color>：造成 <sprite name=""Ice"">","Fires a projectile. If the target is frozen, the damage is multiplied by <color=green>10</color>. <color=red>Removes the frozen state.</color>
+Tile_TileDescription_FrostHammerTile,"发射投射物。如果目标处于冰冻<sprite name=""Freeze"">状态，伤害变为<color=green>10</color>倍。<color=red>解除冰冻状态。</color>
+(伤害:<color=red>30</color>)
+<color=yellow>命中时</color>: 施加冻伤<sprite name=""Ice"">。","Fires a projectile. If the target is frozen, the damage is multiplied by <color=green>10</color>. <color=red>Removes the frozen state.</color>
 (Damage: <color=red>30</color>)
 <color=yellow>On Hit</color>: Inflicts 1  Frostbite<sprite name=""Ice"">","弾を発射します。対象が氷結<sprite name=""Freeze"">状態の場合、ダメージが<color=green>10</color>倍になります。 
 <color=red>氷結状態を解除します。</color>
@@ -209,18 +209,23 @@ Tile_TileDescription_FrostHammerTile,"发射一枚投射物。如果目标被冻
 <color=yellow>ヒット時</color>：凍傷<sprite name=""Ice"">を付与します。","투사체를 발사합니다. 대상이 빙결<sprite name=""Freeze""> 상태면 피해량이 <color=green>10</color>배가 됩니다. <color=red>빙결 상태를 해제합니다.</color>
 (피해량:<color=red>30</color>)
 <color=yellow>적중 시</color>: 동상<sprite name=""Ice"">을 부여합니다."
-Tile_TileDescription_GoddessTile,"位于<color=yellow>星<sprite name=""Star"">上的<sprite name=""Weapon"">的伤害增加<color=green>3</color>。","The damage of the Weapon<sprite name=""Weapon""><color=yellow>located on the Star<sprite name=""Star""></color> increases by <color=green>3</color>.","<color=yellow>星<sprite name=""Star"">に位置する</color>武器<sprite name=""Weapon"">のダメージが<color=green>3</color>上昇します。","<color=yellow>별<sprite name=""Star"">에 위치한</color> 무기<sprite name=""Weapon"">의 피해량이 <color=green>3</color> 상승합니다."
-Tile_TileDescription_GuideStaffTile,发射一颗充满新手运气的射弹。​​（伤害：<color=red>10</color>）,Fires a projectile filled with beginner's luck. (Damage: <color=red>10</color>),"初心者の幸運を込めた弾を発射します。
-(ダメージ：<color=red>10</color>）","초심자의 행운을 담은 투사체를 발사합니다.
+Tile_TileDescription_GoddessTile,"<color=yellow>星<sprite name=""Star"">位置上的</color>武器<sprite name=""Weapon"">伤害增加<color=green>3</color>点。","The damage of the Weapon<sprite name=""Weapon""><color=yellow>located on the Star<sprite name=""Star""></color> increases by <color=green>3</color>.","<color=yellow>星<sprite name=""Star"">に位置する</color>武器<sprite name=""Weapon"">のダメージが<color=green>3</color>上昇します。","<color=yellow>별<sprite name=""Star"">에 위치한</color> 무기<sprite name=""Weapon"">의 피해량이 <color=green>3</color> 상승합니다."
+Tile_TileDescription_GuideStaffTile,"发射蕴含初心者幸运的投射物。
+(伤害: <color=red>10</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个武器<sprite name=""Weapon"">使伤害增加5点。","Fires a projectile filled with beginner's luck. 
+(Damage: <color=red>10</color>)
+Damage increases by 5 for each weapon<sprite name=""Weapon""> <color=yellow>located on the Star<sprite name=""Star""></color>.","初心者の幸運を込めた弾を発射します。
+(ダメージ：<color=red>10</color>）
+<color=yellow>星<sprite name=""Star"">の位置にある</color>武器<sprite name=""Weapon"">1つにつきダメージが5増加します。","초심자의 행운을 담은 투사체를 발사합니다.
 (피해량: <color=red>10</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 무기<sprite name=""Weapon"">마다 피해량이 5 증가합니다."
-Tile_TileDescription_HauntedDollTile,"赋予诅咒<sprite name=""Curse"">。根据诅咒<sprite name=""Curse"">的堆叠数量触发额外效果。
-<color=yellow>20</color>: 赋予 1 点冻伤<sprite name=""ice"">。
-<color=yellow>30</color>: 赋予 5 点火焰<sprite name=""fire"">。
-<color=yellow>40</color>: 赋予标记<sprite name=""mark"">。
-<color=yellow>50</color>: 恢复 <color=green>5</color> 点生命值。
-<color=yellow>60</color>: 赋予 1 点痛苦<sprite name=""Pain"">。
-如果一颗<color=yellow>星星<sprite name=""Star"">上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则施加 2 个诅咒<sprite name=""Curse"">。","Grants Curse<sprite name=""Curse"">. Additional effects are triggered based on the amount of Curse<sprite name=""Curse""> accumulated.
+Tile_TileDescription_HauntedDollTile,"施加诅咒<sprite name=""Curse"">。根据诅咒<sprite name=""Curse"">累积量触发额外效果。
+<color=yellow>20</color>: 施加1层冻伤<sprite name=""Ice"">。
+<color=yellow>30</color>: 施加5层火焰<sprite name=""Fire"">。
+<color=yellow>40</color>: 施加烙印<sprite name=""Mark"">。
+<color=yellow>50</color>: 恢复<color=green>5</color>点体力。
+<color=yellow>60</color>: 施加1层痛苦<sprite name=""Pain"">。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，施加2点诅咒<sprite name=""Curse"">。","Grants Curse<sprite name=""Curse"">. Additional effects are triggered based on the amount of Curse<sprite name=""Curse""> accumulated.
 <color=yellow>20</color>: inflict 2 Frostbite<sprite name=""Ice"">.
 <color=yellow>30</color>: inflict 5 Burn<sprite name=""Fire"">.
 <color=yellow>40</color>: inflict Mark<sprite name=""Mark"">.
@@ -238,11 +243,11 @@ Tile_TileDescription_HauntedDollTile,"赋予诅咒<sprite name=""Curse"">。根�
 <color=yellow>50</color>: 체력을 <color=green>5</color> 회복합니다. 
 <color=yellow>60</color>: 고통<sprite name=""Pain"">을 1 부여합니다. 
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 2 부여합니다."
-Tile_TileDescription_KabutoTile,"<color=yellow>战斗开始时</color>：召唤一只蛹。
-<color=yellow>蛹</color>：消耗20点护盾<sprite name=""Barrier"">变为成虫。
-<color=yellow>成虫</color>：消耗所有获得的护盾<sprite name=""Barrier"">，持续4秒。4秒后，发射一枚威力强大的投射物，然后返回蛹体内。
-(伤害：<color=red>消耗的护盾 x 3 + 60​ </color>)
-<color=yellow>每召唤一个位于星星<sprite name=""Star"">上的<sprite name=""Summon"">，冷却时间减少10%。","<color=yellow>Start of battle</color>: Summon a pupa.
+Tile_TileDescription_KabutoTile,"<color=yellow>战斗开始时</color>: 召唤蛹。
+<color=yellow>蛹状态</color>: 消耗20点屏障<sprite name=""Barrier"">后变为成虫。
+<color=yellow>成虫状态</color>: 4秒内消耗所有获得的屏障<sprite name=""Barrier"">。4秒后发射强力投射物，然后回到蛹状态。
+(伤害: <color=red>消耗的屏障 X 3 + 60 </color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","<color=yellow>Start of battle</color>: Summon a pupa.
 <color=yellow>Pupa</color>: Consumes 20 Barrier<sprite name=""Barrier""> to become an adult.
 <color=yellow>Adult</color>: Consumes all Barrier<sprite name=""Barrier""> gained for 4 seconds. After 4 seconds, fires a powerful projectile, then returns to the pupa.
 (Damage: <color=red>Barrier consumed X 3 + 60​​</color>)
@@ -255,15 +260,15 @@ Cooldown is reduced by 10% for each summoned<sprite name=""Summon""> <color=yell
 <color=yellow>성충 상태</color>: 4초간 획득한 보호막<sprite name=""Barrier"">을 모두 소모합니다. 4초 뒤 강력한 투사체를 발사한 뒤, 번데기로 돌아갑니다.
 (피해량: <color=red>소모한 보호막 X 3 + 60 </color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_ManaAITile,"<color=red>无法踩踏。无法穿过。</color>
-<color=yellow>位于<sprite name=""Star"">星</color>上的法力炮塔每3秒自动攻击一次。","<color=red>Cannot be stepped on. Cannot pass through.</color>
+Tile_TileDescription_ManaAITile,"<color=red>无法踩踏激活。无法通过。</color>
+<color=yellow>星<sprite name=""Star"">位置上的</color>魔力炮塔每3秒自动攻击一次。","<color=red>Cannot be stepped on. Cannot pass through.</color>
 Mana turrets <color=yellow>located on the Star<sprite name=""Star""></color> perform an auto-attack once every 3 seconds.","<color=red>踏んで発動させることはできません。通過できません。</color>
 <color=yellow>星<sprite name=""Star"">に位置する</color>マナ砲塔が3秒に1回自動攻撃を実行します。","<color=red>밟아서 발동시킬 수 없습니다. 통과할 수 없습니다.</color>
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마나 포탑이 3초에 한 번 자동 공격을 실행합니다."
-Tile_TileDescription_ManaTurretTile,"<color=red>无法通过踩踏激活。无法穿过。</color>
-<color=yellow>激活位于 <sprite name=""Star""> 上的武器 <sprite name=""Weapon""> 时会同时攻击。
-Mana AI 出现在商店中。
-(伤害：<color=red>15</color>)","<color=red>Cannot be activated by stepping on it. Cannot pass through it.</color>
+Tile_TileDescription_ManaTurretTile,"<color=red>无法踩踏激活。无法通过。</color>
+<color=yellow>星<sprite name=""Star"">位置上的</color>武器<sprite name=""Weapon"">发动时一起攻击。
+商店中出现法力人工智能。
+(伤害: <color=red>15</color>)(伤害：<color=red>15</color>)","<color=red>Cannot be activated by stepping on it. Cannot pass through it.</color>
 Attacks together when activating a Weapon <sprite name=""Weapon""> <color=yellow>located on the Star<sprite name=""Star""></color>.
 Mana AI appears in the shop.
 (Damage: <color=red>15</color>)","<color=red>踏んで発動させることはできません。通過できません。</color>
@@ -282,9 +287,9 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""> <color=yellow>
 <color=yellow>星に位置する<sprite name=""Star""></color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、ダメージが<color=red>呪い<sprite name=""Curse"">の数X 2</color>に増加します。","적에게 부여된 저주<sprite name=""Curse""> 개수에 비례해 피해가 증가하는 투사체를 발사합니다. 
 (피해량: <color=red>저주<sprite name=""Curse""> 개수 (최소 1)</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 피해량이 <color=red>저주<sprite name=""Curse""> 개수 X 2</color>로 증가합니다."
-Tile_TileDescription_PhantomTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">的最大数量增加到45个。诅咒人偶将根据增加的最大值获得额外能力。
-<color=yellow>激活时</color>：失去所有诅咒<sprite name=""Curse"">。
-如果一颗<color=yellow>星<sprite name=""Star"">上有3个或更多魔法阵<sprite name=""MagicCircle"">，则将诅咒<sprite name=""Curse"">的最大数量增加到60个。","<color=yellow>Start of battle</color>:  Increase Curse<sprite name=""Curse"">  limit to 45. The Cursed doll gains additional abilities based on the increased maximum. 
+Tile_TileDescription_PhantomTile,"<color=yellow>战斗开始时</color>: 将诅咒<sprite name=""Curse"">数量上限提升至45。根据提升的上限，诅咒人偶获得额外能力。
+<color=yellow>发动时</color>: 失去所有诅咒<sprite name=""Curse"">。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，将诅咒<sprite name=""Curse"">数量上限提升至60。","<color=yellow>Start of battle</color>:  Increase Curse<sprite name=""Curse"">  limit to 45. The Cursed doll gains additional abilities based on the increased maximum. 
 <color=yellow>On activate</color>: <color=Red>Lose all Curses<sprite name=""Curse""></color>. 
 If there are 3 or more Magic Circles<sprite name=""MagicCircle""><color=yellow>located on the Star<sprite name=""Star""></color>, increase the maximum number of Curses<sprite name=""Curse""> to 60.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を45に上げます。
 上がった最大値に応じて、呪い人形に追加の能力があります。
@@ -292,37 +297,38 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""><color=yellow>l
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、呪い<sprite name=""Curse"">個数の最大値を60に上げます。","<color=yellow>전투 시작 시</color>: 저주<sprite name=""Curse""> 개수의 최대치를 45로 올립니다. 올라간 최대치에 따라 저주 인형에 추가 능력이 생깁니다. 
 <color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 모두 잃습니다. 
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse""> 개수의 최대치를 60으로 올립니다."
-Tile_TileDescription_RainbowTile,使敌人获得 1 点火焰、1 点冰霜和 1 点诅咒效果。如果<color=yellow>星星</color>上有 3 个或更多魔法阵，则额外获得 1 点火焰和 1 点诅咒效果。,"Inflict 1 Burn<sprite name=""Fire"">, 1 Frostbite<sprite name=""Ice"">, 1 Curse<sprite name=""Curse""> to the enemy. 
+Tile_TileDescription_RainbowTile,"对敌人施加1层火焰<sprite name=""Fire"">、冻伤<sprite name=""Ice"">、诅咒<sprite name=""Curse"">。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，额外施加1层火焰<sprite name=""Fire"">、诅咒<sprite name=""Curse"">。","Inflict 1 Burn<sprite name=""Fire"">, 1 Frostbite<sprite name=""Ice"">, 1 Curse<sprite name=""Curse""> to the enemy. 
 If there are 3 or more </color>Magic Circles<sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, Inflict 1 additional Burn<sprite name=""Fire"">,Curse<sprite name=""Curse"">.","敵に炎<sprite name=""Fire"">, 凍傷<sprite name=""Ice"">, 呪い<sprite name=""Curse"">を1ずつ付与します
 <color=yellow>星に位置する<sprite name=""Star""></color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、炎<sprite name=""Fire"">, 呪い<sprite name=""Curse"">を1追加で付与します","적에게 화염<sprite name=""Fire"">, 동상<sprite name=""Ice"">, 저주<sprite name=""Curse"">를 1씩 부여합니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 화염<sprite name=""Fire"">, 저주<sprite name=""Curse"">를 1 추가로 부여합니다."
-Tile_TileDescription_RainCloudTile,"每 5 秒用 <sprite name=""Mark""> 标记敌人。","Inflicts Mark<sprite name=""Mark""> on enemies every 5 seconds.","5秒ごとに敵に烙印<sprite name=""Mark"">を付与します。","5초마다 적에게 낙인<sprite name=""Mark"">을 부여합니다."
-Tile_TileDescription_StaffTile,"发射一枚射弹。
-（伤害：<color=red>15</color>）","Fires a projectile. 
+Tile_TileDescription_RainCloudTile,"每5秒对敌人施加烙印<sprite name=""Mark"">。","Inflicts Mark<sprite name=""Mark""> on enemies every 5 seconds.","5秒ごとに敵に烙印<sprite name=""Mark"">を付与します。","5초마다 적에게 낙인<sprite name=""Mark"">을 부여합니다."
+Tile_TileDescription_StaffTile,"发射投射物。
+(伤害: <color=red>15</color>)","Fires a projectile. 
 (Damage: <color=red>15</color>)","弾を発射します。
 (ダメージ：<color=red>15</color>)","투사체를 발사합니다.
 (피해량: <color=red>15</color>)"
-Tile_TileDescription_TotemBaseTile,"<color=yellow>购买后：</color>商店中会出现一个图腾<sprite name=""Totem"">。
-图腾在战斗中可以堆叠在这里。
-位于<color=yellow>星</color>上的<sprite name=""Summon"">召唤兽的冷却时间减少10%。","<color=yellow>When purchased:</color> Totem <sprite name=""Totem""> will appear in the shop.
+Tile_TileDescription_TotemBaseTile,"<color=yellow>购买时:</color> 图腾<sprite name=""Totem"">出现在商店中。
+战斗时，这里是图腾堆叠的位置。
+<color=yellow>星<sprite name=""Star"">位置上的</color>召唤物<sprite name=""Summon"">冷却时间减少10%。","<color=yellow>When purchased:</color> Totem <sprite name=""Totem""> will appear in the shop.
 This is where Totems stack during battle.
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow> located on the Star<sprite name=""Star""></color>.","<color=yellow>購入時：</color>トーテム<sprite name=""Totem"">が店に登場します。
 戦闘時、トーテムが溜まる位置です。
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">のクールタイムを10%減少させます。","<color=yellow>구매 시:</color> 토템<sprite name=""Totem"">이 상점에 등장합니다.
 전투 시, 토템이 쌓이는 위치입니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">의 쿨타임을 10% 감소시킵니다."
-Tile_TileDescription_ThunderStormCloudTile,"<color=yellow>激活时</color>：击落闪电。如果被标记，则再次标记。
-(伤害：<color=red>40</color>)
-在<color=yellow>星</color>上召唤的每个<sprite name=""Summon"">冷却时间减少10%。","<color=yellow>On activate</color>: Strikes down lightning. If Marked<sprite name=""Mark"">, Marks<sprite name=""Mark""> again.
+Tile_TileDescription_ThunderStormCloudTile,"<color=yellow>发动时</color>: 降下雷电。降下雷电。如果敌人身上有烙印<sprite name=""Mark"">，攻击后重新施加烙印<sprite name=""Mark"">。
+(伤害: <color=red>40</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","<color=yellow>On activate</color>: Strikes down lightning. If Marked<sprite name=""Mark"">, Marks<sprite name=""Mark""> again.
 (Damage: <color=red>40</color>)
 Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow> located on the Star<sprite name=""Star""></color>.","<color=yellow>発動時</color>：雷を降ります。烙印<sprite name=""Mark"">が押されている場合は、烙印<sprite name=""Mark"">を再度撮ります。
 (ダメージ: <color=red>40</color>)
 <color=yellow>星<sprite name=""Star"">にある</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","<color=yellow>발동 시</color>: 번개를 내리칩니다. 번개를 내리칩니다. 적에게 낙인 <sprite name=""Mark"">이 부여되어 있다면 공격 후 낙인<sprite name=""Mark"">을 다시 부여합니다.
 (피해량: <color=red>40</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>：召唤一只消耗<sprite name=""Barrier"">护盾的乌龟。乌龟每秒消耗3个<sprite name=""Barrier"">护盾。
-<color=yellow>保护盾<sprite name=""Barrier"">时</color>：伤害增加为消耗护盾的3倍。（<color=red>最高45</color>）
-<color=yellow>触发时</color>：发射一只乌龟。（伤害：<color=red>吸收3倍保护盾</color>）","<color=yellow>Start of battle</color>: Summon a turtle that consumes <sprite name=""Barrier""> shields. The turtle consumes 3 <sprite name=""Barrier""> shields per second.
+Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>: 召唤消耗屏障的乌龟。乌龟每秒消耗3点屏障<sprite name=""Barrier"">。
+<color=yellow>消耗屏障<sprite name=""Barrier"">时</color>: 伤害增加消耗屏障3倍的数值。(<color=red>最大45</color>)
+<color=yellow>发动时</color>: 发射乌龟。(伤害: <color=red>消耗的屏障 X 3</color>)","<color=yellow>Start of battle</color>: Summon a turtle that consumes <sprite name=""Barrier""> shields. The turtle consumes 3 <sprite name=""Barrier""> shields per second.
 <color=yellow>When Barrier<sprite name=""Barrier""> is consumed</color>: Damage increases by 3 times the consumed shields. (<color=red>Maximum 45</color>)
 <color=yellow>On activate</color>: Launch a turtle. (Damage: <color=red>absorbed Barrier X 3</color>)","<color=yellow>戦闘開始時</color>: シールド<sprite name=""Barrier"">を消費するカメを召喚します。
 カメは毎秒3の保護膜<sprite name=""Barrier"">を消費します。
@@ -331,10 +337,10 @@ Tile_TileDescription_TurtleTile,"<color=yellow>战斗开始时</color>：召唤�
 (ダメージ：<color=red> 吸収されたバリア×3</color>)","<color=yellow>전투 시작 시</color>: 보호막<sprite name=""Barrier"">을 소모하는 거북이를 소환합니다. 거북이는 매초 3의 보호막<sprite name=""Barrier"">을 소모합니다.
 <color=yellow>보호막<sprite name=""Barrier""> 소모 시</color>: 피해량이 소모한 보호막의 3배만큼 상승합니다. (<color=red>최대 45</color>)
 <color=yellow>발동 시</color>: 거북이를 발사합니다. (피해량: <color=red>소모한 보호막 X 3</color>)"
-Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">的最大数量提升至40。
-<color=yellow>触发</color>时：消耗<color=red>40个诅咒</color>并造成1点痛苦<sprite name=""Pain"">。
-将当前施加于敌人的所有火焰<sprite name=""fire"">和冰霜<sprite name=""ice"">转换为诅咒<sprite name=""Curse"">。
-如果<color=yellow>星星</color>上有3个或更多魔法阵<sprite name=""MagicCircle"">，则消耗<color=red>20个诅咒</color>。","<color=yellow>Start of battle</color>: Increase the maximum number of Curses <sprite name=""Curse""> to 40. 
+Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>: 将诅咒<sprite name=""Curse"">数量上限提升至40。
+<color=yellow>发动时</color>: <color=red>消耗40点</color>诅咒<sprite name=""Curse"">并施加1层痛苦<sprite name=""Pain"">。
+将当前敌人身上的所有火焰<sprite name=""Fire"">和冻伤<sprite name=""Ice"">转换为诅咒<sprite name=""Curse"">。
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，<color=red>消耗20点</color>诅咒<sprite name=""Curse"">。","<color=yellow>Start of battle</color>: Increase the maximum number of Curses <sprite name=""Curse""> to 40. 
 <color=yellow>On activate</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=""Pain"">. 
 Convert all Burn <sprite name=""fire""> and Frostbite <sprite name=""ice""> currently applied to enemies to Curses <sprite name=""Curse"">. 
 If there are 3 or more Magic Circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, Consume <color=red>20 Curses</color>.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を40に上げます。
@@ -343,25 +349,25 @@ If there are 3 or more Magic Circles <sprite name=""MagicCircle""> <color=yellow
 <color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 <color=red>40 소모</color>하고 고통<sprite name=""Pain""> 을 1 부여합니다. 
 현재 적에게 적용된 모든 화염<sprite name=""fire""> 과 동상<sprite name=""ice""> 을 저주<sprite name=""Curse""> 로 바꿉니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 <color=red>20 소모</color>합니다."
-Tile_TileDescription_HellFireTile,"一次性造成 5 点火焰伤害，并消除所有火焰 <sprite name=""Fire"">。
-(伤害：<color=red>0~255</color>）
-如果 <color=yellow>星</color> 上有 3 个或更多魔法阵 <sprite name=""MagicCircle"">，则造成 10 点火焰伤害。","Deals 5 Burn damage<sprite name=""Fire""> at once and removes all Burns <sprite name=""Fire"">.
+Tile_TileDescription_HellFireTile,"一次性造成接下来5次火焰<sprite name=""Fire"">伤害并移除所有火焰<sprite name=""Fire"">。
+(伤害: <color=red>0~255</color>)
+如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，造成接下来10次火焰<sprite name=""Fire"">伤害。","Deals 5 Burn damage<sprite name=""Fire""> at once and removes all Burns <sprite name=""Fire"">.
 (Damage: <color=red>0~255</color>)
 If there are 3 or more Magic Circles <sprite name=""MagicCircle""><color=yellow>located on the Star<sprite name=""Star""></color>, deal 10 Burn damage<sprite name=""Fire"">.","次の5つの炎<sprite name=""Fire"">ダメージを一度に与え、炎<sprite name=""Fire"">をすべて削除します。
 (ダメージ：<color=red>0〜255</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、次の10回の炎<sprite name=""Fire"">ダメージを与えます。","다음 5번의 화염<sprite name=""Fire""> 피해를 한 번에 입히고 화염<sprite name=""Fire"">을 모두 제거합니다.
 (피해량: <color=red>0~255</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 다음 10번의 화염<sprite name=""Fire""> 피해를 입힙니다."
-Tile_TileDescription_WandTile,"星云 (2)<sprite name=""Nebula"">：发射一枚射弹。
-(伤害：<color=red>6</color>)","Nebula (2)<sprite name=""Nebula"">: Fires a projectile. 
+Tile_TileDescription_WandTile,"星云(2)<sprite name=""Nebula"">: 发射投射物。
+(伤害: <color=red>6</color>)","Nebula (2)<sprite name=""Nebula"">: Fires a projectile. 
 (Damage: <color=red>6</color>)","星雲（2）<sprite name=""Nebula"">：弾を発射します。 
 (ダメージ: <color=red>6</color>)","성운(2)<sprite name=""Nebula"">: 투사체를 발사합니다.
 (피해량: <color=red>6</color>)"
-Tile_TileDescription_MoaiTotemTile,"堆叠图腾 <sprite name=""Totem"">。堆叠 3 个图腾 <sprite name=""Totem""> 时激活。
-<color=yellow>激活时</color>：发射一枚投射物。
-(伤害：<color=red>15</color>）
-<color=yellow>强化时</color>：伤害乘以 5。
-<color=yellow>每召唤一个位于 <sprite name=""Star""> 上的 <sprite name=""Summon"">，冷却时间减少 10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
+Tile_TileDescription_MoaiTotemTile,"堆叠图腾<sprite name=""Totem"">。当3个图腾<sprite name=""Totem"">堆叠时触发。
+<color=yellow>触发时</color>: 发射投射物。
+(伤害: <color=red>15</color>)
+<color=yellow>强化时</color>: 伤害变为5倍。
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","Stacks totems <sprite name=""Totem"">. Activates when 3 totems <sprite name=""Totem""> are stacked.
 <color=yellow>On activate</color>: Fires a projectile.
 (Damage: <color=red>15</color>)
 <color=yellow>On enhancement</color>: Damage is multiplied by 5.
@@ -374,18 +380,18 @@ Cooldown is reduced by 10% for each summon <sprite name=""Summon""><color=yellow
 (피해량: <color=red>15</color>)
 <color=yellow>강화 시</color>: 피해량이 5배가 됩니다.
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_MagmaBladeTile,"下次攻击时，所有剑 <sprite name=""Sword""> 将获得 1 点火焰 <sprite name=""Fire"">，其攻击力等于召唤的剑的数量。召唤一把剑 <sprite name=""Sword"">，所有剑都会攻击。
-(伤害：<color=red>召唤的剑数量</color>）
-每召唤一个位于 <color=yellow> 星 <sprite name=""Star""> 上的 <sprite name=""Summon"">，冷却时间减少 10%。","On the next attack, all swords <sprite name=""Sword""> will inflict 1 Burn <sprite name=""Fire""> and their attack power will be equal to the number of summoned swords. Summon a sword <sprite name=""Sword""> and all swords will attack.
+Tile_TileDescription_MagmaBladeTile,"下次攻击时所有剑<sprite name=""Sword"">施加1层火焰<sprite name=""Fire"">，剑的攻击力等于召唤的剑数量。召唤一把剑<sprite name=""Sword"">并使所有剑攻击。
+(伤害: <color=red>召唤的剑数量</color>)
+<color=yellow>星<sprite name=""Star"">位置上的</color>每个召唤物<sprite name=""Summon"">使冷却时间减少10%。","On the next attack, all swords <sprite name=""Sword""> will inflict 1 Burn <sprite name=""Fire""> and their attack power will be equal to the number of summoned swords. Summon a sword <sprite name=""Sword""> and all swords will attack.
 (Damage: <color=red>Summoned Swords</color>)
 Cooldown is reduced by 10% for each summoned <sprite name=""Summon""><color=yellow>located on the Star <sprite name=""Star""></color>.","次の攻撃時にすべての剣<sprite name=""Sword"">が炎<sprite name=""Fire"">を1付与し、剣の攻撃力が召喚された剣の数と等しくなります。
 (ダメージ：<color=red>召喚された剣の数</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>召喚獣<sprite name=""Summon"">ごとにクールタイムが10%減少します。","다음 공격 시 모든 검<sprite name=""Sword"">이 화염<sprite name=""Fire"">을 1 부여하고 검의 공격력이 소환된 검의 수와 같아집니다. 검<sprite name=""Sword"">을 한 개 소환하고 모든 검이 공격합니다.
 (피해량: <color=red>소환된 검의 수</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">마다 쿨타임이 10% 감소합니다."
-Tile_TileDescription_CatTile,"<color=yellow>战斗开始时</color>：召唤一只猫巫师。
-<color=yellow>激活时</color>：获得 8 点屏障。
-<color=yellow>星</color>上每种召唤<sprite name=""Summon"">类型，额外获得 6 点屏障。","<color=yellow>Start of Battle</color>: Summon a Cat Wizard.
+Tile_TileDescription_CatTile,"<color=yellow>战斗开始时</color>: 召唤猫法师。
+<color=yellow>发动时</color>: 获得8点屏障<sprite name=""Barrier"">。
+<color=yellow>星<sprite name=""Star"">位置上的</color>每种召唤物<sprite name=""Summon"">类型额外获得6点屏障<sprite name=""Barrier"">。","<color=yellow>Start of Battle</color>: Summon a Cat Wizard.
 <color=yellow>On activate</color>: Gain 8 Barrier.
 Gain an additional 6 Barrier for each type of Summon <sprite name=""Summon""> <color=yellow> located on the Star<sprite name=""Star""></color>.","<color=yellow>戦闘開始時</color>: 魔法使い猫を召喚します。
 <color=yellow>発動時</color>: 保護膜<sprite name=""Barrier"">を8獲得します。
@@ -394,37 +400,37 @@ Gain an additional 6 Barrier for each type of Summon <sprite name=""Summon""> <c
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">종류 하나당 보호막<sprite name=""Barrier"">을 6 추가로 획득합니다."
 ,,,,
 Tile_TileCategoty_Weapon,"#<color=#D5F1FF>武器<sprite name=""Weapon""></color>","#<color=#D5F1FF>Weapon<sprite name=""Weapon""></color>","#<color=#D5F1FF>武器<sprite name=""Weapon""></color>","#<color=#D5F1FF>무기<sprite name=""Weapon""></color>"
-Tile_TileCategoty_MagicCircle,"#<color=#D5F1FF>魔法阵<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>Magic Circle<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>魔法陣<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>마법진<sprite name=""MagicCircle""></color>"
-Tile_TileCategoty_Armor,"#<color=#D5F1FF>盔甲<sprite name=""Armor""></color>","#<color=#D5F1FF>Armor<sprite name=""Armor""></color>","#<color=#D5F1FF>防具<sprite name=""Armor""></color>","#<color=#D5F1FF>방어구<sprite name=""Armor""></color>"
+Tile_TileCategoty_MagicCircle,"#<color=#D5F1FF>法阵<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>Magic Circle<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>魔法陣<sprite name=""MagicCircle""></color>","#<color=#D5F1FF>마법진<sprite name=""MagicCircle""></color>"
+Tile_TileCategoty_Armor,"#<color=#D5F1FF>防具<sprite name=""Armor""></color>","#<color=#D5F1FF>Armor<sprite name=""Armor""></color>","#<color=#D5F1FF>防具<sprite name=""Armor""></color>","#<color=#D5F1FF>방어구<sprite name=""Armor""></color>"
 Tile_TileCategoty_Consumable,"#<color=#D5F1FF>消耗品<sprite name=""Potion""></color>","#<color=#D5F1FF>Potion<sprite name=""Potion""></color>","#<color=#D5F1FF>消耗品<sprite name=""Potion""></color>","#<color=#D5F1FF>소모품<sprite name=""Potion""></color>"
-Tile_TileCategoty_Trinket,"#<color=#D5F1FF>小饰品<sprite name=""Trinket""></color>","#<color=#D5F1FF>Trinket<sprite name=""Trinket""></color>","#<color=#D5F1FF>装飾品<sprite name=""Trinket""></color>","#<color=#D5F1FF>장신구<sprite name=""Trinket""></color>"
-Tile_TileCategoty_Summon,"#<color=#D5F1FF>召唤<sprite name=""Summon""></color>","#<color=#D5F1FF>Summon<sprite name=""Summon""></color>","#<color=#D5F1FF>召喚獣<sprite name=""Summon""></color>","#<color=#D5F1FF>소환수<sprite name=""Summon""></color>"
+Tile_TileCategoty_Trinket,"#<color=#D5F1FF>饰品<sprite name=""Trinket""></color>","#<color=#D5F1FF>Trinket<sprite name=""Trinket""></color>","#<color=#D5F1FF>装飾品<sprite name=""Trinket""></color>","#<color=#D5F1FF>장신구<sprite name=""Trinket""></color>"
+Tile_TileCategoty_Summon,"#<color=#D5F1FF>召唤物<sprite name=""Summon""></color>","#<color=#D5F1FF>Summon<sprite name=""Summon""></color>","#<color=#D5F1FF>召喚獣<sprite name=""Summon""></color>","#<color=#D5F1FF>소환수<sprite name=""Summon""></color>"
 ,,,,
 Tile_TileSynergy_Totem,"<color=#ECA03E>#图腾<sprite name=""Totem""></color>","<color=#ECA03E>#Totem<sprite name=""Totem""></color>","<color=#ECA03E>#トーテム<sprite name=""Totem""></color>","<color=#ECA03E>#토템<sprite name=""Totem""></color>"
 Tile_TileSynergy_Sword,"<color=#D1DBE5>#剑<sprite name=""Sword""></color>","<color=#D1DBE5>#Sword<sprite name=""Sword""></color>","<color=#D1DBE5>#剣<sprite name=""Sword""></color>","<color=#D1DBE5>#검<sprite name=""Sword""></color>"
 Tile_TileSynergy_Fire,"<color=#DB444C>#火焰<sprite name=""Fire""></color>","<color=#DB444C>#Burn<sprite name=""Fire""></color>","<color=#DB444C>#炎<sprite name=""Fire""></color>","<color=#DB444C>#화염<sprite name=""Fire""></color>"
 Tile_TileSynergy_Ice,"<color=#0F88C1>#冻伤<sprite name=""Ice""></color>","<color=#0F88C1>#Frostbite<sprite name=""Ice""></color>","<color=#0F88C1>#凍傷<sprite name=""Ice""></color>","<color=#0F88C1>#동상<sprite name=""Ice""></color>"
-Tile_TileSynergy_Shield,"<color=white>#盾牌<sprite name=""Shield""></color>","<color=white>#Shield<sprite name=""Shield""></color>","<color=white>#シールド<sprite name=""Shield""></color>","<color=white>#방어막<sprite name=""Shield""></color>"
-Tile_TileSynergy_Barrier,"<color=white>#保护盾<sprite name=""Barrier""></color>","<color=white>#Barrier<sprite name=""Barrier""></color>","<color=white>#バリア<sprite name=""Barrier""></color>","<color=white>#보호막<sprite name=""Barrier""></color>"
+Tile_TileSynergy_Shield,"<color=white>#护盾<sprite name=""Shield""></color>","<color=white>#Shield<sprite name=""Shield""></color>","<color=white>#シールド<sprite name=""Shield""></color>","<color=white>#방어막<sprite name=""Shield""></color>"
+Tile_TileSynergy_Barrier,"<color=white>#屏障<sprite name=""Barrier""></color>","<color=white>#Barrier<sprite name=""Barrier""></color>","<color=white>#バリア<sprite name=""Barrier""></color>","<color=white>#보호막<sprite name=""Barrier""></color>"
 Tile_TileSynergy_Curse,"<color=#AE3FF3>#诅咒<sprite name=""Curse""></color>","<color=#AE3FF3>#Curse<sprite name=""Curse""></color>","<color=#AE3FF3>#呪い<sprite name=""Curse""></color>","<color=#AE3FF3>#저주<sprite name=""Curse""></color>"
 Tile_TileSynergy_Cloud,"<color=white>#云<sprite name=""Cloud""></color>","<color=white>#Cloud<sprite name=""Cloud""></color>","<color=white>#雲<sprite name=""Cloud""></color>","<color=white>#구름<sprite name=""Cloud""></color>"
 Tile_TileSynergy_Nebula,"<color=white>#星云(N)<sprite name=""Nebula""></color>","<color=white>#Nebula(N)<sprite name=""Nebula""></color>","<color=white>#星雲(N)<sprite name=""Nebula""></color>","<color=white>#성운(N)<sprite name=""Nebula""></color>"
 Tile_TileSynergy_Nebula2,"<color=white>#星云(2)<sprite name=""Nebula""></color>","<color=white>#Nebula(2)<sprite name=""Nebula""></color>","<color=white>#星雲(2)<sprite name=""Nebula""></color>","<color=white>#성운(2)<sprite name=""Nebula""></color>"
 Tile_TileSynergy_Nebula3,"<color=white>#星云(3)<sprite name=""Nebula""></color>","<color=white>#Nebula(3)<sprite name=""Nebula""></color>","<color=white>#星雲(3)<sprite name=""Nebula""></color>","<color=white>#성운(3)<sprite name=""Nebula""></color>"
 ,,,,
-Tile_TileTagDescription_Fire,"火焰<sprite name=""Fire"">：每秒造成相当于堆叠数量的伤害，并将堆叠数量减少 1。限制是30。","Burn<sprite name=""Fire"">: Deals damage equal to the stack per second and reduces the stack by 1. The limit is 30.","炎 <sprite name=""Fire"">: 毎秒スタックと同じダメージを与え、スタックが 1 減少します。制限は30です。","화염<sprite name=""Fire"">: 매초 스택만큼 피해를 주고 스택이 1 감소합니다. 한도는 30입니다."
-Tile_TileTagDescription_Ice,"冻伤<sprite name=""Ice"">: 堆叠 10 次后，冻结<sprite name=""Freeze"">敌人 2 秒。","Frostbite<sprite name=""Ice"">: When stacked 10 times, freezes<sprite name=""Freeze""> enemies for 2 seconds.","凍傷 <sprite name=""Ice"">: 10回重複すると、敵を2秒間氷結<sprite name=""Freeze"">させます。","동상<sprite name=""Ice"">: 10번 중첩되면,적을 2초동안 빙결<sprite name=""Freeze"">시킵니다."
-Tile_TileTagDescription_Sword,"剑<sprite name=""Sword"">：召唤生物，持续一定时间。当你向一把剑发出命令时，所有剑都会执行相同的命令。","Sword<sprite name=""Sword"">: Temporarily summoned. All swords follow the same command.","剣<sprite name=""Sword"">: 一定時間維持される召喚獣。剣を発行すると、すべての剣が同じコマンドを実行します。","검<sprite name=""Sword"">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다."
+Tile_TileTagDescription_Fire,"火焰<sprite name=""Fire"">: 每秒造成等同于层数的伤害，层数减少1。上限为30。","Burn<sprite name=""Fire"">: Deals damage equal to the stack per second and reduces the stack by 1. The limit is 30.","炎 <sprite name=""Fire"">: 毎秒スタックと同じダメージを与え、スタックが 1 減少します。制限は30です。","화염<sprite name=""Fire"">: 매초 스택만큼 피해를 주고 스택이 1 감소합니다. 한도는 30입니다."
+Tile_TileTagDescription_Ice,"冻伤<sprite name=""Ice"">: 叠加10层时，使敌人冰冻<sprite name=""Freeze"">2秒。","Frostbite<sprite name=""Ice"">: When stacked 10 times, freezes<sprite name=""Freeze""> enemies for 2 seconds.","凍傷 <sprite name=""Ice"">: 10回重複すると、敵を2秒間氷結<sprite name=""Freeze"">させます。","동상<sprite name=""Ice"">: 10번 중첩되면,적을 2초동안 빙결<sprite name=""Freeze"">시킵니다."
+Tile_TileTagDescription_Sword,"剑<sprite name=""Sword"">: 持续一定时间的召唤物。对剑下达命令时，所有剑都会执行相同命令。","Sword<sprite name=""Sword"">: Temporarily summoned. All swords follow the same command.","剣<sprite name=""Sword"">: 一定時間維持される召喚獣。剣を発行すると、すべての剣が同じコマンドを実行します。","검<sprite name=""Sword"">: 일정시간 동안 유지되는 소환수입니다. 검에게 명령을 내리면 모든 검이 동일한 명령을 수행합니다."
 Tile_TileTagDescription_Totem,"图腾<sprite name=""Totem"">: 图腾堆叠到3个时触发效果并消失。<color=yellow>第3个放置的图腾效果会得到强化</color>。","Totem<sprite name=""Totem"">: Activates when 3 stack. <color=yellow>The 3rd totem's effect is enhanced.</color>","トーテム<sprite name=""Totem"">: トーテムが3個積まれると効果を発動して消失します。<color=yellow>3番目に置かれたトーテムの効果は強化されます</color>。","토템<sprite name=""Totem"">: 토템이 3개 쌓이면 효과를 발동하고 사라집니다. <color=yellow>3번째로 올라간 토템의 효과는 강화됩니다</color>."
-Tile_TileTagDescription_Shield,"盾牌<sprite name=""Shield"">：阻挡 1 轮伤害。","Shield<sprite name=""Shield"">: Blocks 1 round of damage.","シールド <sprite name=""Shield"">: 1 回のダメージを防ぎます。","방어막<sprite name=""Shield"">: 1회의 피해를 막아줍니다."
-Tile_TileTagDescription_Barrier,"保护盾<sprite name=""Barrier"">：阻挡一定量的伤害。每秒吸收2点护盾。保护盾重复的屏障时，将以较高的数值进行更新。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Consumes 2 per second. When acquiring a duplicate barrier, it will be updated to the higher value.","バリア<sprite name=""Barrier"">: 一定量のダメージを防ぎます。毎秒2消費します。バリアを重複して獲得した場合、高い数値に更新されます。","보호막<sprite name=""Barrier"">: 일정량의 피해를 막아줍니다. 매초 2 소모됩니다. 중복 보호막 획득 시 높은 값으로 갱신됩니다."
-Tile_TileTagDescription_Pain,"痛苦<sprite name=""Pain"">：受到的伤害增加 10%。","Pain<sprite name=""Pain"">: Damage taken increases by 10%.","痛み<sprite name=""Pain"">: 受けるダメージが10%増加します。","고통<sprite name=""Pain"">: 받는 피해가 10% 증가합니다."
-Tile_TileTagDescription_Mark,"印记<sprite name=""Mark"">: 使你下次攻击受到的伤害提高 50%。(最多1个)","Mark<sprite name=""Mark"">: Increases the damage taken from your next attack by 50%. (Maximum 1)","烙印 <sprite name=""Mark"">: 次の攻撃 1 回のダメージを 50% 増加して受けます。(最大1)","낙인<sprite name=""Mark"">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다.(최대 1)"
-Tile_TileTagDescription_Curse,"诅咒<sprite name=""Curse"">: 诅咒星座使用的资源。基本限制是30。","Curse<sprite name=""Curse"">: A resource used by cursed constellations. The basic limit is 30.","呪い<sprite name=""Curse"">: 呪いの星座が使用するリソースです。基本制限は30です。","저주<sprite name=""Curse"">: 저주 별자리들이 사용하는 자원입니다. 기본적인 한도는 30입니다."
-Tile_TileTagDescription_Nebula,"星云(N)<sprite name=""Nebula"">：结合了 N 个星座的结构，每个星座都有独立的能力和冷却时间。","Nebula(N)<sprite name=""Nebula"">: A structure that combines N constellations, each with independent abilities and cooldowns.","星雲(N)<sprite name=""Nebula"">: N個の星座が結合された構造で、各星座は独立した能力とクールタイムを持ちます。","성운(N)<sprite name=""Nebula"">: N개의 별자리가 결합된 구조로, 각 별자리는 독립적인 능력과 쿨타임을 가집니다."
-Tile_TileTagDescription_Nebula2,"星云(2)<sprite name=""Nebula"">：结合了 2 个星座的结构，每个星座都有独立的能力和冷却时间。","Nebula(2)<sprite name=""Nebula"">: A structure that combines 2 constellations, each with independent abilities and cooldowns.","星雲(2)<sprite name=""Nebula"">: 2個の星座が結合された構造で、各星座は独立した能力とクールタイムを持ちます。","성운(2)<sprite name=""Nebula"">: 2개의 별자리가 결합된 구조로, 각 별자리는 독립적인 능력과 쿨타임을 가집니다."
-Tile_TileTagDescription_Nebula3,"星云(3)<sprite name=""Nebula"">：结合了 3 个星座的结构，每个星座都有独立的能力和冷却时间。","Nebula(3)<sprite name=""Nebula"">: A structure that combines 3 constellations, each with independent abilities and cooldowns.","星雲(3)<sprite name=""Nebula"">: 3個の星座が結合された構造で、各星座は独立した能力とクールタイムを持ちます。","성운(3)<sprite name=""Nebula"">: 3개의 별자리가 결합된 구조로, 각 별자리는 독립적인 능력과 쿨타임을 가집니다."
-Tile_TileTagDescription_Freeze,"冰冻<sprite name=""Freeze"">：敌人停止攻击，受到50%更多伤害。部分敌人的技能不会被冻结。","Freeze<sprite name=""Freeze"">: Enemy stops attacking and takes 50% more damage. Some enemy patterns cannot be frozen.","氷結<sprite name=""Freeze"">：敵は攻撃を停止し、受けるダメージが50%増加します。一部の敵のパターンは氷結しません。","빙결<sprite name=""Freeze"">: 적이 공격을 멈추고 피해 50% 증가. 일부 적의 패턴중에는 빙결되지 않습니다."
+Tile_TileTagDescription_Shield,"护盾<sprite name=""Shield"">: 阻挡1次伤害。","Shield<sprite name=""Shield"">: Blocks 1 round of damage.","シールド <sprite name=""Shield"">: 1 回のダメージを防ぎます。","방어막<sprite name=""Shield"">: 1회의 피해를 막아줍니다."
+Tile_TileTagDescription_Barrier,"屏障<sprite name=""Barrier"">: 阻挡一定量的伤害。每秒消耗2点。重复获得屏障时更新为较高数值。","Barrier<sprite name=""Barrier"">: Blocks a certain amount of damage. Consumes 2 per second. When acquiring a duplicate barrier, it will be updated to the higher value.","バリア<sprite name=""Barrier"">: 一定量のダメージを防ぎます。毎秒2消費します。バリアを重複して獲得した場合、高い数値に更新されます。","보호막<sprite name=""Barrier"">: 일정량의 피해를 막아줍니다. 매초 2 소모됩니다. 중복 보호막 획득 시 높은 값으로 갱신됩니다."
+Tile_TileTagDescription_Pain,"痛苦<sprite name=""Pain"">: 受到的伤害增加10%。","Pain<sprite name=""Pain"">: Damage taken increases by 10%.","痛み<sprite name=""Pain"">: 受けるダメージが10%増加します。","고통<sprite name=""Pain"">: 받는 피해가 10% 증가합니다."
+Tile_TileTagDescription_Mark,"烙印<sprite name=""Mark"">: 下一次攻击的伤害增加50%。(最大1层)","Mark<sprite name=""Mark"">: Increases the damage taken from your next attack by 50%. (Maximum 1)","烙印 <sprite name=""Mark"">: 次の攻撃 1 回のダメージを 50% 増加して受けます。(最大1)","낙인<sprite name=""Mark"">: 다음 공격 한 번의 피해를 50% 증가하여 받습니다.(최대 1)"
+Tile_TileTagDescription_Curse,"诅咒<sprite name=""Curse"">: 诅咒星座使用的资源。基本上限为30。","Curse<sprite name=""Curse"">: A resource used by cursed constellations. The basic limit is 30.","呪い<sprite name=""Curse"">: 呪いの星座が使用するリソースです。基本制限は30です。","저주<sprite name=""Curse"">: 저주 별자리들이 사용하는 자원입니다. 기본적인 한도는 30입니다."
+Tile_TileTagDescription_Nebula,"星云(N)<sprite name=""Nebula"">: 由N个星座结合的结构，每个星座拥有独立的能力和冷却时间。","Nebula(N)<sprite name=""Nebula"">: A structure that combines N constellations, each with independent abilities and cooldowns.","星雲(N)<sprite name=""Nebula"">: N個の星座が結合された構造で、各星座は独立した能力とクールタイムを持ちます。","성운(N)<sprite name=""Nebula"">: N개의 별자리가 결합된 구조로, 각 별자리는 독립적인 능력과 쿨타임을 가집니다."
+Tile_TileTagDescription_Nebula2,"星云(2)<sprite name=""Nebula"">: 由2个星座结合的结构，每个星座拥有独立的能力和冷却时间。","Nebula(2)<sprite name=""Nebula"">: A structure that combines 2 constellations, each with independent abilities and cooldowns.","星雲(2)<sprite name=""Nebula"">: 2個の星座が結合された構造で、各星座は独立した能力とクールタイムを持ちます。","성운(2)<sprite name=""Nebula"">: 2개의 별자리가 결합된 구조로, 각 별자리는 독립적인 능력과 쿨타임을 가집니다."
+Tile_TileTagDescription_Nebula3,"星云(3)<sprite name=""Nebula"">: 由3个星座结合的结构，每个星座拥有独立的能力和冲却时间。","Nebula(3)<sprite name=""Nebula"">: A structure that combines 3 constellations, each with independent abilities and cooldowns.","星雲(3)<sprite name=""Nebula"">: 3個の星座が結合された構造で、各星座は独立した能力とクールタイムを持ちます。","성운(3)<sprite name=""Nebula"">: 3개의 별자리가 결합된 구조로, 각 별자리는 독립적인 능력과 쿨타임을 가집니다."
+Tile_TileTagDescription_Freeze,"冰冻<sprite name=""Freeze"">: 敌人停止攻击，受到的伤害增加50%。某些敌人的部分攻击模式不会被冰冻。","Freeze<sprite name=""Freeze"">: Enemy stops attacking and takes 50% more damage. Some enemy patterns cannot be frozen.","氷結<sprite name=""Freeze"">：敵は攻撃を停止し、受けるダメージが50%増加します。一部の敵のパターンは氷結しません。","빙결<sprite name=""Freeze"">: 적이 공격을 멈추고 피해 50% 증가. 일부 적의 패턴중에는 빙결되지 않습니다."
 ,,,,
 UI_Quest_Instruction1,"教程 1
 - 移动角色

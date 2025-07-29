@@ -354,7 +354,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133717
-    m_Localized: 'Fires a projectile filled with beginner''s luck. (Damage: <color=red>10</color>)'
+    m_Localized: "Fires a projectile filled with beginner's luck. \n(Damage: <color=red>10</color>)\nDamage
+      increases by 5 for each weapon<sprite name=\"Weapon\"> <color=yellow>located
+      on the Star<sprite name=\"Star\"></color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133718
