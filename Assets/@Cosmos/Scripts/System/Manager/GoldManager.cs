@@ -18,8 +18,8 @@ public class GoldManager : Singleton<GoldManager>
     protected override void Awake()
     {
         base.Awake();
-        SetCurrentGold(16);
-        EventBus.SubscribeBossDeath(GetGoldPerStage);
+        SetCurrentGold(14);
+        EventBus.SubscribeStageChange(GetGoldPerStage);
         EventBus.SubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 
@@ -91,13 +91,19 @@ public class GoldManager : Singleton<GoldManager>
     {
         if (GameStateManager.Instance.CurrentState != GameState.Defeat)
         {
-            if (StageSelectManager.Instance.StageNum < 2 && !SceneLoader.IsInGuide())
+            int stageNum = StageSelectManager.Instance.StageNum;
+            Debug.Log("지금 스테이지 넘버" + stageNum);
+            if (stageNum>=1 && stageNum <= 4 && !SceneLoader.IsInGuide())
+            {
+                ModifyCurrentGold(14);
+            }
+            else if(stageNum >= 5 && stageNum <= 8)
+            {
+                ModifyCurrentGold(15);
+            }
+            else if(stageNum >= 9)
             {
                 ModifyCurrentGold(16);
-            }
-            else
-            {
-                ModifyCurrentGold(StageSelectManager.Instance.StageNum / 2 + 13);
             }
         }
     }
@@ -113,7 +119,7 @@ public class GoldManager : Singleton<GoldManager>
 
     private void OnDestroy()
     {
-        EventBus.UnsubscribeBossDeath(GetGoldPerStage);
+        EventBus.UnsubscribeStageChange(GetGoldPerStage);
         EventBus.UnsubscribePlayerDeath(GetGoldOnPlayerDeath);
     }
 }

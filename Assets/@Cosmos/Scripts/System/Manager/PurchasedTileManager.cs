@@ -1,16 +1,23 @@
-using UnityEngine;
+﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 
-public class PurchasedTileManager : MonoBehaviour
+public class PurchasedTileManager : Singleton<PurchasedTileManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private List<string> _purchasedTiles = new();
+
+    public List<string> PurchasedTiles => _purchasedTiles;
+
+    public void AddPurchasedTiles(string tileName)
     {
-        
+        _purchasedTiles.Add(tileName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemovePurchasedTiles(string tileName)
     {
-        
+        if(_purchasedTiles.Contains(tileName))
+        {
+            _purchasedTiles.Remove(tileName);
+        }
     }
+
 }

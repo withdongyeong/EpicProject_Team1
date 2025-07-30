@@ -51,6 +51,7 @@ public class SellTilePanel : MonoBehaviour , IPointerEnterHandler, IPointerExitH
 
         _dm.TryStopRotate();
         GoldManager.Instance.ModifyCurrentGold((tileObject.GetTileData().TileCost + 1) / 2);
+        PurchasedTileManager.Instance.RemovePurchasedTiles(tileObject.GetTileData().TileName);
         EventBus.PublishTileSell(tileObject);
         DragManager.Instance.DestroyObject();
     }

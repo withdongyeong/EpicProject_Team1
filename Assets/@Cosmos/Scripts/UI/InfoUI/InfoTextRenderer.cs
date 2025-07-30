@@ -19,7 +19,8 @@ public class InfoTextRenderer : MonoBehaviour
         { TileCategory.Armor, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Armor") },
         { TileCategory.Consumable, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Consumable") },
         { TileCategory.Trinket, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Trinket") },
-        { TileCategory.Summon, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Summon") }
+        { TileCategory.Summon, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Summon") },
+        { TileCategory.Planet, new LocalizedString("EpicProject_Table", "Tile_TileCategoty_Planet") },
     };
 
     Dictionary<string, LocalizedString> _synergyDict = new Dictionary<string, LocalizedString>
