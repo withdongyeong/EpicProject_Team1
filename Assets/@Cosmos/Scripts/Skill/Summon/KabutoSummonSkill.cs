@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class KabutoSummonSkill : SkillBase
 {
     private GameObject _kabutoPrefab;
-    private Kabuto _currentKabuto;
+    private Kabuto_RE _currentKabuto;
+
+    private List<string> _adjacentSummonNameList = new();
 
     protected override void Awake()
     {
@@ -19,10 +22,17 @@ public class KabutoSummonSkill : SkillBase
         base.Start();
         
     }
+
+    protected override void ClearStarBuff()
+    {
+        base.ClearStarBuff();
+        _adjacentSummonNameList.Clear();
+    }
+
     protected override void Activate()
     {
         base.Activate();
-        _currentKabuto.TryCharge();
+        _currentKabuto.Fire();
     }
 
     private void SpawnKabuto()
@@ -31,11 +41,30 @@ public class KabutoSummonSkill : SkillBase
         {
             Quaternion rotate = transform.parent.rotation;
             Vector3 spawnPos = transform.TransformPoint(Vector3.up + Vector3.right);
-            _currentKabuto = Instantiate(_kabutoPrefab, spawnPos, rotate).GetComponent<Kabuto>();
-            _currentKabuto.Init(this);
+            _currentKabuto = Instantiate(_kabutoPrefab, spawnPos, rotate).GetComponent<Kabuto_RE>();
+            if(_adjacentSummonNameList.Count >=3)
+            {
+                _currentKabuto.Init(this,true);
+            }
+            else
+            {
+                _currentKabuto.Init(this, false);
+            }
+            
         }
         
+    }
 
+    public void AddSummonList(string tileName)
+    {
+        if (!_adjacentSummonNameList.Contains(tileName))
+        {
+            _adjacentSummonNameList.Add(tileName);
+        }
+        if(_adjacentSummonNameList.Count >=3)
+        {
+            _currentKabuto.IsHyper = true;
+        }
     }
 
     public void DestoryKabuto()
