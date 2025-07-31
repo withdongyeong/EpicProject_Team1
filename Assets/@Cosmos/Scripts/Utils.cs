@@ -260,6 +260,7 @@ public class SavedTileData
     public int gold; // 플레이어의 골드
     public int life; // 플레이어의 생명
     public int stageIndex; // 스테이지 인덱스
+    public int infiniteModeCount; // 무한모드 도전 횟수
     public int difficulty; // 난이도
     public List<PlacedTileData> savedTiles = new List<PlacedTileData>();
 }

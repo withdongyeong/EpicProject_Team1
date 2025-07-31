@@ -129,6 +129,7 @@ public class PlacedHandler : MonoBehaviour
         savedTileData.gold = GoldManager.Instance.CurrentGold;
         savedTileData.life = LifeManager.Instance.Life;
         savedTileData.stageIndex = StageSelectManager.Instance.StageNum;
+        savedTileData.infiniteModeCount = StageSelectManager.Instance.InfiniteModeCount;
         savedTileData.difficulty = GameManager.Instance.DifficultyLevel;
         savedTileData.savedTiles = new List<PlacedTileData>();
         
@@ -190,6 +191,7 @@ public class PlacedHandler : MonoBehaviour
                 GoldManager.Instance.SetCurrentGold(savedTileData.gold);
                 LifeManager.Instance.SetLife(savedTileData.life);
                 StageSelectManager.Instance.SetStageNum(savedTileData.stageIndex);
+                StageSelectManager.Instance.SetInfiniteModeCount(savedTileData.infiniteModeCount);
                 GameManager.Instance.SetDifficultyLevel(savedTileData.difficulty);
 
                 foreach (PlacedTileData placedTile in savedTileData.savedTiles)
