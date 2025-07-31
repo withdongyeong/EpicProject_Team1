@@ -730,7 +730,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.265625
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2654,6 +2654,14 @@ PrefabInstance:
       propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
       value: GUID:acbd475831ad36a4dbe7ab499a00530a
       objectReference: {fileID: 0}
+    - target: {fileID: 2201526162634480042, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201526162634480042, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2646678446832971355, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: m_text
       value: 
@@ -2861,6 +2869,10 @@ PrefabInstance:
     - target: {fileID: 7494910058642780892, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
       value: GUID:acbd475831ad36a4dbe7ab499a00530a
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630982459114163764, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7777023801949244324, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: m_IsActive
