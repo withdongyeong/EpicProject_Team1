@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
 /// 일반 스테이지 번호 UI 컨트롤러
@@ -59,9 +60,14 @@ public class StageNum : MonoBehaviour
     private void UpdateNormalStageText(int stageNum)
     {
         TextMeshProUGUI stageText = GetComponentInChildren<TextMeshProUGUI>();
+        LocalizedString stageLocal = new LocalizedString("EpicProject_Table", "UI_Text_NowStage");
+
         if (stageText != null)
         {
-            stageText.text = $"스테이지 {stageNum}";
+            stageLocal.StringChanged += (value) =>
+            {
+                stageText.text = value.Replace("{0}", stageNum.ToString());
+            };
         }
     }
 

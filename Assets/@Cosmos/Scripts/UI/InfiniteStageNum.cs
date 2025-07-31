@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.Localization;
 
 /// <summary>
 /// 무한모드 스테이지 번호 UI 컨트롤러
@@ -54,9 +55,14 @@ public class InfiniteStageNum : MonoBehaviour
     private void UpdateInfiniteStageText(int infiniteCount)
     {
         TextMeshProUGUI infiniteText = GetComponentInChildren<TextMeshProUGUI>();
+        LocalizedString infiniteLocal = new LocalizedString("EpicProject_Table", "UI_Text_NowInfinityMode");
+
         if (infiniteText != null)
         {
-            infiniteText.text = $"무한 모드 {infiniteCount} 단계";
+            infiniteLocal.StringChanged += (value) =>
+            {
+                infiniteText.text = value.Replace("{0}", infiniteCount.ToString());
+            };
         }
     }
 }

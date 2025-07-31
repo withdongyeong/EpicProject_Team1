@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.UI;
 
 /// <summary>
 /// 무한모드 재도전 버튼 컨트롤러
@@ -11,7 +12,7 @@ using TMPro;
 public class InfiniteButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Button button;
-    
+
     [SerializeField] private GameObject tooltipUI;
 
     /// <summary>
@@ -88,13 +89,21 @@ public class InfiniteButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private void ShowTooltip()
     {
         tooltipUI.SetActive(true);
-        
+        LocalizedString InfiniteModeText = new LocalizedString("EpicProject_Table", "UI_Text_InfinityText");
         // 툴팁 텍스트 업데이트
         TextMeshProUGUI tooltipText = tooltipUI.GetComponentInChildren<TextMeshProUGUI>();
         if (tooltipText != null && StageSelectManager.Instance != null)
         {
-            tooltipText.text = "이대로 끝내기 아쉬운\n당신을 위한 무한 모드\n\n클릭할 때마다\n보스가 더 강해집니다!\n모든 보스의 패턴을\n종합해서 사용합니다.";
+            InfiniteModeText.StringChanged += (text) =>
+            {
+                tooltipText.text = text;
+            };
         }
+    }
+
+    private void InfiniteModeText_StringChanged(string value)
+    {
+        throw new System.NotImplementedException();
     }
 
     /// <summary>
