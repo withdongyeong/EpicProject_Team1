@@ -20,6 +20,8 @@ MonoBehaviour:
   - rid: 2906331665916232023
   - rid: 2906331665916232024
   - rid: 2906331665916232025
+  - rid: 3702999674673430639
+  - rid: 3702999674673430638
   m_AvailableLocales:
     rid: 2906331665916232001
   m_AssetDatabase:
@@ -229,3 +231,13 @@ MonoBehaviour:
       data:
         m_LocaleId:
           m_Code: en
+    - rid: 3702999674673430638
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: ru
+    - rid: 3702999674673430639
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: zh-Hant

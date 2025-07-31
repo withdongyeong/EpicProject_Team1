@@ -18,7 +18,10 @@ public class FontChangingDropdown : MonoBehaviour
 
         //현재 언어에 따라 드롭다운 위치 변경
         if (LocalizeManager.Instance.LocalizedIndex >= 0)
+        {
             dropdown.value = LocalizeManager.Instance.LocalizedIndex;
+        }
+
 
         StartCoroutine(AttachDropdownOpenHandler());
     }
