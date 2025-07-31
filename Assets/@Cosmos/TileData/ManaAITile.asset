@@ -17,7 +17,7 @@ MonoBehaviour:
     \uD1B5\uACFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.</color>\n<color=yellow>\uBCC4<sprite
     name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uB9C8\uB098 \uD3EC\uD0D1\uC774
     3\uCD08\uC5D0 \uD55C \uBC88 \uC790\uB3D9 \uACF5\uACA9\uC744 \uC2E4\uD589\uD569\uB2C8\uB2E4."
-  tileCategory: 0
+  tileCategory: 6
   tileSprite: {fileID: 483569740, guid: 5c4f7fceac26ce44d9133a0f7fb35c0a, type: 3}
   tileGrade: 4
   tileCost: 12
@@ -26,3 +26,4 @@ MonoBehaviour:
   rejectTileList:
   - {fileID: 11400000}
   unlockInt: 0
+  hideCoolTime: 0

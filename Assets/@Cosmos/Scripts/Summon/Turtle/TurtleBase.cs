@@ -64,7 +64,6 @@ public class TurtleBase : MonoBehaviour
     {
         if(Time.time - _lastUsedTime > _chargeInterval)
         {
-            Charge();
             _lastUsedTime = Time.time;
             // 보호막이 차지 중이고 보호막이 있다면 이펙트를 재생합니다.
             if (_protectionScript.IsProtected && _effectId == -1)

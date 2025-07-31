@@ -86,7 +86,9 @@ public class StoreSlot : MonoBehaviour
                 StoreLockManager.Instance.RemoveStoreLock(SlotNum);
             }
             //Debug.Log($"오브젝트 구매 완료: {objectPrefab.name} (가격: {objectCost})");
-            GameManager.Instance.LogHandler.AddPurchasedTile(objectPrefab.GetComponent<TileObject>().GetTileData().TileName);
+            string tileName = objectPrefab.GetComponent<TileObject>().GetTileData().TileName;
+            GameManager.Instance.LogHandler.AddPurchasedTile(tileName);
+            PurchasedTileManager.Instance.AddPurchasedTiles(tileName);
             return true;
         }
         else // 돈이 없어요

@@ -64,13 +64,13 @@ public class PlayerProtection : MonoBehaviour
     public void SetProtection(bool @protected, int amount)
     {
 
-        //만약 충전중이라면(장수풍뎅이)
+        //만약 충전중이라면(장수풍뎅이) 이거 아마 없앨거같아요
         if (_isCharging)
         {
             //보호막은 얻지 않고 바로 소모했다고 칩니다.
             EventBus.PublishProtectionConsume(amount);
         }
-        else if (amount > _protectionAmount)
+        else if (amount > _protectionAmount) //현재 보호막보다 더 많이 얻었으면
         {
             // 이미 실행 중인 코루틴이 있다면 중지
             if (_protectionCoroutine != null)
@@ -78,6 +78,9 @@ public class PlayerProtection : MonoBehaviour
                 StopCoroutine(_protectionCoroutine);
                 _protectionCoroutine = null;
             }
+
+            //예전 보호막은 소모합니다.
+            EventBus.PublishProtectionConsume(_protectionAmount);
             // 보호 상태 설정
             SetProtection(@protected);
             _protectionAmount = amount > 0 ? amount : 0; // 보호막량 설정
@@ -87,6 +90,10 @@ public class PlayerProtection : MonoBehaviour
             {
                 _protectionCoroutine = StartCoroutine(protectionTimer(amount));
             }
+        }
+        else if(amount <= _protectionAmount) //현재 보호막보다 적게 얻었으면
+        {
+            EventBus.PublishProtectionConsume(amount);
         }
 
             
@@ -170,7 +177,13 @@ public class PlayerProtection : MonoBehaviour
             if (_protectionAmount <= 0)
             { 
                 SetProtection(false);
-                if(!isCounsumed)
+                // 이미 실행 중인 코루틴이 있다면 중지
+                if (_protectionCoroutine != null)
+                {
+                    StopCoroutine(_protectionCoroutine);
+                    _protectionCoroutine = null;
+                }
+                if (!isCounsumed)
                 {
                     //못막은 분 만큼 데미지를 받습니다.
                     //GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
