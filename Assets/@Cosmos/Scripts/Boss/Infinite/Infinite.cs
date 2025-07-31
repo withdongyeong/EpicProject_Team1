@@ -248,7 +248,7 @@ public class Infinite : LastBoss
     {
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
 
-        //클리어 도전과제를 달성합니다
+        // 일반 난이도 클리어 도전과제
         int difficulty = GameManager.Instance.DifficultyLevel;
         if (difficulty == 2)
         {
@@ -262,11 +262,22 @@ public class Infinite : LastBoss
             Debug.Log("헬클리어");
         }
 
+        // 무한모드 클리어 도전과제
+        if (StageSelectManager.Instance != null)
+        {
+            int infiniteCount = StageSelectManager.Instance.InfiniteModeCount;
+            if (infiniteCount >= 1)
+            {
+                SteamAchievement.Achieve("ACH_INFINITE_1");
+                Debug.Log("무한모드 1 클리어");
+            }
+        }
+
         if(GameManager.Instance.DifficultyLevel + 1 > SaveManager.GameModeLevel)
         {
             SaveManager.SaveGameModeLevel(GameManager.Instance.DifficultyLevel + 1);
         }
-        
+    
         // 기본 사망 처리 호출
         base.Die();
     }
