@@ -933,7 +933,7 @@ UI_Button_Title,标题,Title,タイトル,타이틀,標題,Титры
 UI_Button_Try,前进,Go!,進む,진행하기,繼續,Продолжить
 UI_Button_Yas,是的,Yes,はい,네,是,Да
 UI_Button_No,不,No,いいえ,아니오,否,Нет
-UI_Button_Load,载入游戏,GAME LOAD,続ける,이어하기,載入遊戲,"	Загрузить игру"
+UI_Button_Load,载入游戏,CONTINUE,続ける,이어하기,載入遊戲,"	Загрузить игру"
 UI_Button_Start,开始,GAME START,ゲームスタート,게임 시작,開始遊戲,Начать игру
 UI_Button_Guide,教程,TUTORIAL,チュートリアル,튜토리얼,教學,Урок
 UI_Button_Book,星座图鉴,CONSTELLATION,星座図鑑,별자리 도감,星座圖鑑,Энциклопедия
@@ -1092,4 +1092,41 @@ For more details, please refer to the <b>[Privacy Policy]</b> in the  Steam stor
 Подробности смотрите в <b>[Политике конфиденциальности]</b> на странице Steam.
 <b>Согласны ли вы на сбор и использование игровых данных?</b>"
 UI_Text_NowStage,{0} 关,Stage {0},ステージ {0},스테이지 {0},{0} 關,Этап {0}
-UI_Text_NowInfinityMode,无限模式 {0},Infinite Mode {0},無限モード {0},무한모드 {0},無限模式 {0},Бесконечный режим {0}
+UI_Text_NowInfinityMode,无限模式 {0}等级,Infinite Mode {0}Level,無限モード {0}レベル ,무한모드 {0}단계,無限模式 {0}等級,Бесконечный режим {0}Уровень
+UI_Text_InfinityText,"就此结束太可惜了
+为您准备的无限模式
+
+每次点击
+BOSS都会变得更强!
+综合使用
+所有BOSS的招式。","Too good to end here
+Infinite Mode for you
+
+Each click makes
+the boss stronger!
+Uses combined patterns
+from all bosses.","このまま終わるのは惜しい
+あなたのための無限モード
+
+クリックするたびに
+ボスがより強くなります！
+全てのボスのパターンを
+組み合わせて使用します。","이대로 끝내기 아쉬운
+당신을 위한 무한 모드
+
+클릭할 때마다
+보스가 더 강해집니다!
+모든 보스의 패턴을
+종합해서 사용합니다.","就此結束太可惜了
+為您準備的無限模式
+
+每次點擊
+BOSS都會變得更強！
+綜合使用
+所有BOSS的招式。","Жаль заканчивать на этом
+Бесконечный режим для вас
+
+С каждым кликом
+босс становится сильнее!
+Использует комбинированные
+паттерны всех боссов."
