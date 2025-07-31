@@ -11,6 +11,7 @@ public class Kabuto_RE : MonoBehaviour
     private ProtectionEffect _protectionEffect;
     private GameObject _projectile;
     private KabutoSummonSkill _summoner;
+    private int _effectId = -1;
 
     private Sprite _imago;
 
@@ -26,6 +27,18 @@ public class Kabuto_RE : MonoBehaviour
         if(_currentConsume > 0 && _protection.ProtectionAmount == 0)
         {
             Fire();
+        }
+
+        // 보호막이 차지 중이고 보호막이 있다면 이펙트를 재생합니다.
+        if (_protection.IsProtected && _effectId == -1)
+        {
+            _effectId = _protectionEffect.StartProtectionEffect(_protection.gameObject, transform.position);
+        }
+        // 보호막이 없으면 이펙트를 중지합니다.
+        else if (!_protection.IsProtected && _effectId != -1)
+        {
+            _protectionEffect.StopProtectionEffect(_effectId);
+            _effectId = -1;
         }
 
     }
@@ -69,7 +82,7 @@ public class Kabuto_RE : MonoBehaviour
         Projectile projectile = projectileObj.GetComponent<Projectile>();
         if(IsHyper)
         {
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 3);
+            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 4);
         }
         else
         {

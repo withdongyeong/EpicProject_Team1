@@ -177,7 +177,13 @@ public class PlayerProtection : MonoBehaviour
             if (_protectionAmount <= 0)
             { 
                 SetProtection(false);
-                if(!isCounsumed)
+                // 이미 실행 중인 코루틴이 있다면 중지
+                if (_protectionCoroutine != null)
+                {
+                    StopCoroutine(_protectionCoroutine);
+                    _protectionCoroutine = null;
+                }
+                if (!isCounsumed)
                 {
                     //못막은 분 만큼 데미지를 받습니다.
                     //GetComponent<PlayerHp>().TakeDamage(-_protectionAmount);
