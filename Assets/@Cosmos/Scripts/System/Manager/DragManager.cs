@@ -25,19 +25,16 @@ public class DragManager : Singleton<DragManager>
 
     protected override void Awake()
     {
-        Debug.Log("DragManager Awake 호출됨");
         base.Awake();
         smoothRotator = gameObject.AddComponent<SmoothRotator>();
         
         // Resources 폴더에서 DragRotationGuide 프리팹을 로드
         LoadRotationGuide();
-        
-        Debug.Log($"Awake 완료 - dragRotationGuide: {(dragRotationGuide != null ? "할당됨" : "null")}");
+
     }
 
     private void Start()
     {
-        Debug.Log("DragManager Start 호출됨");
         // Awake에서 로드가 실패했다면 Start에서 다시 시도
         if (dragRotationGuide == null)
         {
@@ -48,14 +45,12 @@ public class DragManager : Singleton<DragManager>
 
     private void LoadRotationGuide()
     {
-        Debug.Log("DragRotationGuide 로드 시작");
+        
         GameObject guidePrefab = Resources.Load<GameObject>("Prefabs/UI/DragRotationGuide");
-        Debug.Log($"DragRotationGuide 프리팹 로드 결과: {(guidePrefab != null ? "성공" : "실패")}");
         
         if (guidePrefab != null)
         {
             dragRotationGuide = Instantiate(guidePrefab);
-            Debug.Log($"DragRotationGuide 인스턴스 생성: {dragRotationGuide.name}");
             rotationGuideSpriteRenderers = dragRotationGuide.GetComponentsInChildren<SpriteRenderer>();
             if (rotationGuideSpriteRenderers != null && rotationGuideSpriteRenderers.Length > 0)
             {
@@ -63,7 +58,6 @@ public class DragManager : Singleton<DragManager>
                 {
                     spriteRenderer.enabled = false; // 초기에는 모두 숨김
                 }
-                Debug.Log($"SpriteRenderer {rotationGuideSpriteRenderers.Length}개 찾음 및 비활성화 완료");
             }
             else
             {

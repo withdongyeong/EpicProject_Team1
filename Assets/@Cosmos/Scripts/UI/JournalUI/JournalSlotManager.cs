@@ -43,7 +43,7 @@ public class JournalSlotManager : Singleton<JournalSlotManager>
     private List<GameObject>[] _storeTiles = new List<GameObject>[5];
     
     
-    public List<GameObject> allTiles = new List<GameObject>();
+    private List<GameObject> allTiles = new List<GameObject>();
     
     public  List<GameObject> AllTiles => allTiles;
 

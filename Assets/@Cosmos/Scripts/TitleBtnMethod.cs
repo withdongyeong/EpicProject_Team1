@@ -4,7 +4,7 @@ using Unity.Services.Analytics;
 using Steamworks;
 
 
-public class TESTSTAGESELECTBTN : MonoBehaviour
+public class TitleBtnMethod : MonoBehaviour
 {
     
     
@@ -25,14 +25,11 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     public void GOBUILDSCENE()
     {
         SoundManager.Instance.UISoundClip("ButtonActivate");
-
         SceneLoader.LoadBuilding();
     }
 
-    public void GOTITLESCENE()
+    public void EnterTitleScene()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
-
         GameManager.Instance.LoadTitleFirst();
     }
     
@@ -64,7 +61,7 @@ public class TESTSTAGESELECTBTN : MonoBehaviour
     {
         if (GridManager.Instance.PlacedTileList.Count <= 0)
         {
-            DragManager.Instance.GetComponentInChildren<PlacedHandler>().FirstPresent();
+            DragManager.Instance.GetComponentInChildren<PlacedHandler>().FirstPresentTile();
         }
         SoundManager.Instance.UISoundClip("ButtonActivate");
         StageSelectManager.Instance.StageSet("Guide");
