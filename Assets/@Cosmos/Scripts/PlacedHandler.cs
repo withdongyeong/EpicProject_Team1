@@ -120,19 +120,8 @@ public class PlacedHandler : MonoBehaviour
         GridManager.Instance.GridSpriteController.SetSprite(cellsPos.ToArray());
     }
     
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.O)) // F5 키를 눌러 타일 저장
-        {
-            SavePlacedTiles();
-        }
-        else if(Input.GetKeyDown(KeyCode.P)) // F6 키를 눌러 타일 불러오기
-        {
-            LoadPlacedTiles();
-        }
-    }
 
-    private void SavePlacedTiles()
+    public void SavePlacedTiles()
     {
         
         //1. 데이터 모으기
@@ -163,8 +152,8 @@ public class PlacedHandler : MonoBehaviour
         // 3. JSON 문자열을 바이트 배열로 변환합니다. (Steam API가 요구하는 형식)
         byte[] fileData = Encoding.UTF8.GetBytes(json);
 
-        // 4. Steam 클라우드에 "save_stage.dat"이라는 이름으로 파일을 씁니다.
-        bool success = SteamRemoteStorage.FileWrite("save_stage.dat", fileData, fileData.Length);
+        // 4. Steam 클라우드에 "save_session.dat"이라는 이름으로 파일을 씁니다.
+        bool success = SteamRemoteStorage.FileWrite("save_session.dat", fileData, fileData.Length);
 
         if(success)
         {
@@ -176,17 +165,17 @@ public class PlacedHandler : MonoBehaviour
         }
     }
     
-    private void LoadPlacedTiles()
+    public void LoadPlacedTiles()
     {
-        // 1. 클라우드에 "save_stage.dat" 파일이 있는지 확인합니다.
-        if (SteamRemoteStorage.FileExists("save_stage.dat"))
+        // 1. 클라우드에 "save_session.dat" 파일이 있는지 확인합니다.
+        if (SteamRemoteStorage.FileExists("save_session.dat"))
         {
             // 2. 파일 크기를 가져와서 해당 크기만큼의 바이트 배열(버퍼)을 만듭니다.
-            int fileSize = SteamRemoteStorage.GetFileSize("save_stage.dat");
+            int fileSize = SteamRemoteStorage.GetFileSize("save_session.dat");
             byte[] buffer = new byte[fileSize];
 
             // 3. 파일을 읽어서 버퍼에 저장합니다.
-            int bytesRead = SteamRemoteStorage.FileRead("save_stage.dat", buffer, buffer.Length);
+            int bytesRead = SteamRemoteStorage.FileRead("save_session.dat", buffer, buffer.Length);
 
             if (bytesRead > 0)
             {
@@ -211,8 +200,20 @@ public class PlacedHandler : MonoBehaviour
                     }
                 }
                 Debug.Log("Steam 클라우드에서 불러오기 성공!");
+                //데이터 삭제
+                bool s = SteamRemoteStorage.FileDelete("save_session.dat");
+                if (s)
+                {
+                    Debug.Log("Steam 클라우드에서 파일 삭제 성공.");
+                }
+                else
+                {
+                    Debug.LogError("Steam 클라우드에서 파일 삭제 실패.");
+                }
                 return;
             }
+            
+            
         }
         Debug.LogError("Steam 클라우드에서 불러오기 실패: 파일이 존재하지 않거나 읽기 오류 발생.");
     }

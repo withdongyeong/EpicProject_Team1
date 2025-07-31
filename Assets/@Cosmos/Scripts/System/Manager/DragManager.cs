@@ -22,6 +22,9 @@ public class DragManager : Singleton<DragManager>
 
     private GameObject dragRotationGuide; // DragRotationGuide 프리팹 참조
     private SpriteRenderer[] rotationGuideSpriteRenderers; // 가이드의 SpriteRenderer들
+    
+    private PlacedHandler placedHandler; // 배치 핸들러 참조
+    public PlacedHandler PlacedHandler => placedHandler; // 외부에서 배치 핸들러를 확인할 수 있도록 공개
 
     protected override void Awake()
     {
@@ -30,6 +33,7 @@ public class DragManager : Singleton<DragManager>
         
         // Resources 폴더에서 DragRotationGuide 프리팹을 로드
         LoadRotationGuide();
+        placedHandler = GetComponentInChildren<PlacedHandler>();
 
     }
 

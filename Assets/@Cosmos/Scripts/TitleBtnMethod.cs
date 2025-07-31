@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.IO;
 using Unity.Services.Analytics;
 using Steamworks;
 
-
+/// <summary>
+/// 거의 뭐 짬통임 ㅋㅋ 
+/// </summary>
 public class TitleBtnMethod : MonoBehaviour
 {
     
@@ -18,15 +21,25 @@ public class TitleBtnMethod : MonoBehaviour
         
     }
 
-  
-
-
-    //타이틀씬에서 쓰는 빌딩 씬으로 이동하는 버튼
-    public void GOBUILDSCENE()
+    
+    
+    
+    //Load 버튼 눌렀을 시 , 저장된 데이터를 불러옵니다.
+    public void LoadSavedBuildScene()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
-        SceneLoader.LoadBuilding();
+        StartCoroutine(LoadDataProcess());
     }
+
+    private IEnumerator LoadDataProcess()
+    {
+        DragManager.Instance.GetComponentInChildren<PlacedHandler>().FirstPresentTile();
+        SoundManager.Instance.UISoundClip("ButtonActivate");
+        GameManager.Instance.LogHandler.SetSessionPlayTimer();
+        SceneLoader.LoadBuilding();
+        yield return null;
+        DragManager.Instance.PlacedHandler.LoadPlacedTiles();
+    }  
+    
 
     public void EnterTitleScene()
     {
@@ -123,13 +136,7 @@ public class TitleBtnMethod : MonoBehaviour
 
     public void ExitGameButton()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
-        // 게임 종료
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        GameManager.Instance.GameQuit();
     }
 
 }
