@@ -165,6 +165,11 @@ public class StageUIHandler : MonoBehaviour
 
     private void ReturnToMainMenu()
     {
+        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
+        {
+            LifeManager.Instance.RemoveLife(1);
+            DragManager.Instance.PlacedHandler.SavePlacedTiles();
+        }
         ButtonClickSound();
         TimeScaleManager.Instance.ResetTimeScale();
         GameManager.Instance.LoadTitle();

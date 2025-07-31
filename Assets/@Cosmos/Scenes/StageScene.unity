@@ -874,7 +874,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.9453125
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3375,11 +3375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7779786177138611378, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: managedReferences[3702999284862419094].m_VariantData.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7779786177138611378, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: managedReferences[3702999284862419095].m_VariantData.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7779786177138611378, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       propertyPath: managedReferences[3702999284862419094].m_VariantData.Array.data[3].value
@@ -3434,7 +3434,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5559226869667213670, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
-      insertIndex: 5
+      insertIndex: 7
       addedObject: {fileID: 2137729017}
     - targetCorrespondingSourceObject: {fileID: 5559226869667213670, guid: 3d55c459bb596ca48918db4586cd6465, type: 3}
       insertIndex: -1

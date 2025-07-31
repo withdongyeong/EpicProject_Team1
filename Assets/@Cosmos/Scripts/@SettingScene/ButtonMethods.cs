@@ -22,7 +22,7 @@ public class ButtonMethods : MonoBehaviour
     public void OnAbandonButton()
     {
         //게임중일시 예외처리
-        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 1)
+        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
         {
             LifeManager.Instance.RemoveLife(1);
             DragManager.Instance.PlacedHandler.SavePlacedTiles();
@@ -62,7 +62,7 @@ public class ButtonMethods : MonoBehaviour
     {
         
         //게임중일시 예외처리
-        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 1)
+        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
         {
             LifeManager.Instance.RemoveLife(1);
             DragManager.Instance.PlacedHandler.SavePlacedTiles();
