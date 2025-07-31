@@ -52,19 +52,47 @@ public class Infinite : LastBoss
     protected override void Awake()
     {
         base.Awake();
-        // 기본 스탯 설정
-        // MaxHealth = GlobalSetting.Instance.GetBossBalance(10).maxHP;
-        // WeakDamage = GlobalSetting.Instance.GetBossBalance(10).weakDamage;
-        // StrongDamage = GlobalSetting.Instance.GetBossBalance(10).strongDamage;
-        // BPM = GlobalSetting.Instance.GetBossBpm(10);
-        /// 무한모드 전 임시 설정
-        MaxHealth = 6000;
+        /// 무한모드 설정
+        MaxHealth = 5500;
         WeakDamage = 50;
         StrongDamage = 50;
         BPM = 120;
+        
+        // 무한모드 강화 적용
+        ApplyInfiniteModeEnhancement();
+        
+        // 난이도 적용
         SetDifficulty();
         // 빙결 불가 설정
         IsHandBoss = true;
+    }
+    
+    /// <summary>
+    /// 무한모드 도전 횟수에 따른 보스 강화 적용
+    /// MaxHealth: 500씩 증가
+    /// WeakDamage, StrongDamage: 1씩 증가
+    /// BPM: 1씩 증가 (최대 130)
+    /// </summary>
+    private void ApplyInfiniteModeEnhancement()
+    {
+        if (StageSelectManager.Instance == null) return;
+    
+        int infiniteCount = StageSelectManager.Instance.InfiniteModeCount;
+    
+        if (infiniteCount > 0)
+        {
+            // MaxHealth 강화 (500씩 증가)
+            MaxHealth += infiniteCount * 500;
+        
+            // 데미지 강화 (1씩 증가)
+            WeakDamage += infiniteCount;
+            StrongDamage += infiniteCount;
+        
+            // BPM 강화 (1씩 증가, 최대 130)
+            BPM = Mathf.Min(120 + infiniteCount, 130);
+        
+            Debug.Log($"[무한모드 {infiniteCount}] 보스 강화 적용 - HP: {MaxHealth}, 약공: {WeakDamage}, 강공: {StrongDamage}, BPM: {BPM}");
+        }
     }
 
     /// <summary>
@@ -220,7 +248,7 @@ public class Infinite : LastBoss
     {
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
 
-        //클리어 도전과제를 달성합니다
+        // 일반 난이도 클리어 도전과제
         int difficulty = GameManager.Instance.DifficultyLevel;
         if (difficulty == 2)
         {
@@ -234,11 +262,22 @@ public class Infinite : LastBoss
             Debug.Log("헬클리어");
         }
 
+        // 무한모드 클리어 도전과제
+        if (StageSelectManager.Instance != null)
+        {
+            int infiniteCount = StageSelectManager.Instance.InfiniteModeCount;
+            if (infiniteCount >= 1)
+            {
+                SteamAchievement.Achieve("ACH_INFINITE_1");
+                Debug.Log("무한모드 1 클리어");
+            }
+        }
+
         if(GameManager.Instance.DifficultyLevel + 1 > SaveManager.GameModeLevel)
         {
             SaveManager.SaveGameModeLevel(GameManager.Instance.DifficultyLevel + 1);
         }
-        
+    
         // 기본 사망 처리 호출
         base.Die();
     }
