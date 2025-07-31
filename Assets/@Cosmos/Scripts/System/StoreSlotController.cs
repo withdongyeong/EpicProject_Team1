@@ -263,9 +263,19 @@ public class StoreSlotController : MonoBehaviour
 
     public void ResetSlotBtn()
     {
-        SoundManager.Instance.UISoundClip("RerollActivate");
-        if(GoldManager.Instance.UseCurrentGold(1))
+        if(_rerollNum < 3)
         {
+            SoundManager.Instance.UISoundClip("RerollActivate");
+            SetupStoreSlots();
+            _rerollNum++;
+            if (_rerollNum >= 10)
+            {
+                SteamAchievement.Achieve("ACH_BLD_REROLL");
+            }
+        }
+        else if(GoldManager.Instance.UseCurrentGold(1))
+        {
+            SoundManager.Instance.UISoundClip("RerollActivate");
             SetupStoreSlots();
             _rerollNum++;
             if (_rerollNum >= 10)
