@@ -348,14 +348,15 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 43615133719
     m_Localized: "<color=yellow>\uBCF4\uD638\uB9C9<sprite name=\"Barrier\"> \uC18C\uBAA8
-      \uC2DC:</color> \uD53C\uD574\uB7C9\uC774 \uC18C\uBAA8\uB41C \uBCF4\uD638\uB9C9\uC758
-      3\uBC30\uB9CC\uD07C \uC0C1\uC2B9\uD569\uB2C8\uB2E4. \n<color=yellow>\uBC1C\uB3D9
-      \uC2DC:</color> \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uD53C\uD574\uB7C9\uC744
-      \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9: <color=red>\uC18C\uBAA8\uD55C
-      \uBCF4\uD638\uB9C9 X 3</color>)\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0
-      \uC704\uCE58\uD55C</color> \uC18C\uD658\uC218\uAC00 3\uC885\uB958 \uC774\uC0C1\uC774\uB77C\uBA74,
-      \uD53C\uD574\uB7C9\uC774 \uC18C\uBAA8\uD55C \uBCF4\uD638\uB9C9\uB7C9\uC758
-      <color=green>4</color>\uBC30\uB9CC\uD07C \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+      \uC2DC:</color> \uD53C\uD574\uB7C9\uC774 \uC18C\uBAA8\uB41C \uBCF4\uD638\uB9C9<sprite
+      name=\"Barrier\">\uC758 3\uBC30\uB9CC\uD07C \uC0C1\uC2B9\uD569\uB2C8\uB2E4.
+      \n<color=yellow>\uBC1C\uB3D9\uC2DC</color>: \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4.
+      \uD53C\uD574\uB7C9\uC744 \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9:
+      <color=red>\uC18C\uBAA8\uD55C \uBCF4\uD638\uB9C9<sprite name=\"Barrier\"> X
+      3</color>)\n<color=yellow>\uBCC4<sprite name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color>
+      \uC18C\uD658\uC218<sprite name=\"Summon\">\uC774 3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74,
+      \uD53C\uD574\uB7C9\uC774 <color=red>\uC18C\uBAA8\uD55C \uBCF4\uD638\uB9C9<sprite
+      name=\"Barrier\"> X 4</color>\uB85C \uC99D\uAC00\uD569\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133720
@@ -378,8 +379,8 @@ MonoBehaviour:
   - m_Id: 43615133722
     m_Localized: "\uC801\uC5D0\uAC8C \uBD80\uC5EC\uB41C \uC800\uC8FC<sprite name=\"Curse\">
       \uAC1C\uC218\uC5D0 \uBE44\uB840\uD574 \uD53C\uD574\uAC00 \uC99D\uAC00\uD558\uB294
-      \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \r\n(\uD53C\uD574\uB7C9:
-      <color=red>\uC800\uC8FC<sprite name=\"Curse\"> \uAC1C\uC218 (\uCD5C\uC18C 1)</color>)\r\n<color=yellow>\uBCC4<sprite
+      \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \n(\uD53C\uD574\uB7C9:
+      <color=red>\uC800\uC8FC<sprite name=\"Curse\"> \uAC1C\uC218 (\uCD5C\uC18C 1)</color>)\n<color=yellow>\uBCC4<sprite
       name=\"Star\">\uC5D0 \uC704\uCE58\uD55C</color> \uB9C8\uBC95\uC9C4<sprite name=\"MagicCircle\">\uC774
       3\uAC1C \uC774\uC0C1\uC774\uB77C\uBA74, \uD53C\uD574\uB7C9\uC774 <color=red>\uC800\uC8FC<sprite
       name=\"Curse\"> \uAC1C\uC218 X 2</color>\uB85C \uC99D\uAC00\uD569\uB2C8\uB2E4."
@@ -439,7 +440,7 @@ MonoBehaviour:
     m_Localized: "<color=yellow>\uBCF4\uD638\uB9C9<sprite name=\"Barrier\"> \uC18C\uBAA8
       \uC2DC:</color> \uD53C\uD574\uB7C9\uC774 \uC18C\uBAA8\uB41C \uBCF4\uD638\uB9C9<sprite
       name=\"Barrier\">\uC758 3\uBC30\uB9CC\uD07C \uC0C1\uC2B9\uD569\uB2C8\uB2E4.
-      (<color=red>\uCD5C\uB300 45</color>)\n <color=yellow>\uBC1C\uB3D9 \uC2DC</color>:
+      (<color=red>\uCD5C\uB300 45</color>)\n<color=yellow>\uBC1C\uB3D9 \uC2DC</color>:
       \uD22C\uC0AC\uCCB4\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uD53C\uD574\uB7C9\uC744
       \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4.\n(\uD53C\uD574\uB7C9: <color=red>\uC18C\uBAA8\uD55C
       \uBCF4\uD638\uB9C9 X 3</color>)"
