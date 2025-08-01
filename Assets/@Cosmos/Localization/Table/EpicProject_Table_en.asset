@@ -378,14 +378,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 43615133719
-    m_Localized: "<color=yellow>When Barrier<sprite name=\"Barrier\"> is consumed:</color>
-      Damage increases by 3 times the consumed Barrier<sprite name=\"Barrier\">.
-      \n<color=yellow>When activated:</color> Fires a projectile. Damage is reset.
-      \n(Damage: <color=red>Consumed Barrier X 3</color>)<color=red>Also activates
-      when Barrier reaches 0.</color> \nIf there are 3 or more types of summons<sprite
-      name=\"Summon\"> <color=yellow>located on the Star<sprite name=\"Star\"></color>,
-      damage increases by <color=green>4</color> times the consumed Barrier amount.
-      This isn't finalized yet"
+    m_Localized: "<color=yellow>When barrier<sprite name=\"Barrier\"> is consumed:</color>
+      Damage increases by 3 times the consumed barrier<sprite name=\"Barrier\">.
+      \n<color=yellow>On activation</color>: Fires a projectile. Damage resets. \n(Damage:
+      <color=red>Consumed barrier<sprite name=\"Barrier\"> X 3</color>) \n<color=yellow>If
+      there are 3 or more summons<sprite name=\"Summon\"> located on the star<sprite
+      name=\"Star\">:</color> Damage increases to <color=red>consumed barrier<sprite
+      name=\"Barrier\"> X 4</color>."
     m_Metadata:
       m_Items: []
   - m_Id: 43615133720
