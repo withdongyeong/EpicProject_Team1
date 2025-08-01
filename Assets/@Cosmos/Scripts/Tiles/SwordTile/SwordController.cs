@@ -468,6 +468,7 @@ public class SwordController : MonoBehaviour
                 if(_isBurning)
                 {
                     monster.AddDebuff(BossDebuff.Burning);
+                    monster.AddDebuff(BossDebuff.Burning);
                     _burnCount--;
                     if (_burnCount <= 0)
                     {
