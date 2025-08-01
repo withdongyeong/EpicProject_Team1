@@ -31,7 +31,7 @@ public class StageSelectManager : Singleton<StageSelectManager>
     /// 무한모드 도전 횟수 (최종 스테이지 클리어 후 재도전 카운트)
     /// </summary>
     private int infiniteModeCount = 0;
-
+    
     public int StageNum => stageNum;
     
     /// <summary>
@@ -85,6 +85,16 @@ public class StageSelectManager : Singleton<StageSelectManager>
     {
         stageNum = 1;
         ResetInfiniteModeCount();
+    }
+    
+    public void SetInfiniteModeCount(int count)
+    {
+        if (count < 0)
+        {
+            Debug.LogWarning("[StageSelectManager] 무한모드 도전 횟수는 음수가 될 수 없습니다.");
+            return;
+        }
+        infiniteModeCount = count;
     }
 
     public void SetStageNum(int num) //테스트용

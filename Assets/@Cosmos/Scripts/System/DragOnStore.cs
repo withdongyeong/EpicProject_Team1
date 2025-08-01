@@ -50,7 +50,6 @@ public class DragOnStore : DraggableObject
             //드래그 오브젝트 생성 및 위치 초기화
             worldPosition = _canvas.worldCamera.ScreenToWorldPoint(_rectTransform.TransformPoint(Vector3.zero));
             worldPosition.z = 0;
-            Debug.Log(worldPosition);
             dragObject = Instantiate(originalObject,worldPosition, originalObject.transform.rotation);
             _tileObject = dragObject.GetComponent<TileObject>();
         }

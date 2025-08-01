@@ -165,6 +165,8 @@ public class StageUIHandler : MonoBehaviour
 
     private void ReturnToMainMenu()
     {
+        
+        DragManager.Instance.PlacedHandler.SavePlacedTiles();
         ButtonClickSound();
         TimeScaleManager.Instance.ResetTimeScale();
         GameManager.Instance.LoadTitle();

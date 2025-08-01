@@ -34,7 +34,7 @@ public class SteamStatsManager : Singleton<SteamStatsManager>
     {
         SteamUserStats.GetStat(TotalPlayTimeSeconds, out int currentPlayTime);
         SteamUserStats.SetStat(TotalPlayTimeSeconds, currentPlayTime + secondsToAdd);
-        Debug.Log(TotalPlayTimeSeconds);
+        //Debug.Log(TotalPlayTimeSeconds);
     }
     
     

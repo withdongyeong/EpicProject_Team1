@@ -18,6 +18,7 @@ using System.Linq;
 /// </summary>
 public class AnalyticsManager : Singleton<AnalyticsManager>
 {
+    public bool isCollectingData = false; // 데이터 수집 여부
     private bool _isInitialized = false;
     public bool isAgreed = false; // 데이터 수집 동의 여부
 
@@ -26,6 +27,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
     {
         base.Awake();
         EventBus.SubscribePlayerDeath(StageFailEvent);
+        
+        isCollectingData = false; // 로그 수집을 중단합니다.
     }
     private void Start()
     {
@@ -37,6 +40,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     public async void CollectStart()
     {
+        if(!isCollectingData) return;
         Debug.Log("--- UGS 테스트 시작 ---");
         try
         {
@@ -71,6 +75,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
     private bool IsInit()
     {
+        if(!isCollectingData) return false;
         if (!isAgreed)
         {
             Debug.LogWarning("동의하지 않음 이벤트 전송 불가.");
