@@ -110,7 +110,7 @@ public class GameManager : Singleton<GameManager>
     // 타이틀로 돌아갈 때 벌어지는 일들
     public void LoadTitle()
     {
-        AnalyticsManager.Instance.GoTitleEvent();
+        //AnalyticsManager.Instance.GoTitleEvent();
         LogHandler.SetTotalPlayTimer();
         currentUnlockLevel = SaveManager.UnlockLevel;
         TimeScaleManager.Instance.ResetTimeScale();
@@ -133,7 +133,7 @@ public class GameManager : Singleton<GameManager>
         currentUnlockLevel = SaveManager.UnlockLevel;
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
-        GoldManager.Instance.SetCurrentGold(16);
+        GoldManager.Instance.SetCurrentGold(14);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
