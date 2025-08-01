@@ -31,6 +31,7 @@ public class DifficultySelectPannel : MonoBehaviour
     //타이틀씬에서 쓰는 빌딩 씬으로 이동하는 버튼
     private void GoBuildScene()
     {
+        DragManager.Instance.PlacedHandler.DeletePlacedTiles();
         DragManager.Instance.GetComponentInChildren<PlacedHandler>().FirstPresentTile();
         SoundManager.Instance.UISoundClip("ButtonActivate");
         GameManager.Instance.LogHandler.SetSessionPlayTimer();

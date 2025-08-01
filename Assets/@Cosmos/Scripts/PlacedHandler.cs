@@ -47,7 +47,6 @@ public class PlacedHandler : MonoBehaviour
     private GameObject MakeTileForGrid(GameObject tile) // 그리드에 배치할 타일을 생성하는 메서드입니다.
     {
         GameObject newTile = Instantiate(tile, Vector3.zero, Quaternion.identity); // 타일 생성
-        newTile.AddComponent<DragOnGrid>(); // 타일에 드래그 컴포넌트 추가
         
         foreach (Cell cell in newTile.GetComponentsInChildren<Cell>())
         {
@@ -66,20 +65,41 @@ public class PlacedHandler : MonoBehaviour
     private IEnumerator CreateTileOnGrid(GameObject tile, Vector3 pos, int rotation) //타일을 그리드에 배치해주는 메서드 입니다
     {
         //1. 타일 생성
+        
         GameObject newTile = MakeTileForGrid(tile);
         //2. 타일 위치 설정
         newTile.transform.SetParent(GridManager.Instance.TilesOnGrid.gameObject.transform);
         //3. 타일 위치 조정
         newTile.transform.localPosition = pos;
-        //4. 타일의 회전 설정
+        
+        //4. 타일의 드래그 컴포넌트 추가
+        Vector3Int tilePos = GridManager.Instance.WorldToGridPosition(newTile.transform.position); // 타일의 그리드 위치 계산
+        if (GridManager.Instance.IsWithinGrid(tilePos))
+        {
+            newTile.AddComponent<DragOnGrid>();
+        }
+        else
+        {
+            newTile.AddComponent<DragOnStorage>();
+        }
+        
+        //5. 타일의 회전 설정
         newTile.transform.localRotation = Quaternion.Euler(0, 0, rotation);
-        //5. 그리드의 Sprite 설정
+        //6. 그리드의 Sprite 설정
         SetGridSprite(newTile);
         
-        //5.5 1프레임 대기
+        //7 1프레임 대기
         yield return null;
         
-        //6. 실제 Grid의 점유 상태 변경
+        
+        if(newTile.GetComponent<DragOnStorage>() != null)
+        {
+            //드래그 온 스토리지 컴포넌트가 있다면, 스토리지에 배치하는 것이므로 여기서 끝
+            yield break;
+        }
+        
+        
+        //8. 실제 Grid의 점유 상태 변경
         foreach (var cell in newTile.GetComponentsInChildren<Cell>())
         {
             
@@ -96,7 +116,8 @@ public class PlacedHandler : MonoBehaviour
             GridManager.Instance.OccupyCell(gridPos, cell);
         }
         
-        //7. 타일 오브젝트 설정
+        //9. 타일 오브젝트 설정
+        
         TileObject tileObject = newTile.GetComponent<TileObject>();
         tileObject.OnPlaced();
         //배치된 타일이 인접효과를 계산하게 합니다
@@ -203,20 +224,30 @@ public class PlacedHandler : MonoBehaviour
                 }
                 Debug.Log("Steam 클라우드에서 불러오기 성공!");
                 //데이터 삭제
-                bool s = SteamRemoteStorage.FileDelete("save_session.dat");
-                if (s)
-                {
-                    Debug.Log("Steam 클라우드에서 파일 삭제 성공.");
-                }
-                else
-                {
-                    Debug.LogError("Steam 클라우드에서 파일 삭제 실패.");
-                }
+                DeletePlacedTiles();
                 return;
             }
             
             
         }
         Debug.LogError("Steam 클라우드에서 불러오기 실패: 파일이 존재하지 않거나 읽기 오류 발생.");
+    }
+    
+    
+    public void DeletePlacedTiles()
+    {
+        // Steam 클라우드에서 "save_session.dat" 파일을 삭제합니다.
+        if (!SteamRemoteStorage.FileExists("save_session.dat"))
+        {
+            return;
+        }
+        if (SteamRemoteStorage.FileDelete("save_session.dat"))
+        {
+            Debug.Log("Steam 클라우드에서 파일 삭제 성공.");
+        }
+        else
+        {
+            Debug.LogError("Steam 클라우드에서 파일 삭제 실패.");
+        }
     }
 }
