@@ -66,7 +66,7 @@ public class StageUIHandler : MonoBehaviour
             menuButton.onClick.AddListener(ShowTitleScenePanel);
 
         if (endingMenuButton != null)
-            endingMenuButton.onClick.AddListener(ReturnToMainMenu);
+            endingMenuButton.onClick.AddListener(ReturnToMainMenuWithSave);
 
         if (continueButton != null)
             continueButton.onClick.AddListener(OnContinueButton);

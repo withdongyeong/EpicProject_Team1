@@ -37,7 +37,7 @@ public class TestManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F7)) DeleteTutorialData();
         if(Input.GetKeyDown(KeyCode.F8)) DeleteSaveData();
         if(Input.GetKeyDown(KeyCode.F9)) AddPlayerLife();
-        if(Input.GetKeyDown(KeyCode.F10)) SteamAchievementReset();
+        //if(Input.GetKeyDown(KeyCode.F10)) SteamAchievementReset();
         
         if(Input.GetKeyDown(KeyCode.Z)) BossDamaged100();
         if(Input.GetKeyDown(KeyCode.X)) BossDamaged300();
