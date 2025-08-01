@@ -175,7 +175,21 @@ public class GameManager : Singleton<GameManager>
                         Application.Quit();
         #endif
     }
-    
+
+    public void OnApplicationQuit()
+    {
+        Debug.Log("QuitGame");
+        if (SceneLoader.IsInBuilding())
+        {
+            DragManager.Instance.PlacedHandler.SavePlacedTiles();
+        }
+        else if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
+        {
+            LifeManager.Instance.RemoveLife(1);
+            DragManager.Instance.PlacedHandler.SavePlacedTiles();
+        }
+    }
+
     private void OnDestroy()
     {
         EventBus.UnsubscribeSceneLoaded(OnSceneLoaded);
