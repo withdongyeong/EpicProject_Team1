@@ -39,6 +39,7 @@ public enum TileCategory
     Consumable,  // 소모품
     Trinket,   // 장신구
     Summon,     // 소환수
+    Planet, // 행성
     None, //없음
 }
 

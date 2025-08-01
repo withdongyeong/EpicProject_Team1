@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -264,9 +263,19 @@ public class StoreSlotController : MonoBehaviour
 
     public void ResetSlotBtn()
     {
-        SoundManager.Instance.UISoundClip("RerollActivate");
-        if(GoldManager.Instance.UseCurrentGold(1))
+        if(_rerollNum < 3)
         {
+            SoundManager.Instance.UISoundClip("RerollActivate");
+            SetupStoreSlots();
+            _rerollNum++;
+            if (_rerollNum >= 10)
+            {
+                SteamAchievement.Achieve("ACH_BLD_REROLL");
+            }
+        }
+        else if(GoldManager.Instance.UseCurrentGold(1))
+        {
+            SoundManager.Instance.UISoundClip("RerollActivate");
             SetupStoreSlots();
             _rerollNum++;
             if (_rerollNum >= 10)
@@ -312,7 +321,7 @@ public class StoreSlotController : MonoBehaviour
         //필요한 타일이 있는지 검사합니다.
         if(tileObject.GetTileData().RequiredTile != null)
         {
-            if(!GridManager.Instance.PlacedTileList.Contains(tileObject.GetTileData().RequiredTile.tileName))
+            if(!PurchasedTileManager.Instance.PurchasedTiles.Contains(tileObject.GetTileData().RequiredTile.tileName))
             {
                 isAvailable = false;
             }
@@ -324,7 +333,7 @@ public class StoreSlotController : MonoBehaviour
         {
             foreach(TileData tileData in tileObject.GetTileData().RejectTileList)
             {
-                if (GridManager.Instance.PlacedTileList.Contains(tileData.tileName) || appeardTileNameList.Contains(tileData.tileName))
+                if (PurchasedTileManager.Instance.PurchasedTiles.Contains(tileData.tileName) || appeardTileNameList.Contains(tileData.tileName))
                 {
                     isAvailable = false;
                 }
@@ -348,7 +357,10 @@ public class StoreSlotController : MonoBehaviour
             }
             if (_storeTiles[(int)grade].Count == 0)
             {
-                RefillList(grade);
+                List<int> possibleValues = new List<int> { 0, 1, 2, 3, 4 };
+                possibleValues.Remove((int)grade); // 자기 자신을 제외
+                int randomIndexNum = Random.Range(0, possibleValues.Count);
+                grade = (TileGrade)possibleValues[randomIndexNum];
             }
             int randomIndex = Random.Range(0, _storeTiles[(int)grade].Count);
             GameObject chosenTile = _storeTiles[(int)grade][randomIndex];
