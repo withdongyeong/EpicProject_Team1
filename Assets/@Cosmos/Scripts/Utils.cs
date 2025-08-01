@@ -264,4 +264,5 @@ public class SavedTileData
     public int infiniteModeCount; // 무한모드 도전 횟수
     public int difficulty; // 난이도
     public List<PlacedTileData> savedTiles = new List<PlacedTileData>();
+    public List<string> PurchasedTiles = new(); // 구매한 타일들 리스트
 }

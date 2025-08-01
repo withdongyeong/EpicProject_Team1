@@ -119,7 +119,7 @@ public class GameManager : Singleton<GameManager>
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
-        
+               
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);
