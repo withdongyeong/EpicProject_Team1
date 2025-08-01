@@ -119,7 +119,7 @@ public class GameManager : Singleton<GameManager>
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
-        
+               
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);
@@ -133,7 +133,7 @@ public class GameManager : Singleton<GameManager>
         currentUnlockLevel = SaveManager.UnlockLevel;
         TimeScaleManager.Instance.ResetTimeScale();
         GridManager.Instance.ResetGridCompletely();
-        GoldManager.Instance.SetCurrentGold(16);
+        GoldManager.Instance.SetCurrentGold(14);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
         JournalSlotManager.Instance.SetStoreTileList();
