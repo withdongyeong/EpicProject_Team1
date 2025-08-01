@@ -266,8 +266,12 @@ public abstract class BaseBoss : MonoBehaviour
         {
             Debug.Log("됨");
             SteamAchievement.Achieve("ACH_BTL_DAMAGE");
-        }
-        
+            if(damage >= 1000)
+            {
+                Debug.Log("더 강하게 됨");
+                SteamAchievement.Achieve("ACH_SUPER_DAMAGE");
+            }
+        }       
         
         if (_currentHealth <= 0)
         {
