@@ -21,16 +21,9 @@ public class ButtonMethods : MonoBehaviour
 
     public void OnAbandonButton()
     {
-        //게임중일시 예외처리
-        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
-        {
-            LifeManager.Instance.RemoveLife(1);
-            DragManager.Instance.PlacedHandler.SavePlacedTiles();
-        }
-
         
         //빌딩 씬일시 저장
-        if (SceneLoader.IsInBuilding())
+        if (SceneLoader.IsInBuilding() || SceneLoader.IsInStage())
         {
             DragManager.Instance.PlacedHandler.SavePlacedTiles();
         }
@@ -61,16 +54,8 @@ public class ButtonMethods : MonoBehaviour
     public void OnExitButton()
     {
         
-        //게임중일시 예외처리
-        if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
-        {
-            LifeManager.Instance.RemoveLife(1);
-            DragManager.Instance.PlacedHandler.SavePlacedTiles();
-        }
-
-        
         //빌딩 씬일시 저장
-        if (SceneLoader.IsInBuilding())
+        if (SceneLoader.IsInBuilding() || SceneLoader.IsInStage())
         {
             DragManager.Instance.PlacedHandler.SavePlacedTiles();
         }

@@ -178,14 +178,8 @@ public class GameManager : Singleton<GameManager>
 
     public void OnApplicationQuit()
     {
-        Debug.Log("QuitGame");
-        if (SceneLoader.IsInBuilding())
+        if (SceneLoader.IsInStage() || SceneLoader.IsInBuilding())
         {
-            DragManager.Instance.PlacedHandler.SavePlacedTiles();
-        }
-        else if (SceneLoader.IsInStage() && LifeManager.Instance.Life > 0)
-        {
-            LifeManager.Instance.RemoveLife(1);
             DragManager.Instance.PlacedHandler.SavePlacedTiles();
         }
     }
