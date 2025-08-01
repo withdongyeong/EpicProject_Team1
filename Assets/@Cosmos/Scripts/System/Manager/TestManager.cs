@@ -51,32 +51,32 @@ public class TestManager : MonoBehaviour
     {
         if (cheatCount == 0)
         {
-            if (Input.GetKeyDown("R")) cheatCount = 1;
+            if (Input.GetKeyDown("r")) cheatCount = 1;
             else if (Input.anyKeyDown) cheatCount = 0;
         }
         else if (cheatCount == 1)
         {
-            if (Input.GetKeyDown("U")) cheatCount = 2;
+            if (Input.GetKeyDown("u")) cheatCount = 2;
             else if (Input.anyKeyDown) cheatCount = 0;
         }
         else if (cheatCount == 2)
         {
-            if (Input.GetKeyDown("F")) cheatCount = 3;
+            if (Input.GetKeyDown("f")) cheatCount = 3;
             else if (Input.anyKeyDown) cheatCount = 0;
         }
         else if (cheatCount == 3)
         {
-            if (Input.GetKeyDown("T")) cheatCount = 4;
+            if (Input.GetKeyDown("t")) cheatCount = 4;
             else if (Input.anyKeyDown) cheatCount = 0;
         }
         else if (cheatCount == 4)
         {
-            if (Input.GetKeyDown("H")) cheatCount = 5;
+            if (Input.GetKeyDown("h")) cheatCount = 5;
             else if (Input.anyKeyDown) cheatCount = 0;
         }
         else if (cheatCount == 5)
         {
-            if (Input.GetKeyDown("R")) cheatCount = 6;
+            if (Input.GetKeyDown("r")) cheatCount = 6;
             else if (Input.anyKeyDown) cheatCount = 0;
         }
         else if (cheatCount == 6)
