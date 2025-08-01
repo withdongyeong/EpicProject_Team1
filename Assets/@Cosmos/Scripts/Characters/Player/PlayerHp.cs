@@ -102,19 +102,19 @@ public class PlayerHp : MonoBehaviour
         //무적 부여
         StartInvincibility();
 
+        // 방어 상태면 방어막량 감소
+        if (_playerShield.TryShieldBlock(damage))
+        {
+            SoundManager.Instance.PlayTileSoundClip("ShieldSkillRemove");
+            return;
+        }
+
         // 보호 상태면 보호막량 감소
         damage = _playerProtection.TryProtectionBlock(damage);
         
         //이건 막았다는 뜻이므로 return 합니다.
         if (damage <= 0)
         {
-            return;
-        }
-
-        // 방어 상태면 방어막량 감소
-        if (_playerShield.TryShieldBlock(damage))
-        {
-            SoundManager.Instance.PlayTileSoundClip("ShieldSkillRemove");
             return;
         }
 
