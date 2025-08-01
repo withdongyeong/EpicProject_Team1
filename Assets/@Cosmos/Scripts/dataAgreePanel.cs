@@ -12,7 +12,7 @@ public class dataAgreePanel : MonoBehaviour
     {
         if (SaveManager.FirstStart == 0)
         {
-            panel.gameObject.SetActive(true);
+            panel.gameObject.SetActive(false); //false 로 설정 함
         }
         else
         {
