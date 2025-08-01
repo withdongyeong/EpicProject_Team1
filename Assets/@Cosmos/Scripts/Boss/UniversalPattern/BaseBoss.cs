@@ -241,7 +241,10 @@ public abstract class BaseBoss : MonoBehaviour
         {
             hitSoundCoroutine = StartCoroutine(HitSoundCoroutine(hitObject));
         }
-        damage = _bossDebuff.ApplyMarkEffect(damage);
+        if (!hitObject.name.Contains("Burning"))
+        {
+            damage = _bossDebuff.ApplyMarkEffect(damage);
+        }
         damage = _bossDebuff.ApplyPainEffect(damage);
         if (_isStopped || _isDamageIncreased)
         {
