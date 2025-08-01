@@ -13,6 +13,7 @@ public class Kabuto_RE : MonoBehaviour
     private KabutoSummonSkill _summoner;
     private int _effectId = -1;
 
+    private KabutoProjectile _kabutoProjectile;
     private Sprite _imago;
 
 
@@ -33,6 +34,10 @@ public class Kabuto_RE : MonoBehaviour
         if (_protection.IsProtected && _effectId == -1)
         {
             _effectId = _protectionEffect.StartProtectionEffect(_protection.gameObject, transform.position);
+            if(_kabutoProjectile == null)
+            {
+                SpawnProjectile();
+            }
         }
         // 보호막이 없으면 이펙트를 중지합니다.
         else if (!_protection.IsProtected && _effectId != -1)
@@ -65,6 +70,16 @@ public class Kabuto_RE : MonoBehaviour
         _currentConsume += protection;
     }
 
+    private void SpawnProjectile()
+    {
+        Vector3 dir = _target.transform.position - transform.position;
+        GameObject projectileObj = Instantiate(_projectile, transform.TransformPoint(new Vector2(1.18f,1.156f)), Quaternion.identity);
+        Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, dir);
+        Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
+        projectileObj.transform.rotation = lookRotation * clockwise90;
+        _kabutoProjectile = projectileObj.GetComponent<KabutoProjectile>();
+    }
+
     public void Fire()
     {
 
@@ -74,21 +89,20 @@ public class Kabuto_RE : MonoBehaviour
             SteamAchievement.Achieve("ACH_CON_KABUTO");
         }
         SoundManager.Instance.PlayTileSoundClip("KabutoFire");
-        Vector3 dir = _target.transform.position - transform.position;
-        GameObject projectileObj = Instantiate(_projectile, transform.position, Quaternion.identity);
-        Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, dir);
-        Quaternion clockwise90 = Quaternion.Euler(0, 0, -90);
-        projectileObj.transform.rotation = lookRotation * clockwise90;
-        Projectile projectile = projectileObj.GetComponent<Projectile>();
-        if(IsHyper)
+        Vector3 dir = _target.transform.position - transform.TransformPoint(new Vector2(1.18f, 1.156f));
+        if(_kabutoProjectile != null)
         {
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 4);
-        }
-        else
-        {
-            projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 3);
-        }
+            if (IsHyper)
+            {
+                _kabutoProjectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 4, true);
+            }
+            else
+            {
+                _kabutoProjectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 3, true);
+            }
+        }    
         _currentConsume = 0;
+        _kabutoProjectile = null;
 
     }
 

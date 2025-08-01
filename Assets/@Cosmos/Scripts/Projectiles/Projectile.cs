@@ -11,8 +11,8 @@ public class Projectile : MonoBehaviour
     private BossDebuff bossDebuff = BossDebuff.None; // 상태 이상
     private ProjectileTeam _team; // 투사체 소속 진영
     private bool isFrostHammer = false; // FrostHammer 투사체 여부
-    private bool _isRainbow = false; //무지개로 빛나는지 여부
-    private SpriteRenderer _sr;
+    protected bool _isRainbow = false; //무지개로 빛나는지 여부
+    protected SpriteRenderer _sr;
 
     private GameObject hitEffect;
     private GameObject hitEffectHammer;
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// 투사체 초기화
     /// </summary>
-    public void Initialize(Vector3 dir, ProjectileTeam projectileTeam, int givenDamage = 10, bool isRainbow = false)
+    public virtual void Initialize(Vector3 dir, ProjectileTeam projectileTeam, int givenDamage = 10, bool isRainbow = false)
     {
         direction = dir.normalized;
         _team = projectileTeam;
