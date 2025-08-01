@@ -52,7 +52,7 @@ public class SkipBarImage : MonoBehaviour
             .SetUpdate(UpdateType.Normal, false)
             .onComplete = () =>
         {
-            SceneLoader.LoadTitle();
+            GameManager.Instance.LoadTitle();
         };
     }
 }

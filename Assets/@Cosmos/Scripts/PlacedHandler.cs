@@ -144,7 +144,6 @@ public class PlacedHandler : MonoBehaviour
 
     public void SavePlacedTiles()
     {
-        
         //1. 데이터 모으기
         SavedTileData savedTileData = new SavedTileData();
         savedTileData.gold = GoldManager.Instance.CurrentGold;
