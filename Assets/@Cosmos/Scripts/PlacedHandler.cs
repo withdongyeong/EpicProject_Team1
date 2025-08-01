@@ -215,7 +215,7 @@ public class PlacedHandler : MonoBehaviour
                 StageSelectManager.Instance.SetInfiniteModeCount(savedTileData.infiniteModeCount);
                 GameManager.Instance.SetDifficultyLevel(savedTileData.difficulty);
                 PurchasedTileManager.Instance.SetPurchasedTiles(savedTileData.PurchasedTiles);
-                FindAnyObjectByType<StoreSlotController>().SetupStoreSlots();
+                //FindAnyObjectByType<StoreSlotController>().SetupStoreSlots();
 
                 foreach (PlacedTileData placedTile in savedTileData.savedTiles)
                 {
