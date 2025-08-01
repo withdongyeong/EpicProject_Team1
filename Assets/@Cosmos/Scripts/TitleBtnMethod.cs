@@ -99,7 +99,6 @@ public class TitleBtnMethod : MonoBehaviour
 
     public void OpenTutoChoicePanel(GameObject gameObject)
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
         if (SaveManager.IsTutorialCompleted == 1)
         {
             // 튜토리얼이 완료된 경우, 바로 빌딩 씬으로 이동
@@ -112,13 +111,11 @@ public class TitleBtnMethod : MonoBehaviour
 
     public void OpenDifficultySelectPannel()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
         FindAnyObjectByType<DifficultySelectPannel>(FindObjectsInactive.Include).gameObject.SetActive(true);
     }
 
     public void OpenSettingsPanel()
     {
-        SoundManager.Instance.UISoundClip("ButtonActivate");
         SceneLoader.ToggleSetting();
     }
 
