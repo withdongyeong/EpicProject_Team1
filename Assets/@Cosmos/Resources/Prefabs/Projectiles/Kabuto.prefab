@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 886162051963277975}
   - component: {fileID: 2559957596122160532}
-  - component: {fileID: 8997428638243860806}
   - component: {fileID: 7382160250413018410}
   - component: {fileID: 7742841739484589191}
+  - component: {fileID: 1896757129682212824}
+  - component: {fileID: 5981066472157121560}
   m_Layer: 0
   m_Name: Kabuto
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,18 +72,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.2
---- !u!114 &8997428638243860806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603461643113537889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a777119135154c71b96c4e33b8d7d7c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7382160250413018410
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -160,3 +149,86 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1896757129682212824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603461643113537889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6584182420001783894
+  references:
+    version: 2
+    RefIds:
+    - rid: 6584182420001783894
+      type: {class: TrackedTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 886162051963277975}
+        m_TrackedProperties:
+          items:
+          - rid: 6584182420001783895
+          - rid: 6584182420001783896
+          - rid: 6584182420001783897
+          - rid: 6584182420001783898
+    - rid: 6584182420001783895
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_LocalScale.x
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 3
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+    - rid: 6584182420001783896
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_LocalScale.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 3
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+    - rid: 6584182420001783897
+      type: {class: BoolTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_ConstrainProportionsScale
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 0
+        - localeIdentifier:
+            m_Code: en
+          value: 0
+    - rid: 6584182420001783898
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_LocalScale.z
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.33333334
+--- !u!114 &5981066472157121560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603461643113537889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c72c1c81b3f914d80e90c77fd73671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
