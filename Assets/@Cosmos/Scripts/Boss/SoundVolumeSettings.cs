@@ -44,16 +44,16 @@ public class SoundVolumeSettings : MonoBehaviour
     public float TurtleAttack = 1f;
     public float CrowHowling = 1f;
     public float KabutoCastOff = 1f;
-    public float KabutoConsume = 1f;
-    public float KabutoFire = 1f;
+    public float KabutoConsume = 0.5f;
+    public float KabutoFire = 0.5f;
 
-    public float FreezeActivate = 0.8f;
+    public float FreezeActivate = 0.6f;
 
     // ---------------- Arachne ----------------
     [Header("🕷 Arachne")]
     public float PoisionExplotionActivate = 0.7f;
     public float PoisonBallActivate = 0.7f;
-    public float SpiderLegActivate = 0.3f;
+    public float SpiderLegActivate = 0.2f;
     public float SpiderSilkActivate = 0.8f;
     public float ArachneDamageActivate = 0.3f;
     public float ArachneDeadActivate = 1f;

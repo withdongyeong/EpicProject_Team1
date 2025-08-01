@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3680741919607081846}
   - component: {fileID: 3388639264008697600}
   - component: {fileID: 7634589412706860741}
+  - component: {fileID: 3039062402745239449}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -95,8 +96,9 @@ MonoBehaviour:
   TurtleAttack: 1
   CrowHowling: 1
   KabutoCastOff: 1
-  KabutoConsume: 1
-  KabutoFire: 1
+  KabutoConsume: 0.5
+  KabutoFire: 0.5
+  FreezeActivate: 0.6
   PoisionExplotionActivate: 0.7
   PoisonBallActivate: 0.7
   SpiderLegActivate: 0.3
@@ -154,6 +156,90 @@ MonoBehaviour:
   TileSellActivate: 1
   GameClearActivate: 0.5
   LoseActivate: 0.5
+--- !u!114 &3039062402745239449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525037450235066444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 5138687464242413669
+  references:
+    version: 2
+    RefIds:
+    - rid: 5138687464242413669
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 7634589412706860741}
+        m_TrackedProperties:
+          items:
+          - rid: 5138687464242413670
+          - rid: 5138687464242413671
+          - rid: 5138687464242413672
+          - rid: 5138687464242413673
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 5138687464242413670
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: KabutoConsume
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: ru
+          value: 0.5
+        - localeIdentifier:
+            m_Code: en
+          value: 0.5
+    - rid: 5138687464242413671
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: KabutoFire
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: ru
+          value: 0.5
+        - localeIdentifier:
+            m_Code: en
+          value: 0.5
+    - rid: 5138687464242413672
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: FreezeActivate
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 0.8
+        - localeIdentifier:
+            m_Code: ru
+          value: 0.6
+        - localeIdentifier:
+            m_Code: en
+          value: 0.6
+    - rid: 5138687464242413673
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: SpiderLegActivate
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 0.3
+        - localeIdentifier:
+            m_Code: en
+          value: 0.2
 --- !u!1 &6314046654881224318
 GameObject:
   m_ObjectHideFlags: 0
