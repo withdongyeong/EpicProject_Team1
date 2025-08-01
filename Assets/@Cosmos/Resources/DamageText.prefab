@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4688133006520922511}
   - component: {fileID: 968746971261272551}
-  - component: {fileID: 4256917430794495148}
   m_Layer: 0
   m_Name: DamageText
   m_TagString: Untagged
@@ -53,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   permanent: 0
   lifetime: 0.75
-  unscaledTime: 0
+  unscaledTime: 1
   enable3DGame: 0
   faceCameraView: 1
   lookAtCamera: 0
@@ -171,24 +170,24 @@ MonoBehaviour:
   colorByNumberSettings:
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key1: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key2: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key3: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key4: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key5: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key6: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
-      key7: {r: 0.9411765, g: 0, b: 0.6901961, a: 0.627451}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 0.4575472, a: 1}
+      key2: {r: 1, g: 1, b: 0, a: 0.1254902}
+      key3: {r: 1, g: 0.69224936, b: 0.3820755, a: 0.1254902}
+      key4: {r: 1, g: 0.5019608, b: 0, a: 0.1254902}
+      key5: {r: 1, g: 0, b: 0.7, a: 0.1254902}
+      key6: {r: 1, g: 0, b: 0.69803923, a: 0.1254902}
+      key7: {r: 1, g: 0, b: 0.29948568, a: 0.1254902}
       ctime0: 6521
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
+      ctime1: 6554
+      ctime2: 19595
+      ctime3: 19661
+      ctime4: 32440
+      ctime5: 32768
+      ctime6: 65469
+      ctime7: 65535
       atime0: 0
-      atime1: 65535
+      atime1: 65361
       atime2: 0
       atime3: 0
       atime4: 0
@@ -197,7 +196,7 @@ MonoBehaviour:
       atime7: 0
       m_Mode: 0
       m_ColorSpace: -1
-      m_NumColorKeys: 2
+      m_NumColorKeys: 8
       m_NumAlphaKeys: 2
     fromNumber: 0
     toNumber: 1000
@@ -480,513 +479,6 @@ MonoBehaviour:
   disableOnSceneLoad: 1
   editorLastFont: 
   position: {x: 0, y: 0, z: 0}
---- !u!114 &4256917430794495148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496934903269892655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjects:
-  - rid: 4855898572995952838
-  references:
-    version: 2
-    RefIds:
-    - rid: 4855898572995952838
-      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
-      data:
-        m_Target: {fileID: 968746971261272551}
-        m_TrackedProperties:
-          items:
-          - rid: 4855898572995952839
-          - rid: 4855898572995952840
-          - rid: 4855898572995952841
-          - rid: 4855898572995952842
-          - rid: 4855898572995952843
-          - rid: 4855898572995952844
-          - rid: 4855898572995952845
-          - rid: 4855898572995952846
-          - rid: 4855898572995952847
-          - rid: 4855898572995952848
-          - rid: 4855898572995952849
-          - rid: 4855898572995952850
-          - rid: 4855898572995952851
-          - rid: 4855898572995952852
-          - rid: 4855898572995952853
-          - rid: 4855898572995952854
-          - rid: 4855898572995952855
-          - rid: 4855898572995952856
-          - rid: 4855898572995952857
-          - rid: 4855898572995952858
-          - rid: 4855898572995952859
-          - rid: 4855898572995952860
-          - rid: 4855898572995952861
-          - rid: 4855898572995952862
-          - rid: 4855898572995952863
-          - rid: 4855898572995952864
-          - rid: 4855898572995952865
-          - rid: 4855898572995952866
-          - rid: 4855898572995952867
-          - rid: 4855898572995952868
-          - rid: 4855898572995952869
-          - rid: 4855898572995952870
-          - rid: 4855898572995952871
-          - rid: 4855898572995952872
-          - rid: 4855898572995952873
-          - rid: 4855898572995952874
-          - rid: 4855898572995952875
-          - rid: 4855898572995952876
-          - rid: 4855898572995952877
-          - rid: 4855898572995952878
-        m_UpdateType: 0
-        m_Changed:
-          m_PersistentCalls:
-            m_Calls: []
-    - rid: 4855898572995952839
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime0
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 6521
-        - localeIdentifier:
-            m_Code: en
-          value: 6240
-    - rid: 4855898572995952840
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key0.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952841
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key0.g
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952842
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key0.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952843
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key0.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952844
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key1.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952845
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key1.g
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952846
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key1.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0.5518868
-    - rid: 4855898572995952847
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key1.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952848
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key2.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952849
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key2.g
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 0.99999994
-    - rid: 4855898572995952850
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key2.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952851
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key2.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952852
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key3.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952853
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key3.g
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 0.6882218
-    - rid: 4855898572995952854
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key3.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0.3726415
-    - rid: 4855898572995952855
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key3.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952856
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key4.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952857
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key4.g
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 0.5019608
-    - rid: 4855898572995952858
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key4.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952859
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key4.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952860
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key5.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952861
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key5.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0.73923415
-    - rid: 4855898572995952862
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key5.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952863
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key6.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952864
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key6.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0.4901961
-    - rid: 4855898572995952865
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key6.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952866
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key7.r
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.9411765
-        - localeIdentifier:
-            m_Code: en
-          value: 1
-    - rid: 4855898572995952867
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key7.b
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.6901961
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952868
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key7.a
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0.627451
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952869
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime1
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 65535
-        - localeIdentifier:
-            m_Code: en
-          value: 6554
-    - rid: 4855898572995952870
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime2
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 19595
-    - rid: 4855898572995952871
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime3
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 19661
-    - rid: 4855898572995952872
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime4
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 32702
-    - rid: 4855898572995952873
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime5
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 32768
-    - rid: 4855898572995952874
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime6
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 65469
-    - rid: 4855898572995952875
-      type: {class: UShortTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.ctime7
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 65535
-    - rid: 4855898572995952876
-      type: {class: SByteTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.m_ColorSpace
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: -1
-        - localeIdentifier:
-            m_Code: en
-          value: 0
-    - rid: 4855898572995952877
-      type: {class: ByteTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.m_NumColorKeys
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 2
-        - localeIdentifier:
-            m_Code: en
-          value: 8
-    - rid: 4855898572995952878
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: colorByNumberSettings.colorGradient.key5.g
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 0.4764151
 --- !u!1 &7363601164036668350
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +490,7 @@ GameObject:
   - component: {fileID: 2454076475629191314}
   - component: {fileID: 393054689357373747}
   - component: {fileID: 551515555545817551}
+  - component: {fileID: 5361603314069004025}
   m_Layer: 0
   m_Name: TMPA
   m_TagString: Untagged
@@ -1126,6 +619,90 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5361603314069004025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363601164036668350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4855898575586721889
+  references:
+    version: 2
+    RefIds:
+    - rid: 4855898575586721889
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 551515555545817551}
+        m_TrackedProperties:
+          items:
+          - rid: 4855898575586721890
+          - rid: 4855898575586721891
+          - rid: 4855898575586721892
+          - rid: 4855898575586721893
+          - rid: 4855898575586721894
+        m_UpdateType: 0
+    - rid: 4855898575586721890
+      type: {class: UIntTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor32.rgba
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 4294967295
+        - localeIdentifier:
+            m_Code: en
+          value: 4286631167
+    - rid: 4855898575586721891
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.r
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.003921569
+    - rid: 4855898575586721892
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.g
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.8
+    - rid: 4855898575586721893
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.b
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.5
+    - rid: 4855898575586721894
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.a
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.003921569
 --- !u!1 &7958472708282151687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +714,7 @@ GameObject:
   - component: {fileID: 1717132250345264835}
   - component: {fileID: 7591227230198785685}
   - component: {fileID: 1544841395975530803}
+  - component: {fileID: 3963397003194847453}
   m_Layer: 0
   m_Name: TMPB
   m_TagString: Untagged
@@ -1265,3 +843,87 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3963397003194847453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7958472708282151687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4855898575586721895
+  references:
+    version: 2
+    RefIds:
+    - rid: 4855898575586721895
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1544841395975530803}
+        m_TrackedProperties:
+          items:
+          - rid: 4855898575586721896
+          - rid: 4855898575586721897
+          - rid: 4855898575586721898
+          - rid: 4855898575586721899
+          - rid: 4855898575586721900
+        m_UpdateType: 0
+    - rid: 4855898575586721896
+      type: {class: UIntTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor32.rgba
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 4294967295
+        - localeIdentifier:
+            m_Code: en
+          value: 4286631167
+    - rid: 4855898575586721897
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.r
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.003921569
+    - rid: 4855898575586721898
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.g
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.8
+    - rid: 4855898575586721899
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.b
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.5
+    - rid: 4855898575586721900
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontColor.a
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ko
+          value: 1
+        - localeIdentifier:
+            m_Code: en
+          value: 0.003921569
