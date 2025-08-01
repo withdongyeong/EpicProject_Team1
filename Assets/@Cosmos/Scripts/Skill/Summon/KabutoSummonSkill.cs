@@ -63,7 +63,10 @@ public class KabutoSummonSkill : SkillBase
         }
         if(_adjacentSummonNameList.Count >=3)
         {
-            _currentKabuto.IsHyper = true;
+            if(_currentKabuto != null)
+            {
+                _currentKabuto.IsHyper = true;
+            }           
         }
     }
 
