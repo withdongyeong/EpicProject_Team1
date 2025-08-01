@@ -9,7 +9,6 @@ public class HoverDifficultyText : MonoBehaviour, IPointerEnterHandler
     private void Awake()
     {
         _difficultyText = transform.parent.GetComponentInChildren<DifficultyText>();
-        Debug.Log("DifficultyText 컴포넌트: " + _difficultyText);
         if (_difficultyText == null)
         {
             Debug.LogError("DifficultyText 컴포넌트가 없습니다.");

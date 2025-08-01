@@ -313,6 +313,7 @@ public class GridManager : Singleton<GridManager>
                 return;
             }
             grid[gridPos.x, gridPos.y].AddStarSkill(starSkill);
+            
         }
         else
         {

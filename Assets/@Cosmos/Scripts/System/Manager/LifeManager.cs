@@ -23,4 +23,8 @@
     {
         life = 1;
     }
+    public void SetLife(int i)
+    {
+        life = i;
+    }
 }

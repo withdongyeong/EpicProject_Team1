@@ -33,6 +33,11 @@ public class TestManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F8)) DeleteSaveData();
         if (Input.GetKeyDown(KeyCode.F9)) AddPlayerLife();
         if (Input.GetKeyDown(KeyCode.F10)) SteamAchievementReset();
+        
+        if(Input.GetKeyDown(KeyCode.Z)) BossDamaged100();
+        if(Input.GetKeyDown(KeyCode.X)) BossDamaged300();
+        if(Input.GetKeyDown(KeyCode.C)) BossDamaged500();
+        if(Input.GetKeyDown(KeyCode.V)) BossDamaged1000();
 
 
     }
@@ -62,6 +67,40 @@ public class TestManager : MonoBehaviour
         if (boss != null)
         {
             boss.TakeDamage(boss.CurrentHealth - 10);
+        }
+    }
+
+    private void BossDamaged100()
+    {
+        var boss = FindAnyObjectByType<BaseBoss>();
+        if (boss != null)
+        {
+            boss.TakeDamage(100);
+        }
+    }
+    private void BossDamaged300()
+    {
+        var boss = FindAnyObjectByType<BaseBoss>();
+        if (boss != null)
+        {
+            boss.TakeDamage(300);
+        }
+    }
+    
+    private void BossDamaged500()
+    {
+        var boss = FindAnyObjectByType<BaseBoss>();
+        if (boss != null)
+        {
+            boss.TakeDamage(500);
+        }
+    }
+    private void BossDamaged1000()
+    {
+        var boss = FindAnyObjectByType<BaseBoss>();
+        if (boss != null)
+        {
+            boss.TakeDamage(1000);
         }
     }
     

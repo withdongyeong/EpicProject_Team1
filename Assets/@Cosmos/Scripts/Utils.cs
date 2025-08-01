@@ -243,3 +243,25 @@ public enum BuffableTileStat
         _value = value;
     }
 }
+
+
+//PlacedHandler.cs에서 쓰이는 .. 불러오기 기능을 위한 놓여진 타일 데이타 입니다.
+[Serializable]
+public class PlacedTileData
+{
+    public string tileName;
+    public Vector3 position;
+    public int rotation;
+}
+
+[Serializable]
+public class SavedTileData
+{
+    //상점 셋팅
+    public int gold; // 플레이어의 골드
+    public int life; // 플레이어의 생명
+    public int stageIndex; // 스테이지 인덱스
+    public int infiniteModeCount; // 무한모드 도전 횟수
+    public int difficulty; // 난이도
+    public List<PlacedTileData> savedTiles = new List<PlacedTileData>();
+}

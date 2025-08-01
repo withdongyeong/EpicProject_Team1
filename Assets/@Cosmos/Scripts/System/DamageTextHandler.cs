@@ -5,12 +5,14 @@ using DamageNumbersPro;
 public class DamageTextHandler : MonoBehaviour
 {
     //Assign prefab in inspector.(임시)
-    public DamageNumber numberPrefab;
+    [SerializeField]
+    private DamageNumber numberPrefab;
     public RectTransform rectParent;
     private BaseBoss target;
     private void Awake()
     {
         EventBus.SubscribeGameStart(SetTarget);
+        numberPrefab = Resources.Load<DamageNumber>("DamageText");
     }
 
     private void SetTarget()
@@ -22,7 +24,7 @@ public class DamageTextHandler : MonoBehaviour
     public void SpawnDamageText(int damage)
     {
         
-        
+        Debug.Log($"SpawnDamageText: {damage}");
         Vector2 screenPos = Camera.main.WorldToScreenPoint(target.transform.position + Vector3.up * 3f);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, null,
             out Vector2 localPoint);

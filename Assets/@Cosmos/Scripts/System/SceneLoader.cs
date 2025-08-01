@@ -101,7 +101,7 @@ public static class SceneLoader
             for(int i = 0; i<sceneCount; i++)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                Debug.Log(scene.name);
+                //Debug.Log(scene.name);
                 if(SettingScene == scene.name)
                 {
                     sceneExist = true;

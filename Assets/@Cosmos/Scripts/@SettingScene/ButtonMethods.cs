@@ -21,6 +21,13 @@ public class ButtonMethods : MonoBehaviour
 
     public void OnAbandonButton()
     {
+        
+        //빌딩 씬일시 저장
+        if (SceneLoader.IsInBuilding() || SceneLoader.IsInStage())
+        {
+            DragManager.Instance.PlacedHandler.SavePlacedTiles();
+        }
+        
         ButtonClickSound();
         SceneLoader.ToggleSetting();
         GameManager.Instance.LoadTitle();
@@ -46,6 +53,13 @@ public class ButtonMethods : MonoBehaviour
     
     public void OnExitButton()
     {
+        
+        //빌딩 씬일시 저장
+        if (SceneLoader.IsInBuilding() || SceneLoader.IsInStage())
+        {
+            DragManager.Instance.PlacedHandler.SavePlacedTiles();
+        }
+        
         ButtonClickSound();
         GameManager.Instance.GameQuit();
     }

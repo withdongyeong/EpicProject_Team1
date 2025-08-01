@@ -394,7 +394,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 800444949}
           m_TargetAssemblyTypeName: TESTSTAGESELECTBTN, Assembly-CSharp
-          m_MethodName: GOTITLESCENE
+          m_MethodName: EnterTitleScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 800444950}
   - component: {fileID: 800444949}
   m_Layer: 0
-  m_Name: TESTOBJECT
+  m_Name: TitleBtnMethod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -863,7 +863,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1662317577
+--- !u!1001 &1767236361
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1390,4 +1390,4 @@ SceneRoots:
   - {fileID: 800444950}
   - {fileID: 1589077088}
   - {fileID: 1027996160}
-  - {fileID: 1662317577}
+  - {fileID: 1767236361}
