@@ -392,24 +392,22 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""> <color=yellow>
 如果<color=yellow>星<sprite name=""Star"">位置上</color>有3個以上法陣<sprite name=""MagicCircle"">，傷害增加至<color=red>詛咒<sprite name=""Curse"">數量 X 2</color>。","Выпускает снаряд с уроном, пропорциональным количеству Проклятий<sprite name=""Curse""> на враге.
 (Урон: <color=red>Количество Проклятий<sprite name=""Curse""> (минимум 1)</color>)
 Если <color=yellow>на позиции Звезды<sprite name=""Star""></color> размещено 3 или более Магических кругов<sprite name=""MagicCircle"">, урон увеличивается до <color=red>Количество Проклятий<sprite name=""Curse""> X 2</color>."
-Tile_TileDescription_PhantomTile,"<color=yellow>战斗开始时</color>: 将诅咒<sprite name=""Curse"">数量上限提升至45。根据提升的上限，诅咒人偶获得额外能力。
-<color=yellow>持有时</color>: <color=orange>幽灵</color>不会出现在商店中。
-<color=yellow>发动时</color>: 失去所有诅咒<sprite name=""Curse"">。
-如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，将诅咒<sprite name=""Curse"">数量上限提升至60。","<color=yellow>Start of battle</color>:  Increase Curse<sprite name=""Curse"">  limit to 45. The Cursed doll gains additional abilities based on the increased maximum. 
-<color=yellow>When held</color>: <color=orange>Wraith</color> will not appear in the shop.
-<color=yellow>On activate</color>: <color=Red>Lose all Curses<sprite name=""Curse""></color>. 
-If there are 3 or more Magic Circles<sprite name=""MagicCircle""><color=yellow>located on the Star<sprite name=""Star""></color>, increase the maximum number of Curses<sprite name=""Curse""> to 60.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を45に上げます。
-<color=yellow>所持していると</color>: <color=orange>亡霊</color>がショップに出現しません。
-上がった最大値に応じて、呪い人形に追加の能力があります。
+Tile_TileDescription_PhantomTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">数量上限提升至45。根据提升的上限，诅咒人偶获得额外能力。
+<color=yellow>发动时</color>：失去所有诅咒<sprite name=""Curse"">。
+<color=yellow>位于星<sprite name=""Star"">上的</color>魔法阵<sprite name=""MagicCircle"">有3个以上时，将诅咒<sprite name=""Curse"">数量上限提升至60。
+商店中不会出现<color=orange>亡灵</color>。","<color=yellow>Start of battle</color>: Increases the maximum number of Curses<sprite name=""Curse""> to 45. Curse dolls gain additional abilities based on the increased maximum.
+<color=yellow>On activate</color>: Lose all Curses<sprite name=""Curse"">.
+If there are 3 or more Magic Circles<sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, increases the maximum number of Curses<sprite name=""Curse""> to 60.
+<color=orange>Wraiths</color> do not appear in the shop.","<color=yellow>戦闘開始時</color>：呪い<sprite name=""Curse"">の個数上限を45に上昇させます。上昇した上限に応じて、呪い人形に追加能力が付与されます。
 <color=yellow>発動時</color>：呪い<sprite name=""Curse"">をすべて失います。
-<color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、呪い<sprite name=""Curse"">個数の最大値を60に上げます。","<color=yellow>전투 시작 시</color>: 저주<sprite name=""Curse""> 개수의 최대치를 45로 올립니다. 올라간 최대치에 따라 저주 인형에 추가 능력이 생깁니다. 
-<color=yellow>보유 시</color>: <color=orange>망령</color>이 상점에 등장하지 않습니다. 
+<color=yellow>星<sprite name=""Star"">に位置した</color>魔法陣<sprite name=""MagicCircle"">が3個以上なら、呪い<sprite name=""Curse"">の個数上限を60に上昇させます。
+店に<color=orange>亡霊</color>が出現しません。","<color=yellow>전투 시작 시</color>: 저주<sprite name=""Curse""> 개수의 최대치를 45로 올립니다. 올라간 최대치에 따라 저주 인형에 추가 능력이 생깁니다. 
 <color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 모두 잃습니다. 
-<color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse""> 개수의 최대치를 60으로 올립니다.","<color=yellow>戰鬥開始時</color>: 將詛咒<sprite name=""Curse"">數量上限提升至45。根據提升的上限，詛咒人偶獲得額外能力。
-<color=yellow>持有時</color>: <color=orange>亡靈</color>不會出現在商店中。
-<color=yellow>發動時</color>: 失去所有詛咒<sprite name=""Curse"">。
-如果<color=yellow>星<sprite name=""Star"">位置上</color>有3個以上法陣<sprite name=""MagicCircle"">，將詛咒<sprite name=""Curse"">數量上限提升至60。","<color=yellow>В начале боя</color>: Повышает лимит количества Проклятий<sprite name=""Curse""> до 45. В зависимости от повышенного лимита кукла проклятий получает дополнительные способности.
-<color=yellow>При владении</color>: <color=orange>Призрак</color> не появляется в магазине.
+<color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse""> 개수의 최대치를 60으로 올립니다.
+상점에<color=orange>망령</color>이  등장하지 않습니다. ","<color=yellow>戰鬥開始時</color>：將詛咒<sprite name=""Curse"">數量上限提升至45。根據提升的上限，詛咒人偶獲得額外能力。
+<color=yellow>發動時</color>：失去所有詛咒<sprite name=""Curse"">。
+<color=yellow>位於星<sprite name=""Star"">上的</color>魔法陣<sprite name=""MagicCircle"">有3個以上時，將詛咒<sprite name=""Curse"">數量上限提升至60。
+商店中不會出現<color=orange>亡靈</color>。","<color=yellow>В начале боя</color>: Повышает лимит количества Проклятий<sprite name=""Curse""> до 45. В зависимости от повышенного лимита кукла проклятий получает дополнительные способности.
 <color=yellow>При активации</color>: Теряет все Проклятия<sprite name=""Curse"">.
 Если <color=yellow>на позиции Звезды<sprite name=""Star""></color> размещено 3 или более Магических кругов<sprite name=""MagicCircle"">, повышает лимит количества Проклятий<sprite name=""Curse""> до 60."
 Tile_TileDescription_RainbowTile,"对敌人施加1层火焰<sprite name=""Fire"">、冻伤<sprite name=""Ice"">、诅咒<sprite name=""Curse"">。
@@ -471,30 +469,31 @@ Tile_TileDescription_TurtleTile,"<color=yellow>屏障<sprite name=""Barrier"">�
 (<color=red>Макс. 45</color>)
 <color=yellow>При активации</color>: Выпускает снаряд. Урон сбрасывается.
 (Урон: <color=red>Потраченный Барьер X 3</color>)"
-Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>: 将诅咒<sprite name=""Curse"">数量上限提升至40。
-<color=yellow>持有时</color>: <color=orange>恶灵</color>不会出现在商店中。
-<color=yellow>发动时</color>: <color=red>消耗40点</color>诅咒<sprite name=""Curse"">并施加1层痛苦<sprite name=""Pain"">。
-将当前敌人身上的所有火焰<sprite name=""Fire"">和冻伤<sprite name=""Ice"">转换为诅咒<sprite name=""Curse"">。
-如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，<color=red>消耗20点</color>诅咒<sprite name=""Curse"">。","<color=yellow>Start of battle</color>: Increase the maximum number of Curses <sprite name=""Curse""> to 40. 
-<color=yellow>When held</color>: <color=orange>Phantom</color> will not appear in the shop.
-<color=yellow>On activate</color>: Consume <color=red>40 Curses</color> and inflict 1 Pain <sprite name=""Pain"">. 
-Convert all Burn <sprite name=""fire""> and Frostbite <sprite name=""ice""> currently applied to enemies to Curses <sprite name=""Curse"">. 
-If there are 3 or more Magic Circles <sprite name=""MagicCircle""> <color=yellow>located on the Star<sprite name=""Star""></color>, Consume <color=red>20 Curses</color>.","<color=yellow>戦闘開始時</color>: 呪い<sprite name=""Curse"">個数の最大値を40に上げます。
-<color=yellow>所持</color>: <color=orange>悪霊</color>がショップに出現しません。
-<color=yellow>発動時</color>:現在、敵に適用されているすべての炎 <sprite name=""fire""> と 凍傷<sprite name=""ice""> を呪い<sprite name=""Curse""> に置き換えます。
-<color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、呪い<sprite name=""Curse"">を<color=red>20消費</color>します。","<color=yellow>전투 시작 시</color>: 저주<sprite name=""Curse""> 개수의 최대치를 40으로 올립니다.
-<color=yellow>보유 시</color>: <color=orange>악령</color>이 상점에 등장하지 않습니다. 
+Tile_TileDescription_WraithTile,"<color=yellow>战斗开始时</color>：将诅咒<sprite name=""Curse"">数量上限提升至40。
+<color=yellow>发动时</color>：<color=red>消耗40个</color>诅咒<sprite name=""Curse"">并施加1层痛苦<sprite name=""Pain"">。
+将当前敌人身上的所有燃烧<sprite name=""fire"">和冻伤<sprite name=""ice"">转换为诅咒<sprite name=""Curse"">。
+<color=yellow>位于星<sprite name=""Star"">上的</color>魔法阵<sprite name=""MagicCircle"">有3个以上时，诅咒<sprite name=""Curse""><color=red>消耗20个</color>。
+商店中不会出现<color=orange>恶灵</color>。","<color=yellow>Start of battle</color>: Increases the maximum number of Curses<sprite name=""Curse""> to 40.
+<color=yellow>On activate</color>: <color=red>Consumes 40</color> Curses<sprite name=""Curse""> and applies 1 Pain<sprite name=""Pain"">.
+Converts all current Burn<sprite name=""fire""> and Frostbite<sprite name=""ice""> on enemies to Curses<sprite name=""Curse"">.
+If there are 3 or more Magic Circles<sprite name=""MagicCircle""> <color=yellow>located on Star<sprite name=""Star""></color>, <color=red>consumes 20</color> Curses<sprite name=""Curse"">.
+<color=orange>Evil Spirits</color> do not appear in the shop.","<color=yellow>戦闘開始時</color>：呪い<sprite name=""Curse"">の個数上限を40に上昇させます。
+<color=yellow>発動時</color>：呪い<sprite name=""Curse"">を<color=red>40消費</color>し、苦痛<sprite name=""Pain"">を1付与します。
+現在敵に適用されているすべての火傷<sprite name=""fire"">と凍傷<sprite name=""ice"">を呪い<sprite name=""Curse"">に変換します。
+<color=yellow>星<sprite name=""Star"">に位置した</color>魔法陣<sprite name=""MagicCircle"">が3個以上なら、呪い<sprite name=""Curse"">を<color=red>20消費</color>します。
+店に<color=orange>悪霊</color>が出現しません。","<color=yellow>전투 시작 시</color>: 저주<sprite name=""Curse""> 개수의 최대치를 40으로 올립니다.
 <color=yellow>발동 시</color>: 저주<sprite name=""Curse""> 를 <color=red>40 소모</color>하고 고통<sprite name=""Pain""> 을 1 부여합니다. 
 현재 적에게 적용된 모든 화염<sprite name=""fire""> 과 동상<sprite name=""ice""> 을 저주<sprite name=""Curse""> 로 바꿉니다.
-<color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 <color=red>20 소모</color>합니다.","<color=yellow>戰鬥開始時</color>: 將詛咒<sprite name=""Curse"">數量上限提升至40。
-<color=yellow>持有時</color>: <color=orange>惡靈</color>不會出現在商店中。
-<color=yellow>發動時</color>: <color=red>消耗40點</color>詛咒<sprite name=""Curse"">並施加1層痛苦<sprite name=""Pain"">。
-將當前敵人身上的所有火焰<sprite name=""Fire"">和凍傷<sprite name=""Ice"">轉換為詛咒<sprite name=""Curse"">。
-如果<color=yellow>星<sprite name=""Star"">位置上</color>有3個以上法陣<sprite name=""MagicCircle"">，<color=red>消耗20點</color>詛咒<sprite name=""Curse"">。","<color=yellow>В начале боя</color>: Повышает лимит количества Проклятий<sprite name=""Curse""> до 40.
-<color=yellow>При владении</color>: <color=orange>Злой дух</color> не появляется в магазине.
-<color=yellow>При активации</color>: <color=red>Расходует 40</color> Проклятий<sprite name=""Curse""> и накладывает 1 стак Боли<sprite name=""Pain"">.
-Превращает все текущие Пламя<sprite name=""Fire""> и Обморожение<sprite name=""Ice""> на враге в Проклятия<sprite name=""Curse"">.
-Если <color=yellow>на позиции Звезды<sprite name=""Star""></color> размещено 3 или более Магических кругов<sprite name=""MagicCircle"">, <color=red>расходует 20</color> Проклятий<sprite name=""Curse"">."
+<color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 저주<sprite name=""Curse"">를 <color=red>20 소모</color>합니다.
+상점에<color=orange>악령</color>이 등장하지 않습니다. ","<color=yellow>戰鬥開始時</color>：將詛咒<sprite name=""Curse"">數量上限提升至40。
+<color=yellow>發動時</color>：<color=red>消耗40個</color>詛咒<sprite name=""Curse"">並施加1層痛苦<sprite name=""Pain"">。
+將當前敵人身上的所有燃燒<sprite name=""fire"">和凍傷<sprite name=""ice"">轉換為詛咒<sprite name=""Curse"">。
+<color=yellow>位於星<sprite name=""Star"">上的</color>魔法陣<sprite name=""MagicCircle"">有3個以上時，詛咒<sprite name=""Curse""><color=red>消耗20個</color>。
+商店中不會出現<color=orange>惡靈</color>。","<color=yellow>В начале боя</color>: Увеличивает максимальное количество Проклятий<sprite name=""Curse""> до 40.
+<color=yellow>При активации</color>: <color=red>Тратит 40</color> Проклятий<sprite name=""Curse""> и накладывает 1 Боль<sprite name=""Pain"">.
+Превращает все текущие Ожоги<sprite name=""fire""> и Обморожения<sprite name=""ice""> на врагах в Проклятия<sprite name=""Curse"">.
+Если <color=yellow>на Звезде<sprite name=""Star""> расположено</color> 3 или более Магических Кругов<sprite name=""MagicCircle"">, <color=red>тратит 20</color> Проклятий<sprite name=""Curse"">.
+<color=orange>Злые духи</color> не появляются в магазине."
 Tile_TileDescription_HellFireTile,"一次性造成接下来5次火焰<sprite name=""Fire"">伤害并移除所有火焰<sprite name=""Fire"">。
 (伤害: <color=red>0~255</color>)
 如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，造成接下来10次火焰<sprite name=""Fire"">伤害。","Deals 5 Burn damage<sprite name=""Fire""> at once and removes all Burns <sprite name=""Fire"">.
