@@ -20,4 +20,9 @@ public class PurchasedTileManager : Singleton<PurchasedTileManager>
         }
     }
 
+    public void SetPurchasedTiles(List<string> tileList)
+    {
+        _purchasedTiles = new List<string>(tileList);
+    }
+
 }

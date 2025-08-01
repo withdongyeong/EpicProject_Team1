@@ -72,7 +72,7 @@ public class StageUIHandler : MonoBehaviour
             continueButton.onClick.AddListener(OnContinueButton);
 
         if (abandonButton != null) {
-            abandonButton.onClick.AddListener(ReturnToMainMenu);
+            abandonButton.onClick.AddListener(ReturnToMainMenuWithSave);
         }
 
     }
@@ -164,6 +164,19 @@ public class StageUIHandler : MonoBehaviour
     }
 
     private void ReturnToMainMenu()
+    {
+        
+        //DragManager.Instance.PlacedHandler.SavePlacedTiles();
+        ButtonClickSound();
+        TimeScaleManager.Instance.ResetTimeScale();
+        GameManager.Instance.LoadTitle();
+
+        // 게임 격자 다시 상점 자리로 원위치
+        GridManager.Instance.transform.position = new Vector3(0, 0, 0);
+    }
+    
+    
+    private void ReturnToMainMenuWithSave()
     {
         
         DragManager.Instance.PlacedHandler.SavePlacedTiles();

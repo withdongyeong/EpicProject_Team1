@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -144,7 +144,6 @@ public class PlacedHandler : MonoBehaviour
 
     public void SavePlacedTiles()
     {
-        
         //1. 데이터 모으기
         SavedTileData savedTileData = new SavedTileData();
         savedTileData.gold = GoldManager.Instance.CurrentGold;
@@ -153,6 +152,7 @@ public class PlacedHandler : MonoBehaviour
         savedTileData.infiniteModeCount = StageSelectManager.Instance.InfiniteModeCount;
         savedTileData.difficulty = GameManager.Instance.DifficultyLevel;
         savedTileData.savedTiles = new List<PlacedTileData>();
+        savedTileData.PurchasedTiles = new List<string>(PurchasedTileManager.Instance.PurchasedTiles);
         
         foreach (TileObject tile in GridManager.Instance.TilesOnGrid.GetComponentsInChildren<TileObject>())
         {
@@ -214,6 +214,8 @@ public class PlacedHandler : MonoBehaviour
                 StageSelectManager.Instance.SetStageNum(savedTileData.stageIndex);
                 StageSelectManager.Instance.SetInfiniteModeCount(savedTileData.infiniteModeCount);
                 GameManager.Instance.SetDifficultyLevel(savedTileData.difficulty);
+                PurchasedTileManager.Instance.SetPurchasedTiles(savedTileData.PurchasedTiles);
+                FindAnyObjectByType<StoreSlotController>().SetupStoreSlots();
 
                 foreach (PlacedTileData placedTile in savedTileData.savedTiles)
                 {

@@ -62,8 +62,9 @@ public class DragOnStorage : DraggableObject
             return;
         }
         
+        if(_storageArea == null)  _storageArea = FindAnyObjectByType<StorageArea>();
         //3. 그리드 밖 보관 공간에 둔다면-> 보관함에 두기
-        if (_storageArea.IsCanStore)
+        if (_storageArea != null && _storageArea.IsCanStore)
         {
             _storageArea.StoreTileObject(_tileObject);
             foreach (var coll in gameObject.GetComponentsInChildren<Collider2D>())

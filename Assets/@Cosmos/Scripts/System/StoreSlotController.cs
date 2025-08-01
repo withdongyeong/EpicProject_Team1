@@ -61,7 +61,7 @@ public class StoreSlotController : MonoBehaviour
         }
     }
     
-    private void SetupStoreSlots()
+    public void SetupStoreSlots()
     {
         //슬롯들을 채워야 하면 각 확률 리스트들을 초기화해줍니다.
         SetStoreTileList();
@@ -377,6 +377,5 @@ public class StoreSlotController : MonoBehaviour
         _storeTiles[(int)grade] = newList;
     }
 
-    
    
 }
