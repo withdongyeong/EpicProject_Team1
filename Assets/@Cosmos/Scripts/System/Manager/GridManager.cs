@@ -181,15 +181,7 @@ public class GridManager : Singleton<GridManager>
         InitializeGrid();
         InitGround();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ResetGridCompletely();
-        }
-    }
-
+    
     private void GridPosChange(Scene scene, LoadSceneMode mode)
     {
         if(SceneLoader.IsInBuilding())
