@@ -6,11 +6,14 @@ public class CloudHandler : MonoBehaviour
     private GameObject[] _cloudPrefab; // 구름 프리팹
     private Cloud _currentCloud; // 현재 활성화된 구름 오브젝트
     private BaseBoss _boss; // 보스 인스턴스 참조
+    private bool _rainCloud = false; // 비 구름 여부
 
     /// <summary>
     /// 구름 레벨을 설정합니다. 레벨이 0 이상이어야 하며, 레벨에 따라 구름 오브젝트가 업데이트됩니다.
     /// </summary>
-    public int CloudLevel { get => _cloudLevel;
+    public int CloudLevel
+    {
+        get => _cloudLevel;
         set
         {
             if (value >= 0)
@@ -50,9 +53,17 @@ public class CloudHandler : MonoBehaviour
             // 구름 레벨이 변경되면 기존 구름 오브젝트를 제거하고 새로 생성
             if (_cloudLevel < _cloudPrefab.Length)
             {
+                if (_currentCloud.RainCloud != null)
+                {
+                    _rainCloud = true;
+                }
                 Destroy(_currentCloud.gameObject);
                 _currentCloud = Instantiate(_cloudPrefab[_cloudLevel - 1], _boss.transform).GetComponent<Cloud>();
                 _currentCloud.transform.localPosition = new Vector3(0, 1.5f, 0); // 위치 초기화
+                if (_rainCloud)
+                {
+                    _currentCloud.Init("RainCloud");
+                }
             }
         }
     }
