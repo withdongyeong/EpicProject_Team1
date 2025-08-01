@@ -327,25 +327,32 @@ Tile_TileDescription_HauntedDollTile,"施加诅咒<sprite name=""Curse"">。根�
 <color=yellow>50</color>: Восстанавливает <color=green>5</color> здоровья.
 <color=yellow>60</color>: Накладывает 1 стак Боли<sprite name=""Pain"">.
 Если <color=yellow>на позиции Звезды<sprite name=""Star""></color> размещено 3 или более Магических кругов<sprite name=""MagicCircle"">, накладывает 2 Проклятия<sprite name=""Curse"">."
-Tile_TileDescription_KabutoTile,"<color=yellow>消耗护盾<sprite name=""Barrier"">时：</color>伤害量增加消耗护盾<sprite name=""Barrier"">的3倍。
-<color=yellow>发动时</color>：发射投射物。伤害量重置。
-(伤害量：<color=red>消耗的护盾<sprite name=""Barrier""> X 3</color>)
-<color=yellow>位于星<sprite name=""Star"">上的</color>召唤物<sprite name=""Summon"">有3个以上时，伤害量增加至<color=red>消耗的护盾<sprite name=""Barrier""> X 4</color>。","<color=yellow>When barrier<sprite name=""Barrier""> is consumed:</color> Damage increases by 3 times the consumed barrier<sprite name=""Barrier"">. 
-<color=yellow>On activation</color>: Fires a projectile. Damage resets. 
-(Damage: <color=red>Consumed barrier<sprite name=""Barrier""> X 3</color>) 
-<color=yellow>If there are 3 or more summons<sprite name=""Summon""> located on the star<sprite name=""Star"">:</color> Damage increases to <color=red>consumed barrier<sprite name=""Barrier""> X 4</color>.","<color=yellow>バリア<sprite name=""Barrier"">消費時：</color>ダメージが消費したバリア<sprite name=""Barrier"">の3倍分上昇します。
-<color=yellow>発動時</color>：弾を発射します。ダメージがリセットされます。
-(ダメージ：<color=red>消費したバリア<sprite name=""Barrier""> X 3</color>)
-<color=yellow>星<sprite name=""Star"">に位置する</color>召喚物<sprite name=""Summon"">が3体以上なら、ダメージが<color=red>消費したバリア<sprite name=""Barrier""> X 4</color>に増加します。","<color=yellow>보호막<sprite name=""Barrier""> 소모 시:</color> 피해량이 소모된 보호막<sprite name=""Barrier"">의 3배만큼 상승합니다. 
-<color=yellow>발동시</color>: 투사체를 발사합니다. 피해량을 초기화합니다.
-(피해량: <color=red>소모한 보호막<sprite name=""Barrier""> X 3</color>)
+Tile_TileDescription_KabutoTile,"<color=yellow>护盾<sprite name=""Barrier"">消耗时：</color>伤害量提升为消耗护盾<sprite name=""Barrier"">的3倍。
+<color=yellow>发动时：</color>发射投射物。伤害量重置。
+(伤害量：<color=red>消耗的护盾 X 3</color>)
+<color=red>护盾归零时也会发动。</color>
+<color=yellow>位于星<sprite name=""Star"">上的</color>召唤物<sprite name=""Summon"">有3个以上时，伤害量增加为<color=red>消耗的护盾<sprite name=""Barrier""> X 4</color>。","<color=yellow>When Barrier<sprite name=""Barrier""> is consumed:</color> Damage increases by 3 times the consumed Barrier<sprite name=""Barrier"">.
+<color=yellow>When activated:</color> Fires a projectile. Damage is reset.
+(Damage: <color=red>Consumed Barrier X 3</color>)
+<color=red>Also activates when Barrier reaches 0.</color>
+If there are 3 or more summons<sprite name=""Summon""> <color=yellow>located on Star<sprite name=""Star""></color>, damage increases to <color=red>Consumed Barrier<sprite name=""Barrier""> X 4</color>.","<color=yellow>バリア<sprite name=""Barrier"">消費時：</color>ダメージ量が消費したバリア<sprite name=""Barrier"">の3倍分上昇します。
+<color=yellow>発動時：</color>投射物を発射します。ダメージ量をリセットします。
+(ダメージ量：<color=red>消費したバリア X 3</color>)
+<color=red>バリアが0になった時も発動します。</color>
+<color=yellow>星<sprite name=""Star"">に位置した</color>召喚獣<sprite name=""Summon"">が3体以上なら、ダメージ量が<color=red>消費したバリア<sprite name=""Barrier""> X 4</color>に増加します。","<color=yellow>보호막<sprite name=""Barrier""> 소모 시:</color> 피해량이 소모된 보호막<sprite name=""Barrier"">의 3배만큼 상승합니다. 
+<color=yellow>발동 시:</color> 투사체를 발사합니다. 피해량을 초기화합니다. 
+(피해량: <color=red>소모한 보호막 X 3</color>)
+<color=red>보호막이 0이 되었을 때에도 발동합니다.</color>
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 소환수<sprite name=""Summon"">이 3개 이상이라면, 피해량이 <color=red>소모한 보호막<sprite name=""Barrier""> X 4</color>로 증가합니다.","<color=yellow>護盾<sprite name=""Barrier"">消耗時：</color>傷害量提升為消耗護盾<sprite name=""Barrier"">的3倍。
 <color=yellow>發動時：</color>發射投射物。傷害量重置。
-(傷害量：<color=red>消耗的護盾 X 3</color>)<color=red>護盾歸零時也會發動。
-</color><color=yellow>位於星<sprite name=""Star"">上的</color>召喚物<sprite name=""Summon"">有3種以上時，傷害量提升為消耗護盾量的<color=green>4</color>倍。這個還沒確定呢","<color=yellow>При расходовании щита<sprite name=""Barrier"">:</color> урон увеличивается в 3 раза от потраченного щита<sprite name=""Barrier"">. 
-<color=yellow>При активации</color>: выпускает снаряд. Урон сбрасывается. 
-(Урон: <color=red>потраченный щит<sprite name=""Barrier""> X 3</color>) 
-<color=yellow>Если на звезде<sprite name=""Star""> находится</color> 3 или более призванных существ<sprite name=""Summon"">, урон увеличивается до <color=red>потраченный щит<sprite name=""Barrier""> X 4</color>."
+(傷害量：<color=red>消耗的護盾 X 3</color>)
+<color=red>護盾歸零時也會發動。</color>
+<color=yellow>位於星<sprite name=""Star"">上的</color>召喚物<sprite name=""Summon"">有3個以上時，傷害量增加為<color=red>消耗的護盾<sprite name=""Barrier""> X 4</color>。","
+<color=yellow>При расходе Барьера<sprite name=""Barrier"">:</color> Урон увеличивается в 3 раза от потраченного Барьера<sprite name=""Barrier"">.
+<color=yellow>При активации:</color> Выпускает снаряд. Урон сбрасывается.
+(Урон: <color=red>Потраченный Барьер X 3</color>)
+<color=red>Также активируется, когда Барьер становится равным 0.</color>
+Если <color=yellow>на Звезде<sprite name=""Star""> находится</color> 3 или более призванных существ<sprite name=""Summon"">, урон увеличивается до <color=red>Потраченный Барьер<sprite name=""Barrier""> X 4</color>."
 Tile_TileDescription_ManaAITile,"<color=red>无法踩踏激活。无法通过。</color>
 <color=yellow>星<sprite name=""Star"">位置上的</color><color=orange>魔力炮塔</color>每3秒自动攻击一次。","<color=red>Cannot be stepped on. Cannot pass through.</color>
 <color=orange>Mana turrets</color> <color=yellow>located on the Star<sprite name=""Star""></color> perform an auto-attack once every 3 seconds.","<color=red>踏んで発動させることはできません。通過できません。</color>
