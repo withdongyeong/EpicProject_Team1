@@ -1,11 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-
-
-
 /// <summary>
-
+/// 스테이지 선택 및 진행을 관리하는 매니저
 /// </summary>
 public class StageSelectManager : Singleton<StageSelectManager>
 {
@@ -30,11 +27,21 @@ public class StageSelectManager : Singleton<StageSelectManager>
     private int stageNum;
     public StageDataSO currentStageData;
 
-    public int StageNum => stageNum;
+    /// <summary>
+    /// 무한모드 도전 횟수 (최종 스테이지 클리어 후 재도전 카운트)
+    /// </summary>
+    private int infiniteModeCount = 0;
 
+    public int StageNum => stageNum;
+    
+    /// <summary>
+    /// 무한모드 도전 횟수 접근자
+    /// </summary>
+    public int InfiniteModeCount => infiniteModeCount;
 
     private Sprite[] stageUISprites;
     public Sprite[] StageUISprites => stageUISprites;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -42,11 +49,42 @@ public class StageSelectManager : Singleton<StageSelectManager>
         stageUISprites = Resources.LoadAll<Sprite>("Arts/Stage/스테이지이동-Sheet");
         stageNum = 1; // 0은 튜토리얼 스테이지 입니다.
         EventBus.SubscribeBossDeath(TestStageNumPlus);
+        EventBus.SubscribeStageChange(HandleStageChange);
+    }
+
+    /// <summary>
+    /// 스테이지 변경 이벤트 처리 - 스테이지 1로 돌아갈 때 무한모드 카운트 리셋
+    /// </summary>
+    private void HandleStageChange()
+    {
+        if (stageNum == 1)
+        {
+            ResetInfiniteModeCount();
+        }
+    }
+
+    /// <summary>
+    /// 무한모드 도전 횟수 증가
+    /// </summary>
+    public void IncrementInfiniteModeCount()
+    {
+        infiniteModeCount++;
+        Debug.Log($"무한모드 도전 횟수: {infiniteModeCount}");
+    }
+
+    /// <summary>
+    /// 무한모드 도전 횟수 리셋
+    /// </summary>
+    private void ResetInfiniteModeCount()
+    {
+        infiniteModeCount = 0;
+        Debug.Log("무한모드 도전 횟수가 리셋되었습니다.");
     }
 
     public void ResetManager()
     {
         stageNum = 1;
+        ResetInfiniteModeCount();
     }
 
     public void SetStageNum(int num) //테스트용
@@ -104,13 +142,12 @@ public class StageSelectManager : Singleton<StageSelectManager>
         if (currentStageData.bgmClip == null)
             currentStageData.bgmClip = stageDataList[0].bgmClip;
         
-        
         SceneLoader.LoadStage();
     }
 
     private void OnDestroy()
     {
         EventBus.UnsubscribeBossDeath(TestStageNumPlus);
+        EventBus.UnsubscribeStageChange(HandleStageChange);
     }
-
 }

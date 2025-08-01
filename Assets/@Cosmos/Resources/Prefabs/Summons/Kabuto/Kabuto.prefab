@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631394149030007894}
   - component: {fileID: 3097049513448032777}
-  - component: {fileID: 2567908768004027425}
+  - component: {fileID: 5234032910525663290}
   m_Layer: 0
   m_Name: Kabuto
   m_TagString: Untagged
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!114 &2567908768004027425
+--- !u!114 &5234032910525663290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,6 +97,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5372739422597906625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e8a497f6d3dc54bb4cfc1a3103f660, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e44e76457cfad948b4af84593f4e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

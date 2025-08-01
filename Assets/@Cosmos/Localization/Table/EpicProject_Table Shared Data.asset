@@ -175,7 +175,7 @@ MonoBehaviour:
     m_Key: Tile_TileName_CatTile
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345721675776
+  - m_Id: 8419011866533888
     m_Key: New Entry 11
     m_Metadata:
       m_Items: []
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Key: Tile_TileDescription_CatTile
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345725870080
+  - m_Id: 8419011874922496
     m_Key: New Entry 12
     m_Metadata:
       m_Items: []
@@ -367,7 +367,11 @@ MonoBehaviour:
     m_Key: Tile_TileCategoty_Summon
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345725870081
+  - m_Id: 7864393189171201
+    m_Key: Tile_TileCategoty_Planet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8419011874922497
     m_Key: New Entry 13
     m_Metadata:
       m_Items: []
@@ -415,7 +419,7 @@ MonoBehaviour:
     m_Key: Tile_TileSynergy_Nebula3
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345725870082
+  - m_Id: 8419011874922498
     m_Key: New Entry 14
     m_Metadata:
       m_Items: []
@@ -471,7 +475,7 @@ MonoBehaviour:
     m_Key: Tile_TileTagDescription_Freeze
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345725870083
+  - m_Id: 8419011874922499
     m_Key: New Entry 15
     m_Metadata:
       m_Items: []
@@ -507,7 +511,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Instruction7
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345725870084
+  - m_Id: 8419011874922500
     m_Key: New Entry 16
     m_Metadata:
       m_Items: []
@@ -543,7 +547,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Title7
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345730064384
+  - m_Id: 8419011874922501
     m_Key: New Entry 17
     m_Metadata:
       m_Items: []
@@ -579,7 +583,7 @@ MonoBehaviour:
     m_Key: UI_Quest_SubTitle7
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345730064385
+  - m_Id: 8419011874922502
     m_Key: New Entry 18
     m_Metadata:
       m_Items: []
@@ -615,7 +619,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Content7
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345730064386
+  - m_Id: 8419011874922503
     m_Key: New Entry 19
     m_Metadata:
       m_Items: []
@@ -651,7 +655,7 @@ MonoBehaviour:
     m_Key: UI_Quest_Goal7
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345730064387
+  - m_Id: 8419011874922504
     m_Key: New Entry 20
     m_Metadata:
       m_Items: []
@@ -703,6 +707,10 @@ MonoBehaviour:
     m_Key: UI_Button_No
     m_Metadata:
       m_Items: []
+  - m_Id: 8102595133054985
+    m_Key: UI_Button_Load
+    m_Metadata:
+      m_Items: []
   - m_Id: 2369512836571136
     m_Key: UI_Button_Start
     m_Metadata:
@@ -747,6 +755,10 @@ MonoBehaviour:
     m_Key: UI_Button_Exit
     m_Metadata:
       m_Items: []
+  - m_Id: 8419011874922505
+    m_Key: UI_Button_NoSaveGameGiveUp
+    m_Metadata:
+      m_Items: []
   - m_Id: 3047510455754757
     m_Key: UI_Button_CheckGameGiveUp
     m_Metadata:
@@ -779,7 +791,7 @@ MonoBehaviour:
     m_Key: UI_Button_OneTimeMore
     m_Metadata:
       m_Items: []
-  - m_Id: 7360345730064388
+  - m_Id: 8419011874922506
     m_Key: New Entry 21
     m_Metadata:
       m_Items: []
@@ -915,6 +927,10 @@ MonoBehaviour:
     m_Key: UI_Text_CheckGameTitle
     m_Metadata:
       m_Items: []
+  - m_Id: 8397691170725891
+    m_Key: UI_Text_NoSaveGameTitle
+    m_Metadata:
+      m_Items: []
   - m_Id: 3389944159150081
     m_Key: UI_Text_ClearText
     m_Metadata:
@@ -929,6 +945,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4813645928865804
     m_Key: UI_Text_DataSaveDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8103791843483656
+    m_Key: UI_Text_NowStage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8103791843483657
+    m_Key: UI_Text_NowInfinityMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8112431069536258
+    m_Key: UI_Text_InfinityText
     m_Metadata:
       m_Items: []
   m_Metadata:
