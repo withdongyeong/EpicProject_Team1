@@ -6,6 +6,9 @@ public class Cloud : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     private BaseBoss _boss;
     private int _damage = 40;
+    private Coroutine _rainCloudCoroutine;
+
+    public Coroutine RainCloud => _rainCloudCoroutine;
 
     public void Init(string name)
     {
@@ -16,7 +19,7 @@ public class Cloud : MonoBehaviour
                 transform.parent.GetComponent<BossDebuffs>().IsCloudy = true;
                 break;
             case "RainCloud":
-                StartCoroutine(RainCloudCoroutine());
+                _rainCloudCoroutine = StartCoroutine(RainCloudCoroutine());
                 break;
             case "ThunderstormCloud":
                 break;
