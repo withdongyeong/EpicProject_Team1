@@ -30,17 +30,18 @@ public class Kabuto_RE : MonoBehaviour
             Fire();
         }
 
-        // 보호막이 차지 중이고 보호막이 있다면 이펙트를 재생합니다.
-        if (_protection.IsProtected && _effectId == -1)
+        if(_protection.IsProtected)
         {
-            _effectId = _protectionEffect.StartProtectionEffect(_protection.gameObject, transform.position);
-            if(_kabutoProjectile == null)
+            if (_kabutoProjectile == null)
             {
                 SpawnProjectile();
             }
+            if(_effectId == -1)
+            {
+                _effectId = _protectionEffect.StartProtectionEffect(_protection.gameObject, transform.position);
+            }
         }
-        // 보호막이 없으면 이펙트를 중지합니다.
-        else if (!_protection.IsProtected && _effectId != -1)
+        else if (!_protection.IsProtected && _effectId != -1) // 보호막이 없으면 이펙트를 중지합니다.
         {
             _protectionEffect.StopProtectionEffect(_effectId);
             _effectId = -1;
