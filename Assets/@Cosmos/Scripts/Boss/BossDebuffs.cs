@@ -38,6 +38,8 @@ public class BossDebuffs : MonoBehaviour
     // 동결 효과 코루틴 참조
     private Coroutine freezeCoroutine;
 
+    private GameObject burningHitEffect;
+
     // 상태 이상 배열 접근용 프로퍼티
     public int[] Debuffs => debuffs;
 
@@ -51,6 +53,7 @@ public class BossDebuffs : MonoBehaviour
     {
         boss = GetComponent<BaseBoss>();
         bossHPUI = FindAnyObjectByType<BossHPUI>();
+        burningHitEffect = Resources.Load<GameObject>("Prefabs/HitEffect/HitEffect_Burning");
     }
 
     /// <summary>
@@ -62,7 +65,7 @@ public class BossDebuffs : MonoBehaviour
         switch (debuff)
         {
             case BossDebuff.Burning:
-                if (debuffs[(int)BossDebuff.Burning] >= 30) return; // 화상 상태 이상은 최대 30개까지만 허용
+                if (debuffs[(int)BossDebuff.Burning] >= 50) return; // 화상 상태 이상은 최대 50개까지만 허용
                 // 구름 상태에서는 20% 확률로화상 상태 이상 추가하지 않음
                 if (isCloudy)
                 {
@@ -225,7 +228,7 @@ public class BossDebuffs : MonoBehaviour
             return; // 화상 상태 이상이 없으면 적용하지 않음
         }
         // 화상 효과 적용 로직
-        boss.TakeDamage(debuffs[(int)BossDebuff.Burning]); // 화상 상태 이상에 따라 데미지 적용
+        boss.TakeDamage(debuffs[(int)BossDebuff.Burning], burningHitEffect); // 화상 상태 이상에 따라 데미지 적용
         RemoveDebuff(BossDebuff.Burning);
     }
 

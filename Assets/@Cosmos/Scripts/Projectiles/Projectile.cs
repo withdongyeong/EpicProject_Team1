@@ -118,6 +118,10 @@ public class Projectile : MonoBehaviour
                     else enemy.TakeDamage(damage, null);
 
                     enemy.AddDebuff(bossDebuff); // 상태 이상 추가
+                    if (bossDebuff == BossDebuff.Burning)
+                    {
+                        enemy.AddDebuff(bossDebuff); // Burning 상태 이상 추가
+                    }
                 }
                 else enemy.TakeDamage(damage, null);
                 
