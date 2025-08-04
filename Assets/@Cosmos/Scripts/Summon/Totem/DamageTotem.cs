@@ -44,6 +44,7 @@ public class DamageTotem : BaseTotem
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player,damage);
+            projectile.SetTileName("DamageTotemTile");
         }
     }
 
