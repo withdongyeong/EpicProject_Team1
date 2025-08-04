@@ -127,6 +127,12 @@ public class LastBoss : BaseBoss
     /// </summary>
     protected override void Die()
     {
+        if (StageSelectManager.Instance.InfiniteModeCount == 0)
+        {
+            // 무한모드 도전 횟수 증가
+            StageSelectManager.Instance.IncrementInfiniteModeCount();    
+        }
+        
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
 
         //클리어 도전과제를 달성합니다

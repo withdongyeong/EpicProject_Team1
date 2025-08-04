@@ -54,9 +54,6 @@ public class InfiniteButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             Debug.LogWarning("[InfiniteButton] StageSelectManager Instance를 찾을 수 없습니다.");
             return;
         }
-
-        // 무한모드 도전 횟수 증가
-        StageSelectManager.Instance.IncrementInfiniteModeCount();
     }
 
     /// <summary>
