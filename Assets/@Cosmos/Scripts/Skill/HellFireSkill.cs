@@ -25,22 +25,29 @@ public class HellFireSkill : SkillBase
     protected override void Activate()
     {
         base.Activate();
-        if (isEnchanted)
+        int burnStacks = isEnchanted ? 10 : 5;
+    
+        bool hasMaxDamage = false; // 최대 데미지 발동 여부
+    
+        for (int i = 0; i < burnStacks; i++)
         {
-            for (int i = 0; i < 10; i++)
+            int burnDamage = bossDebuffs.ApplyBurningEffect();
+            Debug.LogWarning(burnDamage);
+            // 최대 데미지(50) 발동 확인
+            if (burnDamage >= 50)
             {
-                bossDebuffs.ApplyBurningEffect(); // 스킬이 강화된 상태에서 화상 효과 적용
+                hasMaxDamage = true;
             }
-            
         }
-        else
+    
+        // 도전과제: 지옥불로 최대 데미지 화상 발동
+        if (hasMaxDamage)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                bossDebuffs.ApplyBurningEffect(); // 기본 화상 효과 적용
-            }
+            SteamAchievement.Achieve("ACH_HELLFIRE_MAX_BURN"); // 최대 화상 데미지 발동
+            Debug.Log("도전과제 달성: 지옥불 최대 데미지 발동!");
         }
-        bossDebuffs.RemoveAllDebuff(BossDebuff.Burning); // 모든 화상 상태 이상 제거
+    
+        bossDebuffs.RemoveAllDebuff(BossDebuff.Burning);
     }
 
     /// <summary>
