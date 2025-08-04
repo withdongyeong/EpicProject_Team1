@@ -170,7 +170,16 @@ public class PlacedHandler : MonoBehaviour
         savedTileData.difficulty = GameManager.Instance.DifficultyLevel;
         savedTileData.savedTiles = new List<PlacedTileData>();
         savedTileData.PurchasedTiles = new List<string>(PurchasedTileManager.Instance.PurchasedTiles);
-        
+
+        StoreSlotController controller = FindAnyObjectByType<StoreSlotController>();
+        if(controller != null)
+        {
+            savedTileData.StoreTiles = new List<string>(controller.GetTileNameList());
+            savedTileData.PurchasedBoolList = new List<bool>(controller.GetPurchasedBoolList());
+            savedTileData.IsStoreSaved = true;
+        }
+
+       
         foreach (TileObject tile in GridManager.Instance.TilesOnGrid.GetComponentsInChildren<TileObject>())
         {
             if (tile != null)
@@ -232,6 +241,16 @@ public class PlacedHandler : MonoBehaviour
                 StageSelectManager.Instance.SetInfiniteModeCount(savedTileData.infiniteModeCount);
                 GameManager.Instance.SetDifficultyLevel(savedTileData.difficulty);
                 PurchasedTileManager.Instance.SetPurchasedTiles(savedTileData.PurchasedTiles);
+                if(savedTileData.IsStoreSaved)
+                {
+                    PurchasedTileManager.Instance.IsSaved = true;
+                    PurchasedTileManager.Instance.StoreTiles = new(savedTileData.StoreTiles);
+                    PurchasedTileManager.Instance.PurchasedBoolList = new(savedTileData.PurchasedBoolList);
+                }
+                else
+                {
+                    PurchasedTileManager.Instance.IsSaved = false;
+                }
                 //FindAnyObjectByType<StoreSlotController>().SetupStoreSlots();
 
                 foreach (PlacedTileData placedTile in savedTileData.savedTiles)
@@ -241,6 +260,7 @@ public class PlacedHandler : MonoBehaviour
                         StartCoroutine(CreateTileOnGrid(tilePrefab, placedTile.position, placedTile.rotation));
                     }
                 }
+
                 Debug.Log("Steam 클라우드에서 불러오기 성공!");
                 //데이터 삭제
                 DeletePlacedTiles();

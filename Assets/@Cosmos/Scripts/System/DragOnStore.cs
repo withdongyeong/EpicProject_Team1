@@ -67,8 +67,11 @@ public class DragOnStore : DraggableObject
 
     protected override void Drag()
     {
-        if (!_tileObject.IsStarDisplayEnabled)
-            _tileObject.ShowStarCell();
+        if(_tileObject != null)
+        {
+            if (!_tileObject.IsStarDisplayEnabled)
+                _tileObject.ShowStarCell();
+        }   
     }
 
     protected override void EndDrag()

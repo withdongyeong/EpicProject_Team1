@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class PurchasedTileManager : Singleton<PurchasedTileManager>
 {
     private List<string> _purchasedTiles = new();
 
     public List<string> PurchasedTiles => _purchasedTiles;
+
+    public bool IsSaved = false;
+
+    public List<string> StoreTiles = new();
+    public List<bool> PurchasedBoolList = new();
 
     public void AddPurchasedTiles(string tileName)
     {
