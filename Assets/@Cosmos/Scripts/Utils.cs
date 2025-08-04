@@ -265,4 +265,7 @@ public class SavedTileData
     public int difficulty; // 난이도
     public List<PlacedTileData> savedTiles = new List<PlacedTileData>();
     public List<string> PurchasedTiles = new(); // 구매한 타일들 리스트
+    public List<string> StoreTiles = new(); // 상점에 뜬 타일들 리스트
+    public List<bool> PurchasedBoolList = new();
+    public bool IsStoreSaved = false;
 }

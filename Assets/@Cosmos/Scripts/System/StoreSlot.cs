@@ -133,6 +133,18 @@ public class StoreSlot : MonoBehaviour
         }
     }
 
+    public string GetObjectName()
+    {
+        return objectPrefab.name;
+    }
+
+    public void SetSlotPurchased()
+    {
+        isPurchased = true; // 구매 상태로 변경
+        image.color = Color.gray; // 색상 변경
+        priceText.color = Color.gray; //가격 텍스트 색상 변경
+    }
+
     private void OnDestroy()
     {
         EventBus.UnsubscribeGoldChanged(SetPriceTextColor);

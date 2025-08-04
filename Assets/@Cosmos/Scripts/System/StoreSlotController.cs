@@ -44,7 +44,12 @@ public class StoreSlotController : MonoBehaviour
         }
         else
         {
-            SetupStoreSlots();
+            if(PurchasedTileManager.Instance.IsSaved)
+            {
+                SetSavedTiles();
+            }
+            else
+                SetupStoreSlots();
         }
 
     }
@@ -377,5 +382,40 @@ public class StoreSlotController : MonoBehaviour
         _storeTiles[(int)grade] = newList;
     }
 
-   
+    public List<string> GetTileNameList()
+    {
+        List<string> nameList = new();
+        foreach(StoreSlot slot in storeSlots)
+        {
+            nameList.Add(slot.GetObjectName());
+        }
+        return nameList;
+    }
+
+    public List<bool> GetPurchasedBoolList()
+    {
+        List<bool> boolList = new();
+        foreach(StoreSlot slot in storeSlots)
+        {
+            boolList.Add(slot.IsPurchased);
+        }
+        return boolList;
+    }
+
+   public void SetSavedTiles()
+    {
+        for (int i = 0; i < storeSlots.Length; i++)
+        {
+            GameObject chosenTile;
+            chosenTile = JournalSlotManager.Instance.AllTiles.Find(obj => obj.name == PurchasedTileManager.Instance.StoreTiles[i]);
+            storeSlots[i].SetSlot(chosenTile.GetComponent<TileObject>().GetTileData().TileCost, chosenTile);
+            storeSlots[i].GetComponent<Image>().SetNativeSize();
+            if (PurchasedTileManager.Instance.PurchasedBoolList[i])
+            {
+                storeSlots[i].SetSlotPurchased();
+                Debug.Log(i);
+            }
+        }
+        PurchasedTileManager.Instance.IsSaved = false;
+    }
 }
