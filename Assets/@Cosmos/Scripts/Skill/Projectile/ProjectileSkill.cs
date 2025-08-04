@@ -47,6 +47,7 @@ public class ProjectileSkill : SkillBase
             projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
+            projectile.SetTileName(tileObject.GetTileData().TileName);
         }
     }
 

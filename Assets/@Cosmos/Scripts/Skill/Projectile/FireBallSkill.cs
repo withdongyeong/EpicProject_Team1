@@ -39,6 +39,7 @@ public class FireBallSkill : ProjectileSkill
             projectileObj.transform.rotation = lookRotation * clockwise90;
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
             projectile.BossDebuff = BossDebuff.Burning; // 화염 상태 이상 적용   
+            projectile.SetTileName(tileObject.GetTileData().TileName);
         }
     }
 

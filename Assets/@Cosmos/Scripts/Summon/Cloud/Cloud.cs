@@ -82,6 +82,7 @@ public class Cloud : MonoBehaviour
             projectileObj.transform.rotation = lookRotation * clockwise90;
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, _damage);
+            projectile.SetTileName("ThunderStormCloudTile");
             if( transform.parent.GetComponent<BaseBoss>().GetDebuffCount(BossDebuff.Mark) > 0)
             {
                 projectile.BossDebuff = BossDebuff.Mark; // 낙인 상태 이상 적용

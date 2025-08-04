@@ -228,7 +228,8 @@ public class BossDebuffs : MonoBehaviour
             return; // 화상 상태 이상이 없으면 적용하지 않음
         }
         // 화상 효과 적용 로직
-        boss.TakeDamage(debuffs[(int)BossDebuff.Burning], burningHitEffect); // 화상 상태 이상에 따라 데미지 적용
+        boss.TakeDamage(debuffs[(int)BossDebuff.Burning], burningHitEffect,"Fire"); // 화상 상태 이상에 따라 데미지 적용
+        //TODO: 동혁님 오시면 여기다가 화상 이름 물어보기
         RemoveDebuff(BossDebuff.Burning);
     }
 
