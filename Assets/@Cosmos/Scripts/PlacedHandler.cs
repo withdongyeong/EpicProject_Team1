@@ -144,6 +144,23 @@ public class PlacedHandler : MonoBehaviour
 
     public void SavePlacedTiles()
     {
+
+        if (GameStateManager.Instance.CurrentState == GameState.Playing ||
+            GameStateManager.Instance.CurrentState == GameState.Defeat)
+        {
+            if (LifeManager.Instance.Life == 0)
+            {
+                return; //목숨이 없으면 저장하지 않습니다.
+            }
+            if (LifeManager.Instance.Life > 0)
+            {
+                //목숨이 1개라도 있다면
+                LifeManager.Instance.RemoveLife(1); //하나 감소
+            }
+        }
+        
+        
+
         //1. 데이터 모으기
         SavedTileData savedTileData = new SavedTileData();
         savedTileData.gold = GoldManager.Instance.CurrentGold;
