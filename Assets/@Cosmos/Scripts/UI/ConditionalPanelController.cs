@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -69,7 +69,7 @@ public class ConditionalPanelController : MonoBehaviour
             // 모든 패널 비활성화 후 조건에 맞는 패널만 활성화
             InitializePanels();
             
-            if (SceneLoader.IsInBuilding())
+            if (SceneLoader.IsInBuilding() || (SceneLoader.IsInStage() && (GameStateManager.Instance.CurrentState == GameState.Victory || GameStateManager.Instance.CurrentState == GameState.Defeat)))
             {
                 // 빌딩씬인 경우
                 ActivatePanel(buildingScenePanel, "빌딩씬 패널");

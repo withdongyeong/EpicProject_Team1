@@ -103,6 +103,7 @@ public class StageUIHandler : MonoBehaviour
     {
         victoryPanel.SetActive(true);
         defeatPanel.SetActive(false);
+        DamageMeterManager.Instance.SetDamageMeterPanel(); // 데미지 미터 패널 업데이트
     }
 
     /// <summary>
@@ -112,6 +113,7 @@ public class StageUIHandler : MonoBehaviour
     {
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(true);
+        DamageMeterManager.Instance.SetDamageMeterPanel(); // 데미지 미터 패널 업데이트
     }
 
     /// <summary>

@@ -45,6 +45,7 @@ public class SwordSkill : SkillBase
             if (swordController != null)
             {
                 swordController.Damage = damage; // 공격력 설정
+                swordController.SetTileName(tileObject.GetTileData().TileName);
             }
             else
             {
