@@ -215,6 +215,7 @@ public class PlacedHandler : MonoBehaviour
     
     public void LoadPlacedTiles()
     {
+        if(!SteamManager.Initialized) return;
         // 1. 클라우드에 "save_session.dat" 파일이 있는지 확인합니다.
         if (SteamRemoteStorage.FileExists("save_session.dat"))
         {
@@ -275,6 +276,7 @@ public class PlacedHandler : MonoBehaviour
     
     public void DeletePlacedTiles()
     {
+        if(!SteamManager.Initialized) return;
         // Steam 클라우드에서 "save_session.dat" 파일을 삭제합니다.
         if (!SteamRemoteStorage.FileExists("save_session.dat"))
         {
