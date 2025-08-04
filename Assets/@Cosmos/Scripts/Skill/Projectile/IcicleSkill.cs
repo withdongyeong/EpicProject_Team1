@@ -20,6 +20,7 @@ public class IcicleSkill : ProjectileSkill
             projectileObj.transform.rotation = lookRotation * clockwise90;
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
             projectile.BossDebuff = BossDebuff.Frostbite; // 동상 상태 이상 적용
+            projectile.SetTileName(tileObject.GetTileData().TileName);
         }
     }
 }  

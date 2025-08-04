@@ -101,6 +101,7 @@ public class Kabuto_RE : MonoBehaviour
             {
                 _kabutoProjectile.Initialize(dir, Projectile.ProjectileTeam.Player, _currentConsume * 3, true);
             }
+            _kabutoProjectile.SetTileName("KabutoTile");
         }    
         _currentConsume = 0;
         _kabutoProjectile = null;

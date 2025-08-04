@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     private GameObject hitEffect;
     private GameObject hitEffectHammer;
     private string PatternName = "Projectile";
+    private string _tileName;
    
     public enum ProjectileTeam
     {
@@ -29,6 +30,7 @@ public class Projectile : MonoBehaviour
     public ProjectileTeam Team { get => _team; set => _team = value; }
     public BossDebuff BossDebuff { get => bossDebuff; set => bossDebuff = value; }
     public bool IsFrostHammer { get => isFrostHammer; set => isFrostHammer = value; }
+    public string TileName => _tileName;
 
     /// <summary>
     /// 투사체 초기화
@@ -43,6 +45,11 @@ public class Projectile : MonoBehaviour
         {
             _sr = GetComponent<SpriteRenderer>();
         }
+    }
+
+    public virtual void SetTileName(string tileName)
+    {
+        _tileName = tileName;
     }
 
     private void Start()
@@ -101,7 +108,7 @@ public class Projectile : MonoBehaviour
                     {
                         if (isFrostHammer)
                         {
-                            enemy.TakeDamage(damage, hitEffectHammer); // FrostHammer 효과 적용
+                            enemy.TakeDamage(damage, hitEffectHammer,_tileName); // FrostHammer 효과 적용
 
                             if (enemy.IsStopped || enemy.IsDamageIncreased)
                             {
@@ -112,10 +119,10 @@ public class Projectile : MonoBehaviour
                         }
                         else
                         {
-                            enemy.TakeDamage(damage, hitEffect); // Frostbite 효과 적용
+                            enemy.TakeDamage(damage, hitEffect, _tileName); // Frostbite 효과 적용
                         }
                     }
-                    else enemy.TakeDamage(damage, null);
+                    else enemy.TakeDamage(damage, null, _tileName);
 
                     enemy.AddDebuff(bossDebuff); // 상태 이상 추가
                     if (bossDebuff == BossDebuff.Burning)
@@ -123,7 +130,7 @@ public class Projectile : MonoBehaviour
                         enemy.AddDebuff(bossDebuff); // Burning 상태 이상 추가
                     }
                 }
-                else enemy.TakeDamage(damage, null);
+                else enemy.TakeDamage(damage, null, _tileName);
                 
                 Destroy(gameObject);
             }

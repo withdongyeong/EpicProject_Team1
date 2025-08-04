@@ -1,7 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.Localization;
 
 /// <summary>
 /// 리더보드 데이터를 UI에 표시하는 컴포넌트
@@ -241,8 +242,17 @@ public class LeaderboardDisplay : MonoBehaviour
     /// <param name="isPlayer">본인 기록 여부 (하이라이트용)</param>
     private void SetupEntryUI(GameObject entryObj, LeaderboardEntry entry, bool isPlayer)
     {
+        TextMeshProUGUI rankText = new TextMeshProUGUI();
+        LocalizedString localizedRankText = new LocalizedString("EpicProject_Table", "UI_Text_RankingView");
+
+        localizedRankText.StringChanged += (Text) =>
+        {
+            rankText.text = Text.Replace("{0}", entry.Rank.ToString());
+        };
+
+
         // 순위 텍스트 설정 - Entry 자식 아래에서 찾기
-        SetTextComponent(entryObj, "Entry/RankText", $"{entry.Rank}위");
+        SetTextComponent(entryObj, "Entry/RankText", rankText.text);
     
         // 플레이어 이름 텍스트 설정
         SetTextComponent(entryObj, "Entry/NameText", entry.PlayerName);

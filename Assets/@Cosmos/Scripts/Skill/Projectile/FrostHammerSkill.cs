@@ -21,6 +21,7 @@ public class FrostHammerSkill : ProjectileSkill
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
             projectile.BossDebuff = BossDebuff.Frostbite; // 동상 상태 이상 적용
             projectile.IsFrostHammer = true; // FrostHammer 투사체 플래그 설정
+            projectile.SetTileName(tileObject.GetTileData().TileName);
         }
     }
 }

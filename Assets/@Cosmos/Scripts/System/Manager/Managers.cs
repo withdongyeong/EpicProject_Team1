@@ -30,8 +30,8 @@ public class Managers : MonoBehaviour
     private GameObject LocalizeManager;
     private GameObject pauseManager;
     private GameObject purchasedTileManager;
+    private GameObject damageMeterManager;
     private GameObject leaderboardManager;
-    
     
 
 
@@ -59,6 +59,7 @@ public class Managers : MonoBehaviour
         LocalizeManager = Resources.Load<GameObject>("LocalizeManager");
         pauseManager = Resources.Load<GameObject>("PauseManager");
         purchasedTileManager = Resources.Load<GameObject>("PurchasedTileManager");
+        damageMeterManager = Resources.Load<GameObject>("DamageMeterManager");
         leaderboardManager = Resources.Load<GameObject>("SteamLeaderboardManager");
         //Instantiate the managers
         MakeManager(gameManager);
@@ -82,6 +83,7 @@ public class Managers : MonoBehaviour
         MakeManager(LocalizeManager);
         MakeManager(pauseManager);
         MakeManager(purchasedTileManager);
+        MakeManager(damageMeterManager);
         MakeManager(leaderboardManager);
     }
 

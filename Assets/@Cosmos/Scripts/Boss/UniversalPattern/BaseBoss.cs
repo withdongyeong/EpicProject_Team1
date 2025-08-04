@@ -227,7 +227,7 @@ public abstract class BaseBoss : MonoBehaviour
     /// 데미지 처리
     /// </summary>
     /// <param name="damage">받을 데미지</param>
-    public virtual void TakeDamage(int damage, GameObject hitObject = null)
+    public virtual void TakeDamage(int damage, GameObject hitObject = null,string tileName = null)
     {
         if (_isDead) return;
         if (hitObject == null)
@@ -262,11 +262,21 @@ public abstract class BaseBoss : MonoBehaviour
         _damageTextHandler.SpawnDamageText(damage);
         _totalDamageManager.AddDamage(damage);
 
-        if(damage >= 200)
+        //딜미터기 용 스크립트 입니다
+        if(tileName != null)
+        {
+            DamageMeterManager.Instance.AddDamage(tileName, damage);
+        }
+        else
+        {
+            Debug.LogError("무언가 타일네임이 안들어간 데미지 요소가 있음");
+        }
+
+        if (damage >= 200)
         {
             Debug.Log("됨");
             SteamAchievement.Achieve("ACH_BTL_DAMAGE");
-            if(damage >= 1000)
+            if (damage >= 1000)
             {
                 Debug.Log("더 강하게 됨");
                 SteamAchievement.Achieve("ACH_SUPER_DAMAGE");
