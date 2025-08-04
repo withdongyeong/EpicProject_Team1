@@ -36,6 +36,8 @@ public class WraithSkill : SkillBase
         if (isEnchanted)
         {
             AddPain(20); // 강화된 상태면 저주를 20개 소모하고 영구 피해 증폭 10% 적용
+            SteamAchievement.Achieve("ACH_SUPER_CURSE");
+            Debug.Log("망령 도전 과제 달성");
         }
         else
         {
