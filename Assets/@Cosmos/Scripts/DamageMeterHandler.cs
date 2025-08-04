@@ -14,12 +14,13 @@ public class DamageMeterHandler : MonoBehaviour
         {
             Debug.LogError("DamageText 프리팹을 Resources/Prefabs/UI/DamagePanel/DamageText에서 찾을 수 없습니다.");
         }
-        ClearDamageText(); // 초기화 시 모든 자식 오브젝트 삭제
     }
+
 
     // 데미지 매니저에서 호출할 함수
     public void AddDamageText(string damageText)
     {
+        Debug.Log($"AddDamageText 호출됨: {damageText}");
         if (damageTextPrefab == null)
         {
             Debug.LogError("DamageText 프리팹이 로드되지 않았습니다.");

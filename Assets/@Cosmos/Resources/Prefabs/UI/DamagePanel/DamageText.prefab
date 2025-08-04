@@ -69,7 +69,7 @@ MonoBehaviour:
   m_text: New Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -149,86 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjects:
-  - rid: 2101625293383401565
-  - rid: 2101625293383401568
+  m_TrackedObjects: []
   references:
     version: 2
-    RefIds:
-    - rid: 2101625293383401565
-      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
-      data:
-        m_Target: {fileID: 3115663710993728541}
-        m_TrackedProperties:
-          items:
-          - rid: 2101625293383401566
-          - rid: 2101625293383401567
-          - rid: 2101625293383401571
-        m_UpdateType: 0
-    - rid: 2101625293383401566
-      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: m_fontAsset
-        m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-        - localeIdentifier:
-            m_Code: en
-          value: {fileID: 11400000, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
-    - rid: 2101625293383401567
-      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: m_sharedMaterial
-        m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-        - localeIdentifier:
-            m_Code: en
-          value: {fileID: 6030588677610981749, guid: 6b3a2e365d5821346ac6e8a47a0fd8ee, type: 2}
-    - rid: 2101625293383401568
-      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
-      data:
-        m_Target: {fileID: 1409539764205590135}
-        m_TrackedProperties:
-          items:
-          - rid: 2101625293383401569
-          - rid: 2101625293383401570
-    - rid: 2101625293383401569
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: m_SizeDelta.x
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 200
-        - localeIdentifier:
-            m_Code: en
-          value: 500
-    - rid: 2101625293383401570
-      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: m_SizeDelta.y
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 50
-        - localeIdentifier:
-            m_Code: en
-          value: 100
-    - rid: 2101625293383401571
-      type: {class: EnumTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: m_VerticalAlignment
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ko
-          value: 256
-        - localeIdentifier:
-            m_Code: en
-          value: 512
+    RefIds: []
