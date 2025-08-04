@@ -238,6 +238,8 @@ public class Infinite : LastBoss
     /// </summary>
     protected override void Die()
     {
+        // 무한모드 도전 횟수 증가
+        StageSelectManager.Instance.IncrementInfiniteModeCount();
         SoundManager.Instance.LastBossSoundClip("LastBossDeadActivate");
 
         // 일반 난이도 클리어 도전과제
@@ -257,14 +259,16 @@ public class Infinite : LastBoss
         // 무한모드 클리어 도전과제 및 리더보드 업로드
         if (StageSelectManager.Instance != null)
         {
-            int infiniteCount = StageSelectManager.Instance.InfiniteModeCount;
-            if (infiniteCount >= 1)
+            int previousBestRound = StageSelectManager.Instance.InfiniteModeCount;
+            int currentRound = previousBestRound-1; // 보스 잡는 순간 카운트 올리고 있기 때문에 기록은 -1
+            
+            if (currentRound >= 1)
             {
                 SteamAchievement.Achieve("ACH_INFINITE_1");
                 Debug.Log("무한모드 1 클리어");
 
-                // 리더보드에 점수 업로드
-                UploadScoreToLeaderboard(infiniteCount, difficulty);
+                // 리더보드에 현재 클리어한 라운드 수 업로드 (이전 최고가 아닌)
+                UploadScoreToLeaderboard(currentRound, difficulty);
             }
         }
 
@@ -276,17 +280,17 @@ public class Infinite : LastBoss
         // 기본 사망 처리 호출
         base.Die();
     }
-    
+
     /// <summary>
     /// 무한모드 클리어 점수를 리더보드에 업로드
     /// </summary>
-    /// <param name="roundScore">클리어한 라운드 수</param>
+    /// <param name="currentRoundCleared">현재 클리어한 라운드 수</param>
     /// <param name="difficultyLevel">게임 난이도 (0=Easy, 1=Normal, 2=Hard, 3=Hell)</param>
-    private void UploadScoreToLeaderboard(int roundScore, int difficultyLevel)
+    private void UploadScoreToLeaderboard(int currentRoundCleared, int difficultyLevel)
     {
         Debug.Log($"=== 업로드 시도 ===");
-        Debug.Log($"roundScore: {roundScore}");
-        Debug.Log($"InfiniteModeCount: {StageSelectManager.Instance.InfiniteModeCount}");
+        Debug.Log($"현재 클리어한 라운드: {currentRoundCleared}");
+        Debug.Log($"이전 최고 기록(InfiniteModeCount): {StageSelectManager.Instance.InfiniteModeCount}");
         Debug.Log($"difficulty: {difficultyLevel}");
         
         if (SteamLeaderboardManager.Instance == null)
@@ -294,14 +298,14 @@ public class Infinite : LastBoss
             Debug.LogWarning("[Infinite] SteamLeaderboardManager가 없어서 점수 업로드를 건너뜁니다.");
             return;
         }
-    
+
         // 게임 난이도를 DifficultyType으로 변환
         DifficultyType difficulty = ConvertToDifficultyType(difficultyLevel);
-    
-        // 리더보드에 업로드
-        SteamLeaderboardManager.Instance.UploadScore(difficulty, roundScore);
-    
-        Debug.Log($"[Infinite] 무한모드 점수 업로드: {difficulty} 난이도, {roundScore} 라운드");
+
+        // 리더보드에 현재 클리어한 라운드 수 업로드
+        SteamLeaderboardManager.Instance.UploadScore(difficulty, currentRoundCleared);
+
+        Debug.Log($"[Infinite] 무한모드 점수 업로드: {difficulty} 난이도, {currentRoundCleared} 라운드");
     }
 
     /// <summary>
