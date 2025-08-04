@@ -41,7 +41,7 @@ public class DamageMeterManager : Singleton<DamageMeterManager>
             return;
         }
 
-        _damageMeterHandler.ClearDamageText(); // 초기화 시 모든 자식 오브젝트 삭제
+        _damageMeterHandler.ClearDamageText();
 
         // value 값이 높은 순으로 정렬
         foreach (var entry in SortDamageRecordsByValueDesc())
@@ -50,7 +50,9 @@ public class DamageMeterManager : Singleton<DamageMeterManager>
 
             LocalizedString localizedString_Name = new LocalizedString("EpicProject_Table", "Tile_TileName_" + entry.Key);
             localizedString_Name.StringChanged += (text) => { nameText.text = text; };
-            _damageMeterHandler.AddDamageText($"{nameText.text}: {entry.Value}");
+        
+            // 원본 키(entry.Key)와 번역된 텍스트를 모두 전달
+            _damageMeterHandler.AddDamageText(entry.Key, $"{nameText.text}: {entry.Value}");
         }
     }
 
