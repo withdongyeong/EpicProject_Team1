@@ -41,6 +41,7 @@ public class MoaiTotem : BaseTotem
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.Initialize(direction, Projectile.ProjectileTeam.Player, damage);
+            projectile.SetTileName("MoaiTotemTile");
         }
     }
 }

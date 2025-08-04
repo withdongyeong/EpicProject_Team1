@@ -133,8 +133,8 @@ public class TurtleBase : MonoBehaviour
             {
                 projectile.Initialize(dir, Projectile.ProjectileTeam.Player, _chargedProtection * 3, isRainbow);
             }
-                
-            
+            projectile.SetTileName("TurtleTile");
+               
             _chargedProtection = 0;
 
         }

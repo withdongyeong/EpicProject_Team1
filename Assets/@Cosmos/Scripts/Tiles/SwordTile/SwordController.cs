@@ -169,6 +169,16 @@ public class SwordController : MonoBehaviour
     }
 
     /// <summary>
+    /// 날 소환한 타일의 이름
+    /// </summary>
+    private string _tileName;
+
+    /// <summary>
+    /// 날 소환한 타일의 이름
+    /// </summary>
+    public string TileName => _tileName;
+
+    /// <summary>
     /// 컴포넌트 초기화
     /// </summary>
     private void Awake()
@@ -464,8 +474,17 @@ public class SwordController : MonoBehaviour
             BaseBoss monster = other.GetComponent<BaseBoss>();
             if (monster != null)
             {
-                monster.TakeDamage(_damage, _hitEffect);
-                if(_isBurning)
+                if(_tileName != null)
+                {
+                    monster.TakeDamage(_damage, _hitEffect, _tileName);
+                }
+                else
+                {
+                    Debug.LogError("님아 지금 타일 네임이 안들어간 칼(소환된 이기어검)이 있는 데스");
+                    monster.TakeDamage(_damage, _hitEffect);
+                }
+
+                if (_isBurning)
                 {
                     monster.AddDebuff(BossDebuff.Burning);
                     monster.AddDebuff(BossDebuff.Burning);
@@ -541,5 +560,10 @@ public class SwordController : MonoBehaviour
     {
         Damage += amount; // 검의 공격력 증가
         _enchantAmount += amount;
+    }
+
+    public void SetTileName(string tileName)
+    {
+        _tileName = tileName;
     }
 }
