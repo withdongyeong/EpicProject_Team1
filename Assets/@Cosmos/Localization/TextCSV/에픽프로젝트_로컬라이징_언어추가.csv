@@ -495,17 +495,17 @@ If there are 3 or more Magic Circles<sprite name=""MagicCircle""> <color=yellow>
 Если <color=yellow>на Звезде<sprite name=""Star""> расположено</color> 3 или более Магических Кругов<sprite name=""MagicCircle"">, <color=red>тратит 20</color> Проклятий<sprite name=""Curse"">.
 <color=orange>Злые духи</color> не появляются в магазине."
 Tile_TileDescription_HellFireTile,"一次性造成接下来5次火焰<sprite name=""Fire"">伤害并移除所有火焰<sprite name=""Fire"">。
-(伤害: <color=red>0~255</color>)
+(伤害: <color=red>0~455</color>)
 如果<color=yellow>星<sprite name=""Star"">位置上</color>有3个以上法阵<sprite name=""MagicCircle"">，造成接下来10次火焰<sprite name=""Fire"">伤害。","Deals 5 Burn damage<sprite name=""Fire""> at once and removes all Burns <sprite name=""Fire"">.
-(Damage: <color=red>0~255</color>)
+(Damage: <color=red>0~455</color>)
 If there are 3 or more Magic Circles <sprite name=""MagicCircle""><color=yellow>located on the Star<sprite name=""Star""></color>, deal 10 Burn damage<sprite name=""Fire"">.","次の5つの炎<sprite name=""Fire"">ダメージを一度に与え、炎<sprite name=""Fire"">をすべて削除します。
-(ダメージ：<color=red>0〜255</color>)
+(ダメージ：<color=red>0〜455</color>)
 <color=yellow>星<sprite name=""Star"">に位置する</color>魔法陣<sprite name=""MagicCircle"">が3つ以上の場合、次の10回の炎<sprite name=""Fire"">ダメージを与えます。","다음 5번의 화염<sprite name=""Fire""> 피해를 한 번에 입히고 화염<sprite name=""Fire"">을 모두 제거합니다.
-(피해량: <color=red>0~255</color>)
+(피해량: <color=red>0~455</color>)
 <color=yellow>별<sprite name=""Star"">에 위치한</color> 마법진<sprite name=""MagicCircle"">이 3개 이상이라면, 다음 10번의 화염<sprite name=""Fire""> 피해를 입힙니다.","一次性造成接下來5次火焰<sprite name=""Fire"">傷害並移除所有火焰<sprite name=""Fire"">。
-(傷害: <color=red>0~255</color>)
+(傷害: <color=red>0~455</color>)
 如果<color=yellow>星<sprite name=""Star"">位置上</color>有3個以上法陣<sprite name=""MagicCircle"">，造成接下來10次火焰<sprite name=""Fire"">傷害。","Единовременно наносит урон от следующих 5 Пламён<sprite name=""Fire""> и удаляет все Пламя<sprite name=""Fire"">.
-(Урон: <color=red>0~255</color>)
+(Урон: <color=red>0~455</color>)
 Если <color=yellow>на позиции Звезды<sprite name=""Star""></color> размещено 3 или более Магических кругов<sprite name=""MagicCircle"">, наносит урон от следующих 10 Пламён<sprite name=""Fire"">."
 Tile_TileDescription_WandTile,"星云(2)<sprite name=""Nebula"">: 发射投射物。
 (伤害: <color=red>6</color>)","Nebula (2)<sprite name=""Nebula"">: Fires a projectile. 
@@ -793,7 +793,7 @@ to rotate the constellation.","星座を回転させてください。
 <color=yellow>R </color>を押すか、
 <color=yellow>マウスの右ボタン</color>をクリックで
 星座を回転させることができます。","별자리를 회전시켜보세요
-<color=yellow>별자리를 누른 상태</color>에서
+<color=yellow>별자리를 드래그</color>하는 중
 <color=yellow>R</color>을 누르거나, 
 <color=yellow>마우스 오른쪽 버튼</color>을 클릭하면 
 별자리를 회전 시킬 수 있습니다.","請嘗試旋轉星座。在<color=yellow>按住星座</color>的狀態下，
