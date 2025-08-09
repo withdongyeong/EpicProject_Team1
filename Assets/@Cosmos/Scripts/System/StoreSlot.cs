@@ -101,19 +101,55 @@ public class StoreSlot : MonoBehaviour
     }
     public void SetSlot(int cost, GameObject prefab)
     {
-        //Debug.Log(cost);
         this.objectCost = cost;
         this.objectPrefab = prefab;
-        isPurchased = false; // 초기화
-        image.color = Color.white; // 초기 색상 설정
-        image.sprite = prefab.GetComponent<TileObject>().GetTileSprite(); // 아이템 오브젝트의 스프라이트 설정
-        //infoUI.SetTileObject(prefab.GetComponent<TileObject>()); // InfoUI에 TileObject 설정
+        isPurchased = false;
+        image.color = Color.white;
+        image.sprite = prefab.GetComponent<TileObject>().GetTileSprite();
         hoverTileInfo.SetTileObject(prefab.GetComponent<TileObject>());
         image.SetNativeSize();
-        backgroundImage.GetComponent<RectTransform>().sizeDelta = image.rectTransform.sizeDelta; // 배경 이미지 크기 조정
-        priceText.text = $"{cost}G";
+        backgroundImage.GetComponent<RectTransform>().sizeDelta = image.rectTransform.sizeDelta;
+   
+        // 태그 아이콘과 함께 가격 표시
+        string tagIcon = GetCategoryIcon(prefab.GetComponent<TileObject>().data.tileCategory);
+        if (!string.IsNullOrEmpty(tagIcon))
+        {
+            priceText.text = $"{cost}G <sprite name=\"{tagIcon}\">";
+        }
+        else
+        {
+            priceText.text = $"{cost}G";
+        }
+   
         SetPriceTextColor(GoldManager.Instance.CurrentGold);
-        
+    }
+
+    /// <summary>
+    /// Description에서 첫 번째 스프라이트 태그를 추출합니다
+    /// </summary>
+    private string GetFirstTagFromDescription(string description)
+    {
+        var regex = new System.Text.RegularExpressions.Regex(@"<sprite name=""(.*?)"">");
+        var match = regex.Match(description);
+        return match.Success ? match.Groups[1].Value : "";
+    }
+    
+    /// <summary>
+    /// TileCategory에 따른 스프라이트 이름을 반환합니다
+    /// </summary>
+    private string GetCategoryIcon(TileCategory category)
+    {
+        switch (category)
+        {
+            case TileCategory.Weapon: return "Weapon";
+            case TileCategory.MagicCircle: return "MagicCircle";
+            case TileCategory.Armor: return "Armor";
+            case TileCategory.Consumable: return "Consumable";
+            case TileCategory.Trinket: return "Trinket";
+            case TileCategory.Summon: return "Summon";
+            case TileCategory.Planet: return "Planet";
+            default: return "";
+        }
     }
 
 
