@@ -118,12 +118,13 @@ public class GameManager : Singleton<GameManager>
         GoldManager.Instance.SetCurrentGold(14);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
+        PurchasedTileManager.Instance.ClearPurchasedTiles();
         JournalSlotManager.Instance.SetStoreTileList();
-               
+
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);
-        }      
+        }
         SceneLoader.LoadTitle();
     }
 
@@ -136,12 +137,13 @@ public class GameManager : Singleton<GameManager>
         GoldManager.Instance.SetCurrentGold(14);
         LifeManager.Instance.ResetLifeManager();
         StageSelectManager.Instance.ResetManager();
+        PurchasedTileManager.Instance.ClearPurchasedTiles();
         JournalSlotManager.Instance.SetStoreTileList();
-        
+
         for(int i =0; i<5; i++)
         {
             StoreLockManager.Instance.RemoveStoreLock(i);
-        }      
+        }
         SceneLoader.LoadTitle();
     }
     //매 씬 로드마다 튜토리얼 여부를 확인합니다

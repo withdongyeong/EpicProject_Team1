@@ -29,4 +29,12 @@ public class PurchasedTileManager : Singleton<PurchasedTileManager>
         _purchasedTiles = new List<string>(tileList);
     }
 
+    public void ClearPurchasedTiles()
+    {
+        _purchasedTiles.Clear();
+        StoreTiles.Clear();
+        PurchasedBoolList.Clear();
+        IsSaved = false;
+    }
+
 }
